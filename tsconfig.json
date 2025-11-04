@@ -21,6 +21,7 @@
     ],
     "paths": {
       "@/*": ["./*"],
+      "@/components/ui/*": ["./components/ui/*", "./components/legacy/ui/*"],
       "@/components/*": ["./components/*"],
       "@/lib/*": ["./lib/*"],
       "@/hooks/*": ["./hooks/*"]
@@ -36,7 +37,8 @@
   ],
   "exclude": [
     "node_modules",
-    "legacy/**"
+    "legacy/**",
+    "app/legacy-pages/App.tsx"
   ]
   ,
   "ts-node": {
