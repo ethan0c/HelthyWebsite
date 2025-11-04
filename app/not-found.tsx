@@ -1,5 +1,5 @@
 "use client";
-import NotFound from "@legacy/client/pages/NotFound";
+import NotFound from "./legacy-pages/NotFound";
 export default function NotFoundPage() {
   return <NotFound />;
 }

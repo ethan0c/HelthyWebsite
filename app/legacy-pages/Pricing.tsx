@@ -1,5 +1,5 @@
 import { ArrowUpRight, CheckCircle } from "lucide-react";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/legacy/Navbar";
 
 export default function Pricing() {
   return (

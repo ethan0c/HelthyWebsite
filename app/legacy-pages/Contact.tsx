@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/legacy/Navbar";
 
 export default function Contact() {
   const [firstName, setFirstName] = useState("");

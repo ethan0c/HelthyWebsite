@@ -21,10 +21,9 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@legacy/*": ["./legacy/*"],
-      "@/components/*": ["./legacy/client/components/*"],
-      "@/lib/*": ["./legacy/client/lib/*"],
-      "@/hooks/*": ["./legacy/client/hooks/*"]
+      "@/components/*": ["./components/*"],
+      "@/lib/*": ["./lib/*"],
+      "@/hooks/*": ["./hooks/*"]
     }
   },
   "include": [

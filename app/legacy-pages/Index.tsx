@@ -2,17 +2,17 @@ import { ArrowUpRight, Trophy, Flame, Mail, Instagram, CheckCircle, Paperclip, P
 import { useState, useEffect, useRef } from "react";
 import Icon from '@mdi/react';
 import { mdiFood, mdiFoodDrumstick } from '@mdi/js';
-import Waitlist from "../components/Waitlist";
-import Navbar from "../components/Navbar";
-import { ThemeKey, getTheme, getThemeDisplayName, isDarkTheme } from "../lib/colors";
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../components/ui/accordion";
-import MouseRings from "../components/MouseRings";
-import OcelabsBanner from "../components/OcelabsBanner";
-import AutoScrollRow from "../components/AutoScrollRow";
-import FeatureCard from "../components/FeatureCard";
-import TheProblemSection from "@/components/TheProblemSection";
-import StackingCards from "@/components/StackingCards";
-import IcoSphere from "../components/IcoSphere";
+import Waitlist from "../../components/legacy/Waitlist";
+import Navbar from "../../components/legacy/Navbar";
+import { ThemeKey, getTheme, getThemeDisplayName, isDarkTheme } from "../../lib/colors";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../../components/ui/accordion";
+import MouseRings from "../../components/legacy/MouseRings";
+import OcelabsBanner from "../../components/legacy/OcelabsBanner";
+import AutoScrollRow from "../../components/legacy/AutoScrollRow";
+import FeatureCard from "../../components/legacy/FeatureCard";
+import TheProblemSection from "../../components/legacy/TheProblemSection";
+import StackingCards from "../../components/legacy/StackingCards";
+import IcoSphere from "../../components/legacy/IcoSphere";
 // Removed PinnedHorizontalSequence usage; component kept for future use
 
 

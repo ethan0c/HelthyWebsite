@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/legacy/Navbar";
 import { CheckCircle } from "lucide-react";
 
 export default function About() {

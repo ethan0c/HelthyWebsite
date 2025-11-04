@@ -1,5 +1,5 @@
 "use client";
-import About from "@legacy/client/pages/About";
+import About from "../legacy-pages/About";
 export default function AboutPage() {
   return <About />;
 }

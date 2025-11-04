@@ -4,7 +4,7 @@ import "./globals.css";
 import "./legacy.css";
 import { GSAPProvider } from "../components/providers/GSAPProvider";
 import { LenisProvider } from "../components/providers/LenisProvider";
-import LoaderHollowCircles from "../components/legacy/LoaderHollowCircles";
+import HollowCirclesOverlay from "../components/HollowCirclesOverlay";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -53,17 +53,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0B0B0B] transition-opacity duration-500">
-          <LoaderHollowCircles
-            color="#CDFB50"
-            background="transparent"
-            size={16}
-            border={2}
-            gap={10}
-            fade={0.35}
-            durationMs={1050}
-          />
-        </div>
+        <HollowCirclesOverlay />
         <GSAPProvider>
           <LenisProvider>{children}</LenisProvider>
         </GSAPProvider>
