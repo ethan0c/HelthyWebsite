@@ -17,7 +17,7 @@ export default function LoaderHollowCircles({
   border = 2,
   gap = 10,
   fade = 0.35,
-  durationMs = 1100,
+  durationMs = 2100,
 }: LoaderHollowCirclesProps) {
   const style: React.CSSProperties = {
     // CSS variables for the loader
