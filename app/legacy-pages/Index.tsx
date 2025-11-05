@@ -901,15 +901,24 @@ export default function Index() {
         ))}
       </div>
 
-      {/* Theme Preview Card */}
+      {/* Theme Preview Card (non-interactive) */}
       <div className="max-w-md mx-auto">
-        <div 
-          className="rounded-3xl border p-8 transition-all duration-700 shadow-xl"
+        <div
+          role="group"
+          aria-label="Theme preview (not interactive)"
+          className="relative rounded-3xl border p-8 transition-all duration-700 shadow-md cursor-default select-none pointer-events-none"
           style={{
             backgroundColor: selectedTheme ? getTheme(selectedTheme).card : '#FFFFFF',
             borderColor: selectedTheme ? `${getTheme(selectedTheme).primary}40` : '#11111120'
           }}
         >
+          {/* Badge */}
+          <span
+            className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium bg-black/5 text-black/60 dark:bg-white/10 dark:text-white/70 backdrop-blur-sm border border-black/10 dark:border-white/10"
+          >
+            Preview
+            <span className="opacity-70">· not interactive</span>
+          </span>
           <div className="flex items-center justify-between mb-6">
             <div>
               <h3 
@@ -918,7 +927,7 @@ export default function Index() {
               >
                 Theme Preview
               </h3>
-              <p 
+              <p
                 className="text-sm transition-colors duration-700"
                 style={{ color: selectedTheme ? `${getTheme(selectedTheme).text}80` : '#11111180' }}
               >
@@ -951,16 +960,18 @@ export default function Index() {
                 />
               </div>
             </div>
-            
-            <button
-              className="w-full py-3 px-6 rounded-full font-medium transition-all duration-700 hover:opacity-90"
+
+            {/* Static sample button look (not interactive) */}
+            <div
+              className="w-full py-3 px-6 rounded-full font-medium transition-all duration-700 text-center"
               style={{
                 backgroundColor: selectedTheme ? getTheme(selectedTheme).primary : '#CDFB50',
                 color: selectedTheme ? (getTheme(selectedTheme).buttonText || '#111111') : '#111111'
               }}
+              aria-hidden="true"
             >
               Sample Button
-            </button>
+            </div>
           </div>
         </div>
       </div>
