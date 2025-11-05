@@ -1,11 +1,31 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function TheProblemSection() {
   const screens = ['home', 'exercise', 'nutrition', 'progress'] as const;
   type Screen = typeof screens[number];
   const [activeIndex, setActiveIndex] = useState(0);
   const [loaded, setLoaded] = useState<Record<Screen, boolean>>({} as Record<Screen, boolean>);
+  const [animating, setAnimating] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [slideWidth, setSlideWidth] = useState(0);
+
+  useEffect(() => {
+    const update = () => {
+      if (containerRef.current) {
+        setSlideWidth(containerRef.current.clientWidth);
+      }
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  const goTo = (i: number) => {
+    if (i === activeIndex) return;
+    setAnimating(true);
+    setActiveIndex(i);
+  };
   const activeScreen = screens[activeIndex];
   
   return (
@@ -129,7 +149,7 @@ export default function TheProblemSection() {
                 {/* Screen selector buttons */}
                 <div className="mt-8 flex justify-center gap-3">
                   <button
-                    onClick={() => setActiveIndex(0)}
+                    onClick={() => goTo(0)}
                     className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
                       activeScreen === 'home'
                         ? 'bg-helthy-lemon text-helthy-black shadow-lg'
@@ -139,7 +159,7 @@ export default function TheProblemSection() {
                     Home
                   </button>
                   <button
-                    onClick={() => setActiveIndex(1)}
+                    onClick={() => goTo(1)}
                     className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
                       activeScreen === 'exercise'
                         ? 'bg-helthy-lemon text-helthy-black shadow-lg'
@@ -149,7 +169,7 @@ export default function TheProblemSection() {
                     Exercise
                   </button>
                   <button
-                    onClick={() => setActiveIndex(2)}
+                    onClick={() => goTo(2)}
                     className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
                       activeScreen === 'nutrition'
                         ? 'bg-helthy-lemon text-helthy-black shadow-lg'
@@ -159,7 +179,7 @@ export default function TheProblemSection() {
                     Nutrition
                   </button>
                   <button
-                    onClick={() => setActiveIndex(3)}
+                    onClick={() => goTo(3)}
                     className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
                       activeScreen === 'progress'
                         ? 'bg-helthy-lemon text-helthy-black shadow-lg'
@@ -215,10 +235,13 @@ export default function TheProblemSection() {
 
                 {/* Phone mockup — conveyor slide between screens */}
                 <div className="relative justify-self-center">
-                  <div className="relative overflow-hidden w-[260px] md:w-[600px] lg:w-[680px]">
+                  <div ref={containerRef} className="relative overflow-hidden w-[260px] md:w-[600px] lg:w-[680px]">
                     <div
-                      className="flex will-change-transform transition-transform duration-700 ease-in-out motion-reduce:transition-none"
-                      style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+                      className={`flex transition-transform duration-700 ease-in-out motion-reduce:transition-none ${animating ? 'will-change-transform' : ''}`}
+                      style={animating
+                        ? { transform: `translate3d(-${Math.round(slideWidth * activeIndex)}px, 0, 0)` }
+                        : { transform: 'none', marginLeft: -Math.round(slideWidth * activeIndex) as unknown as number }}
+                      onTransitionEnd={() => setAnimating(false)}
                     >
                       {screens.map((s) => (
                         <div key={s} className="w-full flex-none">
@@ -226,6 +249,7 @@ export default function TheProblemSection() {
                             src={`/phones/${s}.svg`}
                             alt={`Helthy app ${s} screen`}
                             className="w-full h-auto select-none"
+                            draggable={false}
                             onLoad={() => setLoaded((prev) => ({ ...prev, [s]: true }))}
                             loading={s === 'home' ? 'eager' : 'lazy'}
                           />
