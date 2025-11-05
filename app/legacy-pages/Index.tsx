@@ -549,14 +549,13 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Waitlist — moved directly under Hero */}
-      <section className="relative bg-helthy-lemon py-10 md:py-12 overflow-hidden">
+  {/* Waitlist — moved directly under Hero */}
+  <section id="waitlist" className="relative bg-helthy-lemon py-10 md:py-12 overflow-hidden">
         {/* subtle decorative glow */}
         <div aria-hidden className="pointer-events-none absolute -top-24 right-[-100px] w-[380px] h-[380px] rounded-full bg-white/30 blur-[120px] opacity-30" />
         <div aria-hidden className="pointer-events-none absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full bg-white/20 blur-[100px] opacity-30" />
-
-        <div id="waitlist" className="relative container mx-auto px-6 lg:px-20">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+  <div className="relative container mx-auto px-6 lg:px-20">
+          <div className="grid md:grid-cols-2 gap-8 items-start">
             {/* Left copy */}
             <div className="space-y-4">
               <span className="inline-flex items-center px-4 py-2 rounded-full bg-black/10 border border-black/10 text-helthy-black text-xs md:text-sm font-medium tracking-wide">
@@ -571,7 +570,7 @@ export default function Index() {
             </div>
 
             {/* Right form */}
-            <div className="max-w-3xl md:ml-auto md:mt-6 lg:mt-8">
+            <div className="max-w-3xl md:ml-auto mt-4 sm:mt-6 md:mt-8">
               <Waitlist />
             </div>
           </div>
@@ -604,7 +603,7 @@ export default function Index() {
         </div>
 
         <div className="relative">
-          <AutoScrollRow className="w-full" speedSeconds={38}>
+          <AutoScrollRow className="w-full" speedSeconds={38} gapClass="gap-8 lg:gap-10">
             <FeatureCard
               title="Real Progress Insights"
               subtitle="See clear trends, celebrate wins, and stay motivated."

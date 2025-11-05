@@ -37,47 +37,47 @@ export default function TheProblemSection() {
             </div>
             
             {/* Scattered app boxes with messy layout */}
-            <div className="relative h-64 md:h-80">
+            <div className="relative h-80 md:h-96 lg:h-[28rem]">
               {/* Cal AI - top left */}
-              <div className="absolute top-0 left-[5%] md:left-[10%] w-28 md:w-36 transform -rotate-6 animate-pulse" style={{ animationDuration: '3s' }}>
-                <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-4 border border-gray-700 shadow-xl">
+              <div className="absolute top-0 left-[5%] md:left-[10%] w-36 md:w-44 lg:w-52 transform -rotate-6 animate-pulse" style={{ animationDuration: '3s' }}>
+                <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-700 shadow-xl">
                   <img 
                     src="/logos/cal-ai.png" 
                     alt="Cal AI" 
-                    className="w-10 h-10 mb-2 opacity-80 transition-opacity duration-300"
+                    className="w-12 h-12 lg:w-14 lg:h-14 mb-3 opacity-80 transition-opacity duration-300"
                     loading="lazy"
                     onLoad={(e) => e.currentTarget.classList.add('loaded')}
                   />
-                  <div className="text-xs text-gray-400 mb-1">Nutrition</div>
-                  <div className="text-sm font-semibold text-white">$9.99/mo</div>
+                  <div className="text-sm lg:text-base text-gray-400 mb-1">Nutrition</div>
+                  <div className="text-base lg:text-lg font-semibold text-white">$9.99/mo</div>
                 </div>
               </div>
 
               {/* Strong - top right */}
-              <div className="absolute top-8 right-[5%] md:right-[10%] w-28 md:w-36 transform rotate-6 animate-pulse" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }}>
-                <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-4 border border-gray-700 shadow-xl">
+              <div className="absolute top-8 right-[5%] md:right-[10%] w-36 md:w-44 lg:w-52 transform rotate-6 animate-pulse" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }}>
+                <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-700 shadow-xl">
                   <img 
                     src="/logos/strong.jpg" 
                     alt="Strong" 
-                    className="w-10 h-10 mb-2 opacity-80 transition-opacity duration-300"
+                    className="w-12 h-12 lg:w-14 lg:h-14 mb-3 opacity-80 transition-opacity duration-300"
                     loading="lazy"
                   />
-                  <div className="text-xs text-gray-400 mb-1">Workouts</div>
-                  <div className="text-sm font-semibold text-white">$14.99/mo</div>
+                  <div className="text-sm lg:text-base text-gray-400 mb-1">Workouts</div>
+                  <div className="text-base lg:text-lg font-semibold text-white">$14.99/mo</div>
                 </div>
               </div>
 
               {/* Walker - bottom center */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-28 md:w-36 transform -rotate-3 animate-pulse" style={{ animationDuration: '4s', animationDelay: '1s' }}>
-                <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-4 border border-gray-700 shadow-xl">
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-36 md:w-44 lg:w-52 transform -rotate-3 animate-pulse" style={{ animationDuration: '4s', animationDelay: '1s' }}>
+                <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-700 shadow-xl">
                   <img 
                     src="/logos/walker.webp" 
                     alt="Walker" 
-                    className="w-10 h-10 mb-2 opacity-80 transition-opacity duration-300"
+                    className="w-12 h-12 lg:w-14 lg:h-14 mb-3 opacity-80 transition-opacity duration-300"
                     loading="lazy"
                   />
-                  <div className="text-xs text-gray-400 mb-1">Tracking</div>
-                  <div className="text-sm font-semibold text-white">$6.99/mo</div>
+                  <div className="text-sm lg:text-base text-gray-400 mb-1">Tracking</div>
+                  <div className="text-base lg:text-lg font-semibold text-white">$6.99/mo</div>
                 </div>
               </div>
 

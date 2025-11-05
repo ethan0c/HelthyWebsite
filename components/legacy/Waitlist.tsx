@@ -3,7 +3,6 @@ import { Check, Loader2, ArrowUpRight } from "lucide-react";
 
 export default function Waitlist() {
   const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -18,7 +17,7 @@ export default function Waitlist() {
       const response = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), firstName: firstName.trim() }),
+        body: JSON.stringify({ email: email.trim() }),
       });
       if (!response.ok) {
         const data = await response.json();
@@ -26,7 +25,6 @@ export default function Waitlist() {
       }
       setIsSubmitted(true);
       setEmail("");
-      setFirstName("");
     } catch (error) {
       console.error("Waitlist submission error:", error);
       alert(error instanceof Error ? error.message : "Failed to join waitlist. Please try again.");
@@ -38,15 +36,7 @@ export default function Waitlist() {
   return (
     <div className="w-full max-w-3xl mx-auto">
       {!isSubmitted ? (
-        <form onSubmit={handleSubmit} className="space-y-3 md:space-y-0 md:grid md:grid-cols-[1fr_1fr_auto] md:gap-3">
-          <input
-            type="text"
-            placeholder="First Name (optional)"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            disabled={isLoading}
-            className="w-full px-5 py-3 bg-white border border-helthy-black/20 rounded-2xl text-helthy-black placeholder-helthy-black/50 focus:outline-none focus:ring-2 focus:ring-helthy-black focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
-          />
+        <form onSubmit={handleSubmit} className="space-y-3 md:space-y-0 md:grid md:grid-cols-[1fr_auto] md:gap-3">
           <input
             type="email"
             placeholder="Email address"
