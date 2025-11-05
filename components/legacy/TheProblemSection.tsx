@@ -16,9 +16,9 @@ export default function TheProblemSection() {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-helthy-lemon/15 blur-3xl animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }}></div>
       </div>
 
-  <div className="relative mx-auto max-w-[1600px] px-0 md:px-6">
+  <div className="relative w-full px-0">
         {/* Header */}
-        <div className="text-center mb-16 md:mb-20 max-w-4xl mx-auto">
+        <div className="text-center mb-16 md:mb-20 max-w-4xl mx-auto px-6">
           <span className="inline-flex items-center px-4 py-2 rounded-full bg-helthy-lemon/10 border border-helthy-lemon/20 text-helthy-lemon text-sm font-medium tracking-wide mb-6">
             The Problem
           </span>
@@ -31,7 +31,7 @@ export default function TheProblemSection() {
         </div>
 
         {/* Innovative Split View Comparison */}
-        <div className="max-w-6xl mx-auto mb-12">
+        <div className="w-full mb-12 px-6">
           {/* The Old Way - Scattered chaos */}
           <div className="mb-12 md:mb-16">
             <div className="flex items-center gap-3 mb-6 justify-center">
@@ -113,8 +113,8 @@ export default function TheProblemSection() {
             </div>
 
             {/* Simple unified features */}
-            <div className="mx-auto max-w-[1600px]">
-              <div className="text-center mb-12">
+            <div className="w-full">
+              <div className="text-center mb-12 max-w-4xl mx-auto px-6">
                 <h4 className="text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-white mb-6" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
                   One app. <span className="text-helthy-lemon">Everything.</span>
                 </h4>
@@ -172,9 +172,9 @@ export default function TheProblemSection() {
               </div>
 
               {/* Phone screenshot with side info */}
-              <div className="flex justify-center items-center mb-12 gap-8 lg:gap-12">
+              <div className="w-full mb-12 grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-2 md:gap-4 lg:gap-6">
                 {/* Left info */}
-                <div className="hidden md:block flex-[1.5] min-w-0 space-y-6 max-w-none ml-auto pr-8">
+                <div className="hidden md:flex flex-col min-w-0 space-y-6 justify-self-end">
                   {activeScreen === 'home' && (
                     <>
                       <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
@@ -214,7 +214,7 @@ export default function TheProblemSection() {
                 </div>
 
                 {/* Phone mockup — conveyor slide between screens */}
-                <div className="relative flex-shrink-0">
+                <div className="relative justify-self-center">
                   <div className="relative overflow-hidden w-[520px] md:w-[600px] lg:w-[680px]">
                     <div
                       className="flex will-change-transform transition-transform duration-700 ease-in-out motion-reduce:transition-none"
@@ -236,7 +236,7 @@ export default function TheProblemSection() {
                 </div>
 
                 {/* Right info */}
-                <div className="hidden md:block flex-[1.5] min-w-0 space-y-6 max-w-none mr-auto pl-8">
+                <div className="hidden md:flex flex-col min-w-0 space-y-6 justify-self-start">
                   {activeScreen === 'home' && (
                     <>
                       <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
