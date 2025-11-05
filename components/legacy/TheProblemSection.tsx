@@ -189,13 +189,13 @@ export default function TheProblemSection() {
                   )}
                   {activeScreen === 'nutrition' && (
                     <>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                        <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Photo Logging</h5>
-                        <p className="text-white/90 text-lg leading-relaxed">Snap a pic of your meal and let AI handle the rest</p>
+                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-4 lg:p-6 backdrop-blur-sm w-full">
+                        <h5 className="text-helthy-lemon font-semibold mb-3 md:mb-2 text-2xl md:text-xl lg:text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Photo Logging</h5>
+                        <p className="text-white/90 text-lg md:text-base lg:text-lg leading-relaxed">Snap a pic of your meal and let AI handle the rest</p>
                       </div>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                        <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Macro Balance</h5>
-                        <p className="text-white/90 text-lg leading-relaxed">Simple visual guides to keep your nutrition on track</p>
+                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-4 lg:p-6 backdrop-blur-sm w-full">
+                        <h5 className="text-helthy-lemon font-semibold mb-3 md:mb-2 text-2xl md:text-xl lg:text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Macro Balance</h5>
+                        <p className="text-white/90 text-lg md:text-base lg:text-lg leading-relaxed">Simple visual guides to keep your nutrition on track</p>
                       </div>
                     </>
                   )}
@@ -251,13 +251,13 @@ export default function TheProblemSection() {
                   )}
                   {activeScreen === 'nutrition' && (
                     <>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                        <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Voice Logging</h5>
-                        <p className="text-white/90 text-lg leading-relaxed">Just say what you ate—no typing required</p>
+                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-4 lg:p-6 backdrop-blur-sm w-full">
+                        <h5 className="text-helthy-lemon font-semibold mb-3 md:mb-2 text-2xl md:text-xl lg:text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Voice Logging</h5>
+                        <p className="text-white/90 text-lg md:text-base lg:text-lg leading-relaxed">Just say what you ate—no typing required</p>
                       </div>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                        <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Meal History</h5>
-                        <p className="text-white/90 text-lg leading-relaxed">Quick access to your favorite meals and portions</p>
+                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-4 lg:p-6 backdrop-blur-sm w-full">
+                        <h5 className="text-helthy-lemon font-semibold mb-3 md:mb-2 text-2xl md:text-xl lg:text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Meal History</h5>
+                        <p className="text-white/90 text-lg md:text-base lg:text-lg leading-relaxed">Quick access to your favorite meals and portions</p>
                       </div>
                     </>
                   )}
