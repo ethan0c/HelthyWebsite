@@ -6,7 +6,6 @@ import Waitlist from "../../components/legacy/Waitlist";
 import Navbar from "../../components/legacy/Navbar";
 import { ThemeKey, getTheme, getThemeDisplayName, isDarkTheme } from "../../lib/colors";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../../components/ui/accordion";
-import MouseRings from "../../components/legacy/MouseRings";
 import OcelabsBanner from "../../components/legacy/OcelabsBanner";
 import AutoScrollRow from "../../components/legacy/AutoScrollRow";
 import FeatureCard from "../../components/legacy/FeatureCard";
@@ -858,16 +857,7 @@ export default function Index() {
       />
     </div>
 
-    <MouseRings 
-      color={selectedTheme ? getTheme(selectedTheme).primary : "#CDFB50"} 
-      minSize={40} 
-      maxSize={80} 
-      lineWidth={2.5} 
-      fadeMs={1200} 
-      density={0.4} 
-      minDistance={25} 
-      maxRings={32} 
-    />
+    {/* MouseRings removed for smoother scrolling */}
 
     <div className="container relative z-20 mx-auto px-6 lg:px-20">
       {/* Header */}
@@ -1011,7 +1001,7 @@ export default function Index() {
         {/* Smooth fade from previous section */}
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-20 md:h-24 bg-gradient-to-b from-helthy-black to-transparent" />
         
-        <MouseRings color="#CDFB50" minSize={36} maxSize={76} lineWidth={3} fadeMs={1400} density={0.6} minDistance={20} maxRings={48} excludeSelector=".faq-questions" />
+  {/* MouseRings removed for smoother scrolling */}
         <div className="container relative z-20 mx-auto px-6 lg:px-20">
           {/* FAQ */}
           <h2 className="font-sans text-[36px] md:text-[48px] leading-[1.2] tracking-[-0.02em] text-helthy-lemon text-center mb-12 scroll-animate-left">

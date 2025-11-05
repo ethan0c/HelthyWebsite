@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 export default function TheProblemSection() {
-  const screens = ['home', 'nutrition', 'progress'] as const;
+  const screens = ['home', 'exercise', 'nutrition', 'progress'] as const;
   type Screen = typeof screens[number];
   const [activeIndex, setActiveIndex] = useState(0);
   const [loaded, setLoaded] = useState<Record<Screen, boolean>>({} as Record<Screen, boolean>);
@@ -141,6 +141,16 @@ export default function TheProblemSection() {
                   <button
                     onClick={() => setActiveIndex(1)}
                     className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
+                      activeScreen === 'exercise'
+                        ? 'bg-helthy-lemon text-helthy-black shadow-lg'
+                        : 'bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white'
+                    }`}
+                  >
+                    Exercise
+                  </button>
+                  <button
+                    onClick={() => setActiveIndex(2)}
+                    className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
                       activeScreen === 'nutrition'
                         ? 'bg-helthy-lemon text-helthy-black shadow-lg'
                         : 'bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white'
@@ -149,7 +159,7 @@ export default function TheProblemSection() {
                     Nutrition
                   </button>
                   <button
-                    onClick={() => setActiveIndex(2)}
+                    onClick={() => setActiveIndex(3)}
                     className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
                       activeScreen === 'progress'
                         ? 'bg-helthy-lemon text-helthy-black shadow-lg'
@@ -164,7 +174,7 @@ export default function TheProblemSection() {
               {/* Phone screenshot with side info */}
               <div className="flex justify-center items-center mb-12 gap-8 lg:gap-12">
                 {/* Left info */}
-                <div className="hidden md:block flex-1 space-y-6 max-w-sm ml-auto pr-8">
+                <div className="hidden md:block flex-1 space-y-6 max-w-3xl ml-auto pr-8">
                   {activeScreen === 'home' && (
                     <>
                       <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
@@ -205,7 +215,7 @@ export default function TheProblemSection() {
 
                 {/* Phone mockup — conveyor slide between screens */}
                 <div className="relative flex-shrink-0">
-                  <div className="relative overflow-hidden w-[560px] md:w-[640px] lg:w-[720px]">
+                  <div className="relative overflow-hidden w-[520px] md:w-[600px] lg:w-[680px]">
                     <div
                       className="flex will-change-transform transition-transform duration-700 ease-in-out motion-reduce:transition-none"
                       style={{ transform: `translateX(-${activeIndex * 100}%)` }}
@@ -226,7 +236,7 @@ export default function TheProblemSection() {
                 </div>
 
                 {/* Right info */}
-                <div className="hidden md:block flex-1 space-y-6 max-w-sm mr-auto pl-8">
+                <div className="hidden md:block flex-1 space-y-6 max-w-3xl mr-auto pl-8">
                   {activeScreen === 'home' && (
                     <>
                       <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
