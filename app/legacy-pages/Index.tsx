@@ -571,7 +571,7 @@ export default function Index() {
             </div>
 
             {/* Right form */}
-            <div className="max-w-3xl md:ml-auto">
+            <div className="max-w-3xl md:ml-auto md:mt-6 lg:mt-8">
               <Waitlist />
             </div>
           </div>

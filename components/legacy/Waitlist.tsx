@@ -45,7 +45,7 @@ export default function Waitlist() {
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             disabled={isLoading}
-            className="w-full px-5 py-3 bg-white border border-gray-700 rounded-2xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-helthy-lemon focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full px-5 py-3 bg-white border border-helthy-black/20 rounded-2xl text-helthy-black placeholder-helthy-black/50 focus:outline-none focus:ring-2 focus:ring-helthy-black focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
           />
           <input
             type="email"
@@ -54,7 +54,7 @@ export default function Waitlist() {
             onChange={(e) => setEmail(e.target.value)}
             required
             disabled={isLoading}
-            className="w-full px-5 py-3 bg-white border border-gray-700 rounded-2xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-helthy-lemon focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full px-5 py-3 bg-white border border-helthy-black/20 rounded-2xl text-helthy-black placeholder-helthy-black/50 focus:outline-none focus:ring-2 focus:ring-helthy-black focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
           />
           <button
             type="submit"
@@ -83,13 +83,13 @@ export default function Waitlist() {
           </button>
         </form>
       ) : (
-        <div className="text-center space-y-5 py-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-helthy-lemon/20">
-            <Check className="w-10 h-10 text-helthy-lemon" />
+        <div className="text-center space-y-5 py-8" aria-live="polite">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-helthy-black/10">
+            <Check className="w-10 h-10 text-helthy-black" />
           </div>
           <div className="space-y-2">
-            <h3 className="text-3xl sm:text-4xl font-bold text-white">Welcome to the future!</h3>
-            <p className="text-base sm:text-lg text-gray-400">You're on the list. We'll notify you when we launch.</p>
+            <h3 className="text-3xl sm:text-4xl font-bold text-helthy-black">Welcome to the future!</h3>
+            <p className="text-base sm:text-lg text-helthy-black/80">You're on the list. We'll notify you when we launch.</p>
           </div>
         </div>
       )}
