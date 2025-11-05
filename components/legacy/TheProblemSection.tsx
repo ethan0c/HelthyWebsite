@@ -18,14 +18,14 @@ export default function TheProblemSection() {
 
   <div className="relative w-full px-0">
         {/* Header */}
-        <div className="text-center mb-16 md:mb-20 max-w-4xl mx-auto px-6">
+  <div className="text-center mb-14 md:mb-20 max-w-4xl mx-auto px-6">
           <span className="inline-flex items-center px-4 py-2 rounded-full bg-helthy-lemon/10 border border-helthy-lemon/20 text-helthy-lemon text-sm font-medium tracking-wide mb-6">
             The Problem
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal leading-[1.1] text-white mb-6" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-normal leading-[1.12] text-white mb-5 md:mb-6" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
             Stop juggling.<br />Start <span className="text-helthy-lemon">thriving</span>.
           </h2>
-          <p className="text-xl md:text-2xl text-white/60 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-2xl text-white/60 max-w-2xl mx-auto leading-relaxed">
             Everything you need for fitness in one beautiful app.
           </p>
         </div>
@@ -41,9 +41,9 @@ export default function TheProblemSection() {
             </div>
             
             {/* Scattered app boxes with messy layout */}
-            <div className="relative h-80 md:h-96 lg:h-[28rem]">
+            <div className="relative h-56 md:h-96 lg:h-[28rem]">
               {/* Cal AI - top left */}
-              <div className="absolute top-0 left-[5%] md:left-[10%] w-36 md:w-44 lg:w-52 transform -rotate-6 animate-pulse" style={{ animationDuration: '3s' }}>
+              <div className="absolute top-0 left-[5%] md:left-[10%] w-28 md:w-44 lg:w-52 transform -rotate-6 animate-pulse" style={{ animationDuration: '3s' }}>
                 <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-700 shadow-xl">
                   <img 
                     src="/logos/cal-ai.png" 
@@ -58,7 +58,7 @@ export default function TheProblemSection() {
               </div>
 
               {/* Strong - top right */}
-              <div className="absolute top-8 right-[5%] md:right-[10%] w-36 md:w-44 lg:w-52 transform rotate-6 animate-pulse" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }}>
+              <div className="absolute top-8 right-[5%] md:right-[10%] w-28 md:w-44 lg:w-52 transform rotate-6 animate-pulse" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }}>
                 <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-700 shadow-xl">
                   <img 
                     src="/logos/strong.jpg" 
@@ -72,7 +72,7 @@ export default function TheProblemSection() {
               </div>
 
               {/* Walker - bottom center */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-36 md:w-44 lg:w-52 transform -rotate-3 animate-pulse" style={{ animationDuration: '4s', animationDelay: '1s' }}>
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-28 md:w-44 lg:w-52 transform -rotate-3 animate-pulse" style={{ animationDuration: '4s', animationDelay: '1s' }}>
                 <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-700 shadow-xl">
                   <img 
                     src="/logos/walker.webp" 
@@ -114,11 +114,11 @@ export default function TheProblemSection() {
 
             {/* Simple unified features */}
             <div className="w-full">
-              <div className="text-center mb-12 max-w-4xl mx-auto px-6">
-                <h4 className="text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-white mb-6" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
+              <div className="text-center mb-10 md:mb-12 max-w-4xl mx-auto px-6">
+                <h4 className="text-3xl md:text-5xl lg:text-6xl font-normal tracking-tight text-white mb-5 md:mb-6" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
                   One app. <span className="text-helthy-lemon">Everything.</span>
                 </h4>
-                <p className="mt-4 text-white/70 max-w-2xl mx-auto text-lg">
+                <p className="mt-2 md:mt-4 text-white/70 max-w-2xl mx-auto text-base md:text-lg">
                   All the tools you need to reach your health goals, unified in one beautiful experience.
                 </p>
                 {/* Helthy total price — same style, brand green */}
@@ -215,7 +215,7 @@ export default function TheProblemSection() {
 
                 {/* Phone mockup — conveyor slide between screens */}
                 <div className="relative justify-self-center">
-                  <div className="relative overflow-hidden w-[520px] md:w-[600px] lg:w-[680px]">
+                  <div className="relative overflow-hidden w-[260px] md:w-[600px] lg:w-[680px]">
                     <div
                       className="flex will-change-transform transition-transform duration-700 ease-in-out motion-reduce:transition-none"
                       style={{ transform: `translateX(-${activeIndex * 100}%)` }}
@@ -277,40 +277,40 @@ export default function TheProblemSection() {
               </div>
 
               {/* Mobile info (below phone) */}
-              <div className="md:hidden mt-8 grid grid-cols-1 gap-5 max-w-lg mx-auto">
+              <div className="md:hidden mt-8 grid grid-cols-1 gap-4 max-w-lg mx-auto">
                 {activeScreen === 'home' && (
                   <>
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                      <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Quick Actions</h5>
-                      <p className="text-white/90 text-lg leading-relaxed">Start workouts, log meals, or check progress in one tap</p>
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-sm">
+                      <h5 className="text-helthy-lemon font-semibold mb-2 text-xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Quick Actions</h5>
+                      <p className="text-white/90 text-base leading-relaxed">Start workouts, log meals, or check progress in one tap</p>
                     </div>
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                      <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Smart Dashboard</h5>
-                      <p className="text-white/90 text-lg leading-relaxed">See today's goals and achievements at a glance</p>
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-sm">
+                      <h5 className="text-helthy-lemon font-semibold mb-2 text-xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Smart Dashboard</h5>
+                      <p className="text-white/90 text-base leading-relaxed">See today's goals and achievements at a glance</p>
                     </div>
                   </>
                 )}
                 {activeScreen === 'nutrition' && (
                   <>
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                      <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Photo Logging</h5>
-                      <p className="text-white/90 text-lg leading-relaxed">Snap a pic of your meal and let AI handle the rest</p>
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-sm">
+                      <h5 className="text-helthy-lemon font-semibold mb-2 text-xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Photo Logging</h5>
+                      <p className="text-white/90 text-base leading-relaxed">Snap a pic of your meal and let AI handle the rest</p>
                     </div>
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                      <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Macro Balance</h5>
-                      <p className="text-white/90 text-lg leading-relaxed">Simple visual guides to keep your nutrition on track</p>
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-sm">
+                      <h5 className="text-helthy-lemon font-semibold mb-2 text-xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Macro Balance</h5>
+                      <p className="text-white/90 text-base leading-relaxed">Simple visual guides to keep your nutrition on track</p>
                     </div>
                   </>
                 )}
                 {activeScreen === 'progress' && (
                   <>
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                      <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Clear Trends</h5>
-                      <p className="text-white/90 text-lg leading-relaxed">Beautiful charts that show your journey over time</p>
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-sm">
+                      <h5 className="text-helthy-lemon font-semibold mb-2 text-xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Clear Trends</h5>
+                      <p className="text-white/90 text-base leading-relaxed">Beautiful charts that show your journey over time</p>
                     </div>
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                      <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Insights</h5>
-                      <p className="text-white/90 text-lg leading-relaxed">Smart nudges to keep you motivated and consistent</p>
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-sm">
+                      <h5 className="text-helthy-lemon font-semibold mb-2 text-xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Insights</h5>
+                      <p className="text-white/90 text-base leading-relaxed">Smart nudges to keep you motivated and consistent</p>
                     </div>
                   </>
                 )}

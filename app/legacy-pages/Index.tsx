@@ -914,10 +914,15 @@ export default function Index() {
         >
           {/* Badge */}
           <span
-            className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium bg-black/5 text-black/60 dark:bg-white/10 dark:text-white/70 backdrop-blur-sm border border-black/10 dark:border-white/10"
+            className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium backdrop-blur-sm border"
+            style={{
+              backgroundColor: selectedTheme ? `${getTheme(selectedTheme).primary}16` : 'rgba(0,0,0,0.06)', // ~9% alpha
+              color: selectedTheme ? `${getTheme(selectedTheme).text}B3` : 'rgba(0,0,0,0.7)',
+              borderColor: selectedTheme ? `${getTheme(selectedTheme).primary}30` : 'rgba(0,0,0,0.12)'
+            }}
           >
             Preview
-            <span className="opacity-70">· not interactive</span>
+            <span style={{ opacity: 0.7 }}>· not interactive</span>
           </span>
           <div className="flex items-center justify-between mb-6">
             <div>
