@@ -586,7 +586,7 @@ export default function Index() {
         <div aria-hidden className="pointer-events-none absolute top-20 left-10 w-[400px] h-[400px] rounded-full bg-helthy-lemon/10 blur-[140px] opacity-40" />
         <div aria-hidden className="pointer-events-none absolute bottom-20 right-10 w-[350px] h-[350px] rounded-full bg-helthy-lemon/10 blur-[120px] opacity-40" />
 
-        <div className="relative container mx-auto px-6 lg:px-20 mb-12 lg:mb-16">
+  <div className="relative mx-auto max-w-[1600px] px-0 md:px-6 mb-12 lg:mb-16">
           <div className="text-center max-w-4xl mx-auto">
             <div className="mb-6">
               <span className="inline-flex items-center px-4 py-2 rounded-full bg-helthy-lemon/10 border border-helthy-lemon/20 text-helthy-lemon text-sm font-medium tracking-wide">

@@ -1,8 +1,12 @@
+"use client";
 import React, { useState } from "react";
 
 export default function TheProblemSection() {
-  const [activeScreen, setActiveScreen] = useState<'home' | 'nutrition' | 'progress'>('home');
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const screens = ['home', 'nutrition', 'progress'] as const;
+  type Screen = typeof screens[number];
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [loaded, setLoaded] = useState<Record<Screen, boolean>>({} as Record<Screen, boolean>);
+  const activeScreen = screens[activeIndex];
   
   return (
     <section className="relative overflow-hidden bg-helthy-black py-20 md:py-28 lg:py-32">
@@ -12,7 +16,7 @@ export default function TheProblemSection() {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-helthy-lemon/15 blur-3xl animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }}></div>
       </div>
 
-      <div className="relative container mx-auto px-6 lg:px-20">
+  <div className="relative mx-auto max-w-[1600px] px-0 md:px-6">
         {/* Header */}
         <div className="text-center mb-16 md:mb-20 max-w-4xl mx-auto">
           <span className="inline-flex items-center px-4 py-2 rounded-full bg-helthy-lemon/10 border border-helthy-lemon/20 text-helthy-lemon text-sm font-medium tracking-wide mb-6">
@@ -109,7 +113,7 @@ export default function TheProblemSection() {
             </div>
 
             {/* Simple unified features */}
-            <div className="max-w-5xl mx-auto">
+            <div className="mx-auto max-w-[1600px]">
               <div className="text-center mb-12">
                 <h4 className="text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-white mb-6" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
                   One app. <span className="text-helthy-lemon">Everything.</span>
@@ -117,20 +121,15 @@ export default function TheProblemSection() {
                 <p className="mt-4 text-white/70 max-w-2xl mx-auto text-lg">
                   All the tools you need to reach your health goals, unified in one beautiful experience.
                 </p>
-                {/* Helthy total price highlight */}
+                {/* Helthy total price — same style, brand green */}
                 <div className="mt-8 flex justify-center">
-                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-helthy-lemon/10 border border-helthy-lemon text-helthy-lemon text-sm font-semibold">
-                    $0/month
-                  </div>
+                  <div className="text-sm md:text-base text-helthy-lemon font-medium">$0/month</div>
                 </div>
 
                 {/* Screen selector buttons */}
                 <div className="mt-8 flex justify-center gap-3">
                   <button
-                    onClick={() => {
-                      setActiveScreen('home');
-                      setImageLoaded(false);
-                    }}
+                    onClick={() => setActiveIndex(0)}
                     className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
                       activeScreen === 'home'
                         ? 'bg-helthy-lemon text-helthy-black shadow-lg'
@@ -140,10 +139,7 @@ export default function TheProblemSection() {
                     Home
                   </button>
                   <button
-                    onClick={() => {
-                      setActiveScreen('nutrition');
-                      setImageLoaded(false);
-                    }}
+                    onClick={() => setActiveIndex(1)}
                     className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
                       activeScreen === 'nutrition'
                         ? 'bg-helthy-lemon text-helthy-black shadow-lg'
@@ -153,10 +149,7 @@ export default function TheProblemSection() {
                     Nutrition
                   </button>
                   <button
-                    onClick={() => {
-                      setActiveScreen('progress');
-                      setImageLoaded(false);
-                    }}
+                    onClick={() => setActiveIndex(2)}
                     className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
                       activeScreen === 'progress'
                         ? 'bg-helthy-lemon text-helthy-black shadow-lg'
@@ -210,22 +203,26 @@ export default function TheProblemSection() {
                   )}
                 </div>
 
-                {/* Phone mockup */}
+                {/* Phone mockup — conveyor slide between screens */}
                 <div className="relative flex-shrink-0">
-                  {/* Loading skeleton */}
-                  {!imageLoaded && (
-                    <div className="absolute inset-0 flex justify-center">
-                      <div className="w-[560px] md:w-[640px] lg:w-[720px] h-[1200px] bg-helthy-lemon/5 rounded-3xl animate-pulse" />
+                  <div className="relative overflow-hidden w-[560px] md:w-[640px] lg:w-[720px]">
+                    <div
+                      className="flex will-change-transform transition-transform duration-700 ease-in-out motion-reduce:transition-none"
+                      style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+                    >
+                      {screens.map((s) => (
+                        <div key={s} className="w-full flex-none">
+                          <img
+                            src={`/phones/${s}.svg`}
+                            alt={`Helthy app ${s} screen`}
+                            className="w-full h-auto select-none"
+                            onLoad={() => setLoaded((prev) => ({ ...prev, [s]: true }))}
+                            loading={s === 'home' ? 'eager' : 'lazy'}
+                          />
+                        </div>
+                      ))}
                     </div>
-                  )}
-                  <img 
-                    src={`/phones/${activeScreen}.svg`}
-                    alt={`Helthy app ${activeScreen} screen`} 
-                    className={`w-[560px] md:w-[640px] lg:w-[720px] h-auto drop-shadow-[0_40px_80px_rgba(199,255,0,0.15)] transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-                    key={activeScreen}
-                    onLoad={() => setImageLoaded(true)}
-                    loading="eager"
-                  />
+                  </div>
                 </div>
 
                 {/* Right info */}
