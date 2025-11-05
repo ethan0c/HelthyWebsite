@@ -61,7 +61,7 @@ export default function SiteFooter() {
               <h3 className="text-white text-lg font-semibold">Company</h3>
               <nav className="space-y-3">
                 <a href="/about" className="block text-white/70 hover:text-white transition-colors">About Us</a>
-                <a href="/about" className="block text-white/70 hover:text-white transition-colors">Blog</a>
+                <a href="/blog" className="block text-white/70 hover:text-white transition-colors">Blog</a>
                 <a href="/contact" className="block text-white/70 hover:text-white transition-colors">Contact Us</a>
               </nav>
             </div>
