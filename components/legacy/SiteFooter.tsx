@@ -60,9 +60,9 @@ export default function SiteFooter() {
             <div className="lg:col-span-2 space-y-6">
               <h3 className="text-white text-lg font-semibold">Company</h3>
               <nav className="space-y-3">
-                <a href="#" className="block text-white/70 hover:text-white transition-colors">About Us</a>
-                <a href="#" className="block text-white/70 hover:text-white transition-colors">Blog</a>
-                <a href="#" className="block text-white/70 hover:text-white transition-colors">Contact US</a>
+                <a href="/about" className="block text-white/70 hover:text-white transition-colors">About Us</a>
+                <a href="/about" className="block text-white/70 hover:text-white transition-colors">Blog</a>
+                <a href="/contact" className="block text-white/70 hover:text-white transition-colors">Contact Us</a>
               </nav>
             </div>
 
