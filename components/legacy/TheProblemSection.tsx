@@ -174,7 +174,7 @@ export default function TheProblemSection() {
               {/* Phone screenshot with side info */}
               <div className="flex justify-center items-center mb-12 gap-8 lg:gap-12">
                 {/* Left info */}
-                <div className="hidden md:block flex-1 space-y-6 max-w-3xl ml-auto pr-8">
+                <div className="hidden md:block flex-[1.5] min-w-0 space-y-6 max-w-none ml-auto pr-8">
                   {activeScreen === 'home' && (
                     <>
                       <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
@@ -236,7 +236,7 @@ export default function TheProblemSection() {
                 </div>
 
                 {/* Right info */}
-                <div className="hidden md:block flex-1 space-y-6 max-w-3xl mr-auto pl-8">
+                <div className="hidden md:block flex-[1.5] min-w-0 space-y-6 max-w-none mr-auto pl-8">
                   {activeScreen === 'home' && (
                     <>
                       <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">

@@ -37,7 +37,30 @@ export default function Navbar() {
           {/* Action Buttons */}
           <div className="flex items-center">
             {/* Join Waitlist Button */}
-            <a href="#waitlist" className="group inline-flex items-center gap-3 sm:gap-4 md:gap-5 bg-white/10 hover:bg-white/20 rounded-[47px] pl-3 sm:pl-4 md:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 border-2 border-white/30 transition-colors">
+            <a
+              href="#waitlist"
+              onClick={(e) => {
+                // Robust in-page scroll to #waitlist without needing a second click
+                e.preventDefault();
+                const scrollToId = () => {
+                  const el = document.getElementById("waitlist");
+                  if (!el) return false;
+                  const y = el.getBoundingClientRect().top + window.scrollY;
+                  const lenis: any = (window as any).lenis;
+                  if (lenis && typeof lenis.scrollTo === "function") {
+                    lenis.scrollTo(y, { duration: 1 });
+                  } else {
+                    window.scrollTo({ top: y, behavior: "smooth" });
+                  }
+                  return true;
+                };
+                if (scrollToId()) return;
+                // If target not yet in DOM, set hash and retry shortly
+                try { history.replaceState(null, "", "#waitlist"); } catch {}
+                requestAnimationFrame(() => setTimeout(scrollToId, 60));
+              }}
+              className="group inline-flex items-center gap-3 sm:gap-4 md:gap-5 bg-white/10 hover:bg-white/20 rounded-[47px] pl-3 sm:pl-4 md:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 border-2 border-white/30 transition-colors"
+            >
               <span className="text-white font-normal text-[12px] sm:text-[14px] md:text-[16px] leading-[22px] tracking-[0.17px]">
                 Join Waitlist
               </span>
