@@ -143,13 +143,7 @@ export default function About() {
             <h3 className="text-2xl md:text-3xl font-medium">From our journey to yours</h3>
             <p className="text-white/80 mt-2">We’re building Helthy to make fitness clear, doable, and personal — so anyone who dreams of change can get there.</p>
           </div>
-          <div className="relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 aspect-[16/9]">
-            {/* Replace src with /about/us-together.jpg */}
-            <div className="absolute inset-0 bg-gradient-to-br from-helthy-lemon/15 via-white/5 to-transparent" />
-            <div className="absolute inset-0 flex items-center justify-center text-white/70">
-              <span className="text-sm">Add one photo of us together</span>
-            </div>
-          </div>
+         
 
           <div className="text-center mt-8">
             <a href="/pricing" className="inline-flex items-center rounded-full bg-helthy-lemon text-helthy-black px-6 py-3 font-medium hover:bg-helthy-lemon/90">

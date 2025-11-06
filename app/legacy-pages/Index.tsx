@@ -1,4 +1,4 @@
-import { ArrowUpRight, Trophy, Flame, Mail, Instagram, CheckCircle, Paperclip, Plus, Image as ImageIcon, Calendar, BarChart3, Bell, Infinity as InfinityIcon, HelpCircle, Dumbbell, Apple, Moon, Salad, Clock, Sparkles, Mic, Camera } from "lucide-react";
+import { ArrowUpRight, Trophy, Flame, Mail, Instagram, CheckCircle, Paperclip, Plus, Image as ImageIcon, Calendar, BarChart3, Bell, Infinity as InfinityIcon, HelpCircle, Dumbbell, Apple, Moon, Salad, Clock, Mic, Camera } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import Icon from '@mdi/react';
 import { mdiFood, mdiFoodDrumstick } from '@mdi/js';
@@ -581,28 +581,28 @@ export default function Index() {
             <FeatureCard
               title="Real Progress Insights"
               subtitle="See clear trends, celebrate wins, and stay motivated."
-              imageSrc="/figma-components/different/full-shot-woman-exercising-gym-2%201.svg"
+              imageSrc="/figma-components/different/full-length-woman-wearing-sunglasses-against-sky%201.png"
               leftColor="#CDFB50"
               rightColor="#8AE58C"
             />
             <FeatureCard
               title="Personalized Workouts"
               subtitle="Smart routines adapt to your goals, body, and schedule."
-              imageSrc="/figma-components/different/full-length-woman-wearing-sunglasses-against-sky%201.svg"
+              imageSrc="/figma-components/different/full-shot-woman-exercising-gym-2%201.png"
               leftColor="#7FBAD1"
               rightColor="#B28CF1"
             />
             <FeatureCard
               title="Nutrition Made Simple"
               subtitle="Track meals and macros with clarity—not complexity."
-              imageSrc="/figma-components/different/full-shot-man-eating-eating-salad%201.svg"
+              imageSrc="/figma-components/different/full-shot-man-eating-eating-salad%201.png"
               leftColor="#FFB86C"
               rightColor="#F26D6D"
             />
             <FeatureCard
               title="Community Support"
               subtitle="Move, eat, and grow together—accountability built-in."
-              imageSrc="/figma-components/different/group-people-exercising-together-outdoors%201.svg"
+              imageSrc="/figma-components/different/group-people-exercising-together-outdoors 1.svg"
               leftColor="#7FD1AE"
               rightColor="#6FA8FF"
             />
@@ -834,7 +834,7 @@ export default function Index() {
 
     {/* MouseRings removed for smoother scrolling */}
 
-    <div className="container relative z-20 mx-auto px-6 lg:px-20">
+  <div className="relative z-20 w-full px-0">
       {/* Header */}
       <div className="text-center mb-16 md:mb-20">
         <h2 
@@ -899,86 +899,6 @@ export default function Index() {
             </div>
           </button>
         ))}
-      </div>
-
-      {/* Theme Preview Card (non-interactive) */}
-      <div className="max-w-md mx-auto">
-        <div
-          role="group"
-          aria-label="Theme preview (not interactive)"
-          className="relative rounded-3xl border p-8 transition-all duration-700 shadow-md cursor-default select-none pointer-events-none"
-          style={{
-            backgroundColor: selectedTheme ? getTheme(selectedTheme).card : '#FFFFFF',
-            borderColor: selectedTheme ? `${getTheme(selectedTheme).primary}40` : '#11111120'
-          }}
-        >
-          {/* Badge */}
-          <span
-            className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium backdrop-blur-sm border"
-            style={{
-              backgroundColor: selectedTheme ? `${getTheme(selectedTheme).primary}16` : 'rgba(0,0,0,0.06)', // ~9% alpha
-              color: selectedTheme ? `${getTheme(selectedTheme).text}B3` : 'rgba(0,0,0,0.7)',
-              borderColor: selectedTheme ? `${getTheme(selectedTheme).primary}30` : 'rgba(0,0,0,0.12)'
-            }}
-          >
-            Preview
-            <span style={{ opacity: 0.7 }}>· not interactive</span>
-          </span>
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h3 
-                className="text-2xl font-semibold mb-1 transition-colors duration-700"
-                style={{ color: selectedTheme ? getTheme(selectedTheme).text : '#111111' }}
-              >
-                Theme Preview
-              </h3>
-              <p
-                className="text-sm transition-colors duration-700"
-                style={{ color: selectedTheme ? `${getTheme(selectedTheme).text}80` : '#11111180' }}
-              >
-                {selectedTheme ? getThemeDisplayName(selectedTheme) : 'Select a theme'}
-              </p>
-            </div>
-            <div 
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-700"
-              style={{ backgroundColor: selectedTheme ? `${getTheme(selectedTheme).primary}20` : '#CDFB5020' }}
-            >
-              <Sparkles size={24} style={{ color: selectedTheme ? getTheme(selectedTheme).primary : '#CDFB50' }} />
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            <div 
-              className="px-4 py-3 rounded-xl transition-all duration-700"
-              style={{ backgroundColor: selectedTheme ? `${getTheme(selectedTheme).primary}10` : '#CDFB5010' }}
-            >
-              <div className="flex items-center justify-between">
-                <span 
-                  className="text-sm font-medium transition-colors duration-700"
-                  style={{ color: selectedTheme ? getTheme(selectedTheme).text : '#111111' }}
-                >
-                  Primary Color
-                </span>
-                <div 
-                  className="w-6 h-6 rounded-full border-2 border-white shadow-sm"
-                  style={{ backgroundColor: selectedTheme ? getTheme(selectedTheme).primary : '#CDFB50' }}
-                />
-              </div>
-            </div>
-
-            {/* Static sample button look (not interactive) */}
-            <div
-              className="w-full py-3 px-6 rounded-full font-medium transition-all duration-700 text-center"
-              style={{
-                backgroundColor: selectedTheme ? getTheme(selectedTheme).primary : '#CDFB50',
-                color: selectedTheme ? (getTheme(selectedTheme).buttonText || '#111111') : '#111111'
-              }}
-              aria-hidden="true"
-            >
-              Sample Button
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>

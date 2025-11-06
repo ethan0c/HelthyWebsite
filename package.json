@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "images:webp": "node scripts/convert-to-webp.mjs public",
+    "images:webp:dry": "node scripts/convert-to-webp.mjs public --dry-run",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -49,6 +51,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.0.1",
+    "sharp": "^0.33.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

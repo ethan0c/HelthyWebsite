@@ -1,5 +1,6 @@
 import React from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import Picture from "@/components/ui/Picture";
 import { cn } from "@/lib/utils";
 
 export interface FeatureCardProps {
@@ -26,19 +27,29 @@ export function FeatureCard({
   return (
     <div
       className={cn(
-        "flex w-full max-w-[529px] lg:w-[529px] h-auto pt-0 pr-0 pb-10 pl-0 flex-col gap-[30px] justify-center items-start shrink-0 bg-[rgba(255,255,255,0.05)] rounded-[40px] border border-[rgba(255,255,255,0.1)] relative snap-center",
+        "flex w-[86vw] sm:w-[78vw] md:w-[520px] lg:w-[529px] h-auto pt-0 pr-0 pb-10 pl-0 flex-col gap-[30px] justify-center items-start shrink-0 bg-[rgba(255,255,255,0.05)] rounded-[40px] border border-[rgba(255,255,255,0.1)] relative snap-center",
         className
       )}
     >
       {/* Image area with exact aspect ratio 529/382 */}
       <div className="w-full h-auto rounded-[40px] relative overflow-hidden">
         <AspectRatio ratio={529 / 382}>
-          <img
-            src={imageSrc}
-            alt={title}
-            loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
+          {(() => {
+            const lower = imageSrc.toLowerCase();
+            const webpCandidate = lower.endsWith('.svg')
+              ? imageSrc.replace(/\.svg(\?.*)?$/i, '.webp')
+              : undefined;
+            return (
+              <Picture
+                src={imageSrc}
+                webpSrc={webpCandidate}
+                alt={title}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            );
+          })()}
         </AspectRatio>
       </div>
 

@@ -9,6 +9,7 @@ export default function TheProblemSection() {
   const [animating, setAnimating] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [slideWidth, setSlideWidth] = useState(0);
+  const transitionTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     const update = () => {
@@ -22,11 +23,28 @@ export default function TheProblemSection() {
   }, []);
 
   const goTo = (i: number) => {
-    if (i === activeIndex) return;
+    if (i === activeIndex || animating) return;
     setAnimating(true);
     setActiveIndex(i);
+    // Fallback in case transitionend doesn't fire (e.g., reduced motion)
+    if (transitionTimerRef.current) {
+      window.clearTimeout(transitionTimerRef.current);
+      transitionTimerRef.current = null;
+    }
+    transitionTimerRef.current = window.setTimeout(() => {
+      setAnimating(false);
+      transitionTimerRef.current = null;
+    }, 800); // a bit longer than CSS duration (700ms)
   };
   const activeScreen = screens[activeIndex];
+  
+  useEffect(() => {
+    return () => {
+      if (transitionTimerRef.current) {
+        window.clearTimeout(transitionTimerRef.current);
+      }
+    };
+  }, []);
   
   return (
     <section className="relative overflow-hidden bg-helthy-black py-20 md:py-28 lg:py-32">
@@ -106,11 +124,11 @@ export default function TheProblemSection() {
               </div>
 
               {/* Chaos indicators */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2 opacity-40" style={{ top: 'calc(50% - 100px)' }}>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2" style={{ top: 'calc(50% - 100px)' }}>
                 <svg className="w-16 h-16 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                 </svg>
-                <div className="text-s text-red-400 font-medium">$31.97/month</div>
+                <div className="text-sm md:text-base text-red-400 font-semibold">$31.97/month</div>
               </div>
             </div>
           </div>
@@ -150,6 +168,7 @@ export default function TheProblemSection() {
                 <div className="mt-8 flex justify-center gap-3">
                   <button
                     onClick={() => goTo(0)}
+                    disabled={animating}
                     className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
                       activeScreen === 'home'
                         ? 'bg-helthy-lemon text-helthy-black shadow-lg'
@@ -160,6 +179,7 @@ export default function TheProblemSection() {
                   </button>
                   <button
                     onClick={() => goTo(1)}
+                    disabled={animating}
                     className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
                       activeScreen === 'exercise'
                         ? 'bg-helthy-lemon text-helthy-black shadow-lg'
@@ -170,6 +190,7 @@ export default function TheProblemSection() {
                   </button>
                   <button
                     onClick={() => goTo(2)}
+                    disabled={animating}
                     className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
                       activeScreen === 'nutrition'
                         ? 'bg-helthy-lemon text-helthy-black shadow-lg'
@@ -180,6 +201,7 @@ export default function TheProblemSection() {
                   </button>
                   <button
                     onClick={() => goTo(3)}
+                    disabled={animating}
                     className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
                       activeScreen === 'progress'
                         ? 'bg-helthy-lemon text-helthy-black shadow-lg'
@@ -235,13 +257,19 @@ export default function TheProblemSection() {
 
                 {/* Phone mockup — conveyor slide between screens */}
                 <div className="relative justify-self-center">
-                  <div ref={containerRef} className="relative overflow-hidden w-[260px] md:w-[600px] lg:w-[680px]">
+                  <div ref={containerRef} className="relative overflow-hidden w-[220px] md:w-[520px] lg:w-[580px]">
                     <div
                       className={`flex transition-transform duration-700 ease-in-out motion-reduce:transition-none ${animating ? 'will-change-transform' : ''}`}
                       style={animating
                         ? { transform: `translate3d(-${Math.round(slideWidth * activeIndex)}px, 0, 0)` }
                         : { transform: 'none', marginLeft: -Math.round(slideWidth * activeIndex) as unknown as number }}
-                      onTransitionEnd={() => setAnimating(false)}
+                      onTransitionEnd={() => {
+                        setAnimating(false);
+                        if (transitionTimerRef.current) {
+                          window.clearTimeout(transitionTimerRef.current);
+                          transitionTimerRef.current = null;
+                        }
+                      }}
                     >
                       {screens.map((s) => (
                         <div key={s} className="w-full flex-none">
