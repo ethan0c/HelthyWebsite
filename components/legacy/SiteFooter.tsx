@@ -9,7 +9,7 @@ export default function SiteFooter() {
       <footer className="relative bg-helthy-black py-16 lg:py-20 overflow-hidden">
         <div className="relative z-10 container mx-auto px-6 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            <div className="lg:col-span-3 space-y-6">
+            <div className="scroll-reveal animate-slide-up lg:col-span-3 space-y-6">
               <img src="/figma-components/hero/logo.png" alt="Helthy" className="h-8 w-auto" />
               <div>
                 <OcelabsBanner variant="inline" />
@@ -40,7 +40,7 @@ export default function SiteFooter() {
               </div>
             </div>
 
-            <div className="lg:col-span-3 space-y-6">
+            <div className="scroll-reveal animate-slide-up stagger-1 lg:col-span-3 space-y-6">
               <h3 className="text-white text-lg font-semibold">Newsletter</h3>
               <p className="text-white/60 text-sm leading-relaxed max-w-sm">
                 Get the latest updates, news, and special offers. No spam, just quality content.
@@ -57,7 +57,7 @@ export default function SiteFooter() {
               </div>
             </div>
 
-            <div className="lg:col-span-2 space-y-6">
+            <div className="scroll-reveal animate-slide-up stagger-2 lg:col-span-2 space-y-6">
               <h3 className="text-white text-lg font-semibold">Company</h3>
               <nav className="space-y-3">
                 <a href="/about" className="block text-white/70 hover:text-white transition-colors">About Us</a>
@@ -66,7 +66,7 @@ export default function SiteFooter() {
               </nav>
             </div>
 
-            <div className="lg:col-span-2 space-y-6">
+            <div className="scroll-reveal animate-slide-up stagger-3 lg:col-span-2 space-y-6">
               <h3 className="text-white text-lg font-semibold">Product</h3>
               <nav className="space-y-3">
                 <a href="#waitlist" className="block text-white/70 hover:text-white transition-colors">Join Waitlist</a>
@@ -74,7 +74,7 @@ export default function SiteFooter() {
               </nav>
             </div>
 
-            <div className="lg:col-span-2 space-y-6">
+            <div className="scroll-reveal animate-slide-up stagger-4 lg:col-span-2 space-y-6">
               <h3 className="text-white text-lg font-semibold">Legal</h3>
               <nav className="space-y-3">
                 <a href="#" className="block text-white/70 hover:text-white transition-colors">Terms of Service</a>

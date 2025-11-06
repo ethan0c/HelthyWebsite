@@ -213,26 +213,7 @@ export default function Index() {
     }
   };
   // Intersection Observer for scroll animations
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -10% 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    // Observe all elements with scroll-animate classes
-    const animateElements = document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale');
-    animateElements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
+  // Global ScrollRevealProvider handles scroll-triggered animations site-wide
 
   // Align hero logo center with navbar pill center for pixel-perfect alignment
   useEffect(() => {
@@ -446,7 +427,7 @@ export default function Index() {
         <div className="absolute z-10 left-[20px] sm:left-[40px] md:left-[78px] top-1/2 -translate-y-1/2 pr-4 right-4 sm:right-8">
           <div className="w-full max-w-[585.21px] space-y-4 sm:space-y-6 md:space-y-8">
             <h1
-              className="font-sans text-[28px] sm:text-[40px] md:text-[56px] lg:text-[72px] xl:text-[96.2px] leading-[1] tracking-[-0.02em] text-white/70"
+              className="scroll-reveal animate-slide-up font-sans text-[28px] sm:text-[40px] md:text-[56px] lg:text-[72px] xl:text-[96.2px] leading-[1] tracking-[-0.02em] text-white/70"
               style={{ backdropFilter: 'blur(2.65px)', fontWeight: 500 }}
             >
               Your Health,
@@ -455,7 +436,7 @@ export default function Index() {
             </h1>
 
             <p
-              className="font-sans text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] leading-[1.3] text-white max-w-[515.82px]"
+              className="scroll-reveal animate-slide-up stagger-1 font-sans text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] leading-[1.3] text-white max-w-[515.82px]"
             >
               Helthy helps you build a stronger body and a happier mind one
               workout, one meal, and one good habit at a time. No pressure, no
@@ -464,7 +445,7 @@ export default function Index() {
 
             <a
               href="#waitlist"
-              className="group inline-flex items-center justify-center gap-3 sm:gap-4 md:gap-6 rounded-[47px] border-2 border-white/30 bg-[#CDFB50] py-1.5 sm:py-2 pl-[20px] sm:pl-[25px] md:pl-[30px] pr-1.5 sm:pr-2 shadow-[0px_8px_16px_rgba(114,146,28,0.2)] hover:shadow-lg transition-shadow"
+              className="scroll-reveal animate-scale-in stagger-2 group inline-flex items-center justify-center gap-3 sm:gap-4 md:gap-6 rounded-[47px] border-2 border-white/30 bg-[#CDFB50] py-1.5 sm:py-2 pl-[20px] sm:pl-[25px] md:pl-[30px] pr-1.5 sm:pr-2 shadow-[0px_8px_16px_rgba(114,146,28,0.2)] hover:shadow-lg transition-shadow"
             >
               <span className="text-[#151515] font-medium text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] leading-[22px] tracking-[0.17px]">
                 Join Waitlist

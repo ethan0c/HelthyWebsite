@@ -107,6 +107,7 @@ body {
 /* Trigger animations when element is visible */
 .scroll-reveal {
   opacity: 0;
+  animation-play-state: paused;
 }
 
 .scroll-reveal.visible {
