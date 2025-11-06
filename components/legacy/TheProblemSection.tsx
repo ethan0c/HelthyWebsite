@@ -38,13 +38,13 @@ export default function TheProblemSection() {
   <div className="relative w-full px-0">
         {/* Header */}
   <div className="text-center mb-14 md:mb-20 max-w-4xl mx-auto px-6">
-          <span className="inline-flex items-center px-4 py-2 rounded-full bg-helthy-lemon/10 border border-helthy-lemon/20 text-helthy-lemon text-sm font-medium tracking-wide mb-6">
+          <span className="inline-flex items-center px-4 py-2 rounded-full bg-helthy-lemon/10 border border-helthy-lemon/20 text-helthy-lemon text-sm font-medium tracking-wide mb-6 scroll-reveal animate-scale-in">
             The Problem
           </span>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-normal leading-[1.12] text-white mb-5 md:mb-6" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-normal leading-[1.12] text-white mb-5 md:mb-6 scroll-reveal animate-slide-up stagger-1" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
             Stop juggling.<br />Start <span className="text-helthy-lemon">thriving</span>.
           </h2>
-          <p className="text-base md:text-2xl text-white/60 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-2xl text-white/60 max-w-2xl mx-auto leading-relaxed scroll-reveal animate-slide-up stagger-2">
             Everything you need for fitness in one beautiful app.
           </p>
         </div>
@@ -53,14 +53,14 @@ export default function TheProblemSection() {
         <div className="w-full mb-12 px-6">
           {/* The Old Way - Scattered chaos */}
           <div className="mb-12 md:mb-16">
-            <div className="flex items-center gap-3 mb-6 justify-center">
+            <div className="flex items-center gap-3 mb-6 justify-center scroll-reveal animate-slide-left">
               <div className="h-px w-12 bg-gradient-to-r from-transparent to-red-500/50"></div>
               <h3 className="text-lg md:text-xl font-medium text-red-400">The old way</h3>
               <div className="h-px w-12 bg-gradient-to-l from-transparent to-red-500/50"></div>
             </div>
             
             {/* Scattered app boxes with messy layout */}
-            <div className="relative h-56 md:h-96 lg:h-[28rem]">
+            <div className="relative h-56 md:h-96 lg:h-[28rem] scroll-reveal animate-scale-in stagger-2">
               {/* Cal AI - top left */}
               <div className="absolute top-0 left-[5%] md:left-[10%] w-28 md:w-44 lg:w-52 transform -rotate-6 animate-pulse" style={{ animationDuration: '3s' }}>
                 <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-700 shadow-xl">
@@ -125,7 +125,7 @@ export default function TheProblemSection() {
 
           {/* The Helthy Way - Unified simplicity */}
           <div>
-            <div className="flex items-center gap-3 mb-6 justify-center">
+            <div className="flex items-center gap-3 mb-6 justify-center scroll-reveal animate-slide-right">
               <div className="h-px w-12 bg-gradient-to-r from-transparent to-helthy-lemon/50"></div>
               <h3 className="text-lg md:text-xl font-medium text-helthy-lemon">The Helthy way</h3>
               <div className="h-px w-12 bg-gradient-to-l from-transparent to-helthy-lemon/50"></div>
@@ -134,20 +134,20 @@ export default function TheProblemSection() {
             {/* Simple unified features */}
             <div className="w-full">
               <div className="text-center mb-10 md:mb-12 max-w-4xl mx-auto px-6">
-                <h4 className="text-3xl md:text-5xl lg:text-6xl font-normal tracking-tight text-white mb-5 md:mb-6" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
+                <h4 className="text-3xl md:text-5xl lg:text-6xl font-normal tracking-tight text-white mb-5 md:mb-6 scroll-reveal animate-slide-up stagger-1" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
                   One app. <span className="text-helthy-lemon">Everything.</span>
                 </h4>
-                <p className="mt-2 md:mt-4 text-white/70 max-w-2xl mx-auto text-base md:text-lg">
+                <p className="mt-2 md:mt-4 text-white/70 max-w-2xl mx-auto text-base md:text-lg scroll-reveal animate-slide-up stagger-2">
                   All the tools you need to reach your health goals, unified in one beautiful experience.
                 </p>
                 {/* Helthy total price — same style, brand green */}
-                <div className="mt-8 flex justify-center">
+                <div className="mt-8 flex justify-center scroll-reveal animate-scale-in stagger-3">
                   <div className="text-sm md:text-base text-helthy-lemon font-medium">$0/month</div>
                 </div>     
               </div>
 
               {/* 4-Phone Mockup Showcase - Simple Grid with Hover Effects */}
-              <div className="w-full max-w-7xl mx-auto px-6 mt-16 md:mt-20">
+              <div className="w-full max-w-7xl mx-auto px-6 mt-16 md:mt-20 scroll-reveal animate-slide-up stagger-4">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
                   {/* Home Phone */}
                   <div 

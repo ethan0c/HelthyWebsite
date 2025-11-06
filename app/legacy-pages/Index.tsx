@@ -212,11 +212,6 @@ export default function Index() {
       return hex;
     }
   };
-
-  // Removed old horizontal wheel/touch interception code for the Different section to avoid scroll conflicts
-
-  // Removed timed step auto-advance in favor of smooth continuous marquee scroll
-
   // Intersection Observer for scroll animations
   useEffect(() => {
     const observerOptions = {
@@ -504,21 +499,21 @@ export default function Index() {
 
   <div className="relative mx-auto max-w-[1600px] px-0 md:px-6 mb-12 lg:mb-16">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="mb-6">
+            <div className="mb-6 scroll-reveal animate-scale-in">
               <span className="inline-flex items-center px-4 py-2 rounded-full bg-helthy-lemon/10 border border-helthy-lemon/20 text-helthy-lemon text-sm font-medium tracking-wide">
                 Features
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal leading-[1.1] text-white mb-6" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal leading-[1.1] text-white mb-6 scroll-reveal animate-slide-up stagger-1" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
               What Makes Helthy <span className="text-helthy-lemon">Different</span>
             </h2>
-            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed scroll-reveal animate-slide-up stagger-2">
               A holistic approach to movement, nutrition, and progress — built to help you stay consistent and reach your goals.
             </p>
           </div>
         </div>
 
-        <div className="relative">
+        <div className="relative scroll-reveal animate-slide-up stagger-3">
           <AutoScrollRow className="w-full" speedSeconds={38} gapClass="gap-8 lg:gap-10">
             <FeatureCard
               title="Real Progress Insights"
@@ -564,15 +559,15 @@ export default function Index() {
         {/* Features Section */}
         <div className="container mx-auto px-6 lg:px-20 mb-20">
           <div className="text-center mb-16 lg:mb-20">
-            <div className="mb-6">
+            <div className="mb-6 scroll-reveal animate-scale-in">
               <span className="inline-flex items-center px-4 py-2 rounded-full bg-helthy-lemon/10 border border-helthy-lemon/20 text-helthy-lemon text-sm font-medium tracking-wide">
                 Smart Logging
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal leading-tight text-helthy-lemon mb-6" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal leading-tight text-helthy-lemon mb-6 scroll-reveal animate-slide-up stagger-1" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
               Voice & Meal Intelligence
             </h2>
-            <p className="font-sans text-[18px] md:text-[20px] max-w-3xl mx-auto text-white/80 leading-relaxed">
+            <p className="font-sans text-[18px] md:text-[20px] max-w-3xl mx-auto text-white/80 leading-relaxed scroll-reveal animate-slide-up stagger-2">
               Log workouts and meals hands‑free. Get simple meal breakdowns that make eating well easy.
             </p>
           </div>
@@ -582,7 +577,7 @@ export default function Index() {
               {/* Section title */}
             
               {/* Cards container */}
-              <div className="w-full h-[600px] bg-helthy-black rounded-[20px] relative p-4 overflow-visible touch-pan-y select-none">
+              <div className="w-full h-[600px] bg-helthy-black rounded-[20px] relative p-4 overflow-visible touch-pan-y select-none scroll-reveal animate-slide-up stagger-3">
                 <div className="grid grid-cols-2 gap-3 h-full overflow-visible">
                   {/* Meal Intelligence Card */}
                   <div className="relative w-full h-[477px] bg-gradient-to-b from-white/10 to-transparent rounded-[20px] overflow-hidden" 
@@ -780,7 +775,7 @@ export default function Index() {
       {/* Header */}
       <div className="text-center mb-16 md:mb-20">
         <h2 
-          className="text-4xl md:text-5xl lg:text-6xl font-normal leading-tight mb-4 transition-colors duration-700" 
+          className="scroll-reveal animate-slide-up text-4xl md:text-5xl lg:text-6xl font-normal leading-tight mb-4 transition-colors duration-700" 
           style={{ 
             fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif",
             color: selectedTheme ? getTheme(selectedTheme).text : '#111111'
@@ -789,7 +784,7 @@ export default function Index() {
           Pick your <span style={{ color: selectedTheme ? getTheme(selectedTheme).primary : '#111111' }}>vibe</span>
         </h2>
         <p 
-          className="text-lg md:text-xl max-w-2xl mx-auto transition-colors duration-700" 
+          className="scroll-reveal animate-slide-up stagger-1 text-lg md:text-xl max-w-2xl mx-auto transition-colors duration-700" 
           style={{ 
             color: selectedTheme ? `${getTheme(selectedTheme).text}99` : '#111111CC'
           }}
@@ -799,7 +794,7 @@ export default function Index() {
       </div>
 
       {/* 7 IcoSphere buttons */}
-      <div className="flex justify-center items-center gap-6 md:gap-8 lg:gap-10 mb-12 overflow-x-auto pb-4 pt-8">
+      <div className="scroll-reveal animate-scale-in stagger-2 flex justify-center items-center gap-6 md:gap-8 lg:gap-10 mb-12 overflow-x-auto pb-4 pt-8">
         {themeKeys.map((key) => (
           <button
             key={key}
@@ -857,10 +852,10 @@ export default function Index() {
   {/* MouseRings removed for smoother scrolling */}
         <div className="container relative z-20 mx-auto px-6 lg:px-20">
           {/* FAQ */}
-          <h2 className="font-sans text-[36px] md:text-[48px] leading-[1.2] tracking-[-0.02em] text-helthy-lemon text-center mb-12 scroll-animate-left">
+          <h2 className="scroll-reveal animate-slide-up font-sans text-[36px] md:text-[48px] leading-[1.2] tracking-[-0.02em] text-helthy-lemon text-center mb-12">
             Frequently Asked Questions
           </h2>
-          <div className="max-w-3xl mx-auto scroll-animate-right faq-questions">
+          <div className="scroll-reveal animate-slide-up stagger-1 max-w-3xl mx-auto faq-questions">
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
                 <AccordionTrigger className="text-white text-base md:text-lg">What is Helthy?</AccordionTrigger>

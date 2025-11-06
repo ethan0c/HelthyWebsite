@@ -4,6 +4,7 @@ import "./globals.css";
 import "./legacy.css";
 import { GSAPProvider } from "../components/providers/GSAPProvider";
 import { LenisProvider } from "../components/providers/LenisProvider";
+import { ScrollRevealProvider } from "../components/providers/ScrollRevealProvider";
 import HollowCirclesOverlay from "../components/HollowCirclesOverlay";
 
 const geistSans = Geist({
@@ -55,7 +56,11 @@ export default function RootLayout({
       <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <HollowCirclesOverlay />
         <GSAPProvider>
-          <LenisProvider>{children}</LenisProvider>
+          <LenisProvider>
+            <ScrollRevealProvider>
+              {children}
+            </ScrollRevealProvider>
+          </LenisProvider>
         </GSAPProvider>
       </body>
     </html>
