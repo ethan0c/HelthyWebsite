@@ -28,7 +28,7 @@ export default function AutoScrollRow({
   }, []);
 
   return (
-    <div className={cn("relative overflow-hidden", className)}>
+    <div className={cn("relative overflow-hidden touch-pan-y select-none overscroll-x-contain", className)}>
       {/* Inline keyframes with CSS var for exact pixel distance */}
       <style>{`
         @keyframes marqueeX { from { transform: translate3d(0,0,0); } to { transform: translate3d(calc(-1 * var(--marquee-distance, 50%)), 0, 0); } }
@@ -39,7 +39,7 @@ export default function AutoScrollRow({
 
       <div
         className={cn(
-          "marquee-track flex flex-nowrap items-stretch w-max will-change-transform",
+          "marquee-track pointer-events-none flex flex-nowrap items-stretch w-max will-change-transform",
           gapClass,
           "[animation-name:marqueeX] [animation-timing-function:linear] [animation-iteration-count:infinite]",
         )}

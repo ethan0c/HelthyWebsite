@@ -213,65 +213,7 @@ export default function Index() {
     }
   };
 
-  // Auto-scroll for "What Makes Helthy Different" horizontal row
-  const differentRowRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    const el = differentRowRef.current;
-    if (!el) return;
-
-    let rafId = 0;
-    const speed = 0.3; // pixels per frame, ~18px/sec at 60fps
-
-    const step = () => {
-      if (!el) return;
-      const max = el.scrollWidth - el.clientWidth;
-      if (max > 0) {
-        const next = el.scrollLeft + speed;
-        if (next >= max - 1) {
-          // instant reset to start for seamless loop
-          el.scrollTo({ left: 0, behavior: 'auto' });
-        } else {
-          el.scrollLeft = next;
-        }
-      }
-      rafId = requestAnimationFrame(step);
-    };
-
-    rafId = requestAnimationFrame(step);
-
-    // Prevent manual horizontal scrolling but allow vertical page scroll
-    const onWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-        e.preventDefault();
-      }
-    };
-    el.addEventListener('wheel', onWheel, { passive: false });
-
-    let startX = 0, startY = 0;
-    const onTouchStart = (e: TouchEvent) => {
-      const t = e.touches[0];
-      startX = t.clientX;
-      startY = t.clientY;
-    };
-    const onTouchMove = (e: TouchEvent) => {
-      if (e.touches.length === 0) return;
-      const t = e.touches[0];
-      const dx = Math.abs(t.clientX - startX);
-      const dy = Math.abs(t.clientY - startY);
-      if (dx > dy) {
-        e.preventDefault();
-      }
-    };
-    el.addEventListener('touchstart', onTouchStart, { passive: true });
-    el.addEventListener('touchmove', onTouchMove, { passive: false });
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      el.removeEventListener('wheel', onWheel as any);
-      el.removeEventListener('touchstart', onTouchStart as any);
-      el.removeEventListener('touchmove', onTouchMove as any);
-    };
-  }, []);
+  // Removed old horizontal wheel/touch interception code for the Different section to avoid scroll conflicts
 
   // Removed timed step auto-advance in favor of smooth continuous marquee scroll
 
@@ -640,7 +582,7 @@ export default function Index() {
               {/* Section title */}
             
               {/* Cards container */}
-              <div className="w-full h-[600px] bg-helthy-black rounded-[20px] relative p-4 overflow-visible">
+              <div className="w-full h-[600px] bg-helthy-black rounded-[20px] relative p-4 overflow-visible touch-pan-y select-none">
                 <div className="grid grid-cols-2 gap-3 h-full overflow-visible">
                   {/* Meal Intelligence Card */}
                   <div className="relative w-full h-[477px] bg-gradient-to-b from-white/10 to-transparent rounded-[20px] overflow-hidden" 
@@ -736,7 +678,7 @@ export default function Index() {
                   </div>
 
                   {/* Voice Logging Card */}
-                  <div className="relative bg-gradient-to-b from-white/10 to-transparent rounded-[20px] border-t border-white/30 overflow-hidden h-[477px]">
+                  <div className="relative bg-gradient-to-b from-white/10 to-transparent rounded-[20px] border-t border-white/30 overflow-hidden h-[477px] touch-pan-y select-none">
                     {/* Header area with cleaner visualization */}
                     <div className="relative top-0 left-0 right-0 h-[240px] bg-[rgba(190,231,80,0.04)] rounded-t-[20px]">
                       {/* Centered mic button with subtle glow */}

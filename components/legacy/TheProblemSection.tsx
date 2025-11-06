@@ -8,22 +8,14 @@ export default function TheProblemSection() {
   const [loaded, setLoaded] = useState<Record<Screen, boolean>>({} as Record<Screen, boolean>);
   const [animating, setAnimating] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [slideWidth, setSlideWidth] = useState(0);
+  const [prevIndex, setPrevIndex] = useState(0);
   const transitionTimerRef = useRef<number | null>(null);
 
-  useEffect(() => {
-    const update = () => {
-      if (containerRef.current) {
-        setSlideWidth(containerRef.current.clientWidth);
-      }
-    };
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
-  }, []);
+  // No width measurement needed anymore; we crossfade/slide between stacked slides
 
   const goTo = (i: number) => {
     if (i === activeIndex || animating) return;
+    setPrevIndex(activeIndex);
     setAnimating(true);
     setActiveIndex(i);
     // Fallback in case transitionend doesn't fire (e.g., reduced motion)
@@ -34,7 +26,7 @@ export default function TheProblemSection() {
     transitionTimerRef.current = window.setTimeout(() => {
       setAnimating(false);
       transitionTimerRef.current = null;
-    }, 800); // a bit longer than CSS duration (700ms)
+    }, 600); // a bit longer than CSS duration (~500ms)
   };
   const activeScreen = screens[activeIndex];
   
@@ -162,210 +154,7 @@ export default function TheProblemSection() {
                 {/* Helthy total price — same style, brand green */}
                 <div className="mt-8 flex justify-center">
                   <div className="text-sm md:text-base text-helthy-lemon font-medium">$0/month</div>
-                </div>
-
-                {/* Screen selector buttons */}
-                <div className="mt-8 flex justify-center gap-3">
-                  <button
-                    onClick={() => goTo(0)}
-                    disabled={animating}
-                    className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
-                      activeScreen === 'home'
-                        ? 'bg-helthy-lemon text-helthy-black shadow-lg'
-                        : 'bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white'
-                    }`}
-                  >
-                    Home
-                  </button>
-                  <button
-                    onClick={() => goTo(1)}
-                    disabled={animating}
-                    className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
-                      activeScreen === 'exercise'
-                        ? 'bg-helthy-lemon text-helthy-black shadow-lg'
-                        : 'bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white'
-                    }`}
-                  >
-                    Exercise
-                  </button>
-                  <button
-                    onClick={() => goTo(2)}
-                    disabled={animating}
-                    className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
-                      activeScreen === 'nutrition'
-                        ? 'bg-helthy-lemon text-helthy-black shadow-lg'
-                        : 'bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white'
-                    }`}
-                  >
-                    Nutrition
-                  </button>
-                  <button
-                    onClick={() => goTo(3)}
-                    disabled={animating}
-                    className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 ${
-                      activeScreen === 'progress'
-                        ? 'bg-helthy-lemon text-helthy-black shadow-lg'
-                        : 'bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white'
-                    }`}
-                  >
-                    Progress
-                  </button>
-                </div>
-              </div>
-
-              {/* Phone screenshot with side info */}
-              <div className="w-full mb-12 grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-2 md:gap-4 lg:gap-6">
-                {/* Left info */}
-                <div className="hidden md:flex flex-col min-w-0 space-y-6 justify-self-end">
-                  {activeScreen === 'home' && (
-                    <>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                        <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Quick Actions</h5>
-                        <p className="text-white/90 text-lg leading-relaxed">Start workouts, log meals, or check progress in one tap</p>
-                      </div>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                        <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Smart Dashboard</h5>
-                        <p className="text-white/90 text-lg leading-relaxed">See today's goals and achievements at a glance</p>
-                      </div>
-                    </>
-                  )}
-                  {activeScreen === 'nutrition' && (
-                    <>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-4 lg:p-6 backdrop-blur-sm w-full">
-                        <h5 className="text-helthy-lemon font-semibold mb-3 md:mb-2 text-2xl md:text-xl lg:text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Photo Logging</h5>
-                        <p className="text-white/90 text-lg md:text-base lg:text-lg leading-relaxed">Snap a pic of your meal and let AI handle the rest</p>
-                      </div>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-4 lg:p-6 backdrop-blur-sm w-full">
-                        <h5 className="text-helthy-lemon font-semibold mb-3 md:mb-2 text-2xl md:text-xl lg:text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Macro Balance</h5>
-                        <p className="text-white/90 text-lg md:text-base lg:text-lg leading-relaxed">Simple visual guides to keep your nutrition on track</p>
-                      </div>
-                    </>
-                  )}
-                  {activeScreen === 'progress' && (
-                    <>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                        <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Clear Trends</h5>
-                        <p className="text-white/90 text-lg leading-relaxed">Beautiful charts that show your journey over time</p>
-                      </div>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                        <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Insights</h5>
-                        <p className="text-white/90 text-lg leading-relaxed">Smart nudges to keep you motivated and consistent</p>
-                      </div>
-                    </>
-                  )}
-                </div>
-
-                {/* Phone mockup — conveyor slide between screens */}
-                <div className="relative justify-self-center">
-                  <div ref={containerRef} className="relative overflow-hidden w-[220px] md:w-[520px] lg:w-[580px]">
-                    <div
-                      className={`flex transition-transform duration-700 ease-in-out motion-reduce:transition-none ${animating ? 'will-change-transform' : ''}`}
-                      style={animating
-                        ? { transform: `translate3d(-${Math.round(slideWidth * activeIndex)}px, 0, 0)` }
-                        : { transform: 'none', marginLeft: -Math.round(slideWidth * activeIndex) as unknown as number }}
-                      onTransitionEnd={() => {
-                        setAnimating(false);
-                        if (transitionTimerRef.current) {
-                          window.clearTimeout(transitionTimerRef.current);
-                          transitionTimerRef.current = null;
-                        }
-                      }}
-                    >
-                      {screens.map((s) => (
-                        <div key={s} className="w-full flex-none">
-                          <img
-                            src={`/phones/${s}.svg`}
-                            alt={`Helthy app ${s} screen`}
-                            className="w-full h-auto select-none"
-                            draggable={false}
-                            onLoad={() => setLoaded((prev) => ({ ...prev, [s]: true }))}
-                            loading={s === 'home' ? 'eager' : 'lazy'}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right info */}
-                <div className="hidden md:flex flex-col min-w-0 space-y-6 justify-self-start">
-                  {activeScreen === 'home' && (
-                    <>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                        <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Today's Focus</h5>
-                        <p className="text-white/90 text-lg leading-relaxed">Personalized recommendations based on your routine</p>
-                      </div>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                        <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Streak Tracking</h5>
-                        <p className="text-white/90 text-lg leading-relaxed">Build consistency with visual progress indicators</p>
-                      </div>
-                    </>
-                  )}
-                  {activeScreen === 'nutrition' && (
-                    <>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-4 lg:p-6 backdrop-blur-sm w-full">
-                        <h5 className="text-helthy-lemon font-semibold mb-3 md:mb-2 text-2xl md:text-xl lg:text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Voice Logging</h5>
-                        <p className="text-white/90 text-lg md:text-base lg:text-lg leading-relaxed">Just say what you ate—no typing required</p>
-                      </div>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-4 lg:p-6 backdrop-blur-sm w-full">
-                        <h5 className="text-helthy-lemon font-semibold mb-3 md:mb-2 text-2xl md:text-xl lg:text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Meal History</h5>
-                        <p className="text-white/90 text-lg md:text-base lg:text-lg leading-relaxed">Quick access to your favorite meals and portions</p>
-                      </div>
-                    </>
-                  )}
-                  {activeScreen === 'progress' && (
-                    <>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                        <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Weekly Recap</h5>
-                        <p className="text-white/90 text-lg leading-relaxed">Celebrate wins and identify areas to improve</p>
-                      </div>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                        <h5 className="text-helthy-lemon font-semibold mb-3 text-2xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Goal Tracking</h5>
-                        <p className="text-white/90 text-lg leading-relaxed">Monitor milestones and stay on target</p>
-                      </div>
-                    </>
-                  )}
-                </div>
-              </div>
-
-              {/* Mobile info (below phone) */}
-              <div className="md:hidden mt-8 grid grid-cols-1 gap-4 max-w-lg mx-auto">
-                {activeScreen === 'home' && (
-                  <>
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-sm">
-                      <h5 className="text-helthy-lemon font-semibold mb-2 text-xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Quick Actions</h5>
-                      <p className="text-white/90 text-base leading-relaxed">Start workouts, log meals, or check progress in one tap</p>
-                    </div>
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-sm">
-                      <h5 className="text-helthy-lemon font-semibold mb-2 text-xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Smart Dashboard</h5>
-                      <p className="text-white/90 text-base leading-relaxed">See today's goals and achievements at a glance</p>
-                    </div>
-                  </>
-                )}
-                {activeScreen === 'nutrition' && (
-                  <>
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-sm">
-                      <h5 className="text-helthy-lemon font-semibold mb-2 text-xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Photo Logging</h5>
-                      <p className="text-white/90 text-base leading-relaxed">Snap a pic of your meal and let AI handle the rest</p>
-                    </div>
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-sm">
-                      <h5 className="text-helthy-lemon font-semibold mb-2 text-xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Macro Balance</h5>
-                      <p className="text-white/90 text-base leading-relaxed">Simple visual guides to keep your nutrition on track</p>
-                    </div>
-                  </>
-                )}
-                {activeScreen === 'progress' && (
-                  <>
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-sm">
-                      <h5 className="text-helthy-lemon font-semibold mb-2 text-xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Clear Trends</h5>
-                      <p className="text-white/90 text-base leading-relaxed">Beautiful charts that show your journey over time</p>
-                    </div>
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-sm">
-                      <h5 className="text-helthy-lemon font-semibold mb-2 text-xl tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Insights</h5>
-                      <p className="text-white/90 text-base leading-relaxed">Smart nudges to keep you motivated and consistent</p>
-                    </div>
-                  </>
-                )}
+                </div>     
               </div>
             </div>
           </div>
