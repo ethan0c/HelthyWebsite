@@ -1,42 +1,8 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 
 export default function TheProblemSection() {
-  const screens = ['home', 'exercise', 'nutrition', 'progress'] as const;
-  type Screen = typeof screens[number];
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [loaded, setLoaded] = useState<Record<Screen, boolean>>({} as Record<Screen, boolean>);
-  const [animating, setAnimating] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [prevIndex, setPrevIndex] = useState(0);
-  const transitionTimerRef = useRef<number | null>(null);
-
-  // No width measurement needed anymore; we crossfade/slide between stacked slides
-
-  const goTo = (i: number) => {
-    if (i === activeIndex || animating) return;
-    setPrevIndex(activeIndex);
-    setAnimating(true);
-    setActiveIndex(i);
-    // Fallback in case transitionend doesn't fire (e.g., reduced motion)
-    if (transitionTimerRef.current) {
-      window.clearTimeout(transitionTimerRef.current);
-      transitionTimerRef.current = null;
-    }
-    transitionTimerRef.current = window.setTimeout(() => {
-      setAnimating(false);
-      transitionTimerRef.current = null;
-    }, 600); // a bit longer than CSS duration (~500ms)
-  };
-  const activeScreen = screens[activeIndex];
-  
-  useEffect(() => {
-    return () => {
-      if (transitionTimerRef.current) {
-        window.clearTimeout(transitionTimerRef.current);
-      }
-    };
-  }, []);
+  // Removed all carousel state - now using simple static grid with hover effects
   
   return (
     <section className="relative overflow-hidden bg-helthy-black py-20 md:py-28 lg:py-32">
@@ -155,6 +121,75 @@ export default function TheProblemSection() {
                 <div className="mt-8 flex justify-center">
                   <div className="text-sm md:text-base text-helthy-lemon font-medium">$0/month</div>
                 </div>     
+              </div>
+
+              {/* 4-Phone Mockup Showcase - Simple Grid with Hover Effects */}
+              <div className="w-full max-w-7xl mx-auto px-6 mt-16 md:mt-20">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+                  {/* Home Phone */}
+                  <div className="group relative">
+                    <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 p-3 md:p-4 transition-all duration-300 hover:scale-105 hover:border-helthy-lemon/50 hover:shadow-[0_0_30px_rgba(205,251,80,0.3)]">
+                      <img
+                        src="/phones/home.svg"
+                        alt="Helthy app home screen"
+                        className="w-full h-auto select-none"
+                        draggable={false}
+                        loading="eager"
+                      />
+                    </div>
+                    <div className="mt-3 text-center">
+                      <span className="text-sm md:text-base text-white/80 group-hover:text-helthy-lemon transition-colors duration-300">Home</span>
+                    </div>
+                  </div>
+
+                  {/* Exercise Phone */}
+                  <div className="group relative">
+                    <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 p-3 md:p-4 transition-all duration-300 hover:scale-105 hover:border-helthy-lemon/50 hover:shadow-[0_0_30px_rgba(205,251,80,0.3)]">
+                      <img
+                        src="/phones/exercise.svg"
+                        alt="Helthy app exercise screen"
+                        className="w-full h-auto select-none"
+                        draggable={false}
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="mt-3 text-center">
+                      <span className="text-sm md:text-base text-white/80 group-hover:text-helthy-lemon transition-colors duration-300">Exercise</span>
+                    </div>
+                  </div>
+
+                  {/* Nutrition Phone */}
+                  <div className="group relative">
+                    <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 p-3 md:p-4 transition-all duration-300 hover:scale-105 hover:border-helthy-lemon/50 hover:shadow-[0_0_30px_rgba(205,251,80,0.3)]">
+                      <img
+                        src="/phones/nutrition.svg"
+                        alt="Helthy app nutrition screen"
+                        className="w-full h-auto select-none"
+                        draggable={false}
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="mt-3 text-center">
+                      <span className="text-sm md:text-base text-white/80 group-hover:text-helthy-lemon transition-colors duration-300">Nutrition</span>
+                    </div>
+                  </div>
+
+                  {/* Progress Phone */}
+                  <div className="group relative">
+                    <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 p-3 md:p-4 transition-all duration-300 hover:scale-105 hover:border-helthy-lemon/50 hover:shadow-[0_0_30px_rgba(205,251,80,0.3)]">
+                      <img
+                        src="/phones/progress.svg"
+                        alt="Helthy app progress screen"
+                        className="w-full h-auto select-none"
+                        draggable={false}
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="mt-3 text-center">
+                      <span className="text-sm md:text-base text-white/80 group-hover:text-helthy-lemon transition-colors duration-300">Progress</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
