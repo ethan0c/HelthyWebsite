@@ -1,8 +1,31 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 export default function TheProblemSection() {
-  // Removed all carousel state - now using simple static grid with hover effects
+  const [hoveredPhone, setHoveredPhone] = useState<string | null>(null);
+  
+  const phoneInfo = {
+    home: {
+      title: "Smart Dashboard",
+      description: "Your personalized fitness hub. Quick actions to log workouts, track meals, and monitor progress—all in one tap.",
+      features: ["Daily overview", "Quick actions", "Streak tracking"]
+    },
+    exercise: {
+      title: "Adaptive Workouts",
+      description: "AI-powered routines that evolve with you. Track sets, reps, and weights with smart suggestions tailored to your goals.",
+      features: ["Custom programs", "Exercise library", "Progress tracking"]
+    },
+    nutrition: {
+      title: "Effortless Nutrition",
+      description: "Log meals with voice or photos. Get instant macro breakdowns and meal suggestions that fit your lifestyle.",
+      features: ["Voice logging", "Photo scanning", "Macro balance"]
+    },
+    progress: {
+      title: "Visual Progress",
+      description: "Beautiful charts and insights that celebrate your wins. Track trends, set milestones, and stay motivated.",
+      features: ["Weekly recaps", "Goal tracking", "Trend analysis"]
+    }
+  };
   
   return (
     <section className="relative overflow-hidden bg-helthy-black py-20 md:py-28 lg:py-32">
@@ -127,8 +150,18 @@ export default function TheProblemSection() {
               <div className="w-full max-w-7xl mx-auto px-6 mt-16 md:mt-20">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
                   {/* Home Phone */}
-                  <div className="group relative">
-                    <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 p-3 md:p-4 transition-all duration-300 hover:scale-105 hover:border-helthy-lemon/50 hover:shadow-[0_0_30px_rgba(205,251,80,0.3)]">
+                  <div 
+                    className="group relative flex flex-col items-center"
+                    onMouseEnter={() => setHoveredPhone('home')}
+                    onMouseLeave={() => setHoveredPhone(null)}
+                  >
+                    <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border p-3 md:p-4 transition-all duration-300 ${
+                      hoveredPhone === 'home' 
+                        ? 'scale-105 border-helthy-lemon shadow-[0_0_30px_rgba(205,251,80,0.35)] z-10' 
+                        : hoveredPhone 
+                          ? 'scale-[0.98] opacity-50 border-white/5'
+                          : 'border-white/10'
+                    }`}>
                       <img
                         src="/phones/home.svg"
                         alt="Helthy app home screen"
@@ -138,13 +171,41 @@ export default function TheProblemSection() {
                       />
                     </div>
                     <div className="mt-3 text-center">
-                      <span className="text-sm md:text-base text-white/80 group-hover:text-helthy-lemon transition-colors duration-300">Home</span>
+                      <span className={`text-sm md:text-base transition-colors duration-200 ${
+                        hoveredPhone === 'home' ? 'text-helthy-lemon font-semibold' : 'text-white/80'
+                      }`} style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Home</span>
                     </div>
+                    
+                    {/* Info popup */}
+                    {hoveredPhone === 'home' && (
+                      <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 bg-helthy-black/95 backdrop-blur-xl border border-helthy-lemon/30 rounded-2xl p-5 shadow-[0_8px_32px_rgba(205,251,80,0.2)] z-20 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <h5 className="text-helthy-lemon font-semibold text-lg mb-2">{phoneInfo.home.title}</h5>
+                        <p className="text-white/80 text-sm mb-3 leading-relaxed">{phoneInfo.home.description}</p>
+                        <ul className="space-y-1.5">
+                          {phoneInfo.home.features.map((feature, i) => (
+                            <li key={i} className="flex items-center gap-2 text-white/70 text-xs">
+                              <span className="w-1 h-1 rounded-full bg-helthy-lemon" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
 
                   {/* Exercise Phone */}
-                  <div className="group relative">
-                    <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 p-3 md:p-4 transition-all duration-300 hover:scale-105 hover:border-helthy-lemon/50 hover:shadow-[0_0_30px_rgba(205,251,80,0.3)]">
+                  <div 
+                    className="group relative flex flex-col items-center"
+                    onMouseEnter={() => setHoveredPhone('exercise')}
+                    onMouseLeave={() => setHoveredPhone(null)}
+                  >
+                    <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border p-3 md:p-4 transition-all duration-300 ${
+                      hoveredPhone === 'exercise' 
+                        ? 'scale-105 border-helthy-lemon shadow-[0_0_30px_rgba(205,251,80,0.35)] z-10' 
+                        : hoveredPhone 
+                          ? 'scale-[0.98] opacity-50 border-white/5'
+                          : 'border-white/10'
+                    }`}>
                       <img
                         src="/phones/exercise.svg"
                         alt="Helthy app exercise screen"
@@ -154,13 +215,41 @@ export default function TheProblemSection() {
                       />
                     </div>
                     <div className="mt-3 text-center">
-                      <span className="text-sm md:text-base text-white/80 group-hover:text-helthy-lemon transition-colors duration-300">Exercise</span>
+                      <span className={`text-sm md:text-base transition-colors duration-200 ${
+                        hoveredPhone === 'exercise' ? 'text-helthy-lemon font-semibold' : 'text-white/80'
+                      }`} style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Exercise</span>
                     </div>
+                    
+                    {/* Info popup */}
+                    {hoveredPhone === 'exercise' && (
+                      <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 bg-helthy-black/95 backdrop-blur-xl border border-helthy-lemon/30 rounded-2xl p-5 shadow-[0_8px_32px_rgba(205,251,80,0.2)] z-20 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <h5 className="text-helthy-lemon font-semibold text-lg mb-2">{phoneInfo.exercise.title}</h5>
+                        <p className="text-white/80 text-sm mb-3 leading-relaxed">{phoneInfo.exercise.description}</p>
+                        <ul className="space-y-1.5">
+                          {phoneInfo.exercise.features.map((feature, i) => (
+                            <li key={i} className="flex items-center gap-2 text-white/70 text-xs">
+                              <span className="w-1 h-1 rounded-full bg-helthy-lemon" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
 
                   {/* Nutrition Phone */}
-                  <div className="group relative">
-                    <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 p-3 md:p-4 transition-all duration-300 hover:scale-105 hover:border-helthy-lemon/50 hover:shadow-[0_0_30px_rgba(205,251,80,0.3)]">
+                  <div 
+                    className="group relative flex flex-col items-center"
+                    onMouseEnter={() => setHoveredPhone('nutrition')}
+                    onMouseLeave={() => setHoveredPhone(null)}
+                  >
+                    <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border p-3 md:p-4 transition-all duration-300 ${
+                      hoveredPhone === 'nutrition' 
+                        ? 'scale-105 border-helthy-lemon shadow-[0_0_30px_rgba(205,251,80,0.35)] z-10' 
+                        : hoveredPhone 
+                          ? 'scale-[0.98] opacity-50 border-white/5'
+                          : 'border-white/10'
+                    }`}>
                       <img
                         src="/phones/nutrition.svg"
                         alt="Helthy app nutrition screen"
@@ -170,13 +259,41 @@ export default function TheProblemSection() {
                       />
                     </div>
                     <div className="mt-3 text-center">
-                      <span className="text-sm md:text-base text-white/80 group-hover:text-helthy-lemon transition-colors duration-300">Nutrition</span>
+                      <span className={`text-sm md:text-base transition-colors duration-200 ${
+                        hoveredPhone === 'nutrition' ? 'text-helthy-lemon font-semibold' : 'text-white/80'
+                      }`} style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Nutrition</span>
                     </div>
+                    
+                    {/* Info popup */}
+                    {hoveredPhone === 'nutrition' && (
+                      <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 bg-helthy-black/95 backdrop-blur-xl border border-helthy-lemon/30 rounded-2xl p-5 shadow-[0_8px_32px_rgba(205,251,80,0.2)] z-20 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <h5 className="text-helthy-lemon font-semibold text-lg mb-2">{phoneInfo.nutrition.title}</h5>
+                        <p className="text-white/80 text-sm mb-3 leading-relaxed">{phoneInfo.nutrition.description}</p>
+                        <ul className="space-y-1.5">
+                          {phoneInfo.nutrition.features.map((feature, i) => (
+                            <li key={i} className="flex items-center gap-2 text-white/70 text-xs">
+                              <span className="w-1 h-1 rounded-full bg-helthy-lemon" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
 
                   {/* Progress Phone */}
-                  <div className="group relative">
-                    <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 p-3 md:p-4 transition-all duration-300 hover:scale-105 hover:border-helthy-lemon/50 hover:shadow-[0_0_30px_rgba(205,251,80,0.3)]">
+                  <div 
+                    className="group relative flex flex-col items-center"
+                    onMouseEnter={() => setHoveredPhone('progress')}
+                    onMouseLeave={() => setHoveredPhone(null)}
+                  >
+                    <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border p-3 md:p-4 transition-all duration-300 ${
+                      hoveredPhone === 'progress' 
+                        ? 'scale-105 border-helthy-lemon shadow-[0_0_30px_rgba(205,251,80,0.35)] z-10' 
+                        : hoveredPhone 
+                          ? 'scale-[0.98] opacity-50 border-white/5'
+                          : 'border-white/10'
+                    }`}>
                       <img
                         src="/phones/progress.svg"
                         alt="Helthy app progress screen"
@@ -186,8 +303,26 @@ export default function TheProblemSection() {
                       />
                     </div>
                     <div className="mt-3 text-center">
-                      <span className="text-sm md:text-base text-white/80 group-hover:text-helthy-lemon transition-colors duration-300">Progress</span>
+                      <span className={`text-sm md:text-base transition-colors duration-200 ${
+                        hoveredPhone === 'progress' ? 'text-helthy-lemon font-semibold' : 'text-white/80'
+                      }`} style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Progress</span>
                     </div>
+                    
+                    {/* Info popup */}
+                    {hoveredPhone === 'progress' && (
+                      <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 bg-helthy-black/95 backdrop-blur-xl border border-helthy-lemon/30 rounded-2xl p-5 shadow-[0_8px_32px_rgba(205,251,80,0.2)] z-20 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <h5 className="text-helthy-lemon font-semibold text-lg mb-2">{phoneInfo.progress.title}</h5>
+                        <p className="text-white/80 text-sm mb-3 leading-relaxed">{phoneInfo.progress.description}</p>
+                        <ul className="space-y-1.5">
+                          {phoneInfo.progress.features.map((feature, i) => (
+                            <li key={i} className="flex items-center gap-2 text-white/70 text-xs">
+                              <span className="w-1 h-1 rounded-full bg-helthy-lemon" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
