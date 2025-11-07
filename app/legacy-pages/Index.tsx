@@ -5,6 +5,7 @@ import { mdiFood, mdiFoodDrumstick } from '@mdi/js';
 import WaitlistSection from "../../components/legacy/WaitlistSection";
 import SiteFooter from "../../components/legacy/SiteFooter";
 import Navbar from "../../components/legacy/Navbar";
+import MobileSidebar from "../../components/legacy/MobileSidebar";
 import { ThemeKey, getTheme, getThemeDisplayName, isDarkTheme } from "../../lib/colors";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../../components/ui/accordion";
 import OcelabsBanner from "../../components/legacy/OcelabsBanner";
@@ -212,23 +213,35 @@ export default function Index() {
       return hex;
     }
   };
-  // Align hero logo center with navbar pill center for pixel-perfect alignment
+  // Align hero logo center with navbar pill on desktop and hamburger button on mobile
   useEffect(() => {
     const compute = () => {
-      const pill = document.getElementById('nav-pill');
       const logo = heroLogoRef.current;
-      if (!pill || !logo) return;
-      const pillRect = pill.getBoundingClientRect();
-      const logoRect = logo.getBoundingClientRect();
-      const centerY = pillRect.top + pillRect.height / 2;
-      const top = Math.max(0, centerY - logoRect.height / 2);
+      if (!logo) return;
+      // Prefer mobile menu button when in mobile viewport
+      const mobileBtn = document.getElementById('mobile-menu-button');
+      const pill = document.getElementById('nav-pill');
+      let target: HTMLElement | null = null;
+      const isMobile = window.matchMedia('(max-width: 767px)').matches; // md breakpoint just before 768px
+      if (isMobile && mobileBtn) {
+        target = mobileBtn;
+      } else if (pill) {
+        target = pill;
+      }
+      if (!target) return;
+      const tRect = target.getBoundingClientRect();
+      const lRect = logo.getBoundingClientRect();
+      const centerY = tRect.top + tRect.height / 2;
+      const top = Math.max(0, centerY - lRect.height / 2);
       setHeroLogoTop(Math.round(top));
     };
     const raf = requestAnimationFrame(compute);
     window.addEventListener('resize', compute);
+    window.addEventListener('orientationchange', compute);
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', compute);
+      window.removeEventListener('orientationchange', compute);
     };
   }, []);
 
@@ -384,8 +397,9 @@ export default function Index() {
   }, [phText, phDeleting, phIndex, typedText, isTyping]);
   return (
     <div className="min-h-screen bg-white">
-  {/* Navbar */}
+  {/* Navbar + Mobile Sidebar */}
   <Navbar />
+  <MobileSidebar />
 
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px] xl:min-h-[900px]">
@@ -411,12 +425,12 @@ export default function Index() {
           aria-hidden
         />
 
-        {/* Logo position per Figma */}
+        {/* Logo auto-aligned to nav pill / mobile menu center */}
         <img
           ref={heroLogoRef}
           src="/figma-components/hero/logo.png"
           alt="Helthy logo"
-          className="absolute z-20 h-5 sm:h-5 md:h-6 w-auto top-[20px] sm:top-[36px] md:top-[64px] left-[20px] sm:left-[40px] md:left-[78px]"
+          className="absolute z-20 h-5 sm:h-5 md:h-6 w-auto top-[36px] sm:top-[46px] md:top-[64px] left-[20px] sm:left-[40px] md:left-[78px]"
           style={heroLogoTop != null ? { top: `${heroLogoTop}px` } : undefined}
         />
 
