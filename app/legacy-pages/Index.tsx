@@ -416,7 +416,7 @@ export default function Index() {
           ref={heroLogoRef}
           src="/figma-components/hero/logo.png"
           alt="Helthy logo"
-          className="absolute z-20 h-5 sm:h-5 md:h-6 w-auto top-[36px] sm:top-[46px] md:top-[64px] left-[20px] sm:left-[40px] md:left-[78px]"
+          className="absolute z-20 h-5 sm:h-5 md:h-6 w-auto top-[20px] sm:top-[36px] md:top-[64px] left-[20px] sm:left-[40px] md:left-[78px]"
           style={heroLogoTop != null ? { top: `${heroLogoTop}px` } : undefined}
         />
 
@@ -555,96 +555,96 @@ export default function Index() {
               {/* Section title */}
             
               {/* Cards container */}
-              <div className="w-full h-[600px] bg-helthy-black rounded-[20px] relative p-4 overflow-visible touch-pan-y select-none scroll-reveal animate-slide-up stagger-3">
-                <div className="grid grid-cols-2 gap-3 h-full overflow-visible">
+              <div className="w-full lg:h-[600px] bg-helthy-black rounded-[20px] relative p-4 overflow-visible touch-pan-y select-none scroll-reveal animate-slide-up stagger-3">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-3 lg:h-full overflow-visible">
                   {/* Meal Intelligence Card */}
                   <div className="relative w-full h-[477px] bg-gradient-to-b from-white/10 to-transparent rounded-[20px] overflow-hidden" 
                        style={{ background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 108.72%), rgba(23, 23, 23, 0.2)' }}>
                     {/* Background image section */}
-                    <div className="absolute w-[632px] h-[320px] left-[-2px] top-0 bg-[#262724]">
+                    <div className="absolute w-full lg:w-[632px] h-[320px] left-0 lg:left-[-2px] top-0 bg-[#262724]">
                       <img 
                         src="/figma-components/ai/roasted-chicken-dinner-platter-delicious-feast 1.svg" 
                         alt="Roasted chicken dinner platter delicious feast" 
-                        className="absolute w-[300.9px] h-[300.9px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 object-cover"
+                        className="absolute w-[200px] sm:w-[250px] lg:w-[300.9px] h-[200px] sm:h-[250px] lg:h-[300.9px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 object-cover"
                       />
                       
                       {/* Chicken nutrition card with glass effect */}
-                      <div className="absolute w-[222px] h-[68px] left-[375px] top-[26.34px] rounded-[8px] overflow-hidden"
+                      <div className="absolute w-[160px] sm:w-[180px] lg:w-[222px] h-[56px] sm:h-[60px] lg:h-[68px] right-[8px] sm:right-[12px] lg:left-[375px] top-[16px] sm:top-[20px] lg:top-[26.34px] rounded-[6px] lg:rounded-[8px] overflow-hidden"
                            style={{ 
                              background: 'rgba(0, 0, 0, 0.15)',
-                             borderLeft: '8px solid #CDFB50',
+                             borderLeft: '6px solid #CDFB50',
                              boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.05), inset 0px 0px 10px 3px rgba(255, 255, 255, 0.5)',
                              backdropFilter: 'blur(5px)',
                              WebkitBackdropFilter: 'blur(5px)',
                              fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif'
                            }}>
                         {/* Icon */}
-                        <div className="absolute w-[34px] h-[36px] left-[17px] top-[16px] bg-white/30 rounded-[6px] flex items-center justify-center">
-                          <Icon path={mdiFoodDrumstick} size={0.8} color="white" />
+                        <div className="absolute w-[28px] h-[30px] sm:w-[32px] sm:h-[34px] lg:w-[34px] lg:h-[36px] left-[12px] sm:left-[14px] lg:left-[17px] top-[13px] sm:top-[14px] lg:top-[16px] bg-white/30 rounded-[6px] flex items-center justify-center">
+                          <Icon path={mdiFoodDrumstick} size={0.7} className="sm:w-[0.75] lg:w-[0.8]" color="white" />
                         </div>
                         
                         {/* Content */}
-                        <div className="absolute left-[65px] top-[12px] right-[45px]">
-                          <div className="flex flex-col gap-1">
-                            <span className="text-white font-semibold text-[10px] leading-[120%] uppercase tracking-wide">Chicken</span>
-                            <span className="text-white text-[8px] leading-[120%]">100g</span>
-                            <div className="flex gap-4 mt-1">
-                              <span className="text-[#CDFB50] text-[8px] leading-[120%]">P 4g</span>
-                              <span className="text-[#CDFB50] text-[8px] leading-[120%]">C 7g</span>
-                              <span className="text-[#CDFB50] text-[8px] leading-[120%]">F 4g</span>
+                        <div className="absolute left-[48px] sm:left-[54px] lg:left-[65px] top-[10px] sm:top-[11px] lg:top-[12px] right-[38px] sm:right-[42px] lg:right-[45px]">
+                          <div className="flex flex-col gap-0.5 lg:gap-1">
+                            <span className="text-white font-semibold text-[8px] sm:text-[9px] lg:text-[10px] leading-[120%] uppercase tracking-wide">Chicken</span>
+                            <span className="text-white text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">100g</span>
+                            <div className="flex gap-2 sm:gap-3 lg:gap-4 mt-0.5 lg:mt-1">
+                              <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">P 4g</span>
+                              <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">C 7g</span>
+                              <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">F 4g</span>
                             </div>
                           </div>
                         </div>
                         
                         {/* Calories */}
-                        <div className="absolute right-[17px] top-[14px] flex flex-col items-end">
-                          <span className="text-white text-[20px] leading-[120%] font-normal">81</span>
-                          <span className="text-white text-[8px] leading-[120%]">cal</span>
+                        <div className="absolute right-[10px] sm:right-[12px] lg:right-[17px] top-[11px] sm:top-[12px] lg:top-[14px] flex flex-col items-end">
+                          <span className="text-white text-[16px] sm:text-[18px] lg:text-[20px] leading-[120%] font-normal">81</span>
+                          <span className="text-white text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">cal</span>
                         </div>
                       </div>
                       
                       {/* Potatoes nutrition card with glass effect */}
-                      <div className="absolute w-[222px] h-[68px] left-[29px] top-[211px] rounded-[8px] overflow-hidden"
+                      <div className="absolute w-[160px] sm:w-[180px] lg:w-[222px] h-[56px] sm:h-[60px] lg:h-[68px] left-[8px] sm:left-[12px] lg:left-[29px] bottom-[16px] sm:bottom-[20px] lg:top-[211px] rounded-[6px] lg:rounded-[8px] overflow-hidden"
                            style={{ 
                              background: 'rgba(0, 0, 0, 0.15)',
-                             borderLeft: '8px solid #CDFB50',
+                             borderLeft: '6px solid #CDFB50',
                              boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.05), inset 0px 0px 10px 3px rgba(255, 255, 255, 0.5)',
                              backdropFilter: 'blur(5px)',
                              WebkitBackdropFilter: 'blur(5px)',
                              fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif'
                            }}>
                         {/* Icon */}
-                        <div className="absolute w-[34px] h-[36px] left-[17px] top-[16px] bg-white/30 rounded-[6px] flex items-center justify-center">
-                          <Icon path={mdiFood} size={0.8} color="white" />
+                        <div className="absolute w-[28px] h-[30px] sm:w-[32px] sm:h-[34px] lg:w-[34px] lg:h-[36px] left-[12px] sm:left-[14px] lg:left-[17px] top-[13px] sm:top-[14px] lg:top-[16px] bg-white/30 rounded-[6px] flex items-center justify-center">
+                          <Icon path={mdiFood} size={0.7} className="sm:w-[0.75] lg:w-[0.8]" color="white" />
                         </div>
                         
                         {/* Content */}
-                        <div className="absolute left-[65px] top-[12px] right-[45px]">
-                          <div className="flex flex-col gap-1">
-                            <span className="text-white font-semibold text-[10px] leading-[120%] uppercase tracking-wide">Potatoes</span>
-                            <span className="text-white text-[8px] leading-[120%]">300g</span>
-                            <div className="flex gap-4 mt-1">
-                              <span className="text-[#CDFB50] text-[8px] leading-[120%]">P 4g</span>
-                              <span className="text-[#CDFB50] text-[8px] leading-[120%]">C 7g</span>
-                              <span className="text-[#CDFB50] text-[8px] leading-[120%]">F 4g</span>
+                        <div className="absolute left-[48px] sm:left-[54px] lg:left-[65px] top-[10px] sm:top-[11px] lg:top-[12px] right-[38px] sm:right-[42px] lg:right-[45px]">
+                          <div className="flex flex-col gap-0.5 lg:gap-1">
+                            <span className="text-white font-semibold text-[8px] sm:text-[9px] lg:text-[10px] leading-[120%] uppercase tracking-wide">Potatoes</span>
+                            <span className="text-white text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">300g</span>
+                            <div className="flex gap-2 sm:gap-3 lg:gap-4 mt-0.5 lg:mt-1">
+                              <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">P 4g</span>
+                              <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">C 7g</span>
+                              <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">F 4g</span>
                             </div>
                           </div>
                         </div>
                         
                         {/* Calories */}
-                        <div className="absolute right-[17px] top-[14px] flex flex-col items-end">
-                          <span className="text-white text-[20px] leading-[120%] font-normal">120</span>
-                          <span className="text-white text-[8px] leading-[120%]">cal</span>
+                        <div className="absolute right-[10px] sm:right-[12px] lg:right-[17px] top-[11px] sm:top-[12px] lg:top-[14px] flex flex-col items-end">
+                          <span className="text-white text-[16px] sm:text-[18px] lg:text-[20px] leading-[120%] font-normal">120</span>
+                          <span className="text-white text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">cal</span>
                         </div>
                       </div>
                     </div>
                     
                     {/* Content section */}
-                    <div className="absolute w-[324px] h-[102px] left-[32.41px] top-[352px] flex flex-col gap-[17px]">
-                      <h3 className="text-[#CDFB50] text-[24px] leading-[120%] tracking-[-0.02em] font-normal">
+                    <div className="absolute w-full left-0 right-0 px-6 lg:w-[324px] lg:left-[32.41px] bottom-6 lg:top-[352px] flex flex-col gap-3 lg:gap-[17px]">
+                      <h3 className="text-[#CDFB50] text-[20px] lg:text-[24px] leading-[120%] tracking-[-0.02em] font-normal">
                         Meal Intelligence
                       </h3>
-                      <p className="text-white/60 text-[16px] leading-[120%] tracking-[0.02em] w-[434.99px] h-[68px]">
+                      <p className="text-white/60 text-[14px] lg:text-[16px] leading-[140%] lg:leading-[120%] tracking-[0.02em] max-w-full lg:w-[434.99px]">
                         Helthy helps you eat better, not harder. AI-driven nutrition suggestions make it easy to plan balanced meals and discover healthy options that fit your lifestyle.
                       </p>
                     </div>
@@ -688,14 +688,14 @@ export default function Index() {
                     </div>
 
                     {/* Content section */}
-                    <div className="absolute bottom-8 left-8 right-8">
-                      <h3 className="text-helthy-lemon text-[24px] leading-[120%] tracking-[-0.02em] font-normal mb-3">
+                    <div className="absolute bottom-6 left-6 right-6 lg:bottom-8 lg:left-8 lg:right-8">
+                      <h3 className="text-helthy-lemon text-[20px] lg:text-[24px] leading-[120%] tracking-[-0.02em] font-normal mb-3">
                         Voice Logging
                       </h3>
-                      <p className="text-white/70 text-[16px] leading-[150%] tracking-[0.01em] max-w-[520px] mb-3">
+                      <p className="text-white/70 text-[14px] lg:text-[16px] leading-[150%] tracking-[0.01em] max-w-full lg:max-w-[520px] mb-3">
                         Log workouts and meals hands‑free. Speak naturally—Helthy captures the details and saves them instantly.
                       </p>
-                      <ul className="text-white/70 text-sm grid grid-cols-1 sm:grid-cols-2 gap-y-2 max-w-[520px]">
+                      <ul className="text-white/70 text-xs lg:text-sm grid grid-cols-1 sm:grid-cols-2 gap-y-2 max-w-full lg:max-w-[520px]">
                         <li className="flex items-center gap-2">
                           <span className="inline-block w-1.5 h-1.5 rounded-full bg-helthy-lemon" />
                           Hands‑free logging
