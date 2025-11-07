@@ -1,10 +1,8 @@
-import Navbar from "../../components/legacy/Navbar";
 import { CheckCircle } from "lucide-react";
 
 export default function About() {
   return (
     <div className="min-h-screen bg-helthy-black text-white">
-      <Navbar />
 
       {/* Hero: Our philosophy */}
       <section className="relative pt-28 md:pt-36 pb-10">

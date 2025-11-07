@@ -4,8 +4,7 @@ import Icon from '@mdi/react';
 import { mdiFood, mdiFoodDrumstick } from '@mdi/js';
 import WaitlistSection from "../../components/legacy/WaitlistSection";
 import SiteFooter from "../../components/legacy/SiteFooter";
-import Navbar from "../../components/legacy/Navbar";
-import MobileSidebar from "../../components/legacy/MobileSidebar";
+// Navbar and MobileSidebar are now global in layout
 import { ThemeKey, getTheme, getThemeDisplayName, isDarkTheme } from "../../lib/colors";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../../components/ui/accordion";
 import OcelabsBanner from "../../components/legacy/OcelabsBanner";
@@ -397,9 +396,7 @@ export default function Index() {
   }, [phText, phDeleting, phIndex, typedText, isTyping]);
   return (
     <div className="min-h-screen bg-white">
-  {/* Navbar + Mobile Sidebar */}
-  <Navbar />
-  <MobileSidebar />
+  {/* Global Navbar/Sidebar rendered in layout */}
 
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px] xl:min-h-[900px]">
@@ -425,14 +422,7 @@ export default function Index() {
           aria-hidden
         />
 
-        {/* Logo auto-aligned to nav pill / mobile menu center */}
-        <img
-          ref={heroLogoRef}
-          src="/figma-components/hero/logo.png"
-          alt="Helthy logo"
-          className="absolute z-20 h-5 sm:h-5 md:h-6 w-auto top-[36px] sm:top-[46px] md:top-[64px] left-[20px] sm:left-[40px] md:left-[78px]"
-          style={heroLogoTop != null ? { top: `${heroLogoTop}px` } : undefined}
-        />
+        {/* Logo now rendered globally via AlignedLogo in layout */}
 
         {/* Copy block positioned per Figma (left aligned, vertically centered) */}
         <div className="absolute z-10 left-[20px] sm:left-[40px] md:left-[78px] top-1/2 -translate-y-1/2 pr-4 right-4 sm:right-8">

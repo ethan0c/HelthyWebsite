@@ -1,10 +1,8 @@
 import { ArrowUpRight, CheckCircle } from "lucide-react";
-import Navbar from "../../components/legacy/Navbar";
 
 export default function Pricing() {
   return (
     <div className="min-h-screen bg-helthy-black">
-      <Navbar />
       <section className="relative pt-28 md:pt-36 pb-24 md:pb-32">
         <div className="container mx-auto px-6 lg:px-20 max-w-4xl">
           <div className="text-center mb-16">

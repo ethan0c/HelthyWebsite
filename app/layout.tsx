@@ -5,6 +5,9 @@ import "./legacy.css";
 import { GSAPProvider } from "../components/providers/GSAPProvider";
 import { LenisProvider } from "../components/providers/LenisProvider";
 import { ScrollRevealProvider } from "../components/providers/ScrollRevealProvider";
+import Navbar from "../components/legacy/Navbar";
+import MobileSidebar from "../components/legacy/MobileSidebar";
+import AlignedLogo from "../components/legacy/AlignedLogo";
 import HollowCirclesOverlay from "../components/HollowCirclesOverlay";
 
 const geistSans = Geist({
@@ -58,6 +61,10 @@ export default function RootLayout({
         <GSAPProvider>
           <LenisProvider>
             <ScrollRevealProvider>
+              {/* Global navigation and mobile sidebar, visible on all pages */}
+              <Navbar />
+              <MobileSidebar />
+              <AlignedLogo />
               {children}
             </ScrollRevealProvider>
           </LenisProvider>

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Navbar from "../../components/legacy/Navbar";
 
 export default function Contact() {
   const [firstName, setFirstName] = useState("");
@@ -41,7 +40,6 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-helthy-black text-white">
-      <Navbar />
 
       <section className="relative pt-28 md:pt-36 pb-16">
         <div className="container mx-auto px-6 lg:px-20 max-w-3xl">
