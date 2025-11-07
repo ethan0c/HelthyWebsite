@@ -212,9 +212,6 @@ export default function Index() {
       return hex;
     }
   };
-  // Intersection Observer for scroll animations
-  // Global ScrollRevealProvider handles scroll-triggered animations site-wide
-
   // Align hero logo center with navbar pill center for pixel-perfect alignment
   useEffect(() => {
     const compute = () => {
@@ -458,7 +455,7 @@ export default function Index() {
         </div>
 
         {/* Line Graph */}
-        <div className="absolute bottom-10 sm:bottom-15 md:bottom-20 left-[20px] sm:left-[40px] md:left-[78px] hidden lg:block">
+        <div className="absolute bottom-10 sm:bottom-15 md:bottom-20 left-[20px] sm:left-[40px] md:left-[78px] hidden lg:block scroll-reveal animate-slide-up stagger-3">
           <img
             src="/figma-components/hero/hero-graph.svg"
             alt="Performance line graph"

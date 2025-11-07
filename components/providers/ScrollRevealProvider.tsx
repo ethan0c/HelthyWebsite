@@ -20,11 +20,32 @@ export function ScrollRevealProvider({ children }: { children: React.ReactNode }
       });
     }, observerOptions);
 
-    // Observe all elements with scroll-reveal class
-    const revealElements = document.querySelectorAll('.scroll-reveal');
-    revealElements.forEach((el) => observer.observe(el));
+    // Observe all elements with scroll-reveal class present at mount
+    const observeAll = () => {
+      const revealElements = document.querySelectorAll('.scroll-reveal');
+      revealElements.forEach((el) => observer.observe(el));
+    };
+    observeAll();
 
-    return () => observer.disconnect();
+    // Also observe elements added later (route transitions/dynamic UI)
+    const mo = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        // Newly added nodes may be elements or contain them
+        m.addedNodes.forEach((node) => {
+          if (!(node instanceof HTMLElement)) return;
+          if (node.classList.contains('scroll-reveal')) {
+            observer.observe(node);
+          }
+          node.querySelectorAll?.('.scroll-reveal').forEach((el) => observer.observe(el));
+        });
+      }
+    });
+    mo.observe(document.documentElement, { childList: true, subtree: true });
+
+    return () => {
+      mo.disconnect();
+      observer.disconnect();
+    };
   }, []);
 
   return <>{children}</>;
