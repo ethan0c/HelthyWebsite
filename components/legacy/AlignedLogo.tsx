@@ -41,7 +41,7 @@ export default function AlignedLogo() {
       <img
         src="/figma-components/hero/logo.png"
         alt="Helthy logo"
-        className="fixed z-50 h-5 md:h-6 w-auto top-[29px] md:top-[45px] left-5 md:left-20 pointer-events-none select-none"
+        className="fixed z-50 h-5 md:h-6 w-auto top-[14px] md:top-[45px] left-5 md:left-20 pointer-events-none select-none"
       />
     </>
   );
