@@ -175,7 +175,7 @@ export default function TheProblemSection() {
                   {features.map((feature, idx) => (
                     <div 
                       key={feature.id}
-                      className="group relative bg-gradient-to-br from-white/[0.07] to-white/[0.02] backdrop-blur-sm rounded-3xl border border-white/10 p-6 overflow-hidden"
+                      className="group relative bg-gradient-to-br from-white/[0.07] to-white/[0.02] backdrop-blur-sm rounded-[2rem] border border-white/10 p-6 overflow-hidden"
                       style={{ animationDelay: `${idx * 0.1}s` }}
                     >
                       {/* Gradient mesh background */}
@@ -203,7 +203,7 @@ export default function TheProblemSection() {
                           {feature.highlights.map((highlight, i) => (
                             <div 
                               key={i} 
-                              className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/10"
+                              className="flex items-center gap-2 px-3 py-2 rounded-2xl bg-white/5 border border-white/10"
                             >
                               <div className="w-1.5 h-1.5 rounded-full bg-helthy-lemon" />
                               <span className="text-white/80 text-xs font-medium">{highlight}</span>
@@ -213,11 +213,11 @@ export default function TheProblemSection() {
 
                         {/* Phone preview */}
                         <div className="mt-4 flex justify-center">
-                          <div className="w-48 rounded-2xl overflow-hidden border border-white/20 bg-white/5 p-2">
+                          <div className="w-48 rounded-[2rem] overflow-hidden border border-white/20 bg-white/5 p-2">
                             <img
                               src={feature.phoneImage}
                               alt={`${feature.title} screen`}
-                              className="w-full h-auto rounded-xl"
+                              className="w-full h-auto rounded-[1.75rem]"
                               loading="lazy"
                             />
                           </div>
@@ -237,7 +237,7 @@ export default function TheProblemSection() {
                         onClick={() => setActiveFeature(feature.id)}
                         onMouseEnter={() => setHoveredCard(feature.id)}
                         onMouseLeave={() => setHoveredCard(null)}
-                        className={`relative px-6 py-3 rounded-2xl font-medium text-sm transition-all duration-300 ${
+                        className={`relative px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 ${
                           activeFeature === feature.id
                             ? 'bg-helthy-lemon text-helthy-black shadow-[0_0_30px_rgba(205,251,80,0.3)]'
                             : hoveredCard === feature.id
@@ -247,7 +247,7 @@ export default function TheProblemSection() {
                       >
                         <span className="relative z-10">{feature.title}</span>
                         {activeFeature === feature.id && (
-                          <div className="absolute inset-0 rounded-2xl bg-helthy-lemon animate-pulse" style={{ animationDuration: '2s' }} />
+                          <div className="absolute inset-0 rounded-full bg-helthy-lemon animate-pulse" style={{ animationDuration: '2s' }} />
                         )}
                       </button>
                     ))}
@@ -286,14 +286,14 @@ export default function TheProblemSection() {
                               {feature.highlights.map((highlight, i) => (
                                 <div
                                   key={i}
-                                  className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 hover:border-helthy-lemon/30 transition-all duration-300"
+                                  className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-[1.25rem] p-4 hover:border-helthy-lemon/30 transition-all duration-300"
                                   style={{ animationDelay: `${i * 0.1}s` }}
                                 >
                                   <div className="flex items-center gap-3">
                                     <div className="w-2 h-2 rounded-full bg-helthy-lemon group-hover:scale-125 transition-transform duration-300" />
                                     <span className="text-white/90 font-medium text-sm">{highlight}</span>
                                   </div>
-                                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`} />
+                                  <div className={`absolute inset-0 rounded-[1.25rem] bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`} />
                                 </div>
                               ))}
                             </div>
