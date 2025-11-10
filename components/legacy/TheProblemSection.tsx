@@ -2,40 +2,51 @@
 import React, { useState } from "react";
 
 export default function TheProblemSection() {
-  const [hoveredPhone, setHoveredPhone] = useState<string | null>(null);
-  const [tappedPhone, setTappedPhone] = useState<string | null>(null);
+  const [activeFeature, setActiveFeature] = useState<number>(0);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   
-  const phoneInfo = {
-    home: {
+  const features = [
+    {
+      id: 0,
       title: "Smart Dashboard",
-      description: "Your personalized fitness hub. Quick actions to log workouts, track meals, and monitor progress—all in one tap.",
-      features: ["Daily overview", "Quick actions", "Streak tracking"]
+      subtitle: "Your fitness command center",
+      description: "Everything you need at a glance. Track your progress, log workouts, monitor nutrition, and stay motivated—all from one beautiful dashboard.",
+      highlights: ["Real-time stats", "Quick actions", "Daily streaks", "Goal tracking"],
+      phoneImage: "/phones/home.svg",
+      gradient: "from-purple-500/20 via-helthy-lemon/20 to-blue-500/20",
+      accentColor: "helthy-lemon"
     },
-    exercise: {
+    {
+      id: 1,
       title: "Adaptive Workouts",
-      description: "Workouts that evolve with you. Track sets, reps, and weights with smart suggestions tailored to your goals.",
-      features: ["Custom programs", "Exercise library", "Progress tracking"]
+      subtitle: "Training that evolves with you",
+      description: "Smart workout tracking that learns from your progress. Get personalized recommendations, track every rep, and watch your strength grow.",
+      highlights: ["Custom programs", "Exercise library", "Form guides", "PR tracking"],
+      phoneImage: "/phones/exercise.svg",
+      gradient: "from-blue-500/20 via-cyan-500/20 to-helthy-lemon/20",
+      accentColor: "cyan-400"
     },
-    nutrition: {
+    {
+      id: 2,
       title: "Effortless Nutrition",
-      description: "Log meals with voice or photos. Get instant macro breakdowns and meal suggestions that fit your lifestyle.",
-      features: ["Voice logging", "Photo scanning", "Macro balance"]
+      subtitle: "Healthy eating, simplified",
+      description: "Log meals in seconds with voice or photos. Get instant macro breakdowns and smart suggestions that fit your lifestyle and goals.",
+      highlights: ["Voice logging", "Photo recognition", "Macro balance", "Meal insights"],
+      phoneImage: "/phones/nutrition.svg",
+      gradient: "from-green-500/20 via-helthy-lemon/20 to-yellow-500/20",
+      accentColor: "green-400"
     },
-    progress: {
+    {
+      id: 3,
       title: "Visual Progress",
-      description: "Beautiful charts and insights that celebrate your wins. Track trends, set milestones, and stay motivated.",
-      features: ["Weekly recaps", "Goal tracking", "Trend analysis"]
+      subtitle: "See your transformation",
+      description: "Beautiful charts and insights that celebrate every win. Track trends, identify patterns, and stay motivated with data that actually makes sense.",
+      highlights: ["Weekly insights", "Trend analysis", "Goal milestones", "Achievement system"],
+      phoneImage: "/phones/progress.svg",
+      gradient: "from-pink-500/20 via-purple-500/20 to-helthy-lemon/20",
+      accentColor: "purple-400"
     }
-  };
-
-  const handlePhoneClick = (phone: string) => {
-    // On mobile, toggle tapped state for the clicked phone
-    setTappedPhone(tappedPhone === phone ? null : phone);
-  };
-
-  const handleOverlayClick = () => {
-    setTappedPhone(null);
-  };
+  ];
   
   return (
     <section className="relative overflow-hidden bg-helthy-black py-20 md:py-28 lg:py-32">
@@ -156,235 +167,165 @@ export default function TheProblemSection() {
                 </div>     
               </div>
 
-              {/* 4-Phone Mockup Showcase - Desktop: Grid with Hover | Mobile: Modern Feature Cards */}
-              <div className="w-full max-w-7xl mx-auto px-6 mt-16 md:mt-20 scroll-reveal animate-slide-up stagger-4">
-                {/* Mobile overlay backdrop */}
-                {tappedPhone && (
-                  <div 
-                    className="md:hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-30"
-                    onClick={handleOverlayClick}
-                  />
-                )}
-
-                {/* Mobile: Modern Feature Cards */}
-                <div className="md:hidden space-y-4">
-                  {Object.entries(phoneInfo).map(([key, info], idx) => (
+              {/* Interactive Feature Showcase */}
+              <div className="w-full max-w-7xl mx-auto px-6 mt-16 md:mt-20">
+                
+                {/* Mobile: Vertical Stack with Integrated Phones */}
+                <div className="md:hidden space-y-6">
+                  {features.map((feature, idx) => (
                     <div 
-                      key={key}
-                      className="group relative bg-gradient-to-br from-white/[0.07] to-white/[0.02] backdrop-blur-sm rounded-3xl border border-white/10 p-6 hover:border-helthy-lemon/30 transition-all duration-300"
+                      key={feature.id}
+                      className="group relative bg-gradient-to-br from-white/[0.07] to-white/[0.02] backdrop-blur-sm rounded-3xl border border-white/10 p-6 overflow-hidden"
                       style={{ animationDelay: `${idx * 0.1}s` }}
                     >
-                      {/* Feature number badge */}
-                      <div className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-helthy-lemon/10 border border-helthy-lemon/30 flex items-center justify-center">
-                        <span className="text-helthy-lemon font-semibold text-sm">{idx + 1}</span>
-                      </div>
-
+                      {/* Gradient mesh background */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+                      
                       {/* Content */}
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-3">
-                          <div className="w-2 h-2 rounded-full bg-helthy-lemon" />
-                          <h5 className="text-helthy-lemon font-semibold text-lg">{info.title}</h5>
+                      <div className="relative z-10 space-y-4">
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 mb-2">
+                              <span className="text-xs font-medium text-helthy-lemon/60">0{idx + 1}</span>
+                              <div className="h-px flex-1 bg-gradient-to-r from-helthy-lemon/30 to-transparent" />
+                            </div>
+                            <h5 className="text-white font-semibold text-xl mb-1">{feature.title}</h5>
+                            <p className="text-helthy-lemon/80 text-sm">{feature.subtitle}</p>
+                          </div>
                         </div>
-                        <p className="text-white/70 text-sm leading-relaxed pl-5">
-                          {info.description}
+                        
+                        <p className="text-white/70 text-sm leading-relaxed">
+                          {feature.description}
                         </p>
                         
-                        {/* Feature tags */}
-                        <div className="flex flex-wrap gap-2 pl-5 pt-2">
-                          {info.features.map((feature, i) => (
-                            <span 
+                        {/* Highlights grid */}
+                        <div className="grid grid-cols-2 gap-2 pt-2">
+                          {feature.highlights.map((highlight, i) => (
+                            <div 
                               key={i} 
-                              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/60 text-xs"
+                              className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/10"
                             >
-                              <span className="w-1 h-1 rounded-full bg-helthy-lemon/60" />
-                              {feature}
-                            </span>
+                              <div className="w-1.5 h-1.5 rounded-full bg-helthy-lemon" />
+                              <span className="text-white/80 text-xs font-medium">{highlight}</span>
+                            </div>
                           ))}
                         </div>
-                      </div>
 
-                      {/* Hover gradient effect */}
-                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-helthy-lemon/0 to-helthy-lemon/0 group-hover:from-helthy-lemon/5 group-hover:to-transparent transition-all duration-500 pointer-events-none" />
+                        {/* Phone preview */}
+                        <div className="mt-4 flex justify-center">
+                          <div className="w-48 rounded-2xl overflow-hidden border border-white/20 bg-white/5 p-2">
+                            <img
+                              src={feature.phoneImage}
+                              alt={`${feature.title} screen`}
+                              className="w-full h-auto rounded-xl"
+                              loading="lazy"
+                            />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
 
-                {/* Desktop: Phone Grid with Hover Effects */}
-                <div className="hidden md:grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
-                  {/* Home Phone */}
-                  <div 
-                    className="group relative flex flex-col items-center"
-                    onMouseEnter={() => setHoveredPhone('home')}
-                    onMouseLeave={() => setHoveredPhone(null)}
-                  >
-                    <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border p-3 md:p-4 transition-all duration-300 ${
-                      hoveredPhone === 'home'
-                        ? 'scale-105 border-helthy-lemon shadow-[0_0_30px_rgba(205,251,80,0.35)] z-10' 
-                        : hoveredPhone
-                          ? 'scale-[0.98] opacity-50 border-white/5'
-                          : 'border-white/10'
-                    }`}>
-                      <img
-                        src="/phones/home.svg"
-                        alt="Helthy app home screen"
-                        className="w-full h-auto select-none"
-                        draggable={false}
-                        loading="eager"
-                      />
-                    </div>
-                    <div className="mt-3 text-center">
-                      <span className={`text-sm md:text-base transition-colors duration-200 ${
-                        hoveredPhone === 'home' ? 'text-helthy-lemon font-semibold' : 'text-white/80'
-                      }`} style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Home</span>
-                    </div>
-                    
-                    {/* Info popup - desktop hover only */}
-                    {hoveredPhone === 'home' && (
-                      <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 bg-helthy-black/95 backdrop-blur-xl border border-helthy-lemon/30 rounded-2xl p-5 shadow-[0_8px_32px_rgba(205,251,80,0.2)] z-20 animate-in fade-in slide-in-from-top-2 duration-200">
-                        <h5 className="text-helthy-lemon font-semibold text-lg mb-2">{phoneInfo.home.title}</h5>
-                        <p className="text-white/80 text-sm mb-3 leading-relaxed">{phoneInfo.home.description}</p>
-                        <ul className="space-y-1.5">
-                          {phoneInfo.home.features.map((feature, i) => (
-                            <li key={i} className="flex items-center gap-2 text-white/70 text-xs">
-                              <span className="w-1 h-1 rounded-full bg-helthy-lemon" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                {/* Desktop: Interactive Tab System with Large Preview */}
+                <div className="hidden md:block">
+                  {/* Tab Navigation */}
+                  <div className="flex justify-center gap-2 mb-12">
+                    {features.map((feature) => (
+                      <button
+                        key={feature.id}
+                        onClick={() => setActiveFeature(feature.id)}
+                        onMouseEnter={() => setHoveredCard(feature.id)}
+                        onMouseLeave={() => setHoveredCard(null)}
+                        className={`relative px-6 py-3 rounded-2xl font-medium text-sm transition-all duration-300 ${
+                          activeFeature === feature.id
+                            ? 'bg-helthy-lemon text-helthy-black shadow-[0_0_30px_rgba(205,251,80,0.3)]'
+                            : hoveredCard === feature.id
+                            ? 'bg-white/10 text-white border border-white/20'
+                            : 'bg-white/5 text-white/60 border border-white/10 hover:border-white/20'
+                        }`}
+                      >
+                        <span className="relative z-10">{feature.title}</span>
+                        {activeFeature === feature.id && (
+                          <div className="absolute inset-0 rounded-2xl bg-helthy-lemon animate-pulse" style={{ animationDuration: '2s' }} />
+                        )}
+                      </button>
+                    ))}
                   </div>
 
-                  {/* Exercise Phone */}
-                  <div 
-                    className="group relative flex flex-col items-center"
-                    onMouseEnter={() => setHoveredPhone('exercise')}
-                    onMouseLeave={() => setHoveredPhone(null)}
-                  >
-                    <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border p-3 md:p-4 transition-all duration-300 ${
-                      hoveredPhone === 'exercise'
-                        ? 'scale-105 border-helthy-lemon shadow-[0_0_30px_rgba(205,251,80,0.35)] z-10' 
-                        : hoveredPhone
-                          ? 'scale-[0.98] opacity-50 border-white/5'
-                          : 'border-white/10'
-                    }`}>
-                      <img
-                        src="/phones/exercise.svg"
-                        alt="Helthy app exercise screen"
-                        className="w-full h-auto select-none"
-                        draggable={false}
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="mt-3 text-center">
-                      <span className={`text-sm md:text-base transition-colors duration-200 ${
-                        hoveredPhone === 'exercise' ? 'text-helthy-lemon font-semibold' : 'text-white/80'
-                      }`} style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Exercise</span>
-                    </div>
-                    
-                    {/* Info popup */}
-                    {hoveredPhone === 'exercise' && (
-                      <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 bg-helthy-black/95 backdrop-blur-xl border border-helthy-lemon/30 rounded-2xl p-5 shadow-[0_8px_32px_rgba(205,251,80,0.2)] z-20 animate-in fade-in slide-in-from-top-2 duration-200">
-                        <h5 className="text-helthy-lemon font-semibold text-lg mb-2">{phoneInfo.exercise.title}</h5>
-                        <p className="text-white/80 text-sm mb-3 leading-relaxed">{phoneInfo.exercise.description}</p>
-                        <ul className="space-y-1.5">
-                          {phoneInfo.exercise.features.map((feature, i) => (
-                            <li key={i} className="flex items-center gap-2 text-white/70 text-xs">
-                              <span className="w-1 h-1 rounded-full bg-helthy-lemon" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
+                  {/* Feature Display Area */}
+                  <div className="relative min-h-[600px]">
+                    {features.map((feature) => (
+                      <div
+                        key={feature.id}
+                        className={`absolute inset-0 transition-all duration-500 ${
+                          activeFeature === feature.id
+                            ? 'opacity-100 translate-y-0'
+                            : 'opacity-0 translate-y-8 pointer-events-none'
+                        }`}
+                      >
+                        <div className="grid md:grid-cols-2 gap-12 items-center">
+                          {/* Left: Content */}
+                          <div className="space-y-6">
+                            <div>
+                              <div className="flex items-center gap-3 mb-4">
+                                <span className="text-2xl font-bold text-helthy-lemon/40">0{feature.id + 1}</span>
+                                <div className="h-px flex-1 bg-gradient-to-r from-helthy-lemon/30 to-transparent" />
+                              </div>
+                              <h3 className="text-4xl lg:text-5xl font-semibold text-white mb-3" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
+                                {feature.title}
+                              </h3>
+                              <p className="text-xl text-helthy-lemon/90 mb-4">{feature.subtitle}</p>
+                              <p className="text-white/70 text-lg leading-relaxed">
+                                {feature.description}
+                              </p>
+                            </div>
 
-                  {/* Nutrition Phone */}
-                  <div 
-                    className="group relative flex flex-col items-center"
-                    onMouseEnter={() => setHoveredPhone('nutrition')}
-                    onMouseLeave={() => setHoveredPhone(null)}
-                  >
-                    <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border p-3 md:p-4 transition-all duration-300 ${
-                      hoveredPhone === 'nutrition'
-                        ? 'scale-105 border-helthy-lemon shadow-[0_0_30px_rgba(205,251,80,0.35)] z-10' 
-                        : hoveredPhone
-                          ? 'scale-[0.98] opacity-50 border-white/5'
-                          : 'border-white/10'
-                    }`}>
-                      <img
-                        src="/phones/nutrition.svg"
-                        alt="Helthy app nutrition screen"
-                        className="w-full h-auto select-none"
-                        draggable={false}
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="mt-3 text-center">
-                      <span className={`text-sm md:text-base transition-colors duration-200 ${
-                        hoveredPhone === 'nutrition' ? 'text-helthy-lemon font-semibold' : 'text-white/80'
-                      }`} style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Nutrition</span>
-                    </div>
-                    
-                    {/* Info popup */}
-                    {hoveredPhone === 'nutrition' && (
-                      <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 bg-helthy-black/95 backdrop-blur-xl border border-helthy-lemon/30 rounded-2xl p-5 shadow-[0_8px_32px_rgba(205,251,80,0.2)] z-20 animate-in fade-in slide-in-from-top-2 duration-200">
-                        <h5 className="text-helthy-lemon font-semibold text-lg mb-2">{phoneInfo.nutrition.title}</h5>
-                        <p className="text-white/80 text-sm mb-3 leading-relaxed">{phoneInfo.nutrition.description}</p>
-                        <ul className="space-y-1.5">
-                          {phoneInfo.nutrition.features.map((feature, i) => (
-                            <li key={i} className="flex items-center gap-2 text-white/70 text-xs">
-                              <span className="w-1 h-1 rounded-full bg-helthy-lemon" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
+                            {/* Highlights */}
+                            <div className="grid grid-cols-2 gap-3">
+                              {feature.highlights.map((highlight, i) => (
+                                <div
+                                  key={i}
+                                  className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 hover:border-helthy-lemon/30 transition-all duration-300"
+                                  style={{ animationDelay: `${i * 0.1}s` }}
+                                >
+                                  <div className="flex items-center gap-3">
+                                    <div className="w-2 h-2 rounded-full bg-helthy-lemon group-hover:scale-125 transition-transform duration-300" />
+                                    <span className="text-white/90 font-medium text-sm">{highlight}</span>
+                                  </div>
+                                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`} />
+                                </div>
+                              ))}
+                            </div>
+                          </div>
 
-                  {/* Progress Phone */}
-                  <div 
-                    className="group relative flex flex-col items-center"
-                    onMouseEnter={() => setHoveredPhone('progress')}
-                    onMouseLeave={() => setHoveredPhone(null)}
-                  >
-                    <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border p-3 md:p-4 transition-all duration-300 ${
-                      hoveredPhone === 'progress'
-                        ? 'scale-105 border-helthy-lemon shadow-[0_0_30px_rgba(205,251,80,0.35)] z-10' 
-                        : hoveredPhone
-                          ? 'scale-[0.98] opacity-50 border-white/5'
-                          : 'border-white/10'
-                    }`}>
-                      <img
-                        src="/phones/progress.svg"
-                        alt="Helthy app progress screen"
-                        className="w-full h-auto select-none"
-                        draggable={false}
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="mt-3 text-center">
-                      <span className={`text-sm md:text-base transition-colors duration-200 ${
-                        hoveredPhone === 'progress' ? 'text-helthy-lemon font-semibold' : 'text-white/80'
-                      }`} style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Progress</span>
-                    </div>
-                    
-                    {/* Info popup */}
-                    {hoveredPhone === 'progress' && (
-                      <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 bg-helthy-black/95 backdrop-blur-xl border border-helthy-lemon/30 rounded-2xl p-5 shadow-[0_8px_32px_rgba(205,251,80,0.2)] z-20 animate-in fade-in slide-in-from-top-2 duration-200">
-                        <h5 className="text-helthy-lemon font-semibold text-lg mb-2">{phoneInfo.progress.title}</h5>
-                        <p className="text-white/80 text-sm mb-3 leading-relaxed">{phoneInfo.progress.description}</p>
-                        <ul className="space-y-1.5">
-                          {phoneInfo.progress.features.map((feature, i) => (
-                            <li key={i} className="flex items-center gap-2 text-white/70 text-xs">
-                              <span className="w-1 h-1 rounded-full bg-helthy-lemon" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
+                          {/* Right: Phone Preview with Gradient Background */}
+                          <div className="relative flex items-center justify-center">
+                            {/* Animated gradient orb */}
+                            <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} blur-3xl opacity-30 animate-pulse`} style={{ animationDuration: '3s' }} />
+                            
+                            {/* Phone mockup */}
+                            <div className="relative z-10 w-full max-w-sm">
+                              <div className="relative rounded-[3rem] overflow-hidden border-4 border-white/20 bg-white/5 backdrop-blur-sm p-4 shadow-[0_20px_60px_rgba(0,0,0,0.3)] hover:scale-105 transition-transform duration-500">
+                                <img
+                                  src={feature.phoneImage}
+                                  alt={`${feature.title} screen`}
+                                  className="w-full h-auto rounded-[2.5rem]"
+                                  loading={feature.id === 0 ? "eager" : "lazy"}
+                                />
+                                
+                                {/* Shine effect on hover */}
+                                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                              </div>
+
+                              {/* Floating accent elements */}
+                              <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-helthy-lemon/20 blur-2xl animate-pulse" style={{ animationDuration: '4s' }} />
+                              <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-full bg-purple-500/20 blur-2xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }} />
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    )}
+                    ))}
                   </div>
                 </div>
               </div>
