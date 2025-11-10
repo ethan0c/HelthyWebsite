@@ -29,11 +29,11 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-2 sm:top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-screen-xl px-4">
-      {/* Desktop/Mid+ pill navbar */}
-      <div id="nav-pill" className="hidden md:block backdrop-blur-[40px] bg-black/15 border-2 border-white/20 rounded-[100px] shadow-[0_8px_16px_rgba(0,0,0,0.08)] px-4 sm:px-6 md:px-[34px] py-2 sm:py-3 mx-auto w-fit">
+      {/* Desktop/Mid+ pill navbar - Only show on larger screens to prevent logo overlap */}
+      <div id="nav-pill" className="hidden lg:block backdrop-blur-[40px] bg-black/15 border-2 border-white/20 rounded-[100px] shadow-[0_8px_16px_rgba(0,0,0,0.08)] px-4 sm:px-6 md:px-[34px] py-2 sm:py-3 mx-auto w-fit">
         <div className="flex items-center gap-4 sm:gap-5 md:gap-7">
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-4 md:gap-7 mx-auto">
+          <div className="hidden lg:flex items-center gap-4 md:gap-7 mx-auto">
             <Link
               href="/"
               className="text-white hover:text-white/80 transition-colors font-normal tracking-[0.17px] text-sm md:text-base"
@@ -79,7 +79,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile hamburger button (top-right) with toggle */}
+      {/* Mobile hamburger button (top-right) with toggle - Show below lg breakpoint */}
       <button
         type="button"
         aria-label={open ? "Close menu" : "Open menu"}
@@ -88,7 +88,7 @@ export default function Navbar() {
         aria-controls="mobile-sidebar"
         onClick={toggleMobileMenu}
         id="mobile-menu-button"
-        className="md:hidden fixed right-3 top-3 z-[60] rounded-full border border-white/20 bg-black/40 backdrop-blur-xl p-2 text-white hover:bg-black/50 transition-colors"
+        className="lg:hidden fixed right-3 top-3 z-[60] rounded-full border border-white/20 bg-black/40 backdrop-blur-xl p-2 text-white hover:bg-black/50 transition-colors"
       >
         <Menu className="w-6 h-6" />
       </button>

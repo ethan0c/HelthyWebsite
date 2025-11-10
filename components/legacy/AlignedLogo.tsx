@@ -13,7 +13,7 @@ export default function AlignedLogo() {
   useEffect(() => {
     const onScroll = () => {
       // Detect if we've scrolled past ~70vh (approximate hero height on mobile)
-      const isMobile = window.matchMedia("(max-width: 767px)").matches;
+      const isMobile = window.matchMedia("(max-width: 1023px)").matches;
       if (isMobile) {
         setScrolled(window.scrollY > window.innerHeight * 0.6);
       } else {
@@ -33,7 +33,7 @@ export default function AlignedLogo() {
     <>
       {/* Backdrop blur bar on mobile after scroll */}
       <div
-        className={`md:hidden fixed top-0 left-0 right-0 h-20 z-40 pointer-events-none transition-all duration-300 ${
+        className={`lg:hidden fixed top-0 left-0 right-0 h-20 z-40 pointer-events-none transition-all duration-300 ${
           scrolled ? "opacity-100 backdrop-blur-xl bg-black/40" : "opacity-0"
         }`}
         aria-hidden
@@ -41,7 +41,7 @@ export default function AlignedLogo() {
       <img
         src="/figma-components/hero/logo.png"
         alt="Helthy logo"
-        className="fixed z-50 h-5 md:h-6 w-auto top-[29px] md:top-[45px] left-5 md:left-20 pointer-events-none select-none"
+        className="fixed z-50 h-5 lg:h-6 w-auto top-[29px] lg:top-[45px] left-5 lg:left-20 pointer-events-none select-none"
       />
     </>
   );
