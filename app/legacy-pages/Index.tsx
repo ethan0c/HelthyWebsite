@@ -532,10 +532,10 @@ export default function Index() {
         <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-28 md:h-32 bg-gradient-to-b from-transparent to-helthy-black" />
   </section>
 
-  {/* Voice & Meal Intelligence Section */}
+  {/* Smart Logging Section */}
   <section
         ref={aiSectionRef}
-        id="ai"
+        id="smart-logging"
         className="relative overflow-hidden bg-helthy-black py-20"
       >
         {/* Features Section */}
@@ -547,10 +547,10 @@ export default function Index() {
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal leading-tight text-helthy-lemon mb-6 scroll-reveal animate-slide-up stagger-1" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
-              Voice & Meal Intelligence
+              Voice & Photo Logging
             </h2>
             <p className="font-sans text-[18px] md:text-[20px] max-w-3xl mx-auto text-white/80 leading-relaxed scroll-reveal animate-slide-up stagger-2">
-              Log workouts and meals hands‑free. Get simple meal breakdowns that make eating well easy.
+              Log workouts and meals hands‑free. Snap a photo or speak—we'll capture the details instantly.
             </p>
           </div>
 
@@ -561,7 +561,7 @@ export default function Index() {
               {/* Cards container */}
               <div className="w-full lg:h-[600px] bg-helthy-black rounded-[20px] relative p-4 overflow-visible touch-pan-y select-none scroll-reveal animate-slide-up stagger-3">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-3 lg:h-full overflow-visible">
-                  {/* Meal Intelligence Card */}
+                  {/* Photo Logging Card */}
                   <div className="relative w-full h-[477px] bg-gradient-to-b from-white/10 to-transparent rounded-[20px] overflow-hidden" 
                        style={{ background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 108.72%), rgba(23, 23, 23, 0.2)' }}>
                     {/* Background image section */}
@@ -646,10 +646,10 @@ export default function Index() {
                     {/* Content section */}
                     <div className="absolute w-full left-0 right-0 px-6 lg:w-[324px] lg:left-[32.41px] bottom-6 lg:top-[352px] flex flex-col gap-3 lg:gap-[17px]">
                       <h3 className="text-[#CDFB50] text-[20px] lg:text-[24px] leading-[120%] tracking-[-0.02em] font-normal">
-                        Meal Intelligence
+                        Photo Logging
                       </h3>
                       <p className="text-white/60 text-[14px] lg:text-[16px] leading-[140%] lg:leading-[120%] tracking-[0.02em] max-w-full lg:w-[434.99px]">
-                        Helthy helps you eat better, not harder. AI-driven nutrition suggestions make it easy to plan balanced meals and discover healthy options that fit your lifestyle.
+                        Snap a photo of your meal and we'll log it instantly. Simple nutrition tracking with zero hassle.
                       </p>
                     </div>
                   </div>
@@ -842,7 +842,7 @@ export default function Index() {
               <AccordionItem value="item-1">
                 <AccordionTrigger className="text-white text-base md:text-lg">What is Helthy?</AccordionTrigger>
                 <AccordionContent className="text-white/80">
-                  Helthy is an all-in-one fitness app that brings workouts, smart nutrition, progress tracking, and HELTHY AI coaching together in one simple experience — completely free.
+                  Helthy is an all-in-one fitness app that brings workouts, smart nutrition, and progress tracking together in one simple experience — completely free.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
@@ -870,9 +870,9 @@ export default function Index() {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-6">
-                <AccordionTrigger className="text-white text-base md:text-lg">How does HELTHY AI use my data?</AccordionTrigger>
+                <AccordionTrigger className="text-white text-base md:text-lg">How do you handle my data?</AccordionTrigger>
                 <AccordionContent className="text-white/80">
-                  HELTHY AI uses your inputs to personalize plans and insights. Your data is processed securely, never sold, and you control what you share.
+                  Your data is processed securely, never sold, and you control what you share. We only use your inputs to help you track progress and stay on course.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

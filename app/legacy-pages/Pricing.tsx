@@ -47,7 +47,7 @@ export default function Pricing() {
                 {[
                   'Unlimited workouts & programs',
                   'Smart nutrition planning & logging',
-                  'AI coach with photo + voice logging',
+                  'Photo + voice logging',
                   'Real-time progress tracking',
                   'Apple Health / Google Fit sync',
                   'Community support & challenges',

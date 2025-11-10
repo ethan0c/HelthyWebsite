@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 export default function TheProblemSection() {
   const [hoveredPhone, setHoveredPhone] = useState<string | null>(null);
+  const [tappedPhone, setTappedPhone] = useState<string | null>(null);
   
   const phoneInfo = {
     home: {
@@ -12,7 +13,7 @@ export default function TheProblemSection() {
     },
     exercise: {
       title: "Adaptive Workouts",
-      description: "AI-powered routines that evolve with you. Track sets, reps, and weights with smart suggestions tailored to your goals.",
+      description: "Workouts that evolve with you. Track sets, reps, and weights with smart suggestions tailored to your goals.",
       features: ["Custom programs", "Exercise library", "Progress tracking"]
     },
     nutrition: {
@@ -25,6 +26,15 @@ export default function TheProblemSection() {
       description: "Beautiful charts and insights that celebrate your wins. Track trends, set milestones, and stay motivated.",
       features: ["Weekly recaps", "Goal tracking", "Trend analysis"]
     }
+  };
+
+  const handlePhoneClick = (phone: string) => {
+    // On mobile, toggle tapped state for the clicked phone
+    setTappedPhone(tappedPhone === phone ? null : phone);
+  };
+
+  const handleOverlayClick = () => {
+    setTappedPhone(null);
   };
   
   return (
