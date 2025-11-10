@@ -158,17 +158,26 @@ export default function TheProblemSection() {
 
               {/* 4-Phone Mockup Showcase - Simple Grid with Hover Effects */}
               <div className="w-full max-w-7xl mx-auto px-6 mt-16 md:mt-20 scroll-reveal animate-slide-up stagger-4">
+                {/* Mobile overlay backdrop */}
+                {tappedPhone && (
+                  <div 
+                    className="md:hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-30"
+                    onClick={handleOverlayClick}
+                  />
+                )}
+
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
                   {/* Home Phone */}
                   <div 
                     className="group relative flex flex-col items-center"
                     onMouseEnter={() => setHoveredPhone('home')}
                     onMouseLeave={() => setHoveredPhone(null)}
+                    onClick={() => handlePhoneClick('home')}
                   >
                     <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border p-3 md:p-4 transition-all duration-300 ${
-                      hoveredPhone === 'home' 
+                      hoveredPhone === 'home' || tappedPhone === 'home'
                         ? 'scale-105 border-helthy-lemon shadow-[0_0_30px_rgba(205,251,80,0.35)] z-10' 
-                        : hoveredPhone 
+                        : hoveredPhone || tappedPhone
                           ? 'scale-[0.98] opacity-50 border-white/5'
                           : 'border-white/10'
                     }`}>
@@ -182,13 +191,17 @@ export default function TheProblemSection() {
                     </div>
                     <div className="mt-3 text-center">
                       <span className={`text-sm md:text-base transition-colors duration-200 ${
-                        hoveredPhone === 'home' ? 'text-helthy-lemon font-semibold' : 'text-white/80'
+                        hoveredPhone === 'home' || tappedPhone === 'home' ? 'text-helthy-lemon font-semibold' : 'text-white/80'
                       }`} style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Home</span>
                     </div>
                     
-                    {/* Info popup */}
-                    {hoveredPhone === 'home' && (
-                      <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 bg-helthy-black/95 backdrop-blur-xl border border-helthy-lemon/30 rounded-2xl p-5 shadow-[0_8px_32px_rgba(205,251,80,0.2)] z-20 animate-in fade-in slide-in-from-top-2 duration-200">
+                    {/* Info popup - desktop hover, mobile tap */}
+                    {(hoveredPhone === 'home' || tappedPhone === 'home') && (
+                      <div className={`absolute left-1/2 -translate-x-1/2 w-72 bg-helthy-black/95 backdrop-blur-xl border border-helthy-lemon/30 rounded-2xl p-5 shadow-[0_8px_32px_rgba(205,251,80,0.2)] animate-in fade-in duration-200 ${
+                        tappedPhone === 'home' 
+                          ? 'fixed top-1/2 -translate-y-1/2 z-40 max-w-[calc(100vw-3rem)]' 
+                          : 'top-full mt-4 z-20 slide-in-from-top-2'
+                      }`}>
                         <h5 className="text-helthy-lemon font-semibold text-lg mb-2">{phoneInfo.home.title}</h5>
                         <p className="text-white/80 text-sm mb-3 leading-relaxed">{phoneInfo.home.description}</p>
                         <ul className="space-y-1.5">
@@ -208,11 +221,12 @@ export default function TheProblemSection() {
                     className="group relative flex flex-col items-center"
                     onMouseEnter={() => setHoveredPhone('exercise')}
                     onMouseLeave={() => setHoveredPhone(null)}
+                    onClick={() => handlePhoneClick('exercise')}
                   >
                     <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border p-3 md:p-4 transition-all duration-300 ${
-                      hoveredPhone === 'exercise' 
+                      hoveredPhone === 'exercise' || tappedPhone === 'exercise'
                         ? 'scale-105 border-helthy-lemon shadow-[0_0_30px_rgba(205,251,80,0.35)] z-10' 
-                        : hoveredPhone 
+                        : hoveredPhone || tappedPhone
                           ? 'scale-[0.98] opacity-50 border-white/5'
                           : 'border-white/10'
                     }`}>
@@ -226,13 +240,17 @@ export default function TheProblemSection() {
                     </div>
                     <div className="mt-3 text-center">
                       <span className={`text-sm md:text-base transition-colors duration-200 ${
-                        hoveredPhone === 'exercise' ? 'text-helthy-lemon font-semibold' : 'text-white/80'
+                        hoveredPhone === 'exercise' || tappedPhone === 'exercise' ? 'text-helthy-lemon font-semibold' : 'text-white/80'
                       }`} style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Exercise</span>
                     </div>
                     
                     {/* Info popup */}
-                    {hoveredPhone === 'exercise' && (
-                      <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 bg-helthy-black/95 backdrop-blur-xl border border-helthy-lemon/30 rounded-2xl p-5 shadow-[0_8px_32px_rgba(205,251,80,0.2)] z-20 animate-in fade-in slide-in-from-top-2 duration-200">
+                    {(hoveredPhone === 'exercise' || tappedPhone === 'exercise') && (
+                      <div className={`absolute left-1/2 -translate-x-1/2 w-72 bg-helthy-black/95 backdrop-blur-xl border border-helthy-lemon/30 rounded-2xl p-5 shadow-[0_8px_32px_rgba(205,251,80,0.2)] animate-in fade-in duration-200 ${
+                        tappedPhone === 'exercise' 
+                          ? 'fixed top-1/2 -translate-y-1/2 z-40 max-w-[calc(100vw-3rem)]' 
+                          : 'top-full mt-4 z-20 slide-in-from-top-2'
+                      }`}>
                         <h5 className="text-helthy-lemon font-semibold text-lg mb-2">{phoneInfo.exercise.title}</h5>
                         <p className="text-white/80 text-sm mb-3 leading-relaxed">{phoneInfo.exercise.description}</p>
                         <ul className="space-y-1.5">
@@ -252,11 +270,12 @@ export default function TheProblemSection() {
                     className="group relative flex flex-col items-center"
                     onMouseEnter={() => setHoveredPhone('nutrition')}
                     onMouseLeave={() => setHoveredPhone(null)}
+                    onClick={() => handlePhoneClick('nutrition')}
                   >
                     <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border p-3 md:p-4 transition-all duration-300 ${
-                      hoveredPhone === 'nutrition' 
+                      hoveredPhone === 'nutrition' || tappedPhone === 'nutrition'
                         ? 'scale-105 border-helthy-lemon shadow-[0_0_30px_rgba(205,251,80,0.35)] z-10' 
-                        : hoveredPhone 
+                        : hoveredPhone || tappedPhone
                           ? 'scale-[0.98] opacity-50 border-white/5'
                           : 'border-white/10'
                     }`}>
@@ -270,13 +289,17 @@ export default function TheProblemSection() {
                     </div>
                     <div className="mt-3 text-center">
                       <span className={`text-sm md:text-base transition-colors duration-200 ${
-                        hoveredPhone === 'nutrition' ? 'text-helthy-lemon font-semibold' : 'text-white/80'
+                        hoveredPhone === 'nutrition' || tappedPhone === 'nutrition' ? 'text-helthy-lemon font-semibold' : 'text-white/80'
                       }`} style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Nutrition</span>
                     </div>
                     
                     {/* Info popup */}
-                    {hoveredPhone === 'nutrition' && (
-                      <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 bg-helthy-black/95 backdrop-blur-xl border border-helthy-lemon/30 rounded-2xl p-5 shadow-[0_8px_32px_rgba(205,251,80,0.2)] z-20 animate-in fade-in slide-in-from-top-2 duration-200">
+                    {(hoveredPhone === 'nutrition' || tappedPhone === 'nutrition') && (
+                      <div className={`absolute left-1/2 -translate-x-1/2 w-72 bg-helthy-black/95 backdrop-blur-xl border border-helthy-lemon/30 rounded-2xl p-5 shadow-[0_8px_32px_rgba(205,251,80,0.2)] animate-in fade-in duration-200 ${
+                        tappedPhone === 'nutrition' 
+                          ? 'fixed top-1/2 -translate-y-1/2 z-40 max-w-[calc(100vw-3rem)]' 
+                          : 'top-full mt-4 z-20 slide-in-from-top-2'
+                      }`}>
                         <h5 className="text-helthy-lemon font-semibold text-lg mb-2">{phoneInfo.nutrition.title}</h5>
                         <p className="text-white/80 text-sm mb-3 leading-relaxed">{phoneInfo.nutrition.description}</p>
                         <ul className="space-y-1.5">
@@ -296,11 +319,12 @@ export default function TheProblemSection() {
                     className="group relative flex flex-col items-center"
                     onMouseEnter={() => setHoveredPhone('progress')}
                     onMouseLeave={() => setHoveredPhone(null)}
+                    onClick={() => handlePhoneClick('progress')}
                   >
                     <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-sm border p-3 md:p-4 transition-all duration-300 ${
-                      hoveredPhone === 'progress' 
+                      hoveredPhone === 'progress' || tappedPhone === 'progress'
                         ? 'scale-105 border-helthy-lemon shadow-[0_0_30px_rgba(205,251,80,0.35)] z-10' 
-                        : hoveredPhone 
+                        : hoveredPhone || tappedPhone
                           ? 'scale-[0.98] opacity-50 border-white/5'
                           : 'border-white/10'
                     }`}>
@@ -314,13 +338,17 @@ export default function TheProblemSection() {
                     </div>
                     <div className="mt-3 text-center">
                       <span className={`text-sm md:text-base transition-colors duration-200 ${
-                        hoveredPhone === 'progress' ? 'text-helthy-lemon font-semibold' : 'text-white/80'
+                        hoveredPhone === 'progress' || tappedPhone === 'progress' ? 'text-helthy-lemon font-semibold' : 'text-white/80'
                       }`} style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>Progress</span>
                     </div>
                     
                     {/* Info popup */}
-                    {hoveredPhone === 'progress' && (
-                      <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 bg-helthy-black/95 backdrop-blur-xl border border-helthy-lemon/30 rounded-2xl p-5 shadow-[0_8px_32px_rgba(205,251,80,0.2)] z-20 animate-in fade-in slide-in-from-top-2 duration-200">
+                    {(hoveredPhone === 'progress' || tappedPhone === 'progress') && (
+                      <div className={`absolute left-1/2 -translate-x-1/2 w-72 bg-helthy-black/95 backdrop-blur-xl border border-helthy-lemon/30 rounded-2xl p-5 shadow-[0_8px_32px_rgba(205,251,80,0.2)] animate-in fade-in duration-200 ${
+                        tappedPhone === 'progress' 
+                          ? 'fixed top-1/2 -translate-y-1/2 z-40 max-w-[calc(100vw-3rem)]' 
+                          : 'top-full mt-4 z-20 slide-in-from-top-2'
+                      }`}>
                         <h5 className="text-helthy-lemon font-semibold text-lg mb-2">{phoneInfo.progress.title}</h5>
                         <p className="text-white/80 text-sm mb-3 leading-relaxed">{phoneInfo.progress.description}</p>
                         <ul className="space-y-1.5">

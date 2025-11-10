@@ -593,8 +593,8 @@ export default function Index() {
                             <span className="text-white font-semibold text-[8px] sm:text-[9px] lg:text-[10px] leading-[120%] uppercase tracking-wide">Chicken</span>
                             <span className="text-white text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">100g</span>
                             <div className="flex gap-2 sm:gap-3 lg:gap-4 mt-0.5 lg:mt-1">
-                              <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">P 4g</span>
-                              <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">C 7g</span>
+                              <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">P 31g</span>
+                              <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">C 0g</span>
                               <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">F 4g</span>
                             </div>
                           </div>
@@ -602,7 +602,7 @@ export default function Index() {
                         
                         {/* Calories */}
                         <div className="absolute right-[10px] sm:right-[12px] lg:right-[17px] top-[11px] sm:top-[12px] lg:top-[14px] flex flex-col items-end">
-                          <span className="text-white text-[16px] sm:text-[18px] lg:text-[20px] leading-[120%] font-normal">81</span>
+                          <span className="text-white text-[16px] sm:text-[18px] lg:text-[20px] leading-[120%] font-normal">165</span>
                           <span className="text-white text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">cal</span>
                         </div>
                       </div>
@@ -628,16 +628,16 @@ export default function Index() {
                             <span className="text-white font-semibold text-[8px] sm:text-[9px] lg:text-[10px] leading-[120%] uppercase tracking-wide">Potatoes</span>
                             <span className="text-white text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">300g</span>
                             <div className="flex gap-2 sm:gap-3 lg:gap-4 mt-0.5 lg:mt-1">
-                              <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">P 4g</span>
-                              <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">C 7g</span>
-                              <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">F 4g</span>
+                              <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">P 6g</span>
+                              <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">C 52g</span>
+                              <span className="text-[#CDFB50] text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">F 0g</span>
                             </div>
                           </div>
                         </div>
                         
                         {/* Calories */}
                         <div className="absolute right-[10px] sm:right-[12px] lg:right-[17px] top-[11px] sm:top-[12px] lg:top-[14px] flex flex-col items-end">
-                          <span className="text-white text-[16px] sm:text-[18px] lg:text-[20px] leading-[120%] font-normal">120</span>
+                          <span className="text-white text-[16px] sm:text-[18px] lg:text-[20px] leading-[120%] font-normal">231</span>
                           <span className="text-white text-[7px] sm:text-[7.5px] lg:text-[8px] leading-[120%]">cal</span>
                         </div>
                       </div>
