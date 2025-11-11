@@ -547,21 +547,21 @@ export default function Index() {
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal leading-tight text-helthy-lemon mb-6 scroll-reveal animate-slide-up stagger-1" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
-              Voice & Photo Logging
+              Voice & Smart Logging
             </h2>
             <p className="font-sans text-[18px] md:text-[20px] max-w-3xl mx-auto text-white/80 leading-relaxed scroll-reveal animate-slide-up stagger-2">
-              Log workouts and meals hands‑free. Snap a photo or speak—we'll capture the details instantly.
+              Log workouts and meals hands‑free. Scan barcodes, search our database, or describe what you ate—we'll capture the details instantly.
             </p>
           </div>
 
-          {/* Voice & Photo logging at the bottom */}
+          {/* Voice & Smart logging at the bottom */}
           <div className="flex flex-col items-center gap-20 max-w-[1440px] mx-auto">
               {/* Section title */}
             
               {/* Cards container */}
               <div className="w-full lg:h-[600px] bg-helthy-black rounded-[20px] relative p-4 overflow-visible touch-pan-y select-none scroll-reveal animate-slide-up stagger-3">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-3 lg:h-full overflow-visible">
-                  {/* Photo Logging Card */}
+                  {/* Smart Logging Card */}
                   <div className="relative w-full h-[477px] bg-gradient-to-b from-white/10 to-transparent rounded-[20px] overflow-hidden" 
                        style={{ background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 108.72%), rgba(23, 23, 23, 0.2)' }}>
                     {/* Background image section */}
@@ -646,10 +646,10 @@ export default function Index() {
                     {/* Content section */}
                     <div className="absolute w-full left-0 right-0 px-6 lg:w-[324px] lg:left-[32.41px] bottom-6 lg:top-[352px] flex flex-col gap-3 lg:gap-[17px]">
                       <h3 className="text-[#CDFB50] text-[20px] lg:text-[24px] leading-[120%] tracking-[-0.02em] font-normal">
-                        Photo Logging
+                        Smart Logging
                       </h3>
                       <p className="text-white/60 text-[14px] lg:text-[16px] leading-[140%] lg:leading-[120%] tracking-[0.02em] max-w-full lg:w-[434.99px]">
-                        Snap a photo of your meal and we'll log it instantly. Simple nutrition tracking with zero hassle.
+                        Scan barcodes, search our database, or describe your meal. Simple nutrition tracking with zero hassle.
                       </p>
                     </div>
                   </div>

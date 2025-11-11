@@ -33,7 +33,7 @@ export default function TheProblemSection() {
       title: "Effortless Nutrition",
       subtitle: "Healthy eating, simplified",
       description: "Log meals in seconds with voice or photos. Get instant macro breakdowns and smart suggestions that fit your lifestyle and goals.",
-      highlights: ["Voice logging", "Photo recognition", "Macro balance", "Meal insights"],
+      highlights: ["Voice logging", "Barcode scan", "Search database", "Meal insights"],
       phoneImage: "/phones/nutrition.svg",
       mobileImage: "/phones/mobile/food.png",
       gradient: "from-green-500/20 via-helthy-lemon/20 to-yellow-500/20",
