@@ -75,123 +75,66 @@ export default function TheProblemSection() {
         </div>
 
         {/* Innovative Split View Comparison */}
-        <div className="w-full mb-12 md:px-6">
+        <div className="w-full mb-12 px-6">
           {/* The Old Way - Scattered chaos */}
           <div className="mb-12 md:mb-16">
-            <div className="flex items-center gap-3 mb-6 justify-center scroll-reveal animate-slide-left px-6">
+            <div className="flex items-center gap-3 mb-6 justify-center scroll-reveal animate-slide-left">
               <div className="h-px w-12 bg-gradient-to-r from-transparent to-red-500/50"></div>
               <h3 className="text-lg md:text-xl font-medium text-red-400">The old way</h3>
               <div className="h-px w-12 bg-gradient-to-l from-transparent to-red-500/50"></div>
             </div>
             
             {/* Scattered app boxes with messy layout */}
-            <div className="scroll-reveal animate-scale-in stagger-2">
-              {/* Mobile: Vertical Stack */}
-              <div className="flex md:hidden flex-col gap-4">
-                {/* Cal AI */}
-                <div className="w-full">
-                  <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 border border-gray-700 shadow-xl">
-                    <img 
-                      src="/logos/cal-ai.png" 
-                      alt="Cal AI" 
-                      className="w-12 h-12 mb-3 opacity-80 transition-opacity duration-300"
-                      loading="lazy"
-                      onLoad={(e) => e.currentTarget.classList.add('loaded')}
-                    />
-                    <div className="text-sm text-gray-400 mb-1">Nutrition</div>
-                    <div className="text-base font-semibold text-white">$9.99/mo</div>
-                  </div>
-                </div>
-
-                {/* Strong */}
-                <div className="w-full">
-                  <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 border border-gray-700 shadow-xl">
-                    <img 
-                      src="/logos/strong.jpg" 
-                      alt="Strong" 
-                      className="w-12 h-12 mb-3 opacity-80 transition-opacity duration-300"
-                      loading="lazy"
-                    />
-                    <div className="text-sm text-gray-400 mb-1">Workouts</div>
-                    <div className="text-base font-semibold text-white">$14.99/mo</div>
-                  </div>
-                </div>
-
-                {/* Walker */}
-                <div className="w-full">
-                  <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 border border-gray-700 shadow-xl">
-                    <img 
-                      src="/logos/walker.webp" 
-                      alt="Walker" 
-                      className="w-12 h-12 mb-3 opacity-80 transition-opacity duration-300"
-                      loading="lazy"
-                    />
-                    <div className="text-sm text-gray-400 mb-1">Tracking</div>
-                    <div className="text-base font-semibold text-white">$6.99/mo</div>
-                  </div>
-                </div>
-
-                {/* Total price */}
-                <div className="flex flex-col items-center gap-2 py-4">
-                  <svg className="w-16 h-16 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                  <div className="text-sm text-red-400 font-semibold">$31.97/month</div>
+            <div className="relative h-56 md:h-96 lg:h-[28rem] scroll-reveal animate-scale-in stagger-2">
+              {/* Cal AI - top left */}
+              <div className="absolute top-0 left-[5%] md:left-[10%] w-28 md:w-44 lg:w-52 transform -rotate-6 animate-pulse" style={{ animationDuration: '3s' }}>
+                <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-700 shadow-xl">
+                  <img 
+                    src="/logos/cal-ai.png" 
+                    alt="Cal AI" 
+                    className="w-12 h-12 lg:w-14 lg:h-14 mb-3 opacity-80 transition-opacity duration-300"
+                    loading="lazy"
+                    onLoad={(e) => e.currentTarget.classList.add('loaded')}
+                  />
+                  <div className="text-sm lg:text-base text-gray-400 mb-1">Nutrition</div>
+                  <div className="text-base lg:text-lg font-semibold text-white">$9.99/mo</div>
                 </div>
               </div>
 
-              {/* Desktop: Scattered Layout */}
-              <div className="hidden md:block relative h-96 lg:h-[28rem]">
-                {/* Cal AI - top left */}
-                <div className="absolute top-0 left-[10%] w-44 lg:w-52 transform -rotate-6 animate-pulse" style={{ animationDuration: '3s' }}>
-                  <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-700 shadow-xl">
-                    <img 
-                      src="/logos/cal-ai.png" 
-                      alt="Cal AI" 
-                      className="w-12 h-12 lg:w-14 lg:h-14 mb-3 opacity-80 transition-opacity duration-300"
-                      loading="lazy"
-                      onLoad={(e) => e.currentTarget.classList.add('loaded')}
-                    />
-                    <div className="text-sm lg:text-base text-gray-400 mb-1">Nutrition</div>
-                    <div className="text-base lg:text-lg font-semibold text-white">$9.99/mo</div>
-                  </div>
+              {/* Strong - top right */}
+              <div className="absolute top-8 right-[5%] md:right-[10%] w-28 md:w-44 lg:w-52 transform rotate-6 animate-pulse" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }}>
+                <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-700 shadow-xl">
+                  <img 
+                    src="/logos/strong.jpg" 
+                    alt="Strong" 
+                    className="w-12 h-12 lg:w-14 lg:h-14 mb-3 opacity-80 transition-opacity duration-300"
+                    loading="lazy"
+                  />
+                  <div className="text-sm lg:text-base text-gray-400 mb-1">Workouts</div>
+                  <div className="text-base lg:text-lg font-semibold text-white">$14.99/mo</div>
                 </div>
+              </div>
 
-                {/* Strong - top right */}
-                <div className="absolute top-8 right-[10%] w-44 lg:w-52 transform rotate-6 animate-pulse" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }}>
-                  <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-700 shadow-xl">
-                    <img 
-                      src="/logos/strong.jpg" 
-                      alt="Strong" 
-                      className="w-12 h-12 lg:w-14 lg:h-14 mb-3 opacity-80 transition-opacity duration-300"
-                      loading="lazy"
-                    />
-                    <div className="text-sm lg:text-base text-gray-400 mb-1">Workouts</div>
-                    <div className="text-base lg:text-lg font-semibold text-white">$14.99/mo</div>
-                  </div>
+              {/* Walker - bottom center */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-28 md:w-44 lg:w-52 transform -rotate-3 animate-pulse" style={{ animationDuration: '4s', animationDelay: '1s' }}>
+                <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-700 shadow-xl">
+                  <img 
+                    src="/logos/walker.webp" 
+                    alt="Walker" 
+                    className="w-12 h-12 lg:w-14 lg:h-14 mb-3 opacity-80 transition-opacity duration-300"
+                    loading="lazy"
+                  />
+                  <div className="text-sm lg:text-base text-gray-400 mb-1">Tracking</div>
+                  <div className="text-base lg:text-lg font-semibold text-white">$6.99/mo</div>
                 </div>
+              </div>
 
-                {/* Walker - bottom center */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-44 lg:w-52 transform -rotate-3 animate-pulse" style={{ animationDuration: '4s', animationDelay: '1s' }}>
-                  <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-700 shadow-xl">
-                    <img 
-                      src="/logos/walker.webp" 
-                      alt="Walker" 
-                      className="w-12 h-12 lg:w-14 lg:h-14 mb-3 opacity-80 transition-opacity duration-300"
-                      loading="lazy"
-                    />
-                    <div className="text-sm lg:text-base text-gray-400 mb-1">Tracking</div>
-                    <div className="text-base lg:text-lg font-semibold text-white">$6.99/mo</div>
-                  </div>
-                </div>
-
-                {/* Chaos indicators */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2" style={{ top: 'calc(50% - 100px)' }}>
-                  <svg className="w-16 h-16 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                  <div className="text-sm md:text-base text-red-400 font-semibold">$31.97/month</div>
-                </div>
+              {/* Chaos indicators */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2" style={{ top: 'calc(50% - 100px)' }}>
+                <svg className="w-16 h-16 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <div className="text-sm md:text-base text-red-400 font-semibold">$31.97/month</div>
               </div>
             </div>
           </div>
