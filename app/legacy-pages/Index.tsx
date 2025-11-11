@@ -399,7 +399,7 @@ export default function Index() {
   {/* Global Navbar/Sidebar rendered in layout */}
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px] xl:min-h-[900px]">
+      <section className="relative overflow-hidden min-h-[600px] sm:min-h-[650px] md:min-h-[700px] lg:min-h-[800px] xl:min-h-[900px]">
         {/* Background video with right-side dark gradient overlay */}
         <video
           className="absolute inset-0 w-full h-full object-cover"
@@ -428,7 +428,7 @@ export default function Index() {
         <div className="absolute z-10 left-[20px] sm:left-[40px] md:left-[78px] top-1/2 -translate-y-1/2 pr-4 right-4 sm:right-8">
           <div className="w-full max-w-[585.21px] space-y-4 sm:space-y-6 md:space-y-8">
             <h1
-              className="scroll-reveal animate-slide-up font-sans text-[28px] sm:text-[40px] md:text-[56px] lg:text-[72px] xl:text-[96.2px] leading-[1] tracking-[-0.02em] text-white/70"
+              className="scroll-reveal animate-slide-up font-sans text-[36px] sm:text-[48px] md:text-[56px] lg:text-[72px] xl:text-[96.2px] leading-[1] tracking-[-0.02em] text-white/70"
               style={{ backdropFilter: 'blur(2.65px)', fontWeight: 500 }}
             >
               Your Health,
@@ -437,7 +437,7 @@ export default function Index() {
             </h1>
 
             <p
-              className="scroll-reveal animate-slide-up stagger-1 font-sans text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] leading-[1.3] text-white max-w-[515.82px]"
+              className="scroll-reveal animate-slide-up stagger-1 font-sans text-[16px] sm:text-[17px] md:text-[18px] lg:text-[20px] leading-[1.3] text-white max-w-[515.82px]"
             >
               Helthy helps you build a stronger body and a happier mind one
               workout, one meal, and one good habit at a time. No pressure, no

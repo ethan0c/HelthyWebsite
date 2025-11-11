@@ -4,7 +4,7 @@ import Waitlist from "./Waitlist";
 
 export default function WaitlistSection() {
   return (
-    <section id="waitlist" className="relative bg-helthy-lemon py-16 md:py-20">
+    <section id="waitlist" className="relative bg-helthy-lemon py-12 md:py-20">
       <div className="container mx-auto px-6 lg:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
           <div className="space-y-4">
