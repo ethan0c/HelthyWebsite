@@ -94,7 +94,7 @@ export default function Contact() {
           </form>
 
           <div className="mt-10 text-center text-white/70 text-sm">
-            Prefer email? Reach us at <a href="mailto:hello@helthy.app" className="underline hover:text-white">hello@helthy.app</a>
+            Prefer email? Reach us at <a href="mailto:support@helthy.app" className="underline hover:text-white">support@helthy.app</a>
           </div>
         </div>
       </section>
