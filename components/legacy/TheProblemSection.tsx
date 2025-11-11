@@ -13,6 +13,7 @@ export default function TheProblemSection() {
       description: "Everything you need at a glance. Track your progress, log workouts, monitor nutrition, and stay motivated—all from one beautiful dashboard.",
       highlights: ["Real-time stats", "Quick actions", "Daily streaks", "Goal tracking"],
       phoneImage: "/phones/home.svg",
+      mobileImage: "/phones/mobile/home.png",
       gradient: "from-purple-500/20 via-helthy-lemon/20 to-blue-500/20",
       accentColor: "helthy-lemon"
     },
@@ -23,6 +24,7 @@ export default function TheProblemSection() {
       description: "Smart workout tracking that learns from your progress. Get personalized recommendations, track every rep, and watch your strength grow.",
       highlights: ["Custom programs", "Exercise library", "Form guides", "PR tracking"],
       phoneImage: "/phones/exercise.svg",
+      mobileImage: "/phones/mobile/exercise.png",
       gradient: "from-blue-500/20 via-cyan-500/20 to-helthy-lemon/20",
       accentColor: "cyan-400"
     },
@@ -33,6 +35,7 @@ export default function TheProblemSection() {
       description: "Log meals in seconds with voice or photos. Get instant macro breakdowns and smart suggestions that fit your lifestyle and goals.",
       highlights: ["Voice logging", "Photo recognition", "Macro balance", "Meal insights"],
       phoneImage: "/phones/nutrition.svg",
+      mobileImage: "/phones/mobile/food.png",
       gradient: "from-green-500/20 via-helthy-lemon/20 to-yellow-500/20",
       accentColor: "green-400"
     },
@@ -43,6 +46,7 @@ export default function TheProblemSection() {
       description: "Beautiful charts and insights that celebrate every win. Track trends, identify patterns, and stay motivated with data that actually makes sense.",
       highlights: ["Weekly insights", "Trend analysis", "Goal milestones", "Achievement system"],
       phoneImage: "/phones/progress.svg",
+      mobileImage: "/phones/mobile/progress.png",
       gradient: "from-pink-500/20 via-purple-500/20 to-helthy-lemon/20",
       accentColor: "purple-400"
     }
@@ -215,7 +219,7 @@ export default function TheProblemSection() {
                         <div className="mt-4 flex justify-center">
                           <div className="w-48 rounded-[2rem] overflow-hidden border border-white/20 bg-white/5 p-2">
                             <img
-                              src={feature.phoneImage}
+                              src={feature.mobileImage}
                               alt={`${feature.title} screen`}
                               className="w-full h-auto rounded-[1.75rem]"
                               loading="lazy"
