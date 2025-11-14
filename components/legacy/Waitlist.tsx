@@ -73,13 +73,36 @@ export default function Waitlist() {
           </button>
         </form>
       ) : (
-        <div className="text-center space-y-5 py-8" aria-live="polite">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-helthy-black/10">
-            <Check className="w-10 h-10 text-helthy-black" />
+        <div className="text-center space-y-6 py-8 animate-in fade-in zoom-in duration-500" aria-live="polite">
+          {/* Animated success icon with glow */}
+          <div className="relative inline-flex items-center justify-center">
+            <div className="absolute inset-0 animate-ping">
+              <div className="w-24 h-24 rounded-full bg-helthy-lemon/30"></div>
+            </div>
+            <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-helthy-lemon to-[#A8E063] flex items-center justify-center shadow-[0_0_40px_rgba(205,251,80,0.4)] animate-in zoom-in duration-300 delay-150">
+              <Check className="w-12 h-12 text-helthy-black animate-in zoom-in duration-300 delay-300" strokeWidth={3} />
+            </div>
           </div>
-          <div className="space-y-2">
-            <h3 className="text-3xl sm:text-4xl font-bold text-helthy-black">Welcome to the future!</h3>
-            <p className="text-base sm:text-lg text-helthy-black/80">You're on the list. We'll notify you when we launch.</p>
+
+          {/* Success message with stagger animation */}
+          <div className="space-y-3 animate-in slide-in-from-bottom-4 duration-500 delay-200">
+            <h3 className="text-4xl sm:text-5xl font-bold text-helthy-black tracking-tight">
+              You're in! 🎉
+            </h3>
+            <p className="text-lg sm:text-xl text-helthy-black/90 font-medium max-w-md mx-auto">
+              Welcome to the Helthy family
+            </p>
+            <p className="text-base text-helthy-black/70 max-w-lg mx-auto">
+              We'll send you an email when we launch. Get ready to transform your fitness journey!
+            </p>
+          </div>
+
+          {/* Confetti-like decorative elements */}
+          <div className="relative h-8" aria-hidden="true">
+            <div className="absolute top-0 left-1/4 w-2 h-2 bg-helthy-lemon rounded-full animate-bounce" style={{ animationDelay: '0.1s', animationDuration: '1.5s' }}></div>
+            <div className="absolute top-0 right-1/4 w-2 h-2 bg-helthy-lemon rounded-full animate-bounce" style={{ animationDelay: '0.3s', animationDuration: '1.3s' }}></div>
+            <div className="absolute top-0 left-1/3 w-1.5 h-1.5 bg-helthy-black/30 rounded-full animate-bounce" style={{ animationDelay: '0.2s', animationDuration: '1.7s' }}></div>
+            <div className="absolute top-0 right-1/3 w-1.5 h-1.5 bg-helthy-black/30 rounded-full animate-bounce" style={{ animationDelay: '0.4s', animationDuration: '1.4s' }}></div>
           </div>
         </div>
       )}

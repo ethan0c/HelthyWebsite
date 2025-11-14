@@ -87,21 +87,21 @@ export default function Pricing() {
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
                 <h3 className="text-helthy-lemon font-semibold text-lg mb-2">Why is it free?</h3>
                 <p className="text-white/70">
-                  We believe everyone deserves access to quality health tools. Helthy is funded by our community and partners who share this vision. No ads, no data selling, just a commitment to your wellness.
+                  We're two broke college kids who believe everyone deserves access to simple, effective fitness tools. We're bootstrapping Helthy because health shouldn't be a luxury—no paywalls, no premium tiers, just honest tools to help you reach your goals.
                 </p>
               </div>
 
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
                 <h3 className="text-helthy-lemon font-semibold text-lg mb-2">Will there be paid features in the future?</h3>
                 <p className="text-white/70">
-                  All core features will always be free. We may introduce optional premium add-ons (like 1-on-1 coaching), but the complete Helthy experience you see today will remain free forever.
+                  All core features will always be free. We may introduce optional premium add-ons down the road (like personalized coaching), but the complete Helthy experience you see today will remain free forever.
                 </p>
               </div>
 
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                <h3 className="text-helthy-lemon font-semibold text-lg mb-2">How do you make money?</h3>
+                <h3 className="text-helthy-lemon font-semibold text-lg mb-2">How will you make money?</h3>
                 <p className="text-white/70">
-                  We partner with health-focused brands and offer optional services for advanced users. Your basic experience is and will always be 100% free.
+                  For now, we're not. We're focused on building something valuable and growing our community. In the future, we might offer optional premium services, but your basic experience will always be 100% free.
                 </p>
               </div>
             </div>

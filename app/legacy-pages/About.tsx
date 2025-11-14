@@ -60,18 +60,28 @@ export default function About() {
               Meet the founders
             </div>
             <h2 className="text-3xl md:text-5xl font-normal leading-[1.15] text-white">
-              Two college students. Two insane transformations.
+              Two people who believe in fitness
             </h2>
             <p className="text-white/80 text-lg">
-              We built Helthy after living the journey ourselves — Chibu lost 70 lbs in a year, and Ebu gained over 50 lbs in two. With so much fluff online, we wanted fitness to be simple, honest, and effective for everyone.
+              We're bootstrapping Helthy because we believe everyone deserves access to simple, effective fitness tools—not just those who can afford expensive apps and coaches. We're passionate about health and wellbeing, building this for you.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Before / After grid */}
+      {/* Before / After grid with overlay */}
       <section className="pb-16">
-        <div className="container mx-auto px-6 lg:px-20 grid gap-8 md:gap-10 md:grid-cols-2 max-w-6xl">
+        <div className="container mx-auto px-6 lg:px-20 grid gap-8 md:gap-10 md:grid-cols-2 max-w-6xl relative">
+          {/* Under Construction Overlay */}
+          <div className="absolute inset-0 z-20 bg-helthy-black/80 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+            <div className="text-center space-y-3 px-6">
+              <div className="text-6xl">🚧</div>
+              <h3 className="text-2xl md:text-3xl font-semibold text-helthy-lemon">Under Construction</h3>
+              <p className="text-white/70 text-sm md:text-base max-w-md">
+                We're putting together our transformation stories. Check back soon!
+              </p>
+            </div>
+          </div>
           {/* Chibu card */}
           <article className="rounded-2xl border border-white/10 bg-white/5 p-4 md:p-5">
             <header className="flex items-center justify-between mb-3">
