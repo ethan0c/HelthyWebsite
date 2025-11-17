@@ -33,8 +33,8 @@ export default function SiteFooter() {
               <div className="pt-6 space-y-2">
                 <p className="text-white/60 text-sm">© 2025 Helthy. All rights reserved.</p>
                 <div className="flex items-center gap-4 text-white/60 text-sm">
-                  <a href="#" className="hover:text-white transition-colors">Terms</a>
-                  <a href="#" className="hover:text-white transition-colors">Privacy</a>
+                  <a href="/terms" className="hover:text-white transition-colors">Terms</a>
+                  <a href="/privacy" className="hover:text-white transition-colors">Privacy</a>
                   <a href="#" className="hover:text-white transition-colors">Manage Cookies</a>
                 </div>
               </div>
@@ -77,8 +77,9 @@ export default function SiteFooter() {
             <div className="scroll-reveal animate-slide-up stagger-4 lg:col-span-2 space-y-6">
               <h3 className="text-white text-lg font-semibold">Legal</h3>
               <nav className="space-y-3">
-                <a href="#" className="block text-white/70 hover:text-white transition-colors">Terms of Service</a>
-                <a href="#" className="block text-white/70 hover:text-white transition-colors">Privacy Policy</a>
+                <a href="/terms" className="block text-white/70 hover:text-white transition-colors">Terms of Service</a>
+                <a href="/privacy" className="block text-white/70 hover:text-white transition-colors">Privacy Policy</a>
+                <a href="/license" className="block text-white/70 hover:text-white transition-colors">License</a>
               </nav>
             </div>
           </div>
