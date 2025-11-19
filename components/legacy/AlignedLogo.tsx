@@ -3,31 +3,41 @@ import { useEffect, useState } from "react";
 
 /**
  * AlignedLogo displays the Helthy logo in a locked position like the navbar.
- * Placed globally in layout so it appears on all pages.
- * On mobile, adds a backdrop blur after scrolling past the hero section.
+ * On desktop: hides when scrolling past hero section.
+ * On mobile: adds a backdrop blur after scrolling past the hero section.
  */
 export default function AlignedLogo() {
   const [scrolled, setScrolled] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
-  // Track scroll to add blur background on mobile after hero
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.matchMedia("(min-width: 1024px)").matches);
+    };
+    checkDesktop();
+    window.addEventListener("resize", checkDesktop);
+    return () => window.removeEventListener("resize", checkDesktop);
+  }, []);
+
   useEffect(() => {
     const onScroll = () => {
-      // Detect if we've scrolled past ~70vh (approximate hero height on mobile)
-      const isMobile = window.matchMedia("(max-width: 1023px)").matches;
-      if (isMobile) {
-        setScrolled(window.scrollY > window.innerHeight * 0.6);
+      const heroHeight = window.innerHeight;
+      const scrollY = window.scrollY;
+      const pastHero = scrollY > heroHeight * 0.85;
+      
+      if (!isDesktop) {
+        // Mobile: just track scroll for backdrop
+        setScrolled(scrollY > heroHeight * 0.6);
       } else {
-        setScrolled(false);
+        // Desktop: hide when past hero
+        setScrolled(pastHero);
       }
     };
-    onScroll(); // initial check
+    
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isDesktop]);
 
   return (
     <>
@@ -41,7 +51,9 @@ export default function AlignedLogo() {
       <img
         src="/figma-components/hero/logo.png"
         alt="Helthy logo"
-        className="fixed z-50 h-5 lg:h-6 w-auto top-[29px] lg:top-[45px] left-5 lg:left-20 pointer-events-none select-none"
+        className={`fixed z-50 h-5 lg:h-6 w-auto top-[29px] lg:top-[45px] left-5 lg:left-20 pointer-events-none select-none transition-all duration-500 ${
+          isDesktop && scrolled ? "lg:opacity-0 lg:scale-75" : "opacity-100 scale-100"
+        }`}
       />
     </>
   );
