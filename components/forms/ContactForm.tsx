@@ -1,16 +1,26 @@
 "use client";
 
 import { useForm, ValidationError } from "@formspree/react";
+import { Check } from "lucide-react";
 
 export default function ContactForm() {
   const [state, handleSubmit] = useForm("manvqpkz");
 
   if (state.succeeded) {
     return (
-      <div className="space-y-4 text-center py-8">
-        <div className="text-6xl">✅</div>
-        <p className="text-lg font-medium text-white">Thanks for reaching out!</p>
-        <p className="text-white/70">We'll get back to you soon.</p>
+      <div className="space-y-6 text-center py-8">
+        <div className="relative inline-flex items-center justify-center">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-helthy-lemon to-green-400 opacity-20 blur-xl animate-in fade-in zoom-in duration-500" />
+          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-helthy-lemon to-green-400 animate-in fade-in zoom-in duration-700 shadow-[0_0_30px_rgba(189,224,59,0.5)]" />
+          <div className="relative rounded-full bg-gradient-to-br from-helthy-lemon to-green-400 p-5 animate-in zoom-in duration-500">
+            <Check className="w-10 h-10 text-helthy-black animate-in zoom-in duration-700 delay-150" strokeWidth={3} />
+          </div>
+          <div className="absolute inset-0 rounded-full border-4 border-helthy-lemon/30 animate-ping" style={{ animationDuration: '2s' }} />
+        </div>
+        <div className="space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
+          <p className="text-xl font-medium text-white">Thanks for reaching out!</p>
+          <p className="text-white/70">We'll get back to you soon.</p>
+        </div>
       </div>
     );
   }
