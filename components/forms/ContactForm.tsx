@@ -80,7 +80,7 @@ export default function ContactForm() {
       >
         {state.submitting ? "Sending…" : "Send message"}
       </button>
-      {state.errors && state.errors.length > 0 && (
+      {state.errors && Object.keys(state.errors).length > 0 && (
         <p className="text-sm text-red-400">Please fix the errors above and try again.</p>
       )}
     </form>
