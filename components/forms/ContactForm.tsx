@@ -1,88 +1,67 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-
-const schema = z.object({
-  name: z.string().min(2, "Please enter your name"),
-  email: z.string().email("Please enter a valid email"),
-  message: z.string().min(10, "Please write a longer message"),
-});
-
-type FormValues = z.infer<typeof schema>;
+import { useForm, ValidationError } from "@formspree/react";
 
 export default function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<FormValues>({ resolver: zodResolver(schema) });
+  const [state, handleSubmit] = useForm("manvqpkz");
 
-  const onSubmit = async (data: FormValues) => {
-    try {
-      setStatus("sending");
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error("Failed");
-      setStatus("sent");
-      reset();
-    } catch (e) {
-      setStatus("error");
-    }
-  };
+  if (state.succeeded) {
+    return (
+      <div className="space-y-4 text-center py-8">
+        <div className="text-6xl">✅</div>
+        <p className="text-lg font-medium text-white">Thanks for reaching out!</p>
+        <p className="text-white/70">We'll get back to you soon.</p>
+      </div>
+    );
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="mb-1 block text-sm font-medium">Name</label>
+        <label htmlFor="name" className="mb-1 block text-sm font-medium text-white">
+          Name
+        </label>
         <input
-          className="block w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm outline-none ring-0 transition focus:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-900"
-          {...register("name")}
+          id="name"
+          type="text"
+          name="name"
+          className="block w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder-white/60 outline-none ring-0 transition focus:border-helthy-lemon"
           placeholder="Jane Doe"
         />
-        {errors.name && (
-          <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
-        )}
+        <ValidationError prefix="Name" field="name" errors={state.errors} />
       </div>
       <div>
-        <label className="mb-1 block text-sm font-medium">Email</label>
+        <label htmlFor="email" className="mb-1 block text-sm font-medium text-white">
+          Email Address
+        </label>
         <input
-          className="block w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm outline-none ring-0 transition focus:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-900"
-          {...register("email")}
+          id="email"
+          type="email"
+          name="email"
+          className="block w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder-white/60 outline-none ring-0 transition focus:border-helthy-lemon"
           placeholder="jane@domain.com"
         />
-        {errors.email && (
-          <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
-        )}
+        <ValidationError prefix="Email" field="email" errors={state.errors} />
       </div>
       <div>
-        <label className="mb-1 block text-sm font-medium">Message</label>
+        <label htmlFor="message" className="mb-1 block text-sm font-medium text-white">
+          Message
+        </label>
         <textarea
-          className="block min-h-32 w-full resize-y rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm outline-none ring-0 transition focus:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-900"
-          {...register("message")}
+          id="message"
+          name="message"
+          className="block min-h-32 w-full resize-y rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder-white/60 outline-none ring-0 transition focus:border-helthy-lemon"
           placeholder="How can we help?"
         />
-        {errors.message && (
-          <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
-        )}
+        <ValidationError prefix="Message" field="message" errors={state.errors} />
       </div>
       <button
         type="submit"
-        disabled={status === "sending"}
-        className="inline-flex items-center rounded-md bg-zinc-950 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800 disabled:opacity-60 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
+        disabled={state.submitting}
+        className="inline-flex items-center rounded-full bg-helthy-lemon px-6 py-3 text-sm font-medium text-helthy-black shadow-[0_6px_0_rgba(0,0,0,0.2)] transition-colors hover:bg-helthy-lemon/90 disabled:opacity-60"
       >
-        {status === "sending" ? "Sending…" : status === "sent" ? "Sent!" : "Send message"}
+        {state.submitting ? "Sending…" : "Send message"}
       </button>
-      {status === "error" && (
-        <p className="text-sm text-red-600">Something went wrong. Please try again.</p>
-      )}
     </form>
   );
 }
