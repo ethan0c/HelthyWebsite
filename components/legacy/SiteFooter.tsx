@@ -36,7 +36,6 @@ export default function SiteFooter() {
               <h3 className="text-white text-lg font-semibold">Company</h3>
               <nav className="space-y-3">
                 <a href="/about" className="block text-white/70 hover:text-white transition-colors">About Us</a>
-                <a href="/blog" className="block text-white/70 hover:text-white transition-colors">Blog</a>
                 <a href="/contact" className="block text-white/70 hover:text-white transition-colors">Contact Us</a>
               </nav>
             </div>
@@ -54,7 +53,6 @@ export default function SiteFooter() {
               <nav className="space-y-3">
                 <a href="/terms" className="block text-white/70 hover:text-white transition-colors">Terms of Service</a>
                 <a href="/privacy" className="block text-white/70 hover:text-white transition-colors">Privacy Policy</a>
-                <a href="/license" className="block text-white/70 hover:text-white transition-colors">License</a>
               </nav>
             </div>
           </div>
