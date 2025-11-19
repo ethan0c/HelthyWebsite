@@ -20,7 +20,7 @@ export default function Contact() {
           </div>
 
           <div className="mt-10 text-center text-white/70 text-sm">
-            Prefer email? Reach us at <a href="mailto:support@helthy.app" className="underline hover:text-white">support@helthy.app</a>
+            Prefer email? Reach us at <a href="mailto:helthy.app@gmail.com" className="underline hover:text-white">helthy.app@gmail.com</a>
           </div>
         </div>
       </section>

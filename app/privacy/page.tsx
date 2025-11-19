@@ -239,7 +239,7 @@ export default function PrivacyPage() {
               <p>If you have questions about this Privacy Policy or our data practices, please contact us:</p>
               <div className="space-y-2 pl-4">
                 <p><strong>Email:</strong> <a href="mailto:privacy@helthy.app" className="text-helthy-lemon hover:underline">privacy@helthy.app</a></p>
-                <p><strong>Support:</strong> <a href="mailto:support@helthy.app" className="text-helthy-lemon hover:underline">support@helthy.app</a></p>
+                <p><strong>Support:</strong> <a href="mailto:helthy.app@gmail.com" className="text-helthy-lemon hover:underline">helthy.app@gmail.com</a></p>
                 <p><strong>Website:</strong> <a href="https://helthy.app" className="text-helthy-lemon hover:underline">https://helthy.app</a></p>
               </div>
             </section>

@@ -15,7 +15,7 @@ export default function SiteFooter() {
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                   </svg>
                 </a>
-                <a href="mailto:support@helthy.app" aria-label="Email support@helthy.app" className="hover:text-white transition-colors">
+                <a href="mailto:helthy.app@gmail.com" aria-label="Email helthy.app@gmail.com" className="hover:text-white transition-colors">
                   <Mail className="w-5 h-5" />
                 </a>
                 <a href="https://instagram.com/helthy.app" target="_blank" rel="noopener noreferrer" aria-label="Instagram (helthy.app)" className="hover:text-white transition-colors">

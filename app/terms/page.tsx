@@ -156,7 +156,7 @@ export default function TermsPage() {
             <section className="space-y-4">
               <h2 className="text-2xl font-semibold text-white">10. Dispute Resolution</h2>
               <p>
-                Before filing a claim, you agree to contact us at <a href="mailto:support@helthy.app" className="text-helthy-lemon hover:underline">support@helthy.app</a> to attempt to resolve the dispute informally.
+                Before filing a claim, you agree to contact us at <a href="mailto:helthy.app@gmail.com" className="text-helthy-lemon hover:underline">helthy.app@gmail.com</a> to attempt to resolve the dispute informally.
               </p>
               <p>
                 These Terms are governed by the laws of Ohio, United States, without regard to conflict of law principles.
@@ -168,7 +168,7 @@ export default function TermsPage() {
               <p>If you have questions about these Terms, please contact us:</p>
               <div className="space-y-2 pl-4">
                 <p><strong>Email:</strong> <a href="mailto:legal@helthy.app" className="text-helthy-lemon hover:underline">legal@helthy.app</a></p>
-                <p><strong>Support:</strong> <a href="mailto:support@helthy.app" className="text-helthy-lemon hover:underline">support@helthy.app</a></p>
+                <p><strong>Support:</strong> <a href="mailto:helthy.app@gmail.com" className="text-helthy-lemon hover:underline">helthy.app@gmail.com</a></p>
                 <p><strong>Website:</strong> <a href="https://helthy.app" className="text-helthy-lemon hover:underline">https://helthy.app</a></p>
               </div>
             </section>
