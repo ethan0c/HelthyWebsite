@@ -40,8 +40,24 @@ export default function CountdownSection() {
   }, []);
 
   return (
-    <section className="relative bg-helthy-lemon py-12 md:py-20">
-      <div className="container mx-auto px-6 lg:px-20">
+    <section className="relative bg-helthy-lemon py-12 md:py-20 overflow-hidden">
+      {/* Decorative elements */}
+      <div aria-hidden className="pointer-events-none absolute top-10 left-0 w-[300px] h-[300px] rounded-full bg-helthy-black/5 blur-[100px]" />
+      <div aria-hidden className="pointer-events-none absolute bottom-10 right-0 w-[400px] h-[400px] rounded-full bg-helthy-black/5 blur-[120px]" />
+      <div aria-hidden className="pointer-events-none absolute top-1/2 left-1/4 w-[200px] h-[200px] rounded-full bg-helthy-black/3 blur-[80px] hidden md:block" />
+      
+      {/* Floating accent shapes */}
+      <div aria-hidden className="pointer-events-none absolute top-20 left-10 w-16 h-16 border-2 border-helthy-black/10 rounded-full hidden lg:block" />
+      <div aria-hidden className="pointer-events-none absolute top-40 right-20 w-12 h-12 bg-helthy-black/5 rounded-lg rotate-12 hidden lg:block" />
+      <div aria-hidden className="pointer-events-none absolute bottom-32 left-24 w-20 h-20 border-2 border-helthy-black/10 rounded-lg -rotate-6 hidden lg:block" />
+      <div aria-hidden className="pointer-events-none absolute bottom-20 right-16 w-14 h-14 border-2 border-helthy-black/10 rounded-full hidden lg:block" />
+      <div aria-hidden className="pointer-events-none absolute top-1/3 right-32 w-10 h-10 bg-helthy-black/5 rounded-full hidden lg:block" />
+      <div aria-hidden className="pointer-events-none absolute top-1/2 left-16 w-8 h-8 border-2 border-helthy-black/10 rounded-lg rotate-45 hidden lg:block" />
+      <div aria-hidden className="pointer-events-none absolute bottom-40 right-28 w-16 h-16 border-2 border-helthy-black/10 rounded-full hidden xl:block" />
+      <div aria-hidden className="pointer-events-none absolute top-24 left-1/3 w-12 h-12 bg-helthy-black/5 rounded-lg -rotate-12 hidden xl:block" />
+      <div aria-hidden className="pointer-events-none absolute bottom-28 left-1/4 w-10 h-10 border-2 border-helthy-black/10 rounded-lg rotate-6 hidden xl:block" />
+      
+      <div className="container mx-auto px-6 lg:px-20 relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-6 md:space-y-8">
           {/* Title */}
           <div className="space-y-4">
@@ -63,9 +79,9 @@ export default function CountdownSection() {
             ].map(({ label, value }) => (
               <div
                 key={label}
-                className="bg-black/10 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-black/10"
+                className="group backdrop-blur-[40px] bg-black/15 border-2 border-black/20 rounded-2xl p-4 md:p-6 shadow-[0_8px_16px_rgba(0,0,0,0.08)] hover:bg-black/25 hover:border-black/30 hover:shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:scale-105 transition-all duration-300 ease-out cursor-default"
               >
-                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-helthy-black mb-2">
+                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-helthy-black mb-2 group-hover:scale-110 transition-transform duration-300">
                   {String(value).padStart(2, "0")}
                 </div>
                 <div className="text-xs md:text-sm text-helthy-black/70 font-medium uppercase tracking-wider">
