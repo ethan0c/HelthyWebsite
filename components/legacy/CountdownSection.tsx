@@ -79,9 +79,12 @@ export default function CountdownSection() {
             ].map(({ label, value }) => (
               <div
                 key={label}
-                className="group backdrop-blur-[40px] bg-black/15 border-2 border-black/20 rounded-2xl p-4 md:p-6 shadow-[0_8px_16px_rgba(0,0,0,0.08)] hover:bg-black/25 hover:border-black/30 hover:shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:scale-105 transition-all duration-300 ease-out cursor-default"
+                className="backdrop-blur-[40px] bg-black/15 border-2 border-black/20 rounded-2xl p-4 md:p-6 shadow-[0_8px_16px_rgba(0,0,0,0.08)]"
+                style={{
+                  animation: 'breathe 2s ease-in-out infinite'
+                }}
               >
-                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-helthy-black mb-2 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-helthy-black mb-2">
                   {String(value).padStart(2, "0")}
                 </div>
                 <div className="text-xs md:text-sm text-helthy-black/70 font-medium uppercase tracking-wider">
@@ -90,6 +93,16 @@ export default function CountdownSection() {
               </div>
             ))}
           </div>
+          <style jsx>{`
+            @keyframes breathe {
+              0%, 100% {
+                transform: scale(1);
+              }
+              50% {
+                transform: scale(1.05);
+              }
+            }
+          `}</style>
 
           {/* Subtext */}
           <p className="scroll-reveal animate-slide-up stagger-3 text-helthy-black/80 text-base md:text-lg max-w-2xl mx-auto">
