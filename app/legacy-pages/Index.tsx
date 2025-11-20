@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Icon from '@mdi/react';
 import { mdiFood, mdiFoodDrumstick } from '@mdi/js';
 import WaitlistSection from "../../components/legacy/WaitlistSection";
+import CountdownSection from "../../components/legacy/CountdownSection";
 import SiteFooter from "../../components/legacy/SiteFooter";
 // Navbar and MobileSidebar are now global in layout
 import { ThemeKey, getTheme, getThemeDisplayName, isDarkTheme } from "../../lib/colors";
@@ -468,8 +469,8 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Waitlist section (shared component) */}
-      <WaitlistSection />
+      {/* Countdown Section */}
+      <CountdownSection />
 
       <TheProblemSection />
 
@@ -886,7 +887,8 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Waitlist section moved above; removed duplicate from here */}
+      {/* Waitlist section */}
+      <WaitlistSection />
 
       {/* Shared footer */}
       <SiteFooter />
