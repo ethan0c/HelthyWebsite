@@ -11,11 +11,17 @@ export default function CountdownSection() {
   });
 
   useEffect(() => {
-    // Set target to tomorrow at 12pm
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(12, 0, 0, 0);
-    const targetTime = tomorrow.getTime();
+    // Set target to next Sunday at 10am
+    const now = new Date();
+    const targetDate = new Date();
+    
+    // Calculate days until next Sunday (0 = Sunday, 1 = Monday, etc.)
+    const daysUntilSunday = (7 - now.getDay()) % 7 || 7;
+    
+    targetDate.setDate(now.getDate() + daysUntilSunday);
+    targetDate.setHours(10, 0, 0, 0);
+    
+    const targetTime = targetDate.getTime();
 
     const updateCountdown = () => {
       const now = new Date().getTime();
