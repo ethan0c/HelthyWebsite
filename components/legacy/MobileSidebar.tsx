@@ -30,24 +30,7 @@ export default function MobileSidebar() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open, close]);
 
-  const handleWaitlistScroll = (e?: React.MouseEvent) => {
-    if (e) e.preventDefault();
-    const scrollToId = () => {
-      const el = document.getElementById("waitlist");
-      if (!el) return false;
-      const y = el.getBoundingClientRect().top + window.scrollY;
-      const lenis: any = (window as any).lenis;
-      if (lenis && typeof lenis.scrollTo === "function") {
-        lenis.scrollTo(y, { duration: 1 });
-      } else {
-        window.scrollTo({ top: y, behavior: "smooth" });
-      }
-      return true;
-    };
-    if (scrollToId()) { close(); return; }
-    try { history.replaceState(null, "", "#waitlist"); } catch {}
-    requestAnimationFrame(() => setTimeout(() => { if (scrollToId()) close(); }, 60));
-  };
+
 
   return (
     <div
@@ -88,11 +71,13 @@ export default function MobileSidebar() {
 
         <div className="px-5 py-4 border-t border-white/10">
           <a
-            href="#waitlist"
-            onClick={(e) => handleWaitlistScroll(e)}
+            href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={close}
             className="group flex items-center justify-between gap-3 rounded-2xl border-2 border-white/20 bg-white/10 hover:bg-white/20 px-4 py-3 transition-colors"
           >
-            <span className="text-white">Join Waitlist</span>
+            <span className="text-white">Download Now</span>
             <span className="flex items-center justify-center w-9 h-9 rounded-full bg-white/35">
               <ArrowUpRight className="w-5 h-5 text-white" strokeWidth={3} />
             </span>

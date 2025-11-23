@@ -2,8 +2,7 @@ import { ArrowUpRight, Trophy, Flame, Mail, Instagram, CheckCircle, Paperclip, P
 import { useState, useEffect, useRef } from "react";
 import Icon from '@mdi/react';
 import { mdiFood, mdiFoodDrumstick } from '@mdi/js';
-import WaitlistSection from "../../components/legacy/WaitlistSection";
-import CountdownSection from "../../components/legacy/CountdownSection";
+import NewsletterSection from "../../components/legacy/NewsletterSection";
 import SiteFooter from "../../components/legacy/SiteFooter";
 // Navbar and MobileSidebar are now global in layout
 import { ThemeKey, getTheme, getThemeDisplayName, isDarkTheme } from "../../lib/colors";
@@ -446,11 +445,13 @@ export default function Index() {
             </p>
 
             <a
-              href="#waitlist"
+              href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
+              target="_blank"
+              rel="noopener noreferrer"
               className="scroll-reveal animate-scale-in stagger-2 group inline-flex items-center justify-center gap-3 sm:gap-4 md:gap-6 rounded-[47px] border-2 border-white/30 bg-[#CDFB50] py-1.5 sm:py-2 pl-[20px] sm:pl-[25px] md:pl-[30px] pr-1.5 sm:pr-2 shadow-[0px_8px_16px_rgba(114,146,28,0.2)] hover:shadow-lg transition-shadow"
             >
               <span className="text-[#151515] font-medium text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] leading-[22px] tracking-[0.17px]">
-                Join Waitlist
+                Download Now
               </span>
               <div className="bg-[#151515] w-[36px] sm:w-[44px] md:w-[52px] h-[36px] sm:h-[44px] md:h-[52px] rounded-[30px] flex items-center justify-center group-hover:scale-105 transition-transform">
                 <ArrowUpRight className="w-5 sm:w-6 md:w-8 h-5 sm:h-6 md:h-8 text-white" strokeWidth={3} />
@@ -468,10 +469,6 @@ export default function Index() {
           />
         </div>
       </section>
-
-      {/* Countdown Section */}
-      <CountdownSection />
-
       <TheProblemSection />
 
   {/* What Makes Helthy Different — Card Row Carousel */}
@@ -887,8 +884,8 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Waitlist section */}
-      <WaitlistSection />
+      {/* Newsletter section */}
+      <NewsletterSection />
 
       {/* Shared footer */}
       <SiteFooter />

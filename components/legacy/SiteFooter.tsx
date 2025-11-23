@@ -43,7 +43,7 @@ export default function SiteFooter() {
             <div className="scroll-reveal animate-slide-up stagger-3 lg:col-span-2 space-y-6">
               <h3 className="text-white text-lg font-semibold">Product</h3>
               <nav className="space-y-3">
-                <a href="#waitlist" className="block text-white/70 hover:text-white transition-colors">Join Waitlist</a>
+                <a href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974" target="_blank" rel="noopener noreferrer" className="block text-white/70 hover:text-white transition-colors">Download Now</a>
                 <a href="/pricing" className="block text-white/70 hover:text-white transition-colors">Pricing</a>
               </nav>
             </div>

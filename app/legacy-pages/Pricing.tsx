@@ -64,10 +64,12 @@ export default function Pricing() {
 
               <div className="text-center space-y-4">
                 <a 
-                  href="/#waitlist" 
+                  href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 rounded-full bg-helthy-lemon text-helthy-black px-6 py-3 font-medium hover:bg-helthy-lemon/90"
                 >
-                  Join Waitlist
+                  Download Now
                   <ArrowUpRight className="h-5 w-5" />
                 </a>
                 <p className="text-white/60 text-xs">
