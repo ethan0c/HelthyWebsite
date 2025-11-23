@@ -469,6 +469,10 @@ export default function Index() {
           />
         </div>
       </section>
+
+      {/* Newsletter section */}
+      <NewsletterSection />
+
       <TheProblemSection />
 
   {/* What Makes Helthy Different — Card Row Carousel */}
@@ -889,9 +893,6 @@ export default function Index() {
           <div className="mx-auto w-[1200px] max-w-[95vw] h-[180px] bg-helthy-lemon/60 blur-[150px] rounded-full" />
         </div>
       </section>
-
-      {/* Newsletter section */}
-      <NewsletterSection />
 
       {/* Shared footer */}
       <SiteFooter />
