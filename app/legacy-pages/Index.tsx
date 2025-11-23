@@ -873,6 +873,12 @@ export default function Index() {
                   Your data is processed securely, never sold, and you control what you share. We only use your inputs to help you track progress and stay on course.
                 </AccordionContent>
               </AccordionItem>
+              <AccordionItem value="item-7">
+                <AccordionTrigger className="text-white text-base md:text-lg">When will Android support and wearable integration be available?</AccordionTrigger>
+                <AccordionContent className="text-white/80">
+                  Great question! We're actively working on Android support and wearable device integration. Expect new updates soon — we can't wait to bring Helthy to more devices and platforms.
+                </AccordionContent>
+              </AccordionItem>
             </Accordion>
           </div>
 
