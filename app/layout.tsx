@@ -22,10 +22,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Helthy — Your Health, Your Power",
+    default: "Helthy - Track Food and Workouts",
     template: "%s — Helthy",
   },
-  description: "Your Health, Your Power",
+  description: "Track Food and Workouts",
   icons: {
     icon: "/logos/logo-green-black.svg",
     apple: "/logos/logo-green-black.svg",
