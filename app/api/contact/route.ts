@@ -64,6 +64,73 @@ async function verifyHCaptcha(token: string): Promise<boolean> {
   }
 }
 
+// Create or get Zoho Desk contact
+async function getOrCreateZohoDeskContact(
+  name: string, 
+  email: string, 
+  accessToken: string, 
+  orgId: string
+): Promise<string | null> {
+  try {
+    // First, try to find existing contact by email
+    const searchResponse = await fetch(
+      `https://desk.zoho.com/api/v1/contacts/search?email=${encodeURIComponent(email)}`,
+      {
+        method: "GET",
+        headers: {
+          "Authorization": `Zoho-oauthtoken ${accessToken}`,
+          "orgId": orgId,
+        },
+      }
+    );
+
+    if (searchResponse.ok) {
+      const searchData = await searchResponse.json();
+      if (searchData.data && searchData.data.length > 0) {
+        console.log("✅ Found existing Zoho contact:", searchData.data[0].id);
+        return searchData.data[0].id;
+      }
+    }
+
+    // Contact doesn't exist, create new one
+    const nameParts = name.split(" ");
+    const firstName = nameParts[0] || name;
+    const lastName = nameParts.slice(1).join(" ") || "";
+
+    const contactData = {
+      lastName: lastName || firstName,
+      firstName: firstName,
+      email: email,
+    };
+
+    const createResponse = await fetch(
+      `https://desk.zoho.com/api/v1/contacts`,
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Zoho-oauthtoken ${accessToken}`,
+          "orgId": orgId,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contactData),
+      }
+    );
+
+    if (!createResponse.ok) {
+      const errorText = await createResponse.text();
+      console.error("Zoho Desk contact creation error:", createResponse.status, errorText);
+      return null;
+    }
+
+    const contactResult = await createResponse.json();
+    console.log("✅ Created new Zoho contact:", contactResult.id);
+    return contactResult.id;
+  } catch (error) {
+    console.error("Error getting/creating Zoho contact:", error);
+    return null;
+  }
+}
+
 // Create Zoho Desk ticket
 async function createZohoDeskTicket(name: string, email: string, message: string): Promise<boolean> {
   const zohoDeskOrgId = process.env.ZOHO_DESK_ORG_ID;
@@ -82,8 +149,17 @@ async function createZohoDeskTicket(name: string, email: string, message: string
   }
 
   try {
-    const ticketData = {
+    // First, get or create the contact
+    const contactId = await getOrCreateZohoDeskContact(name, email, accessToken, zohoDeskOrgId);
+    
+    if (!contactId) {
+      console.error("Failed to get/create Zoho contact");
+      return false;
+    }
+
+    const ticketData: any = {
       subject: `Contact Form: ${name}`,
+      contactId: contactId,
       email: email,
       description: sanitizeHtml(message),
       priority: "Medium",
@@ -94,12 +170,13 @@ async function createZohoDeskTicket(name: string, email: string, message: string
     // Only add departmentId if it's configured
     const departmentId = process.env.ZOHO_DESK_DEPARTMENT_ID;
     if (departmentId) {
-      (ticketData as any).departmentId = departmentId;
+      ticketData.departmentId = departmentId;
     }
 
     console.log("Creating Zoho Desk ticket with data:", {
       subject: ticketData.subject,
       email: ticketData.email,
+      contactId: contactId,
       orgId: zohoDeskOrgId,
       hasDepartmentId: !!departmentId,
     });
@@ -124,7 +201,7 @@ async function createZohoDeskTicket(name: string, email: string, message: string
     }
 
     const responseData = await response.json();
-    console.log("✅ Zoho Desk ticket created successfully:", responseData);
+    console.log("✅ Zoho Desk ticket created successfully:", responseData.id);
 
     return true;
   } catch (error) {
