@@ -1,12 +1,52 @@
 "use client";
 
-import { useForm, ValidationError } from "@formspree/react";
-import { Check } from "lucide-react";
+import { useState } from "react";
+import { Check, Loader2 } from "lucide-react";
 
 export default function ContactForm() {
-  const [state, handleSubmit] = useForm("manvqpkz");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
-  if (state.succeeded) {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+    setFieldErrors({});
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        if (data.details?.fieldErrors) {
+          // Handle zod validation errors
+          setFieldErrors(data.details.fieldErrors);
+        }
+        throw new Error(data.error || "Failed to submit form");
+      }
+
+      setIsSuccess(true);
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to submit form. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (isSuccess) {
     return (
       <div className="space-y-6 text-center py-8">
         <div className="relative inline-flex items-center justify-center">
@@ -35,16 +75,16 @@ export default function ContactForm() {
           id="name"
           type="text"
           name="name"
+          value={formData.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           required
-          className="block w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder-white/60 outline-none ring-0 transition focus:border-helthy-lemon"
+          disabled={isSubmitting}
+          className="block w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder-white/60 outline-none ring-0 transition focus:border-helthy-lemon disabled:opacity-50"
           placeholder="Jane Doe"
         />
-        <ValidationError 
-          prefix="Name" 
-          field="name" 
-          errors={state.errors}
-          className="mt-1 text-sm text-red-400"
-        />
+        {fieldErrors.name && (
+          <p className="mt-1 text-sm text-red-400">{fieldErrors.name}</p>
+        )}
       </div>
       <div>
         <label htmlFor="email" className="mb-1 block text-sm font-medium text-white">
@@ -54,16 +94,16 @@ export default function ContactForm() {
           id="email"
           type="email"
           name="email"
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           required
-          className="block w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder-white/60 outline-none ring-0 transition focus:border-helthy-lemon"
+          disabled={isSubmitting}
+          className="block w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder-white/60 outline-none ring-0 transition focus:border-helthy-lemon disabled:opacity-50"
           placeholder="jane@domain.com"
         />
-        <ValidationError 
-          prefix="Email" 
-          field="email" 
-          errors={state.errors}
-          className="mt-1 text-sm text-red-400"
-        />
+        {fieldErrors.email && (
+          <p className="mt-1 text-sm text-red-400">{fieldErrors.email}</p>
+        )}
       </div>
       <div>
         <label htmlFor="message" className="mb-1 block text-sm font-medium text-white">
@@ -72,27 +112,30 @@ export default function ContactForm() {
         <textarea
           id="message"
           name="message"
+          value={formData.message}
+          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           required
-          className="block min-h-32 w-full resize-y rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder-white/60 outline-none ring-0 transition focus:border-helthy-lemon"
+          disabled={isSubmitting}
+          className="block min-h-32 w-full resize-y rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder-white/60 outline-none ring-0 transition focus:border-helthy-lemon disabled:opacity-50"
           placeholder="How can we help?"
         />
-        <ValidationError 
-          prefix="Message" 
-          field="message" 
-          errors={state.errors}
-          className="mt-1 text-sm text-red-400"
-        />
+        {fieldErrors.message && (
+          <p className="mt-1 text-sm text-red-400">{fieldErrors.message}</p>
+        )}
       </div>
+      
+      {error && (
+        <p className="text-sm text-red-400">{error}</p>
+      )}
+
       <button
         type="submit"
-        disabled={state.submitting}
-        className="inline-flex items-center rounded-full bg-helthy-lemon px-6 py-3 text-sm font-medium text-helthy-black shadow-[0_6px_0_rgba(0,0,0,0.2)] transition-colors hover:bg-helthy-lemon/90 disabled:opacity-60"
+        disabled={isSubmitting}
+        className="inline-flex items-center gap-2 rounded-full bg-helthy-lemon px-6 py-3 text-sm font-medium text-helthy-black shadow-[0_6px_0_rgba(0,0,0,0.2)] transition-colors hover:bg-helthy-lemon/90 disabled:opacity-60"
       >
-        {state.submitting ? "Sending…" : "Send message"}
+        {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
+        {isSubmitting ? "Sending…" : "Send message"}
       </button>
-      {state.errors && Object.keys(state.errors).length > 0 && (
-        <p className="text-sm text-red-400">Please fix the errors above and try again.</p>
-      )}
     </form>
   );
 }
