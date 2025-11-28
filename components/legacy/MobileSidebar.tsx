@@ -37,7 +37,7 @@ export default function MobileSidebar() {
       role="dialog"
       aria-modal="true"
       aria-label="Mobile navigation"
-      className={`md:hidden fixed inset-0 z-[59] ${open ? "" : "pointer-events-none"}`}
+      className={`lg:hidden fixed inset-0 z-[59] ${open ? "" : "pointer-events-none"}`}
     >
       {/* Overlay with strong blur */}
       <div

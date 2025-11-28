@@ -25,6 +25,8 @@ export async function getZohoDeskAccessToken(): Promise<string | null> {
 
   // Refresh the access token
   try {
+    console.log("Refreshing Zoho access token...");
+    
     const response = await fetch("https://accounts.zoho.com/oauth/v2/token", {
       method: "POST",
       headers: {
@@ -45,6 +47,8 @@ export async function getZohoDeskAccessToken(): Promise<string | null> {
     }
 
     const data = await response.json();
+
+    console.log("✅ Zoho access token refreshed successfully");
 
     // Cache the new token
     cachedTokens = {

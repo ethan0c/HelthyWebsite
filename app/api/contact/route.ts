@@ -84,14 +84,25 @@ async function createZohoDeskTicket(name: string, email: string, message: string
   try {
     const ticketData = {
       subject: `Contact Form: ${name}`,
-      departmentId: process.env.ZOHO_DESK_DEPARTMENT_ID || undefined,
-      contactId: undefined, // Will be created or found by email
       email: email,
       description: sanitizeHtml(message),
       priority: "Medium",
       status: "Open",
       channel: "Web",
     };
+
+    // Only add departmentId if it's configured
+    const departmentId = process.env.ZOHO_DESK_DEPARTMENT_ID;
+    if (departmentId) {
+      (ticketData as any).departmentId = departmentId;
+    }
+
+    console.log("Creating Zoho Desk ticket with data:", {
+      subject: ticketData.subject,
+      email: ticketData.email,
+      orgId: zohoDeskOrgId,
+      hasDepartmentId: !!departmentId,
+    });
 
     const response = await fetch(
       `https://desk.zoho.com/api/v1/tickets`,
@@ -112,6 +123,9 @@ async function createZohoDeskTicket(name: string, email: string, message: string
       return false;
     }
 
+    const responseData = await response.json();
+    console.log("✅ Zoho Desk ticket created successfully:", responseData);
+
     return true;
   } catch (error) {
     console.error("Zoho Desk ticket creation error:", error);
@@ -131,7 +145,7 @@ async function addToLoops(name: string, email: string): Promise<boolean> {
   try {
     const loops = new LoopsClient(loopsApiKey);
 
-    await loops.createContact({
+    await loops.updateContact({
       email: email.trim().toLowerCase(),
       properties: {
         firstName: name.trim(),
@@ -139,8 +153,14 @@ async function addToLoops(name: string, email: string): Promise<boolean> {
       },
     });
 
+    console.log("✅ Loops contact updated successfully");
     return true;
   } catch (error) {
+    // If email doesn't exist, create it
+    if (error instanceof Error && error.message.includes("409")) {
+      console.log("ℹ️ Contact already exists in Loops, skipping");
+      return true; // This is OK, not an error
+    }
     console.error("Loops contact creation error:", error);
     return false;
   }
