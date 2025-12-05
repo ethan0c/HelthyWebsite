@@ -39,15 +39,15 @@ export default function Index() {
   const features = [
     {
       title: "Tailored Workouts for Every Goal",
-      screenshot: "/phones/home.svg"
+      screenshot: "/phones/home.webp"
     },
     {
       title: "Smart Nutrition Plans", 
-      screenshot: "/phones/nutrition.svg"
+      screenshot: "/phones/nutrition.webp"
     },
     {
       title: "Track Progress with Ease",
-      screenshot: "/phones/progress.svg"
+      screenshot: "/phones/progress.webp"
     }
   ];
 
@@ -439,9 +439,10 @@ export default function Index() {
             <p
               className="scroll-reveal animate-slide-up stagger-1 font-sans text-[16px] sm:text-[17px] md:text-[18px] lg:text-[20px] leading-[1.3] text-white max-w-[515.82px]"
             >
-              Helthy helps you build a stronger body and a happier mind one
+              <span className="hidden sm:inline">Helthy helps you build a stronger body and a happier mind one
               workout, one meal, and one good habit at a time. No pressure, no
-              perfection just progress.
+              perfection just progress.</span>
+              <span className="sm:hidden">Track workouts, meals & progress.</span>
             </p>
 
             <a
@@ -483,16 +484,12 @@ export default function Index() {
 
   <div className="relative mx-auto max-w-[1600px] px-0 md:px-6 mb-12 lg:mb-16">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="mb-6 scroll-reveal animate-scale-in">
-              <span className="inline-flex items-center px-4 py-2 rounded-full bg-helthy-lemon/10 border border-helthy-lemon/20 text-helthy-lemon text-sm font-medium tracking-wide">
-                Features
-              </span>
-            </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal leading-[1.1] text-white mb-6 scroll-reveal animate-slide-up stagger-1" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
               What Makes Helthy <span className="text-helthy-lemon">Different</span>
             </h2>
-            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed scroll-reveal animate-slide-up stagger-2">
-              A holistic approach to movement, nutrition, and progress — built to help you stay consistent and reach your goals.
+            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed scroll-reveal animate-slide-up stagger-2 px-6 md:px-0">
+              <span className="hidden md:inline">A holistic approach to movement, nutrition, and progress — built to help you stay consistent and reach your goals.</span>
+              <span className="md:hidden">Track workouts, nutrition, and progress in one unified app.</span>
             </p>
           </div>
         </div>
@@ -520,13 +517,6 @@ export default function Index() {
               leftColor="#FFB86C"
               rightColor="#F26D6D"
             />
-            <FeatureCard
-              title="Community Support"
-              subtitle="Move, eat, and grow together—accountability built-in."
-              imageSrc="/figma-components/different/group-people-exercising-together-outdoors 1.svg"
-              leftColor="#7FD1AE"
-              rightColor="#6FA8FF"
-            />
           </AutoScrollRow>
         </div>
 
@@ -543,16 +533,12 @@ export default function Index() {
         {/* Features Section */}
         <div className="container mx-auto px-6 lg:px-20 mb-20">
           <div className="text-center mb-16 lg:mb-20">
-            <div className="mb-6 scroll-reveal animate-scale-in">
-              <span className="inline-flex items-center px-4 py-2 rounded-full bg-helthy-lemon/10 border border-helthy-lemon/20 text-helthy-lemon text-sm font-medium tracking-wide">
-                Smart Logging
-              </span>
-            </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal leading-tight text-helthy-lemon mb-6 scroll-reveal animate-slide-up stagger-1" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
               Voice & Smart Logging
             </h2>
             <p className="font-sans text-[18px] md:text-[20px] max-w-3xl mx-auto text-white/80 leading-relaxed scroll-reveal animate-slide-up stagger-2">
-              Log workouts and meals hands‑free. Scan barcodes, search our database, or describe what you ate—we'll capture the details instantly.
+              <span className="hidden md:inline">Log workouts and meals hands‑free. Scan barcodes, search our database, or describe what you ate—we'll capture the details instantly.</span>
+              <span className="md:hidden">Log meals and workouts with your voice, barcode scanner, or our food database.</span>
             </p>
           </div>
 
@@ -569,8 +555,8 @@ export default function Index() {
                     {/* Background image section */}
                     <div className="absolute w-full lg:w-[632px] h-[320px] left-0 lg:left-[-2px] top-0 bg-[#262724]">
                       <img 
-                        src="/figma-components/ai/roasted-chicken-dinner-platter-delicious-feast 1.svg" 
-                        alt="Roasted chicken dinner platter delicious feast" 
+                        src="/figma-components/ai/photo.webp" 
+                        alt="Healthy meal" 
                         className="absolute w-[200px] sm:w-[250px] lg:w-[300.9px] h-[200px] sm:h-[250px] lg:h-[300.9px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 object-cover"
                       />
                       

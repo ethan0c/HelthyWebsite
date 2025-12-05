@@ -3,12 +3,12 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "./legacy.css";
 import { GSAPProvider } from "../components/providers/GSAPProvider";
-import { LenisProvider } from "../components/providers/LenisProvider";
 import { ScrollRevealProvider } from "../components/providers/ScrollRevealProvider";
 import Navbar from "../components/legacy/Navbar";
 import MobileSidebar from "../components/legacy/MobileSidebar";
 import AlignedLogo from "../components/legacy/AlignedLogo";
 import HollowCirclesOverlay from "../components/HollowCirclesOverlay";
+import { CookieBanner } from "../components/CookieBanner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,9 +27,12 @@ export const metadata: Metadata = {
   },
   description: "Track Food and Workouts",
   icons: {
-    icon: "/logos/logo-green-black.svg",
-    apple: "/logos/logo-green-black.svg",
-    shortcut: "/logos/logo-green-black.svg",
+    icon: [
+      { url: "/favicon.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+    shortcut: "/favicon.png",
   },
   themeColor: "#0B0B0B",
   openGraph: {
@@ -59,16 +62,15 @@ export default function RootLayout({
       <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <HollowCirclesOverlay />
         <GSAPProvider>
-          <LenisProvider>
-            <ScrollRevealProvider>
-              {/* Global navigation and mobile sidebar, visible on all pages */}
-              <Navbar />
-              <MobileSidebar />
-              <AlignedLogo />
-              {children}
-            </ScrollRevealProvider>
-          </LenisProvider>
+          <ScrollRevealProvider>
+            {/* Global navigation and mobile sidebar, visible on all pages */}
+            <Navbar />
+            <MobileSidebar />
+            <AlignedLogo />
+            {children}
+          </ScrollRevealProvider>
         </GSAPProvider>
+        <CookieBanner />
       </body>
     </html>
   );

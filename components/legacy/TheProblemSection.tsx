@@ -4,6 +4,7 @@ import React, { useState } from "react";
 export default function TheProblemSection() {
   const [activeFeature, setActiveFeature] = useState<number>(0);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [hasAnimated, setHasAnimated] = useState<Set<number>>(new Set([0]));
   
   const features = [
     {
@@ -12,7 +13,7 @@ export default function TheProblemSection() {
       subtitle: "Your fitness command center",
       description: "Everything you need at a glance. Track your progress, log workouts, monitor nutrition, and stay motivated—all from one beautiful dashboard.",
       highlights: ["Real-time stats", "Quick actions", "Daily streaks", "Goal tracking"],
-      phoneImage: "/phones/home.svg",
+      phoneImage: "/phones/home.webp",
       mobileImage: "/phones/mobile/home.png",
       gradient: "from-purple-500/20 via-helthy-lemon/20 to-blue-500/20",
       accentColor: "helthy-lemon"
@@ -23,7 +24,7 @@ export default function TheProblemSection() {
       subtitle: "Training that evolves with you",
       description: "Smart workout tracking that learns from your progress. Get personalized recommendations, track every rep, and watch your strength grow.",
       highlights: ["Custom programs", "Exercise library", "Form guides", "PR tracking"],
-      phoneImage: "/phones/exercise.svg",
+      phoneImage: "/phones/exercise.webp",
       mobileImage: "/phones/mobile/exercise.png",
       gradient: "from-blue-500/20 via-cyan-500/20 to-helthy-lemon/20",
       accentColor: "cyan-400"
@@ -34,7 +35,7 @@ export default function TheProblemSection() {
       subtitle: "Healthy eating, simplified",
       description: "Log meals in seconds with voice or photos. Get instant macro breakdowns and smart suggestions that fit your lifestyle and goals.",
       highlights: ["Voice logging", "Barcode scan", "Search database", "Meal insights"],
-      phoneImage: "/phones/nutrition.svg",
+      phoneImage: "/phones/nutrition.webp",
       mobileImage: "/phones/mobile/food.png",
       gradient: "from-green-500/20 via-helthy-lemon/20 to-yellow-500/20",
       accentColor: "green-400"
@@ -45,7 +46,7 @@ export default function TheProblemSection() {
       subtitle: "See your transformation",
       description: "Beautiful charts and insights that celebrate every win. Track trends, identify patterns, and stay motivated with data that actually makes sense.",
       highlights: ["Weekly insights", "Trend analysis", "Goal milestones", "Achievement system"],
-      phoneImage: "/phones/progress.svg",
+      phoneImage: "/phones/progress.webp",
       mobileImage: "/phones/mobile/progress.png",
       gradient: "from-pink-500/20 via-purple-500/20 to-helthy-lemon/20",
       accentColor: "purple-400"
@@ -63,9 +64,6 @@ export default function TheProblemSection() {
   <div className="relative w-full px-0">
         {/* Header */}
   <div className="text-center mb-14 md:mb-20 max-w-4xl mx-auto px-6">
-          <span className="inline-flex items-center px-4 py-2 rounded-full bg-helthy-lemon/10 border border-helthy-lemon/20 text-helthy-lemon text-sm font-medium tracking-wide mb-6 scroll-reveal animate-scale-in">
-            The Problem
-          </span>
           <h2 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-normal leading-[1.12] text-white mb-5 md:mb-6 scroll-reveal animate-slide-up stagger-1" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
             Stop juggling.<br />Start <span className="text-helthy-lemon">thriving</span>.
           </h2>
@@ -163,7 +161,8 @@ export default function TheProblemSection() {
                   One app. <span className="text-helthy-lemon">Everything.</span>
                 </h4>
                 <p className="mt-2 md:mt-4 text-white/70 max-w-2xl mx-auto text-base md:text-lg scroll-reveal animate-slide-up stagger-2">
-                  All the tools you need to reach your health goals, unified in one beautiful experience.
+                  <span className="hidden md:inline">All the tools you need to reach your health goals, unified in one beautiful experience.</span>
+                  <span className="md:hidden">All your health tools in one place.</span>
                 </p>
                 {/* Helthy total price — same style, brand green */}
                 <div className="mt-8 flex justify-center scroll-reveal animate-scale-in stagger-3">
@@ -172,63 +171,66 @@ export default function TheProblemSection() {
               </div>
 
               {/* Interactive Feature Showcase */}
-              <div className="w-full max-w-7xl mx-auto px-6 mt-16 md:mt-20">
+              <div className="w-full max-w-7xl mx-auto mt-16 md:mt-20">
                 
-                {/* Mobile: Vertical Stack with Integrated Phones */}
-                <div className="md:hidden space-y-6">
-                  {features.map((feature, idx) => (
-                    <div 
-                      key={feature.id}
-                      className="group relative bg-gradient-to-br from-white/[0.07] to-white/[0.02] backdrop-blur-sm rounded-[2rem] border border-white/10 p-6 overflow-hidden"
-                      style={{ animationDelay: `${idx * 0.1}s` }}
-                    >
-                      {/* Gradient mesh background */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
-                      
-                      {/* Content */}
-                      <div className="relative z-10 space-y-4">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-2">
-                              <span className="text-xs font-medium text-helthy-lemon/60">0{idx + 1}</span>
-                              <div className="h-px flex-1 bg-gradient-to-r from-helthy-lemon/30 to-transparent" />
-                            </div>
-                            <h5 className="text-white font-semibold text-xl mb-1">{feature.title}</h5>
-                            <p className="text-helthy-lemon/80 text-sm">{feature.subtitle}</p>
+                {/* Mobile: Horizontal Scroll Carousel */}
+                <div className="md:hidden">
+                  <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 pb-6 scrollbar-hide">
+                    {features.map((feature, idx) => (
+                      <div 
+                        key={feature.id}
+                        className="flex-shrink-0 w-[85vw] snap-center group relative bg-gradient-to-br from-white/[0.07] to-white/[0.02] backdrop-blur-sm rounded-[2rem] border border-white/10 p-6 overflow-hidden"
+                      >
+                        {/* Gradient mesh background */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-20 pointer-events-none`} />
+                        
+                        {/* Content */}
+                        <div className="relative z-10 space-y-4">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-xs font-medium text-helthy-lemon/60">0{idx + 1}</span>
+                            <div className="h-px flex-1 bg-gradient-to-r from-helthy-lemon/30 to-transparent" />
                           </div>
-                        </div>
-                        
-                        <p className="text-white/70 text-sm leading-relaxed">
-                          {feature.description}
-                        </p>
-                        
-                        {/* Highlights grid */}
-                        <div className="grid grid-cols-2 gap-2 pt-2">
-                          {feature.highlights.map((highlight, i) => (
-                            <div 
-                              key={i} 
-                              className="flex items-center gap-2 px-3 py-2 rounded-2xl bg-white/5 border border-white/10"
-                            >
-                              <div className="w-1.5 h-1.5 rounded-full bg-helthy-lemon" />
-                              <span className="text-white/80 text-xs font-medium">{highlight}</span>
+                          
+                          <div>
+                            <h5 className="text-white font-semibold text-2xl mb-1">{feature.title}</h5>
+                            <p className="text-helthy-lemon/80 text-sm mb-3">{feature.subtitle}</p>
+                          </div>
+                          
+                          {/* Phone preview - moved up */}
+                          <div className="flex justify-center my-4">
+                            <div className="w-40 rounded-[1.5rem] overflow-hidden border border-white/20 bg-white/5 p-1.5">
+                              <img
+                                src={feature.mobileImage}
+                                alt={`${feature.title} screen`}
+                                className="w-full h-auto rounded-[1.25rem]"
+                                loading="lazy"
+                              />
                             </div>
-                          ))}
-                        </div>
-
-                        {/* Phone preview */}
-                        <div className="mt-4 flex justify-center">
-                          <div className="w-48 rounded-[2rem] overflow-hidden border border-white/20 bg-white/5 p-2">
-                            <img
-                              src={feature.mobileImage}
-                              alt={`${feature.title} screen`}
-                              className="w-full h-auto rounded-[1.75rem]"
-                              loading="lazy"
-                            />
+                          </div>
+                          
+                          {/* Highlights - compact */}
+                          <div className="flex flex-wrap gap-2">
+                            {feature.highlights.map((highlight, i) => (
+                              <div 
+                                key={i} 
+                                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-white/5 border border-white/10"
+                              >
+                                <div className="w-1 h-1 rounded-full bg-helthy-lemon" />
+                                <span className="text-white/80 text-xs font-medium">{highlight}</span>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                  
+                  {/* Scroll indicator */}
+                  <div className="flex justify-center gap-2 mt-4 px-6">
+                    {features.map((_, idx) => (
+                      <div key={idx} className="w-1.5 h-1.5 rounded-full bg-white/30" />
+                    ))}
+                  </div>
                 </div>
 
                 {/* Desktop: Interactive Tab System with Large Preview */}
@@ -238,7 +240,10 @@ export default function TheProblemSection() {
                     {features.map((feature) => (
                       <button
                         key={feature.id}
-                        onClick={() => setActiveFeature(feature.id)}
+                        onClick={() => {
+                          setActiveFeature(feature.id);
+                          setHasAnimated(prev => new Set(prev).add(feature.id));
+                        }}
                         onMouseEnter={() => setHoveredCard(feature.id)}
                         onMouseLeave={() => setHoveredCard(null)}
                         className={`relative px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 ${
@@ -259,16 +264,20 @@ export default function TheProblemSection() {
 
                   {/* Feature Display Area */}
                   <div className="relative min-h-[600px]">
-                    {features.map((feature) => (
-                      <div
-                        key={feature.id}
-                        className={`absolute inset-0 transition-all duration-500 ${
-                          activeFeature === feature.id
-                            ? 'opacity-100 translate-y-0'
-                            : 'opacity-0 translate-y-8 pointer-events-none'
-                        }`}
-                      >
-                        <div className="grid md:grid-cols-2 gap-12 items-center">
+                    {features.map((feature) => {
+                      const isActive = activeFeature === feature.id;
+                      const shouldAnimate = !hasAnimated.has(feature.id) && isActive;
+                      
+                      return (
+                        <div
+                          key={feature.id}
+                          className={`absolute inset-0 transition-opacity duration-500 ${
+                            isActive
+                              ? 'opacity-100'
+                              : 'opacity-0 pointer-events-none'
+                          } ${shouldAnimate ? 'animate-fade-in-up' : ''}`}
+                        >
+                          <div className="grid md:grid-cols-2 gap-12 items-center">
                           {/* Left: Content */}
                           <div className="space-y-6">
                             <div>
@@ -329,7 +338,8 @@ export default function TheProblemSection() {
                           </div>
                         </div>
                       </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               </div>

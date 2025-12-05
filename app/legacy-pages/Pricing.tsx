@@ -6,11 +6,6 @@ export default function Pricing() {
       <section className="relative pt-28 md:pt-36 pb-24 md:pb-32">
         <div className="container mx-auto px-6 lg:px-20 max-w-4xl">
           <div className="text-center mb-16">
-            <div className="mb-6">
-              <span className="inline-flex items-center px-4 py-2 rounded-full bg-helthy-lemon/10 border border-helthy-lemon/20 text-helthy-lemon text-sm font-medium tracking-wide">
-                Pricing
-              </span>
-            </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal leading-tight text-white mb-6" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
               It's <span className="text-helthy-lemon">100% Free</span>
             </h1>
@@ -51,7 +46,6 @@ export default function Pricing() {
                   'Voice logging',
                   'Real-time progress tracking',
                   'Apple Health / Google Fit sync',
-                  'Community support & challenges',
                   'Personalized insights & analytics',
                   'No ads, ever',
                 ].map((item) => (

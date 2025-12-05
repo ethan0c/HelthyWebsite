@@ -20,8 +20,8 @@ export const DARK_THEME: AppTheme = {
   accent: "#FF6B6B",
   buttonBackground: "#B8FF6A",
   buttonText: "#07120A",
-  gradient1: "#B8FF6A",
-  gradient2: "#06B6D4",
+  gradient1: "#000000",
+  gradient2: "#B8FF6A",
 };
 
 export const LIGHT_THEME: AppTheme = {
@@ -32,8 +32,8 @@ export const LIGHT_THEME: AppTheme = {
   accent: "#10B981",
   buttonBackground: "#10B981",
   buttonText: "#FFFFFF",
-  gradient1: "#FDE68A",
-  gradient2: "#FB923C",
+  gradient1: "#FFFFFF",
+  gradient2: "#F8FAFC",
 };
 
 export const OCEAN_ABYSS_THEME: AppTheme = {
@@ -44,8 +44,8 @@ export const OCEAN_ABYSS_THEME: AppTheme = {
   accent: "#06B6D4",
   buttonBackground: "#06B6D4",
   buttonText: "#041019",
-  gradient1: "#06B6D4",
-  gradient2: "#7C3AED",
+  gradient1: "#071026",
+  gradient2: "#06B6D4",
 };
 
 export const EMERALD_FOREST_THEME: AppTheme = {
@@ -56,8 +56,8 @@ export const EMERALD_FOREST_THEME: AppTheme = {
   accent: "#2DD4BF",
   buttonBackground: "#10B981",
   buttonText: "#FFFFFF",
-  gradient1: "#10B981",
-  gradient2: "#34D399",
+  gradient1: "#F7FFF7",
+  gradient2: "#10B981",
 };
 
 export const SUNSET_ORANGE_THEME: AppTheme = {
@@ -68,8 +68,8 @@ export const SUNSET_ORANGE_THEME: AppTheme = {
   accent: "#FFB454",
   buttonBackground: "#FF7A45",
   buttonText: "#FFFFFF",
-  gradient1: "#FF7A45",
-  gradient2: "#FFD27A",
+  gradient1: "#FFF7ED",
+  gradient2: "#FF7A45",
 };
 
 export const HELLO_KITTY_THEME: AppTheme = {
@@ -80,8 +80,8 @@ export const HELLO_KITTY_THEME: AppTheme = {
   accent: "#FFB8E6",
   buttonBackground: "#FF6AB8",
   buttonText: "#FFFFFF",
-  gradient1: "#FF6AB8",
-  gradient2: "#FFD1EC",
+  gradient1: "#FFF1F8",
+  gradient2: "#FF6AB8",
 };
 
 export const MIDNIGHT_AURORA_THEME: AppTheme = {
@@ -92,8 +92,8 @@ export const MIDNIGHT_AURORA_THEME: AppTheme = {
   accent: "#8B5CF6",
   buttonBackground: "#7C3AED",
   buttonText: "#FFFFFF",
-  gradient1: "#7C3AED",
-  gradient2: "#A78BFA",
+  gradient1: "#0B0426",
+  gradient2: "#7C3AED",
 };
 
 export const THEMES = {
