@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: "Helthy",
     images: [
       {
-        url: "/logos/logo-green-black.svg",
+        url: "/logo-green-black.svg",
         width: 512,
         height: 512,
         alt: "Helthy logo",

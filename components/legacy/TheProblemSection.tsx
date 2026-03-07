@@ -88,7 +88,7 @@ export default function TheProblemSection() {
               <div className="absolute top-0 left-[5%] md:left-[10%] w-28 md:w-44 lg:w-52 transform -rotate-6 animate-pulse" style={{ animationDuration: '3s' }}>
                 <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-700 shadow-xl">
                   <img 
-                    src="/logos/cal-ai.png" 
+                    src="/cal-ai.png" 
                     alt="Cal AI" 
                     className="w-12 h-12 lg:w-14 lg:h-14 mb-3 opacity-80 transition-opacity duration-300"
                     loading="lazy"
@@ -103,7 +103,7 @@ export default function TheProblemSection() {
               <div className="absolute top-8 right-[5%] md:right-[10%] w-28 md:w-44 lg:w-52 transform rotate-6 animate-pulse" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }}>
                 <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-700 shadow-xl">
                   <img 
-                    src="/logos/strong.jpg" 
+                    src="/strong.jpg" 
                     alt="Strong" 
                     className="w-12 h-12 lg:w-14 lg:h-14 mb-3 opacity-80 transition-opacity duration-300"
                     loading="lazy"
@@ -117,7 +117,7 @@ export default function TheProblemSection() {
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-28 md:w-44 lg:w-52 transform -rotate-3 animate-pulse" style={{ animationDuration: '4s', animationDelay: '1s' }}>
                 <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-700 shadow-xl">
                   <img 
-                    src="/logos/walker.webp" 
+                    src="/walker.webp" 
                     alt="Walker" 
                     className="w-12 h-12 lg:w-14 lg:h-14 mb-3 opacity-80 transition-opacity duration-300"
                     loading="lazy"
