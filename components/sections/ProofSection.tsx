@@ -292,11 +292,11 @@ export default function ProofSection() {
             </p>
             <span
               data-helthy-price
-              className="text-5xl sm:text-6xl font-heading font-bold text-helthy-lemon"
+              className="text-5xl sm:text-6xl font-mono font-bold text-helthy-lemon"
             >
               $0
             </span>
-            <span className="text-white/25 text-sm block mt-1">/month · forever</span>
+            <span className="text-white/25 text-sm font-mono block mt-1">/month · forever</span>
           </div>
 
           {/* Feature grid */}
