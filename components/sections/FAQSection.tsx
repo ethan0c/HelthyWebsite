@@ -59,7 +59,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section ref={sectionRef} className="relative section-padding">
+    <section ref={sectionRef} className="relative section-padding hatch-bg">
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
         <div data-faq-title className="mb-12 sm:mb-16">
           <h2 className="text-display-md text-white">

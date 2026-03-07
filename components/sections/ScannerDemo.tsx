@@ -3,31 +3,16 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkles } from "lucide-react";
+import { Camera, Sparkles } from "lucide-react";
 
-/* ── Scanned food items ───────────────────────────────────── */
 const foods = [
-  { emoji: "🥗", name: "Mixed Greens Salad", serving: "1 bowl · 120 g", cal: 45, p: 3, c: 6, f: 1 },
-  { emoji: "🍣", name: "Grilled Salmon", serving: "1 fillet · 170 g", cal: 354, p: 39, c: 0, f: 21 },
-  { emoji: "🥑", name: "Avocado", serving: "½ medium · 68 g", cal: 114, p: 1, c: 6, f: 10 },
-  { emoji: "🍅", name: "Cherry Tomatoes", serving: "6 pieces · 90 g", cal: 16, p: 1, c: 3, f: 0 },
+  { emoji: "🥗", name: "Mixed Greens Salad", cal: 45, p: 3, c: 6, f: 1 },
+  { emoji: "🍣", name: "Grilled Salmon", cal: 354, p: 39, c: 0, f: 21 },
+  { emoji: "🥑", name: "Avocado", cal: 114, p: 1, c: 6, f: 10 },
+  { emoji: "🍅", name: "Cherry Tomatoes", cal: 16, p: 1, c: 3, f: 0 },
 ];
 
-const totalCal = foods.reduce((s, f) => s + f.cal, 0);
-
 const COLORS = { p: "#4CAF50", c: "#2196F3", f: "#FF9800" };
-
-function Pill({ value, label, color }: { value: number; label: string; color: string }) {
-  return (
-    <span
-      className="inline-flex items-center gap-[3px] rounded-full px-2 py-[3px] text-[11px]"
-      style={{ backgroundColor: color + "18" }}
-    >
-      <span className="font-semibold text-white/70">{value}</span>
-      <span className="text-[9px] font-semibold" style={{ color }}>{label}</span>
-    </span>
-  );
-}
 
 export default function ScannerDemo() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -35,81 +20,144 @@ export default function ScannerDemo() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
-      gsap.from("[data-scan-text]", {
-        y: 40,
+      /* Viewfinder slides in from left */
+      gsap.from("[data-scan-viewfinder]", {
+        x: -60,
         opacity: 0,
-        duration: 0.9,
+        duration: 1,
         ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 70%", toggleActions: "play none none reverse" },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 65%",
+          toggleActions: "play none none reverse",
+        },
       });
 
-      gsap.from("[data-scan-card]", {
-        y: 50,
+      /* Results card slides in from right */
+      gsap.from("[data-scan-results]", {
+        x: 60,
         opacity: 0,
-        duration: 0.9,
+        duration: 1,
         ease: "power3.out",
-        scrollTrigger: { trigger: "[data-scan-card]", start: "top 80%", toggleActions: "play none none reverse" },
-        delay: 0.15,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 65%",
+          toggleActions: "play none none reverse",
+        },
+        delay: 0.2,
+      });
+
+      /* Scan line animation */
+      gsap.to("[data-scan-line]", {
+        y: "100%",
+        duration: 2,
+        ease: "power1.inOut",
+        repeat: -1,
+        yoyo: true,
+      });
+
+      /* Food rows stagger */
+      gsap.from("[data-scan-food]", {
+        x: 20,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.5,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: "[data-scan-results]",
+          start: "top 75%",
+          toggleActions: "play none none reverse",
+        },
+        delay: 0.5,
       });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-28 sm:py-40">
-      <div className="mx-auto max-w-5xl px-6 sm:px-10">
+    <section ref={sectionRef} className="relative py-24 sm:py-32 overflow-hidden geo-grid">
+      <div className="mx-auto max-w-6xl px-6 sm:px-10">
         {/* Heading */}
-        <div data-scan-text className="text-center mb-14 sm:mb-20">
-          <p className="text-sm font-mono tracking-[0.2em] uppercase text-helthy-lemon mb-4">
-            AI-Powered
-          </p>
-          <h2 className="font-heading font-bold text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.025em] text-white mb-4">
-            Snap a photo. Know every macro.
+        <div className="text-center mb-16">
+          <span className="pill-badge mb-4">AI-Powered</span>
+          <h2 className="font-heading font-semibold text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-white">
+            Snap a photo.{" "}
+            <span className="accent-serif text-helthy-lemon">Know every macro.</span>
           </h2>
-          <p className="text-lg text-white/50 max-w-lg mx-auto leading-relaxed">
-            Point your camera at any meal. Our AI identifies each item and logs
-            calories, protein, carbs, and fats instantly.
-          </p>
         </div>
 
-        {/* Results card — centered, full-width */}
-        <div
-          data-scan-card
-          className="rounded-2xl border border-white/[0.08] bg-[#0C0C0C] overflow-hidden max-w-2xl mx-auto"
-        >
-          {/* Header */}
-          <div className="px-6 py-4 border-b border-white/[0.06] flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
+        {/* Split: viewfinder + results */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          {/* Camera viewfinder */}
+          <div
+            data-scan-viewfinder
+            className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/[0.06] bg-[#0A0A0A]"
+          >
+            <img
+              src="/images/stock/meal-overhead.jpg"
+              alt="Meal being scanned"
+              className="w-full h-full object-cover opacity-60"
+            />
+            {/* Scan line */}
+            <div
+              data-scan-line
+              className="absolute left-4 right-4 top-0 h-px bg-gradient-to-r from-transparent via-helthy-lemon to-transparent"
+            />
+            {/* Corner brackets */}
+            <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-helthy-lemon/60 rounded-tl-sm" />
+            <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-helthy-lemon/60 rounded-tr-sm" />
+            <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-helthy-lemon/60 rounded-bl-sm" />
+            <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-helthy-lemon/60 rounded-br-sm" />
+            {/* Camera icon */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="w-14 h-14 rounded-full bg-helthy-lemon/10 border border-helthy-lemon/30 flex items-center justify-center">
+                <Camera className="w-6 h-6 text-helthy-lemon" />
+              </div>
+            </div>
+          </div>
+
+          {/* Results card */}
+          <div
+            data-scan-results
+            className="rounded-2xl border border-white/[0.06] bg-[#0C0C0C] flex flex-col"
+          >
+            {/* Header */}
+            <div className="px-5 py-4 border-b border-white/[0.05] flex items-center gap-2.5">
               <div className="w-7 h-7 rounded-lg bg-helthy-lemon/10 flex items-center justify-center">
                 <Sparkles className="w-3.5 h-3.5 text-helthy-lemon" />
               </div>
-              <span className="text-sm font-medium text-white/80">4 items detected</span>
+              <span className="text-sm font-medium text-white/70">4 items detected</span>
+              <span className="ml-auto text-xs font-mono text-white/25">529 kcal</span>
             </div>
-            <span className="text-sm font-mono text-white/40">{totalCal} kcal</span>
-          </div>
 
-          {/* Food rows */}
-          <div className="divide-y divide-white/[0.04]">
-            {foods.map((f, i) => (
-              <div key={i} className="px-6 py-4 flex items-center gap-4">
-                <span className="text-2xl w-8 text-center flex-shrink-0">{f.emoji}</span>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm text-white/80 font-medium">{f.name}</p>
-                  <p className="text-xs text-white/30 mt-0.5">{f.serving}</p>
+            {/* Food rows */}
+            <div className="flex-1 divide-y divide-white/[0.04]">
+              {foods.map((f) => (
+                <div key={f.name} data-scan-food className="px-5 py-3.5 flex items-center gap-3">
+                  <span className="text-lg w-6 text-center shrink-0">{f.emoji}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[13px] text-white/70 font-medium truncate">{f.name}</p>
+                    <p className="text-[11px] text-white/25">{f.cal} kcal</p>
+                  </div>
+                  <div className="flex gap-1.5 shrink-0">
+                    {[
+                      { v: f.p, l: "P", c: COLORS.p },
+                      { v: f.c, l: "C", c: COLORS.c },
+                      { v: f.f, l: "F", c: COLORS.f },
+                    ].map((m) => (
+                      <span
+                        key={m.l}
+                        className="inline-flex items-center gap-[2px] rounded-full px-1.5 py-[2px] text-[10px]"
+                        style={{ backgroundColor: m.c + "15" }}
+                      >
+                        <span className="font-semibold text-white/60">{m.v}</span>
+                        <span className="font-semibold" style={{ color: m.c, fontSize: 8 }}>{m.l}</span>
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 flex-shrink-0">
-                  <Pill value={f.p} label="P" color={COLORS.p} />
-                  <Pill value={f.c} label="C" color={COLORS.c} />
-                  <Pill value={f.f} label="F" color={COLORS.f} />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Total */}
-          <div className="px-6 py-4 border-t border-white/[0.06] bg-white/[0.02] flex items-center justify-between">
-            <span className="text-xs font-mono uppercase tracking-wider text-white/30">Total</span>
-            <span className="text-base font-mono font-semibold text-white/70">{totalCal} kcal</span>
+              ))}
+            </div>
           </div>
         </div>
       </div>

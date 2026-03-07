@@ -4,119 +4,155 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-/* ── Feature data — minimal ────────────────────────────────── */
 const features = [
   {
+    id: "feature-nutrition",
     label: "Nutrition",
     headline: "Log meals in seconds.",
     description:
-      "Barcode scanner, AI photo recognition, voice logging, or search from 1M+ foods. However you eat, we track it.",
+      "Barcode scanner, AI photo recognition, voice logging, or search from 1M+ foods.",
     phone: "/phones/foodmainscreen.png",
   },
   {
+    id: "feature-workouts",
     label: "Workouts",
     headline: "Your gym partner, built in.",
     description:
-      "500+ exercises with video demos. Log sets, track PRs, build custom routines. Everything auto-saves.",
+      "500+ exercises. Log sets, track PRs, build custom routines. Everything auto-saves.",
     phone: "/phones/newworkoutscreen.png",
   },
   {
+    id: "feature-progress",
     label: "Progress",
     headline: "See what's working.",
     description:
-      "Weight trends, body measurements, calorie streaks, and macro breakdowns — all visualized over time.",
+      "Weight trends, body measurements, calorie streaks — all visualized over time.",
     phone: "/phones/weightscreen.png",
   },
 ];
 
 export default function FeatureReel() {
   const sectionRef = useRef<HTMLElement>(null);
+  const panelRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const phoneRefs = useRef<(HTMLImageElement | null)[]>([]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+
+    const section = sectionRef.current;
+    if (!section) return;
+
     const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>("[data-feature-block]").forEach((el) => {
-        const text = el.querySelector("[data-feature-text]");
-        const phone = el.querySelector("[data-feature-phone]");
+      const count = features.length;
 
-        if (text) {
-          gsap.from(text, {
-            y: 40,
-            opacity: 0,
-            duration: 0.9,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 75%",
-              toggleActions: "play none none reverse",
-            },
-          });
-        }
-
-        if (phone) {
-          gsap.from(phone, {
-            y: 60,
-            opacity: 0,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 75%",
-              toggleActions: "play none none reverse",
-            },
-            delay: 0.1,
-          });
-        }
+      /* Build a single timeline, scrubbed by one ScrollTrigger */
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => `+=${count * 100}%`,
+          pin: true,
+          scrub: 0.4,
+          anticipatePin: 1,
+        },
       });
-    }, sectionRef);
+
+      for (let i = 0; i < count - 1; i++) {
+        const curPanel = panelRefs.current[i];
+        const nextPanel = panelRefs.current[i + 1];
+        const curPhone = phoneRefs.current[i];
+        const nextPhone = phoneRefs.current[i + 1];
+
+        /* Hold current panel visible for a beat */
+        tl.to({}, { duration: 0.4 });
+
+        /* Cross-fade text: old out, new in */
+        tl.to(
+          curPanel,
+          { opacity: 0, y: -30, duration: 0.5, ease: "power2.in" },
+          ">"
+        );
+        tl.fromTo(
+          nextPanel,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
+          "<0.15"
+        );
+
+        /* Cross-fade phones: old out, new in */
+        tl.to(
+          curPhone,
+          { opacity: 0, scale: 0.9, duration: 0.5, ease: "power2.in" },
+          "<-0.35"
+        );
+        tl.fromTo(
+          nextPhone,
+          { opacity: 0, scale: 1.1 },
+          { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" },
+          "<0.15"
+        );
+      }
+
+      /* Hold the last panel */
+      tl.to({}, { duration: 0.3 });
+    }, section);
+
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-6 sm:px-10 space-y-32 sm:space-y-44">
-        {features.map((f, i) => {
-          const reverse = i % 2 === 1;
-          return (
+    <section
+      ref={sectionRef}
+      className="relative flex items-center justify-center dot-grid"
+      style={{ height: "100vh" }}
+    >
+      <div className="mx-auto max-w-6xl w-full px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        {/* Left — text panels stacked */}
+        <div className="relative" style={{ minHeight: 180 }}>
+          {features.map((f, i) => (
             <div
-              key={f.label}
-              data-feature-block
-              className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
-                reverse ? "lg:[direction:rtl]" : ""
+              key={f.id}
+              id={f.id}
+              ref={(el) => { panelRefs.current[i] = el; }}
+              className={`flex flex-col justify-center ${
+                i === 0 ? "relative" : "absolute inset-0"
               }`}
+              style={{ opacity: i === 0 ? 1 : 0 }}
             >
-              {/* Phone — big, clean */}
-              <div
-                data-feature-phone
-                className="flex justify-center"
-                style={reverse ? { direction: "ltr" } : undefined}
-              >
-                <img
-                  src={f.phone}
-                  alt={`${f.label} screen`}
-                  className="w-[260px] sm:w-[300px] lg:w-[340px] rounded-[2.5rem] shadow-2xl shadow-black/40"
-                  loading="lazy"
-                />
-              </div>
-
-              {/* Text — short, high contrast */}
-              <div
-                data-feature-text
-                style={reverse ? { direction: "ltr" } : undefined}
-              >
-                <p className="text-sm font-mono tracking-[0.2em] uppercase text-helthy-lemon mb-4">
-                  {f.label}
-                </p>
-                <h2 className="font-heading font-bold text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.025em] text-white mb-5">
-                  {f.headline}
-                </h2>
-                <p className="text-lg text-white/60 leading-relaxed max-w-md">
-                  {f.description}
-                </p>
-              </div>
+              <span className="text-[11px] uppercase tracking-[0.25em] text-helthy-lemon font-medium mb-4">
+                {f.label}
+              </span>
+              <h2 className="font-heading font-semibold text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-white mb-4">
+                {f.headline}
+              </h2>
+              <p className="text-base text-white/40 leading-relaxed max-w-sm">
+                {f.description}
+              </p>
             </div>
-          );
-        })}
+          ))}
+        </div>
+
+        {/* Right — phone images stacked */}
+        <div className="relative flex justify-center lg:justify-end">
+          <div className="relative w-[240px] sm:w-[280px] lg:w-[300px]">
+            {features.map((f, i) => (
+              <img
+                key={f.id}
+                ref={(el) => { phoneRefs.current[i] = el; }}
+                src={f.phone}
+                alt={`${f.label} screen`}
+                className="rounded-[2.5rem] shadow-2xl shadow-black/50 w-full"
+                style={{
+                  opacity: i === 0 ? 1 : 0,
+                  position: i === 0 ? "relative" : "absolute",
+                  top: 0,
+                  left: 0,
+                }}
+                loading={i === 0 ? "eager" : "lazy"}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
