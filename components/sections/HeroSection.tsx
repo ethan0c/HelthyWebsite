@@ -2,68 +2,43 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, X, Sparkles, Lightbulb, Keyboard, Mic } from "lucide-react";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      /* ─ Headline words stagger ─ */
-      gsap.from("[data-hero-word]", {
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.08,
-        ease: "power3.out",
-        delay: 0.2,
+      gsap.from("[data-hero-headline]", {
+        clipPath: "inset(100% 0 0 0)",
+        duration: 1.2,
+        ease: "power4.out",
+        delay: 0.15,
       });
 
-      /* ─ Subtitle + CTA ─ */
       gsap.from("[data-hero-sub]", {
-        y: 30,
+        y: 20,
         opacity: 0,
         duration: 0.7,
         ease: "power3.out",
-        delay: 0.7,
+        delay: 0.6,
       });
 
-      gsap.from("[data-hero-cta]", {
-        y: 20,
-        opacity: 0,
-        duration: 0.6,
-        ease: "power3.out",
-        delay: 0.9,
-      });
-
-      /* ─ Phone mockup float in ─ */
-      gsap.from("[data-hero-phone]", {
-        y: 80,
+      gsap.from("[data-hero-chat]", {
+        y: 40,
         opacity: 0,
         scale: 0.92,
         duration: 1,
-        ease: "power3.out",
-        delay: 0.4,
+        ease: "back.out(1.6)",
+        delay: 0.8,
       });
 
-      /* ─ Subtle float animation on phone ─ */
-      gsap.to("[data-hero-phone]", {
-        y: -12,
-        duration: 3,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-        delay: 1.5,
-      });
-
-      /* ─ Trust badges stagger ─ */
-      gsap.from("[data-hero-trust]", {
-        y: 15,
+      gsap.from("[data-hero-cta]", {
+        y: 14,
         opacity: 0,
-        stagger: 0.1,
-        duration: 0.5,
+        duration: 0.6,
         ease: "power3.out",
-        delay: 1.1,
+        delay: 1.3,
       });
     }, sectionRef);
 
@@ -73,92 +48,118 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[100dvh] flex items-center overflow-hidden"
+      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden"
     >
-      {/* Subtle background grid */}
-      <div className="absolute inset-0 geo-grid opacity-40" />
+      {/* Video background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/videos/hero-man-running.mp4" type="video/mp4" />
+      </video>
 
-      {/* Lemon glow behind phone area */}
-      <div className="absolute top-1/2 right-[15%] -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-helthy-lemon/[0.04] blur-[150px] pointer-events-none" />
+      {/* Dark gradient overlay — bottom-heavy so text pops */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#060606] via-[#060606]/80 to-[#060606]/40" />
 
-      <div className="relative z-10 mx-auto max-w-7xl w-full px-5 sm:px-8 py-24 sm:py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          {/* Left — Copy */}
-          <div>
-            <h1 className="text-display-xl max-w-xl">
-              <span data-hero-word className="inline-block">Track&nbsp;</span>
-              <span data-hero-word className="inline-block">workouts.</span>
-              <br />
-              <span data-hero-word className="inline-block">Log&nbsp;</span>
-              <span data-hero-word className="inline-block">nutrition.</span>
-              <br />
-              <span data-hero-word className="inline-block text-helthy-lemon">
-                Own&nbsp;
-              </span>
-              <span data-hero-word className="inline-block text-helthy-lemon">
-                your&nbsp;
-              </span>
-              <span data-hero-word className="inline-block text-helthy-lemon">
-                health.
-              </span>
-            </h1>
+      {/* Lemon tint at bottom for brand feel */}
+      <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-helthy-lemon/[0.04] to-transparent pointer-events-none" />
 
-            <p
-              data-hero-sub
-              className="text-lg sm:text-xl text-white/45 max-w-md mt-6 sm:mt-8 font-light leading-relaxed"
-            >
-              The all-in-one fitness app that&rsquo;s actually free. No trials,
-              no paywalls, no ads on core features.
-            </p>
+      <div className="relative z-10 mx-auto max-w-3xl w-full px-5 sm:px-8 text-center py-20 sm:py-28">
+        {/* Headline */}
+        <div className="overflow-hidden mb-4">
+          <h1
+            data-hero-headline
+            className="font-heading font-semibold text-[clamp(2rem,4vw,3.25rem)] leading-[1.1] tracking-[-0.02em] text-white"
+          >
+            Track Everything.
+            <br />
+            <span className="accent-serif text-helthy-lemon">Pay Nothing.</span>
+          </h1>
+        </div>
 
-            <div data-hero-cta className="flex flex-wrap items-center gap-4 mt-8 sm:mt-10">
-              <a
-                href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary"
-              >
-                Download Free
-                <ArrowUpRight className="w-5 h-5" />
-              </a>
-              <span className="text-sm text-white/30">iOS · Android · Apple Watch</span>
-            </div>
+        {/* Subtitle */}
+        <p
+          data-hero-sub
+          className="text-sm sm:text-base text-white/50 font-light leading-relaxed max-w-md mx-auto mb-10"
+        >
+          Workouts, nutrition, and progress — all in one app.
+          No subscriptions. No trials. No paywalls.
+        </p>
 
-            {/* Inline trust signals */}
-            <div className="flex flex-wrap items-center gap-5 mt-10 sm:mt-14">
-              <div data-hero-trust className="flex items-center gap-2">
-                <div className="flex -space-x-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-4 h-4 text-helthy-lemon" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                <span className="text-sm text-white/40 font-medium">4.9 on App Store</span>
+        {/* ── In-app "Describe Meal" mockup ── */}
+        <div data-hero-chat className="mx-auto max-w-sm">
+          <div className="rounded-2xl border border-white/[0.08] bg-[#1A1A1A]/80 backdrop-blur-2xl overflow-hidden shadow-2xl shadow-black/40">
+            {/* Header bar — matches app modal */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.06]">
+              <X className="w-4 h-4 text-white/30" />
+              <div className="text-center">
+                <span className="text-[13px] font-medium text-white/90 block">Describe Meal</span>
+                <span className="text-[11px] text-helthy-lemon flex items-center justify-center gap-1">
+                  🍳 Breakfast
+                </span>
               </div>
-              <div data-hero-trust className="w-px h-4 bg-white/10" />
-              <span data-hero-trust className="text-sm text-white/40">100% Free</span>
-              <div data-hero-trust className="w-px h-4 bg-white/10" />
-              <span data-hero-trust className="text-sm text-white/40">1M+ Foods</span>
+              <div className="w-4" />
             </div>
-          </div>
 
-          {/* Right — Phone mockup */}
-          <div className="flex justify-center lg:justify-end">
-            <div data-hero-phone className="relative">
-              {/* Glow ring */}
-              <div className="absolute -inset-8 rounded-[3rem] bg-helthy-lemon/[0.06] blur-[60px] pointer-events-none" />
-
-              {/* Phone frame */}
-              <div className="relative w-[280px] sm:w-[300px] lg:w-[320px] rounded-[2.5rem] overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/60">
-                <img
-                  src="/phones/homescreen.png"
-                  alt="Helthy app dashboard"
-                  className="w-full aspect-[9/19.5] object-cover object-top"
-                />
+            {/* Mode toggle */}
+            <div className="flex mx-4 mt-3 rounded-lg bg-white/[0.04] p-0.5">
+              <div className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-md bg-white/[0.08]">
+                <Keyboard className="w-3 h-3 text-white/70" />
+                <span className="text-[11px] font-medium text-white/70">Type</span>
+              </div>
+              <div className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-md">
+                <Mic className="w-3 h-3 text-white/30" />
+                <span className="text-[11px] text-white/30">Voice</span>
               </div>
             </div>
+
+            {/* Text Area */}
+            <div className="mx-4 mt-3">
+              <div className="rounded-xl bg-white/[0.04] border border-white/[0.06] p-3.5 min-h-[80px] text-left">
+                <span className="text-[13px] text-white/20 leading-relaxed">
+                  E.g., &ldquo;2 scrambled eggs, toast with butter, and orange juice&rdquo;
+                </span>
+              </div>
+            </div>
+
+            {/* Analyze Button */}
+            <div className="mx-4 mt-3">
+              <div className="flex items-center justify-center gap-2 py-2.5 rounded-full bg-helthy-lemon">
+                <Sparkles className="w-3.5 h-3.5 text-black" />
+                <span className="text-[13px] font-medium text-black">Analyze</span>
+              </div>
+            </div>
+
+            {/* Tips Card */}
+            <div className="mx-4 mt-3 mb-4 rounded-lg bg-white/[0.03] p-3">
+              <div className="flex items-center gap-1.5 mb-1">
+                <Lightbulb className="w-3 h-3 text-helthy-lemon/60" />
+                <span className="text-[10px] font-medium text-white/30">Tips</span>
+              </div>
+              <span className="text-[10px] text-white/20 leading-relaxed">
+                Be specific with quantities — &ldquo;2 eggs, 1 cup oatmeal, 1 banana&rdquo; works great.
+              </span>
+            </div>
           </div>
+        </div>
+
+        {/* CTA */}
+        <div data-hero-cta className="flex flex-col items-center gap-4 mt-8">
+          <a
+            href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary"
+          >
+            Download Free
+            <ArrowUpRight className="w-5 h-5" />
+          </a>
+          <span className="text-xs text-white/20">
+            iOS &middot; Android &middot; Apple&nbsp;Watch
+          </span>
         </div>
       </div>
     </section>
