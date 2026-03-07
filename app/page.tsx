@@ -6,6 +6,7 @@ import FeatureReel from "@/components/sections/FeatureReel";
 import ScannerDemo from "@/components/sections/ScannerDemo";
 import ProofSection from "@/components/sections/ProofSection";
 import ClosingSection from "@/components/sections/ClosingSection";
+import NewsletterSection from "@/components/sections/NewsletterSection";
 import FAQSection from "@/components/sections/FAQSection";
 import SiteFooter from "@/components/sections/SiteFooter";
 
@@ -20,6 +21,7 @@ export default function Home() {
       <ScannerDemo />
       <ProofSection />
       <ClosingSection />
+      <NewsletterSection />
       <FAQSection />
       <SiteFooter />
     </>
