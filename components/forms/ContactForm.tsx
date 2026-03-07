@@ -79,7 +79,7 @@ export default function ContactForm() {
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           required
           disabled={isSubmitting}
-          className="block w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder-white/60 outline-none ring-0 transition focus:border-helthy-lemon disabled:opacity-50"
+          className="block w-full rounded-xl border border-white/[0.08] bg-white/[0.05] px-4 py-3 text-sm text-white placeholder-white/30 outline-none transition-colors focus:border-helthy-lemon/40 disabled:opacity-50"
           placeholder="Jane Doe"
         />
         {fieldErrors.name && (
@@ -98,7 +98,7 @@ export default function ContactForm() {
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           required
           disabled={isSubmitting}
-          className="block w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder-white/60 outline-none ring-0 transition focus:border-helthy-lemon disabled:opacity-50"
+          className="block w-full rounded-xl border border-white/[0.08] bg-white/[0.05] px-4 py-3 text-sm text-white placeholder-white/30 outline-none transition-colors focus:border-helthy-lemon/40 disabled:opacity-50"
           placeholder="jane@domain.com"
         />
         {fieldErrors.email && (
@@ -116,7 +116,7 @@ export default function ContactForm() {
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           required
           disabled={isSubmitting}
-          className="block min-h-32 w-full resize-y rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder-white/60 outline-none ring-0 transition focus:border-helthy-lemon disabled:opacity-50"
+          className="block min-h-32 w-full resize-y rounded-xl border border-white/[0.08] bg-white/[0.05] px-4 py-3 text-sm text-white placeholder-white/30 outline-none transition-colors focus:border-helthy-lemon/40 disabled:opacity-50"
           placeholder="How can we help?"
         />
         {fieldErrors.message && (
@@ -131,7 +131,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex items-center gap-2 rounded-full bg-helthy-lemon px-6 py-3 text-sm font-medium text-helthy-black shadow-[0_6px_0_rgba(0,0,0,0.2)] transition-colors hover:bg-helthy-lemon/90 disabled:opacity-60"
+        className="btn-primary inline-flex items-center gap-2 disabled:opacity-50 cursor-pointer"
       >
         {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
         {isSubmitting ? "Sending…" : "Send message"}

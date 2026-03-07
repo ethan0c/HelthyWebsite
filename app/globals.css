@@ -1,141 +1,318 @@
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
 
+/* ── Brand Fonts ──────────────────────────────────────────────── */
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/sf-pro-display/SFPRODISPLAYREGULAR.OTF") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/sf-pro-display/SFPRODISPLAYMEDIUM.OTF") format("opentype");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/sf-pro-display/SFPRODISPLAYBOLD.OTF") format("opentype");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/sf-pro-display/SFPRODISPLAYBOLD.OTF") format("opentype");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Graphik Wide";
+  src: url("/fonts/graphik/GraphikWide-Medium-Trial.otf") format("opentype");
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Tomato Grotesk";
+  src: url("/fonts/Tomato%20Grotesk%20Font%20Family/TomatoGrotesk-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tomato Grotesk";
+  src: url("/fonts/Tomato%20Grotesk%20Font%20Family/TomatoGrotesk-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tomato Grotesk";
+  src: url("/fonts/Tomato%20Grotesk%20Font%20Family/TomatoGrotesk-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tomato Grotesk";
+  src: url("/fonts/Tomato%20Grotesk%20Font%20Family/TomatoGrotesk-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tomato Grotesk";
+  src: url("/fonts/Tomato%20Grotesk%20Font%20Family/TomatoGrotesk-ExtraBold.otf") format("opentype");
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tomato Grotesk";
+  src: url("/fonts/Tomato%20Grotesk%20Font%20Family/TomatoGrotesk-Black.otf") format("opentype");
+  font-weight: 900;
+  font-display: swap;
+}
+
+/* ── Design Tokens ────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #060606;
+  --foreground: #ffffff;
+  --helthy-black: #0B0B0B;
+  --helthy-lemon: #CDFB50;
+  --helthy-card: #262626;
+  --helthy-card-section: #171717;
+  --helthy-border: #2E2E30;
+  --helthy-border-subtle: #1A1A1C;
+  --helthy-border-strong: #607C8A;
+  --helthy-text-secondary: #9CA3AF;
+  --helthy-accent-orange: #E96C2C;
+  --helthy-accent-cyan: #22D3EE;
+  --helthy-accent-gold: #D8B440;
+
+  --font-heading: "Tomato Grotesk", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-body: "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Graphik Wide", "SF Mono", "Fira Code", monospace;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  /* Legacy brand tokens used by migrated pages */
-  --color-helthy-black: #0B0B0B;
-  --color-helthy-lemon: #CDFB50;
+  --color-helthy-black: var(--helthy-black);
+  --color-helthy-lemon: var(--helthy-lemon);
+  --color-helthy-card: var(--helthy-card);
+  --color-helthy-card-section: var(--helthy-card-section);
+  --color-helthy-border: var(--helthy-border);
+  --color-helthy-border-subtle: var(--helthy-border-subtle);
+  --color-helthy-text-secondary: var(--helthy-text-secondary);
+  --color-helthy-accent-orange: var(--helthy-accent-orange);
+  --color-helthy-accent-cyan: var(--helthy-accent-cyan);
+  --color-helthy-accent-gold: var(--helthy-accent-gold);
+  --font-heading: var(--font-heading);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base ─────────────────────────────────────────────────────── */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  background: var(--background);
+  color: var(--foreground);
+  scroll-behavior: auto;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  /* Enforce SF Pro as primary brand font */
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, 'Segoe UI', Roboto, Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  font-family: var(--font-body);
+  overflow-x: hidden;
 }
 
-/* Hide scrollbar but keep functionality */
+::selection {
+  background: rgba(205, 251, 80, 0.3);
+  color: #fff;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-
 .scrollbar-hide::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari, Opera */
+  display: none;
 }
 
-/* Scroll-triggered animation classes */
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+/* ── Noise/Grain Texture Overlay ──────────────────────────────── */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }
 
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+/* ── Typography Utilities ─────────────────────────────────────── */
+.font-heading {
+  font-family: var(--font-heading);
+}
+.font-display {
+  font-family: var(--font-display);
+}
+.font-body {
+  font-family: var(--font-body);
+}
+.font-mono {
+  font-family: var(--font-mono);
 }
 
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.text-display-xl {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
 }
 
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.text-display-lg {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.text-display-md {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.375rem, 2.5vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
 }
 
-/* Animation utility classes */
-.animate-slide-left {
-  animation: slideInLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  opacity: 0;
+.text-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--helthy-text-secondary);
 }
 
-.animate-slide-right {
-  animation: slideInRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  opacity: 0;
+.text-numeric {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
-.animate-slide-up {
-  animation: slideInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  opacity: 0;
+.text-body-lg {
+  font-family: var(--font-body);
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.animate-scale-in {
-  animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  opacity: 0;
+/* ── Glass Card ───────────────────────────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  opacity: 0;
+.glass-card-hover {
+  transition: border-color 0.4s ease, background 0.4s ease;
+}
+.glass-card-hover:hover {
+  border-color: rgba(205, 251, 80, 0.15);
+  background: rgba(255, 255, 255, 0.05);
 }
 
-/* Stagger delays for child elements */
-.stagger-1 { animation-delay: 0.1s; }
-.stagger-2 { animation-delay: 0.2s; }
-.stagger-3 { animation-delay: 0.3s; }
-.stagger-4 { animation-delay: 0.4s; }
-.stagger-5 { animation-delay: 0.5s; }
-.stagger-6 { animation-delay: 0.6s; }
-
-/* Trigger animations when element is visible */
-.scroll-reveal {
-  opacity: 0;
-  animation-play-state: paused;
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 2rem;
+  border-radius: 999px;
+  background: var(--helthy-lemon);
+  color: #0B0B0B;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(205, 251, 80, 0.25);
 }
 
-.scroll-reveal.visible {
-  animation-play-state: running;
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 2rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
 }
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Section spacing ──────────────────────────────────────────── */
+.section-padding {
+  padding-top: clamp(5rem, 12vh, 10rem);
+  padding-bottom: clamp(5rem, 12vh, 10rem);
+}
+
+/* ── Geometric Grid Background ────────────────────────────────── */
+.geo-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ── Lenis overrides ──────────────────────────────────────────── */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ── Marquee ──────────────────────────────────────────────────── */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 30s) linear infinite;
+}
+
+/* ── Legacy compat (used by About, Pricing, Contact, legal pages) ── */
+.scroll-reveal { opacity: 1; }
+.scroll-reveal.visible { opacity: 1; }

@@ -14,3 +14,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://helthy.app/sitemap.xml
+
+Sitemap: https://helthy.app/sitemap.xml

@@ -1,31 +1,31 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import "./legacy.css";
 import { GSAPProvider } from "../components/providers/GSAPProvider";
-import { ScrollRevealProvider } from "../components/providers/ScrollRevealProvider";
-import Navbar from "../components/legacy/Navbar";
-import MobileSidebar from "../components/legacy/MobileSidebar";
-import AlignedLogo from "../components/legacy/AlignedLogo";
-import HollowCirclesOverlay from "../components/HollowCirclesOverlay";
-import { CookieBanner } from "../components/CookieBanner";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { LenisProvider } from "../components/providers/LenisProvider";
+import Navbar from "../components/nav/Navbar";
 
 export const metadata: Metadata = {
   title: {
-    default: "Helthy - Track Food and Workouts",
+    default: "Helthy — Track Food & Workouts, Free Forever",
     template: "%s — Helthy",
   },
-  description: "Track Food and Workouts",
+  description:
+    "All-in-one workout tracking, smart nutrition logging, AI coach, barcode & voice logging — on iOS, Android & Apple Watch. Free forever.",
+  keywords: [
+    "fitness app",
+    "workout tracker",
+    "nutrition tracker",
+    "calorie counter",
+    "macro tracker",
+    "AI fitness coach",
+    "barcode food scanner",
+    "voice food logging",
+    "free fitness app",
+    "Apple Health sync",
+    "meal planner",
+  ],
+  authors: [{ name: "Helthy" }],
+  creator: "Helthy",
   icons: {
     icon: [
       { url: "/favicon.png", sizes: "512x512", type: "image/png" },
@@ -34,10 +34,12 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
     shortcut: "/favicon.png",
   },
-  themeColor: "#0B0B0B",
+  metadataBase: new URL("https://helthy.app"),
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Helthy — Your Health, Your Power",
-    description: "All‑in‑one workouts, nutrition, and progress tracking — free forever.",
+    description:
+      "All-in-one workouts, nutrition, and progress tracking — free forever.",
     url: "https://helthy.app/",
     siteName: "Helthy",
     images: [
@@ -50,6 +52,18 @@ export const metadata: Metadata = {
     ],
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Helthy — Track Food & Workouts, Free Forever",
+    description:
+      "AI-powered fitness & nutrition tracking on iOS, Android & Apple Watch.",
+    creator: "@helthyapp",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
 };
 
 export default function RootLayout({
@@ -59,18 +73,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <HollowCirclesOverlay />
+      <body suppressHydrationWarning className="antialiased grain">
         <GSAPProvider>
-          <ScrollRevealProvider>
-            {/* Global navigation and mobile sidebar, visible on all pages */}
+          <LenisProvider>
             <Navbar />
-            <MobileSidebar />
-            <AlignedLogo />
             {children}
-          </ScrollRevealProvider>
+          </LenisProvider>
         </GSAPProvider>
-        <CookieBanner />
       </body>
     </html>
   );
