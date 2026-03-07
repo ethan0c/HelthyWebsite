@@ -398,7 +398,7 @@ html.lenis, html.lenis body {
   border-radius: 999px;
   border: 1px solid rgba(205, 251, 80, 0.2);
   background: rgba(205, 251, 80, 0.05);
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.15em;

@@ -49,27 +49,29 @@ export default function Navbar() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const showNav = gsap.fromTo(
-      navRef.current,
-      { yPercent: 0 },
-      {
-        yPercent: -150,
-        paused: true,
-        duration: 0.3,
-        ease: "power2.inOut",
-      }
-    );
+    const ctx = gsap.context(() => {
+      const showNav = gsap.fromTo(
+        navRef.current,
+        { yPercent: 0 },
+        {
+          yPercent: -150,
+          paused: true,
+          duration: 0.3,
+          ease: "power2.inOut",
+        }
+      );
 
-    ScrollTrigger.create({
-      start: "top top",
-      end: "max",
-      onUpdate: (self) => {
-        if (self.direction === -1) showNav.reverse();
-        else if (self.scroll() > 100) showNav.play();
-      },
+      ScrollTrigger.create({
+        start: "top top",
+        end: "max",
+        onUpdate: (self) => {
+          if (self.direction === -1) showNav.reverse();
+          else if (self.scroll() > 100) showNav.play();
+        },
+      });
     });
 
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
+    return () => ctx.revert();
   }, []);
 
   /* move pill on route change + on mount */

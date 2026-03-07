@@ -210,8 +210,8 @@ export default function ProofSection() {
                 &ldquo;{r.text}&rdquo;
               </p>
               <div className="flex items-center justify-between">
-                <span className="text-xs text-white/25 font-mono">{r.author}</span>
-                <span className="text-[10px] text-white/15 font-mono">{r.date}</span>
+                <span className="text-xs text-white/25">{r.author}</span>
+                <span className="text-[10px] text-white/15">{r.date}</span>
               </div>
             </div>
           ))}
@@ -268,7 +268,7 @@ export default function ProofSection() {
         {/* Divider */}
         <div className="flex items-center justify-center mb-16">
           <div className="h-px flex-1 max-w-[200px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-          <span className="mx-5 px-5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-xs text-white/30 font-mono tracking-wider">
+          <span className="mx-5 px-5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-xs text-white/30 tracking-wider font-medium">
             VS
           </span>
           <div className="h-px flex-1 max-w-[200px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />

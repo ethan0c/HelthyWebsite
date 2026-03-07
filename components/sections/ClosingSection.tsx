@@ -51,7 +51,7 @@ function ChatMockup() {
         </div>
         <div className="ml-auto flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-helthy-lemon animate-pulse" />
-          <span className="text-[10px] text-helthy-lemon/60 font-mono uppercase tracking-widest">
+          <span className="text-[10px] text-helthy-lemon/60 uppercase tracking-widest font-medium">
             Live
           </span>
         </div>
@@ -246,7 +246,7 @@ export default function ClosingSection() {
             })}
           </div>
 
-          <p className="text-[11px] text-white/15 font-mono tracking-widest uppercase">
+          <p className="text-[11px] text-white/15 tracking-widest uppercase font-medium">
             Free forever &middot; No ads on core features
           </p>
         </div>
