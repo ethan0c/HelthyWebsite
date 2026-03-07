@@ -16,25 +16,25 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <section className="section-padding pt-36 sm:pt-44">
-        <div className="mx-auto max-w-2xl px-5 sm:px-8">
+      <section className="relative section-padding pt-36 sm:pt-44 glow-center">
+        <div className="relative z-10 mx-auto max-w-2xl px-5 sm:px-8">
           <div className="text-center mb-12">
-            <p className="text-eyebrow mb-3">Contact</p>
-            <h1 className="text-display-lg mb-4">
-              Let&apos;s <span className="text-helthy-lemon">talk.</span>
+            <span className="pill-badge mb-5">Contact</span>
+            <h1 className="font-heading font-semibold text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white mb-4">
+              Let&apos;s <span className="accent-serif text-helthy-lemon">talk.</span>
             </h1>
-            <p className="text-body-lg">
+            <p className="text-base text-white/35 leading-relaxed">
               Bug report, feature request, or just want to say hi — we read
               every message.
             </p>
           </div>
 
-          <div className="glass-card p-6 sm:p-10">
+          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 sm:p-10">
             <ContactForm />
           </div>
 
           <div className="text-center mt-10">
-            <p className="text-sm text-white/30">
+            <p className="text-sm text-white/25">
               You can also reach us at{" "}
               <a
                 href="mailto:support@helthy.app"

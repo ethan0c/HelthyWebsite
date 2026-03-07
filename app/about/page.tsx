@@ -40,17 +40,17 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="section-padding pt-36 sm:pt-44">
-        <div className="mx-auto max-w-4xl px-5 sm:px-8">
-          <p className="text-eyebrow mb-3">About Helthy</p>
-          <h1 className="text-display-xl mb-6">
+      <section className="relative section-padding pt-36 sm:pt-44 glow-center">
+        <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8">
+          <span className="pill-badge mb-5">About Helthy</span>
+          <h1 className="font-heading font-semibold text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white mb-6">
             Built by lifters,
             <br />
-            <span className="text-helthy-lemon">for lifters.</span>
+            <span className="accent-serif text-helthy-lemon">for lifters.</span>
           </h1>
-          <p className="text-body-lg max-w-2xl">
+          <p className="text-base text-white/35 max-w-2xl leading-relaxed">
             Helthy started because the founders couldn&apos;t find a single
-            app that tracked workouts <em>and</em> nutrition without charging
+            app that tracked workouts <em className="not-italic text-white/50">and</em> nutrition without charging
             $15+/month. So they built one.
           </p>
         </div>
@@ -59,28 +59,26 @@ export default function AboutPage() {
       {/* Mission */}
       <section className="section-padding">
         <div className="mx-auto max-w-4xl px-5 sm:px-8">
-          <div className="glass-card p-8 sm:p-12">
-            <p className="text-xs font-mono tracking-wider uppercase text-helthy-lemon/60 mb-4">
-              Our mission
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-display font-bold text-white leading-tight">
+          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 sm:p-12">
+            <span className="pill-badge mb-5">Our Mission</span>
+            <h2 className="font-heading font-semibold text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white">
               Make health tracking free, beautiful, and powerful — so cost is
-              never a barrier to better health.
+              never a barrier to <span className="accent-serif text-helthy-lemon">better health.</span>
             </h2>
           </div>
         </div>
       </section>
 
       {/* Team */}
-      <section className="section-padding">
-        <div className="mx-auto max-w-4xl px-5 sm:px-8">
-          <p className="text-eyebrow mb-3">The team</p>
-          <h2 className="text-display-md text-white mb-10">
-            Real people. Real transformations.
+      <section className="relative section-padding dot-grid">
+        <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8">
+          <span className="pill-badge mb-5">The Team</span>
+          <h2 className="font-heading font-semibold text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white mb-10">
+            Real people. <span className="accent-serif text-helthy-lemon">Real transformations.</span>
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {team.map((t) => (
-              <div key={t.name} className="glass-card p-5">
+              <div key={t.name} className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
                 <div className="relative aspect-[4/5] rounded-xl overflow-hidden mb-4">
                   <img
                     src={t.image}
@@ -88,12 +86,12 @@ export default function AboutPage() {
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
-                  <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-helthy-lemon text-helthy-black text-xs font-medium">
+                  <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-helthy-lemon text-helthy-black text-xs font-mono font-medium">
                     {t.badge}
                   </div>
                 </div>
-                <h3 className="text-lg font-medium text-white">{t.name}</h3>
-                <p className="text-sm text-white/40">{t.role}</p>
+                <h3 className="text-lg font-heading font-medium text-white">{t.name}</h3>
+                <p className="text-sm text-white/35">{t.role}</p>
               </div>
             ))}
           </div>
@@ -101,20 +99,22 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="section-padding">
-        <div className="mx-auto max-w-4xl px-5 sm:px-8">
-          <p className="text-eyebrow mb-3">Timeline</p>
-          <h2 className="text-display-md text-white mb-10">Where we&apos;ve been.</h2>
+      <section className="relative section-padding hatch-bg">
+        <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8">
+          <span className="pill-badge mb-5">Timeline</span>
+          <h2 className="font-heading font-semibold text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white mb-10">
+            Where we&apos;ve <span className="accent-serif text-helthy-lemon">been.</span>
+          </h2>
           <div className="space-y-0">
             {milestones.map((m, i) => (
               <div
                 key={i}
-                className="flex gap-6 py-5 border-t border-white/[0.06] last:border-b"
+                className="flex gap-6 py-5 border-t border-white/[0.06] last:border-b last:border-white/[0.06]"
               >
                 <span className="text-sm font-mono text-helthy-lemon w-24 flex-shrink-0">
                   {m.date}
                 </span>
-                <span className="text-sm text-white/60">{m.label}</span>
+                <span className="text-sm text-white/50">{m.label}</span>
               </div>
             ))}
           </div>

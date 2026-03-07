@@ -1,5 +1,5 @@
 "use client";
-import SiteFooter from "../../components/legacy/SiteFooter";
+import SiteFooter from "@/components/sections/SiteFooter";
 
 export default function PrivacyPage() {
   return (

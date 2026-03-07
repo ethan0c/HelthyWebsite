@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SiteFooter from "@/components/sections/SiteFooter";
+import { Check, Sparkles, Star } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Pricing – Helthy",
@@ -42,33 +43,37 @@ const premiumFeatures = [
 export default function PricingPage() {
   return (
     <>
-      <section className="section-padding pt-36 sm:pt-44">
-        <div className="mx-auto max-w-5xl px-5 sm:px-8 text-center">
-          <p className="text-eyebrow mb-3">Pricing</p>
-          <h1 className="text-display-xl mb-4">
+      {/* Hero */}
+      <section className="relative section-padding pt-36 sm:pt-44 glow-top">
+        <div className="relative z-10 mx-auto max-w-5xl px-5 sm:px-8 text-center">
+          <span className="pill-badge mb-5">Pricing</span>
+          <h1 className="font-heading font-semibold text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white mb-5">
             Free forever.
             <br />
-            <span className="text-helthy-lemon">Premium when you want more.</span>
+            <span className="accent-serif text-helthy-lemon">Premium when you want more.</span>
           </h1>
-          <p className="text-body-lg max-w-xl mx-auto mb-16">
+          <p className="text-base text-white/35 max-w-xl mx-auto mb-16 leading-relaxed">
             Everything you need to track your health is free. Premium unlocks
             AI-powered features for those who want the edge.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 text-left">
             {/* Free Tier */}
-            <div className="glass-card p-8 sm:p-10 flex flex-col">
+            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 sm:p-10 flex flex-col">
               <div className="mb-8">
-                <p className="text-xs font-mono tracking-wider uppercase text-white/40 mb-2">
-                  Free
-                </p>
-                <div className="flex items-baseline gap-1 mb-2">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-7 h-7 rounded-lg bg-white/[0.06] flex items-center justify-center">
+                    <Check className="w-3.5 h-3.5 text-helthy-lemon" />
+                  </div>
+                  <span className="text-sm font-medium text-white/60">Free</span>
+                </div>
+                <div className="flex items-baseline gap-1.5 mb-2">
                   <span className="text-5xl font-mono font-medium text-white">
                     $0
                   </span>
-                  <span className="text-white/40">/forever</span>
+                  <span className="text-sm font-mono text-white/30">/forever</span>
                 </div>
-                <p className="text-sm text-white/50">
+                <p className="text-sm text-white/35">
                   All core features. No trial. No credit card.
                 </p>
               </div>
@@ -76,8 +81,8 @@ export default function PricingPage() {
               <ul className="space-y-3 flex-1">
                 {freeFeatures.map((f) => (
                   <li key={f} className="flex items-start gap-3 text-sm">
-                    <span className="text-helthy-lemon mt-0.5">✓</span>
-                    <span className="text-white/70">{f}</span>
+                    <Check className="w-4 h-4 text-helthy-lemon mt-0.5 shrink-0" />
+                    <span className="text-white/50">{f}</span>
                   </li>
                 ))}
               </ul>
@@ -93,33 +98,36 @@ export default function PricingPage() {
             </div>
 
             {/* Premium Tier */}
-            <div className="relative glass-card p-8 sm:p-10 flex flex-col border-helthy-lemon/20">
+            <div className="relative rounded-2xl border border-helthy-lemon/20 bg-white/[0.02] p-8 sm:p-10 flex flex-col">
               <div className="absolute -top-3 right-6 px-3 py-1 rounded-full bg-helthy-lemon text-helthy-black text-xs font-medium">
                 Coming April 2026
               </div>
               <div className="mb-8">
-                <p className="text-xs font-mono tracking-wider uppercase text-helthy-lemon/60 mb-2">
-                  Premium
-                </p>
-                <div className="flex items-baseline gap-1 mb-2">
-                  <span className="text-5xl font-mono font-medium text-white">
-                    TBD
-                  </span>
-                  <span className="text-white/40">/month</span>
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-7 h-7 rounded-lg bg-helthy-lemon/10 flex items-center justify-center">
+                    <Sparkles className="w-3.5 h-3.5 text-helthy-lemon" />
+                  </div>
+                  <span className="text-sm font-medium text-white/60">Premium</span>
                 </div>
-                <p className="text-sm text-white/50">
+                <div className="flex items-baseline gap-1.5 mb-2">
+                  <span className="text-5xl font-mono font-medium text-white">
+                    $9.25
+                  </span>
+                  <span className="text-sm font-mono text-white/30">/month</span>
+                </div>
+                <p className="text-sm text-white/35">
                   Everything in Free, plus AI-powered superpowers.
                 </p>
               </div>
 
               <ul className="space-y-3 flex-1">
-                <li className="text-xs text-white/30 font-mono tracking-wider uppercase mb-1">
+                <li className="text-[11px] uppercase tracking-[0.15em] text-white/25 mb-1">
                   Everything in Free, plus:
                 </li>
                 {premiumFeatures.map((f) => (
                   <li key={f} className="flex items-start gap-3 text-sm">
-                    <span className="text-helthy-lemon mt-0.5">★</span>
-                    <span className="text-white/70">{f}</span>
+                    <Star className="w-4 h-4 text-helthy-lemon mt-0.5 shrink-0 fill-helthy-lemon" />
+                    <span className="text-white/50">{f}</span>
                   </li>
                 ))}
               </ul>
@@ -135,13 +143,13 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* FAQ mini */}
-      <section className="section-padding">
-        <div className="mx-auto max-w-2xl px-5 sm:px-8 text-center">
-          <h2 className="text-display-md text-white mb-3">
-            No surprise fees. Ever.
+      {/* Bottom reassurance */}
+      <section className="relative section-padding dot-grid">
+        <div className="relative z-10 mx-auto max-w-2xl px-5 sm:px-8 text-center">
+          <h2 className="font-heading font-semibold text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white mb-4">
+            No surprise fees. <span className="accent-serif text-helthy-lemon">Ever.</span>
           </h2>
-          <p className="text-body-lg">
+          <p className="text-base text-white/35 leading-relaxed">
             Helthy will never gate core tracking features behind a paywall.
             Premium is for power users who want AI — the fundamentals are free
             forever.

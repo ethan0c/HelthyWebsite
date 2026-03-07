@@ -89,8 +89,8 @@ export default function SiteFooter() {
   };
 
   return (
-    <footer className="relative border-t border-white/[0.06]">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 py-16 sm:py-20">
+    <footer className="relative border-t border-white/[0.06] hatch-bg">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 py-16 sm:py-20">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
           {/* Brand + newsletter */}
           <div className="md:col-span-5">
@@ -101,13 +101,13 @@ export default function SiteFooter() {
                 className="h-7"
               />
             </Link>
-            <p className="text-sm text-white/40 mb-6 max-w-xs leading-relaxed">
+            <p className="text-sm text-white/35 mb-6 max-w-xs leading-relaxed">
               The all-in-one health & fitness app. Track workouts, nutrition, and
               progress — free forever.
             </p>
 
             {/* Newsletter */}
-            <p className="text-xs font-mono tracking-wider uppercase text-white/30 mb-3">
+            <p className="text-[11px] uppercase tracking-[0.15em] text-white/25 mb-3">
               Stay updated
             </p>
             <form onSubmit={handleSubmit} className="flex gap-2 max-w-xs">
@@ -117,8 +117,8 @@ export default function SiteFooter() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="flex-1 px-4 py-2.5 rounded-xl bg-white/[0.05] border border-white/[0.08]
-                  text-sm text-white placeholder-white/30 outline-none focus:border-helthy-lemon/40
+                className="flex-1 px-4 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.06]
+                  text-sm text-white placeholder-white/25 outline-none focus:border-helthy-lemon/40
                   transition-colors"
               />
               <button
@@ -144,7 +144,7 @@ export default function SiteFooter() {
           {/* Links */}
           {footerLinks.map((group) => (
             <div key={group.heading} className="md:col-span-2">
-              <p className="text-xs font-mono tracking-wider uppercase text-white/30 mb-4">
+              <p className="text-[11px] uppercase tracking-[0.15em] text-white/25 mb-4">
                 {group.heading}
               </p>
               <ul className="space-y-3">
@@ -165,7 +165,7 @@ export default function SiteFooter() {
 
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/[0.06]">
-          <p className="text-xs text-white/25">
+          <p className="text-xs text-white/20">
             © {new Date().getFullYear()} Helthy by Ocelabs. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
@@ -176,7 +176,7 @@ export default function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="text-white/30 hover:text-white transition-colors"
+                className="text-white/25 hover:text-white transition-colors"
               >
                 {s.icon}
               </Link>
