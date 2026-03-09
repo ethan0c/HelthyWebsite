@@ -3,62 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Camera, Zap, TrendingUp, Dumbbell, Target, Sparkles } from "lucide-react";
 import Image from "next/image";
-
-const mainFeatures = [
-  {
-    icon: Camera,
-    title: "AI Food Scanner",
-    subtitle: "Snap. Scan. Done.",
-    description: "Point your camera at any meal and get instant, accurate nutrition data. Our AI recognizes thousands of foods—no more manual searching.",
-    color: "#FF6B6B",
-    image: "/phones/foodmainscreen.png",
-    stats: [
-      { value: "2s", label: "Scan time" },
-      { value: "98%", label: "Accuracy" },
-    ],
-  },
-  {
-    icon: Dumbbell,
-    title: "Workout Tracking",
-    subtitle: "Every rep counts.",
-    description: "500+ exercises with guided tracking. Log sets, reps, and watch your personal records climb over time.",
-    color: "#4CAF50",
-    image: "/phones/newworkoutscreen.png",
-    stats: [
-      { value: "500+", label: "Exercises" },
-      { value: "∞", label: "Custom workouts" },
-    ],
-  },
-];
-
-const gridFeatures = [
-  {
-    icon: Target,
-    title: "Smart Macro Goals",
-    description: "Custom targets that adapt to your progress and preferences.",
-    color: "#2196F3",
-  },
-  {
-    icon: TrendingUp,
-    title: "Progress Analytics",
-    description: "Beautiful charts showing weight, measurements, and trends.",
-    color: "#FF9800",
-  },
-  {
-    icon: Sparkles,
-    title: "AI Coaching",
-    description: "Personalized insights based on your unique data.",
-    color: "#9C27B0",
-  },
-  {
-    icon: Zap,
-    title: "Quick Logging",
-    description: "Voice input, barcode scanning, and 1M+ food database.",
-    color: "#CDFB50",
-  },
-];
 
 export default function FeaturesSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -67,12 +12,9 @@ export default function FeaturesSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Set initial states - elements start hidden
       gsap.set("[data-features-heading] > *", { y: 20, opacity: 0 });
-      gsap.set("[data-main-feature]", { y: 30, opacity: 0 });
-      gsap.set("[data-grid-feature]", { y: 20, opacity: 0 });
+      gsap.set("[data-bento-card]", { y: 40, opacity: 0 });
 
-      // Section heading - fast
       gsap.to("[data-features-heading] > *", {
         y: 0,
         opacity: 1,
@@ -86,29 +28,14 @@ export default function FeaturesSection() {
         },
       });
 
-      // Main feature cards - fast
-      gsap.to("[data-main-feature]", {
+      gsap.to("[data-bento-card]", {
         y: 0,
         opacity: 1,
-        stagger: 0.08,
-        duration: 0.5,
+        stagger: 0.1,
+        duration: 0.6,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: "[data-main-features]",
-          start: "top 85%",
-          once: true,
-        },
-      });
-
-      // Grid features - fast
-      gsap.to("[data-grid-feature]", {
-        y: 0,
-        opacity: 1,
-        stagger: 0.04,
-        duration: 0.35,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: "[data-grid-features]",
+          trigger: "[data-bento-grid]",
           start: "top 85%",
           once: true,
         },
@@ -120,12 +47,9 @@ export default function FeaturesSection() {
 
   return (
     <section ref={sectionRef} className="py-24 sm:py-32 lg:py-40 bg-[#060606] relative overflow-hidden">
-      {/* Subtle background gradient */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-helthy-lemon/[0.02] blur-[150px] rounded-full" />
-      
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
-        {/* Section heading - editorial style */}
-        <div data-features-heading className="mb-20 lg:mb-28">
+        {/* Section heading */}
+        <div data-features-heading className="mb-12 lg:mb-16">
           <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">
             Features
           </p>
@@ -136,101 +60,115 @@ export default function FeaturesSection() {
           </h2>
         </div>
 
-        {/* Main features - large cards */}
-        <div data-main-features className="grid lg:grid-cols-2 gap-6 mb-6">
-          {mainFeatures.map((feature) => {
-            const Icon = feature.icon;
-            return (
-              <div
-                key={feature.title}
-                data-main-feature
-                className="group relative rounded-3xl bg-gradient-to-b from-white/[0.05] to-white/[0.02] border border-white/[0.06] p-8 lg:p-10 overflow-hidden transition-all duration-500 hover:border-white/[0.12]"
-              >
-                {/* Background glow on hover */}
-                <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ background: `radial-gradient(circle at 30% 70%, ${feature.color}08, transparent 70%)` }}
-                />
+        {/* Bento Grid - Large cards */}
+        <div data-bento-grid className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          
+          {/* Row 1: Large Hero Card - Food Scanner */}
+          <div 
+            data-bento-card
+            className="relative lg:col-span-2 rounded-3xl overflow-hidden h-[500px] sm:h-[600px] lg:h-[700px] group"
+          >
+            <Image
+              src="/images/stock/meal-prep.jpg"
+              alt="AI-powered nutrition tracking"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="100vw"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
+            
+            <div className="absolute inset-0 p-8 sm:p-12 lg:p-16 flex flex-col justify-end">
+              <p className="text-white/50 text-sm font-medium tracking-wide uppercase mb-4">AI Food Scanner</p>
+              <h3 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 tracking-[-0.02em] max-w-2xl">
+                Snap a photo. Know your macros instantly.
+              </h3>
+              <p className="text-white/60 text-base sm:text-lg max-w-xl leading-relaxed">
+                Point your camera at any meal and get instant, accurate nutrition data. Our AI recognizes thousands of foods—no more manual searching or guesswork.
+              </p>
+            </div>
+          </div>
 
-                <div className="relative grid lg:grid-cols-2 gap-8 items-center">
-                  {/* Content */}
-                  <div>
-                    <div 
-                      className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
-                      style={{ background: `${feature.color}15`, border: `1px solid ${feature.color}30` }}
-                    >
-                      <Icon className="w-6 h-6" style={{ color: feature.color }} />
-                    </div>
-                    
-                    <p className="text-white/40 text-sm font-medium tracking-wide uppercase mb-2">
-                      {feature.subtitle}
-                    </p>
-                    <h3 className="font-heading text-2xl lg:text-3xl font-bold text-white mb-4 tracking-[-0.02em]">
-                      {feature.title}
-                    </h3>
-                    <p className="text-white/50 leading-relaxed mb-6">
-                      {feature.description}
-                    </p>
+          {/* Row 2: Two equal cards */}
+          {/* Workout tracking */}
+          <div 
+            data-bento-card
+            className="relative rounded-3xl overflow-hidden h-[400px] sm:h-[500px] group"
+          >
+            <Image
+              src="/images/stock/gym-weights.jpg"
+              alt="Workout tracking"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
+            
+            <div className="absolute inset-0 p-8 sm:p-10 flex flex-col justify-end">
+              <p className="text-white/50 text-sm font-medium tracking-wide uppercase mb-3">Workout Tracking</p>
+              <h3 className="font-heading text-2xl sm:text-3xl font-bold text-white mb-3 tracking-[-0.02em]">
+                Track every rep
+              </h3>
+              <p className="text-white/50 text-sm sm:text-base leading-relaxed max-w-sm">
+                500+ exercises with guided tracking. Log sets, reps, and watch your personal records climb over time.
+              </p>
+            </div>
+          </div>
 
-                    {/* Stats */}
-                    <div className="flex gap-8">
-                      {feature.stats.map((stat) => (
-                        <div key={stat.label}>
-                          <p className="font-numeric text-2xl font-bold text-white mb-1">{stat.value}</p>
-                          <p className="text-xs text-white/40 uppercase tracking-wide">{stat.label}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+          {/* Movement flexibility */}
+          <div 
+            data-bento-card
+            className="relative rounded-3xl overflow-hidden h-[400px] sm:h-[500px] group"
+          >
+            <Image
+              src="/images/stock/yoga-stretch.jpg"
+              alt="Your movement, your way"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
+            
+            <div className="absolute inset-0 p-8 sm:p-10 flex flex-col justify-end">
+              <p className="text-white/50 text-sm font-medium tracking-wide uppercase mb-3">Your Movement</p>
+              <h3 className="font-heading text-2xl sm:text-3xl font-bold text-white mb-3 tracking-[-0.02em]">
+                Your way, your pace
+              </h3>
+              <p className="text-white/50 text-sm sm:text-base leading-relaxed max-w-sm">
+                Whether it&apos;s heavy lifting or morning yoga, track it all in one place. We adapt to your routine.
+              </p>
+            </div>
+          </div>
 
-                  {/* Phone mockup */}
-                  <div className="relative flex justify-center lg:justify-end">
-                    <div className="relative w-[180px] sm:w-[200px]">
-                      <div className="relative w-full aspect-[9/19] rounded-[2rem] bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] p-1.5 shadow-2xl shadow-black/30 transition-transform duration-500 group-hover:scale-[1.02] group-hover:-rotate-2">
-                        <div className="relative w-full h-full rounded-[1.7rem] overflow-hidden bg-[#0B0B0B]">
-                          <Image
-                            src={feature.image}
-                            alt={feature.title}
-                            fill
-                            className="object-cover"
-                            sizes="200px"
-                          />
-                        </div>
-                      </div>
-                      {/* Phone glow */}
-                      <div 
-                        className="absolute -inset-4 rounded-full blur-2xl -z-10 opacity-30"
-                        style={{ background: feature.color }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+          {/* Row 3: Text card + accent card */}
+          {/* Dark text card */}
+          <div 
+            data-bento-card
+            className="relative rounded-3xl overflow-hidden h-[300px] sm:h-[350px] bg-[#111] border border-white/[0.06] p-8 sm:p-12 flex flex-col justify-center"
+          >
+            <p className="text-white/50 text-sm font-medium tracking-wide uppercase mb-4">Progress Analytics</p>
+            <h3 className="font-heading text-2xl sm:text-3xl font-bold text-white mb-4 tracking-[-0.02em]">
+              See your transformation unfold
+            </h3>
+            <p className="text-white/40 text-sm sm:text-base leading-relaxed max-w-md">
+              Beautiful charts showing weight, measurements, and trends. Watch the numbers change as you put in the work.
+            </p>
+          </div>
 
-        {/* Grid features - smaller cards */}
-        <div data-grid-features className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {gridFeatures.map((feature) => {
-            const Icon = feature.icon;
-            return (
-              <div
-                key={feature.title}
-                data-grid-feature
-                className="group relative p-6 rounded-2xl bg-white/[0.02] border border-white/[0.05] transition-all duration-300 hover:border-white/[0.1] hover:bg-white/[0.04]"
-              >
-                <div 
-                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110"
-                  style={{ background: `${feature.color}12` }}
-                >
-                  <Icon className="w-5 h-5" style={{ color: feature.color }} />
-                </div>
-                <h3 className="text-white font-semibold mb-2 tracking-tight">{feature.title}</h3>
-                <p className="text-sm text-white/40 leading-relaxed">{feature.description}</p>
-              </div>
-            );
-          })}
+          {/* Accent card - Lemon */}
+          <div 
+            data-bento-card
+            className="relative rounded-3xl overflow-hidden h-[300px] sm:h-[350px] bg-helthy-lemon p-8 sm:p-12 flex flex-col justify-center"
+          >
+            <p className="text-[#0B0B0B]/50 text-sm font-medium tracking-wide uppercase mb-4">No Strings Attached</p>
+            <h3 className="font-heading text-2xl sm:text-3xl font-bold text-[#0B0B0B] mb-4 tracking-[-0.02em]">
+              100% free. Forever.
+            </h3>
+            <p className="text-[#0B0B0B]/60 text-sm sm:text-base leading-relaxed max-w-md">
+              No subscriptions, no paywalls, no tricks. Everything you need to reach your goals without spending a dime.
+            </p>
+          </div>
+
         </div>
       </div>
     </section>

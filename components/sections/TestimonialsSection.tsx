@@ -3,39 +3,68 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Star, Quote } from "lucide-react";
-
-const featuredTestimonial = {
-  quote: "Finally an app that just works. No subscription nonsense, no hidden paywalls. I've tried every tracking app out there—MacroFactor, MyFitnessPal, Cronometer—and Helthy is the one I'm sticking with.",
-  author: "Sarah Mitchell",
-  role: "Lost 32 lbs in 4 months",
-  avatar: "SM",
-};
+import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    quote: "The AI food scanner is incredibly accurate. I point my phone at my lunch and it knows exactly what I'm eating.",
-    author: "James K.",
-    role: "Fitness enthusiast",
-    avatar: "JK",
+    title: "Finally something that makes tracking easy",
+    quote: "I used to hate logging food because it felt like homework. This app makes it surprisingly simple. The barcode scanner works well, and the AI meal logging is way more accurate than I expected.",
+    author: "Tasshtfxv",
+    date: "Feb 2026",
   },
   {
-    quote: "I've been tracking macros for years. This app makes it feel effortless. The interface is so clean and fast.",
-    author: "Mike R.",
-    role: "Personal trainer",
-    avatar: "MR",
+    title: "Best Fitness I've Used In A While",
+    quote: "Food logging is the main thing I use. You can type what you had, say it with voice, or scan the nutrition label and it pulls the info in. It's fast—I'll do 'chicken and rice' or scan a bar and it's done in a few seconds.",
+    author: "jasonc1122",
+    date: "Feb 2026",
   },
   {
-    quote: "Best free nutrition app period. No ads, no premium features locked behind a paywall. Just great design.",
-    author: "Emma L.",
-    role: "Marathon runner",
-    avatar: "EL",
+    title: "I'm impressed and that's not easy to do",
+    quote: "Tries to do something you don't see often. An attempt to only make you require one fitness app. It does a great job of not making you feel overwhelmed, very smooth interface.",
+    author: "Avarricee",
+    date: "Feb 2026",
   },
   {
-    quote: "The workout tracking is fantastic. Being able to see my progress over months keeps me motivated.",
-    author: "David P.",
-    role: "Bodybuilding competitor",
-    avatar: "DP",
+    title: "Helthy is what everyone needs",
+    quote: "My guy has made the most reliable and flexible workout and food app! It's so easy to use, especially when tracking your meals and workouts! Highly recommended!",
+    author: "Obianuju8",
+    date: "Feb 2026",
+  },
+  {
+    title: "Beautiful App!",
+    quote: "This app might just be better than Apple's native fitness logging app. Not just fitness but also health! Can't wait to see the app support connecting to an Apple Watch.",
+    author: "noirvaze",
+    date: "Dec 2025",
+  },
+  {
+    title: "Amazing app",
+    quote: "This is the best app! I use it everyday. The progress photos feature is really useful to see the change instead of going by the scale only.",
+    author: "arceus208",
+    date: "Dec 2025",
+  },
+  {
+    title: "10/10",
+    quote: "The fitness app of all time. Clean layout, no clutter. It syncs with Apple Health so my steps and workouts show up. I don't have to enter runs or gym sessions twice.",
+    author: "Melliciousness",
+    date: "Nov 2025",
+  },
+  {
+    title: "Helthy is awesome",
+    quote: "Very amazing app. The workout side is just as good—clean layout, easy to log sets, and it actually motivates you to improve. It feels like it was built for real people.",
+    author: "caakino",
+    date: "Dec 2025",
+  },
+  {
+    title: "Great user experience",
+    quote: "Only food and health app I've stuck with. It made logging easy, kept me consistent with reminders, and showed me the full picture—food, steps, workouts, weight, and progress in one place.",
+    author: "NarendraT-X",
+    date: "Dec 2025",
+  },
+  {
+    title: "Love!",
+    quote: "Great app. The app's gotten better since I first got it. New updates keep adding useful stuff and it doesn't feel bloated. Highly recommend for anyone serious about their fitness.",
+    author: "kohene",
+    date: "Nov 2025",
   },
 ];
 
@@ -45,6 +74,36 @@ function StarRating({ rating = 5 }: { rating?: number }) {
       {Array.from({ length: rating }).map((_, i) => (
         <Star key={i} className="w-4 h-4 fill-helthy-lemon text-helthy-lemon" />
       ))}
+    </div>
+  );
+}
+
+function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
+  return (
+    <div className="flex-shrink-0 w-[320px] sm:w-[380px] p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/[0.06] transition-colors hover:bg-white/[0.05]">
+      {/* Stars */}
+      <div className="mb-4">
+        <StarRating />
+      </div>
+      
+      {/* Title */}
+      <h3 className="font-heading text-lg sm:text-xl font-semibold text-white mb-3 tracking-[-0.01em]">
+        {testimonial.title}
+      </h3>
+      
+      {/* Quote */}
+      <p className="text-white/50 text-sm leading-relaxed mb-6">
+        {testimonial.quote}
+      </p>
+      
+      {/* Divider */}
+      <div className="h-px bg-white/[0.06] mb-5" />
+      
+      {/* Author */}
+      <div className="flex items-center justify-between">
+        <p className="font-medium text-white text-sm">{testimonial.author}</p>
+        <p className="text-xs text-white/40">{testimonial.date}</p>
+      </div>
     </div>
   );
 }
@@ -83,29 +142,14 @@ export default function TestimonialsSection() {
         },
       });
 
-      // Featured testimonial
-      gsap.from("[data-featured-testimonial]", {
-        y: 60,
+      // Carousel reveal
+      gsap.from("[data-testimonial-carousel]", {
         opacity: 0,
         duration: 0.5,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: "[data-featured-testimonial]",
-          start: "top 80%",
-          once: true,
-        },
-      });
-
-      // Grid testimonials
-      gsap.from("[data-testimonial-card]", {
-        y: 40,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 0.4,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: "[data-testimonial-grid]",
-          start: "top 80%",
+          trigger: "[data-testimonial-carousel]",
+          start: "top 85%",
           once: true,
         },
       });
@@ -114,6 +158,10 @@ export default function TestimonialsSection() {
     return () => ctx.revert();
   }, []);
 
+  // Split testimonials into two rows
+  const row1 = testimonials.slice(0, 5);
+  const row2 = testimonials.slice(5, 10);
+
   return (
     <section ref={sectionRef} className="py-24 sm:py-32 lg:py-40 bg-[#060606] relative overflow-hidden">
       {/* Background */}
@@ -121,17 +169,19 @@ export default function TestimonialsSection() {
         <div className="absolute top-1/3 right-0 w-[600px] h-[600px] bg-helthy-lemon/[0.015] blur-[150px] rounded-full" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
+      <div className="relative">
         {/* App Store rating badge */}
-        <div data-rating-badge className="flex justify-center mb-8">
+        <div data-rating-badge className="flex justify-center mb-8 px-6">
           <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/[0.03] border border-white/[0.06]">
             <StarRating />
-            <span className="text-white/60 text-sm font-medium">4.9 on the App Store</span>
+            <span className="font-numeric text-white font-semibold">4.7</span>
+            <span className="text-white/40 text-sm">·</span>
+            <span className="text-white/50 text-sm">37 ratings on the App Store</span>
           </div>
         </div>
 
         {/* Section heading */}
-        <div data-testimonial-heading className="text-center mb-16 lg:mb-24">
+        <div data-testimonial-heading className="text-center mb-16 lg:mb-20 px-6">
           <h2 className="font-heading text-[clamp(2.5rem,6vw,4.5rem)] font-bold leading-[0.95] tracking-[-0.03em] text-white">
             Real people,
             <br />
@@ -139,61 +189,35 @@ export default function TestimonialsSection() {
           </h2>
         </div>
 
-        {/* Featured testimonial */}
-        <div data-featured-testimonial className="mb-12">
-          <div className="relative max-w-4xl mx-auto p-8 lg:p-12 rounded-3xl bg-gradient-to-br from-helthy-lemon/[0.08] to-transparent border border-helthy-lemon/20">
-            {/* Quote icon */}
-            <Quote className="w-10 h-10 text-helthy-lemon/30 mb-6" />
-            
-            {/* Quote text */}
-            <blockquote className="text-xl lg:text-2xl font-medium text-white leading-relaxed mb-8">
-              "{featuredTestimonial.quote}"
-            </blockquote>
-
-            {/* Author */}
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-helthy-lemon to-helthy-lemon/50 flex items-center justify-center">
-                <span className="text-[#0B0B0B] font-bold text-lg">{featuredTestimonial.avatar}</span>
-              </div>
-              <div>
-                <p className="font-semibold text-white">{featuredTestimonial.author}</p>
-                <p className="text-white/50 text-sm">{featuredTestimonial.role}</p>
-              </div>
-              <div className="ml-auto hidden sm:block">
-                <StarRating />
-              </div>
+        {/* Auto-scrolling carousel */}
+        <div data-testimonial-carousel className="space-y-4 sm:space-y-6">
+          {/* Row 1 - scrolls left */}
+          <div className="relative overflow-hidden">
+            <div className="flex gap-4 sm:gap-6 animate-scroll-left">
+              {/* First set */}
+              {row1.map((testimonial, index) => (
+                <TestimonialCard key={`row1-a-${index}`} testimonial={testimonial} />
+              ))}
+              {/* Duplicate for seamless loop */}
+              {row1.map((testimonial, index) => (
+                <TestimonialCard key={`row1-b-${index}`} testimonial={testimonial} />
+              ))}
             </div>
           </div>
-        </div>
 
-        {/* Grid testimonials */}
-        <div data-testimonial-grid className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              data-testimonial-card
-              className="group p-6 rounded-2xl bg-white/[0.02] border border-white/[0.05] transition-all duration-300 hover:border-white/[0.1] hover:bg-white/[0.04]"
-            >
-              {/* Stars */}
-              <div className="mb-4">
-                <StarRating />
-              </div>
-
-              {/* Quote */}
-              <p className="text-white/50 text-sm leading-relaxed mb-6">"{testimonial.quote}"</p>
-
-              {/* Author */}
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center">
-                  <span className="text-white/60 text-xs font-medium">{testimonial.avatar}</span>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-white">{testimonial.author}</p>
-                  <p className="text-xs text-white/40">{testimonial.role}</p>
-                </div>
-              </div>
+          {/* Row 2 - scrolls right */}
+          <div className="relative overflow-hidden">
+            <div className="flex gap-4 sm:gap-6 animate-scroll-right">
+              {/* First set */}
+              {row2.map((testimonial, index) => (
+                <TestimonialCard key={`row2-a-${index}`} testimonial={testimonial} />
+              ))}
+              {/* Duplicate for seamless loop */}
+              {row2.map((testimonial, index) => (
+                <TestimonialCard key={`row2-b-${index}`} testimonial={testimonial} />
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
