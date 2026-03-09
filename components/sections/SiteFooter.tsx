@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Apple App Store icon
 function AppStoreIcon({ className }: { className?: string }) {
@@ -12,42 +14,14 @@ function AppStoreIcon({ className }: { className?: string }) {
   );
 }
 
-const footerLinks = {
-  product: {
-    heading: "Product",
-    links: [
-      { label: "Features", href: "/#features" },
-      { label: "Food Tracking", href: "/#features" },
-      { label: "Workout Logging", href: "/#features" },
-      { label: "AI Scanner", href: "/#features" },
-      { label: "Pricing", href: "/pricing" },
-    ],
-  },
-  company: {
-    heading: "Company",
-    links: [
-      { label: "About us", href: "/about" },
-      { label: "Contact", href: "/contact" },
-      { label: "Careers", href: "/contact" },
-    ],
-  },
-  resources: {
-    heading: "Resources",
-    links: [
-      { label: "Help Center", href: "/contact" },
-      { label: "Blog", href: "/about" },
-      { label: "Community", href: "https://www.instagram.com/helthyapp" },
-    ],
-  },
-  legal: {
-    heading: "Legal",
-    links: [
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Service", href: "/terms" },
-      { label: "Disclosures", href: "/terms" },
-    ],
-  },
-};
+const footerLinks = [
+  { label: "Features", href: "/#features" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
+];
 
 const socials = [
   {
@@ -83,6 +57,42 @@ export default function SiteFooter() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const footerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      // Animate footer elements on scroll
+      gsap.from("[data-footer-animate]", {
+        y: 40,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.6,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top 90%",
+          once: true,
+        },
+      });
+
+      // Big text reveal
+      gsap.from("[data-footer-big-text]", {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: "[data-footer-big-text]",
+          start: "top 95%",
+          once: true,
+        },
+      });
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -110,190 +120,118 @@ export default function SiteFooter() {
   };
 
   return (
-    <footer className="bg-helthy-lemon">
-      {/* Main footer content */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16 lg:py-20">
-        <div className="grid grid-cols-2 md:grid-cols-6 lg:grid-cols-12 gap-8 lg:gap-12">
-          {/* Brand column */}
-          <div className="col-span-2 md:col-span-6 lg:col-span-4">
-            <Link href="/" className="inline-block mb-6">
-              <img
-                src="/images/logos/logo-long-white.png"
-                alt="Helthy"
-                className="h-6 invert"
-              />
-            </Link>
-            <p className="text-sm text-[#0B0B0B]/60 leading-relaxed mb-6 max-w-sm">
-              The all-in-one health & fitness app. Track workouts, nutrition, and progress — free forever, no subscriptions.
-            </p>
-            
-            {/* App Store button */}
-            <a
-              href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#0B0B0B] text-white text-sm font-medium hover:bg-[#0B0B0B]/80 transition-colors"
-            >
-              <AppStoreIcon className="w-5 h-5" />
-              <div className="text-left">
-                <p className="text-[10px] opacity-60 leading-none">Download on the</p>
-                <p className="text-sm font-semibold leading-tight">App Store</p>
-              </div>
-            </a>
-          </div>
+    <footer ref={footerRef} className="bg-[#0A0A0A] relative overflow-hidden">
+      {/* Subtle gradient accent */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-helthy-lemon/[0.03] blur-[120px] rounded-full pointer-events-none" />
 
-          {/* Links columns */}
-          <div className="col-span-1 md:col-span-1 lg:col-span-2">
-            <h4 className="text-[#0B0B0B] font-semibold text-sm mb-4">{footerLinks.product.heading}</h4>
-            <ul className="space-y-3">
-              {footerLinks.product.links.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[#0B0B0B]/60 hover:text-[#0B0B0B] transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="col-span-1 md:col-span-1 lg:col-span-2">
-            <h4 className="text-[#0B0B0B] font-semibold text-sm mb-4">{footerLinks.company.heading}</h4>
-            <ul className="space-y-3">
-              {footerLinks.company.links.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[#0B0B0B]/60 hover:text-[#0B0B0B] transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="col-span-1 md:col-span-2 lg:col-span-2">
-            <h4 className="text-[#0B0B0B] font-semibold text-sm mb-4">{footerLinks.resources.heading}</h4>
-            <ul className="space-y-3">
-              {footerLinks.resources.links.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[#0B0B0B]/60 hover:text-[#0B0B0B] transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="col-span-1 md:col-span-2 lg:col-span-2">
-            <h4 className="text-[#0B0B0B] font-semibold text-sm mb-4">{footerLinks.legal.heading}</h4>
-            <ul className="space-y-3">
-              {footerLinks.legal.links.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[#0B0B0B]/60 hover:text-[#0B0B0B] transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+      {/* Main content */}
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pt-20 lg:pt-28 pb-12">
+        {/* Top section - CTA style */}
+        <div data-footer-animate className="text-center mb-16 lg:mb-24">
+          <p className="text-helthy-lemon text-sm font-medium tracking-[0.2em] uppercase mb-6">
+            Start Today
+          </p>
+          <h2 className="font-heading text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.1] tracking-[-0.03em] text-white mb-6">
+            Your health journey
+            <br />
+            <span className="text-white/30">begins here.</span>
+          </h2>
+          <a
+            href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-helthy-lemon text-[#0B0B0B] font-medium text-sm hover:bg-white transition-colors"
+          >
+            <AppStoreIcon className="w-5 h-5" />
+            Download Free
+          </a>
         </div>
 
-        {/* Newsletter section */}
-        <div className="mt-12 pt-8 border-t border-[#0B0B0B]/10">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <div>
-              <h4 className="text-[#0B0B0B] font-semibold text-sm mb-2">Stay up to date</h4>
-              <p className="text-sm text-[#0B0B0B]/60">Get the latest news and updates from Helthy.</p>
-            </div>
-            <form onSubmit={handleSubmit} className="flex gap-3 w-full md:w-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="flex-1 md:w-64 px-4 py-3 rounded-full bg-[#0B0B0B]/5 border border-[#0B0B0B]/10 text-sm text-[#0B0B0B] placeholder-[#0B0B0B]/40 outline-none focus:border-[#0B0B0B]/30 transition-colors"
-              />
-              <button
-                type="submit"
-                disabled={status === "loading"}
-                className="px-6 py-3 rounded-full bg-[#0B0B0B] text-white text-sm font-medium hover:bg-[#0B0B0B]/80 transition-colors disabled:opacity-50"
-              >
-                {status === "loading" ? "..." : "Subscribe"}
-              </button>
-            </form>
-          </div>
+        {/* Newsletter - minimal */}
+        <div data-footer-animate className="max-w-md mx-auto mb-16 lg:mb-24">
+          <form onSubmit={handleSubmit} className="relative">
+            <input
+              type="email"
+              placeholder="Enter your email for updates"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full px-6 py-4 pr-32 rounded-full bg-white/[0.05] border border-white/[0.08] text-sm text-white placeholder-white/30 outline-none focus:border-helthy-lemon/50 transition-colors"
+            />
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2.5 rounded-full bg-white text-[#0B0B0B] text-sm font-medium hover:bg-helthy-lemon transition-colors disabled:opacity-50"
+            >
+              {status === "loading" ? "..." : "Subscribe"}
+            </button>
+          </form>
           {message && (
-            <p className={`text-sm mt-3 ${status === "success" ? "text-[#0B0B0B]" : "text-red-600"}`}>
+            <p className={`text-sm mt-3 text-center ${status === "success" ? "text-helthy-lemon" : "text-red-400"}`}>
               {message}
             </p>
           )}
         </div>
-      </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-[#0B0B0B]/10">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            {/* Copyright */}
-            <p className="text-sm text-[#0B0B0B]/50">
-              © {new Date().getFullYear()} Helthy Inc. All rights reserved.
-            </p>
+        {/* Links row */}
+        <div data-footer-animate className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-12">
+          {footerLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="text-sm text-white/40 hover:text-white transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
 
-            {/* Social links */}
-            <div className="flex items-center gap-4">
-              {socials.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#0B0B0B]/50 hover:text-[#0B0B0B] transition-colors"
-                  aria-label={social.label}
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
+        {/* Social + Copyright row */}
+        <div data-footer-animate className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8 border-t border-white/[0.06]">
+          {/* Socials */}
+          <div className="flex items-center gap-5">
+            {socials.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/40 hover:text-helthy-lemon transition-colors"
+                aria-label={social.label}
+              >
+                {social.icon}
+              </a>
+            ))}
           </div>
+
+          {/* Copyright */}
+          <p className="text-xs text-white/30">
+            © {new Date().getFullYear()} Helthy Inc.
+          </p>
         </div>
       </div>
 
-      {/* Disclaimer section */}
-      <div className="border-t border-[#0B0B0B]/10">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8">
-          <div className="space-y-4">
-            <p className="text-xs text-[#0B0B0B]/40 leading-relaxed">
-              Helthy is a health and fitness tracking application designed to help users monitor their nutrition, workouts, and overall wellness. The information provided by Helthy is for general informational purposes only and is not intended as medical advice. Always consult with a qualified healthcare provider before starting any diet or exercise program.
-            </p>
-            <p className="text-xs text-[#0B0B0B]/40 leading-relaxed">
-              Nutritional data is sourced from various databases and user-contributed content. While we strive for accuracy, we cannot guarantee the completeness or correctness of all nutritional information. Users should verify nutritional information when accuracy is critical, such as for medical conditions or allergies.
-            </p>
-            <p className="text-xs text-[#0B0B0B]/40 leading-relaxed">
-              App Store® is a trademark of Apple Inc. Helthy is not affiliated with, endorsed by, or sponsored by Apple Inc.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Large logo section - right aligned, no bottom padding */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-8">
-        <div className="flex justify-end">
+      {/* Giant logo - trademark style */}
+      <div className="relative overflow-hidden border-t border-white/[0.04]">
+        <div 
+          data-footer-big-text
+          className="py-8 lg:py-12 px-6 lg:px-8"
+        >
           <img
-            src="/images/logos/logo-long-white.png"
+            src="/images/logos/helthy-green-long.png"
             alt="Helthy"
-            className="w-full max-w-12xl h-auto object-contain invert"
+            className="w-full max-w-4xl mx-auto h-auto"
           />
+        </div>
+      </div>
+
+      {/* Legal disclaimer - very subtle */}
+      <div className="border-t border-white/[0.04]">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-6">
+          <p className="text-[10px] text-white/20 leading-relaxed text-center max-w-4xl mx-auto">
+            Helthy is for informational purposes only and is not medical advice. Consult a healthcare provider before starting any diet or exercise program. 
+            Nutritional data may vary. App Store® is a trademark of Apple Inc.
+          </p>
         </div>
       </div>
     </footer>
