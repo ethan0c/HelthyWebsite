@@ -88,7 +88,7 @@ export default function PricingPage() {
               
               <h2 className="font-heading font-semibold text-2xl text-white mb-2">Free</h2>
               <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-heading font-bold text-white">$0</span>
+                <span className="font-numeric text-4xl font-heading font-bold text-white">$0</span>
                 <span className="text-white/35">/forever</span>
               </div>
               <p className="text-sm text-white/35 mb-6 leading-relaxed">
@@ -125,7 +125,7 @@ export default function PricingPage() {
               
               <h2 className="font-heading font-semibold text-2xl text-white mb-2">Premium</h2>
               <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-heading font-bold text-white">$9</span>
+                <span className="font-numeric text-4xl font-heading font-bold text-white">$9</span>
                 <span className="text-white/35">/month</span>
               </div>
               <p className="text-sm text-white/35 mb-6 leading-relaxed">

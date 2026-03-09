@@ -176,7 +176,7 @@ export default function FeaturesSection() {
                     <div className="flex gap-8">
                       {feature.stats.map((stat) => (
                         <div key={stat.label}>
-                          <p className="text-2xl font-bold text-white mb-1">{stat.value}</p>
+                          <p className="font-numeric text-2xl font-bold text-white mb-1">{stat.value}</p>
                           <p className="text-xs text-white/40 uppercase tracking-wide">{stat.label}</p>
                         </div>
                       ))}

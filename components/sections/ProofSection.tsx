@@ -246,7 +246,7 @@ export default function ProofSection() {
                 <div className="rounded-2xl bg-gradient-to-br from-white/[0.06] to-white/[0.02] border border-white/[0.08] p-4 sm:p-5 md:p-6 backdrop-blur-sm shadow-xl">
                   {card.icon}
                   <p className="text-xs sm:text-sm text-white/40 mt-3 mb-1">{card.label}</p>
-                  <p className="text-sm sm:text-base font-semibold text-white">{card.price}</p>
+                  <p className="font-numeric text-sm sm:text-base font-semibold text-white">{card.price}</p>
                 </div>
               </div>
             ))}
@@ -258,7 +258,7 @@ export default function ProofSection() {
               style={{ marginTop: "-2rem" }}
             >
               <X className="w-12 h-12 sm:w-14 sm:h-14 text-red-400/80" strokeWidth={2.5} />
-              <span className="text-sm sm:text-base font-semibold text-red-400/80 font-mono">
+              <span className="font-numeric text-sm sm:text-base font-semibold text-red-400/80">
                 $31.97/month
               </span>
             </div>
