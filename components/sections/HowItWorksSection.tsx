@@ -40,31 +40,31 @@ export default function HowItWorksSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Heading animation
+      // Heading animation - fast
       gsap.from("[data-hiw-heading] > *", {
-        y: 50,
+        y: 25,
         opacity: 0,
-        stagger: 0.1,
-        duration: 0.8,
+        stagger: 0.05,
+        duration: 0.4,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 70%",
-          toggleActions: "play none none reverse",
+          start: "top 80%",
+          once: true,
         },
       });
 
-      // Steps animation
+      // Steps animation - fast
       gsap.from("[data-hiw-step]", {
-        y: 80,
+        y: 40,
         opacity: 0,
-        stagger: 0.15,
-        duration: 0.9,
+        stagger: 0.08,
+        duration: 0.5,
         ease: "power3.out",
         scrollTrigger: {
           trigger: "[data-hiw-steps]",
-          start: "top 75%",
-          toggleActions: "play none none reverse",
+          start: "top 80%",
+          once: true,
         },
       });
     }, sectionRef);

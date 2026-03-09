@@ -106,60 +106,60 @@ export default function ClosingSection() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
-      /* AI text slide-up */
+      /* AI text - fast */
       gsap.from("[data-close-ai-text]", {
-        y: 40,
+        y: 25,
         opacity: 0,
-        duration: 0.8,
+        duration: 0.4,
         ease: "power3.out",
         scrollTrigger: {
           trigger: "[data-close-ai-text]",
-          start: "top 75%",
-          toggleActions: "play none none reverse",
+          start: "top 80%",
+          once: true,
         },
       });
 
-      /* Chat mockup */
+      /* Chat mockup - fast */
       gsap.from("[data-close-ai-chat]", {
-        y: 60,
+        y: 30,
         opacity: 0,
-        scale: 0.96,
-        duration: 0.9,
+        scale: 0.98,
+        duration: 0.5,
         ease: "power3.out",
         scrollTrigger: {
           trigger: "[data-close-ai-chat]",
-          start: "top 80%",
-          toggleActions: "play none none reverse",
+          start: "top 85%",
+          once: true,
         },
-        delay: 0.15,
+        delay: 0.1,
       });
 
-      /* CTA headline reveal */
+      /* CTA headline - fast */
       gsap.from("[data-close-headline]", {
-        y: 30,
-        opacity: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: "[data-close-cta]",
-          start: "top 70%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      /* CTA buttons */
-      gsap.from("[data-close-btn]", {
         y: 20,
         opacity: 0,
-        stagger: 0.1,
-        duration: 0.6,
+        duration: 0.5,
         ease: "power3.out",
         scrollTrigger: {
           trigger: "[data-close-cta]",
-          start: "top 65%",
-          toggleActions: "play none none reverse",
+          start: "top 80%",
+          once: true,
         },
-        delay: 0.3,
+      });
+
+      /* CTA buttons - fast */
+      gsap.from("[data-close-btn]", {
+        y: 15,
+        opacity: 0,
+        stagger: 0.05,
+        duration: 0.35,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: "[data-close-cta]",
+          start: "top 75%",
+          once: true,
+        },
+        delay: 0.15,
       });
     }, sectionRef);
     return () => ctx.revert();

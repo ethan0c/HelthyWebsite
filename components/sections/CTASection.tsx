@@ -27,12 +27,12 @@ export default function CTASection() {
         y: 60,
         opacity: 0,
         stagger: 0.1,
-        duration: 0.9,
+        duration: 0.5,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 70%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
       });
 
@@ -45,7 +45,7 @@ export default function CTASection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 65%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
       });
     }, sectionRef);

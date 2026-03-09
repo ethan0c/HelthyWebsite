@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { GSAPProvider } from "../components/providers/GSAPProvider";
-import { LenisProvider } from "../components/providers/LenisProvider";
 import Navbar from "../components/nav/Navbar";
 
 export const metadata: Metadata = {
@@ -75,10 +74,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning className="antialiased grain">
         <GSAPProvider>
-          <LenisProvider>
-            <Navbar />
-            {children}
-          </LenisProvider>
+          <Navbar />
+          {children}
         </GSAPProvider>
       </body>
     </html>

@@ -4,45 +4,23 @@ import { useEffect, ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Flip } from "gsap/Flip";
 
-// Register GSAP plugins once on the client
+// Lightweight GSAP provider - register once, minimal refreshes
 export function GSAPProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger, Flip);
+    gsap.registerPlugin(ScrollTrigger);
     
-    // Multiple refresh passes to handle async content loading
-    const refresh1 = setTimeout(() => ScrollTrigger.refresh(), 100);
-    const refresh2 = setTimeout(() => ScrollTrigger.refresh(), 500);
-    const refresh3 = setTimeout(() => ScrollTrigger.refresh(), 1000);
-    
-    // Also refresh when window fully loads (images, etc.)
-    const handleLoad = () => {
-      setTimeout(() => ScrollTrigger.refresh(), 100);
-    };
-    window.addEventListener("load", handleLoad);
-
-    return () => {
-      clearTimeout(refresh1);
-      clearTimeout(refresh2);
-      clearTimeout(refresh3);
-      window.removeEventListener("load", handleLoad);
-    };
+    // Single refresh after initial load
+    const refresh = setTimeout(() => ScrollTrigger.refresh(), 200);
+    return () => clearTimeout(refresh);
   }, []);
 
-  // Scroll to top and refresh ScrollTrigger on route changes
+  // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
-    
-    const refresh1 = setTimeout(() => ScrollTrigger.refresh(), 100);
-    const refresh2 = setTimeout(() => ScrollTrigger.refresh(), 500);
-
-    return () => {
-      clearTimeout(refresh1);
-      clearTimeout(refresh2);
-    };
+    ScrollTrigger.refresh();
   }, [pathname]);
 
   return <>{children}</>;

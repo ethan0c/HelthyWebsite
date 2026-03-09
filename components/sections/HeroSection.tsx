@@ -44,49 +44,40 @@ export default function HeroSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Content reveal
+      // Fast, snappy content reveal
       gsap.from("[data-hero-line]", {
-        y: 60,
+        y: 30,
         opacity: 0,
-        stagger: 0.08,
-        duration: 1,
-        ease: "power4.out",
-        delay: 0.3,
+        stagger: 0.05,
+        duration: 0.5,
+        ease: "power3.out",
+        delay: 0.1,
       });
 
       gsap.from("[data-hero-sub]", {
-        y: 30,
+        y: 20,
         opacity: 0,
-        duration: 0.8,
+        duration: 0.4,
         ease: "power3.out",
-        delay: 0.6,
+        delay: 0.25,
       });
 
       gsap.from("[data-hero-cta]", {
-        y: 20,
+        y: 15,
         opacity: 0,
-        duration: 0.7,
+        duration: 0.4,
         ease: "power3.out",
-        delay: 0.8,
-      });
-
-      // Food image reveal
-      gsap.from("[data-hero-food]", {
-        scale: 1.05,
-        opacity: 0,
-        duration: 1.4,
-        ease: "power2.out",
-        delay: 0.1,
+        delay: 0.35,
       });
 
       // Badges
       gsap.from("[data-hero-badge]", {
-        y: 20,
+        y: 15,
         opacity: 0,
-        stagger: 0.1,
-        duration: 0.6,
+        stagger: 0.05,
+        duration: 0.4,
         ease: "power3.out",
-        delay: 1,
+        delay: 0.45,
       });
     }, sectionRef);
 
@@ -105,6 +96,8 @@ export default function HeroSection() {
           muted
           loop
           playsInline
+          preload="metadata"
+          poster="/images/stock/hero-poster.jpg"
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/videos/hero-man-running.mp4" type="video/mp4" />

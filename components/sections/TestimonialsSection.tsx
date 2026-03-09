@@ -60,12 +60,12 @@ export default function TestimonialsSection() {
       gsap.from("[data-rating-badge]", {
         y: 20,
         opacity: 0,
-        duration: 0.6,
+        duration: 0.35,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 70%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
       });
 
@@ -74,12 +74,12 @@ export default function TestimonialsSection() {
         y: 40,
         opacity: 0,
         stagger: 0.1,
-        duration: 0.8,
+        duration: 0.4,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 65%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
       });
 
@@ -87,12 +87,12 @@ export default function TestimonialsSection() {
       gsap.from("[data-featured-testimonial]", {
         y: 60,
         opacity: 0,
-        duration: 0.9,
+        duration: 0.5,
         ease: "power3.out",
         scrollTrigger: {
           trigger: "[data-featured-testimonial]",
           start: "top 80%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
       });
 
@@ -101,12 +101,12 @@ export default function TestimonialsSection() {
         y: 40,
         opacity: 0,
         stagger: 0.1,
-        duration: 0.7,
+        duration: 0.4,
         ease: "power3.out",
         scrollTrigger: {
           trigger: "[data-testimonial-grid]",
           start: "top 80%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
       });
     }, sectionRef);

@@ -84,31 +84,31 @@ export default function ProofSection() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
-      /* Review cards */
+      /* Review cards - fast */
       gsap.from("[data-review-card]", {
-        y: 30,
+        y: 20,
         opacity: 0,
-        stagger: 0.1,
-        duration: 0.6,
+        stagger: 0.05,
+        duration: 0.35,
         ease: "power3.out",
         scrollTrigger: {
           trigger: "[data-reviews-grid]",
-          start: "top 75%",
-          toggleActions: "play none none reverse",
+          start: "top 80%",
+          once: true,
         },
       });
 
-      /* Old way cards float in */
+      /* Old way cards - fast */
       gsap.from("[data-old-card]", {
-        y: 60,
+        y: 30,
         opacity: 0,
-        stagger: 0.12,
-        duration: 0.8,
+        stagger: 0.06,
+        duration: 0.4,
         ease: "power3.out",
         scrollTrigger: {
           trigger: "[data-old-way]",
-          start: "top 70%",
-          toggleActions: "play none none reverse",
+          start: "top 80%",
+          once: true,
         },
       });
 
@@ -116,39 +116,39 @@ export default function ProofSection() {
       gsap.from("[data-old-x]", {
         scale: 0,
         opacity: 0,
-        duration: 0.6,
+        duration: 0.3,
         ease: "back.out(2)",
         scrollTrigger: {
           trigger: "[data-old-way]",
-          start: "top 65%",
-          toggleActions: "play none none reverse",
+          start: "top 75%",
+          once: true,
         },
-        delay: 0.5,
+        delay: 0.2,
       });
 
-      /* Helthy way section */
+      /* Helthy way section - fast */
       gsap.from("[data-helthy-way]", {
-        y: 40,
+        y: 25,
         opacity: 0,
-        duration: 0.8,
+        duration: 0.4,
         ease: "power3.out",
         scrollTrigger: {
           trigger: "[data-helthy-way]",
-          start: "top 75%",
-          toggleActions: "play none none reverse",
+          start: "top 80%",
+          once: true,
         },
       });
 
-      /* Price counter $32 → $0 */
+      /* Price counter $32 → $0 - faster */
       const counter = { value: 32 };
       gsap.to(counter, {
         value: 0,
-        duration: 1.5,
+        duration: 0.8,
         ease: "power2.out",
         scrollTrigger: {
           trigger: "[data-helthy-price]",
-          start: "top 80%",
-          toggleActions: "play none none reverse",
+          start: "top 85%",
+          once: true,
         },
         onUpdate: () => {
           const el = document.querySelector("[data-helthy-price]");
@@ -156,17 +156,17 @@ export default function ProofSection() {
         },
       });
 
-      /* Feature chips */
+      /* Feature chips - fast */
       gsap.from("[data-feature-cell]", {
-        scale: 0.85,
+        scale: 0.9,
         opacity: 0,
-        stagger: 0.04,
-        duration: 0.4,
+        stagger: 0.02,
+        duration: 0.25,
         ease: "back.out(1.5)",
         scrollTrigger: {
           trigger: "[data-feature-grid]",
-          start: "top 80%",
-          toggleActions: "play none none reverse",
+          start: "top 85%",
+          once: true,
         },
       });
     }, sectionRef);

@@ -67,13 +67,13 @@ export default function PhotoShowcase() {
           gsap.from(content, {
             y: 40,
             opacity: 0,
-            duration: 0.6,
+            duration: 0.35,
             ease: "power3.out",
             scrollTrigger: {
               trigger: slide,
               containerAnimation: gsap.getById?.("horizontalScroll") || undefined,
               start: "left 80%",
-              toggleActions: "play none none reverse",
+              once: true,
               // Use the horizontal scroll container
               scroller: undefined,
             },

@@ -42,12 +42,12 @@ export default function FAQSection() {
       gsap.from("[data-faq-title]", {
         y: 20,
         opacity: 0,
-        duration: 0.6,
+        duration: 0.35,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 75%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
       });
     }, sectionRef);

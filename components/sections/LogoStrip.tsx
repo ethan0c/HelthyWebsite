@@ -70,7 +70,7 @@ export default function LogoStrip() {
         scrollTrigger: {
           trigger: stripRef.current,
           start: "top 85%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
       });
     }, stripRef);

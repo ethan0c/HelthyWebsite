@@ -20,55 +20,55 @@ export default function ScannerDemo() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
-      /* Viewfinder slides in from left */
+      /* Viewfinder - fast */
       gsap.from("[data-scan-viewfinder]", {
-        x: -60,
+        x: -30,
         opacity: 0,
-        duration: 1,
+        duration: 0.5,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 65%",
-          toggleActions: "play none none reverse",
+          start: "top 80%",
+          once: true,
         },
       });
 
-      /* Results card slides in from right */
+      /* Results card - fast */
       gsap.from("[data-scan-results]", {
-        x: 60,
+        x: 30,
         opacity: 0,
-        duration: 1,
+        duration: 0.5,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 65%",
-          toggleActions: "play none none reverse",
+          start: "top 80%",
+          once: true,
         },
-        delay: 0.2,
+        delay: 0.1,
       });
 
       /* Scan line animation */
       gsap.to("[data-scan-line]", {
         y: "100%",
-        duration: 2,
+        duration: 1.5,
         ease: "power1.inOut",
         repeat: -1,
         yoyo: true,
       });
 
-      /* Food rows stagger */
+      /* Food rows - fast */
       gsap.from("[data-scan-food]", {
-        x: 20,
+        x: 10,
         opacity: 0,
-        stagger: 0.12,
-        duration: 0.5,
+        stagger: 0.06,
+        duration: 0.3,
         ease: "power3.out",
         scrollTrigger: {
           trigger: "[data-scan-results]",
-          start: "top 75%",
-          toggleActions: "play none none reverse",
+          start: "top 80%",
+          once: true,
         },
-        delay: 0.5,
+        delay: 0.2,
       });
     }, sectionRef);
     return () => ctx.revert();
