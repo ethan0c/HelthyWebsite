@@ -85,7 +85,7 @@ export default function CTASection() {
                 href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-helthy-lemon text-[#0B0B0B] font-semibold text-base tracking-wide uppercase hover:bg-white hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(205,251,80,0.3)] transition-all duration-300"
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-helthy-lemon text-[#0B0B0B] font-medium text-base tracking-wide uppercase hover:bg-white hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(205,251,80,0.3)] transition-all duration-300"
               >
                 <AppStoreIcon className="w-5 h-5 transition-transform group-hover:scale-110" />
                 Download Free

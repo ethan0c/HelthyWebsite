@@ -227,7 +227,7 @@ export default function SiteFooter() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="px-6 py-3 rounded-full bg-[#0B0B0B] text-white text-sm font-semibold hover:bg-[#0B0B0B]/80 transition-colors disabled:opacity-50"
+                className="px-6 py-3 rounded-full bg-[#0B0B0B] text-white text-sm font-medium hover:bg-[#0B0B0B]/80 transition-colors disabled:opacity-50"
               >
                 {status === "loading" ? "..." : "Subscribe"}
               </button>
@@ -292,7 +292,7 @@ export default function SiteFooter() {
           <img
             src="/images/logos/logo-long-white.png"
             alt="Helthy"
-            className="w-full max-w-3xl h-auto object-contain invert"
+            className="w-full max-w-12xl h-auto object-contain invert"
           />
         </div>
       </div>

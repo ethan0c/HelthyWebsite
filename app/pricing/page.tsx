@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import SiteFooter from "@/components/sections/SiteFooter";
-import { Check, Sparkles, Zap, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { Check, Sparkles } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Pricing – Helthy",
@@ -25,23 +24,23 @@ function AppStoreIcon({ className }: { className?: string }) {
 }
 
 const freeFeatures = [
-  { name: "Workout tracking", description: "Log any exercise with sets, reps, and weight" },
-  { name: "Nutrition logging", description: "Search 1M+ foods or create custom entries" },
-  { name: "Barcode scanning", description: "Instant lookup for packaged foods" },
-  { name: "OCR label scanning", description: "Scan nutrition labels directly" },
-  { name: "Voice logging", description: "1 free voice entry per day" },
-  { name: "Apple Health sync", description: "Automatic data synchronization" },
-  { name: "Progress charts", description: "Visualize weight, macros, and trends" },
-  { name: "Streaks & goals", description: "Stay motivated with daily streaks" },
+  "Workout tracking",
+  "Nutrition logging",
+  "Barcode scanning",
+  "OCR label scanning",
+  "Apple Health sync",
+  "Progress charts",
+  "Streaks & goals",
+  "1 voice entry/day",
 ];
 
 const premiumFeatures = [
-  { name: "AI health coach", description: "Personalized advice and recommendations" },
-  { name: "Photo meal logging", description: "AI identifies food from photos" },
-  { name: "Auto goal adjustment", description: "Goals adapt to your progress" },
-  { name: "Dynamic TDEE", description: "Real-time calorie calculations" },
-  { name: "Unlimited voice", description: "No limits on voice logging" },
-  { name: "Ad-free experience", description: "Zero interruptions" },
+  "AI health coach",
+  "Photo meal logging",
+  "Auto goal adjustment",
+  "Dynamic TDEE",
+  "Unlimited voice",
+  "Ad-free experience",
 ];
 
 const faqs = [
@@ -66,139 +65,85 @@ const faqs = [
 export default function PricingPage() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative pt-32 sm:pt-40 pb-20 sm:pb-28 bg-[#060606] overflow-hidden">
-        {/* Background gradient */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-helthy-lemon/[0.03] blur-[150px] rounded-full" />
+      {/* Hero */}
+      <section className="relative section-padding pt-36 sm:pt-44 glow-center">
+        <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8 text-center">
+          <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">Pricing</p>
+          <h1 className="font-heading font-semibold text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white mb-6">
+            Free <span className="accent-serif text-helthy-lemon">forever.</span>
+          </h1>
+          <p className="text-base text-white/35 max-w-xl mx-auto leading-relaxed">
+            Everything you need to reach your goals. No subscriptions, no paywalls, no tricks.
+          </p>
         </div>
+      </section>
 
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-          {/* Badge */}
-          <div className="flex justify-center mb-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.06]">
-              <Zap className="w-4 h-4 text-helthy-lemon" />
-              <span className="text-sm text-white/60 font-medium">Simple, honest pricing</span>
-            </div>
-          </div>
-
-          {/* Heading */}
-          <div className="text-center mb-16 lg:mb-24">
-            <h1 className="font-heading text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.04em] text-white mb-6">
-              Free forever
-            </h1>
-            <p className="text-xl sm:text-2xl text-white/40 max-w-2xl mx-auto">
-              Everything you need to track your health.
-              <br className="hidden sm:block" />
-              No subscriptions required.
-            </p>
-          </div>
-
-          {/* Pricing Cards */}
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+      {/* Pricing Cards */}
+      <section className="section-padding pt-0">
+        <div className="mx-auto max-w-4xl px-5 sm:px-8">
+          <div className="grid sm:grid-cols-2 gap-6">
             {/* Free Tier */}
-            <div className="relative rounded-3xl bg-gradient-to-b from-white/[0.05] to-white/[0.02] border border-white/[0.06] p-8 lg:p-10 flex flex-col">
-              {/* Header */}
-              <div className="mb-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-white/[0.05] flex items-center justify-center">
-                    <Check className="w-6 h-6 text-helthy-lemon" />
-                  </div>
-                  <div>
-                    <h2 className="text-xl font-semibold text-white">Free</h2>
-                    <p className="text-sm text-white/40">For everyone</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-baseline gap-2 mb-3">
-                  <span className="text-6xl font-heading font-bold text-white tracking-tight">$0</span>
-                  <span className="text-lg text-white/30">/forever</span>
-                </div>
-                <p className="text-white/50">
-                  All core features. No trial. No credit card.
-                </p>
+            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 sm:p-8">
+              <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">For everyone</p>
+              
+              <h2 className="font-heading font-semibold text-2xl text-white mb-2">Free</h2>
+              <div className="flex items-baseline gap-1 mb-4">
+                <span className="text-4xl font-heading font-bold text-white">$0</span>
+                <span className="text-white/35">/forever</span>
               </div>
+              <p className="text-sm text-white/35 mb-6 leading-relaxed">
+                All core features. No trial. No credit card.
+              </p>
 
-              {/* Features */}
-              <div className="flex-1 mb-8">
-                <p className="text-xs uppercase tracking-[0.15em] text-white/30 mb-4">What's included</p>
-                <ul className="space-y-4">
-                  {freeFeatures.map((feature) => (
-                    <li key={feature.name} className="flex items-start gap-3">
-                      <div className="w-5 h-5 rounded-full bg-helthy-lemon/10 flex items-center justify-center mt-0.5 shrink-0">
-                        <Check className="w-3 h-3 text-helthy-lemon" />
-                      </div>
-                      <div>
-                        <p className="text-white font-medium text-sm">{feature.name}</p>
-                        <p className="text-white/40 text-sm">{feature.description}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="space-y-3 mb-8">
+                {freeFeatures.map((feature) => (
+                  <li key={feature} className="flex items-center gap-3">
+                    <Check className="w-4 h-4 text-helthy-lemon shrink-0" />
+                    <span className="text-sm text-white/60">{feature}</span>
+                  </li>
+                ))}
+              </ul>
 
-              {/* CTA */}
               <a
                 href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-3 w-full px-6 py-4 rounded-full bg-helthy-lemon text-[#0B0B0B] font-semibold text-base hover:bg-white transition-colors"
+                className="inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-full bg-helthy-lemon text-[#0B0B0B] font-medium text-sm hover:bg-white transition-colors"
               >
-                <AppStoreIcon className="w-5 h-5" />
-                <span>Download Free</span>
+                <AppStoreIcon className="w-4 h-4" />
+                Download Free
               </a>
             </div>
 
             {/* Premium Tier */}
-            <div className="relative rounded-3xl bg-gradient-to-b from-helthy-lemon/10 to-helthy-lemon/[0.02] border border-helthy-lemon/20 p-8 lg:p-10 flex flex-col">
-              {/* Coming soon badge */}
-              <div className="absolute -top-4 right-8 px-4 py-2 rounded-full bg-helthy-lemon text-[#0B0B0B] text-sm font-semibold">
+            <div className="relative rounded-2xl border border-helthy-lemon/20 bg-helthy-lemon/[0.03] p-6 sm:p-8">
+              <div className="absolute top-4 right-4 px-2.5 py-1 rounded-full bg-helthy-lemon/10 text-helthy-lemon text-[10px] font-medium uppercase tracking-wider">
                 Coming April 2026
               </div>
-
-              {/* Header */}
-              <div className="mb-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-helthy-lemon/20 flex items-center justify-center">
-                    <Sparkles className="w-6 h-6 text-helthy-lemon" />
-                  </div>
-                  <div>
-                    <h2 className="text-xl font-semibold text-white">Premium</h2>
-                    <p className="text-sm text-white/40">AI-powered</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-baseline gap-2 mb-3">
-                  <span className="text-6xl font-heading font-bold text-white tracking-tight">$9</span>
-                  <span className="text-lg text-white/30">/month</span>
-                </div>
-                <p className="text-white/50">
-                  Everything in Free, plus AI superpowers.
-                </p>
+              
+              <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">AI-Powered</p>
+              
+              <h2 className="font-heading font-semibold text-2xl text-white mb-2">Premium</h2>
+              <div className="flex items-baseline gap-1 mb-4">
+                <span className="text-4xl font-heading font-bold text-white">$9</span>
+                <span className="text-white/35">/month</span>
               </div>
+              <p className="text-sm text-white/35 mb-6 leading-relaxed">
+                Everything in Free, plus AI superpowers.
+              </p>
 
-              {/* Features */}
-              <div className="flex-1 mb-8">
-                <p className="text-xs uppercase tracking-[0.15em] text-white/30 mb-4">Everything in Free, plus</p>
-                <ul className="space-y-4">
-                  {premiumFeatures.map((feature) => (
-                    <li key={feature.name} className="flex items-start gap-3">
-                      <div className="w-5 h-5 rounded-full bg-helthy-lemon/20 flex items-center justify-center mt-0.5 shrink-0">
-                        <Sparkles className="w-3 h-3 text-helthy-lemon" />
-                      </div>
-                      <div>
-                        <p className="text-white font-medium text-sm">{feature.name}</p>
-                        <p className="text-white/40 text-sm">{feature.description}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="space-y-3 mb-8">
+                {premiumFeatures.map((feature) => (
+                  <li key={feature} className="flex items-center gap-3">
+                    <Sparkles className="w-4 h-4 text-helthy-lemon shrink-0" />
+                    <span className="text-sm text-white/60">{feature}</span>
+                  </li>
+                ))}
+              </ul>
 
-              {/* CTA */}
               <button
                 disabled
-                className="w-full px-6 py-4 rounded-full bg-white/10 text-white/50 font-semibold text-base cursor-not-allowed"
+                className="w-full px-6 py-3.5 rounded-full bg-white/[0.06] text-white/40 font-medium text-sm cursor-not-allowed"
               >
                 Coming Soon
               </button>
@@ -207,65 +152,36 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Comparison Banner */}
-      <section className="py-20 sm:py-28 bg-[#0A0A0A] relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="relative rounded-3xl bg-gradient-to-r from-helthy-lemon/10 via-helthy-lemon/5 to-transparent border border-helthy-lemon/20 p-8 lg:p-12">
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <h2 className="font-heading text-3xl lg:text-4xl font-bold text-white mb-4 tracking-[-0.02em]">
-                  No surprise fees.
-                  <br />
-                  <span className="text-helthy-lemon">Ever.</span>
-                </h2>
-                <p className="text-white/50 text-lg leading-relaxed">
-                  Helthy will never gate core tracking features behind a paywall. 
-                  Premium is for power users who want AI — the fundamentals stay free forever.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 lg:justify-end">
-                <a
-                  href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-helthy-lemon text-[#0B0B0B] font-semibold hover:bg-white transition-colors"
-                >
-                  <AppStoreIcon className="w-5 h-5" />
-                  Get Started Free
-                </a>
-                <Link
-                  href="/about"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-white/60 hover:text-white transition-colors group"
-                >
-                  Learn more
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </div>
+      {/* Promise */}
+      <section className="section-padding">
+        <div className="mx-auto max-w-4xl px-5 sm:px-8">
+          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 sm:p-12">
+            <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">Our Promise</p>
+            <h2 className="font-heading font-semibold text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white">
+              Core features stay free <span className="accent-serif text-helthy-lemon">forever.</span>
+              <br className="hidden sm:block" />
+              Premium is for power users who want AI — the fundamentals never go behind a paywall.
+            </h2>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 sm:py-28 bg-[#060606]">
-        <div className="mx-auto max-w-3xl px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-4">
-              FAQ
-            </p>
-            <h2 className="font-heading text-3xl lg:text-4xl font-bold text-white tracking-[-0.02em]">
-              Common questions
-            </h2>
-          </div>
-
+      {/* FAQ */}
+      <section className="section-padding" id="faq">
+        <div className="mx-auto max-w-4xl px-5 sm:px-8">
+          <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">FAQ</p>
+          <h2 className="font-heading font-semibold text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white mb-10">
+            Common <span className="accent-serif text-helthy-lemon">questions.</span>
+          </h2>
+          
           <div className="space-y-4">
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="rounded-2xl bg-white/[0.02] border border-white/[0.06] p-6"
+                className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6"
               >
-                <h3 className="text-white font-semibold mb-2">{faq.question}</h3>
-                <p className="text-white/50 leading-relaxed">{faq.answer}</p>
+                <h3 className="text-white font-medium mb-2">{faq.question}</h3>
+                <p className="text-sm text-white/40 leading-relaxed">{faq.answer}</p>
               </div>
             ))}
           </div>

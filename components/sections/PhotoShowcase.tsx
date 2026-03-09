@@ -113,7 +113,7 @@ export default function PhotoShowcase() {
         {/* Intro panel */}
         <div className="flex items-center justify-center w-screen h-full px-8 shrink-0">
           <div className="text-center max-w-lg">
-            <span className="pill-badge mb-4">What We Cover</span>
+            <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">What We Cover</p>
             <h2 className="font-heading font-semibold text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white">
               Built for every part of{" "}
               <span className="accent-serif text-helthy-lemon">your journey</span>

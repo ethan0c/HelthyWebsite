@@ -79,7 +79,7 @@ export default function ScannerDemo() {
       <div className="mx-auto max-w-6xl px-6 sm:px-10">
         {/* Heading */}
         <div className="text-center mb-16">
-          <span className="pill-badge mb-4">AI-Powered</span>
+          <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">AI-Powered</p>
           <h2 className="font-heading font-semibold text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-white">
             Snap a photo.{" "}
             <span className="accent-serif text-helthy-lemon">Know every macro.</span>

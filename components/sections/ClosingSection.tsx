@@ -175,10 +175,7 @@ export default function ClosingSection() {
 
         <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div data-close-ai-text>
-            <span className="pill-badge mb-5">
-              <Sparkles className="w-3.5 h-3.5" />
-              Coming Soon
-            </span>
+            <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">Coming Soon</p>
             <h2 className="font-heading font-semibold text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-white mb-5">
               Meet your{" "}
               <span className="accent-serif text-helthy-lemon">AI coach.</span>

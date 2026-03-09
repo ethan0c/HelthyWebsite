@@ -29,11 +29,11 @@ const team = [
 ];
 
 const milestones = [
-  { date: "2024", label: "Development begins" },
-  { date: "Jan 2025", label: "Helthy launches on iOS" },
-  { date: "Feb 2025", label: "Apple Watch + Android launch" },
-  { date: "Mar 2025", label: "Helthy 2.0 — total rebuild" },
-  { date: "Apr 2026", label: "Helthy Premium (AI Coach)" },
+  { date: "June 2025", label: "Development begins" },
+  { date: "Nov 2025", label: "Helthy launches on iOS" },
+  { date: "Feb 2025", label: "Helthy 1.2 — total rebuild" },
+  { date: "Mar 2026", label: "Apple Watch + Android launch" },
+  { date: "April 2026", label: "Helthy 2.0 (AI + Premium)" },
 ];
 
 export default function AboutPage() {
@@ -42,7 +42,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="relative section-padding pt-36 sm:pt-44 glow-center">
         <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8">
-          <span className="pill-badge mb-5">About Helthy</span>
+          <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">About Helthy</p>
           <h1 className="font-heading font-semibold text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white mb-6">
             Built by lifters,
             <br />
@@ -60,7 +60,7 @@ export default function AboutPage() {
       <section className="section-padding">
         <div className="mx-auto max-w-4xl px-5 sm:px-8">
           <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 sm:p-12">
-            <span className="pill-badge mb-5">Our Mission</span>
+            <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">Our Mission</p>
             <h2 className="font-heading font-semibold text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white">
               Make health tracking free, beautiful, and powerful — so cost is
               never a barrier to <span className="accent-serif text-helthy-lemon">better health.</span>
@@ -72,7 +72,7 @@ export default function AboutPage() {
       {/* Team */}
       <section className="relative section-padding dot-grid">
         <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8">
-          <span className="pill-badge mb-5">The Team</span>
+          <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">The Team</p>
           <h2 className="font-heading font-semibold text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white mb-10">
             Real people. <span className="accent-serif text-helthy-lemon">Real transformations.</span>
           </h2>
@@ -101,7 +101,7 @@ export default function AboutPage() {
       {/* Timeline */}
       <section className="relative section-padding hatch-bg">
         <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8">
-          <span className="pill-badge mb-5">Timeline</span>
+          <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">Timeline</p>
           <h2 className="font-heading font-semibold text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white mb-10">
             Where we&apos;ve <span className="accent-serif text-helthy-lemon">been.</span>
           </h2>

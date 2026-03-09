@@ -67,45 +67,50 @@ export default function FeaturesSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
+      // Set initial states - elements start hidden
+      gsap.set("[data-features-heading] > *", { y: 40, opacity: 0 });
+      gsap.set("[data-main-feature]", { y: 60, opacity: 0 });
+      gsap.set("[data-grid-feature]", { y: 40, opacity: 0 });
+
       // Section heading
-      gsap.from("[data-features-heading] > *", {
-        y: 40,
-        opacity: 0,
+      gsap.to("[data-features-heading] > *", {
+        y: 0,
+        opacity: 1,
         stagger: 0.1,
         duration: 0.8,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-          toggleActions: "play none none reverse",
+          trigger: "[data-features-heading]",
+          start: "top 85%",
+          once: true,
         },
       });
 
       // Main feature cards
-      gsap.from("[data-main-feature]", {
-        y: 60,
-        opacity: 0,
+      gsap.to("[data-main-feature]", {
+        y: 0,
+        opacity: 1,
         stagger: 0.15,
         duration: 0.9,
         ease: "power3.out",
         scrollTrigger: {
           trigger: "[data-main-features]",
-          start: "top 75%",
-          toggleActions: "play none none reverse",
+          start: "top 85%",
+          once: true,
         },
       });
 
       // Grid features
-      gsap.from("[data-grid-feature]", {
-        y: 40,
-        opacity: 0,
+      gsap.to("[data-grid-feature]", {
+        y: 0,
+        opacity: 1,
         stagger: 0.08,
         duration: 0.6,
         ease: "power3.out",
         scrollTrigger: {
           trigger: "[data-grid-features]",
-          start: "top 80%",
-          toggleActions: "play none none reverse",
+          start: "top 85%",
+          once: true,
         },
       });
     }, sectionRef);
