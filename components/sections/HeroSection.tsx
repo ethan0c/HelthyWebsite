@@ -112,11 +112,11 @@ export default function HeroSection() {
         <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
           <div className="max-w-xl lg:max-w-2xl">
             {/* Headline */}
-            <h1 className="font-heading font-medium tracking-[-0.02em] leading-[1.1] mb-6">
-              <span data-hero-line className="block text-white text-[clamp(1.75rem,4vw,2.75rem)]">
+            <h1 className="font-heading font-semibold tracking-[-0.03em] leading-[1.05] mb-6">
+              <span data-hero-line className="block text-white text-[clamp(2.5rem,5vw,4rem)]">
                 Reach your goals,
               </span>
-              <span data-hero-line className="block text-white text-[clamp(1.75rem,4vw,2.75rem)]">
+              <span data-hero-line className="block text-[clamp(2.5rem,5vw,4rem)]">
                 <span className="accent-serif text-helthy-lemon">faster.</span>
               </span>
             </h1>

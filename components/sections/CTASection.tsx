@@ -15,19 +15,37 @@ function AppStoreIcon({ className }: { className?: string }) {
   );
 }
 
+// Split text into individual characters for animation
+function SplitText({ children, className }: { children: string; className?: string }) {
+  return (
+    <span className={className}>
+      {children.split("").map((char, i) => (
+        <span
+          key={i}
+          data-char
+          className="inline-block"
+          style={{ display: char === " " ? "inline" : "inline-block" }}
+        >
+          {char === " " ? "\u00A0" : char}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 export default function CTASection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Text reveal
-      gsap.from("[data-cta-text] > *", {
-        y: 60,
+      // Eyebrow fade in
+      gsap.from("[data-cta-eyebrow]", {
+        y: 20,
         opacity: 0,
-        stagger: 0.1,
-        duration: 0.5,
+        duration: 0.6,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -36,11 +54,50 @@ export default function CTASection() {
         },
       });
 
-      // Phone float in
-      gsap.from("[data-cta-phone]", {
-        y: 100,
+      // Character-by-character text reveal with stagger
+      const chars = headingRef.current?.querySelectorAll("[data-char]");
+      if (chars) {
+        gsap.set(chars, { 
+          y: 80, 
+          opacity: 0,
+          rotateX: -90,
+        });
+        
+        gsap.to(chars, {
+          y: 0,
+          opacity: 1,
+          rotateX: 0,
+          stagger: 0.02,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 65%",
+            once: true,
+          },
+        });
+      }
+
+      // Lemon text glow pulse
+      gsap.to("[data-lemon-text]", {
+        textShadow: "0 0 40px rgba(205, 251, 80, 0.6), 0 0 80px rgba(205, 251, 80, 0.3)",
+        duration: 2,
+        ease: "power2.inOut",
+        repeat: -1,
+        yoyo: true,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 70%",
+          once: true,
+        },
+      });
+
+      // Subtext fade in
+      gsap.from("[data-cta-subtext]", {
+        y: 40,
         opacity: 0,
-        duration: 1,
+        duration: 0.8,
+        delay: 0.6,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -48,6 +105,62 @@ export default function CTASection() {
           once: true,
         },
       });
+
+      // Buttons stagger in
+      gsap.from("[data-cta-buttons] > *", {
+        y: 30,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 0.6,
+        delay: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 65%",
+          once: true,
+        },
+      });
+
+      // Phone entrance with bounce
+      gsap.from("[data-cta-phone]", {
+        y: 150,
+        opacity: 0,
+        scale: 0.8,
+        rotation: 10,
+        duration: 1.2,
+        delay: 0.4,
+        ease: "elastic.out(1, 0.5)",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 60%",
+          once: true,
+        },
+      });
+
+      // Subtle phone float animation (continuous)
+      gsap.to("[data-cta-phone]", {
+        y: -15,
+        duration: 3,
+        ease: "power1.inOut",
+        repeat: -1,
+        yoyo: true,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
+      });
+
+      // Glow pulse
+      gsap.to("[data-phone-glow]", {
+        scale: 1.2,
+        opacity: 0.3,
+        duration: 2.5,
+        ease: "power1.inOut",
+        repeat: -1,
+        yoyo: true,
+      });
+
     }, sectionRef);
 
     return () => ctx.revert();
@@ -64,23 +177,29 @@ export default function CTASection() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
         <div className="text-center">
           {/* Main heading */}
-          <div data-cta-text className="mb-12">
-            <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">
+          <div className="mb-12">
+            <p data-cta-eyebrow className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">
               Ready to start?
             </p>
-            <h2 className="font-heading text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.04em] text-white mb-6">
-              Your journey
+            <h2 
+              ref={headingRef}
+              className="font-heading text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.04em] text-white mb-6"
+              style={{ perspective: "1000px" }}
+            >
+              <SplitText>Your journey</SplitText>
               <br />
-              <span className="text-helthy-lemon">starts now</span>
+              <span data-lemon-text className="text-helthy-lemon inline-block">
+                <SplitText>starts now</SplitText>
+              </span>
             </h2>
-            <p className="text-lg sm:text-xl text-white/40 max-w-xl mx-auto mb-10">
+            <p data-cta-subtext className="text-lg sm:text-xl text-white/40 max-w-xl mx-auto mb-10">
               Free forever. No credit card. No subscriptions.
               <br className="hidden sm:block" />
               Just results.
             </p>
 
             {/* CTA buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div data-cta-buttons className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
                 target="_blank"
@@ -117,7 +236,7 @@ export default function CTASection() {
                   </div>
                 </div>
                 {/* Glow */}
-                <div className="absolute -inset-6 bg-helthy-lemon/20 blur-3xl rounded-full -z-10" />
+                <div data-phone-glow className="absolute -inset-6 bg-helthy-lemon/20 blur-3xl rounded-full -z-10" />
               </div>
             </div>
           </div>
