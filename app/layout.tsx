@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { GSAPProvider } from "../components/providers/GSAPProvider";
 import Navbar from "../components/nav/Navbar";
+import CustomCursor from "../components/ui/CustomCursor";
 
 export const metadata: Metadata = {
   title: {
@@ -72,8 +73,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning className="antialiased grain">
+      <body suppressHydrationWarning className="antialiased grain custom-cursor">
         <GSAPProvider>
+          <CustomCursor />
           <Navbar />
           {children}
         </GSAPProvider>

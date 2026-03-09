@@ -2,6 +2,11 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
+import MagneticButton from "@/components/ui/MagneticButton";
+
+gsap.registerPlugin(ScrollTrigger);
 
 // iOS App Store icon
 function AppStoreIcon({ className }: { className?: string }) {
@@ -41,6 +46,7 @@ function RatingBadge({ rating, label }: { rating: string; label: string }) {
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const phoneRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -79,6 +85,33 @@ export default function HeroSection() {
         ease: "power3.out",
         delay: 0.45,
       });
+
+      // Phone reveal on scroll
+      if (phoneRef.current) {
+        gsap.fromTo(
+          phoneRef.current,
+          {
+            y: 200,
+            opacity: 0,
+            rotateZ: 12,
+            scale: 0.9,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            rotateZ: 6,
+            scale: 1,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top top",
+              end: "bottom center",
+              scrub: 1,
+            },
+          }
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -133,15 +166,16 @@ export default function HeroSection() {
 
             {/* CTA */}
             <div data-hero-cta>
-              <a
+              <MagneticButton
                 href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-helthy-lemon text-[#0B0B0B] font-medium text-sm hover:bg-white transition-colors"
+                className="group px-6 py-3.5 rounded-full bg-helthy-lemon text-[#0B0B0B] font-medium text-sm hover:bg-white transition-colors"
+                strength={0.4}
               >
                 <AppStoreIcon className="w-5 h-5" />
                 Get started
-              </a>
+              </MagneticButton>
             </div>
           </div>
 
@@ -153,6 +187,29 @@ export default function HeroSection() {
             <div data-hero-badge>
               <RatingBadge rating="2k+" label="Users" />
             </div>
+          </div>
+        </div>
+
+        {/* Phone mockup - reveals on scroll */}
+        <div
+          ref={phoneRef}
+          className="absolute bottom-0 right-8 lg:right-24 hidden lg:block pointer-events-none"
+          style={{ transform: "translateY(30%)" }}
+        >
+          <div className="relative w-[280px] xl:w-[320px]">
+            {/* Phone glow effect */}
+            <div className="absolute -inset-8 bg-helthy-lemon/20 blur-3xl rounded-full" />
+            {/* Phone shadow */}
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-black/40 blur-xl rounded-full" />
+            {/* Phone image */}
+            <Image
+              src="/phones/homescreen.png"
+              alt="Helthy app home screen"
+              width={320}
+              height={650}
+              className="relative drop-shadow-2xl"
+              priority
+            />
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ const slides = [
     headline: "Every meal,\naccounted for.",
   },
   {
-    image: "/images/stock/gym-weights.jpg",
+    image: "/images/stock/workout-pullup.jpg",
     label: "Strength",
     headline: "Lift heavier.\nRecover smarter.",
   },
@@ -21,7 +21,7 @@ const slides = [
     headline: "Run further.\nFeel better.",
   },
   {
-    image: "/images/stock/yoga-stretch.jpg",
+    image: "/images/stock/runner-trail.jpg",
     label: "Recovery",
     headline: "Rest is part\nof the plan.",
   },

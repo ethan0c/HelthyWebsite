@@ -248,6 +248,15 @@ body {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
+/* ── Custom Cursor ────────────────────────────────────────────── */
+/* Hide default cursor on desktop when custom cursor is active */
+@media (min-width: 768px) and (pointer: fine) {
+  .custom-cursor,
+  .custom-cursor * {
+    cursor: none !important;
+  }
+}
+
 /* ── Section spacing ──────────────────────────────────────────── */
 .section-padding {
   padding-top: clamp(5rem, 12vh, 10rem);

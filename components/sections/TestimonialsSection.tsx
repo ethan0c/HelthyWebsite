@@ -68,6 +68,20 @@ const testimonials = [
   },
 ];
 
+// Colorful gradient backgrounds for avatars
+const avatarGradients = [
+  "bg-gradient-to-br from-violet-500 to-purple-600",
+  "bg-gradient-to-br from-pink-500 to-rose-600",
+  "bg-gradient-to-br from-amber-400 to-orange-500",
+  "bg-gradient-to-br from-emerald-400 to-teal-500",
+  "bg-gradient-to-br from-cyan-400 to-blue-500",
+  "bg-gradient-to-br from-fuchsia-500 to-pink-600",
+  "bg-gradient-to-br from-lime-400 to-green-500",
+  "bg-gradient-to-br from-red-500 to-rose-600",
+  "bg-gradient-to-br from-indigo-500 to-violet-600",
+  "bg-gradient-to-br from-yellow-400 to-amber-500",
+];
+
 function StarRating({ rating = 5 }: { rating?: number }) {
   return (
     <div className="flex gap-0.5">
@@ -78,7 +92,10 @@ function StarRating({ rating = 5 }: { rating?: number }) {
   );
 }
 
-function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
+function TestimonialCard({ testimonial, index }: { testimonial: typeof testimonials[0]; index: number }) {
+  const initial = testimonial.author.charAt(0).toUpperCase();
+  const gradientClass = avatarGradients[index % avatarGradients.length];
+  
   return (
     <div className="flex-shrink-0 w-[320px] sm:w-[380px] p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/[0.06] transition-colors hover:bg-white/[0.05]">
       {/* Stars */}
@@ -99,10 +116,15 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
       {/* Divider */}
       <div className="h-px bg-white/[0.06] mb-5" />
       
-      {/* Author */}
-      <div className="flex items-center justify-between">
-        <p className="font-medium text-white text-sm">{testimonial.author}</p>
-        <p className="text-xs text-white/40">{testimonial.date}</p>
+      {/* Author with colorful avatar */}
+      <div className="flex items-center gap-3">
+        <div className={`w-9 h-9 rounded-full ${gradientClass} flex items-center justify-center shadow-lg`}>
+          <span className="text-white font-semibold text-sm">{initial}</span>
+        </div>
+        <div className="flex-1 flex items-center justify-between">
+          <p className="font-medium text-white text-sm">{testimonial.author}</p>
+          <p className="text-xs text-white/40">{testimonial.date}</p>
+        </div>
       </div>
     </div>
   );
@@ -196,11 +218,11 @@ export default function TestimonialsSection() {
             <div className="flex gap-4 sm:gap-6 animate-scroll-left">
               {/* First set */}
               {row1.map((testimonial, index) => (
-                <TestimonialCard key={`row1-a-${index}`} testimonial={testimonial} />
+                <TestimonialCard key={`row1-a-${index}`} testimonial={testimonial} index={index} />
               ))}
               {/* Duplicate for seamless loop */}
               {row1.map((testimonial, index) => (
-                <TestimonialCard key={`row1-b-${index}`} testimonial={testimonial} />
+                <TestimonialCard key={`row1-b-${index}`} testimonial={testimonial} index={index} />
               ))}
             </div>
           </div>
@@ -210,11 +232,11 @@ export default function TestimonialsSection() {
             <div className="flex gap-4 sm:gap-6 animate-scroll-right">
               {/* First set */}
               {row2.map((testimonial, index) => (
-                <TestimonialCard key={`row2-a-${index}`} testimonial={testimonial} />
+                <TestimonialCard key={`row2-a-${index}`} testimonial={testimonial} index={index + row1.length} />
               ))}
               {/* Duplicate for seamless loop */}
               {row2.map((testimonial, index) => (
-                <TestimonialCard key={`row2-b-${index}`} testimonial={testimonial} />
+                <TestimonialCard key={`row2-b-${index}`} testimonial={testimonial} index={index + row1.length} />
               ))}
             </div>
           </div>

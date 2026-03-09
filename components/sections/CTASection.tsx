@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import MagneticButton from "@/components/ui/MagneticButton";
 
 // Apple App Store icon
 function AppStoreIcon({ className }: { className?: string }) {
@@ -200,22 +201,24 @@ export default function CTASection() {
 
             {/* CTA buttons */}
             <div data-cta-buttons className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
+              <MagneticButton
                 href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-helthy-lemon text-[#0B0B0B] font-medium text-base tracking-wide uppercase hover:bg-white hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(205,251,80,0.3)] transition-all duration-300"
+                className="group px-8 py-4 rounded-full bg-helthy-lemon text-[#0B0B0B] font-medium text-base tracking-wide uppercase hover:bg-white hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(205,251,80,0.3)] transition-all duration-300"
+                strength={0.4}
               >
                 <AppStoreIcon className="w-5 h-5 transition-transform group-hover:scale-110" />
                 Download Free
-              </a>
-              <a
+              </MagneticButton>
+              <MagneticButton
                 href="/pricing"
-                className="inline-flex items-center gap-2 px-6 py-4 text-white/60 hover:text-white transition-colors group"
+                className="px-6 py-4 text-white/60 hover:text-white transition-colors group"
+                strength={0.3}
               >
                 <span className="text-sm font-medium tracking-wide uppercase">See what's included</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </a>
+              </MagneticButton>
             </div>
           </div>
 
