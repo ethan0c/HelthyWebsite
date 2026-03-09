@@ -5,15 +5,6 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Apple App Store icon
-function AppStoreIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-    </svg>
-  );
-}
-
 const footerLinks = [
   { label: "Features", href: "/#features" },
   { label: "Pricing", href: "/pricing" },
@@ -125,30 +116,10 @@ export default function SiteFooter() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-helthy-lemon/[0.03] blur-[120px] rounded-full pointer-events-none" />
 
       {/* Main content */}
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pt-20 lg:pt-28 pb-12">
-        {/* Top section - CTA style */}
-        <div data-footer-animate className="text-center mb-16 lg:mb-24">
-          <p className="text-helthy-lemon text-sm font-medium tracking-[0.2em] uppercase mb-6">
-            Start Today
-          </p>
-          <h2 className="font-heading text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.1] tracking-[-0.03em] text-white mb-6">
-            Your health journey
-            <br />
-            <span className="text-white/30">begins here.</span>
-          </h2>
-          <a
-            href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-helthy-lemon text-[#0B0B0B] font-medium text-sm hover:bg-white transition-colors"
-          >
-            <AppStoreIcon className="w-5 h-5" />
-            Download Free
-          </a>
-        </div>
-
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pt-16 lg:pt-20 pb-12">
         {/* Newsletter - minimal */}
-        <div data-footer-animate className="max-w-md mx-auto mb-16 lg:mb-24">
+        <div data-footer-animate className="max-w-md mx-auto mb-12 lg:mb-16">
+          <p className="text-center text-white/50 text-sm mb-4">Stay up to date</p>
           <form onSubmit={handleSubmit} className="relative">
             <input
               type="email"
