@@ -1,235 +1,188 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, CreditCard, Users, Mail, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+
+// Apple App Store icon
+function AppStoreIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+    </svg>
+  );
+}
 
 const links = [
-  { href: "/", label: "Home", icon: Home },
-  { href: "/pricing", label: "Pricing", icon: CreditCard },
-  { href: "/about", label: "About", icon: Users },
-  { href: "/contact", label: "Contact", icon: Mail },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   const navRef = useRef<HTMLElement>(null);
   const pillRef = useRef<HTMLDivElement>(null);
-  const tabRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-
-  const activeIndex = links.findIndex((l) =>
-    l.href === "/" ? pathname === "/" : pathname.startsWith(l.href)
-  );
-
-  /* slide the pill indicator to the active tab */
-  const movePill = useCallback(() => {
-    const pill = pillRef.current;
-    const activeTab = tabRefs.current[activeIndex];
-    if (!pill || !activeTab) return;
-
-    const parent = activeTab.parentElement;
-    if (!parent) return;
-
-    const parentRect = parent.getBoundingClientRect();
-    const tabRect = activeTab.getBoundingClientRect();
-
-    gsap.to(pill, {
-      x: tabRect.left - parentRect.left,
-      width: tabRect.width,
-      duration: 0.4,
-      ease: "power3.out",
-    });
-  }, [activeIndex]);
-
-  /* auto-hide on scroll down, show on scroll up */
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      const showNav = gsap.fromTo(
-        navRef.current,
-        { yPercent: 0 },
-        {
-          yPercent: -150,
-          paused: true,
-          duration: 0.3,
-          ease: "power2.inOut",
-        }
-      );
-
-      ScrollTrigger.create({
-        start: "top top",
-        end: "max",
-        onUpdate: (self) => {
-          if (self.direction === -1) showNav.reverse();
-          else if (self.scroll() > 100) showNav.play();
-        },
-      });
-    });
-
-    return () => ctx.revert();
-  }, []);
-
-  /* move pill on route change + on mount */
-  useEffect(() => {
-    // small delay so DOM has settled
-    const raf = requestAnimationFrame(movePill);
-    return () => cancelAnimationFrame(raf);
-  }, [movePill]);
-
-  /* close mobile menu on route change */
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate nav pill on load
+      gsap.fromTo(
+        pillRef.current,
+        { y: -20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out", delay: 0.2 }
+      );
+    });
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      ctx.revert();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
 
   return (
     <>
       <nav
         ref={navRef}
-        className="fixed top-4 sm:top-5 left-1/2 -translate-x-1/2 z-50 w-auto"
+        className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-4"
       >
-        {/* ── Desktop floating bar (app tab bar style) ──────────── */}
-        <div className="hidden lg:flex items-center gap-0 rounded-full backdrop-blur-[40px] bg-[#141414]/90 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.4)] px-2 py-1.5 relative">
+        {/* Floating pill container */}
+        <div
+          ref={pillRef}
+          className={`mx-auto max-w-4xl flex items-center justify-between px-4 sm:px-6 h-14 rounded-full transition-all duration-500 ${
+            scrolled
+              ? "bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/[0.08] shadow-2xl"
+              : "bg-transparent"
+          }`}
+        >
           {/* Logo */}
-          <Link href="/" className="flex items-center shrink-0 pl-3 pr-3">
+          <Link href="/" className="flex items-center group">
             <img
               src="/images/logos/logo-long-white.png"
               alt="Helthy"
-              className="w-[100px] h-auto object-contain"
+              className="h-5 sm:h-6 w-auto transition-opacity group-hover:opacity-80"
             />
           </Link>
 
-          <div className="w-px h-6 bg-white/[0.08] mr-1" />
-
-          {/* Tabs container with sliding pill */}
-          <div className="relative flex items-center">
-            {/* Sliding pill indicator */}
-            <div
-              ref={pillRef}
-              className="absolute top-0.5 bottom-0.5 rounded-full bg-white/[0.08] pointer-events-none"
-              style={{ width: 0 }}
-            />
-
-            {links.map((l, i) => {
-              const active = isActive(l.href);
-              const Icon = l.icon;
-              return (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  ref={(el) => { tabRefs.current[i] = el; }}
-                  className="relative z-10 flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-colors duration-200"
-                >
-                  <Icon
-                    className={`w-[18px] h-[18px] transition-colors duration-300 ${
-                      active ? "text-helthy-lemon" : "text-white/40"
-                    }`}
-                  />
-                  {/* Collapsing label — only visible when active */}
-                  <span
-                    className={`overflow-hidden whitespace-nowrap transition-all duration-300 ease-out ${
-                      active
-                        ? "max-w-[80px] opacity-100 text-helthy-lemon"
-                        : "max-w-0 opacity-0"
-                    }`}
-                  >
-                    {l.label}
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* ── Mobile top bar ────────────────────────────────────── */}
-        <div className="lg:hidden flex items-center gap-3 rounded-full bg-[#141414]/90 border border-white/[0.08] px-2 py-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
-          <Link href="/" className="flex items-center pl-2">
-            <img
-              src="/images/logos/logo-long-white.png"
-              alt="Helthy"
-              className="h-4 w-auto object-contain"
-            />
-          </Link>
-
-          <div className="w-px h-5 bg-white/[0.08]" />
-
-          {/* Mobile tabs — icons only */}
-          <div className="flex items-center gap-1">
-            {links.map((l) => {
-              const active = isActive(l.href);
-              const Icon = l.icon;
-              return (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className={`p-2 rounded-full transition-colors duration-200 ${
-                    active ? "bg-white/[0.08]" : ""
-                  }`}
-                >
-                  <Icon
-                    className={`w-4 h-4 ${
-                      active ? "text-helthy-lemon" : "text-white/40"
-                    }`}
-                  />
-                </Link>
-              );
-            })}
+          {/* Desktop nav - centered */}
+          <div className="hidden md:flex items-center gap-1">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`relative px-4 py-2 text-[13px] font-medium tracking-wide uppercase transition-all duration-300 ${
+                  isActive(link.href)
+                    ? "text-white"
+                    : "text-white/40 hover:text-white"
+                }`}
+              >
+                {link.label}
+                {isActive(link.href) && (
+                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-helthy-lemon" />
+                )}
+              </Link>
+            ))}
           </div>
 
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center">
+            <a
+              href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-helthy-lemon text-[#0B0B0B] text-[13px] font-semibold tracking-wide uppercase transition-all duration-300 hover:bg-white hover:scale-[1.02]"
+            >
+              <AppStoreIcon className="w-4 h-4 transition-transform group-hover:scale-110" />
+              <span>Get App</span>
+            </a>
+          </div>
+
+          {/* Mobile menu button */}
           <button
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            className="md:hidden flex items-center justify-center w-10 h-10 -mr-2 text-white/70 hover:text-white transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="p-1.5 rounded-full text-white/40 hover:text-white hover:bg-white/[0.06] transition-colors"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
-            {mobileOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </nav>
 
-      {/* ── Mobile full-screen menu ─────────────────────────────── */}
+      {/* Mobile menu - full screen overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-[#060606]/98 backdrop-blur-2xl transition-all duration-500 lg:hidden flex flex-col items-center justify-center gap-2 ${
-          mobileOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-500 ${
+          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
-        {links.map((l) => {
-          const active = isActive(l.href);
-          const Icon = l.icon;
-          return (
+        {/* Background */}
+        <div className="absolute inset-0 bg-[#060606]" />
+        
+        {/* Content */}
+        <div className="relative flex flex-col items-center justify-center min-h-screen gap-8 px-6">
+          {/* Logo in mobile menu */}
+          <img
+            src="/images/logos/logo-long-white.png"
+            alt="Helthy"
+            className={`h-8 mb-8 transition-all duration-500 delay-100 ${
+              mobileOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+            }`}
+          />
+          
+          {/* Nav links */}
+          <div className="flex flex-col items-center gap-2">
             <Link
-              key={l.href}
-              href={l.href}
+              href="/"
               onClick={() => setMobileOpen(false)}
-              className={`
-                flex items-center gap-4 px-8 py-4 rounded-2xl text-xl font-medium
-                transition-all duration-300
-                ${
-                  active
-                    ? "bg-white/[0.06] text-white"
-                    : "text-white/50 hover:text-white"
-                }
-              `}
+              className={`text-lg font-medium tracking-wide uppercase transition-all duration-500 delay-150 ${
+                isActive("/") ? "text-white" : "text-white/40"
+              } ${mobileOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
             >
-              <Icon
-                className={`w-6 h-6 ${active ? "text-helthy-lemon" : ""}`}
-              />
-              {l.label}
+              Home
             </Link>
-          );
-        })}
+            {links.map((link, i) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className={`text-lg font-medium tracking-wide uppercase transition-all duration-500 ${
+                  isActive(link.href) ? "text-white" : "text-white/40"
+                } ${mobileOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+                style={{ transitionDelay: `${200 + i * 50}ms` }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <a
+            href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`mt-8 inline-flex items-center gap-3 px-8 py-4 rounded-full bg-helthy-lemon text-[#0B0B0B] font-semibold tracking-wide uppercase transition-all duration-500 delay-300 ${
+              mobileOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
+            <AppStoreIcon className="w-5 h-5" />
+            Download for iOS
+          </a>
+        </div>
       </div>
     </>
   );
