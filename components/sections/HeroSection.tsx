@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { LaurelWreathLeft01Icon } from "@hugeicons/core-free-icons";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -34,6 +36,15 @@ export default function HeroSection() {
         duration: 1.0,
         ease: "back.out(1.2)",
         delay: 0.8,
+      });
+
+      gsap.from("[data-hero-rating]", {
+        y: 30,
+        opacity: 0,
+        scale: 0.9,
+        duration: 1.2,
+        ease: "back.out(1.4)",
+        delay: 0.6,
       });
     }, sectionRef);
 
@@ -73,18 +84,12 @@ export default function HeroSection() {
               <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase">
                 Free Forever
               </p>
-              <div className="flex items-center gap-1.5 text-white/40">
-                <svg className="w-4 h-4 fill-helthy-lemon" viewBox="0 0 20 20">
-                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                </svg>
-                <span className="text-xs font-medium text-white/50">4.9 · 2k+ users</span>
-              </div>
             </div>
 
             {/* Headline */}
             <h1 className="font-heading font-bold tracking-[-0.04em] leading-[0.95] mb-6">
               <span data-hero-line className="block text-white text-[clamp(3rem,7vw,5.5rem)] drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]">
-                Your fitness,
+                Your <span className="text-helthy-lemon">fitness</span>,
               </span>
               <span data-hero-line className="block text-[clamp(3rem,7vw,5.5rem)]">
                 <span className="text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]">simplified</span>
@@ -96,8 +101,8 @@ export default function HeroSection() {
               data-hero-sub
               className="text-base lg:text-lg text-white/70 leading-relaxed mb-10 max-w-xl font-light"
             >
-              Track your nutrition, workouts, progress and so much more in one  simple app. 
-              <span className="text-white/90">AI-powered insights</span> meet effortless logging.
+              Track your nutrition, workouts, progress and so much more in one  simple app.
+              <span className="text-white/90"> Become the <span className="text-helthy-lemon">helthy-est</span></span> version of yourself today.
             </p>
 
             {/* Subtle CTA link */}
@@ -117,6 +122,37 @@ export default function HeroSection() {
               <span className="text-white/40 text-sm">No credit card required</span>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Rating Badge - Bottom Right */}
+      <div
+        data-hero-rating
+        className="absolute bottom-8 right-8 lg:bottom-12 lg:right-12 z-20"
+      >
+        <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl">
+          <HugeiconsIcon
+            icon={LaurelWreathLeft01Icon}
+            className="w-6 h-6 text-helthy-lemon"
+          />
+          <div className="flex flex-col items-center">
+            <div className="flex items-center gap-1">
+              {[...Array(5)].map((_, i) => (
+                <svg
+                  key={i}
+                  className="w-4 h-4 fill-helthy-lemon"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                </svg>
+              ))}
+            </div>
+            <p className="text-xs font-medium text-white/70 mt-1">4.9 · 2k+ users</p>
+          </div>
+          <HugeiconsIcon
+            icon={LaurelWreathLeft01Icon}
+            className="w-6 h-6 text-helthy-lemon rotate-180"
+          />
         </div>
       </div>
     </section>
