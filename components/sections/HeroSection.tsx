@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import MagneticButton from "@/components/ui/MagneticButton";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { LaurelWreathLeft01Icon } from "@hugeicons/core-free-icons";
 
 // iOS App Store icon
 function AppStoreIcon({ className }: { className?: string }) {
@@ -13,29 +15,35 @@ function AppStoreIcon({ className }: { className?: string }) {
   );
 }
 
-// App Store rating badge with laurels
+// App Store rating badge with elegant laurel wreaths
 function RatingBadge({ rating, label }: { rating: string; label: string }) {
   return (
-    <div className="flex items-center gap-2">
-      {/* Left laurel */}
-      <svg className="w-6 h-8 text-white/60" viewBox="0 0 24 32" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M12 4c-4 2-8 8-8 14M12 8c-3 2-6 6-6 10M12 12c-2 2-4 4-4 6" strokeLinecap="round"/>
-      </svg>
-      <div className="text-center">
-        <p className="text-xs text-white/50 uppercase tracking-wider">{label}</p>
-        <p className="text-white font-bold">{rating}</p>
-        <div className="flex justify-center gap-0.5 mt-0.5">
+    <div className="flex items-center gap-3">
+      {/* Left laurel wreath */}
+      <HugeiconsIcon 
+        icon={LaurelWreathLeft01Icon} 
+        size={28}
+        color="currentColor"
+        className="text-helthy-lemon/70"
+      />
+      <div className="text-center px-2">
+        <p className="text-[10px] text-white/40 uppercase tracking-widest font-medium mb-0.5">{label}</p>
+        <p className="text-white font-bold text-lg leading-none mb-1">{rating}</p>
+        <div className="flex justify-center gap-0.5">
           {[...Array(5)].map((_, i) => (
-            <svg key={i} className="w-2.5 h-2.5 text-white fill-current" viewBox="0 0 20 20">
+            <svg key={i} className="w-2.5 h-2.5 text-helthy-lemon fill-current" viewBox="0 0 20 20">
               <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
             </svg>
           ))}
         </div>
       </div>
-      {/* Right laurel */}
-      <svg className="w-6 h-8 text-white/60 scale-x-[-1]" viewBox="0 0 24 32" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M12 4c-4 2-8 8-8 14M12 8c-3 2-6 6-6 10M12 12c-2 2-4 4-4 6" strokeLinecap="round"/>
-      </svg>
+      {/* Right laurel wreath (mirrored) */}
+      <HugeiconsIcon 
+        icon={LaurelWreathLeft01Icon} 
+        size={28}
+        color="currentColor"
+        className="text-helthy-lemon/70 scale-x-[-1]"
+      />
     </div>
   );
 }
