@@ -54,29 +54,30 @@ export default function SiteFooter() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Animate footer elements on scroll
+      // Smooth fade and lift for footer elements
       gsap.from("[data-footer-animate]", {
-        y: 40,
+        y: 60,
         opacity: 0,
-        stagger: 0.1,
-        duration: 0.6,
-        ease: "power3.out",
+        stagger: 0.15,
+        duration: 1.2,
+        ease: "power4.out",
         scrollTrigger: {
           trigger: footerRef.current,
-          start: "top 90%",
+          start: "top 85%",
           once: true,
         },
       });
 
-      // Big text reveal
+      // Big text reveal with scale
       gsap.from("[data-footer-big-text]", {
-        y: 100,
+        y: 120,
         opacity: 0,
-        duration: 1,
-        ease: "power3.out",
+        scale: 0.95,
+        duration: 1.5,
+        ease: "power4.out",
         scrollTrigger: {
           trigger: "[data-footer-big-text]",
-          start: "top 95%",
+          start: "top 90%",
           once: true,
         },
       });

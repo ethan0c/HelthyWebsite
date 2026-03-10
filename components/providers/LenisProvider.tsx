@@ -23,9 +23,13 @@ export function LenisProvider({ children }: { children: ReactNode }) {
     htmlEl.style.scrollBehavior = "auto";
 
     const lenis = new Lenis({
-      // tune as needed
-      duration: 1.1,
+      duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 2.0,
     });
 
     lenisRef.current = lenis;

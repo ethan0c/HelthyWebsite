@@ -39,14 +39,30 @@ export default function FAQSection() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
+      // Smooth title reveal
       gsap.from("[data-faq-title]", {
-        y: 20,
+        y: 60,
         opacity: 0,
-        duration: 0.35,
-        ease: "power3.out",
+        scale: 0.95,
+        duration: 1.2,
+        ease: "power4.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
+          start: "top 70%",
+          once: true,
+        },
+      });
+
+      // Stagger FAQ items
+      gsap.from("[data-faq-item]", {
+        y: 40,
+        opacity: 0,
+        stagger: 0.08,
+        duration: 0.8,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 65%",
           once: true,
         },
       });
@@ -69,11 +85,11 @@ export default function FAQSection() {
 
         <div className="divide-y divide-white/[0.06]">
           {faqs.map((faq, i) => (
-            <div key={i}>
+            <div key={i} data-faq-item>
               <button
                 onClick={() => toggle(i)}
                 className="w-full flex items-center justify-between py-6 text-left
-                  hover:opacity-80 transition-opacity cursor-pointer"
+                  hover:opacity-80 transition-all duration-500 cursor-pointer"
                 aria-expanded={openIndex === i}
               >
                 <span className="text-base sm:text-lg font-medium text-white pr-6">

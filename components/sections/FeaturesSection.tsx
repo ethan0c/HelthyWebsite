@@ -26,13 +26,13 @@ function TiltCard({
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
     
-    const rotateX = (y - centerY) / 20;
-    const rotateY = (centerX - x) / 20;
+    const rotateX = (y - centerY) / 25;
+    const rotateY = (centerX - x) / 25;
     
     gsap.to(cardRef.current, {
       rotateX: rotateX,
       rotateY: rotateY,
-      duration: 0.5,
+      duration: 0.6,
       ease: "power2.out",
       transformPerspective: 1000,
     });
@@ -43,8 +43,8 @@ function TiltCard({
     gsap.to(cardRef.current, {
       rotateX: 0,
       rotateY: 0,
-      duration: 0.5,
-      ease: "power2.out",
+      duration: 0.8,
+      ease: "elastic.out(1, 0.5)",
     });
   }, []);
 
@@ -69,33 +69,48 @@ export default function FeaturesSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      gsap.set("[data-features-heading] > *", { y: 20, opacity: 0 });
-      gsap.set("[data-bento-card]", { y: 40, opacity: 0 });
-
-      gsap.to("[data-features-heading] > *", {
-        y: 0,
-        opacity: 1,
-        stagger: 0.05,
-        duration: 0.4,
-        ease: "power3.out",
+      // Heading with smooth reveal and blur
+      gsap.from("[data-features-heading] > *", {
+        y: 50,
+        opacity: 0,
+        filter: "blur(10px)",
+        stagger: 0.1,
+        duration: 1.2,
+        ease: "power4.out",
         scrollTrigger: {
           trigger: "[data-features-heading]",
-          start: "top 85%",
+          start: "top 80%",
           once: true,
         },
       });
 
-      gsap.to("[data-bento-card]", {
-        y: 0,
-        opacity: 1,
-        stagger: 0.1,
-        duration: 0.6,
-        ease: "power3.out",
+      // Bento cards with scale and parallax
+      gsap.from("[data-bento-card]", {
+        y: 80,
+        opacity: 0,
+        scale: 0.9,
+        stagger: 0.15,
+        duration: 1.0,
+        ease: "power4.out",
         scrollTrigger: {
           trigger: "[data-bento-grid]",
-          start: "top 85%",
+          start: "top 75%",
           once: true,
         },
+      });
+
+      // Add parallax to cards
+      gsap.utils.toArray("[data-bento-card]").forEach((card: any, i) => {
+        gsap.to(card, {
+          y: -30 * (i % 2 === 0 ? 1 : -1),
+          ease: "none",
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.5,
+          },
+        });
       });
     }, sectionRef);
 

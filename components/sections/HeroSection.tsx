@@ -2,91 +2,38 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import MagneticButton from "@/components/ui/MagneticButton";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { LaurelWreathLeft01Icon } from "@hugeicons/core-free-icons";
-
-// iOS App Store icon
-function AppStoreIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-    </svg>
-  );
-}
-
-// App Store rating badge with elegant laurel wreaths
-function RatingBadge({ rating, label }: { rating: string; label: string }) {
-  return (
-    <div className="flex items-center gap-3">
-      {/* Left laurel wreath */}
-      <HugeiconsIcon 
-        icon={LaurelWreathLeft01Icon} 
-        size={28}
-        color="currentColor"
-        className="text-helthy-lemon/70"
-      />
-      <div className="text-center px-2">
-        <p className="text-[10px] text-white/40 uppercase tracking-widest font-medium mb-0.5">{label}</p>
-        <p className="text-white font-bold text-lg leading-none mb-1">{rating}</p>
-        <div className="flex justify-center gap-0.5">
-          {[...Array(5)].map((_, i) => (
-            <svg key={i} className="w-2.5 h-2.5 text-helthy-lemon fill-current" viewBox="0 0 20 20">
-              <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-            </svg>
-          ))}
-        </div>
-      </div>
-      {/* Right laurel wreath (mirrored) */}
-      <HugeiconsIcon 
-        icon={LaurelWreathLeft01Icon} 
-        size={28}
-        color="currentColor"
-        className="text-helthy-lemon/70 scale-x-[-1]"
-      />
-    </div>
-  );
-}
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Fast, snappy content reveal
+      // Smooth, fluid content reveal with scale
       gsap.from("[data-hero-line]", {
-        y: 30,
+        y: 40,
         opacity: 0,
-        stagger: 0.05,
-        duration: 0.5,
-        ease: "power3.out",
-        delay: 0.1,
+        scale: 0.95,
+        stagger: 0.08,
+        duration: 1.2,
+        ease: "power4.out",
+        delay: 0.2,
       });
 
       gsap.from("[data-hero-sub]", {
-        y: 20,
+        y: 30,
         opacity: 0,
-        duration: 0.4,
-        ease: "power3.out",
-        delay: 0.25,
+        duration: 1.0,
+        ease: "power4.out",
+        delay: 0.5,
       });
 
       gsap.from("[data-hero-cta]", {
-        y: 15,
+        y: 25,
         opacity: 0,
-        duration: 0.4,
-        ease: "power3.out",
-        delay: 0.35,
-      });
-
-      // Badges
-      gsap.from("[data-hero-badge]", {
-        y: 15,
-        opacity: 0,
-        stagger: 0.05,
-        duration: 0.4,
-        ease: "power3.out",
-        delay: 0.45,
+        scale: 0.9,
+        duration: 1.0,
+        ease: "back.out(1.2)",
+        delay: 0.8,
       });
     }, sectionRef);
 
@@ -111,57 +58,63 @@ export default function HeroSection() {
         >
           <source src="/videos/hero-man-running.mp4" type="video/mp4" />
         </video>
-        {/* Minimal overlay - just enough for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
+        {/* Enhanced overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
+        <div className="absolute inset-0 bg-black/10" />
       </div>
 
-      {/* Content - positioned bottom-left like Fitflix */}
-      <div className="relative z-10 min-h-screen flex flex-col justify-end pb-12 lg:pb-16">
+      {/* Content - positioned bottom-left */}
+      <div className="relative z-10 min-h-screen flex flex-col justify-end pb-16 lg:pb-20">
         <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
-          <div className="max-w-xl lg:max-w-2xl">
+          <div className="max-w-2xl lg:max-w-3xl">
+            {/* Eyebrow */}
+            <div data-hero-line className="flex items-center gap-4 mb-6">
+              <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase">
+                Free Forever
+              </p>
+              <div className="flex items-center gap-1.5 text-white/40">
+                <svg className="w-4 h-4 fill-helthy-lemon" viewBox="0 0 20 20">
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                </svg>
+                <span className="text-xs font-medium text-white/50">4.9 · 2k+ users</span>
+              </div>
+            </div>
+
             {/* Headline */}
-            <h1 className="font-heading font-semibold tracking-[-0.03em] leading-[1.05] mb-6">
-              <span data-hero-line className="block text-white text-[clamp(2.5rem,5vw,4rem)]">
-                Reach your goals,
+            <h1 className="font-heading font-bold tracking-[-0.04em] leading-[0.95] mb-6">
+              <span data-hero-line className="block text-white text-[clamp(3rem,7vw,5.5rem)] drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]">
+                Your fitness,
               </span>
-              <span data-hero-line className="block text-[clamp(2.5rem,5vw,4rem)]">
-                <span className="accent-serif text-helthy-lemon">faster.</span>
+              <span data-hero-line className="block text-[clamp(3rem,7vw,5.5rem)]">
+                <span className="text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]">simplified</span>
               </span>
             </h1>
 
             {/* Subheadline */}
             <p
               data-hero-sub
-              className="text-sm lg:text-base text-white/60 leading-relaxed mb-8 max-w-md"
+              className="text-base lg:text-lg text-white/70 leading-relaxed mb-10 max-w-xl font-light"
             >
-              Track food, workouts, cardio, and weight — all in one place. 
-              AI-powered insights to help you progress faster.
-              100% free, forever.
+              Track your nutrition, workouts, progress and so much more in one  simple app. 
+              <span className="text-white/90">AI-powered insights</span> meet effortless logging.
             </p>
 
-            {/* CTA */}
-            <div data-hero-cta>
-              <MagneticButton
+            {/* Subtle CTA link */}
+            <div data-hero-cta className="flex items-center gap-6">
+              <a
                 href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group px-6 py-3.5 rounded-full bg-helthy-lemon text-[#0B0B0B] font-medium text-sm hover:bg-white transition-colors"
-                strength={0.4}
+                className="group inline-flex items-center gap-2 text-white hover:text-helthy-lemon transition-all duration-300"
               >
-                <AppStoreIcon className="w-5 h-5" />
-                Get started
-              </MagneticButton>
-            </div>
-          </div>
-
-          {/* Rating badges - bottom right like Fitflix */}
-          <div className="absolute bottom-12 lg:bottom-16 right-6 lg:right-8 hidden md:flex items-center gap-6">
-            <div data-hero-badge>
-              <RatingBadge rating="4.9" label="App Store" />
-            </div>
-            <div data-hero-badge>
-              <RatingBadge rating="2k+" label="Users" />
+                <span className="text-sm font-medium tracking-wide">Download for iOS</span>
+                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              <span className="text-white/30 text-sm">·</span>
+              <span className="text-white/40 text-sm">No credit card required</span>
             </div>
           </div>
         </div>

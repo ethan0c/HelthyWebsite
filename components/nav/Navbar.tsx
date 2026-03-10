@@ -32,18 +32,29 @@ export default function Navbar() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        navRef.current,
-        { y: -20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out", delay: 0.1 }
-      );
+      // Smooth navbar reveal - animate content wrapper, not the fixed nav itself
+      const content = navRef.current?.querySelector('[data-nav-content]');
+      if (content) {
+        gsap.fromTo(
+          content,
+          { y: -20, opacity: 0 },
+          { 
+            y: 0, 
+            opacity: 1,
+            duration: 1.0, 
+            ease: "power4.out", 
+            delay: 0.3,
+            clearProps: "transform" // Clear transform after animation to prevent positioning issues
+          }
+        );
+      }
     });
 
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       ctx.revert();
       window.removeEventListener("scroll", handleScroll);
@@ -58,13 +69,13 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out will-change-auto ${
           scrolled
             ? "bg-[#060606]/95 backdrop-blur-md border-b border-white/[0.06]"
             : "bg-transparent"
         }`}
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+        <div data-nav-content className="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <img

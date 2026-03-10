@@ -45,7 +45,7 @@ export default function PhotoShowcase() {
 
       const totalScroll = track.scrollWidth - window.innerWidth;
 
-      /* Horizontal scroll pin */
+      /* Horizontal scroll with smoother scrubbing */
       gsap.to(track, {
         x: -totalScroll,
         ease: "none",
@@ -54,38 +54,38 @@ export default function PhotoShowcase() {
           start: "top top",
           end: () => `+=${totalScroll}`,
           pin: true,
-          scrub: 1,
+          scrub: 1.5,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
       });
 
-      /* Each slide's content fades in */
+      /* Each slide's content with smooth fade and scale */
       gsap.utils.toArray<HTMLElement>("[data-photo-slide]").forEach((slide) => {
         const content = slide.querySelector("[data-photo-content]");
         if (content) {
           gsap.from(content, {
-            y: 40,
+            y: 80,
             opacity: 0,
-            duration: 0.35,
-            ease: "power3.out",
+            scale: 0.9,
+            duration: 1.2,
+            ease: "power4.out",
             scrollTrigger: {
               trigger: slide,
               containerAnimation: gsap.getById?.("horizontalScroll") || undefined,
-              start: "left 80%",
+              start: "left 70%",
               once: true,
-              // Use the horizontal scroll container
               scroller: undefined,
             },
           });
         }
       });
 
-      /* Image scale on approach */
+      /* Image scale with smoother parallax */
       gsap.utils.toArray<HTMLElement>("[data-photo-img]").forEach((img) => {
         gsap.fromTo(
           img,
-          { scale: 1.15 },
+          { scale: 1.2 },
           {
             scale: 1,
             ease: "none",
@@ -93,7 +93,7 @@ export default function PhotoShowcase() {
               trigger: img.parentElement,
               start: "top bottom",
               end: "bottom top",
-              scrub: 1,
+              scrub: 1.5,
             },
           }
         );

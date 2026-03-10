@@ -137,12 +137,13 @@ export default function TestimonialsSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Rating badge
+      // Rating badge with bounce
       gsap.from("[data-rating-badge]", {
-        y: 20,
+        y: 40,
         opacity: 0,
-        duration: 0.35,
-        ease: "power3.out",
+        scale: 0.8,
+        duration: 1.0,
+        ease: "back.out(1.5)",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 70%",
@@ -150,13 +151,14 @@ export default function TestimonialsSection() {
         },
       });
 
-      // Heading
+      // Heading with smooth reveal
       gsap.from("[data-testimonial-heading] > *", {
-        y: 40,
+        y: 60,
         opacity: 0,
-        stagger: 0.1,
-        duration: 0.4,
-        ease: "power3.out",
+        filter: "blur(8px)",
+        stagger: 0.15,
+        duration: 1.2,
+        ease: "power4.out",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 65%",
@@ -164,14 +166,15 @@ export default function TestimonialsSection() {
         },
       });
 
-      // Carousel reveal
+      // Carousel smooth fade with scale
       gsap.from("[data-testimonial-carousel]", {
         opacity: 0,
-        duration: 0.5,
-        ease: "power3.out",
+        scale: 0.95,
+        duration: 1.2,
+        ease: "power4.out",
         scrollTrigger: {
           trigger: "[data-testimonial-carousel]",
-          start: "top 85%",
+          start: "top 80%",
           once: true,
         },
       });

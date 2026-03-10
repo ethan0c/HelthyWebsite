@@ -38,8 +38,8 @@ export default function MagneticButton({
       gsap.to(buttonRef.current, {
         x: deltaX,
         y: deltaY,
-        duration: 0.3,
-        ease: "power2.out",
+        duration: 0.6,
+        ease: "power3.out",
       });
 
       // Move content in opposite direction for depth effect
@@ -47,8 +47,8 @@ export default function MagneticButton({
         gsap.to(contentRef.current, {
           x: deltaX * 0.2,
           y: deltaY * 0.2,
-          duration: 0.3,
-          ease: "power2.out",
+          duration: 0.6,
+          ease: "power3.out",
         });
       }
     },
@@ -61,16 +61,16 @@ export default function MagneticButton({
     gsap.to(buttonRef.current, {
       x: 0,
       y: 0,
-      duration: 0.5,
-      ease: "elastic.out(1, 0.3)",
+      duration: 0.8,
+      ease: "elastic.out(1, 0.4)",
     });
 
     if (contentRef.current) {
       gsap.to(contentRef.current, {
         x: 0,
         y: 0,
-        duration: 0.5,
-        ease: "elastic.out(1, 0.3)",
+        duration: 0.8,
+        ease: "elastic.out(1, 0.4)",
       });
     }
   }, []);

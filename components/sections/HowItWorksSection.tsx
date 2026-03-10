@@ -40,32 +40,45 @@ export default function HowItWorksSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Heading animation - fast
+      // Heading with smooth fade and scale
       gsap.from("[data-hiw-heading] > *", {
-        y: 25,
+        y: 60,
         opacity: 0,
-        stagger: 0.05,
-        duration: 0.4,
-        ease: "power3.out",
+        scale: 0.95,
+        stagger: 0.12,
+        duration: 1.2,
+        ease: "power4.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
+          start: "top 75%",
           once: true,
         },
       });
 
-      // Steps animation - fast
+      // Steps with smooth cascade and rotation
       gsap.from("[data-hiw-step]", {
-        y: 40,
+        y: 100,
         opacity: 0,
-        stagger: 0.08,
-        duration: 0.5,
-        ease: "power3.out",
+        rotateY: -15,
+        stagger: 0.2,
+        duration: 1.4,
+        ease: "power4.out",
         scrollTrigger: {
           trigger: "[data-hiw-steps]",
-          start: "top 80%",
+          start: "top 70%",
           once: true,
         },
+      });
+
+      // Add floating animation to phone images
+      gsap.utils.toArray("[data-hiw-step] img").forEach((img: any) => {
+        gsap.to(img, {
+          y: -15,
+          duration: 3,
+          ease: "power1.inOut",
+          repeat: -1,
+          yoyo: true,
+        });
       });
     }, sectionRef);
 

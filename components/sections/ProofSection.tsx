@@ -84,70 +84,74 @@ export default function ProofSection() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
-      /* Review cards - fast */
+      /* Review cards - smooth fade with scale */
       gsap.from("[data-review-card]", {
-        y: 20,
+        y: 60,
         opacity: 0,
-        stagger: 0.05,
-        duration: 0.35,
-        ease: "power3.out",
+        scale: 0.9,
+        stagger: 0.1,
+        duration: 1.0,
+        ease: "power4.out",
         scrollTrigger: {
           trigger: "[data-reviews-grid]",
-          start: "top 80%",
+          start: "top 75%",
           once: true,
         },
       });
 
-      /* Old way cards - fast */
+      /* Old way cards - smooth cascade */
       gsap.from("[data-old-card]", {
-        y: 30,
+        y: 80,
         opacity: 0,
-        stagger: 0.06,
-        duration: 0.4,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: "[data-old-way]",
-          start: "top 80%",
-          once: true,
-        },
-      });
-
-      /* X and total price */
-      gsap.from("[data-old-x]", {
-        scale: 0,
-        opacity: 0,
-        duration: 0.3,
-        ease: "back.out(2)",
+        rotateX: -20,
+        stagger: 0.15,
+        duration: 1.2,
+        ease: "power4.out",
         scrollTrigger: {
           trigger: "[data-old-way]",
           start: "top 75%",
           once: true,
         },
-        delay: 0.2,
       });
 
-      /* Helthy way section - fast */
-      gsap.from("[data-helthy-way]", {
-        y: 25,
+      /* X with bouncy animation */
+      gsap.from("[data-old-x]", {
+        scale: 0,
         opacity: 0,
-        duration: 0.4,
-        ease: "power3.out",
+        rotation: -180,
+        duration: 0.8,
+        ease: "elastic.out(1, 0.5)",
+        scrollTrigger: {
+          trigger: "[data-old-way]",
+          start: "top 70%",
+          once: true,
+        },
+        delay: 0.4,
+      });
+
+      /* Helthy way section - smooth reveal */
+      gsap.from("[data-helthy-way]", {
+        y: 60,
+        opacity: 0,
+        scale: 0.95,
+        duration: 1.2,
+        ease: "power4.out",
         scrollTrigger: {
           trigger: "[data-helthy-way]",
-          start: "top 80%",
+          start: "top 75%",
           once: true,
         },
       });
 
-      /* Price counter $32 → $0 - faster */
+      /* Price counter with smooth easing */
       const counter = { value: 32 };
       gsap.to(counter, {
         value: 0,
-        duration: 0.8,
-        ease: "power2.out",
+        duration: 1.5,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: "[data-helthy-price]",
-          start: "top 85%",
+          start: "top 80%",
           once: true,
         },
         onUpdate: () => {
@@ -156,16 +160,16 @@ export default function ProofSection() {
         },
       });
 
-      /* Feature chips - fast */
+      /* Feature chips - smooth pop-in */
       gsap.from("[data-feature-cell]", {
-        scale: 0.9,
+        scale: 0.7,
         opacity: 0,
-        stagger: 0.02,
-        duration: 0.25,
-        ease: "back.out(1.5)",
+        stagger: 0.04,
+        duration: 0.6,
+        ease: "back.out(2)",
         scrollTrigger: {
           trigger: "[data-feature-grid]",
-          start: "top 85%",
+          start: "top 80%",
           once: true,
         },
       });

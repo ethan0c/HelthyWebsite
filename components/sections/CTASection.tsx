@@ -55,22 +55,26 @@ export default function CTASection() {
         },
       });
 
-      // Character-by-character text reveal with stagger
+      // Character-by-character text reveal with smooth 3D rotation
       const chars = headingRef.current?.querySelectorAll("[data-char]");
       if (chars) {
         gsap.set(chars, { 
-          y: 80, 
+          y: 100, 
           opacity: 0,
           rotateX: -90,
+          transformOrigin: "50% 100%",
         });
         
         gsap.to(chars, {
           y: 0,
           opacity: 1,
           rotateX: 0,
-          stagger: 0.02,
-          duration: 0.8,
-          ease: "power3.out",
+          stagger: {
+            amount: 0.8,
+            ease: "power2.in",
+          },
+          duration: 1.2,
+          ease: "power4.out",
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top 65%",
@@ -79,11 +83,11 @@ export default function CTASection() {
         });
       }
 
-      // Lemon text glow pulse
+      // Smooth lemon text glow pulse
       gsap.to("[data-lemon-text]", {
-        textShadow: "0 0 40px rgba(205, 251, 80, 0.6), 0 0 80px rgba(205, 251, 80, 0.3)",
-        duration: 2,
-        ease: "power2.inOut",
+        textShadow: "0 0 60px rgba(205, 251, 80, 0.8), 0 0 100px rgba(205, 251, 80, 0.4)",
+        duration: 3,
+        ease: "sine.inOut",
         repeat: -1,
         yoyo: true,
         scrollTrigger: {
