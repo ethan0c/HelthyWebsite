@@ -5,12 +5,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Star } from "lucide-react";
 
-function italicFirst(text: string) {
-  const i = text.indexOf(" ");
-  if (i === -1) return <span className="text-italics">{text}</span>;
-  return <><span className="text-italics">{text.slice(0, i)}</span>{text.slice(i)}</>;
-}
-
 const testimonials = [
   {
     title: "Finally something that makes tracking easy",
@@ -110,8 +104,8 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
       </div>
       
       {/* Title */}
-      <h3 className="font-heading text-lg sm:text-xl font-light text-white mb-3 tracking-[-0.01em]">
-        {italicFirst(testimonial.title)}
+      <h3 className="font-body text-lg sm:text-xl font-normal text-white mb-3 tracking-[-0.01em]">
+        {testimonial.title}
       </h3>
       
       {/* Quote */}

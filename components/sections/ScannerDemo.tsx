@@ -80,8 +80,8 @@ export default function ScannerDemo() {
         {/* Heading */}
         <div className="text-center mb-16">
           <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">AI-Powered</p>
-          <h2 className="font-heading font-light text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-white">
-            <span className="text-italics">Snap</span> a photo.{" "}
+          <h2 className="font-body font-normal text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-white">
+            Snap a photo.{" "}
             <span className="accent-serif text-helthy-lemon">Know every macro.</span>
           </h2>
         </div>

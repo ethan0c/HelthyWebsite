@@ -137,7 +137,7 @@ export default function HowItWorksSection() {
                 {/* Large step number */}
                 <div className="flex items-center gap-4 mb-6">
                   <span 
-                    className="text-[4rem] sm:text-[5rem] font-heading font-light leading-none tracking-[-0.04em] opacity-20"
+                    className="text-[4rem] sm:text-[5rem] font-body font-normal leading-none tracking-[-0.04em] opacity-20"
                     style={{ color: step.accent }}
                   >
                     {step.number}

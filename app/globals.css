@@ -4,8 +4,14 @@
 /* ── Brand Fonts (optimized - only weights we use) ─────────────── */
 @font-face {
   font-family: "SF Pro Display";
-  src: url("/fonts/sf-pro-display/SFPRODISPLAYMEDIUM.OTF") format("opentype");
+  src: url("/fonts/sf-pro-display/SFPRODISPLAYREGULAR.OTF") format("opentype");
   font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/sf-pro-display/SFPRODISPLAYMEDIUM.OTF") format("opentype");
   font-weight: 500;
   font-display: swap;
 }

@@ -54,8 +54,8 @@ export default function NewsletterSection() {
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-black/10 bg-black/[0.06] text-[11px] font-medium tracking-[0.15em] uppercase text-helthy-black mb-5">
               Newsletter
             </span>
-            <h2 className="font-heading font-light text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-helthy-black mb-4">
-              <span className="text-italics">Stay</span> in the{" "}
+            <h2 className="font-body font-normal text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-helthy-black mb-4">
+              Stay in the{" "}
               <span className="accent-serif">loop.</span>
             </h2>
             <p className="text-base text-black/50 max-w-md mx-auto leading-relaxed mb-10">

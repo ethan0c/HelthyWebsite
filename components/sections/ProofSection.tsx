@@ -183,8 +183,8 @@ export default function ProofSection() {
         {/* ══════ App Store reviews ══════ */}
         <div className="text-center mb-12">
           <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">Real Results</p>
-          <h2 className="font-heading font-light text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-white mb-3">
-            <span className="text-italics">Loved</span> on the{" "}
+          <h2 className="font-body font-normal text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-white mb-3">
+            Loved on the{" "}
             <span className="accent-serif text-helthy-lemon">App Store.</span>
           </h2>
           <div className="flex items-center justify-center gap-2 mt-4">
@@ -223,8 +223,8 @@ export default function ProofSection() {
 
         {/* ══════ Pricing comparison ══════ */}
         <div className="text-center mb-16">
-          <h2 className="font-heading font-light text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-white">
-            <span className="text-italics">Stop</span> juggling.{" "}
+          <h2 className="font-body font-normal text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-white">
+            Stop juggling.{" "}
             <span className="accent-serif text-helthy-lemon">Start thriving.</span>
           </h2>
           <p className="text-sm text-white/30 mt-3">
@@ -287,8 +287,8 @@ export default function ProofSection() {
           </div>
 
           <div className="text-center mb-10">
-            <h3 className="font-heading font-light text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.1] tracking-[-0.02em] text-white mb-2">
-              <span className="text-italics">One</span> app.{" "}
+            <h3 className="font-body font-normal text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.1] tracking-[-0.02em] text-white mb-2">
+              One app.{" "}
               <span className="accent-serif text-helthy-lemon">Everything.</span>
             </h3>
             <p className="text-sm text-white/30 mb-6">
