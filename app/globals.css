@@ -37,6 +37,28 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Maghfirea";
+  src: url("/fonts/Maghfirea-qZ8vl.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lyon Display";
+  src: url("https://cdn.prod.website-files.com/68acbc076b672f730e0c77b9/68acbc6e9832d8edc91f625b_LyonDisplay-Light-Trial.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lyon Display";
+  src: url("https://cdn.prod.website-files.com/68acbc076b672f730e0c77b9/68acbc6ef1b9c827b523f364_LyonDisplay-Regular-Trial.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ── Design Tokens ────────────────────────────────────────────── */
 :root {
   --background: #060606;
@@ -53,7 +75,7 @@
   --helthy-accent-cyan: #22D3EE;
   --helthy-accent-gold: #D8B440;
 
-  --font-heading: "Tomato Grotesk", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-heading: "Lyon Display", Georgia, serif;
   --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font-body: "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
   --font-mono: "SF Mono", "Fira Code", monospace;
@@ -145,7 +167,7 @@ body {
 
 .text-display-xl {
   font-family: var(--font-heading);
-  font-weight: 800;
+  font-weight: 300;
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
@@ -153,7 +175,7 @@ body {
 
 .text-display-lg {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 300;
   font-size: clamp(2rem, 4vw, 3.25rem);
   line-height: 1.05;
   letter-spacing: -0.025em;
@@ -161,7 +183,7 @@ body {
 
 .text-display-md {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 300;
   font-size: clamp(1.375rem, 2.5vw, 2rem);
   line-height: 1.2;
   letter-spacing: -0.015em;

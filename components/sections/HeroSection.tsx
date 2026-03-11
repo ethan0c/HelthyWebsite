@@ -87,7 +87,7 @@ export default function HeroSection() {
             </div>
 
             {/* Headline */}
-            <h1 className="font-heading font-bold tracking-[-0.04em] leading-[0.95] mb-6">
+            <h1 className="font-heading font-light tracking-[-0.04em] leading-[0.9] mb-6">
               <span data-hero-line className="block text-white text-[clamp(3rem,7vw,5.5rem)] drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]">
                 Your <span className="text-helthy-lemon">fitness</span>,
               </span>
