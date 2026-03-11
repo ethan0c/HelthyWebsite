@@ -20,8 +20,8 @@ export default function ContactPage() {
         <div className="relative z-10 mx-auto max-w-2xl px-5 sm:px-8">
           <div className="text-center mb-12">
             <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">Contact</p>
-            <h1 className="font-heading font-semibold text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white mb-4">
-              Let&apos;s <span className="accent-serif text-helthy-lemon">talk.</span>
+            <h1 className="font-heading font-light text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white mb-4">
+              <span className="text-italics">Let&apos;s</span> <span className="text-helthy-lemon">talk.</span>
             </h1>
             <p className="text-base text-white/35 leading-relaxed">
               Bug report, feature request, or just want to say hi — we read

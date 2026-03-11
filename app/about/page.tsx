@@ -43,10 +43,10 @@ export default function AboutPage() {
       <section className="relative section-padding pt-36 sm:pt-44 glow-center">
         <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8">
           <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">About Helthy</p>
-          <h1 className="font-heading font-semibold text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white mb-6">
-            Built by lifters,
+          <h1 className="font-heading font-light text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white mb-6">
+            <span className="text-italics">Built</span> by lifters,
             <br />
-            <span className="accent-serif text-helthy-lemon">for lifters.</span>
+            <span className="text-helthy-lemon">for lifters.</span>
           </h1>
           <p className="text-base text-white/35 max-w-2xl leading-relaxed">
             Helthy started because the founders couldn&apos;t find a single
@@ -61,9 +61,9 @@ export default function AboutPage() {
         <div className="mx-auto max-w-4xl px-5 sm:px-8">
           <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 sm:p-12">
             <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">Our Mission</p>
-            <h2 className="font-heading font-semibold text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white">
-              Make health tracking free, beautiful, and powerful — so cost is
-              never a barrier to <span className="accent-serif text-helthy-lemon">better health.</span>
+            <h2 className="font-heading font-light text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white">
+              <span className="text-italics">Make</span> health tracking free, beautiful, and powerful — so cost is
+              never a barrier to <span className="text-italics text-helthy-lemon">better health.</span>
             </h2>
           </div>
         </div>
@@ -73,8 +73,8 @@ export default function AboutPage() {
       <section className="relative section-padding dot-grid">
         <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8">
           <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">The Team</p>
-          <h2 className="font-heading font-semibold text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white mb-10">
-            Real people. <span className="accent-serif text-helthy-lemon">Real transformations.</span>
+          <h2 className="font-heading font-light text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white mb-10">
+            <span className="text-italics">Real</span> people. <span className="text-italics text-helthy-lemon">Real transformations.</span>
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {team.map((t) => (
@@ -90,7 +90,7 @@ export default function AboutPage() {
                     {t.badge}
                   </div>
                 </div>
-                <h3 className="text-lg font-heading font-medium text-white">{t.name}</h3>
+                <h3 className="text-lg font-body font-normal text-white">{t.name}</h3>
                 <p className="text-sm text-white/35">{t.role}</p>
               </div>
             ))}
@@ -102,8 +102,8 @@ export default function AboutPage() {
       <section className="relative section-padding hatch-bg">
         <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8">
           <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">Timeline</p>
-          <h2 className="font-heading font-semibold text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white mb-10">
-            Where we&apos;ve <span className="accent-serif text-helthy-lemon">been.</span>
+          <h2 className="font-heading font-light text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white mb-10">
+            <span className="text-italics">Where</span> we&apos;ve <span className="text-italics text-helthy-lemon">been.</span>
           </h2>
           <div className="space-y-0">
             {milestones.map((m, i) => (

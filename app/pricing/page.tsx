@@ -69,8 +69,8 @@ export default function PricingPage() {
       <section className="relative section-padding pt-36 sm:pt-44 glow-center">
         <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8 text-center">
           <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">Pricing</p>
-          <h1 className="font-heading font-semibold text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white mb-6">
-            Free <span className="accent-serif text-helthy-lemon">forever.</span>
+          <h1 className="font-heading font-light text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white mb-6">
+            <span className="text-italics">Free</span> <span className="text-helthy-lemon">forever.</span>
           </h1>
           <p className="text-base text-white/35 max-w-xl mx-auto leading-relaxed">
             Everything you need to reach your goals. No subscriptions, no paywalls, no tricks.
@@ -86,7 +86,7 @@ export default function PricingPage() {
             <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 sm:p-8">
               <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">For everyone</p>
               
-              <h2 className="font-heading font-semibold text-2xl text-white mb-2">Free</h2>
+              <h2 className="font-body font-normal text-2xl text-white mb-2">Free</h2>
               <div className="flex items-baseline gap-1 mb-4">
                 <span className="font-numeric text-4xl font-heading font-bold text-white">$0</span>
                 <span className="text-white/35">/forever</span>
@@ -123,7 +123,7 @@ export default function PricingPage() {
               
               <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">AI-Powered</p>
               
-              <h2 className="font-heading font-semibold text-2xl text-white mb-2">Premium</h2>
+              <h2 className="font-body font-normal text-2xl text-white mb-2">Premium</h2>
               <div className="flex items-baseline gap-1 mb-4">
                 <span className="font-numeric text-4xl font-heading font-bold text-white">$9</span>
                 <span className="text-white/35">/month</span>
@@ -157,8 +157,8 @@ export default function PricingPage() {
         <div className="mx-auto max-w-4xl px-5 sm:px-8">
           <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 sm:p-12">
             <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">Our Promise</p>
-            <h2 className="font-heading font-semibold text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white">
-              Core features stay free <span className="accent-serif text-helthy-lemon">forever.</span>
+            <h2 className="font-heading font-light text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white">
+              <span className="text-italics">Core</span> features stay free <span className="text-italics text-helthy-lemon">forever.</span>
               <br className="hidden sm:block" />
               Premium is for power users who want AI — the fundamentals never go behind a paywall.
             </h2>
@@ -170,8 +170,8 @@ export default function PricingPage() {
       <section className="section-padding" id="faq">
         <div className="mx-auto max-w-4xl px-5 sm:px-8">
           <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">FAQ</p>
-          <h2 className="font-heading font-semibold text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white mb-10">
-            Common <span className="accent-serif text-helthy-lemon">questions.</span>
+          <h2 className="font-heading font-light text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white mb-10">
+            <span className="text-italics">Common</span> <span className="text-italics text-helthy-lemon">questions.</span>
           </h2>
           
           <div className="space-y-4">

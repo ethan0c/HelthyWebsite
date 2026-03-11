@@ -8,13 +8,13 @@ export default function PrivacyPage() {
         <div className="container mx-auto px-6 lg:px-20 max-w-4xl">
           <div className="space-y-8 text-white/90">
             <div className="space-y-4 pb-8 border-b border-white/10">
-              <h1 className="text-4xl lg:text-5xl font-bold text-white">Privacy Policy</h1>
+              <h1 className="font-heading font-light text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white"><span className="text-italics">Privacy</span> Policy</h1>
               <p className="text-white/60">Last Updated: January 2025</p>
               <p className="text-white/60">Effective Date: January 2025</p>
             </div>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">1. Introduction</h2>
+              <h2 className="font-body font-bold text-2xl text-white">1. Introduction</h2>
               <p>
                 Helthy ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and services (collectively, the "Service").
               </p>
@@ -24,9 +24,9 @@ export default function PrivacyPage() {
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">2. Information We Collect</h2>
+              <h2 className="font-body font-bold text-2xl text-white">2. Information We Collect</h2>
               <div className="space-y-3">
-                <h3 className="text-xl font-semibold text-white/90">2.1 Personal Information</h3>
+                <h3 className="font-body font-normal text-xl text-white/90">2.1 Personal Information</h3>
                 <p>We collect the following personal information when you create an account and use our Service:</p>
                 <div className="space-y-3 pl-4">
                   <div>
@@ -57,7 +57,7 @@ export default function PrivacyPage() {
                 </div>
               </div>
               <div className="space-y-3">
-                <h3 className="text-xl font-semibold text-white/90">2.2 Health Data from Apple HealthKit</h3>
+                <h3 className="font-body font-normal text-xl text-white/90">2.2 Health Data from Apple HealthKit</h3>
                 <p>If you grant permission, we may access and store the following data from Apple HealthKit:</p>
                 <ul className="list-disc list-inside space-y-2 pl-4">
                   <li>Steps and activity data</li>
@@ -72,7 +72,7 @@ export default function PrivacyPage() {
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">3. How We Use Your Information</h2>
+              <h2 className="font-body font-bold text-2xl text-white">3. How We Use Your Information</h2>
               <p>We use the information we collect to:</p>
               <ul className="list-disc list-inside space-y-2 pl-4">
                 <li>Track your workouts and nutrition</li>
@@ -87,7 +87,7 @@ export default function PrivacyPage() {
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">4. Third-Party Services and Data Sharing</h2>
+              <h2 className="font-body font-bold text-2xl text-white">4. Third-Party Services and Data Sharing</h2>
               <p>We use the following third-party services that may process your data:</p>
               <div className="space-y-3 pl-4">
                 <div className="bg-white/5 p-4 rounded-lg border border-white/10">
@@ -121,7 +121,7 @@ export default function PrivacyPage() {
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">5. Data Storage and Retention</h2>
+              <h2 className="font-body font-bold text-2xl text-white">5. Data Storage and Retention</h2>
               <p>
                 Your data is stored on secure servers provided by our hosting partners. Data may be stored in the United States or other countries where our service providers operate.
               </p>
@@ -134,18 +134,18 @@ export default function PrivacyPage() {
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">6. Your Rights and Choices</h2>
+              <h2 className="font-body font-bold text-2xl text-white">6. Your Rights and Choices</h2>
               <div className="space-y-3">
                 <div>
-                  <h3 className="text-lg font-semibold text-white/90">6.1 Access and Correction</h3>
+                  <h3 className="font-body font-normal text-lg text-white/90">6.1 Access and Correction</h3>
                   <p>You can access and update your personal information through the app settings or by contacting us.</p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white/90">6.2 Data Export</h3>
+                  <h3 className="font-body font-normal text-lg text-white/90">6.2 Data Export</h3>
                   <p>You can request a copy of your data in JSON, CSV, or PDF format through the app settings (Settings → Privacy & Security → Export My Data).</p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white/90">6.3 Account Deletion</h3>
+                  <h3 className="font-body font-normal text-lg text-white/90">6.3 Account Deletion</h3>
                   <p>You can delete your account and all associated data at any time:</p>
                   <ol className="list-decimal list-inside space-y-1 pl-4">
                     <li>Go to Settings → Privacy & Security</li>
@@ -158,7 +158,7 @@ export default function PrivacyPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white/90">6.4 GDPR Rights (EU Users)</h3>
+                  <h3 className="font-body font-normal text-lg text-white/90">6.4 GDPR Rights (EU Users)</h3>
                   <p>If you are located in the European Economic Area (EEA), you have additional rights:</p>
                   <ul className="list-disc list-inside space-y-1 pl-4">
                     <li>Right to access your data</li>
@@ -174,16 +174,16 @@ export default function PrivacyPage() {
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">7. Children's Privacy</h2>
+              <h2 className="font-body font-bold text-2xl text-white">7. Children's Privacy</h2>
               <p>
                 Helthy is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately.
               </p>
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">8. Permissions We Request</h2>
+              <h2 className="font-body font-bold text-2xl text-white">8. Permissions We Request</h2>
               <div className="space-y-3">
-                <h3 className="text-xl font-semibold text-white/90">iOS Permissions</h3>
+                <h3 className="font-body font-normal text-xl text-white/90">iOS Permissions</h3>
                 <div className="space-y-3 pl-4">
                   <div className="bg-white/5 p-4 rounded-lg border border-white/10">
                     <p className="font-semibold text-white">HealthKit (Read/Write)</p>
@@ -215,7 +215,7 @@ export default function PrivacyPage() {
             </section>
 
             <section className="space-y-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-6">
-              <h2 className="text-2xl font-semibold text-yellow-400">9. Medical Disclaimer</h2>
+              <h2 className="font-body font-bold text-2xl text-yellow-400">9. Medical Disclaimer</h2>
               <p className="text-yellow-200">
                 <strong>IMPORTANT:</strong> Helthy is not a medical device and does not provide medical advice, diagnosis, or treatment. The information provided by Helthy is for general health and fitness purposes only and is not intended to replace professional medical advice, diagnosis, or treatment.
               </p>
@@ -225,7 +225,7 @@ export default function PrivacyPage() {
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">10. Changes to This Privacy Policy</h2>
+              <h2 className="font-body font-bold text-2xl text-white">10. Changes to This Privacy Policy</h2>
               <p>
                 We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page, updating the "Last Updated" date, and sending you an email notification for material changes.
               </p>
@@ -235,7 +235,7 @@ export default function PrivacyPage() {
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">11. Contact Us</h2>
+              <h2 className="font-body font-bold text-2xl text-white">11. Contact Us</h2>
               <p>If you have questions about this Privacy Policy or our data practices, please contact us:</p>
               <div className="space-y-2 pl-4">
                 <p><strong>Email:</strong> <a href="mailto:privacy@helthy.app" className="text-helthy-lemon hover:underline">privacy@helthy.app</a></p>
