@@ -149,8 +149,8 @@ export default function FeaturesSection() {
             
             <div className="absolute inset-0 p-8 sm:p-12 lg:p-16 flex flex-col justify-end" style={{ transform: "translateZ(40px)" }}>
               <p className="text-white/50 text-sm font-medium tracking-wide uppercase mb-4">AI Food Scanner</p>
-              <h3 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-4 tracking-[-0.02em] max-w-2xl">
-                <span className="text-italics">Snap</span> a photo. Know your macros instantly.
+              <h3 className="font-body text-3xl sm:text-4xl lg:text-5xl font-normal text-white mb-4 tracking-[-0.02em] max-w-2xl">
+                Snap a photo. Know your macros instantly.
               </h3>
               <p className="text-white/60 text-base sm:text-lg max-w-xl leading-relaxed">
                 Point your camera at any meal and get instant, accurate nutrition data. Our AI recognizes thousands of foods—no more manual searching or guesswork.
@@ -172,8 +172,8 @@ export default function FeaturesSection() {
             
             <div className="absolute inset-0 p-8 sm:p-10 flex flex-col justify-end" style={{ transform: "translateZ(30px)" }}>
               <p className="text-white/50 text-sm font-medium tracking-wide uppercase mb-3">Workout Tracking</p>
-              <h3 className="font-heading text-2xl sm:text-3xl font-light text-white mb-3 tracking-[-0.02em]">
-                <span className="text-italics">Track</span> every rep
+              <h3 className="font-body text-2xl sm:text-3xl font-normal text-white mb-3 tracking-[-0.02em]">
+                Track every rep
               </h3>
               <p className="text-white/50 text-sm sm:text-base leading-relaxed max-w-sm">
                 500+ exercises with guided tracking. Log sets, reps, and watch your personal records climb over time.
@@ -194,8 +194,8 @@ export default function FeaturesSection() {
             
             <div className="absolute inset-0 p-8 sm:p-10 flex flex-col justify-end" style={{ transform: "translateZ(30px)" }}>
               <p className="text-white/50 text-sm font-medium tracking-wide uppercase mb-3">Your Movement</p>
-              <h3 className="font-heading text-2xl sm:text-3xl font-light text-white mb-3 tracking-[-0.02em]">
-                <span className="text-italics">Your</span> way, your pace
+              <h3 className="font-body text-2xl sm:text-3xl font-normal text-white mb-3 tracking-[-0.02em]">
+                Your way, your pace
               </h3>
               <p className="text-white/50 text-sm sm:text-base leading-relaxed max-w-sm">
                 Whether it&apos;s heavy lifting or morning yoga, track it all in one place. We adapt to your routine.
@@ -208,8 +208,8 @@ export default function FeaturesSection() {
           <TiltCard className="relative rounded-3xl overflow-hidden h-[300px] sm:h-[350px] bg-[#111] border border-white/[0.06] p-8 sm:p-12 flex flex-col justify-center cursor-pointer">
             <div style={{ transform: "translateZ(25px)" }}>
               <p className="text-white/50 text-sm font-medium tracking-wide uppercase mb-4">Progress Analytics</p>
-              <h3 className="font-heading text-2xl sm:text-3xl font-light text-white mb-4 tracking-[-0.02em]">
-                <span className="text-italics">See</span> your transformation unfold
+              <h3 className="font-body text-2xl sm:text-3xl font-normal text-white mb-4 tracking-[-0.02em]">
+                See your transformation unfold
               </h3>
               <p className="text-white/40 text-sm sm:text-base leading-relaxed max-w-md">
                 Beautiful charts showing weight, measurements, and trends. Watch the numbers change as you put in the work.
@@ -221,8 +221,8 @@ export default function FeaturesSection() {
           <TiltCard className="relative rounded-3xl overflow-hidden h-[300px] sm:h-[350px] bg-helthy-lemon p-8 sm:p-12 flex flex-col justify-center cursor-pointer">
             <div style={{ transform: "translateZ(25px)" }}>
               <p className="text-[#0B0B0B]/50 text-sm font-medium tracking-wide uppercase mb-4">No Strings Attached</p>
-              <h3 className="font-heading text-2xl sm:text-3xl font-light text-[#0B0B0B] mb-4 tracking-[-0.02em]">
-                <span className="text-italics">100%</span> free. Forever.
+              <h3 className="font-body text-2xl sm:text-3xl font-normal text-[#0B0B0B] mb-4 tracking-[-0.02em]">
+                100% free. Forever.
               </h3>
               <p className="text-[#0B0B0B]/60 text-sm sm:text-base leading-relaxed max-w-md">
                 No subscriptions, no paywalls, no tricks. Everything you need to reach your goals without spending a dime.

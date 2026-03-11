@@ -146,8 +146,8 @@ export default function HowItWorksSection() {
 
                 {/* Content */}
                 <div className="mb-8">
-                  <h3 className="font-heading text-2xl lg:text-3xl font-light text-white mb-2 tracking-[-0.02em]">
-                    <span className="text-italics">{step.title}</span>
+                  <h3 className="font-body text-2xl lg:text-3xl font-normal text-white mb-2 tracking-[-0.02em]">
+                    {step.title}
                   </h3>
                   <p className="text-white/50 text-sm font-medium mb-3">{step.subtitle}</p>
                   <p className="text-white/40 leading-relaxed">{step.description}</p>
