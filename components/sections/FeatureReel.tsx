@@ -4,6 +4,12 @@ import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+function italicFirst(text: string) {
+  const i = text.indexOf(" ");
+  if (i === -1) return <span className="text-italics">{text}</span>;
+  return <><span className="text-italics">{text.slice(0, i)}</span>{text.slice(i)}</>;
+}
+
 const features = [
   {
     id: "feature-nutrition",
@@ -122,8 +128,8 @@ export default function FeatureReel() {
               <span className="text-[11px] uppercase tracking-[0.25em] text-helthy-lemon font-medium mb-4">
                 {f.label}
               </span>
-              <h2 className="font-heading font-semibold text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-white mb-4">
-                {f.headline}
+              <h2 className="font-heading font-light text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-white mb-4">
+                {italicFirst(f.headline)}
               </h2>
               <p className="text-base text-white/40 leading-relaxed max-w-sm">
                 {f.description}

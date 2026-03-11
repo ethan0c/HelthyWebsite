@@ -87,8 +87,8 @@ export default function PhoneShowcase() {
         {/* Heading */}
         <div data-showcase-heading className="text-center mb-16">
           <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">The App</p>
-          <h2 className="font-heading font-semibold text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1] tracking-[-0.02em] text-white">
-            Your Next Best Self{" "}
+          <h2 className="font-heading font-light text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1] tracking-[-0.02em] text-white">
+            <span className="text-italics">Your</span> Next Best Self{" "}
             <span className="accent-serif text-helthy-lemon">Starts Here</span>
           </h2>
           <p className="text-sm text-white/40 mt-3 max-w-md mx-auto">

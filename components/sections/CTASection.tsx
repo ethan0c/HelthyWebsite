@@ -188,10 +188,10 @@ export default function CTASection() {
             </p>
             <h2 
               ref={headingRef}
-              className="font-heading text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.04em] text-white mb-6"
+              className="font-heading text-[clamp(3rem,8vw,6rem)] font-light leading-[0.9] tracking-[-0.04em] text-white mb-6"
               style={{ perspective: "1000px" }}
             >
-              <SplitText>Your journey</SplitText>
+              <span className="text-italics"><SplitText>Your</SplitText></span><SplitText> journey</SplitText>
               <br />
               <span data-lemon-text className="text-helthy-lemon inline-block">
                 <SplitText>starts now</SplitText>

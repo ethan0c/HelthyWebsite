@@ -58,6 +58,13 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "Lyon Display";
+  src: url("https://cdn.prod.website-files.com/68acbc076b672f730e0c77b9/68acbc6ea208b728ef351d78_LyonDisplay-LightItalic-Trial.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
 
 /* ── Design Tokens ────────────────────────────────────────────── */
 :root {
@@ -149,6 +156,12 @@ body {
 }
 
 /* ── Typography Utilities ─────────────────────────────────────── */
+.text-italics {
+  font-family: "Lyon Display", Georgia, sans-serif;
+  font-style: italic;
+  font-weight: 300;
+}
+
 .font-heading {
   font-family: var(--font-heading);
 }

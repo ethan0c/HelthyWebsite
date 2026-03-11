@@ -176,8 +176,8 @@ export default function ClosingSection() {
         <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div data-close-ai-text>
             <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">Coming Soon</p>
-            <h2 className="font-heading font-semibold text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-white mb-5">
-              Meet your{" "}
+            <h2 className="font-heading font-light text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-white mb-5">
+              <span className="text-italics">Meet</span> your{" "}
               <span className="accent-serif text-helthy-lemon">AI coach.</span>
             </h2>
             <p className="text-base text-white/35 max-w-md leading-relaxed mb-7">
@@ -213,9 +213,9 @@ export default function ClosingSection() {
         <div className="relative z-10 mx-auto max-w-3xl px-6 sm:px-10 text-center">
           <h2
             data-close-headline
-            className="font-heading font-semibold text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white mb-5"
+            className="font-heading font-light text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white mb-5"
           >
-            Start tracking{" "}
+            <span className="text-italics">Start</span> tracking{" "}
             <span className="accent-serif text-helthy-lemon">today.</span>
           </h2>
           <p className="text-base text-white/30 max-w-md mx-auto mb-10 leading-relaxed">

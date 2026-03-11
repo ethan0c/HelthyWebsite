@@ -100,8 +100,8 @@ export default function HowItWorksSection() {
             How it works
           </p>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-            <h2 className="font-heading text-[clamp(2.5rem,6vw,4.5rem)] font-bold leading-[0.95] tracking-[-0.03em] text-white max-w-3xl">
-              Three steps to a
+            <h2 className="font-heading text-[clamp(2.5rem,6vw,4.5rem)] font-light leading-[0.95] tracking-[-0.03em] text-white max-w-3xl">
+              <span className="text-italics">Three</span> steps to a
               <br />
               <span className="text-white/30">healthier you</span>
             </h2>
@@ -137,7 +137,7 @@ export default function HowItWorksSection() {
                 {/* Large step number */}
                 <div className="flex items-center gap-4 mb-6">
                   <span 
-                    className="text-[4rem] sm:text-[5rem] font-heading font-bold leading-none tracking-[-0.04em] opacity-20"
+                    className="text-[4rem] sm:text-[5rem] font-heading font-light leading-none tracking-[-0.04em] opacity-20"
                     style={{ color: step.accent }}
                   >
                     {step.number}
@@ -146,8 +146,8 @@ export default function HowItWorksSection() {
 
                 {/* Content */}
                 <div className="mb-8">
-                  <h3 className="font-heading text-2xl lg:text-3xl font-bold text-white mb-2 tracking-[-0.02em]">
-                    {step.title}
+                  <h3 className="font-heading text-2xl lg:text-3xl font-light text-white mb-2 tracking-[-0.02em]">
+                    <span className="text-italics">{step.title}</span>
                   </h3>
                   <p className="text-white/50 text-sm font-medium mb-3">{step.subtitle}</p>
                   <p className="text-white/40 leading-relaxed">{step.description}</p>

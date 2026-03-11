@@ -4,6 +4,12 @@ import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+function italicFirst(text: string) {
+  const i = text.indexOf(" ");
+  if (i === -1) return <span className="text-italics">{text}</span>;
+  return <><span className="text-italics">{text.slice(0, i)}</span>{text.slice(i)}</>;
+}
+
 const slides = [
   {
     image: "/images/stock/meal-overhead.jpg",
@@ -114,8 +120,8 @@ export default function PhotoShowcase() {
         <div className="flex items-center justify-center w-screen h-full px-8 shrink-0">
           <div className="text-center max-w-lg">
             <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">What We Cover</p>
-            <h2 className="font-heading font-semibold text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white">
-              Built for every part of{" "}
+            <h2 className="font-heading font-light text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white">
+              <span className="text-italics">Built</span> for every part of{" "}
               <span className="accent-serif text-helthy-lemon">your journey</span>
             </h2>
             <p className="text-sm text-white/40 mt-4">
@@ -149,8 +155,8 @@ export default function PhotoShowcase() {
               <span className="inline-block text-[10px] uppercase tracking-[0.25em] text-helthy-lemon/80 font-medium mb-3">
                 {slide.label}
               </span>
-              <h3 className="font-heading font-semibold text-[clamp(1.75rem,3.5vw,3rem)] leading-[1.05] tracking-[-0.02em] text-white whitespace-pre-line">
-                {slide.headline}
+              <h3 className="font-heading font-light text-[clamp(1.75rem,3.5vw,3rem)] leading-[1.05] tracking-[-0.02em] text-white whitespace-pre-line">
+                {italicFirst(slide.headline)}
               </h3>
             </div>
 
