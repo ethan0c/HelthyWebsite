@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -11,7 +12,7 @@ const features = [
     headline: "Log meals in seconds.",
     description:
       "Barcode scanner, AI photo recognition, voice logging, or search from 1M+ foods.",
-    phone: "/phones/foodmainscreen.png",
+    phone: "/phones/foodscreen.png",
   },
   {
     id: "feature-workouts",
@@ -19,7 +20,7 @@ const features = [
     headline: "Your gym partner, built in.",
     description:
       "500+ exercises. Log sets, track PRs, build custom routines. Everything auto-saves.",
-    phone: "/phones/newworkoutscreen.png",
+    phone: "/phones/newworkout.png",
   },
   {
     id: "feature-progress",
@@ -34,7 +35,7 @@ const features = [
 export default function FeatureReel() {
   const sectionRef = useRef<HTMLElement>(null);
   const panelRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const phoneRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const phoneRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -134,22 +135,29 @@ export default function FeatureReel() {
 
         {/* Right — phone images stacked */}
         <div className="relative flex justify-center lg:justify-end">
-          <div className="relative w-[240px] sm:w-[280px] lg:w-[300px]">
+          <div className="relative w-[320px] sm:w-[380px] lg:w-[440px]">
             {features.map((f, i) => (
-              <img
+              <div
                 key={f.id}
                 ref={(el) => { phoneRefs.current[i] = el; }}
-                src={f.phone}
-                alt={`${f.label} screen`}
-                className="rounded-[2.5rem] shadow-2xl shadow-black/50 w-full"
+                className="shadow-2xl shadow-black/50 w-full"
                 style={{
                   opacity: i === 0 ? 1 : 0,
                   position: i === 0 ? "relative" : "absolute",
                   top: 0,
                   left: 0,
                 }}
-                loading={i === 0 ? "eager" : "lazy"}
-              />
+              >
+                <Image
+                  src={f.phone}
+                  alt={`${f.label} screen`}
+                  width={960}
+                  height={540}
+                  quality={90}
+                  priority={i === 0}
+                  className="w-full"
+                />
+              </div>
             ))}
           </div>
         </div>

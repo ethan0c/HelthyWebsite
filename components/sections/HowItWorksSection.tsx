@@ -20,7 +20,7 @@ const steps = [
     title: "Track",
     subtitle: "Log meals & workouts", 
     description: "AI-powered food scanner, voice logging, barcode scanning—whatever works for you.",
-    image: "/phones/foodmainscreen.png",
+    image: "/phones/foodscreen.png",
     accent: "#4CAF50",
   },
   {
@@ -155,20 +155,17 @@ export default function HowItWorksSection() {
 
                 {/* Phone mockup */}
                 <div className="relative flex justify-center">
-                  <div className="relative w-[160px] sm:w-[180px]">
-                    <div className="relative w-full aspect-[9/19] rounded-[2rem] bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] p-1.5 shadow-2xl shadow-black/30 transition-transform duration-500 group-hover:scale-[1.02]">
-                      <div className="relative w-full h-full rounded-[1.6rem] overflow-hidden bg-[#0B0B0B]">
-                        <Image
-                          src={step.image}
-                          alt={step.title}
-                          fill
-                          className="object-cover"
-                          sizes="180px"
-                        />
-                      </div>
-                    </div>
+                  <div className="relative w-full max-w-[280px] transition-transform duration-500 group-hover:scale-[1.02]">
+                    <Image
+                      src={step.image}
+                      alt={step.title}
+                      width={960}
+                      height={540}
+                      quality={90}
+                      className="w-full shadow-2xl shadow-black/30"
+                    />
                     {/* Glow */}
-                    <div 
+                    <div
                       className="absolute -inset-4 rounded-full blur-2xl -z-10 opacity-20"
                       style={{ background: step.accent }}
                     />

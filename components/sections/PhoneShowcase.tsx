@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const phones = [
   { src: "/phones/homescreen.png", alt: "Home dashboard", rotate: -8, x: -60 },
-  { src: "/phones/foodmainscreen.png", alt: "Nutrition tracking", rotate: 0, x: 0 },
-  { src: "/phones/newworkoutscreen.png", alt: "Workout logging", rotate: 8, x: 60 },
+  { src: "/phones/foodscreen.png", alt: "Nutrition tracking", rotate: 0, x: 0 },
+  { src: "/phones/newworkout.png", alt: "Workout logging", rotate: 8, x: 60 },
 ];
 
 export default function PhoneShowcase() {
@@ -108,11 +109,13 @@ export default function PhoneShowcase() {
               className="absolute w-[200px] sm:w-[240px] lg:w-[280px]"
               style={{ zIndex: i === 1 ? 3 : i === 0 ? 2 : 1 }}
             >
-              <img
+              <Image
                 src={phone.src}
                 alt={phone.alt}
-                className="w-full rounded-[2rem] shadow-2xl shadow-black/60"
-                loading="lazy"
+                width={960}
+                height={540}
+                quality={90}
+                className="w-full shadow-2xl shadow-black/60"
               />
             </div>
           ))}
