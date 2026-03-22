@@ -9,8 +9,8 @@ export default function TermsPage() {
           <div className="space-y-8 text-white/90">
             <div className="space-y-4 pb-8 border-b border-white/10">
               <h1 className="font-heading font-light text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white"><span className="text-italics">Terms</span> of Service</h1>
-              <p className="text-white/60">Last Updated: January 2025</p>
-              <p className="text-white/60">Effective Date: January 2025</p>
+              <p className="text-white/60">Last Updated: March 2026</p>
+              <p className="text-white/60">Effective Date: March 2026</p>
             </div>
 
             <section className="space-y-4">
@@ -32,6 +32,8 @@ export default function TermsPage() {
                 <li>Monitor health metrics (weight, steps, etc.)</li>
                 <li>Set and track fitness goals</li>
                 <li>Receive AI-powered insights and recommendations</li>
+                <li>Get AI-estimated body fat percentage from progress photos</li>
+                <li>Chat with an AI health coaching assistant</li>
                 <li>Sync data with Apple HealthKit</li>
               </ul>
             </section>
@@ -84,6 +86,7 @@ export default function TermsPage() {
                   <li>You should always seek the advice of qualified health providers with any medical questions</li>
                   <li>You should never disregard professional medical advice because of information from Helthy</li>
                   <li>Nutritional information and calculations are estimates and may not be accurate for your specific needs</li>
+                  <li>AI body fat estimates are approximations and should not be used for medical decisions — consult a professional for precise measurements</li>
                 </ul>
               </div>
               <div className="space-y-3">

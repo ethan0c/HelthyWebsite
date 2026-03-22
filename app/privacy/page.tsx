@@ -9,8 +9,8 @@ export default function PrivacyPage() {
           <div className="space-y-8 text-white/90">
             <div className="space-y-4 pb-8 border-b border-white/10">
               <h1 className="font-heading font-light text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white"><span className="text-italics">Privacy</span> Policy</h1>
-              <p className="text-white/60">Last Updated: January 2025</p>
-              <p className="text-white/60">Effective Date: January 2025</p>
+              <p className="text-white/60">Last Updated: March 2026</p>
+              <p className="text-white/60">Effective Date: March 2026</p>
             </div>
 
             <section className="space-y-4">
@@ -80,7 +80,9 @@ export default function PrivacyPage() {
                 <li>Generate personalized insights and recommendations</li>
                 <li>Sync data across your devices</li>
                 <li>Send you notifications and reminders</li>
-                <li>Parse food descriptions using AI</li>
+                <li>Parse food descriptions and meal photos using AI</li>
+                <li>Provide an AI health coaching chat assistant</li>
+                <li>Estimate body fat percentage from progress photos using AI vision analysis (with your explicit consent)</li>
                 <li>Provide workout recommendations</li>
                 <li>Improve our features and user experience</li>
               </ul>
@@ -111,10 +113,20 @@ export default function PrivacyPage() {
                   <p className="text-sm text-white/70">Purpose: Fast search functionality</p>
                 </div>
                 <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-                  <p className="font-semibold text-white">OpenAI - AI Services</p>
-                  <p className="text-sm text-white/70">Data shared: Food descriptions, meal images, user queries</p>
-                  <p className="text-sm text-white/70">Purpose: Parse food intake, generate insights, provide chat assistance</p>
-                  <p className="text-sm text-red-300 mt-2"><strong>Important:</strong> OpenAI may use your data to improve their models unless you opt out</p>
+                  <p className="font-semibold text-white">Anthropic (Claude) - AI Coaching, Insights & Body Composition</p>
+                  <p className="text-sm text-white/70">Data shared: Food descriptions, meal images, progress photos (for body fat estimation), user queries, biometric context (height, weight, age, gender)</p>
+                  <p className="text-sm text-white/70">Purpose: AI health coaching chat, parse food intake, generate personalized insights, estimate body fat percentage from photos</p>
+                  <p className="text-sm text-green-300 mt-2"><strong>Important:</strong> Anthropic does not use your data to train their models. Progress photos are processed in real-time and not stored by Anthropic.</p>
+                </div>
+                <div className="bg-white/5 p-4 rounded-lg border border-white/10">
+                  <p className="font-semibold text-white">OpenAI - Meal Photo Analysis</p>
+                  <p className="text-sm text-white/70">Data shared: Meal images, food descriptions</p>
+                  <p className="text-sm text-white/70">Purpose: Identify foods and estimate nutrition from meal photos</p>
+                </div>
+                <div className="bg-white/5 p-4 rounded-lg border border-white/10">
+                  <p className="font-semibold text-white">RevenueCat - Subscription Management</p>
+                  <p className="text-sm text-white/70">Data shared: Anonymous user ID, purchase receipts, subscription status</p>
+                  <p className="text-sm text-white/70">Purpose: Manage premium subscriptions and entitlements</p>
                 </div>
               </div>
               <p className="font-semibold text-helthy-lemon">We do not sell your personal information to third parties.</p>
