@@ -250,8 +250,7 @@ export default function PrivacyPage() {
               <h2 className="font-body font-bold text-2xl text-white">11. Contact Us</h2>
               <p>If you have questions about this Privacy Policy or our data practices, please contact us:</p>
               <div className="space-y-2 pl-4">
-                <p><strong>Email:</strong> <a href="mailto:privacy@helthy.app" className="text-helthy-lemon hover:underline">privacy@helthy.app</a></p>
-                <p><strong>Support:</strong> <a href="mailto:support@helthy.app" className="text-helthy-lemon hover:underline">support@helthy.app</a></p>
+                <p><strong>Email:</strong> <a href="mailto:support@helthy.app" className="text-helthy-lemon hover:underline">support@helthy.app</a></p>
                 <p><strong>Website:</strong> <a href="https://helthy.app" className="text-helthy-lemon hover:underline">https://helthy.app</a></p>
               </div>
             </section>
