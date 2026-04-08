@@ -2,15 +2,18 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { LaurelWreathLeft01Icon } from "@hugeicons/core-free-icons";
+import AppStoreBadge from "@/components/ui/AppStoreBadge";
+import HeroVisualSlot from "@/components/sections/hero/HeroVisualSlot";
+import HeroVisualVideo from "@/components/sections/hero/HeroVisualVideo";
+// Future swap (PR follow-up): replace <HeroVisualVideo /> with <HeroVisualPhone />.
+// import HeroVisualPhone from "@/components/sections/hero/HeroVisualPhone";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Smooth, fluid content reveal with scale
+      // Headline lines + eyebrow share the same selector for staggered reveal.
       gsap.from("[data-hero-line]", {
         y: 40,
         opacity: 0,
@@ -44,7 +47,15 @@ export default function HeroSection() {
         scale: 0.9,
         duration: 1.2,
         ease: "back.out(1.4)",
-        delay: 0.6,
+        delay: 0.9,
+      });
+
+      gsap.from("[data-hero-visual]", {
+        scale: 0.96,
+        opacity: 0,
+        duration: 1.4,
+        ease: "power4.out",
+        delay: 0.3,
       });
     }, sectionRef);
 
@@ -54,45 +65,49 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen overflow-hidden"
+      className="relative overflow-hidden min-h-[92vh] flex items-center"
     >
-      {/* Full-bleed background video */}
-      <div data-hero-food className="absolute inset-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/images/stock/hero-poster.jpg"
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/videos/hero-man-running.mp4" type="video/mp4" />
-        </video>
-        {/* Enhanced overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
-        <div className="absolute inset-0 bg-black/10" />
-      </div>
+      {/* Ambient page-level glow */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 50% at 30% 40%, rgba(205,251,80,0.05) 0%, transparent 60%)",
+        }}
+      />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 dot-grid opacity-50" />
 
-      {/* Content - positioned bottom-left */}
-      <div className="relative z-10 min-h-screen flex flex-col justify-end pb-16 lg:pb-20">
-        <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
-          <div className="max-w-2xl lg:max-w-3xl">
+      <div className="mx-auto w-full max-w-7xl px-6 lg:px-8 pt-32 pb-20 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center">
+          {/* ── Left column: copy ── */}
+          <div className="max-w-2xl">
             {/* Eyebrow */}
-            <div data-hero-line className="flex items-center gap-4 mb-6">
-              <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase">
-                Free Forever
-              </p>
+            <div data-hero-line className="mb-6 inline-flex">
+              <span className="pill-badge">
+                Free Forever · No Credit Card
+              </span>
             </div>
 
-            {/* Headline */}
-            <h1 className="font-heading font-light tracking-[-0.04em] leading-[0.9] mb-6">
-              <span data-hero-line className="block text-white text-[clamp(3rem,7vw,5.5rem)] drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]">
-                <span className="text-italics">Your</span> <span className="text-helthy-lemon">fitness</span>,
+            {/* Headline — Option A: price wedge */}
+            <h1 className="font-heading font-light tracking-[-0.04em] leading-[0.95] mb-6">
+              <span
+                data-hero-line
+                className="block text-white text-[clamp(2.75rem,6.5vw,5.25rem)]"
+              >
+                <span className="text-italics">Calorie tracking</span>
               </span>
-              <span data-hero-line className="block text-[clamp(3rem,7vw,5.5rem)]">
-                <span className="text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]">simplified</span>
+              <span
+                data-hero-line
+                className="block text-[clamp(2.75rem,6.5vw,5.25rem)]"
+              >
+                <span className="text-white">shouldn&apos;t cost</span>
+              </span>
+              <span
+                data-hero-line
+                className="block text-[clamp(2.75rem,6.5vw,5.25rem)]"
+              >
+                <span className="text-helthy-lemon">$80 a year.</span>
               </span>
             </h1>
 
@@ -101,58 +116,79 @@ export default function HeroSection() {
               data-hero-sub
               className="text-base lg:text-lg text-white/70 leading-relaxed mb-10 max-w-xl font-light"
             >
-              Track your nutrition, workouts, progress and so much more in one  simple app.
-              <span className="text-white/90"> Become the <span className="text-helthy-lemon">helthy-est</span></span> version of yourself today.
+              Helthy is the free-forever nutrition and workout app. No trial,
+              no paywall on the basics, no credit card. Become the{" "}
+              <span className="text-helthy-lemon">helthy-est</span> version of
+              yourself today.
             </p>
 
-            {/* Subtle CTA link */}
-            <div data-hero-cta className="flex items-center gap-6">
-              <a
-                href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 text-white hover:text-helthy-lemon transition-all duration-300"
-              >
-                <span className="text-sm font-medium tracking-wide">Download for iOS</span>
-                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-              <span className="text-white/30 text-sm">·</span>
-              <span className="text-white/40 text-sm">No credit card required</span>
-            </div>
-          </div>
-        </div>
-      </div>
+            {/* CTA row: badge + (desktop) QR */}
+            <div
+              data-hero-cta
+              className="flex flex-col sm:flex-row sm:items-center gap-5 mb-8"
+            >
+              <AppStoreBadge />
 
-      {/* Rating Badge - Bottom Right */}
-      <div
-        data-hero-rating
-        className="absolute bottom-8 right-8 lg:bottom-12 lg:right-12 z-20"
-      >
-        <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl">
-          <HugeiconsIcon
-            icon={LaurelWreathLeft01Icon}
-            className="w-6 h-6 text-helthy-lemon"
-          />
-          <div className="flex flex-col items-center">
-            <div className="flex items-center gap-1">
-              {[...Array(5)].map((_, i) => (
-                <svg
-                  key={i}
-                  className="w-4 h-4 fill-helthy-lemon"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                </svg>
-              ))}
+              {/* QR placeholder — desktop only.
+                  TODO(hero-rebuild): swap for /public/images/app-store-qr.svg
+                  once the asset is committed. */}
+              <div className="hidden lg:flex items-center gap-3">
+                <div className="h-[88px] w-[88px] rounded-xl bg-white/[0.06] border border-white/15 flex items-center justify-center">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-white/40 text-center px-2">
+                    qr
+                    <br />
+                    placeholder
+                  </span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-xs font-medium text-white/80">
+                    Scan to download
+                  </span>
+                  <span className="text-[11px] text-white/40">
+                    iPhone · iPad
+                  </span>
+                </div>
+              </div>
             </div>
-            <p className="text-xs font-medium text-white/70 mt-1">4.9 · 2k+ users</p>
+
+            {/* Rating block — moved inline from absolute bottom-right */}
+            <div data-hero-rating className="mb-6">
+              <div className="glass-card inline-flex items-center gap-4 px-5 py-3">
+                <div className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      className="w-4 h-4 fill-helthy-lemon"
+                      viewBox="0 0 20 20"
+                      aria-hidden="true"
+                    >
+                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                    </svg>
+                  ))}
+                </div>
+                <div className="flex flex-col leading-tight">
+                  <span className="text-sm font-semibold text-white">
+                    4.9 on the App Store
+                  </span>
+                  <span className="text-[11px] text-white/50">
+                    Rated by 2,000+ users
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Social proof line — text-only for PR 1; logo strip is a follow-up. */}
+            <p className="text-xs text-white/40 tracking-wide">
+              Trusted by 2,000+ lifters, runners, and everyday athletes.
+            </p>
           </div>
-          <HugeiconsIcon
-            icon={LaurelWreathLeft01Icon}
-            className="w-6 h-6 text-helthy-lemon rotate-180"
-          />
+
+          {/* ── Right column: pluggable visual slot ── */}
+          <div className="relative flex justify-center lg:justify-end">
+            <HeroVisualSlot>
+              <HeroVisualVideo />
+            </HeroVisualSlot>
+          </div>
         </div>
       </div>
     </section>
