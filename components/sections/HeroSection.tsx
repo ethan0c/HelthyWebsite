@@ -66,39 +66,28 @@ export default function HeroSection() {
       className="relative min-h-screen overflow-hidden flex items-center justify-center"
     >
       {/*
-        Background video.
-        TODO(rebrand): replace /videos/hero-man-running.mp4 with a "suitable"
-        atmospheric loop matching the Origin aesthetic — sky/cloud, abstract
-        gradient, or product-aligned footage. Keep autoplay/muted/loop.
-      */}
-      <div className="absolute inset-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/images/stock/hero-poster.jpg"
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/videos/hero-man-running.mp4" type="video/mp4" />
-        </video>
+        Animated lemon mesh-gradient background. Phase 1 of the rebrand —
+        replaces the stock running-man video with a pure-CSS, brand-tinted
+        atmosphere. No asset, no licensing, infinitely loopable.
 
-        {/* Vignette + darken so the centered text always reads */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/85" />
+        TODO(rebrand-phase-2): swap for a Three.js MomentumRing scene
+        (giant slow-rotating training ring) once that component is built.
+      */}
+      <div className="absolute inset-0 bg-[#060606] overflow-hidden">
+        <div className="mesh-blob mesh-blob-1" aria-hidden="true" />
+        <div className="mesh-blob mesh-blob-2" aria-hidden="true" />
+        <div className="mesh-blob mesh-blob-3" aria-hidden="true" />
+
+        {/* Subtle dot grid for texture */}
+        <div className="absolute inset-0 dot-grid opacity-40" aria-hidden="true" />
+
+        {/* Soft center vignette so the text always reads cleanly */}
         <div
           className="absolute inset-0"
+          aria-hidden="true"
           style={{
             background:
-              "radial-gradient(ellipse 80% 60% at 50% 50%, transparent 0%, rgba(0,0,0,0.55) 80%)",
-          }}
-        />
-        {/* Subtle lemon halo from below */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 40% at 50% 100%, rgba(205,251,80,0.10) 0%, transparent 70%)",
+              "radial-gradient(ellipse 70% 55% at 50% 50%, transparent 0%, rgba(0,0,0,0.45) 85%)",
           }}
         />
       </div>
