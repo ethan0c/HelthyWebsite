@@ -10,7 +10,7 @@ import { Menu, X } from "lucide-react";
 function AppStoreIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
     </svg>
   );
 }
@@ -24,7 +24,6 @@ const links = [
 export default function Navbar() {
   const navRef = useRef<HTMLElement>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
   const isActive = (href: string) =>
@@ -32,33 +31,23 @@ export default function Navbar() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Smooth navbar reveal - animate content wrapper, not the fixed nav itself
-      const content = navRef.current?.querySelector('[data-nav-content]');
+      const content = navRef.current?.querySelector("[data-nav-content]");
       if (content) {
         gsap.fromTo(
           content,
-          { y: -20, opacity: 0 },
-          { 
-            y: 0, 
+          { y: -16, opacity: 0 },
+          {
+            y: 0,
             opacity: 1,
-            duration: 1.0, 
-            ease: "power4.out", 
-            delay: 0.3,
-            clearProps: "transform" // Clear transform after animation to prevent positioning issues
+            duration: 1.0,
+            ease: "power4.out",
+            delay: 0.2,
+            clearProps: "transform",
           }
         );
       }
     });
-
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      ctx.revert();
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => ctx.revert();
   }, []);
 
   useEffect(() => {
@@ -69,32 +58,31 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out will-change-auto ${
-          scrolled
-            ? "bg-[#060606]/95 backdrop-blur-md border-b border-white/[0.06]"
-            : "bg-transparent"
-        }`}
+        className="fixed top-4 left-0 right-0 z-50 px-4 sm:px-6"
       >
-        <div data-nav-content className="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+        <div
+          data-nav-content
+          className="nav-pill mx-auto flex h-14 w-full max-w-5xl items-center justify-between rounded-full pl-5 pr-2"
+        >
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center gap-2 shrink-0">
             <img
               src="/images/logos/logo-long-white.png"
               alt="Helthy"
-              className="h-5 sm:h-6 w-auto"
+              className="h-5 w-auto"
             />
           </Link>
 
-          {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop nav links — centered */}
+          <div className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   isActive(link.href)
-                    ? "text-white"
-                    : "text-white/60 hover:text-white"
+                    ? "text-white bg-white/[0.08]"
+                    : "text-white/60 hover:text-white hover:bg-white/[0.04]"
                 }`}
               >
                 {link.label}
@@ -107,7 +95,7 @@ export default function Navbar() {
             href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-helthy-lemon text-[#0B0B0B] text-sm font-medium transition-all hover:bg-white"
+            className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-helthy-lemon text-[#0B0B0B] text-sm font-semibold transition-all hover:shadow-[0_8px_24px_rgba(205,251,80,0.3)] hover:-translate-y-[1px]"
           >
             <AppStoreIcon className="w-4 h-4" />
             Get for iOS
@@ -115,7 +103,7 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden flex items-center justify-center w-10 h-10 -mr-2 text-white/70 hover:text-white transition-colors"
+            className="md:hidden flex items-center justify-center w-10 h-10 text-white/70 hover:text-white transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
@@ -127,15 +115,13 @@ export default function Navbar() {
       {/* Mobile menu - full screen overlay */}
       <div
         className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
-          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          mobileOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
       >
-        {/* Background */}
         <div className="absolute inset-0 bg-[#060606]" />
-        
-        {/* Content */}
         <div className="relative flex flex-col items-center justify-center min-h-screen gap-6 px-6">
-          {/* Nav links */}
           <div className="flex flex-col items-center gap-4">
             <Link
               href="/"
@@ -161,12 +147,11 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA */}
           <a
             href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
             target="_blank"
             rel="noopener noreferrer"
-            className={`mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-helthy-lemon text-[#0B0B0B] font-medium transition-all duration-300 ${
+            className={`mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-helthy-lemon text-[#0B0B0B] font-semibold transition-all duration-300 ${
               mobileOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
             style={{ transitionDelay: "200ms" }}
