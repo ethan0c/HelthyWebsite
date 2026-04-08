@@ -122,7 +122,7 @@ export default function FeaturesSection() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
         {/* Section heading */}
         <div data-features-heading className="mb-12 lg:mb-16">
-          <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">
+          <p className="text-eyebrow mb-6">
             Features
           </p>
           <h2 className="font-heading text-[clamp(2.5rem,6vw,4.5rem)] font-light leading-[0.95] tracking-[-0.03em] text-white max-w-4xl">

@@ -96,7 +96,7 @@ export default function HowItWorksSection() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
         {/* Section heading - editorial style */}
         <div data-hiw-heading className="mb-20 lg:mb-28">
-          <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">
+          <p className="text-eyebrow mb-6">
             How it works
           </p>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">

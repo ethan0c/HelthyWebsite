@@ -182,7 +182,7 @@ export default function ProofSection() {
       <div className="mx-auto max-w-6xl px-6 sm:px-10">
         {/* ══════ App Store reviews ══════ */}
         <div className="text-center mb-12">
-          <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">Real Results</p>
+          <p className="text-eyebrow mb-6">Real Results</p>
           <h2 className="font-body font-normal text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.02em] text-white mb-3">
             Loved on the{" "}
             <span className="accent-serif text-helthy-lemon">App Store.</span>

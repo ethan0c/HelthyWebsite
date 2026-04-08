@@ -172,6 +172,36 @@ body {
   background-size: 256px 256px;
 }
 
+/* ──────────────────────────────────────────────────────────────
+   TYPOGRAPHY CANON — read this before adding font classes anywhere
+   ──────────────────────────────────────────────────────────────
+   The site uses THREE typefaces, no more:
+
+     1. Lyon Display (light, 300)  → display headings only
+        - Use: .text-display-2xl / -xl / -lg / -md
+        - For italic accents: wrap in <span class="text-italics">
+        - NEVER apply font-bold/font-semibold — Lyon Display is only
+          loaded at weight 300. font-bold renders as a fake-bold and
+          looks awful. If you want emphasis, use color or italic.
+
+     2. Geist (300–700)  → all body, UI, eyebrows, buttons, numerics
+        - Default body font (--font-body, --font-display)
+        - Use Tailwind text-* sizes for body copy
+        - Eyebrows: ALWAYS use .text-eyebrow (don't reinvent it)
+
+     3. Unbounded (400–800)  → numerics only (prices, stats, counters)
+        - Use: .text-numeric
+        - Has tabular figures (font-feature-settings: "tnum")
+
+   COMMON MISTAKES TO AVOID:
+     ❌ <span class="font-numeric font-heading font-bold">$0</span>
+        Three conflicting font directives. Pick one.
+     ❌ Repeating the eyebrow recipe inline
+        ("text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase")
+        Use .text-eyebrow.
+     ❌ Hardcoded clamp() font sizes for headings
+        Use .text-display-* instead.
+   ────────────────────────────────────────────────────────────── */
 /* ── Typography Utilities ─────────────────────────────────────── */
 .text-italics {
   font-family: "Lyon Display", Georgia, sans-serif;
@@ -230,11 +260,11 @@ body {
 
 .text-eyebrow {
   font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--helthy-text-secondary);
+  color: var(--helthy-lemon);
 }
 
 .text-numeric {

@@ -42,7 +42,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="relative section-padding pt-36 sm:pt-44 glow-center">
         <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8">
-          <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">About Helthy</p>
+          <p className="text-eyebrow mb-6">About Helthy</p>
           <h1 className="font-heading font-light text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-white mb-6">
             <span className="text-italics">Built</span> by lifters,
             <br />
@@ -60,7 +60,7 @@ export default function AboutPage() {
       <section className="section-padding">
         <div className="mx-auto max-w-4xl px-5 sm:px-8">
           <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 sm:p-12">
-            <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">Our Mission</p>
+            <p className="text-eyebrow mb-6">Our Mission</p>
             <h2 className="font-heading font-light text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white">
               <span className="text-italics">Make</span> health tracking free, beautiful, and powerful — so cost is
               never a barrier to <span className="text-italics text-helthy-lemon">better health.</span>
@@ -72,7 +72,7 @@ export default function AboutPage() {
       {/* Team */}
       <section className="relative section-padding dot-grid">
         <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8">
-          <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">The Team</p>
+          <p className="text-eyebrow mb-6">The Team</p>
           <h2 className="font-heading font-light text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white mb-10">
             <span className="text-italics">Real</span> people. <span className="text-italics text-helthy-lemon">Real transformations.</span>
           </h2>
@@ -101,7 +101,7 @@ export default function AboutPage() {
       {/* Timeline */}
       <section className="relative section-padding hatch-bg">
         <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8">
-          <p className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">Timeline</p>
+          <p className="text-eyebrow mb-6">Timeline</p>
           <h2 className="font-heading font-light text-[clamp(1.375rem,2.5vw,2rem)] leading-[1.2] tracking-[-0.015em] text-white mb-10">
             <span className="text-italics">Where</span> we&apos;ve <span className="text-italics text-helthy-lemon">been.</span>
           </h2>

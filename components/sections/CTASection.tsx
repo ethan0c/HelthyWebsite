@@ -183,7 +183,7 @@ export default function CTASection() {
         <div className="text-center">
           {/* Main heading */}
           <div className="mb-12">
-            <p data-cta-eyebrow className="text-helthy-lemon text-sm font-semibold tracking-[0.2em] uppercase mb-6">
+            <p data-cta-eyebrow className="text-eyebrow mb-6">
               Ready to start?
             </p>
             <h2 
