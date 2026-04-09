@@ -49,10 +49,10 @@
 
 /* ── Design Tokens ────────────────────────────────────────────── */
 :root {
-  --background: #607C8A;
+  --background: #111111;
   --foreground: #ffffff;
-  --helthy-black: #0B0B0B;
-  --helthy-lemon: #CDFB50;
+  --helthy-black: #151515;
+  --helthy-lemon: #CDFF50;
   --helthy-lemon-deep: #7BB820;
   --helthy-card: #262626;
   --helthy-card-section: #171717;
@@ -130,8 +130,19 @@ body {
 }
 
 ::selection {
-  background: rgba(205, 251, 80, 0.3);
+  background: rgba(205, 255, 80, 0.3);
   color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--helthy-lemon);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible {
+  outline-offset: 4px;
+  border-radius: 999px;
 }
 
 /* ── Scrollbar hide ───────────────────────────────────────────── */

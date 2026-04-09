@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsap";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 /**
  * Founder transformation photos. Real before/after shots from the
@@ -54,28 +55,14 @@ export default function TransformationsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative px-2 lg:px-3 py-2 lg:py-3"
+      className="relative section-padding px-6 lg:px-8"
     >
-      <div
-        className="relative mx-auto bg-[#0F0F0F] overflow-hidden border border-white/[0.06]"
-        style={{
-          borderRadius: "40px",
-          boxShadow:
-            "0 -40px 100px -40px rgba(205,251,80,0.12), 0 1px 0 0 rgba(255,255,255,0.05) inset",
-        }}
-      >
-        <div className="px-6 lg:px-8 py-24 lg:py-32 max-w-6xl mx-auto">
-        <div className="text-center mb-16 max-w-2xl mx-auto">
-          <h2 className="text-display-xl font-heading font-light tracking-tight">
-            We use it{" "}
-            <span className="text-italics text-helthy-lemon">every day</span>.
-          </h2>
-          <p className="mt-5 text-base text-white/60 leading-relaxed font-light">
-            Helthy started because the founders couldn&apos;t find a tracker
-            that actually worked for them. Here&apos;s what it looks like when
-            you stick with it.
-          </p>
-        </div>
+      <div className="max-w-6xl mx-auto">
+        <SectionHeading
+          title="We use it every day"
+          trailingPunctuation=""
+          subtitle="Helthy started because the founders couldn't find a tracker that actually worked for them. Here's what it looks like when you stick with it."
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {TRANSFORMATIONS.map((t) => (
@@ -111,7 +98,7 @@ export default function TransformationsSection() {
                 </div>
               </div>
               <div className="p-6">
-                <p className="text-sm text-white/80 italic font-light leading-relaxed mb-4">
+                <p className="text-sm text-white/80 text-italics leading-relaxed mb-4">
                   &ldquo;{t.quote}&rdquo;
                 </p>
                 <div className="flex items-center justify-between">
@@ -127,7 +114,6 @@ export default function TransformationsSection() {
 
         {/* TODO(user): add a "submit your transformation" CTA once you
             decide how you want to collect them */}
-        </div>
       </div>
     </section>
   );

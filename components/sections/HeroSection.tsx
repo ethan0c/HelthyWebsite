@@ -9,18 +9,6 @@ const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
 
 const PHONE_W = 320;
-const CARD_W  = 260;
-const CARD_H  = 56;
-const CARD_GAP = PHONE_W / 2 + 20; // px from center to inner card edge
-
-const FLOATING_CARDS = [
-  { id: "c1", side: "right" as const, bottom: 420, rotate:  1 },
-  { id: "c2", side: "right" as const, bottom: 300, rotate: -4 },
-  { id: "c3", side: "right" as const, bottom: 180, rotate:  2 },
-  { id: "c4", side: "left"  as const, bottom: 420, rotate: -2 },
-  { id: "c5", side: "left"  as const, bottom: 300, rotate:  3 },
-  { id: "c6", side: "left"  as const, bottom: 180, rotate: -3 },
-];
 
 const CTA_SHADOW =
   "rgba(255,255,255,0.5) 0px 2px 1px 0px inset," +
@@ -34,29 +22,32 @@ export default function HeroSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Enter animations re-add after layout is confirmed
-
-
-      const cards = gsap.utils.toArray<HTMLElement>("[data-hero-card]");
-      gsap.set(cards, { autoAlpha: 0 });
-
-      cards.forEach((el) => {
-        const fromX  = Number(el.dataset.fromX  || 0);
-        const rotate = Number(el.dataset.rotate || 0);
-
-        gsap.fromTo(
-          el,
-          { x: fromX, y: 30, rotate: 0, autoAlpha: 0 },
-          {
-            x: 0, y: 0, rotate, autoAlpha: 1, ease: "none",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 5%",
-              end: "bottom 75%",
-              scrub: 1,
-            },
-          }
-        );
+      gsap.from("[data-hero-h1]", {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+      gsap.from("[data-hero-phone]", {
+        y: 50,
+        opacity: 0,
+        duration: 1.2,
+        delay: 0.2,
+        ease: "power3.out",
+      });
+      gsap.from("[data-hero-sub]", {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        delay: 0.5,
+        ease: "power3.out",
+      });
+      gsap.from("[data-hero-cta]", {
+        y: 15,
+        opacity: 0,
+        duration: 0.7,
+        delay: 0.65,
+        ease: "power3.out",
       });
     }, sectionRef);
 
@@ -68,7 +59,7 @@ export default function HeroSection() {
       ref={sectionRef}
       id="hero"
       className="relative w-full flex flex-col items-center"
-      style={{ backgroundColor: "#607C8A", paddingBottom: 80 }}
+      style={{ paddingBottom: 80 }}
     >
       {/* Noise */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
@@ -77,68 +68,30 @@ export default function HeroSection() {
         mixBlendMode: "screen", zIndex: 1,
       }} />
 
-      {/* H1 — scrolls normally */}
+      {/* H1 */}
       <div data-hero-h1 className="relative w-full text-center" style={{
-        paddingTop: 140, paddingLeft: 44, paddingRight: 44, paddingBottom: 40, zIndex: 3,
+        paddingTop: "clamp(100px, 14vh, 160px)", paddingLeft: 44, paddingRight: 44, paddingBottom: 40, zIndex: 3,
       }}>
-        <h1 style={{
-          fontSize: "clamp(48px, 6.5vw, 88px)", fontWeight: 500,
-          letterSpacing: "-0.04em", lineHeight: "0.97em",
+        <h1 className="font-heading font-light" style={{
+          fontSize: "clamp(48px, 6.5vw, 88px)",
+          letterSpacing: "-0.035em", lineHeight: "0.97em",
           color: "#F9F9F9", margin: 0,
         }}>
-          <em style={{ fontStyle: "italic" }}>Own</em> your fitness.
+Your fitness, <span className="text-italics text-helthy-lemon">handled</span>.
         </h1>
       </div>
 
-      {/* Phone + cards — phone scrolls naturally, cards animate out on scroll */}
-      <div className="relative w-full flex justify-center" style={{ zIndex: 2, minHeight: 700 }}>
-
-        {/* LEFT cards */}
-        {FLOATING_CARDS.filter(c => c.side === "left").map(card => (
-          <div
-            key={card.id}
-            data-hero-card
-            data-from-x={-300}
-            data-rotate={card.rotate}
-            aria-hidden="true"
-            className="absolute hidden lg:block"
-            style={{
-              right: `calc(50% + ${CARD_GAP}px)`,
-              bottom: card.bottom,
-              width: CARD_W, height: CARD_H,
-              borderRadius: 14, backgroundColor: "#111", zIndex: 5,
-            }}
-          />
-        ))}
-
-        {/* Phone */}
-        <div data-hero-phone style={{ position: "relative", zIndex: 10, alignSelf: "flex-start" }}>
-          <PhoneFrame src="" alt="" width={PHONE_W} />
+      {/* Phone */}
+      <div className="relative w-full flex justify-center" style={{ zIndex: 2 }}>
+        <div data-hero-phone style={{ position: "relative", zIndex: 10 }}>
+          <PhoneFrame src="/screenshots/hero-app.jpg" alt="Helthy app home screen" width={PHONE_W} priority />
         </div>
-
-        {/* RIGHT cards */}
-        {FLOATING_CARDS.filter(c => c.side === "right").map(card => (
-          <div
-            key={card.id}
-            data-hero-card
-            data-from-x={300}
-            data-rotate={card.rotate}
-            aria-hidden="true"
-            className="absolute hidden lg:block"
-            style={{
-              left: `calc(50% + ${CARD_GAP}px)`,
-              bottom: card.bottom,
-              width: CARD_W, height: CARD_H,
-              borderRadius: 14, backgroundColor: "#111", zIndex: 5,
-            }}
-          />
-        ))}
       </div>
 
       {/* Sub + CTA — scroll into view below phone */}
       <div className="relative flex flex-col items-center w-full" style={{ gap: 20, paddingTop: 40, zIndex: 2 }}>
         <p data-hero-sub style={{
-          fontSize: 20, fontWeight: 500,
+          fontSize: 20, fontWeight: 400,
           letterSpacing: "-0.02em", lineHeight: "1.45em",
           color: "rgba(249,249,249,0.85)", textAlign: "center",
           maxWidth: 440, margin: 0,
@@ -154,7 +107,7 @@ export default function HeroSection() {
           className="inline-flex items-center justify-center gap-2"
           style={{
             padding: "10px 20px", borderRadius: 14,
-            border: "1px solid #CDFB50", backgroundColor: "#CDFB50",
+            border: "1px solid #CDFF50", backgroundColor: "#CDFF50",
             color: "#0B0B0B", fontSize: 15, fontWeight: 600,
             letterSpacing: "-0.01em", lineHeight: "1.2em",
             textDecoration: "none", boxShadow: CTA_SHADOW,
@@ -170,7 +123,7 @@ export default function HeroSection() {
           fontSize: 13, fontWeight: 500,
           color: "rgba(249,249,249,0.5)", letterSpacing: "-0.01em", margin: 0,
         }}>
-          Also available on web &amp; Android
+          Android coming soon
         </p>
       </div>
     </section>

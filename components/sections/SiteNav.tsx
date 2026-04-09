@@ -8,7 +8,6 @@ const APP_STORE_URL =
 
 const NAV = [
   { href: "#features", label: "Features" },
-  { href: "#how", label: "How it works" },
   { href: "#pricing", label: "Pricing" },
   { href: "#faq", label: "FAQ" },
 ];
@@ -58,8 +57,7 @@ export default function SiteNav() {
 
           {/* Center: tabs */}
           <ul
-            className="hidden md:flex items-center gap-7 text-[13px] justify-self-center"
-            style={{ color: "rgba(255, 255, 255, 0.65)" }}
+            className="hidden md:flex items-center gap-7 text-[13px] justify-self-center text-white/65"
           >
             {NAV.map((item) => (
               <li key={item.href}>
@@ -73,15 +71,17 @@ export default function SiteNav() {
             ))}
           </ul>
 
-          {/* Right: embossed CTA */}
+          {/* Right: lemon-tinted CTA */}
           <Link
             href={APP_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-self-end border border-white/[0.08] px-4 py-1.5 text-[13px] font-medium text-white"
+            className="inline-flex items-center justify-self-end px-4 py-1.5 text-[13px] font-medium transition-colors hover:bg-[rgba(205,255,80,0.14)]"
             style={{
-              backgroundColor: "rgb(41, 41, 41)",
+              backgroundColor: "rgba(205,255,80,0.08)",
+              border: "1px solid rgba(205,255,80,0.25)",
               borderRadius: "120px",
+              color: "#CDFF50",
               boxShadow: CTA_SHADOW,
             }}
           >

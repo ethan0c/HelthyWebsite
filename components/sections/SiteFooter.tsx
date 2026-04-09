@@ -9,17 +9,9 @@ const COLUMNS = [
     title: "Product",
     links: [
       { label: "Features", href: "#features" },
-      { label: "How it works", href: "#how" },
       { label: "Pricing", href: "#pricing" },
+      { label: "FAQ", href: "#faq" },
       { label: "Download", href: APP_STORE_URL },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About", href: "/about" },
-      { label: "Contact", href: "/contact" },
-      // TODO(user): add a /press page if/when you have press coverage
     ],
   },
   {
@@ -36,7 +28,7 @@ export default function SiteFooter() {
   return (
     <footer className="relative border-t border-white/[0.05]">
       <div className="mx-auto max-w-6xl px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
           {/* Brand column */}
           <div className="col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4">
@@ -47,7 +39,7 @@ export default function SiteFooter() {
                 height={32}
               />
               <span className="font-display font-semibold text-white tracking-tight text-lg">
-                helthy
+                Helthy
               </span>
             </Link>
             <p className="text-sm text-white/50 max-w-xs leading-relaxed font-light">

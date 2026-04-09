@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import HelthyMark from "@/components/ui/HelthyMark";
+import SectionHeading from "@/components/ui/SectionHeading";
+
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
@@ -22,17 +24,13 @@ export default function CTASection() {
       </div>
 
       <div className="relative mx-auto max-w-3xl text-center">
-        <div className="mb-8 flex justify-center">
-          <HelthyMark size={56} pulse />
-        </div>
-        <h2 className="text-display-xl font-heading font-light tracking-tight mb-6">
-          Own your fitness. Stop guessing. Start tracking with{" "}
-          <span className="text-italics text-helthy-lemon">Starting today.</span>
-        </h2>
-        <p className="text-base lg:text-lg text-white/65 leading-relaxed font-light max-w-xl mx-auto mb-10">
-          Free forever. No credit card. Premium AI launches April 2026 — join
-          early to lock in launch pricing.
-        </p>
+        <SectionHeading
+          eyebrow={<HelthyMark size={56} pulse />}
+          title="Stop guessing,"
+          italicTail="start today"
+          subtitle="Free forever. No credit card. Unlock unlimited AI with Premium whenever you're ready."
+          className="mb-10"
+        />
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href={APP_STORE_URL}
@@ -43,14 +41,10 @@ export default function CTASection() {
             Download for iOS
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
-          {/* TODO(user): replace with real Google Play link when Android ships */}
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] backdrop-blur-md px-8 py-4 text-white/80 text-sm font-medium transition-all hover:text-white hover:bg-white/[0.08] hover:border-white/25"
-          >
-            Join Android waitlist
-          </Link>
         </div>
+        <p className="mt-5 text-xs text-white/40">
+          Android coming soon.
+        </p>
       </div>
     </section>
   );

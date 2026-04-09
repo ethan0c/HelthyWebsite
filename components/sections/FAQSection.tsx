@@ -1,16 +1,18 @@
 "use client";
 
+import SectionHeading from "@/components/ui/SectionHeading";
+
 const FAQS = [
   {
     q: "Is Helthy really free?",
-    a: "Yes — calorie logging, workouts, TDEE, and form tips are unlimited and free forever. Premium ($10/mo) unlocks unlimited AI photo & voice logging, the AI coach, generated routines, full analytics, and all-time history.",
+    a: "Yes — calorie logging, workouts, TDEE, and form tips are unlimited and free forever. Premium ($10/mo or $83/yr — save 30%) unlocks unlimited AI photo & voice logging, the AI coach, generated routines, full analytics, and all-time history.",
   },
   {
     q: "How accurate is the AI photo logging?",
     a: "Helthy uses a vision model trained on millions of meals plus the USDA and Open Food Facts databases. For most common meals it's within 5–10% of a hand-logged entry. You can always tap to adjust before saving.",
   },
   {
-    q: "Does it sync with Apple Health & Google Fit?",
+    q: "Does it sync with Apple Health & Google Health Connect?",
     a: "Yes. Free users get steps and weight sync. Premium users get full two-way sync — heart rate, workouts, active energy, and nutrition data flow both directions.",
   },
   {
@@ -23,7 +25,7 @@ const FAQS = [
   },
   {
     q: "When is Android coming?",
-    a: "iOS is live now. Android is on the roadmap — join the waitlist on the homepage to be notified the moment it drops.",
+    a: "iOS is live now. Android is actively in development and will ship soon — follow @helthyapp for launch updates.",
   },
   {
     q: "Can I cancel Premium?",
@@ -37,34 +39,17 @@ const FAQS = [
 
 export default function FAQSection() {
   return (
-    <section id="faq" className="relative px-2 lg:px-3 py-2 lg:py-3">
-      <div
-        className="relative mx-auto bg-[#0F0F0F] overflow-hidden border border-white/[0.06]"
-        style={{
-          borderRadius: "40px",
-          boxShadow:
-            "0 -40px 100px -40px rgba(205,251,80,0.12), 0 1px 0 0 rgba(255,255,255,0.05) inset",
-        }}
-      >
-        <div className="px-6 lg:px-8 py-24 lg:py-32 max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-display-xl font-heading font-light tracking-tight">
-            Questions,{" "}
-            <span className="text-italics text-helthy-lemon">answered</span>.
-          </h2>
-        </div>
+    <section id="faq" className="relative section-padding px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        <SectionHeading title="Questions, answered" trailingPunctuation="" />
 
         {/* 4 columns × 2 rows */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {FAQS.map((faq, i) => (
             <div
               key={faq.q}
-              className="relative rounded-3xl p-7 flex flex-col overflow-hidden"
-              style={{
-                background: "rgba(255,255,255,0.025)",
-                border: "1px solid rgba(255,255,255,0.07)",
-                minHeight: 300,
-              }}
+              className="card-helthy p-7 flex flex-col"
+              style={{ minHeight: 300 }}
             >
               {/* Big numeric */}
               <span
@@ -77,12 +62,11 @@ export default function FAQSection() {
               <h3 className="text-[17px] font-semibold text-white mb-3 tracking-tight leading-snug">
                 {faq.q}
               </h3>
-              <p className="text-[13px] text-white/55 leading-relaxed font-light">
+              <p className="text-[13px] text-white/65 leading-relaxed font-light">
                 {faq.a}
               </p>
             </div>
           ))}
-        </div>
         </div>
       </div>
     </section>

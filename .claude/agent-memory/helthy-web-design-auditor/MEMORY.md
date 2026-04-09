@@ -1,0 +1,5 @@
+- [Token & Background Color Issues](project_token_background.md) — Background is Steel Teal (#607C8A) everywhere; should be deep charcoal per brand spec
+- [Typography System](project_typography.md) — Lyon Display (light 300) for headings, Geist for body, Unbounded for numerics; SectionHeading component enforces this pattern
+- [Mobile Token Parity](project_mobile_token_parity.md) — FeaturesRow uses a local T={} object with correct mobile tokens; primary discrepancy is #CDFB50 vs mobile's #CDFF50
+- [Accessibility Gaps](project_accessibility.md) — No focus styles anywhere in codebase; interactive AI send button has no keyboard behavior; dangerouslySetInnerHTML in AICoachSection
+- [Design Patterns](project_design_patterns.md) — card-helthy, section-padding, SectionHeading component are the canonical primitives; all sections use section-padding correctly except HeroSection

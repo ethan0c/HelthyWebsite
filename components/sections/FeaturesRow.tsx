@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
+import SectionHeading from "@/components/ui/SectionHeading";
 import {
   Sunrise,
   UtensilsCrossed,
@@ -16,7 +17,7 @@ import {
 
 // Real tokens from mobile app dark theme
 const T = {
-  primary: "#CDFB50",
+  primary: "#CDFF50",
   buttonText: "#151515",
   bg: "#111111",
   card: "#2A2A2A",
@@ -32,34 +33,6 @@ const T = {
   mealBreakfast: "#FF9500",
   mealLunch: "#34C759",
   mealDinner: "#5856D6",
-};
-
-// Abstract gradient backgrounds — unique per card
-const BGS = {
-  lime: `
-    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(205,255,80,0.22), transparent 60%),
-    radial-gradient(ellipse 100% 70% at 85% 90%, rgba(80,200,255,0.18), transparent 55%),
-    radial-gradient(ellipse 60% 50% at 60% 40%, rgba(140,100,255,0.12), transparent 70%),
-    linear-gradient(180deg, #0d1006 0%, #0a0a0a 100%)
-  `,
-  rose: `
-    radial-gradient(ellipse 90% 70% at 80% 20%, rgba(255,140,100,0.22), transparent 60%),
-    radial-gradient(ellipse 80% 60% at 15% 85%, rgba(255,80,180,0.15), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,100,255,0.10), transparent 70%),
-    linear-gradient(180deg, #100808 0%, #0a0808 100%)
-  `,
-  teal: `
-    radial-gradient(ellipse 90% 70% at 10% 20%, rgba(80,220,200,0.20), transparent 60%),
-    radial-gradient(ellipse 80% 60% at 85% 80%, rgba(100,130,255,0.18), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 55% 45%, rgba(205,255,80,0.08), transparent 70%),
-    linear-gradient(180deg, #060e10 0%, #080a0b 100%)
-  `,
-  amber: `
-    radial-gradient(ellipse 90% 70% at 75% 15%, rgba(255,180,80,0.22), transparent 60%),
-    radial-gradient(ellipse 80% 60% at 15% 90%, rgba(255,100,60,0.15), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 40% 50%, rgba(255,220,120,0.08), transparent 70%),
-    linear-gradient(180deg, #100c06 0%, #0a0806 100%)
-  `,
 };
 
 export default function FeaturesRow() {
@@ -103,36 +76,21 @@ export default function FeaturesRow() {
     <section
       id="features"
       ref={sectionRef}
-      className="relative px-2 lg:px-3 pt-2 lg:pt-3 bg-[#060606]"
+      className="relative section-padding px-6 lg:px-8"
     >
-      <div
-        ref={cardRef}
-        className="relative mx-auto bg-[#0F0F0F] overflow-hidden border border-white/[0.06]"
-        style={{
-          borderRadius: "40px",
-          boxShadow:
-            "0 -40px 100px -40px rgba(205,251,80,0.12), 0 1px 0 0 rgba(255,255,255,0.05) inset",
-          willChange: "transform",
-        }}
-      >
-        <div className="px-6 lg:px-10 py-24 lg:py-32">
-          <div className="max-w-6xl mx-auto">
-            {/* Header */}
-            <div className="text-center mb-16 lg:mb-20">
-              <h2 className="text-display-xl font-heading font-light tracking-tight max-w-3xl mx-auto">
-                Everything you need.{" "}
-                <span className="text-italics text-white/60">
-                  Nothing you don&apos;t.
-                </span>
-              </h2>
-            </div>
+      <div ref={cardRef} className="relative" style={{ willChange: "transform" }}>
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+            <SectionHeading
+              title="Everything you need"
+              italicTail="nothing you don't"
+            />
 
             {/* Asymmetric bento — 12 col grid */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5">
               {/* Row 1, Card A: Photo meal log (large, 7 col) */}
               <FeatureCard
-                bg={BGS.lime}
-                className="lg:col-span-7"
+className="lg:col-span-7"
                 minH={560}
                 headline={
                   <>
@@ -146,14 +104,9 @@ export default function FeaturesRow() {
 
               {/* Row 1, Card B: AI Coach (5 col) */}
               <FeatureCard
-                bg={BGS.rose}
-                className="lg:col-span-5"
+className="lg:col-span-5"
                 minH={560}
-                headline={
-                  <>
-                    <span className="text-italics">Ask</span> anything
-                  </>
-                }
+                headline="Your AI coach"
                 subtitle="A Claude-powered coach that actually knows your goals, history, and macros."
               >
                 <AIMockup />
@@ -161,14 +114,9 @@ export default function FeaturesRow() {
 
               {/* Row 2, Card C: Workout (5 col) */}
               <FeatureCard
-                bg={BGS.teal}
-                className="lg:col-span-5"
+className="lg:col-span-5"
                 minH={520}
-                headline={
-                  <>
-                    <span className="text-italics">Lift</span> smarter
-                  </>
-                }
+                headline="Lift smarter"
                 subtitle="Sets, reps, PRs. Form tips and rest timers built right in."
               >
                 <WorkoutMockup />
@@ -176,20 +124,14 @@ export default function FeaturesRow() {
 
               {/* Row 2, Card D: Weight (7 col) */}
               <FeatureCard
-                bg={BGS.amber}
-                className="lg:col-span-7"
+className="lg:col-span-7"
                 minH={520}
-                headline={
-                  <>
-                    <span className="text-italics">Watch</span> the trend
-                  </>
-                }
+                headline="Watch the trend"
                 subtitle="Weight, macros, streaks, and progress photos. Real analytics, no noise."
               >
                 <WeightMockup />
               </FeatureCard>
             </div>
-          </div>
         </div>
       </div>
     </section>
@@ -200,14 +142,12 @@ export default function FeaturesRow() {
 // Shell
 
 function FeatureCard({
-  bg,
   className = "",
   minH = 500,
   headline,
   subtitle,
   children,
 }: {
-  bg: string;
   className?: string;
   minH?: number;
   headline: React.ReactNode;
@@ -217,14 +157,8 @@ function FeatureCard({
   return (
     <div
       data-feature-card
-      className={`relative overflow-hidden flex flex-col ${className}`}
-      style={{
-        borderRadius: 32,
-        background: bg,
-        border: "1px solid rgba(255,255,255,0.08)",
-        minHeight: minH,
-        boxShadow: "0 1px 0 0 rgba(255,255,255,0.06) inset",
-      }}
+      className={`card-helthy flex flex-col ${className}`}
+      style={{ minHeight: minH }}
     >
       {/* Noise overlay */}
       <div

@@ -27,7 +27,6 @@ export const metadata: Metadata = {
       "Track meals, workouts, and progress. AI coach in your pocket.",
   },
   icons: {
-    icon: "/favicon.png",
     apple: "/apple-touch-icon.png",
   },
 };
@@ -39,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-[#607C8A] text-white grain">
+      <body className="min-h-full flex flex-col bg-background text-white grain">
         <GSAPProvider>
           <LenisProvider>
             <SiteNav />

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "@/lib/gsap";
-import { ArrowUp, Flame } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 
 type MealSuggestion = {
   name: string;
@@ -133,7 +133,7 @@ export default function AICoachSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-32 lg:py-40 px-6 overflow-hidden"
+      className="relative section-padding px-6 lg:px-8 overflow-hidden"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -153,7 +153,7 @@ export default function AICoachSection() {
             />
             <defs>
               <radialGradient id="aiStarGrad" cx="40%" cy="35%" r="70%">
-                <stop offset="0%" stopColor="#CDFB50" />
+                <stop offset="0%" stopColor="#CDFF50" />
                 <stop offset="100%" stopColor="#7bff6a" />
               </radialGradient>
             </defs>
@@ -162,15 +162,14 @@ export default function AICoachSection() {
 
         <h2
           data-ai-hero
-          className="font-heading font-light tracking-tight text-white mb-6"
-          style={{ fontSize: "clamp(52px, 8vw, 88px)", lineHeight: 1.05 }}
+          className="text-display-xl font-heading font-light tracking-tight text-white mb-6"
         >
-          <em className="italic">Ask</em> anything
+          <span className="text-italics text-helthy-lemon">Ask</span> anything.
         </h2>
 
         <p
           data-ai-hero
-          className="text-white/55 text-lg leading-relaxed max-w-md mb-14 font-light"
+          className="text-base text-white/60 leading-relaxed max-w-md mb-14 font-light"
         >
           Helthy AI turns your questions into answers you can trust —
           personalised advice, grounded in your data, delivered instantly.
@@ -196,7 +195,7 @@ export default function AICoachSection() {
               className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-all"
               style={{
                 background:
-                  phase !== "typing" ? "#CDFB50" : "rgba(255,255,255,0.12)",
+                  phase !== "typing" ? "#CDFF50" : "rgba(255,255,255,0.12)",
               }}
               aria-label="Send"
             >
@@ -213,7 +212,7 @@ export default function AICoachSection() {
               <div
                 className="rounded-2xl rounded-br-md px-4 py-2.5 text-[14px] font-medium text-black max-w-[85%] text-left"
                 style={{
-                  background: "#CDFB50",
+                  background: "#CDFF50",
                   animation: "aiFadeIn 0.3s ease-out",
                 }}
               >
@@ -321,29 +320,28 @@ function MealCard({ meal }: { meal: MealSuggestion }) {
       </div>
 
       <div className="hidden sm:flex items-center gap-1">
-        <MacroPill label="P" value={meal.p} color="#CDFB50" />
-        <MacroPill label="C" value={meal.c} color="#38bdf8" />
-        <MacroPill label="F" value={meal.f} color="#f97316" />
+        <MacroPill label="P" value={meal.p} />
+        <MacroPill label="C" value={meal.c} />
+        <MacroPill label="F" value={meal.f} />
       </div>
 
       <div
         className="flex items-center gap-1 px-2 py-1 rounded-md flex-shrink-0"
-        style={{ background: "rgba(249,115,22,0.12)" }}
+        style={{ background: "rgba(205,251,80,0.12)" }}
       >
-        <Flame className="w-3 h-3" style={{ color: "#f97316" }} />
-        <span className="text-[11px] font-semibold" style={{ color: "#f97316" }}>
-          {meal.kcal}
+        <span className="text-[11px] font-semibold" style={{ color: "#CDFF50" }}>
+          {meal.kcal} kcal
         </span>
       </div>
     </div>
   );
 }
 
-function MacroPill({ label, value, color }: { label: string; value: number; color: string }) {
+function MacroPill({ label, value }: { label: string; value: number }) {
   return (
     <span
-      className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[10px] font-semibold"
-      style={{ background: `${color}18`, color }}
+      className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[10px] font-semibold text-white/75"
+      style={{ background: "rgba(255,255,255,0.06)" }}
     >
       {value}
       <span className="opacity-60">{label}</span>
