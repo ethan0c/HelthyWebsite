@@ -53,7 +53,6 @@ export default function IntegrationsSection() {
     >
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-16 max-w-2xl mx-auto">
-          <p className="text-eyebrow mb-4">Integrations</p>
           <h2 className="text-display-xl font-heading font-light tracking-tight">
             Plays nice with{" "}
             <span className="text-italics text-helthy-lemon">your gear</span>.

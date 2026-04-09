@@ -58,7 +58,6 @@ export default function TransformationsSection() {
     >
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-16 max-w-2xl mx-auto">
-          <p className="text-eyebrow mb-4">Built by users</p>
           <h2 className="text-display-xl font-heading font-light tracking-tight">
             We use it{" "}
             <span className="text-italics text-helthy-lemon">every day</span>.
