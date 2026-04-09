@@ -11,7 +11,7 @@ const APP_STORE_URL =
 
 export default function CTASection() {
   return (
-    <section className="relative section-padding px-6 lg:px-8 overflow-hidden">
+    <section className="relative section-padding px-6 lg:px-8 overflow-hidden bg-helthy-surface">
       {/* Big lemon ambient glow */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div

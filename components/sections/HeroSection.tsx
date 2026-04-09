@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 import PhoneFrame from "@/components/ui/PhoneFrame";
-import { Flame, TrendingDown, Dumbbell, Sparkles } from "lucide-react";
+import { Trophy, TrendingUp } from "lucide-react";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
@@ -19,12 +19,37 @@ const CTA_SHADOW =
   "rgba(255,255,255,0.25) 0px 10px 10px -3.75px inset," +
   "rgba(205,255,80,0.35) 0px 14px 6px -8px";
 
-const CARD_STYLE = {
-  background: "rgba(30,30,30,0.85)",
-  border: "1px solid rgba(255,255,255,0.08)",
-  backdropFilter: "blur(12px)",
-  boxShadow: "0 8px 32px -8px rgba(0,0,0,0.6)",
+// Mobile app tokens
+const T = {
+  primary: "#CDFF50",
+  buttonText: "#151515",
+  card: "#2A2A2A",
+  text: "#FFFFFF",
+  textSecondary: "#9CA3AF",
+  border: "#2E2E30",
+  calories: "#FF6B6B",
+  protein: "#4CAF50",
+  carbs: "#2196F3",
+  fats: "#FF9800",
+  success: "#22C55E",
+  warning: "#F59E0B",
 };
+
+const CARD_STYLE = {
+  background: "rgba(20,20,20,0.82)",
+  border: "1px solid rgba(255,255,255,0.08)",
+  backdropFilter: "blur(16px)",
+  WebkitBackdropFilter: "blur(16px)",
+  boxShadow: "0 8px 32px -8px rgba(0,0,0,0.5)",
+};
+
+// StreakFlame SVG paths from mobile StreakFlame.tsx
+const FLAME_MAIN = "M24 4C24 4 18 14 18 22C18 26 20 30 24 32C28 30 30 26 30 22C30 14 24 4 24 4Z";
+const FLAME_CORE = "M24 14C24 14 21 20 21 24C21 26 22.5 28 24 29C25.5 28 27 26 27 24C27 20 24 14 24 14Z";
+const FLAME_WISP_L = "M18 28C18 28 15 22 16 18C17 22 18 24 18 28Z";
+const FLAME_WISP_R = "M30 28C30 28 33 22 32 18C31 22 30 24 30 28Z";
+// Blaze tier (14 days): core=#FDE047, mid=#F59E0B, outer=#DC2626
+const BLAZE = { core: "#FDE047", mid: "#F59E0B", outer: "#DC2626", glow: "#F59E0B" };
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -44,7 +69,6 @@ export default function HeroSection() {
         y: 15, opacity: 0, duration: 0.7, delay: 0.65, ease: "power3.out",
       });
 
-      // Floating cards — stagger in from sides
       const cards = gsap.utils.toArray<HTMLElement>("[data-hero-card]");
       cards.forEach((el) => {
         const fromX = Number(el.dataset.fromX || 0);
@@ -73,7 +97,7 @@ export default function HeroSection() {
       ref={sectionRef}
       id="hero"
       className="relative w-full flex flex-col items-center"
-      style={{ paddingBottom: 80 }}
+      style={{ paddingBottom: 80, backgroundColor: "#607C8A" }}
     >
       {/* Noise */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
@@ -98,125 +122,202 @@ export default function HeroSection() {
       {/* Phone + floating cards */}
       <div className="relative w-full flex justify-center" style={{ zIndex: 2, minHeight: 640 }}>
 
-        {/* LEFT floating cards */}
-        {/* Card: Meal logged */}
+        {/* ═══ LEFT CARDS ═══ */}
+
+        {/* 1. Exercise Library Card — ExerciseLibraryScreen renderItem */}
         <div
           data-hero-card data-from-x={-250} data-rotate={-2}
           aria-hidden="true"
-          className="absolute hidden lg:block rounded-2xl p-3.5"
+          className="absolute hidden lg:block"
           style={{
             right: `calc(50% + ${CARD_GAP}px)`,
-            bottom: 380, width: 220,
+            bottom: 400, width: 230,
+            borderRadius: 16, padding: 16, minHeight: 80,
             ...CARD_STYLE,
           }}
         >
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(205,255,80,0.12)" }}>
-              <span className="text-sm">📸</span>
+          <div className="flex items-center gap-3">
+            <div
+              className="flex items-center justify-center flex-shrink-0"
+              style={{ width: 52, height: 52, borderRadius: 14, background: T.primary + "12" }}
+            >
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={T.primary} strokeWidth="2" strokeLinecap="round">
+                <path d="M6.5 6.5h11M6.5 17.5h11M3 10.5h1.5m15 0H21M3 13.5h1.5m15 0H21M4.5 10.5v3M19.5 10.5v3M7.5 8v8M16.5 8v8" />
+              </svg>
             </div>
-            <div>
-              <p className="text-[11px] font-semibold text-white">Grilled chicken + rice</p>
-              <p className="text-[9px] text-white/50">560 kcal · 48P · 58C · 9F</p>
+            <div className="flex-1 min-w-0">
+              <p className="text-[15px] font-semibold mb-1" style={{ color: T.text }}>Bench Press</p>
+              <p className="text-[13px] leading-[18px]" style={{ color: T.textSecondary }}>Barbell · Chest, Triceps</p>
             </div>
           </div>
         </div>
 
-        {/* Card: Weight entry */}
+        {/* 2. FoodItemCard — FoodItemCard.tsx exact layout */}
         <div
           data-hero-card data-from-x={-200} data-rotate={3}
           aria-hidden="true"
-          className="absolute hidden lg:block rounded-2xl p-3.5"
+          className="absolute hidden lg:block"
           style={{
-            right: `calc(50% + ${CARD_GAP + 20}px)`,
-            bottom: 240, width: 180,
+            right: `calc(50% + ${CARD_GAP + 15}px)`,
+            bottom: 255, width: 250,
+            borderRadius: 16, padding: "12px 16px",
             ...CARD_STYLE,
           }}
         >
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(205,255,80,0.12)" }}>
-              <TrendingDown className="w-4 h-4" style={{ color: "#CDFF50" }} />
+          <div className="flex items-center gap-3">
+            <div
+              className="flex items-center justify-center flex-shrink-0"
+              style={{ width: 40, height: 40, borderRadius: 12 }}
+            >
+              <span className="text-[18px]">🍗</span>
             </div>
-            <div>
-              <p className="text-[11px] font-semibold text-white">82.4 kg</p>
-              <p className="text-[9px] text-white/50">−0.3 this week</p>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex-1 min-w-0">
+                  <p className="text-[14px] font-medium truncate" style={{ color: T.text }}>Grilled Chicken</p>
+                  <p className="text-[12px] truncate" style={{ color: T.textSecondary }}>200g</p>
+                </div>
+                <div className="flex items-center gap-[3px] px-2 py-[3px] rounded-full" style={{ background: T.calories + "12" }}>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill={T.calories}><path d="M12 23c-3.6 0-7-2.4-7-7 0-3.4 2.2-6.4 4-8.4.6-.7 1.7-.5 2 .3.5 1.5 1.3 2.5 2 3.1.2-.5.4-1.2.5-2.1.1-1.3-.2-2.8-.7-4.2-.3-.9.5-1.7 1.4-1.4 3.3 1.2 6.8 5.4 6.8 10.7 0 5.3-3.4 9-9 9z"/></svg>
+                  <span className="text-[12px] font-bold" style={{ color: T.text, fontFamily: "'Unbounded', sans-serif" }}>330</span>
+                </div>
+              </div>
+              <div className="flex gap-1.5 mt-1.5">
+                {[
+                  { v: 62, l: "P", c: T.protein },
+                  { v: 0, l: "C", c: T.carbs },
+                  { v: 7, l: "F", c: T.fats },
+                ].map((m) => (
+                  <span key={m.l} className="text-[10px] font-semibold px-1.5 py-0.5 rounded" style={{ background: m.c + "15", color: m.c }}>
+                    {m.v}{m.l}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Card: Streak */}
+        {/* 3. Streak Card — real StreakFlame SVG paths, Blaze tier */}
         <div
           data-hero-card data-from-x={-180} data-rotate={-1}
           aria-hidden="true"
-          className="absolute hidden lg:block rounded-2xl px-4 py-2.5"
+          className="absolute hidden lg:block"
           style={{
-            right: `calc(50% + ${CARD_GAP - 10}px)`,
-            bottom: 120, width: 140,
+            right: `calc(50% + ${CARD_GAP - 5}px)`,
+            bottom: 120, width: 170,
+            borderRadius: 20, padding: 16,
             ...CARD_STYLE,
           }}
         >
-          <div className="flex items-center gap-2">
-            <Flame className="w-4 h-4" style={{ color: "#FF9500" }} />
-            <span className="text-[11px] font-semibold text-white">14 day streak</span>
+          <div className="flex items-center gap-3">
+            <div className="relative flex-shrink-0" style={{ width: 40, height: 40 }}>
+              <div className="absolute inset-0 rounded-full" style={{ background: `radial-gradient(circle, ${BLAZE.glow}36 0%, transparent 70%)` }} />
+              <svg width="40" height="40" viewBox="6 2 36 34">
+                <defs>
+                  <radialGradient id="flameGrad" cx="50%" cy="40%" r="60%">
+                    <stop offset="0%" stopColor={BLAZE.core} />
+                    <stop offset="50%" stopColor={BLAZE.mid} />
+                    <stop offset="100%" stopColor={BLAZE.outer} />
+                  </radialGradient>
+                </defs>
+                <path d={FLAME_MAIN} fill="url(#flameGrad)" />
+                <path d={FLAME_CORE} fill={BLAZE.core} opacity="0.9" />
+                <path d={FLAME_WISP_L} fill={BLAZE.mid} opacity="0.6" />
+                <path d={FLAME_WISP_R} fill={BLAZE.mid} opacity="0.6" />
+              </svg>
+            </div>
+            <div>
+              <p className="text-[20px] font-bold" style={{ color: T.text, fontFamily: "'Unbounded', sans-serif" }}>14</p>
+              <p className="text-[11px] font-semibold uppercase tracking-wider" style={{ color: T.textSecondary }}>day streak</p>
+            </div>
           </div>
         </div>
 
-        {/* RIGHT floating cards */}
-        {/* Card: Exercise logged */}
+        {/* ═══ RIGHT CARDS ═══ */}
+
+        {/* 4. New PR Card — PRHighlight.tsx wrapper */}
         <div
           data-hero-card data-from-x={250} data-rotate={2}
           aria-hidden="true"
-          className="absolute hidden lg:block rounded-2xl p-3.5"
+          className="absolute hidden lg:block"
           style={{
             left: `calc(50% + ${CARD_GAP}px)`,
-            bottom: 380, width: 210,
+            bottom: 400, width: 220,
+            borderRadius: 16, padding: 16,
+            position: "absolute",
             ...CARD_STYLE,
           }}
         >
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(205,255,80,0.12)" }}>
-              <Dumbbell className="w-4 h-4" style={{ color: "#CDFF50" }} />
+          <div className="absolute inset-[-1px] rounded-[17px] pointer-events-none" style={{ border: "1px solid #E6B800", opacity: 0.6 }} />
+          <div className="absolute inset-0 rounded-[16px] pointer-events-none" style={{ background: "#F4E4BC", opacity: 0.08 }} />
+          <div className="absolute flex items-center justify-center" style={{ top: -6, right: -6, width: 18, height: 18, borderRadius: 9, background: "#E6B800", opacity: 0.85, zIndex: 10, boxShadow: "0 1px 2px rgba(230,184,0,0.3)" }}>
+            <Trophy className="w-[10px] h-[10px]" style={{ color: "#B8860B" }} />
+          </div>
+          <div className="relative flex items-center gap-3">
+            <div
+              className="flex items-center justify-center flex-shrink-0"
+              style={{ width: 52, height: 52, borderRadius: 14, background: T.primary + "12" }}
+            >
+              <Trophy className="w-6 h-6" style={{ color: T.warning }} />
             </div>
             <div>
-              <p className="text-[11px] font-semibold text-white">Bench Press</p>
-              <p className="text-[9px] text-white/50">3 sets · 80 kg PR 🏆</p>
+              <p className="text-[15px] font-semibold" style={{ color: T.text }}>New PR!</p>
+              <p className="text-[13px] leading-[18px]" style={{ color: T.textSecondary }}>Bench Press · 80 kg</p>
             </div>
           </div>
         </div>
 
-        {/* Card: AI insight */}
+        {/* 5. Weight History Entry — WeightScreen.tsx history row */}
         <div
           data-hero-card data-from-x={200} data-rotate={-3}
           aria-hidden="true"
-          className="absolute hidden lg:block rounded-2xl p-3.5"
+          className="absolute hidden lg:block"
           style={{
             left: `calc(50% + ${CARD_GAP + 10}px)`,
-            bottom: 240, width: 220,
-            ...CARD_STYLE,
+            bottom: 255, width: 210,
           }}
         >
-          <div className="flex items-start gap-2.5">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "rgba(205,255,80,0.12)" }}>
-              <Sparkles className="w-4 h-4" style={{ color: "#CDFF50" }} />
+          <div className="flex items-start">
+            <div className="flex flex-col items-center" style={{ width: 20, paddingTop: 14 }}>
+              <div style={{ width: 10, height: 10, borderRadius: 5, background: T.primary }} />
+              <div className="flex-1" style={{ width: 1.5, marginTop: 4, background: T.border + "40", minHeight: 30 }} />
             </div>
-            <p className="text-[10px] text-white/80 leading-snug">You&apos;re 38g short on protein today. Add Greek yogurt to close the gap.</p>
+            <div
+              className="flex-1 ml-2"
+              style={{ borderRadius: 16, padding: "10px 12px", background: T.card, border: `1px solid ${T.border}20` }}
+            >
+              <div className="flex items-center justify-between">
+                <p style={{ fontSize: 16, fontWeight: 600, color: T.text, fontFamily: "'Unbounded', sans-serif" }}>
+                  82.4 <span style={{ fontSize: 13, color: T.textSecondary, fontFamily: "inherit" }}>kg</span>
+                </p>
+                <div className="px-2 py-[3px] rounded-lg" style={{ background: T.success + "12" }}>
+                  <p className="text-[12px] font-semibold" style={{ color: T.success, fontFamily: "'Unbounded', sans-serif" }}>−0.3</p>
+                </div>
+              </div>
+              <p className="text-[12px] mt-0.5" style={{ color: T.textSecondary }}>Today · 8:14 AM</p>
+            </div>
           </div>
         </div>
 
-        {/* Card: Calories remaining */}
+        {/* 6. Insights Card — InsightCard.tsx */}
         <div
           data-hero-card data-from-x={180} data-rotate={1}
           aria-hidden="true"
-          className="absolute hidden lg:block rounded-2xl px-4 py-2.5"
+          className="absolute hidden lg:block"
           style={{
-            left: `calc(50% + ${CARD_GAP - 10}px)`,
-            bottom: 120, width: 160,
+            left: `calc(50% + ${CARD_GAP - 5}px)`,
+            bottom: 120, width: 210,
+            borderRadius: 20, padding: 16,
             ...CARD_STYLE,
           }}
         >
-          <div className="flex items-center justify-between gap-3">
-            <span className="text-[10px] text-white/50">Remaining</span>
-            <span className="text-[12px] font-semibold" style={{ color: "#CDFF50" }}>360 kcal</span>
+          <div className="flex items-center gap-2 mb-3">
+            <TrendingUp className="w-3.5 h-3.5" style={{ color: T.primary }} />
+            <span className="text-[11px] font-semibold uppercase" style={{ color: T.primary, letterSpacing: 1.2 }}>WEEKLY INSIGHT</span>
           </div>
+          <p className="text-[13px] leading-[18px]" style={{ color: T.textSecondary }}>
+            Protein is <span className="font-semibold" style={{ color: T.text }}>18% below target</span>. Fix that and weight should move again.
+          </p>
         </div>
 
         {/* Phone */}

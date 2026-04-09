@@ -49,13 +49,14 @@
 
 /* ── Design Tokens ────────────────────────────────────────────── */
 :root {
-  --background: #111111;
+  --background: #0A0A0A;
   --foreground: #ffffff;
   --helthy-black: #151515;
   --helthy-lemon: #CDFF50;
   --helthy-lemon-deep: #7BB820;
   --helthy-card: #262626;
   --helthy-card-section: #171717;
+  --helthy-surface: #141414;
   --helthy-border: #2E2E30;
   --helthy-border-subtle: #1A1A1C;
   --helthy-border-strong: #607C8A;
@@ -89,6 +90,7 @@
   --color-helthy-lemon-deep: var(--helthy-lemon-deep);
   --color-helthy-card: var(--helthy-card);
   --color-helthy-card-section: var(--helthy-card-section);
+  --color-helthy-surface: var(--helthy-surface);
   --color-helthy-border: var(--helthy-border);
   --color-helthy-border-subtle: var(--helthy-border-subtle);
   --color-helthy-text-secondary: var(--helthy-text-secondary);

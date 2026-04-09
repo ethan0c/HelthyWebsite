@@ -50,7 +50,7 @@ export default function IntegrationsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative section-padding px-6 lg:px-8"
+      className="relative section-padding px-6 lg:px-8 bg-helthy-surface"
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeading
