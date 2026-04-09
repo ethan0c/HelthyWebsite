@@ -1,10 +1,7 @@
 import HeroSection from "@/components/sections/HeroSection";
 import LogoStrip from "@/components/sections/LogoStrip";
 import FeaturesRow from "@/components/sections/FeaturesRow";
-import PhoneShowcaseFood from "@/components/sections/PhoneShowcaseFood";
 import AICoachSection from "@/components/sections/AICoachSection";
-import PhoneShowcaseWorkout from "@/components/sections/PhoneShowcaseWorkout";
-import AnalyticsSection from "@/components/sections/AnalyticsSection";
 import IntegrationsSection from "@/components/sections/IntegrationsSection";
 import PricingSection from "@/components/sections/PricingSection";
 import TransformationsSection from "@/components/sections/TransformationsSection";
@@ -18,10 +15,7 @@ export default function Home() {
       <HeroSection />
       <LogoStrip />
       <FeaturesRow />
-      <PhoneShowcaseFood />
       <AICoachSection />
-      <PhoneShowcaseWorkout />
-      <AnalyticsSection />
       <IntegrationsSection />
       <PricingSection />
       <TransformationsSection />
