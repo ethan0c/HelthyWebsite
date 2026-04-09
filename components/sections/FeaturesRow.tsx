@@ -93,6 +93,7 @@ export default function FeaturesRow() {
               <FeatureCard
                 className="lg:col-span-7"
                 minH={560}
+                bg="#1a1a12"
                 headline={
                   <>
                     <span className="text-italics">Snap</span> your plate
@@ -107,6 +108,7 @@ export default function FeaturesRow() {
               <FeatureCard
                 className="lg:col-span-5"
                 minH={560}
+                bg="#12171a"
                 headline="Your AI coach"
                 subtitle="Personalized nudges powered by your data — nutrition, sleep, training, all connected."
               >
@@ -117,6 +119,7 @@ export default function FeaturesRow() {
               <FeatureCard
                 className="lg:col-span-5"
                 minH={520}
+                bg="#17121a"
                 headline="Every lift, covered"
                 subtitle="350+ exercises with muscle maps, form cues, and video demos."
               >
@@ -127,6 +130,7 @@ export default function FeaturesRow() {
               <FeatureCard
                 className="lg:col-span-7"
                 minH={520}
+                bg="#121a16"
                 headline="Watch the trend"
                 subtitle="Your weight story told in data. Smoothed trends, goal lines, and milestone markers."
               >
