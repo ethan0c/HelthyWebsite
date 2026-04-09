@@ -133,7 +133,7 @@ export default function AICoachSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#080808] py-32 lg:py-40 px-6 overflow-hidden"
+      className="relative py-32 lg:py-40 px-6 overflow-hidden"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -153,7 +153,7 @@ export default function AICoachSection() {
             />
             <defs>
               <radialGradient id="aiStarGrad" cx="40%" cy="35%" r="70%">
-                <stop offset="0%" stopColor="#cdff50" />
+                <stop offset="0%" stopColor="#CDFB50" />
                 <stop offset="100%" stopColor="#7bff6a" />
               </radialGradient>
             </defs>
@@ -196,7 +196,7 @@ export default function AICoachSection() {
               className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-all"
               style={{
                 background:
-                  phase !== "typing" ? "#cdff50" : "rgba(255,255,255,0.12)",
+                  phase !== "typing" ? "#CDFB50" : "rgba(255,255,255,0.12)",
               }}
               aria-label="Send"
             >
@@ -213,7 +213,7 @@ export default function AICoachSection() {
               <div
                 className="rounded-2xl rounded-br-md px-4 py-2.5 text-[14px] font-medium text-black max-w-[85%] text-left"
                 style={{
-                  background: "#cdff50",
+                  background: "#CDFB50",
                   animation: "aiFadeIn 0.3s ease-out",
                 }}
               >
@@ -321,7 +321,7 @@ function MealCard({ meal }: { meal: MealSuggestion }) {
       </div>
 
       <div className="hidden sm:flex items-center gap-1">
-        <MacroPill label="P" value={meal.p} color="#cdff50" />
+        <MacroPill label="P" value={meal.p} color="#CDFB50" />
         <MacroPill label="C" value={meal.c} color="#38bdf8" />
         <MacroPill label="F" value={meal.f} color="#f97316" />
       </div>

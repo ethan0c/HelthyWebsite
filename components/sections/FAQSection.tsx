@@ -37,8 +37,16 @@ const FAQS = [
 
 export default function FAQSection() {
   return (
-    <section id="faq" className="relative section-padding px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+    <section id="faq" className="relative px-2 lg:px-3 py-2 lg:py-3">
+      <div
+        className="relative mx-auto bg-[#0F0F0F] overflow-hidden border border-white/[0.06]"
+        style={{
+          borderRadius: "40px",
+          boxShadow:
+            "0 -40px 100px -40px rgba(205,251,80,0.12), 0 1px 0 0 rgba(255,255,255,0.05) inset",
+        }}
+      >
+        <div className="px-6 lg:px-8 py-24 lg:py-32 max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-display-xl font-heading font-light tracking-tight">
             Questions,{" "}
@@ -74,6 +82,7 @@ export default function FAQSection() {
               </p>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </section>

@@ -44,7 +44,7 @@ export default function LogoStrip() {
   return (
     <section
       aria-label="Available platforms"
-      className="relative py-12 border-y border-white/[0.05] bg-[#080808] flex flex-col items-center gap-5"
+      className="relative py-12 border-y border-white/[0.05] flex flex-col items-center gap-5"
     >
       <div className="flex items-center gap-3">
         {PLATFORMS.map((p) => (

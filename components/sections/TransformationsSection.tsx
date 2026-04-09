@@ -54,9 +54,17 @@ export default function TransformationsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative section-padding px-6 lg:px-8 bg-[#080808]"
+      className="relative px-2 lg:px-3 py-2 lg:py-3"
     >
-      <div className="mx-auto max-w-6xl">
+      <div
+        className="relative mx-auto bg-[#0F0F0F] overflow-hidden border border-white/[0.06]"
+        style={{
+          borderRadius: "40px",
+          boxShadow:
+            "0 -40px 100px -40px rgba(205,251,80,0.12), 0 1px 0 0 rgba(255,255,255,0.05) inset",
+        }}
+      >
+        <div className="px-6 lg:px-8 py-24 lg:py-32 max-w-6xl mx-auto">
         <div className="text-center mb-16 max-w-2xl mx-auto">
           <h2 className="text-display-xl font-heading font-light tracking-tight">
             We use it{" "}
@@ -119,6 +127,7 @@ export default function TransformationsSection() {
 
         {/* TODO(user): add a "submit your transformation" CTA once you
             decide how you want to collect them */}
+        </div>
       </div>
     </section>
   );

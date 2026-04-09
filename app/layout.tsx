@@ -39,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-[#060606] text-white grain">
+      <body className="min-h-full flex flex-col bg-[#607C8A] text-white grain">
         <GSAPProvider>
           <LenisProvider>
             <SiteNav />

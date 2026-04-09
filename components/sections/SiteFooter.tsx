@@ -34,7 +34,7 @@ const COLUMNS = [
 
 export default function SiteFooter() {
   return (
-    <footer className="relative border-t border-white/[0.05] bg-[#050505]">
+    <footer className="relative border-t border-white/[0.05]">
       <div className="mx-auto max-w-6xl px-6 lg:px-8 py-16">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10">
           {/* Brand column */}

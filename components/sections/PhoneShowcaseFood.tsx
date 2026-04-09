@@ -99,7 +99,7 @@ export default function PhoneShowcaseFood() {
     <section
       id="how"
       ref={sectionRef}
-      className="relative bg-[#080808] py-24 lg:py-32"
+      className="relative py-24 lg:py-32"
     >
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="mb-20 text-center lg:text-left lg:max-w-2xl">

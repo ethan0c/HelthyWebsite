@@ -49,7 +49,7 @@ export default function IntegrationsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative section-padding px-6 lg:px-8 bg-[#080808]"
+      className="relative section-padding px-6 lg:px-8"
     >
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-16 max-w-2xl mx-auto">
