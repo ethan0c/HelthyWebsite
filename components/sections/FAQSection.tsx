@@ -39,7 +39,7 @@ const FAQS = [
 
 export default function FAQSection() {
   return (
-    <section id="faq" className="relative section-padding px-6 lg:px-8">
+    <section id="faq" className="relative section-padding px-6 lg:px-8 section-glow-cyan">
       <div className="max-w-6xl mx-auto">
         <SectionHeading title="Questions, answered" trailingPunctuation="" />
 

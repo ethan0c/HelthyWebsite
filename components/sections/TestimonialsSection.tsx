@@ -73,7 +73,7 @@ export default function TestimonialsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative section-padding px-6 lg:px-8 bg-helthy-surface"
+      className="relative section-padding px-6 lg:px-8 section-glow-center"
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeading

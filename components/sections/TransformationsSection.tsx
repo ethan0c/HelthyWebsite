@@ -55,7 +55,7 @@ export default function TransformationsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative section-padding px-6 lg:px-8"
+      className="relative section-padding px-6 lg:px-8 section-glow-warm"
     >
       <div className="max-w-6xl mx-auto">
         <SectionHeading
