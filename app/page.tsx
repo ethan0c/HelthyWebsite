@@ -1,7 +1,7 @@
 import HeroSection from "@/components/sections/HeroSection";
 import LogoStrip from "@/components/sections/LogoStrip";
 import FeaturesRow from "@/components/sections/FeaturesRow";
-import IntegrationsSection from "@/components/sections/IntegrationsSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import PricingSection from "@/components/sections/PricingSection";
 import TransformationsSection from "@/components/sections/TransformationsSection";
 import FAQSection from "@/components/sections/FAQSection";
@@ -14,7 +14,7 @@ export default function Home() {
       <HeroSection />
       <LogoStrip />
       <FeaturesRow />
-      <IntegrationsSection />
+      <TestimonialsSection />
       <PricingSection />
       <TransformationsSection />
       <FAQSection />
