@@ -26,7 +26,7 @@ export default function CTASection() {
           <HelthyMark size={56} pulse />
         </div>
         <h2 className="text-display-xl font-heading font-light tracking-tight mb-6">
-          Own your fitness.{" "}
+          Own your fitness. Stop guessing. Start tracking with{" "}
           <span className="text-italics text-helthy-lemon">Starting today.</span>
         </h2>
         <p className="text-base lg:text-lg text-white/65 leading-relaxed font-light max-w-xl mx-auto mb-10">

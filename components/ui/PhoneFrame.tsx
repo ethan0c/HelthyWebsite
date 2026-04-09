@@ -40,14 +40,16 @@ export default function PhoneFrame({
       >
         {/* Inner bezel */}
         <div className="relative w-full h-full rounded-[2.85rem] bg-black overflow-hidden">
-          <Image
-            src={src}
-            alt={alt}
-            fill
-            sizes={`${width}px`}
-            className="object-cover"
-            priority={priority}
-          />
+          {src && (
+            <Image
+              src={src}
+              alt={alt}
+              fill
+              sizes={`${width}px`}
+              className="object-cover"
+              priority={priority}
+            />
+          )}
           {/* Dynamic island */}
           <div className="absolute top-2 left-1/2 -translate-x-1/2 h-[22px] w-[100px] rounded-full bg-black z-10" />
         </div>
