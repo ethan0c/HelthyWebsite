@@ -11,42 +11,42 @@ const TESTIMONIALS = [
       "I've tried MyFitnessPal, Cronometer, MacroFactor — Helthy is the first one that stuck. Snap a photo and it's logged. That's it.",
     name: "Marcus T.",
     detail: "Lost 14 kg in 5 months",
-    accent: "#CDFF50",
+    accent: "#16A34A",
   },
   {
     quote:
       "The AI coach told me to skip legs after a bad sleep night. No other app connects my data like that.",
     name: "Sarah K.",
     detail: "Training 4x/week for 8 months",
-    accent: "#339AF0",
+    accent: "#2563EB",
   },
   {
     quote:
       "I opened the app to log a meal and it already knew what I was eating. Genuinely felt like magic.",
     name: "James R.",
     detail: "200+ meals logged",
-    accent: "#FF6B6B",
+    accent: "#DC2626",
   },
   {
     quote:
       "Finally an app that doesn't make me feel like I'm filling out a spreadsheet. The weight trend chart alone is worth it.",
     name: "Priya M.",
     detail: "Goal weight reached in 12 weeks",
-    accent: "#51CF66",
+    accent: "#059669",
   },
   {
     quote:
       "My coach suggested I add Greek yogurt to hit my protein target. Tapped one button and it was logged. Unreal.",
     name: "Alex D.",
     detail: "Hitting 180g protein daily",
-    accent: "#D8B440",
+    accent: "#B45309",
   },
   {
     quote:
       "I showed the insights screen to my PT and she said 'this is better than what I give my clients.' Switching her whole gym over.",
     name: "Olivia W.",
     detail: "Personal trainer, 12 clients on Helthy",
-    accent: "#E96C2C",
+    accent: "#C2410C",
   },
 ];
 
@@ -73,13 +73,14 @@ export default function TestimonialsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative section-padding px-6 lg:px-8 section-glow-center"
+      className="relative section-padding px-6 lg:px-8 section-light"
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           title="Don't take our"
           italicTail="word for it"
           subtitle="Real people, real results. Here's what Helthy users are saying."
+          className="[&_h2]:text-[#121111] [&_.text-italics]:text-[#121111] [&_p]:text-[rgba(18,17,17,0.55)]"
         />
 
         {/* Masonry-style 3-column grid */}
@@ -103,7 +104,7 @@ export default function TestimonialsSection() {
               </div>
 
               {/* Quote */}
-              <p className="text-[15px] leading-relaxed text-white/85 font-light mb-5">
+              <p className="text-[15px] leading-relaxed font-light mb-5" style={{ color: "rgba(18,17,17,0.75)" }}>
                 &ldquo;{t.quote}&rdquo;
               </p>
 
@@ -112,15 +113,15 @@ export default function TestimonialsSection() {
                 {/* Avatar placeholder — initial in colored circle */}
                 <div
                   className="w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-semibold shrink-0"
-                  style={{ background: t.accent + "20", color: t.accent }}
+                  style={{ background: t.accent + "15", color: t.accent }}
                 >
                   {t.name.charAt(0)}
                 </div>
                 <div>
-                  <p className="text-[13px] font-semibold text-white">
+                  <p className="text-[13px] font-semibold" style={{ color: "#121111" }}>
                     {t.name}
                   </p>
-                  <p className="text-[11px] text-white/50">{t.detail}</p>
+                  <p className="text-[11px]" style={{ color: "rgba(18,17,17,0.5)" }}>{t.detail}</p>
                 </div>
               </div>
             </div>

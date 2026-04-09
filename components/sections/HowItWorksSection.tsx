@@ -12,7 +12,7 @@ const STEPS = [
     title: "Download the app",
     description:
       "Set up your profile, goals, and preferences in under two minutes. Available on iOS and Android.",
-    accent: "#CDFF50",
+    accent: "#22C55E",
   },
   {
     number: "02",
@@ -20,7 +20,7 @@ const STEPS = [
     title: "Log meals, workouts & weight",
     description:
       "Snap a photo to log any meal instantly. Track workouts from 1,500+ exercises. Log weight in seconds.",
-    accent: "#339AF0",
+    accent: "#3B82F6",
   },
   {
     number: "03",
@@ -28,7 +28,7 @@ const STEPS = [
     title: "Get coached by AI",
     description:
       "Your AI coach connects nutrition, training, and recovery data to give you personalized guidance every day.",
-    accent: "#FF6B6B",
+    accent: "#E96C2C",
   },
 ];
 
@@ -55,12 +55,13 @@ export default function HowItWorksSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative section-padding px-6 lg:px-8 section-glow-lemon"
+      className="relative section-padding px-6 lg:px-8 section-light"
     >
       <div className="mx-auto max-w-5xl">
         <SectionHeading
           title="How it"
           italicTail="works"
+          className="[&_h2]:text-[#121111] [&_.text-italics]:text-[#121111] [&_p]:text-[rgba(18,17,17,0.55)]"
         />
 
         {/* Steps row */}
@@ -71,13 +72,13 @@ export default function HowItWorksSection() {
               <div key={step.number} data-step className="relative">
                 {/* Connector line — between steps on desktop */}
                 {i < STEPS.length - 1 && (
-                  <div className="hidden md:block absolute top-10 left-[60%] right-[-40%] h-[1px] bg-white/[0.06]" />
+                  <div className="hidden md:block absolute top-10 left-[60%] right-[-40%] h-[1px] bg-black/[0.08]" />
                 )}
 
                 {/* Step number */}
                 <span
                   className="text-[64px] lg:text-[80px] font-light leading-none tracking-tight font-heading"
-                  style={{ color: "rgba(255,255,255,0.04)" }}
+                  style={{ color: "rgba(0,0,0,0.06)" }}
                 >
                   {step.number}
                 </span>
@@ -86,8 +87,8 @@ export default function HowItWorksSection() {
                 <div
                   className="w-12 h-12 rounded-2xl flex items-center justify-center mt-4 mb-5"
                   style={{
-                    background: step.accent + "12",
-                    border: `1px solid ${step.accent}20`,
+                    background: step.accent + "15",
+                    border: `1px solid ${step.accent}25`,
                   }}
                 >
                   <Icon
@@ -97,10 +98,10 @@ export default function HowItWorksSection() {
                 </div>
 
                 {/* Copy */}
-                <h3 className="text-[20px] lg:text-[22px] font-medium text-white tracking-tight mb-3">
+                <h3 className="text-[20px] lg:text-[22px] font-medium tracking-tight mb-3" style={{ color: "#121111" }}>
                   {step.title}
                 </h3>
-                <p className="text-[14px] text-white/55 font-light leading-relaxed">
+                <p className="text-[14px] font-light leading-relaxed" style={{ color: "rgba(18,17,17,0.55)" }}>
                   {step.description}
                 </p>
               </div>

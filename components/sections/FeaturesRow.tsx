@@ -93,7 +93,7 @@ export default function FeaturesRow() {
               <FeatureCard
                 className="lg:col-span-7"
                 minH={560}
-                bg="#1a1a12"
+                bgImage="/textures/card-leaves.jpg"
                 headline={
                   <>
                     <span className="text-italics">Snap</span> your plate
@@ -108,7 +108,7 @@ export default function FeaturesRow() {
               <FeatureCard
                 className="lg:col-span-5"
                 minH={560}
-                bg="#12171a"
+                bgImage="/textures/card-water.jpg"
                 headline="Your AI coach"
                 subtitle="Personalized nudges powered by your data — nutrition, sleep, training, all connected."
               >
@@ -119,7 +119,7 @@ export default function FeaturesRow() {
               <FeatureCard
                 className="lg:col-span-5"
                 minH={520}
-                bg="#17121a"
+                bgImage="/textures/card-stone.jpg"
                 headline="Every lift, covered"
                 subtitle="350+ exercises with muscle maps, form cues, and video demos."
               >
@@ -130,7 +130,7 @@ export default function FeaturesRow() {
               <FeatureCard
                 className="lg:col-span-7"
                 minH={520}
-                bg="#121a16"
+                bgImage="/textures/card-forest.jpg"
                 headline="Watch the trend"
                 subtitle="Your weight story told in data. Smoothed trends, goal lines, and milestone markers."
               >
@@ -152,6 +152,7 @@ function FeatureCard({
   headline,
   subtitle,
   bg,
+  bgImage,
   children,
 }: {
   className?: string;
@@ -159,6 +160,7 @@ function FeatureCard({
   headline: React.ReactNode;
   subtitle: string;
   bg?: string;
+  bgImage?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -167,6 +169,30 @@ function FeatureCard({
       className={`card-helthy flex flex-col ${className}`}
       style={{ minHeight: minH, ...(bg ? { background: bg } : {}) }}
     >
+      {/* Background texture image — like Origin's image-fill */}
+      {bgImage && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `url(${bgImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.45,
+            filter: "brightness(0.7) saturate(0.5)",
+          }}
+        />
+      )}
+
+      {/* Gradient overlay — darkens bottom for text readability */}
+      {bgImage && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.75) 100%)",
+          }}
+        />
+      )}
+
       {/* Noise overlay */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.35] mix-blend-overlay"

@@ -180,6 +180,43 @@ body {
     var(--background);
 }
 
+/* ── Light Section ───────────────────────────────────────────── */
+/* Warm cream background inspired by Wallet Template ref (#F2EFEB / #FFFAF5).
+   Flips text, cards, and accents for light-on-dark → dark-on-light. */
+.section-light {
+  --section-bg: #F2EFEB;
+  --section-text: #121111;
+  --section-text-secondary: rgba(18, 17, 17, 0.55);
+  --section-card-bg: rgba(0, 0, 0, 0.04);
+  --section-card-border: rgba(0, 0, 0, 0.08);
+  --section-card-shadow-inset: rgba(255, 255, 255, 0.7);
+  --section-card-shadow-outer: rgba(0, 0, 0, 0.06);
+  background: var(--section-bg);
+  color: var(--section-text);
+}
+
+/* Card variant for light sections */
+.section-light .card-helthy {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  box-shadow:
+    rgba(255, 255, 255, 0.7) 0px 1px 0px 0px inset,
+    rgba(255, 255, 255, 0.3) 0px 0px 12px 0px inset,
+    rgba(0, 0, 0, 0.04) 0px 2px 4px -1px,
+    rgba(0, 0, 0, 0.06) 0px 8px 16px -4px,
+    rgba(0, 0, 0, 0.08) 0px 24px 48px -12px;
+}
+.section-light .card-helthy-hover:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow:
+    rgba(255, 255, 255, 0.8) 0px 1px 0px 0px inset,
+    rgba(255, 255, 255, 0.4) 0px 0px 16px 0px inset,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px,
+    rgba(0, 0, 0, 0.08) 0px 12px 24px -8px,
+    rgba(0, 0, 0, 0.1) 0px 32px 56px -16px;
+}
+
 /* ── Noise/Grain Texture Overlay ──────────────────────────────── */
 .grain::before {
   content: "";
