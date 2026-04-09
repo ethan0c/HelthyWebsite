@@ -1,26 +1,489 @@
-@import "tailwindcss";
+/* ── Google Fonts: Geist (body/UI) + Unbounded (numeric) ──────── */
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Unbounded:wght@400;500;600;700;800&display=swap");
 
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+/* ── Brand Fonts ───────────────────────────────────────────────── */
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/sf-pro-display/SFPRODISPLAYREGULAR.OTF") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/sf-pro-display/SFPRODISPLAYMEDIUM.OTF") format("opentype");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/sf-pro-display/SFPRODISPLAYBOLD.OTF") format("opentype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* Lyon Display — display headings only. Light 300 + italic accent. */
+@font-face {
+  font-family: "Lyon Display";
+  src: url("https://cdn.prod.website-files.com/68acbc076b672f730e0c77b9/68acbc6e9832d8edc91f625b_LyonDisplay-Light-Trial.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lyon Display";
+  src: url("https://cdn.prod.website-files.com/68acbc076b672f730e0c77b9/68acbc6ef1b9c827b523f364_LyonDisplay-Regular-Trial.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lyon Display";
+  src: url("https://cdn.prod.website-files.com/68acbc076b672f730e0c77b9/68acbc6ea208b728ef351d78_LyonDisplay-LightItalic-Trial.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ── Design Tokens ────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #060606;
+  --foreground: #ffffff;
+  --helthy-black: #0B0B0B;
+  --helthy-lemon: #CDFB50;
+  --helthy-lemon-deep: #7BB820;
+  --helthy-card: #262626;
+  --helthy-card-section: #171717;
+  --helthy-border: #2E2E30;
+  --helthy-border-subtle: #1A1A1C;
+  --helthy-border-strong: #607C8A;
+  --helthy-text-secondary: #9CA3AF;
+  --helthy-accent-orange: #E96C2C;
+  --helthy-accent-cyan: #22D3EE;
+  --helthy-accent-gold: #D8B440;
+
+  /* Semantic mobile colors — match constants/colors.ts in helthy_app/mobile */
+  --helthy-protein: #4CAF50;
+  --helthy-carbs:   #2196F3;
+  --helthy-fats:    #FF9800;
+  --helthy-fiber:   #9C27B0;
+  --helthy-steps:   #2DD4BF;
+  --helthy-success: #22C55E;
+  --helthy-training: #EF4444;
+  --helthy-movement: #38BDF8;
+
+  --font-heading: "Lyon Display", Georgia, serif;
+  --font-display: "Geist", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-body: "Geist", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "SF Mono", "Fira Code", monospace;
+  --font-numeric: "Unbounded", "Geist", system-ui, sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-helthy-black: var(--helthy-black);
+  --color-helthy-lemon: var(--helthy-lemon);
+  --color-helthy-lemon-deep: var(--helthy-lemon-deep);
+  --color-helthy-card: var(--helthy-card);
+  --color-helthy-card-section: var(--helthy-card-section);
+  --color-helthy-border: var(--helthy-border);
+  --color-helthy-border-subtle: var(--helthy-border-subtle);
+  --color-helthy-text-secondary: var(--helthy-text-secondary);
+  --color-helthy-accent-orange: var(--helthy-accent-orange);
+  --color-helthy-accent-cyan: var(--helthy-accent-cyan);
+  --color-helthy-accent-gold: var(--helthy-accent-gold);
+  --color-helthy-protein: var(--helthy-protein);
+  --color-helthy-carbs:   var(--helthy-carbs);
+  --color-helthy-fats:    var(--helthy-fats);
+  --color-helthy-fiber:   var(--helthy-fiber);
+  --color-helthy-steps:   var(--helthy-steps);
+  --color-helthy-success: var(--helthy-success);
+  --color-helthy-training: var(--helthy-training);
+  --color-helthy-movement: var(--helthy-movement);
+  --font-heading: var(--font-heading);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+  --font-numeric: var(--font-numeric);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base ─────────────────────────────────────────────────────── */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  background: var(--background);
+  color: var(--foreground);
+  scroll-behavior: auto;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(205, 251, 80, 0.3);
+  color: #fff;
+}
+
+/* ── Scrollbar hide ───────────────────────────────────────────── */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Noise/Grain Texture Overlay ──────────────────────────────── */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   TYPOGRAPHY CANON — Lyon Display (display) / Geist (body) /
+   Unbounded (numerics). Lyon Display is ONLY light 300; never apply
+   font-bold to it. Use color or italic for emphasis.
+   ────────────────────────────────────────────────────────────── */
+.text-italics {
+  font-family: "Lyon Display", Georgia, sans-serif;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.font-heading { font-family: var(--font-heading); }
+.font-display { font-family: var(--font-display); }
+.font-body    { font-family: var(--font-body); }
+.font-mono    { font-family: var(--font-mono); }
+.font-numeric { font-family: var(--font-numeric); }
+
+.text-display-2xl {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: clamp(3.25rem, 8.5vw, 8.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+}
+.text-display-xl {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+.text-display-lg {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+.text-display-md {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: clamp(1.375rem, 2.5vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.text-eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--helthy-lemon);
+}
+
+.text-numeric {
+  font-family: var(--font-numeric);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-feature-settings: "tnum";
+}
+
+.text-body-lg {
+  font-family: var(--font-body);
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ── Glass / Cards ────────────────────────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.glass-card-hover {
+  transition: border-color 0.4s ease, background 0.4s ease;
+}
+.glass-card-hover:hover {
+  border-color: rgba(205, 251, 80, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* MOBILE-DNA card — matches the helthy_app aesthetic.
+   Lemon ambient shadow gives it that "floating in green light" feel. */
+.card-helthy {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
+    0 24px 60px -28px rgba(0, 0, 0, 0.6);
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-helthy-glow {
+  border-color: rgba(205, 251, 80, 0.22);
+  background:
+    linear-gradient(135deg, rgba(205, 251, 80, 0.04) 0%, transparent 60%),
+    rgba(255, 255, 255, 0.02);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+    0 30px 80px -30px rgba(205, 251, 80, 0.28),
+    0 12px 40px -16px rgba(205, 251, 80, 0.18);
+}
+.card-helthy-hover:hover {
+  border-color: rgba(205, 251, 80, 0.18);
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+    0 36px 80px -28px rgba(205, 251, 80, 0.22),
+    0 12px 40px -16px rgba(205, 251, 80, 0.12);
+}
+
+.bento-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.lemon-glow      { box-shadow: 0 18px 50px -18px rgba(205, 251, 80, 0.45); }
+.lemon-glow-soft { box-shadow: 0 14px 36px -14px rgba(205, 251, 80, 0.25); }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 2rem;
+  border-radius: 999px;
+  background: var(--helthy-lemon);
+  color: #0B0B0B;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(205, 251, 80, 0.25);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 2rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Section spacing ──────────────────────────────────────────── */
+.section-padding {
+  padding-top: clamp(5rem, 12vh, 10rem);
+  padding-bottom: clamp(5rem, 12vh, 10rem);
+}
+
+/* ── Backgrounds: grid / dots / hatch / glow / rings ───────────── */
+.geo-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.hatch-bg {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 12px,
+    rgba(255, 255, 255, 0.015) 12px,
+    rgba(255, 255, 255, 0.015) 13px
+  );
+}
+.glow-center::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 60% 50% at 50% 40%,
+    rgba(205, 251, 80, 0.04) 0%,
+    transparent 70%
+  );
+}
+.glow-top::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 40% at 50% 0%,
+    rgba(205, 251, 80, 0.035) 0%,
+    transparent 70%
+  );
+}
+
+/* ── Lenis overrides ──────────────────────────────────────────── */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* ── Marquee ──────────────────────────────────────────────────── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 30s) linear infinite;
+}
+
+/* ── 3D perspective wrapper ───────────────────────────────────── */
+.perspective-container {
+  perspective: 1200px;
+  perspective-origin: center center;
+}
+
+/* ── Pill badge (eyebrow chip) ────────────────────────────────── */
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.125rem;
+  border-radius: 999px;
+  border: 1px solid rgba(205, 251, 80, 0.25);
+  background: rgba(205, 251, 80, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--helthy-lemon);
+}
+
+/* ── Animated mesh-gradient hero background ───────────────────── */
+.mesh-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  will-change: transform;
+}
+.mesh-blob-1 {
+  top: -10%;
+  left: -10%;
+  width: 70vmin;
+  height: 70vmin;
+  background: radial-gradient(circle, rgba(205, 251, 80, 0.22) 0%, transparent 65%);
+  animation: mesh-drift-1 22s ease-in-out infinite;
+}
+.mesh-blob-2 {
+  bottom: -15%;
+  right: -10%;
+  width: 75vmin;
+  height: 75vmin;
+  background: radial-gradient(circle, rgba(205, 251, 80, 0.14) 0%, transparent 65%);
+  animation: mesh-drift-2 28s ease-in-out infinite;
+}
+.mesh-blob-3 {
+  top: 30%;
+  left: 35%;
+  width: 60vmin;
+  height: 60vmin;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.06) 0%, transparent 65%);
+  animation: mesh-drift-3 34s ease-in-out infinite;
+}
+@keyframes mesh-drift-1 {
+  0%, 100% { transform: translate(0%, 0%) scale(1); }
+  33%      { transform: translate(18%, 12%) scale(1.15); }
+  66%      { transform: translate(-6%, 22%) scale(0.95); }
+}
+@keyframes mesh-drift-2 {
+  0%, 100% { transform: translate(0%, 0%) scale(1); }
+  33%      { transform: translate(-14%, -16%) scale(1.1); }
+  66%      { transform: translate(10%, -8%) scale(0.9); }
+}
+@keyframes mesh-drift-3 {
+  0%, 100% { transform: translate(0%, 0%) scale(1); }
+  50%      { transform: translate(-20%, 18%) scale(1.2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mesh-blob-1, .mesh-blob-2, .mesh-blob-3 { animation: none; }
+}
+
+/* ── Floating pill nav ────────────────────────────────────────── */
+.nav-pill {
+  background: rgba(11, 11, 11, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  box-shadow:
+    0 10px 40px -10px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ── HelthyMark pulse ─────────────────────────────────────────── */
+@keyframes helthy-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+.animate-helthy-pulse {
+  animation: helthy-pulse 1.4s ease-in-out infinite;
 }
