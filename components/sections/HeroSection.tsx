@@ -56,7 +56,7 @@ export default function HeroSection() {
         style={{ zIndex: 1 }}
       >
         <Image
-          src="/phones/iPhone 15 Pro mockup with textured rock base.png"
+          src="/phones/iphone-hero-mockup.png"
           alt="Helthy app home screen on iPhone"
           fill
           priority
@@ -102,7 +102,7 @@ export default function HeroSection() {
         >
           <div className="relative w-[280px] sm:w-[320px] aspect-[9/19]">
             <Image
-              src="/phones/iPhone 15 Pro mockup with textured rock base.png"
+              src="/phones/iphone-hero-mockup.png"
               alt="Helthy app home screen on iPhone"
               fill
               className="object-contain"
@@ -194,9 +194,7 @@ function HeroContent({ mobile = false }: { mobile?: boolean }) {
       {/* Social proof strip */}
       <div
         data-hero-proof
-        className={`flex items-center gap-4 sm:gap-6 flex-wrap ${
-          mobile ? "justify-center" : "justify-start"
-        }`}
+        className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center"
         style={{ marginTop: mobile ? 28 : 40 }}
       >
         <ProofStat value="4.9" label="App Store" />

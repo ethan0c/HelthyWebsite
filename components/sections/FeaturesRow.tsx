@@ -117,18 +117,47 @@ export default function FeaturesRow() {
           </FeatureCard>
         </div>
 
-        {/* ── Expanded feature grid — everything else ── */}
+        {/* ── Expanded features — app mockups + supporting cards ── */}
         <div className="mt-16">
           <p className="text-center text-[13px] font-semibold uppercase tracking-[0.2em] text-white/30 mb-8">
             And that&apos;s just the start
           </p>
+
+          {/* Row 1: Achievements (7col) + Streaks (5col) — mockups */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-5">
+            <FeatureCard
+              className="lg:col-span-7"
+              minH={520}
+              headline={<><span className="text-italics" style={{ color: "#F59E0B" }}>Earn</span> your badges</>}
+              subtitle="30+ achievements with rarity tiers from Common to Legendary. Unlock animations, progress tracking, and bragging rights."
+            >
+              <AchievementsMockup />
+            </FeatureCard>
+
+            <FeatureCard
+              className="lg:col-span-5"
+              minH={520}
+              headline={<>Stay <span className="text-italics" style={{ color: "#F97316" }}>on fire</span></>}
+              subtitle="Workout, protein, meal, and step streaks with tier progression from Ember to Eternal."
+            >
+              <StreaksMockup />
+            </FeatureCard>
+          </div>
+
+          {/* Row 2: Signal Cards / Insights — full width */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-5">
+            <FeatureCard
+              className="lg:col-span-12"
+              minH={420}
+              headline={<>Patterns you&apos;d <span className="text-italics" style={{ color: "#339AF0" }}>never spot</span></>}
+              subtitle="AI finds correlations, blockers, and risks in your data — then tells you exactly what to do about them."
+            >
+              <SignalCardsMockup />
+            </FeatureCard>
+          </div>
+
+          {/* Row 3: Supporting features — smaller text cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <MiniFeature
-              icon={Trophy}
-              accent="#F59E0B"
-              title="30+ achievements"
-              description="Rarity tiers from Common to Legendary with unlock animations and progress tracking."
-            />
             <MiniFeature
               icon={TrendingUp}
               accent="#22C55E"
@@ -140,18 +169,6 @@ export default function FeaturesRow() {
               accent="#EF4444"
               title="Goal ETA & plateau detection"
               description="Know exactly when you'll hit your target. Stuck? Get a personalized fix plan."
-            />
-            <MiniFeature
-              icon={BarChart3}
-              accent="#3B82F6"
-              title="Adherence score & insights"
-              description="Weekly physique reports, strength forecasts, momentum score, and signal cards."
-            />
-            <MiniFeature
-              icon={Zap}
-              accent="#CDFF50"
-              title="Streaks & habit tracking"
-              description="Workout streaks, protein target streaks, and habit scores that keep you accountable."
             />
             <MiniFeature
               icon={ImageIcon}
@@ -201,19 +218,48 @@ function MiniFeature({
   return (
     <div
       data-feature-card
-      className="card-helthy p-6 sm:p-7 flex flex-col gap-4"
-      style={{ minHeight: "auto" }}
+      className="relative p-6 sm:p-7 flex flex-col gap-4 rounded-[1.5rem] overflow-hidden transition-all duration-400 hover:-translate-y-[2px]"
+      style={{
+        minHeight: "auto",
+        background: `linear-gradient(135deg, ${accent}06 0%, rgba(255,255,255,0.025) 40%, rgba(255,255,255,0.01) 100%)`,
+        border: `1.5px solid ${accent}18`,
+        boxShadow:
+          /* Top bevel highlight */
+          `rgba(255,255,255,0.06) 0px 1px 0px 0px inset,` +
+          `${accent}08 0px 0px 12px 0px inset,` +
+          /* Outer depth */
+          `rgba(0,0,0,0.1) 0px 2px 4px -1px,` +
+          `rgba(0,0,0,0.12) 0px 8px 16px -4px,` +
+          `${accent}12 0px 20px 40px -16px,` +
+          `rgba(0,0,0,0.2) 0px 32px 56px -20px`,
+      }}
     >
+      {/* Top edge bevel — accent-tinted */}
       <div
-        className="w-10 h-10 rounded-[12px] flex items-center justify-center shrink-0"
+        className="absolute inset-x-0 top-0 h-[1px] pointer-events-none"
+        style={{ background: `linear-gradient(90deg, transparent, ${accent}25, transparent)` }}
+      />
+
+      {/* Noise overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.25] mix-blend-overlay"
         style={{
-          background: `${accent}12`,
-          border: `1px solid ${accent}25`,
+          backgroundImage: "url(/textures/hero-noise.png)",
+          backgroundSize: "200px",
+        }}
+      />
+
+      <div
+        className="relative w-10 h-10 rounded-[12px] flex items-center justify-center shrink-0"
+        style={{
+          background: `${accent}14`,
+          border: `1.5px solid ${accent}30`,
+          boxShadow: `0 4px 12px -4px ${accent}25, inset 0 1px 0 0 ${accent}15`,
         }}
       >
         <Icon className="w-5 h-5" style={{ color: accent }} strokeWidth={1.75} />
       </div>
-      <div>
+      <div className="relative">
         <h4 className="text-[16px] font-semibold text-white tracking-tight mb-1.5">
           {title}
         </h4>
@@ -323,7 +369,7 @@ function FoodMockup() {
       {/* Photo hero */}
       <div className="relative" style={{ height: 190 }}>
         <Image
-          src="/1-8.jpg"
+          src="/food/blueberry-pancakes.jpg"
           alt="Blueberry pancakes with maple syrup"
           width={440}
           height={190}
@@ -639,6 +685,276 @@ function WorkoutMockup() {
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+// ───────────────────────────────────────────────────────────
+// Mockup 4 — Achievement Vault (matches AchievementVaultScreen.tsx)
+
+const RARITY = {
+  common:    { color: "#9CA3AF", glow: "transparent", bg: "#9CA3AF10", label: "COMMON" },
+  rare:      { color: "#339AF0", glow: "#339AF020", bg: "#339AF010", label: "RARE" },
+  epic:      { color: "#A855F7", glow: "#A855F730", bg: "#A855F714", label: "EPIC" },
+  legendary: { color: "#F59E0B", glow: "#F59E0B50", bg: "#F59E0B14", label: "LEGENDARY" },
+};
+
+const ACHIEVEMENTS = [
+  { icon: "🔥", name: "First Flame", desc: "Log 7 days in a row", rarity: "rare" as const, unlocked: true, date: "Mar 15" },
+  { icon: "📸", name: "Snapshot", desc: "Log a meal by photo", rarity: "common" as const, unlocked: true, date: "Mar 2" },
+  { icon: "👑", name: "Iron Crown", desc: "Hit all macros for 30 days", rarity: "legendary" as const, unlocked: false, progress: 23, total: 30 },
+  { icon: "⚡", name: "Power Surge", desc: "Set 10 personal records", rarity: "epic" as const, unlocked: true, date: "Apr 1" },
+  { icon: "🎯", name: "Bullseye", desc: "Hit protein target 14 days", rarity: "rare" as const, unlocked: false, progress: 9, total: 14 },
+  { icon: "💎", name: "Diamond Body", desc: "100 workouts completed", rarity: "legendary" as const, unlocked: false, progress: 67, total: 100 },
+];
+
+function AchievementsMockup() {
+  return (
+    <div
+      className="w-[92%] max-w-[460px] mb-[-40px] rounded-t-[20px] overflow-hidden"
+      style={{
+        background: T.bg,
+        boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04)",
+      }}
+    >
+      {/* Header with count */}
+      <div className="px-5 pt-5 pb-3">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-[17px] font-semibold" style={{ color: T.text }}>Achievement Vault</span>
+          <div className="flex items-center gap-1">
+            <Trophy className="w-4 h-4" style={{ color: "#F59E0B" }} />
+            <span className="text-[14px] font-bold" style={{ color: T.text, fontFamily: "'Unbounded', sans-serif" }}>
+              3<span style={{ color: T.textSecondary }}>/6</span>
+            </span>
+          </div>
+        </div>
+
+        {/* Rarity pills */}
+        <div className="flex gap-2">
+          {(["legendary", "epic", "rare", "common"] as const).map((r) => {
+            const { color, label } = RARITY[r];
+            const count = ACHIEVEMENTS.filter(a => a.rarity === r && a.unlocked).length;
+            return (
+              <div key={r} className="flex items-center gap-1.5 px-2 py-1 rounded-full" style={{ background: `${color}12` }}>
+                <div className="w-1.5 h-1.5 rounded-full" style={{ background: color }} />
+                <span className="text-[9px] font-semibold uppercase tracking-[0.8px]" style={{ color }}>{label}</span>
+                <span className="text-[9px] font-bold" style={{ color, fontFamily: "'Unbounded', sans-serif" }}>{count}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Achievement grid — 2 columns */}
+      <div className="px-4 pb-5 grid grid-cols-2 gap-2">
+        {ACHIEVEMENTS.map((a) => {
+          const r = RARITY[a.rarity];
+          return (
+            <div
+              key={a.name}
+              className="relative p-4 rounded-[16px] flex flex-col items-center text-center"
+              style={{
+                background: r.bg,
+                border: `1.5px solid ${a.unlocked ? r.color : T.border}40`,
+                boxShadow: a.unlocked
+                  ? `0 6px 20px -6px ${r.glow}, 0 2px 8px -2px ${r.color}22`
+                  : "none",
+                opacity: a.unlocked ? 1 : 0.6,
+              }}
+            >
+              {/* Top bevel highlight */}
+              <div
+                className="absolute inset-x-0 top-0 h-[1px] rounded-t-[16px]"
+                style={{ background: `linear-gradient(90deg, transparent, ${r.color}20, transparent)` }}
+              />
+
+              <span className="text-[32px] mb-2">{a.icon}</span>
+              <p className="text-[12px] font-semibold mb-0.5" style={{ color: T.text }}>{a.name}</p>
+              <p className="text-[10px] leading-[14px]" style={{ color: T.textSecondary }}>{a.desc}</p>
+
+              {a.unlocked ? (
+                <div className="flex items-center gap-1 mt-2">
+                  <div className="w-1.5 h-1.5 rounded-full" style={{ background: r.color }} />
+                  <span className="text-[9px] font-semibold uppercase tracking-[0.8px]" style={{ color: r.color }}>{r.label}</span>
+                </div>
+              ) : (
+                <div className="w-full mt-2">
+                  <div className="w-full h-[4px] rounded-full overflow-hidden" style={{ background: T.arcUnfilled }}>
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: `${((a.progress ?? 0) / (a.total ?? 1)) * 100}%`,
+                        background: r.color,
+                      }}
+                    />
+                  </div>
+                  <p className="text-[9px] mt-1 font-bold" style={{ color: T.textSecondary, fontFamily: "'Unbounded', sans-serif" }}>
+                    {a.progress}/{a.total}
+                  </p>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ───────────────────────────────────────────────────────────
+// Mockup 5 — Streaks (matches HomeStreakModal.tsx + StreakDashboardCard.tsx)
+
+const STREAK_TYPES = [
+  { icon: "🔥", label: "Workout", current: 14, best: 21, color: "#F97316" },
+  { icon: "🥩", label: "Protein", current: 11, best: 18, color: "#F472B6" },
+  { icon: "🍽️", label: "Meals", current: 9, best: 14, color: "#A78BFA" },
+  { icon: "👣", label: "Steps", current: 6, best: 12, color: "#34D399" },
+];
+
+function StreaksMockup() {
+  return (
+    <div
+      className="w-[90%] max-w-[360px] mb-[-40px] rounded-t-[20px] overflow-hidden"
+      style={{
+        background: T.bg,
+        boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04)",
+      }}
+    >
+      {/* Hero flame + count */}
+      <div className="flex flex-col items-center pt-6 pb-4">
+        <div
+          className="w-20 h-20 rounded-full flex items-center justify-center mb-3"
+          style={{
+            background: "radial-gradient(circle, #F9731620 0%, #F9731608 70%)",
+            boxShadow: "0 0 40px #F9731615",
+          }}
+        >
+          <span className="text-[40px]">🔥</span>
+        </div>
+        <p className="text-[48px] font-bold leading-none" style={{ color: T.text, fontFamily: "'Unbounded', sans-serif", letterSpacing: -2 }}>
+          14
+        </p>
+        <p className="text-[11px] font-semibold uppercase tracking-[1px] mt-1" style={{ color: T.textSecondary }}>
+          DAY STREAK
+        </p>
+        <div
+          className="mt-2 px-3 py-1 rounded-full"
+          style={{ background: "#F9731618" }}
+        >
+          <span className="text-[10px] font-semibold uppercase tracking-[2px]" style={{ color: "#F97316" }}>
+            BLAZE
+          </span>
+        </div>
+      </div>
+
+      {/* Habit rows */}
+      <div className="px-4 pb-5">
+        <p className="text-[10px] font-semibold uppercase tracking-[1.4px] mb-3 px-1" style={{ color: T.textSecondary }}>
+          HABIT STREAKS
+        </p>
+        <div className="space-y-1">
+          {STREAK_TYPES.map((s, i) => (
+            <div
+              key={s.label}
+              className="flex items-center gap-3 px-3 py-3 rounded-[12px]"
+              style={{
+                background: i % 2 === 0 ? `${T.card}80` : "transparent",
+              }}
+            >
+              <div
+                className="w-8 h-8 rounded-[10px] flex items-center justify-center shrink-0 text-[16px]"
+                style={{ background: `${s.color}15` }}
+              >
+                {s.icon}
+              </div>
+              <span className="text-[13px] font-medium flex-1" style={{ color: T.text }}>{s.label}</span>
+              <span className="text-[18px] font-bold mr-1" style={{ color: s.color, fontFamily: "'Unbounded', sans-serif", letterSpacing: -0.5 }}>
+                {s.current}
+              </span>
+              <div className="flex flex-col items-end">
+                <span className="text-[9px]" style={{ color: T.textSecondary }}>best</span>
+                <span className="text-[11px] font-bold" style={{ color: T.textSecondary, fontFamily: "'Unbounded', sans-serif" }}>
+                  {s.best}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ───────────────────────────────────────────────────────────
+// Mockup 6 — Signal Cards (matches SignalCard.tsx from InsightsScreen)
+
+const SIGNALS = [
+  {
+    type: "correlation" as const,
+    icon: TrendingUp,
+    label: "PATTERN FOUND",
+    summary: "Sleep above 7h correlates with +12% workout volume",
+    body: "Over the last 3 weeks, sessions after 7+ hours of sleep averaged 15% more total volume. Prioritize sleep before heavy days.",
+    color: "#22C55E",
+  },
+  {
+    type: "blocker" as const,
+    icon: Target,
+    label: "NEEDS ATTENTION",
+    summary: "Protein consistently 20g under target on weekends",
+    body: "Saturday and Sunday average 128g vs your 150g target. Consider prepping high-protein snacks for the weekend.",
+    color: "#F97316",
+  },
+  {
+    type: "pattern" as const,
+    icon: BarChart3,
+    label: "INSIGHT",
+    summary: "Bench press volume up 18% over 4 weeks",
+    body: "Your progressive overload on chest is tracking well. At this rate, you'll hit a 1RM of 225 lb by mid-May.",
+    color: "#339AF0",
+  },
+];
+
+function SignalCardsMockup() {
+  return (
+    <div className="flex gap-4 px-4 pb-4 overflow-hidden justify-center">
+      {SIGNALS.map((s) => {
+        const Icon = s.icon;
+        return (
+          <div
+            key={s.type}
+            className="shrink-0 w-[240px] sm:w-[260px] rounded-[20px] p-5 flex flex-col"
+            style={{
+              background: T.card,
+              border: `1px solid ${T.border}60`,
+              height: 200,
+            }}
+          >
+            {/* Category pill */}
+            <div className="flex items-center gap-1.5 mb-3">
+              <div
+                className="w-6 h-6 rounded-[8px] flex items-center justify-center"
+                style={{ background: `${s.color}20` }}
+              >
+                <Icon className="w-3.5 h-3.5" style={{ color: s.color }} strokeWidth={2} />
+              </div>
+              <span className="text-[9px] font-semibold uppercase tracking-[1.2px]" style={{ color: s.color }}>
+                {s.label}
+              </span>
+            </div>
+
+            {/* Summary */}
+            <p className="text-[14px] font-semibold leading-[1.3] mb-2" style={{ color: T.text }}>
+              {s.summary}
+            </p>
+
+            {/* Body */}
+            <p className="text-[11px] leading-[16px] flex-1" style={{ color: T.textSecondary }}>
+              {s.body}
+            </p>
+          </div>
+        );
+      })}
     </div>
   );
 }

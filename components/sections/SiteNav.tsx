@@ -19,12 +19,13 @@ const PILL_SHADOW =
   "rgba(0, 0, 0, 0.15) 0px 5.10612px 5.10612px -2.8125px, " +
   "rgba(0, 0, 0, 0.063) 0px 16px 16px -3.75px";
 
-// Inset highlight stack that gives the CTA its glossy embossed look.
+// Inset highlight stack that gives the CTA its glossy 3D look.
 const CTA_SHADOW =
-  "rgba(255, 255, 255, 0.12) 0px -0.48175px 0.48175px -1.25px inset, " +
-  "rgba(255, 255, 255, 0.08) 0px -1.83083px 1.83083px -2.5px inset, " +
-  "rgba(0, 0, 0, 0.45) 0px -8px 8px -3.75px inset, " +
-  "rgba(255, 255, 255, 0.06) 0px 1px 0px 0px inset";
+  "rgba(255,255,255,0.12) 0px 1px 1px 0px inset," +
+  "rgba(255,255,255,0.08) 0px 0.6px 0.6px -1.25px inset," +
+  "rgba(255,255,255,0.06) 0px 2px 2px -2.5px inset," +
+  "rgba(0,0,0,0.4) 0px 4px 8px -4px," +
+  "rgba(205,255,80,0.15) 0px 6px 4px -4px";
 
 export default function SiteNav() {
   return (
