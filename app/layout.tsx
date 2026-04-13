@@ -44,6 +44,29 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
+      <head>
+        {/* Preload critical fonts to avoid FOIT/FOUT */}
+        <link
+          rel="preload"
+          href="/fonts/unbounded/Unbounded-Medium.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://cdn.prod.website-files.com"
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-white grain">
         <GSAPProvider>
           <LenisProvider>

@@ -1,16 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState, createContext, useContext } from "react";
-import { createPortal } from "react-dom";
+import { useEffect, useState } from "react";
 
 /**
  * Abstract organic line art that flows down the entire page.
- * Renders into each section's DOM so lines sit between background and content.
- *
- * Usage: Place <FlowingLine /> anywhere. It will:
- * 1. Measure the full page height
- * 2. Find all <section> elements
- * 3. Portal an SVG clip of the full line art into each section
+ * Single absolute-positioned SVG covering the full page height —
+ * much lighter than the previous per-section portal approach.
  */
 
 interface Line {
@@ -72,40 +67,15 @@ const LINES: Line[] = [
   },
 ];
 
-interface SectionInfo {
-  el: HTMLElement;
-  top: number;
-  height: number;
-}
-
 export default function FlowingLine() {
-  const [sections, setSections] = useState<SectionInfo[]>([]);
-  const [pageHeight, setPageHeight] = useState(6000);
+  const [pageHeight, setPageHeight] = useState(0);
 
   useEffect(() => {
     const measure = () => {
-      const ph = document.body.scrollHeight;
-      setPageHeight(ph);
-
-      const mainEl = document.querySelector("main");
-      if (!mainEl) return;
-      const mainTop = mainEl.getBoundingClientRect().top + window.scrollY;
-
-      const sectionEls = mainEl.querySelectorAll("section");
-      const infos: SectionInfo[] = [];
-      sectionEls.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        infos.push({
-          el: el as HTMLElement,
-          top: rect.top + window.scrollY - mainTop,
-          height: rect.height,
-        });
-      });
-      setSections(infos);
+      setPageHeight(document.body.scrollHeight);
     };
 
     measure();
-    // Re-measure after fonts/images load
     window.addEventListener("load", measure);
     const ro = new ResizeObserver(measure);
     ro.observe(document.body);
@@ -115,41 +85,30 @@ export default function FlowingLine() {
     };
   }, []);
 
+  if (pageHeight === 0) return null;
+
   const w = 1920;
   const h = pageHeight;
 
   return (
-    <>
-      {sections.map((sec, si) => {
-        const clipId = `flow-clip-${si}`;
-        // The viewBox window for this section: full width, but only the vertical slice
-        const viewY = sec.top;
-        const viewH = sec.height;
-
-        return createPortal(
-          <svg
-            key={si}
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            style={{ zIndex: 0 }}
-            viewBox={`0 ${viewY} ${w} ${viewH}`}
-            preserveAspectRatio="none"
-            fill="none"
-            aria-hidden="true"
-          >
-            {LINES.map((line, i) => (
-              <path
-                key={i}
-                d={line.d(w, h)}
-                stroke="#CDFB50"
-                strokeWidth={line.strokeWidth}
-                strokeLinecap="round"
-                opacity={line.opacity}
-              />
-            ))}
-          </svg>,
-          sec.el
-        );
-      })}
-    </>
+    <svg
+      className="absolute inset-x-0 top-0 w-full pointer-events-none"
+      style={{ height: pageHeight, zIndex: 0 }}
+      viewBox={`0 0 ${w} ${h}`}
+      preserveAspectRatio="none"
+      fill="none"
+      aria-hidden="true"
+    >
+      {LINES.map((line, i) => (
+        <path
+          key={i}
+          d={line.d(w, h)}
+          stroke="#CDFB50"
+          strokeWidth={line.strokeWidth}
+          strokeLinecap="round"
+          opacity={line.opacity}
+        />
+      ))}
+    </svg>
   );
 }

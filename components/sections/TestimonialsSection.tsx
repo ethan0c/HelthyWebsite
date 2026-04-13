@@ -226,8 +226,8 @@ function TransformationCarousel() {
     return () => ctx.revert();
   }, []);
 
-  // Duplicate for seamless loop
-  const items = [...TRANSFORMATIONS, ...TRANSFORMATIONS, ...TRANSFORMATIONS, ...TRANSFORMATIONS];
+  // Duplicate for seamless loop (2x is sufficient)
+  const items = [...TRANSFORMATIONS, ...TRANSFORMATIONS];
 
   return (
     <div className="relative mb-12">

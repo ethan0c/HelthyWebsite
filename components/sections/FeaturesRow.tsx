@@ -706,7 +706,7 @@ function WeightGraphMockup() {
           />
           <span
             className="text-[13px] font-semibold uppercase mt-3"
-            style={{ color: T.textSecondary, letterSpacing: 2, fontFamily: "'SF Pro Display', sans-serif" }}
+            style={{ color: T.textSecondary, letterSpacing: 2, fontFamily: "var(--font-body)" }}
           >
             lbs
           </span>
@@ -735,7 +735,7 @@ function WeightGraphMockup() {
         <p
           data-weight-label
           className="text-[11px] font-semibold tracking-[1px] mb-3 px-3"
-          style={{ color: T.textSecondary, fontFamily: "'SF Pro Display', sans-serif" }}
+          style={{ color: T.textSecondary, fontFamily: "var(--font-body)" }}
         >
           7-DAY TREND
         </p>

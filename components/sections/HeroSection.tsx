@@ -46,23 +46,39 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative w-full"
-      style={{ backgroundColor: "#0A0A0A", minHeight: "100vh" }}
+      className="relative w-full overflow-hidden"
+      style={{ backgroundColor: "#0A0A0A", minHeight: "calc(100vh + 400px)" }}
     >
+      {/* ── Background texture ── */}
+      <div className="absolute inset-0 pointer-events-none dot-grid" style={{ zIndex: 0 }} />
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.3] mix-blend-overlay"
+        style={{ backgroundImage: "url(/textures/hero-noise.png)", backgroundSize: "200px", zIndex: 0 }}
+      />
+      {/* Subtle lemon radial glow top-right for depth */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          zIndex: 0,
+          top: "10%", right: "15%",
+          width: "60%", height: "50%",
+          background: "radial-gradient(ellipse at center, rgba(205,255,80,0.04) 0%, transparent 70%)",
+        }}
+      />
+
       {/* ── Desktop: phone as left-aligned background ── */}
       <div
         data-hero-phone
-        className="absolute inset-0 pointer-events-none overflow-hidden hidden lg:block"
-        style={{ zIndex: 1 }}
+        className="absolute pointer-events-none hidden lg:block"
+        style={{ zIndex: 1, top: 0, left: "-60px", right: 0, bottom: 0 }}
       >
         <Image
-          src="/phones/iphone-hero-mockup.png"
+          src="/phones/desktop-hero-mockup.png"
           alt="Helthy app home screen on iPhone"
           fill
           sizes="100vw"
           priority
           className="object-contain object-left-bottom"
-          style={{ transform: "translateY(100px)" }}
         />
       </div>
 
@@ -73,7 +89,7 @@ export default function HeroSection() {
         style={{
           padding: "0 48px",
           paddingTop: "clamp(180px, 25vh, 320px)",
-          paddingBottom: "clamp(240px, 30vh, 440px)",
+          paddingBottom: "clamp(180px, 22vh, 300px)",
           zIndex: 3,
           minHeight: "100vh",
         }}
@@ -101,12 +117,12 @@ export default function HeroSection() {
           className="relative w-full flex justify-center"
           style={{ marginBottom: -60 }}
         >
-          <div className="relative w-[280px] sm:w-[320px] aspect-[9/19]">
+          <div className="relative w-[75vw] max-w-[380px] sm:max-w-[420px] aspect-[1368/2828]">
             <Image
-              src="/phones/iphone-hero-mockup.png"
+              src="/phones/mobile-hero.png"
               alt="Helthy app home screen on iPhone"
               fill
-              sizes="(max-width: 640px) 280px, 320px"
+              sizes="(max-width: 640px) 75vw, 420px"
               className="object-contain"
               priority
             />
@@ -141,10 +157,10 @@ function HeroContent({ mobile = false }: { mobile?: boolean }) {
         fontSize: mobile ? 16 : "clamp(17px, 2vw, 20px)", fontWeight: 400,
         letterSpacing: "-0.01em", lineHeight: "1.6em",
         color: "rgba(249,249,249,0.65)",
-        maxWidth: 500, margin: "28px auto 0",
+        maxWidth: 500, margin: mobile ? "28px auto 0" : "28px 0 0",
         textAlign: align,
       }}
-      className={mobile ? "mx-auto" : "mx-0"}
+      className={mobile ? "mx-auto" : ""}
       >
         Log meals with a photo, track every lift, and get coached by AI
         that connects your nutrition, training, and recovery into one
@@ -154,7 +170,7 @@ function HeroContent({ mobile = false }: { mobile?: boolean }) {
       {/* CTA */}
       <div
         data-hero-cta
-        className="flex flex-col sm:flex-row items-center justify-center gap-3"
+        className={`flex flex-col sm:flex-row gap-3 ${mobile ? "items-center justify-center" : "items-start justify-start"}`}
         style={{ marginTop: mobile ? 32 : 44 }}
       >
         <Link
@@ -196,7 +212,7 @@ function HeroContent({ mobile = false }: { mobile?: boolean }) {
       {/* Social proof strip */}
       <div
         data-hero-proof
-        className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center"
+        className={`flex items-center gap-4 sm:gap-6 flex-wrap ${mobile ? "justify-center" : "justify-start"}`}
         style={{ marginTop: mobile ? 28 : 40 }}
       >
         <ProofStat value="4.9" label="App Store" />
