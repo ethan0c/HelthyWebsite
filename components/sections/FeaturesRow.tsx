@@ -10,8 +10,16 @@ import {
   Sparkles,
   Flame,
   Search,
+  Trophy,
+  TrendingUp,
+  Target,
+  Camera,
+  Import,
+  Zap,
+  Shield,
+  BarChart3,
+  ImageIcon,
 } from "lucide-react";
-import FloatingIcons from "@/components/ui/FloatingIcons";
 
 // Real tokens from mobile app dark theme (constants/colors.ts)
 const T = {
@@ -64,17 +72,6 @@ export default function FeaturesRow() {
       className="relative section-padding px-6 lg:px-8"
       style={{ backgroundColor: "#191B1D" }}
     >
-      <FloatingIcons
-        positions={[
-          [8, 5, 300, 12],
-          [30, 88, 250, -20],
-          [60, 2, 220, 35],
-          [75, 92, 280, -10],
-          [45, 50, 200, 25],
-        ]}
-        icons={[1, 5, 4, 3, 7]}
-        opacity={0.03}
-      />
       <div className="max-w-6xl mx-auto">
         <SectionHeading
           title="Everything you need,"
@@ -119,8 +116,112 @@ export default function FeaturesRow() {
             <WorkoutMockup />
           </FeatureCard>
         </div>
+
+        {/* ── Expanded feature grid — everything else ── */}
+        <div className="mt-16">
+          <p className="text-center text-[13px] font-semibold uppercase tracking-[0.2em] text-white/30 mb-8">
+            And that&apos;s just the start
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <MiniFeature
+              icon={Trophy}
+              accent="#F59E0B"
+              title="30+ achievements"
+              description="Rarity tiers from Common to Legendary with unlock animations and progress tracking."
+            />
+            <MiniFeature
+              icon={TrendingUp}
+              accent="#22C55E"
+              title="Adaptive TDEE engine"
+              description="Targets update weekly based on your real activity — not static formulas."
+            />
+            <MiniFeature
+              icon={Target}
+              accent="#EF4444"
+              title="Goal ETA & plateau detection"
+              description="Know exactly when you'll hit your target. Stuck? Get a personalized fix plan."
+            />
+            <MiniFeature
+              icon={BarChart3}
+              accent="#3B82F6"
+              title="Adherence score & insights"
+              description="Weekly physique reports, strength forecasts, momentum score, and signal cards."
+            />
+            <MiniFeature
+              icon={Zap}
+              accent="#CDFF50"
+              title="Streaks & habit tracking"
+              description="Workout streaks, protein target streaks, and habit scores that keep you accountable."
+            />
+            <MiniFeature
+              icon={ImageIcon}
+              accent="#8B5CF6"
+              title="Progress photo comparisons"
+              description="Side-by-side earliest vs latest in a shareable grid. Smart nudges every 7 days."
+            />
+            <MiniFeature
+              icon={Camera}
+              accent="#EC4899"
+              title="Nutrition label scanner"
+              description="Point your camera at any nutrition panel — OCR reads it and logs instantly."
+            />
+            <MiniFeature
+              icon={Import}
+              accent="#14B8A6"
+              title="Import from other apps"
+              description="Bring your data from Apple Fitness, Hevy, Strong, MFP, MacroFactor, and more."
+            />
+            <MiniFeature
+              icon={Shield}
+              accent="#6366F1"
+              title="Private & secure"
+              description="Your data is never sold or used for AI training. Encrypted storage, no sensitive logs."
+            />
+          </div>
+        </div>
       </div>
     </section>
+  );
+}
+
+// ───────────────────────────────────────────────────────────
+// Mini feature card for the expanded grid
+
+function MiniFeature({
+  icon: Icon,
+  accent,
+  title,
+  description,
+}: {
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties; strokeWidth?: number }>;
+  accent: string;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div
+      data-feature-card
+      className="card-helthy p-6 sm:p-7 flex flex-col gap-4"
+      style={{ minHeight: "auto" }}
+    >
+      <div
+        className="w-10 h-10 rounded-[12px] flex items-center justify-center shrink-0"
+        style={{
+          background: `${accent}12`,
+          border: `1px solid ${accent}25`,
+        }}
+      >
+        <Icon className="w-5 h-5" style={{ color: accent }} strokeWidth={1.75} />
+      </div>
+      <div>
+        <h4 className="text-[16px] font-semibold text-white tracking-tight mb-1.5">
+          {title}
+        </h4>
+        <p className="text-[13px] text-white/50 leading-relaxed font-light">
+          {description}
+        </p>
+      </div>
+    </div>
   );
 }
 

@@ -8,10 +8,12 @@ import PricingSection from "@/components/sections/PricingSection";
 import FAQSection from "@/components/sections/FAQSection";
 import CTASection from "@/components/sections/CTASection";
 import SiteFooter from "@/components/sections/SiteFooter";
+import FlowingLine from "@/components/ui/FlowingLine";
 
 export default function Home() {
   return (
     <main className="relative">
+      <FlowingLine />
       <HeroSection />
       <SocialProofBar />
       <FeaturesRow />

@@ -3,6 +3,7 @@ import "./globals.css";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
 import SiteNav from "@/components/sections/SiteNav";
+import LaunchBanner from "@/components/sections/LaunchBanner";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://helthy.app"),
@@ -11,11 +12,11 @@ export const metadata: Metadata = {
     template: "%s · Helthy",
   },
   description:
-    "Track meals, workouts, and progress in one app. AI-powered logging via photo or voice, with a Claude-powered coach in your pocket.",
+    "Your AI fitness coach that actually learns you. Log meals with a photo, track every lift, and get coached by AI that connects nutrition, training, and recovery.",
   openGraph: {
     title: "Helthy — AI Fitness & Nutrition Coach",
     description:
-      "Track meals, workouts, and progress in one app. AI-powered logging via photo or voice, with a Claude-powered coach in your pocket.",
+      "Your AI fitness coach that actually learns you. Log meals with a photo, track every lift, and get coached by AI that connects nutrition, training, and recovery.",
     url: "https://helthy.app",
     siteName: "Helthy",
     type: "website",
@@ -24,10 +25,15 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Helthy — AI Fitness & Nutrition Coach",
     description:
-      "Track meals, workouts, and progress. AI coach in your pocket.",
+      "Your AI fitness coach that actually learns you. Photo logging, workouts, insights & more.",
   },
   icons: {
+    icon: [
+      { url: "/favicon.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon-192.png", sizes: "192x192", type: "image/png" },
+    ],
     apple: "/apple-touch-icon.png",
+    shortcut: "/favicon.png",
   },
 };
 
@@ -41,6 +47,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-white grain">
         <GSAPProvider>
           <LenisProvider>
+            <LaunchBanner />
             <SiteNav />
             {children}
           </LenisProvider>

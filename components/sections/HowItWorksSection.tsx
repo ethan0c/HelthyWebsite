@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { Download, Camera, Sparkles } from "lucide-react";
-import FloatingIcons from "@/components/ui/FloatingIcons";
 
 const STEPS = [
   {
@@ -29,7 +28,7 @@ const STEPS = [
     title: "Get coached by AI",
     description:
       "Your AI coach connects nutrition, training, and recovery data to give you personalized guidance every day.",
-    accent: "#E96C2C",
+    accent: "#CDFF50",
   },
 ];
 
@@ -38,16 +37,43 @@ export default function HowItWorksSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from("[data-step]", {
+      // Animate the connector line drawing down
+      gsap.from("[data-connector-line]", {
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 70%",
+          start: "top 65%",
         },
-        y: 40,
+        scaleY: 0,
+        transformOrigin: "top center",
+        duration: 1.2,
+        ease: "power3.inOut",
+      });
+
+      // Stagger the step cards
+      gsap.from("[data-step-card]", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 65%",
+        },
+        y: 60,
         opacity: 0,
-        duration: 0.9,
-        stagger: 0.12,
+        duration: 1,
+        stagger: 0.2,
         ease: "power3.out",
+      });
+
+      // Pulse the step dots
+      gsap.from("[data-step-dot]", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 65%",
+        },
+        scale: 0,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.2,
+        delay: 0.3,
+        ease: "back.out(2)",
       });
     }, sectionRef);
     return () => ctx.revert();
@@ -56,69 +82,99 @@ export default function HowItWorksSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative section-padding px-6 lg:px-8 section-light"
+      className="relative section-padding px-6 lg:px-8 section-glow-warm"
     >
-      <FloatingIcons
-        positions={[
-          [10, 3, 260, -18],
-          [20, 85, 300, 15],
-          [65, 8, 240, 40],
-          [70, 90, 200, -25],
-        ]}
-        icons={[2, 6, 0, 1]}
-        opacity={0.04}
-        colorClass="text-black"
-      />
       <div className="mx-auto max-w-5xl">
         <SectionHeading
           title="How it"
           italicTail="works"
-          className="[&_h2]:text-[#121111] [&_.text-italics]:text-[#121111] [&_p]:text-[rgba(18,17,17,0.55)]"
+          subtitle="Three steps. No learning curve."
         />
 
-        {/* Steps row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
-          {STEPS.map((step, i) => {
-            const Icon = step.icon;
-            return (
-              <div key={step.number} data-step className="relative">
-                {/* Connector line — between steps on desktop */}
-                {i < STEPS.length - 1 && (
-                  <div className="hidden md:block absolute top-10 left-[60%] right-[-40%] h-[1px] bg-black/[0.08]" />
-                )}
+        {/* Steps — vertical timeline layout */}
+        <div className="relative">
+          {/* Vertical connector line — centered on the dot column */}
+          <div
+            data-connector-line
+            className="absolute left-[27px] lg:left-1/2 lg:-translate-x-px top-0 bottom-0 w-[2px]"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(205,255,80,0) 0%, rgba(205,255,80,0.2) 10%, rgba(205,255,80,0.2) 90%, rgba(205,255,80,0) 100%)",
+            }}
+          />
 
-                {/* Step number */}
-                <span
-                  className="text-[64px] lg:text-[80px] font-light leading-none tracking-tight font-heading"
-                  style={{ color: "rgba(0,0,0,0.06)" }}
-                >
-                  {step.number}
-                </span>
+          <div className="flex flex-col gap-16 lg:gap-20">
+            {STEPS.map((step, i) => {
+              const Icon = step.icon;
+              const isEven = i % 2 === 0;
 
-                {/* Icon */}
+              return (
                 <div
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center mt-4 mb-5"
-                  style={{
-                    background: step.accent + "15",
-                    border: `1px solid ${step.accent}25`,
-                  }}
+                  key={step.number}
+                  className="relative flex items-start gap-6 lg:gap-0"
                 >
-                  <Icon
-                    className="w-5 h-5"
-                    style={{ color: step.accent }}
-                  />
-                </div>
+                  {/* Timeline dot — always visible */}
+                  <div
+                    data-step-dot
+                    className="relative z-10 shrink-0 lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-8"
+                  >
+                    <div
+                      className="w-[56px] h-[56px] rounded-full flex items-center justify-center"
+                      style={{
+                        background: `radial-gradient(circle, ${step.accent}20 0%, ${step.accent}08 70%)`,
+                        border: `1.5px solid ${step.accent}40`,
+                        boxShadow: `0 0 30px ${step.accent}15, inset 0 0 20px ${step.accent}08`,
+                      }}
+                    >
+                      <Icon
+                        className="w-5 h-5"
+                        style={{ color: step.accent }}
+                        strokeWidth={1.75}
+                      />
+                    </div>
+                  </div>
 
-                {/* Copy */}
-                <h3 className="text-[20px] lg:text-[22px] font-medium tracking-tight mb-3" style={{ color: "#121111" }}>
-                  {step.title}
-                </h3>
-                <p className="text-[14px] font-light leading-relaxed" style={{ color: "rgba(18,17,17,0.55)" }}>
-                  {step.description}
-                </p>
-              </div>
-            );
-          })}
+                  {/* Card — alternates sides on desktop */}
+                  <div
+                    data-step-card
+                    className={`flex-1 lg:w-[calc(50%-48px)] ${
+                      isEven
+                        ? "lg:mr-auto lg:pr-16"
+                        : "lg:ml-auto lg:pl-16"
+                    }`}
+                  >
+                    <div
+                      className="card-helthy p-6 sm:p-8 lg:p-10"
+                      style={{
+                        background: `linear-gradient(135deg, ${step.accent}06 0%, rgba(255,255,255,0.02) 60%, rgba(255,255,255,0.01) 100%)`,
+                      }}
+                    >
+                      {/* Step number — big, translucent */}
+                      <span
+                        className="text-numeric text-[56px] sm:text-[72px] lg:text-[88px] font-semibold leading-none block mb-4"
+                        style={{
+                          color: step.accent,
+                          opacity: 0.12,
+                          letterSpacing: "-0.04em",
+                        }}
+                      >
+                        {step.number}
+                      </span>
+
+                      <h3
+                        className="font-heading font-light text-[22px] sm:text-[26px] lg:text-[30px] leading-[1.1] tracking-tight text-white mb-4"
+                      >
+                        {step.title}
+                      </h3>
+                      <p className="text-[15px] font-light leading-relaxed text-white/55 max-w-md">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

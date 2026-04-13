@@ -57,12 +57,12 @@ export default function SiteFooter() {
               <p className="text-[11px] uppercase tracking-[0.18em] text-white/35 font-semibold mb-4">
                 {col.title}
               </p>
-              <ul className="space-y-2.5">
+              <ul className="space-y-1">
                 {col.links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/65 hover:text-white transition-colors"
+                      className="text-sm text-white/65 hover:text-white transition-colors inline-block py-1.5"
                     >
                       {link.label}
                     </Link>

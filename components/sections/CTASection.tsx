@@ -1,63 +1,151 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
+import { gsap } from "@/lib/gsap";
 import { ArrowRight } from "lucide-react";
 import HelthyMark from "@/components/ui/HelthyMark";
-import SectionHeading from "@/components/ui/SectionHeading";
-import FloatingIcons from "@/components/ui/FloatingIcons";
-
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
+const PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=com.helthy.app";
 
 export default function CTASection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 70%",
+        },
+      });
+
+      tl.from("[data-cta-mark]", {
+        scale: 0.5,
+        opacity: 0,
+        duration: 0.8,
+        ease: "back.out(2)",
+      })
+        .from(
+          "[data-cta-heading]",
+          { y: 40, opacity: 0, duration: 0.9, ease: "power3.out" },
+          "-=0.4"
+        )
+        .from(
+          "[data-cta-sub]",
+          { y: 20, opacity: 0, duration: 0.7, ease: "power3.out" },
+          "-=0.5"
+        )
+        .from(
+          "[data-cta-button]",
+          { y: 15, opacity: 0, duration: 0.6, ease: "power3.out" },
+          "-=0.4"
+        )
+;
+
+      // Slowly rotate the glow ring
+      gsap.to("[data-glow-ring]", {
+        rotation: 360,
+        duration: 30,
+        ease: "none",
+        repeat: -1,
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative section-padding px-6 lg:px-8 overflow-hidden bg-helthy-surface">
-      <FloatingIcons
-        positions={[
-          [5, 2, 300, 10],
-          [10, 88, 350, -25],
-          [75, 5, 280, 35],
-          [80, 92, 250, -40],
-          [50, 1, 320, 20],
-        ]}
-        icons={[0, 3, 2, 0, 3]}
-        opacity={0.04}
-        colorClass="text-white"
-      />
-      {/* Big lemon ambient glow */}
+    <section
+      ref={sectionRef}
+      className="relative section-padding px-6 lg:px-8 overflow-hidden"
+    >
+      {/* Layered ambient glows */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        {/* Primary lemon glow */}
         <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] max-w-[1100px] aspect-square rounded-full blur-[140px] opacity-50"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] max-w-[900px] aspect-square rounded-full blur-[180px]"
           style={{
             background:
-              "radial-gradient(circle, rgba(205,251,80,0.35) 0%, transparent 60%)",
+              "radial-gradient(circle, rgba(205,255,80,0.18) 0%, rgba(205,255,80,0.04) 40%, transparent 65%)",
+          }}
+        />
+        {/* Secondary warm glow */}
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[30%] w-[60vw] max-w-[600px] aspect-square rounded-full blur-[120px]"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(233,108,44,0.06) 0%, transparent 60%)",
           }}
         />
       </div>
 
+      {/* Rotating gradient ring */}
+      <div
+        data-glow-ring
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vw] max-w-[700px] max-h-[700px] lg:max-w-[900px] lg:max-h-[900px] rounded-full pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background:
+            "conic-gradient(from 0deg, transparent 0%, rgba(205,255,80,0.08) 15%, transparent 30%, transparent 50%, rgba(205,255,80,0.05) 65%, transparent 80%, transparent 100%)",
+          mask: "radial-gradient(circle, transparent 48%, black 49%, black 51%, transparent 52%)",
+          WebkitMask:
+            "radial-gradient(circle, transparent 48%, black 49%, black 51%, transparent 52%)",
+        }}
+      />
+
       <div className="relative mx-auto max-w-3xl text-center">
-        <SectionHeading
-          eyebrow={<HelthyMark size={56} pulse />}
-          title="Stop guessing,"
-          italicTail="start today"
-          subtitle="Free forever. No credit card. Unlock unlimited AI with Premium whenever you're ready."
-          className="mb-10"
-        />
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        {/* Mark */}
+        <div data-cta-mark className="flex justify-center mb-10">
+          <HelthyMark size={64} pulse />
+        </div>
+
+        {/* Heading — big display */}
+        <h2
+          data-cta-heading
+          className="text-display-xl font-heading font-light tracking-tight mb-6"
+        >
+          Stop guessing,{" "}
+          <span className="text-italics text-helthy-lemon">start today</span>.
+        </h2>
+
+        <p
+          data-cta-sub
+          className="text-[15px] sm:text-[17px] lg:text-[19px] text-white/55 font-light leading-relaxed max-w-lg mx-auto mb-8 sm:mb-10"
+        >
+          Free forever. No credit card. Unlock unlimited AI with Premium
+          whenever you&apos;re ready.
+        </p>
+
+        {/* CTA buttons */}
+        <div data-cta-button className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href={APP_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 rounded-full bg-helthy-lemon px-8 py-4 text-helthy-black text-sm font-semibold tracking-tight transition-all hover:-translate-y-[2px] hover:shadow-[0_18px_50px_rgba(205,251,80,0.4)]"
+            className="group inline-flex items-center gap-2.5 rounded-full bg-helthy-lemon px-8 py-4 sm:px-10 sm:py-4.5 text-helthy-black text-[14px] sm:text-[15px] font-semibold tracking-tight transition-all hover:-translate-y-[2px] hover:shadow-[0_20px_60px_rgba(205,251,80,0.4)]"
           >
-            Download for iOS
+            <svg width="16" height="16" viewBox="0 0 256 256" aria-hidden="true" style={{ flexShrink: 0 }}>
+              <path d="M64.34,196.07l-9.45,16a8,8,0,1,1-13.78-8.14l9.46-16a8,8,0,1,1,13.77,8.14ZM232,152H184.2l-30.73-52a8,8,0,1,0-13.77,8.14l61.41,103.93a8,8,0,0,0,13.78-8.14L193.66,168H232a8,8,0,0,0,0-16Zm-89.53,0H90.38L158.89,36.07a8,8,0,0,0-13.78-8.14L128,56.89l-17.11-29a8,8,0,1,0-13.78,8.14l21.6,36.55L71.8,152H24a8,8,0,0,0,0,16H142.47a8,8,0,1,0,0-16Z" fill="#151515" />
+            </svg>
+            App Store
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+          <Link
+            href={PLAY_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2.5 rounded-full bg-helthy-lemon px-8 py-4 sm:px-10 sm:py-4.5 text-helthy-black text-[14px] sm:text-[15px] font-semibold tracking-tight transition-all hover:-translate-y-[2px] hover:shadow-[0_20px_60px_rgba(205,251,80,0.4)]"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style={{ flexShrink: 0 }}>
+              <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.332a1 1 0 0 1 0 1.72L17.698 13.892l-2.467-2.467 2.467-2.467zM5.864 3.458L16.801 9.79l-2.302 2.302-8.635-8.635z" fill="#151515" />
+            </svg>
+            Google Play
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
-        <p className="mt-5 text-xs text-white/40">
-          Android coming soon.
-        </p>
       </div>
     </section>
   );

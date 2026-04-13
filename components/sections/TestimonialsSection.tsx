@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { Star } from "lucide-react";
-import FloatingIcons from "@/components/ui/FloatingIcons";
 
 const TESTIMONIALS = [
   {
@@ -65,22 +64,109 @@ const TESTIMONIALS = [
   },
 ];
 
+// Split into two rows for dual-marquee
+const ROW_1 = TESTIMONIALS.slice(0, 4);
+const ROW_2 = TESTIMONIALS.slice(4);
+
+function TestimonialCard({
+  t,
+}: {
+  t: (typeof TESTIMONIALS)[number];
+}) {
+  return (
+    <div
+      className="shrink-0 w-[85vw] max-w-[340px] sm:w-[380px] sm:max-w-none p-[1.5px] rounded-[1.5rem]"
+      style={{
+        background: `linear-gradient(135deg, ${t.accent}30 0%, transparent 50%, rgba(255,255,255,0.06) 100%)`,
+      }}
+    >
+      <div className="h-full rounded-[calc(1.5rem-1.5px)] p-7 flex flex-col"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.01) 100%)",
+          backdropFilter: "blur(12px)",
+        }}
+      >
+        {/* Stars */}
+        <div className="flex gap-0.5 mb-5">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Star
+              key={i}
+              className="w-3.5 h-3.5"
+              fill={t.accent}
+              stroke="none"
+            />
+          ))}
+        </div>
+
+        {/* Quote */}
+        <p className="text-[15px] leading-[1.65] font-light mb-6 text-white/70 flex-1">
+          &ldquo;{t.quote}&rdquo;
+        </p>
+
+        {/* Attribution */}
+        <div className="flex items-center gap-3 pt-5 border-t border-white/[0.06]">
+          <div
+            className="w-10 h-10 rounded-full flex items-center justify-center text-[14px] font-semibold shrink-0"
+            style={{
+              background: `linear-gradient(135deg, ${t.accent}25 0%, ${t.accent}10 100%)`,
+              color: t.accent,
+              border: `1px solid ${t.accent}20`,
+            }}
+          >
+            {t.name.charAt(0)}
+          </div>
+          <div>
+            <p className="text-[14px] font-medium text-white">
+              {t.name}
+            </p>
+            <p className="text-[12px] text-white/40">{t.detail}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function TestimonialsSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const row1Ref = useRef<HTMLDivElement>(null);
+  const row2Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from("[data-testimonial]", {
+      // Fade-in the whole section
+      gsap.from(sectionRef.current, {
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
+          start: "top 80%",
         },
-        y: 30,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.08,
+        y: 40,
+        duration: 1,
         ease: "power3.out",
       });
+
+      // Infinite marquee — row 1 scrolls left, row 2 scrolls right
+      if (row1Ref.current) {
+        const row1Width = row1Ref.current.scrollWidth / 2;
+        gsap.to(row1Ref.current, {
+          x: -row1Width,
+          duration: 50,
+          ease: "none",
+          repeat: -1,
+        });
+      }
+      if (row2Ref.current) {
+        const row2Width = row2Ref.current.scrollWidth / 2;
+        gsap.set(row2Ref.current, { x: -row2Width });
+        gsap.to(row2Ref.current, {
+          x: 0,
+          duration: 55,
+          ease: "none",
+          repeat: -1,
+        });
+      }
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -88,69 +174,66 @@ export default function TestimonialsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative section-padding px-6 lg:px-8"
+      className="relative section-padding overflow-hidden"
     >
-      <FloatingIcons
-        positions={[
-          [8, 92, 260, 25],
-          [75, 3, 220, -15],
-          [50, 95, 280, 40],
-          [90, 88, 240, -30],
-          [20, 1, 200, 10],
-        ]}
-        icons={[6, 7, 3, 6, 7]}
-        opacity={0.03}
-        colorClass="text-white"
-      />
-      <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          title="Real people,"
-          italicTail="real results"
-          subtitle="Don't take our word for it. Here's what Helthy users are saying."
+      {/* Ambient glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+      >
+        <div
+          className="absolute left-1/2 top-0 -translate-x-1/2 w-[120vw] max-w-[1200px] h-[60%] rounded-full blur-[160px] opacity-40"
+          style={{
+            background:
+              "radial-gradient(ellipse, rgba(205,255,80,0.04) 0%, transparent 70%)",
+          }}
         />
+      </div>
 
-        {/* Masonry-style 3-column grid */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
-          {TESTIMONIALS.map((t) => (
-            <div
-              key={t.name}
-              data-testimonial
-              className="card-helthy p-7 break-inside-avoid"
-            >
-              {/* Stars */}
-              <div className="flex gap-0.5 mb-4">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-3.5 h-3.5"
-                    fill={t.accent}
-                    stroke="none"
-                  />
-                ))}
-              </div>
+      <div className="relative">
+        <div className="px-6 lg:px-8">
+          <SectionHeading
+            title="Real people,"
+            italicTail="real results"
+            subtitle="Don't take our word for it. Here's what Helthy users are saying."
+          />
+        </div>
 
-              {/* Quote */}
-              <p className="text-[15px] leading-relaxed font-light mb-5 text-white/75">
-                &ldquo;{t.quote}&rdquo;
-              </p>
+        {/* Marquee rows */}
+        <div className="flex flex-col gap-5">
+          {/* Row 1 — scrolls left */}
+          <div className="relative">
+            {/* Edge fades */}
+            <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none"
+              style={{ background: "linear-gradient(90deg, var(--background) 0%, transparent 100%)" }}
+            />
+            <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none"
+              style={{ background: "linear-gradient(270deg, var(--background) 0%, transparent 100%)" }}
+            />
 
-              {/* Attribution */}
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-semibold shrink-0"
-                  style={{ background: t.accent + "15", color: t.accent }}
-                >
-                  {t.name.charAt(0)}
-                </div>
-                <div>
-                  <p className="text-[13px] font-semibold text-white">
-                    {t.name}
-                  </p>
-                  <p className="text-[11px] text-white/50">{t.detail}</p>
-                </div>
-              </div>
+            <div ref={row1Ref} className="flex gap-5 w-max">
+              {/* Duplicate for seamless loop */}
+              {[...ROW_1, ...ROW_1].map((t, i) => (
+                <TestimonialCard key={`r1-${i}`} t={t} />
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Row 2 — scrolls right */}
+          <div className="relative">
+            <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none"
+              style={{ background: "linear-gradient(90deg, var(--background) 0%, transparent 100%)" }}
+            />
+            <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none"
+              style={{ background: "linear-gradient(270deg, var(--background) 0%, transparent 100%)" }}
+            />
+
+            <div ref={row2Ref} className="flex gap-5 w-max">
+              {[...ROW_2, ...ROW_2].map((t, i) => (
+                <TestimonialCard key={`r2-${i}`} t={t} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

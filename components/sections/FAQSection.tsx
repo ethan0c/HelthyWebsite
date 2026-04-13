@@ -1,7 +1,6 @@
 "use client";
 
 import SectionHeading from "@/components/ui/SectionHeading";
-import FloatingIcons from "@/components/ui/FloatingIcons";
 
 const FAQS = [
   {
@@ -25,8 +24,8 @@ const FAQS = [
     a: "It's powered by Claude and has full context on your goals, recent meals, lifts, sleep, and weight trend. So it can answer questions like \"should I push squats today?\" with your actual numbers, not generic advice.",
   },
   {
-    q: "When is Android coming?",
-    a: "iOS is live now. Android is actively in development and will ship soon — follow @helthyapp for launch updates.",
+    q: "Is Helthy on Android?",
+    a: "Yes! Helthy is available on both iOS and Android. Download it from the App Store or Google Play.",
   },
   {
     q: "Can I cancel Premium?",
@@ -41,17 +40,6 @@ const FAQS = [
 export default function FAQSection() {
   return (
     <section id="faq" className="relative section-padding px-6 lg:px-8 section-glow-cyan">
-      <FloatingIcons
-        positions={[
-          [3, 5, 200, 20],
-          [12, 92, 260, -35],
-          [85, 3, 180, 45],
-          [78, 90, 240, -15],
-        ]}
-        icons={[6, 7, 3, 6]}
-        opacity={0.03}
-        colorClass="text-white"
-      />
       <div className="max-w-6xl mx-auto">
         <SectionHeading title="Questions, answered" trailingPunctuation="" />
 
@@ -60,13 +48,13 @@ export default function FAQSection() {
           {FAQS.map((faq, i) => (
             <div
               key={faq.q}
-              className="card-helthy p-7 flex flex-col"
-              style={{ minHeight: 300 }}
+              className="card-helthy p-5 sm:p-7 flex flex-col"
+              style={{ minHeight: "auto" }}
             >
               {/* Big numeric */}
               <span
-                className="text-numeric text-white/10 leading-none mb-5 select-none"
-                style={{ fontSize: 84, letterSpacing: -4 }}
+                className="text-numeric text-white/10 leading-none mb-4 sm:mb-5 select-none text-[56px] sm:text-[72px] lg:text-[84px]"
+                style={{ letterSpacing: -4 }}
               >
                 {String(i + 1).padStart(2, "0")}
               </span>

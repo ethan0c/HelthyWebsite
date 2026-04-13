@@ -28,7 +28,7 @@ const CTA_SHADOW =
 
 export default function SiteNav() {
   return (
-    <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[min(96vw,920px)]">
+    <header className="fixed top-[52px] sm:top-[44px] left-1/2 -translate-x-1/2 z-50 w-[min(96vw,920px)]">
       <nav className="rounded-full" style={{ boxShadow: PILL_SHADOW }}>
         <div
           className="grid grid-cols-[1fr_auto_1fr] items-center gap-6 rounded-full border border-white/[0.14] px-3 py-2"
@@ -49,8 +49,7 @@ export default function SiteNav() {
               alt="Helthy"
               height={24}
               width={104}
-              className="object-contain"
-              style={{ width: "auto", height: 24 }}
+              className="object-contain h-6 w-auto"
               priority
             />
           </Link>
