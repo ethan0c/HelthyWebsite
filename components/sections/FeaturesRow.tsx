@@ -293,7 +293,10 @@ function FeatureCard({
     <div
       data-feature-card
       className={`card-helthy flex flex-col ${className}`}
-      style={{ minHeight: minH }}
+      style={{
+        minHeight: minH,
+        background: "linear-gradient(135deg, #151515 0%, #41515A 100%)",
+      }}
     >
       {/* Background texture image */}
       {bgImage && (

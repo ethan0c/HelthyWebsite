@@ -1,5 +1,5 @@
-/* ── Google Fonts: Geist (body/UI) + Unbounded (numeric) ──────── */
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Unbounded:wght@400;500;600;700;800&display=swap");
+/* ── Google Fonts: DM Sans (body/UI) + Unbounded (numeric) ────── */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Unbounded:wght@400;500;600;700;800&display=swap");
 
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
@@ -76,8 +76,8 @@
   --helthy-movement: #38BDF8;
 
   --font-heading: "Lyon Display", Georgia, serif;
-  --font-display: "Geist", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-body: "Geist", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-display: "DM Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-body: "DM Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
   --font-mono: "SF Mono", "Fira Code", monospace;
   --font-numeric: "Unbounded", "Geist", system-ui, sans-serif;
 }
