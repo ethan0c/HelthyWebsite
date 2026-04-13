@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import {
   TrendingUp,
@@ -116,73 +117,14 @@ export default function FeaturesRow() {
           </FeatureCard>
         </div>
 
-        {/* ── Expanded features — app mockups + supporting cards ── */}
-        <div className="mt-16">
-          <p className="text-center text-[13px] font-semibold uppercase tracking-[0.2em] text-white/30 mb-8">
-            And that&apos;s just the start
-          </p>
-
-          {/* Row 1: Achievements (7col) + Streaks (5col) — real screenshots */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-5">
-            <FeatureCard
-              className="lg:col-span-7"
-              minH={520}
-              headline={<><span className="text-italics" style={{ color: "#F59E0B" }}>Earn</span> your badges</>}
-              subtitle="30+ achievements with rarity tiers from Common to Legendary. Unlock animations, progress tracking, and bragging rights."
-            >
-              <AchievementCardGrid />
-            </FeatureCard>
-
-            <FeatureCard
-              className="lg:col-span-5"
-              minH={520}
-              headline={<>Stay <span className="text-italics" style={{ color: "#F97316" }}>on fire</span></>}
-              subtitle="Workout, protein, meal, and step streaks with tier progression from Ember to Eternal."
-            >
-              <ScreenshotMockup src="/phones/streak-card.png" alt="43-day Inferno streak with tier progression" noCrop />
-            </FeatureCard>
-          </div>
-
-
-          {/* Row 3: Supporting features — smaller text cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <MiniFeature
-              icon={TrendingUp}
-              accent="#22C55E"
-              title="Adaptive TDEE engine"
-              description="Targets update weekly based on your real activity — not static formulas."
-            />
-            <MiniFeature
-              icon={Target}
-              accent="#EF4444"
-              title="Goal ETA & plateau detection"
-              description="Know exactly when you'll hit your target. Stuck? Get a personalized fix plan."
-            />
-            <MiniFeature
-              icon={ImageIcon}
-              accent="#8B5CF6"
-              title="Progress photo comparisons"
-              description="Side-by-side earliest vs latest in a shareable grid. Smart nudges every 7 days."
-            />
-            <MiniFeature
-              icon={Camera}
-              accent="#EC4899"
-              title="Nutrition label scanner"
-              description="Point your camera at any nutrition panel — OCR reads it and logs instantly."
-            />
-            <MiniFeature
-              icon={Import}
-              accent="#14B8A6"
-              title="Import from other apps"
-              description="Bring your data from Apple Fitness, Hevy, Strong, MFP, MacroFactor, and more."
-            />
-            <MiniFeature
-              icon={Shield}
-              accent="#6366F1"
-              title="Private & secure"
-              description="Your data is never sold or used for AI training. Encrypted storage, no sensitive logs."
-            />
-          </div>
+        {/* ── Expanded features link ── */}
+        <div className="mt-16 text-center">
+          <Link
+            href="/changelog"
+            className="inline-flex items-center justify-center gap-2 text-[14px] font-medium text-white/70 hover:text-white transition-all duration-300 border border-white/10 rounded-full px-6 py-3 hover:bg-white/5 hover:border-white/20"
+          >
+            And so much more. See everything that changed since 1.2.7 &rarr;
+          </Link>
         </div>
       </div>
     </section>
@@ -263,10 +205,10 @@ function MiniFeature({
 // Achievement card grid — 2×2 real rarity card screenshots
 
 const ACHIEVEMENT_CARDS = [
-  { src: "/phones/achievements/legendary.png", alt: "Legendary achievement - Year of Iron", glow: "#F59E0B" },
-  { src: "/phones/achievements/epic.png", alt: "Epic achievement - Centurion", glow: "#A855F7" },
-  { src: "/phones/achievements/rare.png", alt: "Rare achievement - PR Hunter", glow: "#339AF0" },
   { src: "/phones/achievements/common.png", alt: "Common achievement - All Rings Closed", glow: "#9CA3AF" },
+  { src: "/phones/achievements/rare.png", alt: "Rare achievement - PR Hunter", glow: "#339AF0" },
+  { src: "/phones/achievements/epic.png", alt: "Epic achievement - Centurion", glow: "#A855F7" },
+  { src: "/phones/achievements/legendary.png", alt: "Legendary achievement - Year of Iron", glow: "#F59E0B" },
 ];
 
 function AchievementCardGrid() {
@@ -408,8 +350,8 @@ function FeatureCard({
       />
 
       {/* Copy block */}
-      <div className="relative px-8 lg:px-10 pt-10 lg:pt-12 pb-6 text-center">
-        <h3 className="font-heading font-light text-[34px] lg:text-[40px] leading-[1.05] tracking-tight text-white mb-4">
+      <div className="relative px-6 lg:px-10 pt-10 lg:pt-12 pb-6 text-center">
+        <h3 className="font-heading font-light text-[30px] lg:text-[36px] leading-[1.05] tracking-tight text-white mb-3">
           {headline}
         </h3>
         <p className="text-[14px] lg:text-[15px] text-white/65 max-w-md mx-auto font-light leading-relaxed">
@@ -826,4 +768,3 @@ function WeightGraphMockup() {
     </div>
   );
 }
-
