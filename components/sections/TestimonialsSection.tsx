@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { Star } from "lucide-react";
@@ -68,6 +69,25 @@ const TESTIMONIALS = [
 const ROW_1 = TESTIMONIALS.slice(0, 4);
 const ROW_2 = TESTIMONIALS.slice(4);
 
+const TRANSFORMATIONS = [
+  {
+    name: "Chibu",
+    role: "Co-founder",
+    before: "/transformations/chibu-before.jpg",
+    after: "/transformations/chibu-after.jpg",
+    quote:
+      "Built Helthy because nothing else would actually tell me what to fix. Down 28 lb, up 50 lb on bench.",
+  },
+  {
+    name: "Ebu",
+    role: "Co-founder",
+    before: "/transformations/ebu-before.jpg",
+    after: "/transformations/ebu-after.jpg",
+    quote:
+      "I used to forget half my meals. Now Helthy logs them in seconds and the AI coach actually keeps me honest.",
+  },
+];
+
 function TestimonialCard({
   t,
 }: {
@@ -123,6 +143,106 @@ function TestimonialCard({
             <p className="text-[12px] text-white/40">{t.detail}</p>
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function TransformationCard({ t }: { t: (typeof TRANSFORMATIONS)[number] }) {
+  return (
+    <div className="shrink-0 w-[480px] sm:w-[560px] rounded-[1.5rem] overflow-hidden"
+      style={{
+        background: "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)",
+        border: "1px solid rgba(255,255,255,0.06)",
+      }}
+    >
+      {/* Before / After images */}
+      <div className="grid grid-cols-2">
+        <div className="relative aspect-[3/4] bg-black overflow-hidden">
+          <Image
+            src={t.before}
+            alt={`${t.name} before`}
+            fill
+            className="object-cover grayscale-[30%]"
+            sizes="280px"
+          />
+          {/* Face blur overlay */}
+          <div
+            className="absolute inset-x-0 top-0 h-[38%]"
+            style={{ backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)" }}
+          />
+          <span className="absolute bottom-3 left-3 text-[11px] tracking-[0.18em] uppercase text-white/80 bg-black/60 backdrop-blur-sm px-2.5 py-1 rounded-full">
+            Before
+          </span>
+        </div>
+        <div className="relative aspect-[3/4] bg-black overflow-hidden">
+          <Image
+            src={t.after}
+            alt={`${t.name} after`}
+            fill
+            className="object-cover"
+            sizes="280px"
+          />
+          {/* Face blur overlay */}
+          <div
+            className="absolute inset-x-0 top-0 h-[38%]"
+            style={{ backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)" }}
+          />
+          <span className="absolute bottom-3 left-3 text-[11px] tracking-[0.18em] uppercase text-helthy-black bg-helthy-lemon px-2.5 py-1 rounded-full font-semibold">
+            After
+          </span>
+        </div>
+      </div>
+
+      {/* Quote + attribution */}
+      <div className="p-7">
+        <p className="text-[15px] text-white/70 italic leading-relaxed mb-4">
+          &ldquo;{t.quote}&rdquo;
+        </p>
+        <div>
+          <p className="text-[15px] font-semibold text-white">{t.name}</p>
+          <p className="text-[13px] text-white/45">{t.role}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TransformationCarousel() {
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!trackRef.current) return;
+    const track = trackRef.current;
+    const ctx = gsap.context(() => {
+      const halfWidth = track.scrollWidth / 2;
+      gsap.to(track, {
+        x: -halfWidth,
+        duration: 40,
+        ease: "none",
+        repeat: -1,
+      });
+    }, track);
+    return () => ctx.revert();
+  }, []);
+
+  // Duplicate for seamless loop
+  const items = [...TRANSFORMATIONS, ...TRANSFORMATIONS, ...TRANSFORMATIONS, ...TRANSFORMATIONS];
+
+  return (
+    <div className="relative mb-12">
+      {/* Edge fades */}
+      <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(90deg, var(--background) 0%, transparent 100%)" }}
+      />
+      <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(270deg, var(--background) 0%, transparent 100%)" }}
+      />
+
+      <div ref={trackRef} className="flex gap-6 w-max">
+        {items.map((t, i) => (
+          <TransformationCard key={`tf-${i}`} t={t} />
+        ))}
       </div>
     </div>
   );
@@ -198,6 +318,9 @@ export default function TestimonialsSection() {
             subtitle="Don't take our word for it. Here's what Helthy users are saying."
           />
         </div>
+
+        {/* Transformation carousel */}
+        <TransformationCarousel />
 
         {/* Marquee rows */}
         <div className="flex flex-col gap-5">

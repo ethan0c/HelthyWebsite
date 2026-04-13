@@ -50,7 +50,8 @@ export default function SiteNav() {
               alt="Helthy"
               height={24}
               width={104}
-              className="object-contain h-6 w-auto"
+              className="object-contain"
+              style={{ height: "auto" }}
               priority
             />
           </Link>

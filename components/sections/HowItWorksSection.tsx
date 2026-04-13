@@ -3,58 +3,26 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { Download, Camera, Sparkles } from "lucide-react";
-
-const STEPS = [
-  {
-    number: "01",
-    icon: Download,
-    title: "Download the app",
-    description:
-      "Set up your profile, goals, and preferences in under two minutes. Available on iOS and Android.",
-    accent: "#22C55E",
-  },
-  {
-    number: "02",
-    icon: Camera,
-    title: "Log meals, workouts & weight",
-    description:
-      "Snap a photo to log any meal instantly. Track workouts from 1,500+ exercises. Log weight in seconds.",
-    accent: "#3B82F6",
-  },
-  {
-    number: "03",
-    icon: Sparkles,
-    title: "Get coached by AI",
-    description:
-      "Your AI coach connects nutrition, training, and recovery data to give you personalized guidance every day.",
-    accent: "#CDFF50",
-  },
-];
+import Image from "next/image";
 
 export default function HowItWorksSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate the connector line drawing down
-      gsap.from("[data-connector-line]", {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 65%",
-        },
-        scaleY: 0,
-        transformOrigin: "top center",
-        duration: 1.2,
-        ease: "power3.inOut",
+      // Stagger step numbers
+      gsap.from("[data-step-num]", {
+        scrollTrigger: { trigger: sectionRef.current, start: "top 65%" },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
       });
 
-      // Stagger the step cards
-      gsap.from("[data-step-card]", {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 65%",
-        },
+      // Stagger step cards
+      gsap.from("[data-step-block]", {
+        scrollTrigger: { trigger: sectionRef.current, start: "top 65%" },
         y: 60,
         opacity: 0,
         duration: 1,
@@ -62,18 +30,15 @@ export default function HowItWorksSection() {
         ease: "power3.out",
       });
 
-      // Pulse the step dots
-      gsap.from("[data-step-dot]", {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 65%",
-        },
-        scale: 0,
+      // Animate mockup areas
+      gsap.from("[data-step-mockup]", {
+        scrollTrigger: { trigger: sectionRef.current, start: "top 55%" },
+        y: 40,
         opacity: 0,
-        duration: 0.6,
-        stagger: 0.2,
+        duration: 1.2,
+        stagger: 0.25,
         delay: 0.3,
-        ease: "back.out(2)",
+        ease: "power3.out",
       });
     }, sectionRef);
     return () => ctx.revert();
@@ -84,99 +49,186 @@ export default function HowItWorksSection() {
       ref={sectionRef}
       className="relative section-padding px-6 lg:px-8 section-glow-warm"
     >
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <SectionHeading
           title="How it"
           italicTail="works"
           subtitle="Three steps. No learning curve."
         />
 
-        {/* Steps — vertical timeline layout */}
-        <div className="relative">
-          {/* Vertical connector line — centered on the dot column */}
-          <div
-            data-connector-line
-            className="absolute left-[27px] lg:left-1/2 lg:-translate-x-px top-0 bottom-0 w-[2px]"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(205,255,80,0) 0%, rgba(205,255,80,0.2) 10%, rgba(205,255,80,0.2) 90%, rgba(205,255,80,0) 100%)",
-            }}
-          />
+        <div className="flex flex-col gap-6">
+          {/* ── Step 1: Set your goals ── */}
+          <StepCard
+            number="01"
+            accent="#22C55E"
+            title="Tell us your goals"
+            description="Pick your target, set your stats, and your AI coach builds a plan in under two minutes."
+          >
+            <OnboardingMockup />
+          </StepCard>
 
-          <div className="flex flex-col gap-16 lg:gap-20">
-            {STEPS.map((step, i) => {
-              const Icon = step.icon;
-              const isEven = i % 2 === 0;
+          {/* ── Step 2: Log everything ── */}
+          <StepCard
+            number="02"
+            accent="#3B82F6"
+            title="Log meals, workouts & weight"
+            description="Snap a photo to log any meal. Track lifts from 1,500+ exercises. Step on the scale and go."
+          >
+            <LoggingMockup />
+          </StepCard>
 
-              return (
-                <div
-                  key={step.number}
-                  className="relative flex items-start gap-6 lg:gap-0"
-                >
-                  {/* Timeline dot — always visible */}
-                  <div
-                    data-step-dot
-                    className="relative z-10 shrink-0 lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-8"
-                  >
-                    <div
-                      className="w-[56px] h-[56px] rounded-full flex items-center justify-center"
-                      style={{
-                        background: `radial-gradient(circle, ${step.accent}20 0%, ${step.accent}08 70%)`,
-                        border: `1.5px solid ${step.accent}40`,
-                        boxShadow: `0 0 30px ${step.accent}15, inset 0 0 20px ${step.accent}08`,
-                      }}
-                    >
-                      <Icon
-                        className="w-5 h-5"
-                        style={{ color: step.accent }}
-                        strokeWidth={1.75}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Card — alternates sides on desktop */}
-                  <div
-                    data-step-card
-                    className={`flex-1 lg:w-[calc(50%-48px)] ${
-                      isEven
-                        ? "lg:mr-auto lg:pr-16"
-                        : "lg:ml-auto lg:pl-16"
-                    }`}
-                  >
-                    <div
-                      className="card-helthy p-6 sm:p-8 lg:p-10"
-                      style={{
-                        background: `linear-gradient(135deg, ${step.accent}06 0%, rgba(255,255,255,0.02) 60%, rgba(255,255,255,0.01) 100%)`,
-                      }}
-                    >
-                      {/* Step number — big, translucent */}
-                      <span
-                        className="text-numeric text-[56px] sm:text-[72px] lg:text-[88px] font-semibold leading-none block mb-4"
-                        style={{
-                          color: step.accent,
-                          opacity: 0.12,
-                          letterSpacing: "-0.04em",
-                        }}
-                      >
-                        {step.number}
-                      </span>
-
-                      <h3
-                        className="font-heading font-light text-[22px] sm:text-[26px] lg:text-[30px] leading-[1.1] tracking-tight text-white mb-4"
-                      >
-                        {step.title}
-                      </h3>
-                      <p className="text-[15px] font-light leading-relaxed text-white/55 max-w-md">
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          {/* ── Step 3: Get coached ── */}
+          <StepCard
+            number="03"
+            accent="#CDFF50"
+            title="Get coached by AI"
+            description="Your coach connects nutrition, training, and recovery to give you actionable guidance every single day."
+          >
+            <CoachingMockup />
+          </StepCard>
         </div>
       </div>
     </section>
+  );
+}
+
+/* ───────────────────────────────────────────────────────────
+   Step card shell — number + text on left, mockup on right
+   ─────────────────────────────────────────────────────────── */
+
+function StepCard({
+  number,
+  accent,
+  title,
+  description,
+  children,
+}: {
+  number: string;
+  accent: string;
+  title: string;
+  description: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      data-step-block
+      className="card-helthy flex flex-col lg:flex-row lg:items-stretch overflow-hidden"
+      style={{
+        background: `linear-gradient(135deg, ${accent}06 0%, rgba(255,255,255,0.02) 60%, rgba(255,255,255,0.01) 100%)`,
+      }}
+    >
+      {/* Noise overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.25] mix-blend-overlay"
+        style={{ backgroundImage: "url(/textures/hero-noise.png)", backgroundSize: "200px" }}
+      />
+
+      {/* Text column */}
+      <div className="relative flex flex-col justify-center p-8 sm:p-10 lg:p-12 lg:w-[42%] shrink-0">
+        <span
+          data-step-num
+          className="text-numeric text-[64px] sm:text-[80px] font-semibold leading-none block mb-5"
+          style={{ color: accent, opacity: 0.15, letterSpacing: "-0.04em" }}
+        >
+          {number}
+        </span>
+        <h3 className="font-heading font-light text-[26px] sm:text-[30px] lg:text-[34px] leading-[1.08] tracking-tight text-white mb-4">
+          {title}
+        </h3>
+        <p className="text-[15px] font-light leading-relaxed text-white/55 max-w-md">
+          {description}
+        </p>
+      </div>
+
+      {/* Mockup column */}
+      <div
+        data-step-mockup
+        className="relative flex-1 flex items-end justify-center overflow-hidden px-6 pt-4 lg:px-8 lg:pt-0"
+        style={{ minHeight: 320 }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/* ───────────────────────────────────────────────────────────
+   Mockup 1: Onboarding — goal selector + body stats
+   ─────────────────────────────────────────────────────────── */
+
+function OnboardingMockup() {
+  return (
+    <div
+      className="w-[75%] max-w-[320px] rounded-t-[20px] overflow-hidden mb-0"
+      style={{
+        boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04)",
+      }}
+    >
+      <Image
+        src="/phones/set-goals.png"
+        alt="Set your fitness goals and nutrition targets"
+        width={320}
+        height={693}
+        className="w-full h-auto object-cover object-top"
+      />
+    </div>
+  );
+}
+
+/* ───────────────────────────────────────────────────────────
+   Mockup 2: Logging — triple phone strip (photo + workout + scale)
+   ─────────────────────────────────────────────────────────── */
+
+function LoggingMockup() {
+  const phones = [
+    { src: "/phones/step-2/workout-log.png", alt: "Workout set tracking" },
+    { src: "/phones/step-2/food-search.png", alt: "Food search and meal logging" },
+    { src: "/phones/step-2/weight-log.png", alt: "Weight logging" },
+  ];
+
+  return (
+    <div className="flex items-end justify-center gap-3 sm:gap-4 pb-0 w-full">
+      {phones.map((phone, i) => (
+        <div
+          key={phone.src}
+          className="w-[38%] max-w-[200px] rounded-t-[16px] overflow-hidden"
+          style={{
+            boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04)",
+            transform: i === 1 ? "translateY(-16px)" : undefined,
+          }}
+        >
+          <Image
+            src={phone.src}
+            alt={phone.alt}
+            width={200}
+            height={433}
+            className="w-full h-auto object-cover object-top"
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ───────────────────────────────────────────────────────────
+   Mockup 3: AI Coaching — insight cards
+   ─────────────────────────────────────────────────────────── */
+
+function CoachingMockup() {
+  return (
+    <div
+      className="w-[75%] max-w-[320px] rounded-t-[20px] overflow-hidden mb-0"
+      style={{
+        boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04)",
+      }}
+    >
+      <Image
+        src="/phones/see-insights.png"
+        alt="AI coaching insights connecting nutrition and training"
+        width={320}
+        height={693}
+        className="w-full h-auto object-cover object-top"
+      />
+    </div>
   );
 }

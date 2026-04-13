@@ -85,13 +85,12 @@ export default function FeaturesRow() {
             </>}
             subtitle="Point, shoot, logged. AI reads your meal, breaks down macros, and files it — no searching, no typing."
           >
-            <ScreenshotMockup src="/phones/ai-meal-scan.png" alt="AI photo meal logging with instant macro breakdown" wide />
+            <ScreenshotMockup src="/phones/ai-meal-scan.png" alt="AI photo meal logging with instant macro breakdown" wide cropBottom={20} />
           </FeatureCard>
 
           {/* Card 2: Weight Progress (5 col) */}
           <FeatureCard
-            className="lg:col-span-5"
-            minH={580}
+            className="lg:col-span-5 self-start"
             bgImage="/textures/card-water.jpg"
             headline={<>See your <span className="text-italics text-helthy-lemon">progress</span></>}
             subtitle="Watch the weight trend chart tell your story. Every weigh-in plotted, every milestone visible."
@@ -297,12 +296,13 @@ function AchievementCardGrid() {
 // ───────────────────────────────────────────────────────────
 // Screenshot mockup — real app screenshot in a phone-like frame
 
-function ScreenshotMockup({ src, alt, wide, noCrop }: { src: string; alt: string; wide?: boolean; noCrop?: boolean }) {
+function ScreenshotMockup({ src, alt, wide, noCrop, cropBottom }: { src: string; alt: string; wide?: boolean; noCrop?: boolean; cropBottom?: number }) {
   return (
     <div
       className={`${wide ? "w-[85%] max-w-[380px]" : "w-[70%] max-w-[300px]"} ${noCrop ? "mb-4" : "mb-[-40px]"} rounded-[20px] overflow-hidden`}
       style={{
         boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04)",
+        ...(cropBottom ? { marginBottom: -cropBottom } : {}),
       }}
     >
       <Image
@@ -310,7 +310,8 @@ function ScreenshotMockup({ src, alt, wide, noCrop }: { src: string; alt: string
         alt={alt}
         width={300}
         height={650}
-        className="w-full h-auto object-cover object-top"
+        style={{ height: "auto" }}
+        className="w-full object-cover object-top"
       />
     </div>
   );
@@ -336,7 +337,8 @@ function TripleScreenshotMockup({ screens }: { screens: { src: string; alt: stri
             alt={s.alt}
             width={300}
             height={650}
-            className="w-full h-auto object-cover object-top"
+            style={{ height: "auto" }}
+            className="w-full object-cover object-top"
           />
         </div>
       ))}
@@ -349,7 +351,7 @@ function TripleScreenshotMockup({ screens }: { screens: { src: string; alt: stri
 
 function FeatureCard({
   className = "",
-  minH = 500,
+  minH,
   headline,
   subtitle,
   bgImage,
@@ -367,7 +369,7 @@ function FeatureCard({
       data-feature-card
       className={`card-helthy flex flex-col ${className}`}
       style={{
-        minHeight: minH,
+        ...(minH ? { minHeight: minH } : {}),
         background: "linear-gradient(135deg, #151515 0%, #41515A 100%)",
       }}
     >
@@ -414,7 +416,7 @@ function FeatureCard({
         </p>
       </div>
 
-      {/* Mockup area — grows to fill, crops at bottom */}
+      {/* Mockup area — grows to fill, aligns content */}
       <div className="relative flex-1 flex items-end justify-center overflow-hidden">
         {children}
       </div>
@@ -683,7 +685,7 @@ function WeightGraphMockup() {
   return (
     <div
       ref={scaleRef}
-      className="w-[92%] max-w-[360px] mb-[-40px] rounded-t-[20px] overflow-hidden"
+      className="w-[92%] max-w-[360px] mb-2 rounded-[20px] overflow-hidden"
       style={{
         background: T.bg,
         boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04)",
@@ -738,6 +740,7 @@ function WeightGraphMockup() {
           7-DAY TREND
         </p>
 
+
         <svg
           width="100%"
           viewBox={`0 0 ${W_SVG.w} ${W_SVG.h}`}
@@ -771,14 +774,14 @@ function WeightGraphMockup() {
             );
           })}
 
-          {/* Day labels (matches mobile day labels: 10px, weight 600 if has data) */}
+          {/* Day labels (matches mobile: 10px, fontWeight 600, Unbounded for numbers/labels) */}
           {W_DAY_LABELS.map((label, i) => (
             <text
               key={label}
               x={idxToX(i)} y={W_SVG.h - 4}
               textAnchor="middle" fontSize="10" fontWeight="600"
               fill={T.text}
-              style={{ fontFamily: "'SF Pro Display', sans-serif" }}
+              style={{ fontFamily: NUMERIC_FONT }}
             >
               {label}
             </text>

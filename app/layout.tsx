@@ -8,22 +8,22 @@ import LaunchBanner from "@/components/sections/LaunchBanner";
 export const metadata: Metadata = {
   metadataBase: new URL("https://helthy.app"),
   title: {
-    default: "Helthy — AI Fitness & Nutrition Coach",
-    template: "%s · Helthy",
+    default: "Helthy AI - The Best Free Calorie and Workout Tracker",
+    template: "%s · Helthy AI",
   },
   description:
     "Your AI fitness coach that actually learns you. Log meals with a photo, track every lift, and get coached by AI that connects nutrition, training, and recovery.",
   openGraph: {
-    title: "Helthy — AI Fitness & Nutrition Coach",
+    title: "Helthy AI - The Best Free Calorie and Workout Tracker",
     description:
       "Your AI fitness coach that actually learns you. Log meals with a photo, track every lift, and get coached by AI that connects nutrition, training, and recovery.",
     url: "https://helthy.app",
-    siteName: "Helthy",
+    siteName: "Helthy AI",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Helthy — AI Fitness & Nutrition Coach",
+    title: "Helthy AI - The Best Free Calorie and Workout Tracker",
     description:
       "Your AI fitness coach that actually learns you. Photo logging, workouts, insights & more.",
   },

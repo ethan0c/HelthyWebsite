@@ -1,5 +1,4 @@
 import HeroSection from "@/components/sections/HeroSection";
-import SocialProofBar from "@/components/sections/SocialProofBar";
 import HowItWorksSection from "@/components/sections/HowItWorksSection";
 import FeaturesRow from "@/components/sections/FeaturesRow";
 import CredibilitySection from "@/components/sections/CredibilitySection";
@@ -15,7 +14,6 @@ export default function Home() {
     <main className="relative">
       <FlowingLine />
       <HeroSection />
-      <SocialProofBar />
       <FeaturesRow />
       <HowItWorksSection />
       <CredibilitySection />

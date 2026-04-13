@@ -59,6 +59,7 @@ export default function HeroSection() {
           src="/phones/iphone-hero-mockup.png"
           alt="Helthy app home screen on iPhone"
           fill
+          sizes="100vw"
           priority
           className="object-contain object-left-bottom"
           style={{ transform: "translateY(100px)" }}
@@ -105,6 +106,7 @@ export default function HeroSection() {
               src="/phones/iphone-hero-mockup.png"
               alt="Helthy app home screen on iPhone"
               fill
+              sizes="(max-width: 640px) 280px, 320px"
               className="object-contain"
               priority
             />
