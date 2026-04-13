@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import HelthyMark from "@/components/ui/HelthyMark";
 import SectionHeading from "@/components/ui/SectionHeading";
+import FloatingIcons from "@/components/ui/FloatingIcons";
 
 
 const APP_STORE_URL =
@@ -12,6 +13,18 @@ const APP_STORE_URL =
 export default function CTASection() {
   return (
     <section className="relative section-padding px-6 lg:px-8 overflow-hidden bg-helthy-surface">
+      <FloatingIcons
+        positions={[
+          [5, 2, 300, 10],
+          [10, 88, 350, -25],
+          [75, 5, 280, 35],
+          [80, 92, 250, -40],
+          [50, 1, 320, 20],
+        ]}
+        icons={[0, 3, 2, 0, 3]}
+        opacity={0.04}
+        colorClass="text-white"
+      />
       {/* Big lemon ambient glow */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div

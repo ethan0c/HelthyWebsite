@@ -5,6 +5,7 @@ import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 import { Check, Sparkles, Brain, MessageCircle, LineChart } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
+import FloatingIcons from "@/components/ui/FloatingIcons";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
@@ -46,6 +47,18 @@ export default function PricingSection() {
       ref={sectionRef}
       className="relative section-padding px-6 lg:px-8 section-glow-center"
     >
+      <FloatingIcons
+        positions={[
+          [10, 3, 280, -20],
+          [5, 88, 320, 30],
+          [80, 92, 240, -45],
+          [70, 1, 260, 15],
+          [45, 95, 220, -10],
+        ]}
+        icons={[0, 3, 5, 1, 6]}
+        opacity={0.03}
+        colorClass="text-white"
+      />
       <div className="relative mx-auto max-w-5xl">
         <SectionHeading
           title="Simple, honest pricing"

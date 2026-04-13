@@ -1,6 +1,7 @@
 "use client";
 
 import SectionHeading from "@/components/ui/SectionHeading";
+import FloatingIcons from "@/components/ui/FloatingIcons";
 
 const FAQS = [
   {
@@ -40,6 +41,17 @@ const FAQS = [
 export default function FAQSection() {
   return (
     <section id="faq" className="relative section-padding px-6 lg:px-8 section-glow-cyan">
+      <FloatingIcons
+        positions={[
+          [3, 5, 200, 20],
+          [12, 92, 260, -35],
+          [85, 3, 180, 45],
+          [78, 90, 240, -15],
+        ]}
+        icons={[6, 7, 3, 6]}
+        opacity={0.03}
+        colorClass="text-white"
+      />
       <div className="max-w-6xl mx-auto">
         <SectionHeading title="Questions, answered" trailingPunctuation="" />
 

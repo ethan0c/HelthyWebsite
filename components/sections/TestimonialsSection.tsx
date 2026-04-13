@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { Star } from "lucide-react";
+import FloatingIcons from "@/components/ui/FloatingIcons";
 
 const TESTIMONIALS = [
   {
@@ -11,7 +12,14 @@ const TESTIMONIALS = [
       "I've tried MyFitnessPal, Cronometer, MacroFactor — Helthy is the first one that stuck. Snap a photo and it's logged. That's it.",
     name: "Marcus T.",
     detail: "Lost 14 kg in 5 months",
-    accent: "#16A34A",
+    accent: "#22C55E",
+  },
+  {
+    quote:
+      "Built Helthy because nothing else would actually tell me what to fix. Down 28 lb, up 50 lb on bench.",
+    name: "Chibu",
+    detail: "Co-founder",
+    accent: "#CDFF50",
   },
   {
     quote:
@@ -29,6 +37,13 @@ const TESTIMONIALS = [
   },
   {
     quote:
+      "I used to forget half my meals. Now Helthy logs them in seconds and the AI coach actually keeps me honest.",
+    name: "Ebu",
+    detail: "Co-founder",
+    accent: "#CDFF50",
+  },
+  {
+    quote:
       "Finally an app that doesn't make me feel like I'm filling out a spreadsheet. The weight trend chart alone is worth it.",
     name: "Priya M.",
     detail: "Goal weight reached in 12 weeks",
@@ -36,17 +51,17 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "My coach suggested I add Greek yogurt to hit my protein target. Tapped one button and it was logged. Unreal.",
-    name: "Alex D.",
-    detail: "Hitting 180g protein daily",
-    accent: "#B45309",
-  },
-  {
-    quote:
       "I showed the insights screen to my PT and she said 'this is better than what I give my clients.' Switching her whole gym over.",
     name: "Olivia W.",
     detail: "Personal trainer, 12 clients on Helthy",
     accent: "#C2410C",
+  },
+  {
+    quote:
+      "My coach suggested I add Greek yogurt to hit my protein target. Tapped one button and it was logged. Unreal.",
+    name: "Alex D.",
+    detail: "Hitting 180g protein daily",
+    accent: "#B45309",
   },
 ];
 
@@ -73,14 +88,25 @@ export default function TestimonialsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative section-padding px-6 lg:px-8 section-light"
+      className="relative section-padding px-6 lg:px-8"
     >
+      <FloatingIcons
+        positions={[
+          [8, 92, 260, 25],
+          [75, 3, 220, -15],
+          [50, 95, 280, 40],
+          [90, 88, 240, -30],
+          [20, 1, 200, 10],
+        ]}
+        icons={[6, 7, 3, 6, 7]}
+        opacity={0.03}
+        colorClass="text-white"
+      />
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          title="Don't take our"
-          italicTail="word for it"
-          subtitle="Real people, real results. Here's what Helthy users are saying."
-          className="[&_h2]:text-[#121111] [&_.text-italics]:text-[#121111] [&_p]:text-[rgba(18,17,17,0.55)]"
+          title="Real people,"
+          italicTail="real results"
+          subtitle="Don't take our word for it. Here's what Helthy users are saying."
         />
 
         {/* Masonry-style 3-column grid */}
@@ -104,13 +130,12 @@ export default function TestimonialsSection() {
               </div>
 
               {/* Quote */}
-              <p className="text-[15px] leading-relaxed font-light mb-5" style={{ color: "rgba(18,17,17,0.75)" }}>
+              <p className="text-[15px] leading-relaxed font-light mb-5 text-white/75">
                 &ldquo;{t.quote}&rdquo;
               </p>
 
               {/* Attribution */}
               <div className="flex items-center gap-3">
-                {/* Avatar placeholder — initial in colored circle */}
                 <div
                   className="w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-semibold shrink-0"
                   style={{ background: t.accent + "15", color: t.accent }}
@@ -118,10 +143,10 @@ export default function TestimonialsSection() {
                   {t.name.charAt(0)}
                 </div>
                 <div>
-                  <p className="text-[13px] font-semibold" style={{ color: "#121111" }}>
+                  <p className="text-[13px] font-semibold text-white">
                     {t.name}
                   </p>
-                  <p className="text-[11px]" style={{ color: "rgba(18,17,17,0.5)" }}>{t.detail}</p>
+                  <p className="text-[11px] text-white/50">{t.detail}</p>
                 </div>
               </div>
             </div>

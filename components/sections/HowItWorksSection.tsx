@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { Download, Camera, Sparkles } from "lucide-react";
+import FloatingIcons from "@/components/ui/FloatingIcons";
 
 const STEPS = [
   {
@@ -57,6 +58,17 @@ export default function HowItWorksSection() {
       ref={sectionRef}
       className="relative section-padding px-6 lg:px-8 section-light"
     >
+      <FloatingIcons
+        positions={[
+          [10, 3, 260, -18],
+          [20, 85, 300, 15],
+          [65, 8, 240, 40],
+          [70, 90, 200, -25],
+        ]}
+        icons={[2, 6, 0, 1]}
+        opacity={0.04}
+        colorClass="text-black"
+      />
       <div className="mx-auto max-w-5xl">
         <SectionHeading
           title="How it"
