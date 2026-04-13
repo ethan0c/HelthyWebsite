@@ -169,7 +169,8 @@ function OnboardingMockup() {
         alt="Set your fitness goals and nutrition targets"
         width={320}
         height={693}
-        className="w-full h-auto object-cover object-top"
+        style={{ width: "100%", height: "auto" }}
+        className="object-cover object-top"
       />
     </div>
   );
@@ -202,7 +203,8 @@ function LoggingMockup() {
             alt={phone.alt}
             width={200}
             height={433}
-            className="w-full h-auto object-cover object-top"
+            style={{ width: "100%", height: "auto" }}
+            className="object-cover object-top"
           />
         </div>
       ))}
@@ -227,7 +229,8 @@ function CoachingMockup() {
         alt="AI coaching insights connecting nutrition and training"
         width={320}
         height={693}
-        className="w-full h-auto object-cover object-top"
+        style={{ width: "100%", height: "auto" }}
+        className="object-cover object-top"
       />
     </div>
   );

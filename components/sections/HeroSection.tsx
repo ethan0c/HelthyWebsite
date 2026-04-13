@@ -50,10 +50,23 @@ export default function HeroSection() {
       style={{ backgroundColor: "#0A0A0A", minHeight: "calc(100vh + 400px)" }}
     >
       {/* ── Background texture ── */}
-      <div className="absolute inset-0 pointer-events-none dot-grid" style={{ zIndex: 0 }} />
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.3] mix-blend-overlay"
-        style={{ backgroundImage: "url(/textures/hero-noise.png)", backgroundSize: "200px", zIndex: 0 }}
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          zIndex: 0,
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          zIndex: 0,
+          backgroundImage: "url(/textures/hero-noise.png)",
+          backgroundSize: "200px",
+          opacity: 0.5,
+          mixBlendMode: "overlay",
+        }}
       />
       {/* Subtle lemon radial glow top-right for depth */}
       <div
@@ -62,7 +75,7 @@ export default function HeroSection() {
           zIndex: 0,
           top: "10%", right: "15%",
           width: "60%", height: "50%",
-          background: "radial-gradient(ellipse at center, rgba(205,255,80,0.04) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse at center, rgba(205,255,80,0.06) 0%, transparent 70%)",
         }}
       />
 

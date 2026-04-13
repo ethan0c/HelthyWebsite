@@ -461,8 +461,8 @@ body {
 
 /* ── Section spacing ──────────────────────────────────────────── */
 .section-padding {
-  padding-top: clamp(5rem, 12vh, 10rem);
-  padding-bottom: clamp(5rem, 12vh, 10rem);
+  padding-top: clamp(4rem, 8vh, 8rem);
+  padding-bottom: clamp(4rem, 8vh, 8rem);
 }
 
 /* ── Backgrounds: grid / dots / hatch / glow / rings ───────────── */

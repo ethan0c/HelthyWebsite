@@ -285,7 +285,8 @@ function AchievementCardGrid() {
             alt={card.alt}
             width={220}
             height={140}
-            className="w-full h-auto object-cover"
+            style={{ width: "100%", height: "auto" }}
+            className="object-cover"
           />
         </div>
       ))}
@@ -310,8 +311,8 @@ function ScreenshotMockup({ src, alt, wide, noCrop, cropBottom }: { src: string;
         alt={alt}
         width={300}
         height={650}
-        style={{ height: "auto" }}
-        className="w-full object-cover object-top"
+        style={{ width: "100%", height: "auto" }}
+        className="object-cover object-top"
       />
     </div>
   );
@@ -337,8 +338,8 @@ function TripleScreenshotMockup({ screens }: { screens: { src: string; alt: stri
             alt={s.alt}
             width={300}
             height={650}
-            style={{ height: "auto" }}
-            className="w-full object-cover object-top"
+            style={{ width: "100%", height: "auto" }}
+            className="object-cover object-top"
           />
         </div>
       ))}
@@ -633,13 +634,16 @@ function WeightGraphMockup() {
       });
 
       // Draw weight trend line
-      gsap.from("[data-weight-line]", {
-        strokeDashoffset: 1000,
-        duration: 1.8,
-        delay: flickerEnd + 0.2,
-        ease: "power2.out",
-        scrollTrigger: trigger,
-      });
+      gsap.fromTo("[data-weight-line]", 
+        { strokeDasharray: 1000, strokeDashoffset: 1000 },
+        {
+          strokeDashoffset: 0,
+          duration: 1.8,
+          delay: flickerEnd + 0.2,
+          ease: "power2.out",
+          scrollTrigger: trigger,
+        }
+      );
 
       // Fade in area fill
       gsap.from("[data-weight-area]", {
@@ -799,8 +803,6 @@ function WeightGraphMockup() {
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeDasharray="1000"
-            strokeDashoffset="0"
           />
 
           {/* Data point circles (matches mobile: 3.5r stroke for normal, 5r filled for last) */}
