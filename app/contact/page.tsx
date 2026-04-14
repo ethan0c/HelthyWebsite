@@ -35,9 +35,9 @@ export default function ContactPage() {
       <section className="relative mx-auto max-w-6xl px-6 pb-20 pt-44 lg:px-8 lg:pb-28 lg:pt-52">
         <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <div>
-            <div className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] text-white/65">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-white/45" style={{ fontFamily: "var(--font-body)" }}>
               Contact Helthy
-            </div>
+            </p>
             <h1 className="mt-6 max-w-xl font-heading text-[clamp(48px,7vw,78px)] font-light leading-[0.95] tracking-[-0.04em] text-white">
               Let&apos;s make your next move{" "}
               <span className="text-italics text-helthy-lemon">clear</span>.
