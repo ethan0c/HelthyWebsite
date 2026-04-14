@@ -22,7 +22,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     links: [
       { label: "Contact", href: "/contact" },
       { label: "App Store", href: APP_STORE_URL },
-      { label: "Google Play", href: PLAY_STORE_URL },
+      { label: "Android (coming Apr 28)", href: "#" },
     ],
   },
   {

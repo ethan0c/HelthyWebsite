@@ -5,11 +5,10 @@ import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 import { ArrowRight } from "lucide-react";
 import HelthyMark from "@/components/ui/HelthyMark";
+import AndroidWaitlistButton from "@/components/ui/AndroidWaitlistButton";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
-const PLAY_STORE_URL =
-  "https://play.google.com/store/apps/details?id=com.helthy.app";
 
 export default function CTASection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -133,18 +132,7 @@ export default function CTASection() {
             App Store
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
-          <Link
-            href={PLAY_STORE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary group text-[14px] sm:text-[15px]"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style={{ flexShrink: 0 }}>
-              <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.332a1 1 0 0 1 0 1.72L17.698 13.892l-2.467-2.467 2.467-2.467zM5.864 3.458L16.801 9.79l-2.302 2.302-8.635-8.635z" fill="currentColor" />
-            </svg>
-            Google Play
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </Link>
+          <AndroidWaitlistButton />
         </div>
       </div>
     </section>

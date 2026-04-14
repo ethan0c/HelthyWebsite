@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 import { Sparkles, Brain, MessageCircle, LineChart } from "lucide-react";
+import ComingSoonOverlay from "@/components/ui/ComingSoonOverlay";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
@@ -45,9 +46,21 @@ export default function PricingSection() {
     <section
       id="pricing"
       ref={sectionRef}
-      className="section-light relative section-padding"
+      className="section-light relative section-padding overflow-hidden"
     >
-      <div className="container-page relative text-center">
+      {/* Waitlist gate — blurred lock until v2 drops */}
+      <ComingSoonOverlay
+        label="Premium drops April 28"
+        source="waitlist-pricing"
+        theme="light"
+        blurPx={10}
+      />
+
+      <div
+        className="container-page relative text-center"
+        aria-hidden="true"
+        style={{ pointerEvents: "none", userSelect: "none" }}
+      >
         <p
           data-price-eyebrow
           className="text-[11px] font-semibold uppercase tracking-[0.25em] mb-10"
