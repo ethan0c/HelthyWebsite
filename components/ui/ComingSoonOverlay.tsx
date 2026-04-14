@@ -69,9 +69,9 @@ export default function ComingSoonOverlay({
     : "linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.85) 100%)";
   const textColor = isLight ? "#0A0A0A" : "#F9F9F9";
   const subTextColor = isLight ? "rgba(10,10,10,0.6)" : "rgba(249,249,249,0.6)";
-  const pillBg = isLight ? "rgba(10,10,10,0.08)" : "rgba(205,255,80,0.12)";
-  const pillBorder = isLight ? "rgba(10,10,10,0.14)" : "rgba(205,255,80,0.35)";
-  const pillText = isLight ? "#0A0A0A" : "#CDFF50";
+  const pillBg = isLight ? "rgba(10,10,10,0.06)" : "rgba(205,255,80,0.08)";
+  const pillBorder = isLight ? "rgba(10,10,10,0.12)" : "rgba(205,255,80,0.25)";
+  const pillText = isLight ? "rgba(10,10,10,0.7)" : "#CDFF50";
   const inputBg = isLight ? "rgba(10,10,10,0.06)" : "rgba(255,255,255,0.06)";
   const inputBorder = isLight ? "rgba(10,10,10,0.14)" : "rgba(255,255,255,0.14)";
   const inputText = isLight ? "#0A0A0A" : "#FFFFFF";
@@ -100,7 +100,7 @@ export default function ComingSoonOverlay({
       >
         <div className="w-full max-w-[440px] text-center">
           <span
-            className="inline-block text-[11px] font-semibold uppercase tracking-[0.22em] rounded-full px-3 py-1.5"
+            className="inline-block text-[11px] font-medium uppercase tracking-[0.18em] rounded-full px-[1.125rem] py-2"
             style={{
               background: pillBg,
               border: `1px solid ${pillBorder}`,

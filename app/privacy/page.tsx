@@ -23,9 +23,9 @@ export default function PrivacyPage() {
           <div className="space-y-10">
             {/* Header */}
             <div className="space-y-5 pb-10 border-b border-white/10">
-              <div className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] text-white/65">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-white/45" style={{ fontFamily: "var(--font-body)" }}>
                 Legal
-              </div>
+              </p>
               <h1 className="font-heading text-[clamp(2.5rem,5.5vw,4.5rem)] font-light leading-[1.0] tracking-[-0.03em] text-white">
                 <span className="text-italics text-helthy-lemon">Privacy</span> Policy
               </h1>
