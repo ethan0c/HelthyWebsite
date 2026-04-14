@@ -30,8 +30,8 @@
       border="1px solid #1F1F1F" padding="28px 40px">
       <mj-column>
         <mj-image
-          src="img/logo-long-green.png"
-          alt="Helthy" width="108px" height="21px" align="center" padding="0" />
+          src="img/helthylogo.png"
+          alt="Helthy" width="56px" height="42px" align="center" padding="0" />
       </mj-column>
     </mj-section>
 
