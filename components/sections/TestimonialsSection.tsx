@@ -6,6 +6,17 @@ import { gsap } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { Star } from "lucide-react";
 
+/** iOS Contacts-style: first two capitalized letters of the handle/name. */
+function initialsOf(name: string): string {
+  const clean = name.replace(/[^a-zA-Z]/g, "");
+  if (!clean) return "?";
+  return clean.slice(0, 2).toUpperCase();
+}
+
+/**
+ * Real App Store reviews. Do NOT paraphrase — these are verbatim
+ * (trimmed only where noted with […]) and must stay accurate.
+ */
 /**
  * Real App Store reviews. Do NOT paraphrase — these are verbatim
  * (trimmed only where noted with […]) and must stay accurate.
@@ -52,11 +63,29 @@ const TESTIMONIALS = [
     detail: "App Store review · 🇻🇳",
     accent: "#B45309",
   },
+  {
+    quote: "Great user experience.",
+    name: "iRobin78",
+    detail: "App Store review · 🇮🇳",
+    accent: "#8B5CF6",
+  },
+  {
+    quote: "This is the best app! I use it everyday.",
+    name: "arceus208",
+    detail: "App Store review · 🇺🇸",
+    accent: "#EC4899",
+  },
+  {
+    quote: "Very amazing app.",
+    name: "caakino",
+    detail: "App Store review · 🇺🇸",
+    accent: "#14B8A6",
+  },
 ];
 
-// Split into two rows for dual-marquee — 3 each
-const ROW_1 = TESTIMONIALS.slice(0, 3);
-const ROW_2 = TESTIMONIALS.slice(3);
+// Split into two rows for dual-marquee — almost even
+const ROW_1 = TESTIMONIALS.slice(0, 5);
+const ROW_2 = TESTIMONIALS.slice(5);
 
 const TRANSFORMATIONS = [
   {
@@ -115,15 +144,28 @@ function TestimonialCard({
 
         {/* Attribution */}
         <div className="flex items-center gap-3 pt-5 border-t border-white/[0.06]">
+          {/* iOS-Contacts-style avatar: colored circle + initials */}
           <div
-            className="w-10 h-10 rounded-full flex items-center justify-center text-[14px] font-medium shrink-0"
+            className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 relative"
             style={{
-              background: `linear-gradient(135deg, ${t.accent}25 0%, ${t.accent}10 100%)`,
-              color: t.accent,
-              border: `1px solid ${t.accent}20`,
+              background: `linear-gradient(180deg, ${t.accent} 0%, ${t.accent}CC 100%)`,
+              boxShadow:
+                `inset 0 1px 0 rgba(255,255,255,0.35),` +
+                `inset 0 -1px 2px rgba(0,0,0,0.15),` +
+                `0 2px 6px -2px ${t.accent}55`,
             }}
           >
-            {t.name.charAt(0)}
+            <span
+              className="text-[13px] font-medium"
+              style={{
+                color: "#fff",
+                fontFamily: "'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif",
+                letterSpacing: "-0.01em",
+                textShadow: "0 1px 1px rgba(0,0,0,0.15)",
+              }}
+            >
+              {initialsOf(t.name)}
+            </span>
           </div>
           <div>
             <p className="text-[14px] font-medium text-white">
