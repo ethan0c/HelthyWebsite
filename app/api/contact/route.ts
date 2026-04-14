@@ -2,67 +2,19 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { LoopsClient } from "loops";
 import { getZohoDeskAccessToken } from "@/lib/utils/zoho-auth";
+import { getClientIp, isAllowedOrigin, sanitizeHtml } from "@/lib/security";
+import { checkLimit } from "@/lib/rate-limit";
+import { verifyTurnstile } from "@/lib/turnstile";
 
 // Validation schema
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required").max(100, "Name is too long"),
   email: z.string().email("Invalid email address").max(254),
   message: z.string().min(1, "Message is required").max(5000, "Message is too long"),
-  hcaptchaToken: z.string().optional(), // Optional for now, make required when enabled
+  turnstileToken: z.string().max(2048).optional(),
+  // Honeypot: bots fill hidden fields; humans do not. Must be empty.
+  website: z.string().max(0).optional(),
 });
-
-// Simple in-memory rate limiting (use Redis in production for multi-server setups)
-const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const limit = rateLimitMap.get(ip);
-
-  if (!limit || now > limit.resetTime) {
-    rateLimitMap.set(ip, { count: 1, resetTime: now + 60000 }); // 1 minute window
-    return true;
-  }
-
-  if (limit.count >= 5) { // Max 5 requests per minute
-    return false;
-  }
-
-  limit.count++;
-  return true;
-}
-
-// Sanitize HTML to prevent XSS
-function sanitizeHtml(text: string): string {
-  return text
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#x27;")
-    .replace(/\//g, "&#x2F;");
-}
-
-// Verify hCaptcha token (optional, enable when you add HCAPTCHA_SECRET to .env)
-async function verifyHCaptcha(token: string): Promise<boolean> {
-  const secret = process.env.HCAPTCHA_SECRET;
-  if (!secret) {
-    console.warn("hCaptcha verification skipped: HCAPTCHA_SECRET not set");
-    return true; // Skip verification if not configured
-  }
-
-  try {
-    const response = await fetch("https://hcaptcha.com/siteverify", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `secret=${secret}&response=${token}`,
-    });
-
-    const data = await response.json();
-    return data.success === true;
-  } catch (error) {
-    console.error("hCaptcha verification error:", error);
-    return false;
-  }
-}
 
 // Create or get Zoho Desk contact
 async function getOrCreateZohoDeskContact(
@@ -225,7 +177,7 @@ async function addToLoops(name: string, email: string): Promise<boolean> {
     await loops.updateContact({
       email: email.trim().toLowerCase(),
       properties: {
-        firstName: name.trim(),
+        firstName: sanitizeHtml(name.trim()),
         source: "contact_form",
       },
     });
@@ -245,14 +197,16 @@ async function addToLoops(name: string, email: string): Promise<boolean> {
 
 export async function POST(request: Request) {
   try {
-    // Get client IP for rate limiting
-    const ip =
-      request.headers.get("x-forwarded-for")?.split(",")[0] ||
-      request.headers.get("x-real-ip") ||
-      "unknown";
+    if (!isAllowedOrigin(request)) {
+      return NextResponse.json(
+        { ok: false, error: "Forbidden" },
+        { status: 403 }
+      );
+    }
 
-    // Apply rate limiting
-    if (!checkRateLimit(ip)) {
+    const ip = getClientIp(request);
+    const rl = await checkLimit("contact", ip, 5, 60);
+    if (!rl.success) {
       return NextResponse.json(
         { ok: false, error: "Too many requests. Please try again in a minute." },
         { status: 429 }
@@ -263,15 +217,18 @@ export async function POST(request: Request) {
     const json = await request.json();
     const validatedData = contactSchema.parse(json);
 
-    // Verify hCaptcha token (if provided and configured)
-    if (validatedData.hcaptchaToken) {
-      const isValidCaptcha = await verifyHCaptcha(validatedData.hcaptchaToken);
-      if (!isValidCaptcha) {
-        return NextResponse.json(
-          { ok: false, error: "Captcha verification failed. Please try again." },
-          { status: 400 }
-        );
-      }
+    // Honeypot tripped: silently succeed so bots can't tell.
+    if (validatedData.website) {
+      return NextResponse.json({ ok: true, message: "Thanks!" }, { status: 200 });
+    }
+
+    // Verify Turnstile captcha (skipped in dev if TURNSTILE_SECRET_KEY unset)
+    const captcha = await verifyTurnstile(validatedData.turnstileToken, ip);
+    if (!captcha.success) {
+      return NextResponse.json(
+        { ok: false, error: "Captcha verification failed. Please try again." },
+        { status: 400 }
+      );
     }
 
     // Sanitize inputs

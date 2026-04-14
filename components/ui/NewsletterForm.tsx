@@ -1,13 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import TurnstileWidget from "@/components/ui/TurnstileWidget";
 
 type Status = "idle" | "loading" | "success" | "error";
 
 export default function NewsletterForm() {
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  const onToken = useCallback((token: string) => setTurnstileToken(token), []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -20,7 +25,11 @@ export default function NewsletterForm() {
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim() }),
+        body: JSON.stringify({
+          email: email.trim(),
+          website,
+          turnstileToken: turnstileToken ?? undefined,
+        }),
       });
       const json = await res.json();
 
@@ -38,6 +47,24 @@ export default function NewsletterForm() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full" noValidate>
+      {/* Honeypot — bots fill, humans don't see it */}
+      <input
+        type="text"
+        name="website"
+        value={website}
+        onChange={(e) => setWebsite(e.target.value)}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-10000px",
+          width: 1,
+          height: 1,
+          opacity: 0,
+          pointerEvents: "none",
+        }}
+      />
       <div
         className="flex items-stretch w-full max-w-[380px] rounded-full overflow-hidden transition-colors"
         style={{
@@ -74,6 +101,11 @@ export default function NewsletterForm() {
               ? "Thanks ✓"
               : "Subscribe"}
         </button>
+      </div>
+
+      {/* Invisible Turnstile (emits a token automatically) */}
+      <div className="mt-2">
+        <TurnstileWidget onToken={onToken} theme="light" />
       </div>
 
       {/* Inline status */}

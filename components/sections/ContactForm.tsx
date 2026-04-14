@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import TurnstileWidget from "@/components/ui/TurnstileWidget";
 
 type ContactResponse = {
   ok: boolean;
@@ -25,6 +26,9 @@ export default function ContactForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [feedback, setFeedback] = useState("");
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>(INITIAL_ERRORS);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+
+  const onToken = useCallback((token: string) => setTurnstileToken(token), []);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -35,6 +39,8 @@ export default function ContactForm() {
       name: String(formData.get("name") ?? "").trim(),
       email: String(formData.get("email") ?? "").trim(),
       message: String(formData.get("message") ?? "").trim(),
+      website: String(formData.get("website") ?? ""),
+      turnstileToken: turnstileToken ?? undefined,
     };
 
     setIsSubmitting(true);
@@ -81,6 +87,22 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      {/* Honeypot — bots fill, humans don't see it */}
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-10000px",
+          width: 1,
+          height: 1,
+          opacity: 0,
+          pointerEvents: "none",
+        }}
+      />
       <div className="grid gap-5 sm:grid-cols-2">
         <Field
           id="name"
@@ -121,6 +143,9 @@ export default function ContactForm() {
           </p>
         ) : null}
       </div>
+
+      {/* Invisible Turnstile (emits a token automatically) */}
+      <TurnstileWidget onToken={onToken} theme="dark" />
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <button
