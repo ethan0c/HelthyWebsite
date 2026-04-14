@@ -1,0 +1,149 @@
+<mjml>
+  <mj-head>
+    <mj-title>Helthy v2 is here.</mj-title>
+    <mj-preview>Android is live, AI got smarter, and Premium is now $2.99/mo. Here's everything new.</mj-preview>
+    <mj-attributes>
+      <mj-all font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif" />
+      <mj-text color="#FFFFFF" font-size="15px" font-weight="400" line-height="1.6" padding="0" />
+      <mj-section padding="0" />
+      <mj-image padding="0" border="0" />
+    </mj-attributes>
+    <mj-style>
+      a { text-decoration: none; }
+      .bg-grad { background: #0F0F0F; background: linear-gradient(180deg, #0F0F0F 0%, #1A2024 35%, #1F282E 65%, #0F0F0F 100%) !important; }
+    </mj-style>
+  </mj-head>
+
+  <mj-body background-color="#0F0F0F" width="560px" css-class="bg-grad">
+
+    <!-- Top spacer -->
+    <mj-section padding="32px 0 0"><mj-column><mj-text padding="0"> </mj-text></mj-column></mj-section>
+
+    <!-- HERO: logo + headline + intro (baked-in image) -->
+    <mj-section background-color="#151515" padding="0">
+      <mj-column padding="0">
+        <mj-image
+          src="img/hero-block.png"
+          alt="We rebuilt Helthy. Here's what's new. v2 is live on iOS and Android."
+          width="560px"
+          padding="0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Feature card 01: AI -->
+    <mj-section background-color="#151515" padding="14px 40px 14px">
+      <mj-column padding="0">
+        <mj-image
+          src="img/card-ai.png"
+          alt="01 — AI got a lot smarter. Body fat estimates from progress photos. Plateau detection. Goal ETA predictor. Weekly physique report."
+          width="478px"
+          padding="0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Feature card 02: Insights -->
+    <mj-section background-color="#151515" padding="0 40px 14px">
+      <mj-column padding="0">
+        <mj-image
+          src="img/card-insights.png"
+          alt="02 — Insights that actually mean something. Momentum Ring, signal cards, weekly narrative in plain English."
+          width="478px"
+          padding="0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Feature card 03: Logging -->
+    <mj-section background-color="#151515" padding="0 40px 14px">
+      <mj-column padding="0">
+        <mj-image
+          src="img/card-logging.png"
+          alt="03 — Logging got faster. Nutrition label scanner, quick meal entry, photo logging. Import from MFP, MacroFactor, Hevy, Strong."
+          width="478px"
+          padding="0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Feature card 04: Android -->
+    <mj-section background-color="#151515" padding="0 40px 28px">
+      <mj-column padding="0">
+        <mj-image
+          src="img/card-android.png"
+          alt="04 — Android is here + 6 languages. Helthy is now on Google Play. Arabic, German, Spanish, French, Hindi, Chinese."
+          width="478px"
+          padding="0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Premium card (clickable image) -->
+    <mj-section background-color="#151515" padding="0 40px 24px">
+      <mj-column padding="0">
+        <mj-image
+          src="img/premium-card.png"
+          alt="Introducing Premium — $2.99/mo. Everything unlimited. Tap to unlock."
+          href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
+          width="478px"
+          padding="0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Store buttons (each clickable) -->
+    <mj-section background-color="#151515" padding="0 40px 36px">
+      <mj-column padding="0">
+        <mj-raw>
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0;">
+            <tr>
+              <td style="padding-right:12px;vertical-align:middle;">
+                <a href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974" style="display:block;text-decoration:none;">
+                  <img src="img/btn-appstore.png" alt="Download on the App Store" width="151" height="49" style="display:block;width:151px;height:49px;border:0;" />
+                </a>
+              </td>
+              <td style="vertical-align:middle;">
+                <a href="https://play.google.com/store/apps/details?id=com.helthy.app" style="display:block;text-decoration:none;">
+                  <img src="img/btn-googleplay.png" alt="Get it on Google Play" width="163" height="50" style="display:block;width:163px;height:50px;border:0;" />
+                </a>
+              </td>
+            </tr>
+          </table>
+        </mj-raw>
+      </mj-column>
+    </mj-section>
+
+    <!-- Divider -->
+    <mj-section background-color="#151515" padding="0 40px">
+      <mj-column padding="0">
+        <mj-divider border-color="#2A2A2A" border-width="1px" padding="0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Signature -->
+    <mj-section background-color="#151515" padding="24px 40px 28px">
+      <mj-column padding="0">
+        <mj-text padding="0" font-size="15px" font-weight="400" line-height="1.6"
+          color="rgba(255,255,255,0.55)">
+          – Chibu &amp; Ebuka<br />
+          <span style="font-size:13px;">P.S. Reply directly with feedback — we read every message.</span>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- FOOTER -->
+    <mj-section background-color="#111111" padding="20px 40px 24px">
+      <mj-column padding="0">
+        <mj-text align="center" font-size="12px" font-weight="400" line-height="1.5"
+          color="rgba(255,255,255,0.3)" padding="0 0 8px">
+          You're receiving this because you signed up for Helthy updates.<br />
+          Helthy App &middot; 115th Street, Cleveland, Ohio
+        </mj-text>
+        <mj-text align="center" font-size="12px" font-weight="400" padding="0">
+          <a href="{unsubscribe_link}" style="color:rgba(255,255,255,0.3);text-decoration:underline;">Unsubscribe</a>
+          &nbsp;&middot;&nbsp;
+          <a href="https://helthy.app/privacy" style="color:rgba(255,255,255,0.3);text-decoration:underline;">Privacy Policy</a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Bottom spacer -->
+    <mj-section padding="40px 0 0"><mj-column><mj-text padding="0"> </mj-text></mj-column></mj-section>
+
+  </mj-body>
+</mjml>
