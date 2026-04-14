@@ -65,7 +65,7 @@ export default function CTASection() {
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         {/* Primary lemon glow */}
         <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] max-w-[900px] aspect-square rounded-full blur-[180px]"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[900px] aspect-square rounded-full blur-[180px]"
           style={{
             background:
               "radial-gradient(circle, rgba(205,255,80,0.18) 0%, rgba(205,255,80,0.04) 40%, transparent 65%)",

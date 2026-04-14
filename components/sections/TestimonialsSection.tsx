@@ -333,7 +333,7 @@ export default function TestimonialsSection() {
         aria-hidden="true"
       >
         <div
-          className="absolute left-1/2 top-0 -translate-x-1/2 w-[120vw] max-w-[1200px] h-[60%] rounded-full blur-[160px] opacity-40"
+          className="absolute left-1/2 top-0 -translate-x-1/2 w-full max-w-[1200px] h-[60%] rounded-full blur-[160px] opacity-40"
           style={{
             background:
               "radial-gradient(ellipse, rgba(205,255,80,0.04) 0%, transparent 70%)",
@@ -356,7 +356,7 @@ export default function TestimonialsSection() {
         {/* Marquee rows */}
         <div className="flex flex-col gap-5">
           {/* Row 1 — scrolls left */}
-          <div className="relative">
+          <div className="relative overflow-hidden">
             {/* Edge fades */}
             <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none"
               style={{ background: "linear-gradient(90deg, var(--background) 0%, transparent 100%)" }}
@@ -374,7 +374,7 @@ export default function TestimonialsSection() {
           </div>
 
           {/* Row 2 — scrolls right */}
-          <div className="relative">
+          <div className="relative overflow-hidden">
             <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none"
               style={{ background: "linear-gradient(90deg, var(--background) 0%, transparent 100%)" }}
             />
