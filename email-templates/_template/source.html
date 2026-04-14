@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!--
+  SOURCE — author the email design here in plain CSS with real webfonts.
+  This file is NEVER sent. Run scripts/render_email_images.py to crop the
+  [data-email-crop] regions into PNGs, then ship email.html which references
+  those PNGs. See EMAIL_GUIDE.md for details.
+
+  Every visual region you want preserved in Gmail must be wrapped with:
+    data-email-crop="<name>"  data-email-bg="#151515"
+
+  The bg is what fills any transparent PNG corners (should match surroundings).
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Email source</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0F0F0F;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      color: #FFFFFF;
+    }
+    .container { max-width: 560px; margin: 0 auto; }
+    .body-pad { padding: 40px; background: #151515; }
+
+    /* ── Typography tokens (use Unbounded for headings/labels, DM Sans for body) ── */
+    .h1 { font-family: 'Unbounded'; font-weight: 500; font-size: 34px; line-height: 1.1; letter-spacing: -0.025em; }
+    .eyebrow { font-family: 'Unbounded'; font-weight: 500; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #CDFF50; }
+    .label { font-family: 'Unbounded'; font-weight: 500; font-size: 11px; letter-spacing: 0.05em; color: #CDFF50; }
+    .card-title { font-family: 'Unbounded'; font-weight: 500; font-size: 17px; line-height: 1.3; letter-spacing: -0.01em; }
+    .body { font-family: 'DM Sans'; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.72); }
+
+    /* ── Card: dark gradient with lemon-tinted inset highlight ── */
+    .card {
+      background: linear-gradient(180deg, #212121, #161616);
+      border: 1px solid #2A2A2A;
+      border-radius: 16px;
+      padding: 24px 26px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 8px 24px rgba(0,0,0,0.35);
+      margin-bottom: 14px;
+    }
+
+    /* ── Premium (lemon-tinted) card ── */
+    .premium {
+      background: linear-gradient(160deg, #1F2A0D, #151A08 60%, #0F1106);
+      border: 1px solid rgba(205,255,80,0.28);
+      border-radius: 18px;
+      padding: 28px 26px;
+      box-shadow:
+        inset 0 1px 0 rgba(205,255,80,0.18),
+        0 12px 40px rgba(205,255,80,0.10),
+        0 8px 24px rgba(0,0,0,0.4);
+    }
+    .price { font-family: 'Unbounded'; font-size: 34px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; }
+    .price-suffix { font-size: 20px; font-weight: 400; color: rgba(255,255,255,0.5); letter-spacing: 0; }
+
+    /* ── Primary CTA (matches site btn-primary) ── */
+    .btn-primary {
+      display: inline-block;
+      background: #CDFF50;
+      color: #0B0B0B;
+      border-radius: 999px;
+      padding: 14px 32px;
+      font-family: 'DM Sans';
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: -0.005em;
+      text-decoration: none;
+      box-shadow:
+        inset 0 2px 1px 0 rgba(255,255,255,0.5),
+        inset 0 10px 10px -3.75px rgba(255,255,255,0.25),
+        0 20px 60px rgba(205,255,80,0.25);
+    }
+
+    /* ── Secondary / store button (matches site btn-secondary) ── */
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      padding: 14px 26px;
+      color: #FFFFFF;
+      font-family: 'DM Sans';
+      font-weight: 500;
+      font-size: 15px;
+      text-decoration: none;
+      box-shadow: inset 0 2px 1px 0 rgba(255,255,255,0.12);
+    }
+
+    .accent-line { height: 1px; background: linear-gradient(90deg, transparent, #CDFF50, transparent); }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ── HERO: logo + headline + intro copy ── -->
+    <div data-email-crop="hero" data-email-bg="#111111" style="background:#111111;border-radius:16px 16px 0 0;padding:28px 40px 0;">
+      <div style="text-align:center;">
+        <!-- Use your logo path relative to this file, or an absolute URL -->
+        <img src="../../public/logos/helthylogo.png" alt="Helthy" width="56" height="42" style="margin:0 auto;" />
+      </div>
+      <div class="accent-line" style="margin-top:28px;"></div>
+      <div class="body-pad" style="padding:40px 0 32px;">
+        <h1 class="h1" style="margin:0 0 20px;">
+          Your headline here.<br/>
+          <span style="color:#CDFF50;">Second line in lemon.</span>
+        </h1>
+        <p class="body" style="margin:0;">
+          Intro paragraph. Keep it two sentences max. Set the context for what follows.
+        </p>
+      </div>
+    </div>
+
+    <div class="body-pad">
+
+      <!-- ── FEATURE CARDS — add one [data-email-crop] per card ── -->
+      <div data-email-crop="card-1" data-email-bg="#151515" class="card">
+        <p class="label" style="margin:0 0 10px;">01</p>
+        <p class="card-title" style="margin:0 0 8px;">First feature headline.</p>
+        <p class="body" style="margin:0;">Description body — keep it concise, one paragraph.</p>
+      </div>
+
+      <div data-email-crop="card-2" data-email-bg="#151515" class="card">
+        <p class="label" style="margin:0 0 10px;">02</p>
+        <p class="card-title" style="margin:0 0 8px;">Second feature headline.</p>
+        <p class="body" style="margin:0;">Description body.</p>
+      </div>
+
+      <!-- ── PREMIUM CARD ── -->
+      <div data-email-crop="premium" data-email-bg="#151515" class="premium" style="margin-top:18px;">
+        <p class="eyebrow" style="margin:0 0 6px;">Introducing Premium</p>
+        <p class="price" style="margin:0 0 14px;">$2.99<span class="price-suffix">/mo</span></p>
+        <p class="body" style="margin:0 0 22px;font-size:14px;color:rgba(255,255,255,0.65);">
+          Everything. Describe what's included.
+        </p>
+        <a href="#" class="btn-primary">Unlock Premium →</a>
+      </div>
+
+      <!-- ── STORE BUTTONS ── -->
+      <div style="margin-top:28px;">
+        <a href="#" data-email-crop="btn-appstore" data-email-bg="#151515" class="btn-secondary">
+          <svg width="14" height="14" viewBox="0 0 256 256" aria-hidden="true"><path d="M64.34,196.07l-9.45,16a8,8,0,1,1-13.78-8.14l9.46-16a8,8,0,1,1,13.77,8.14ZM232,152H184.2l-30.73-52a8,8,0,1,0-13.77,8.14l61.41,103.93a8,8,0,0,0,13.78-8.14L193.66,168H232a8,8,0,0,0,0-16Zm-89.53,0H90.38L158.89,36.07a8,8,0,0,0-13.78-8.14L128,56.89l-17.11-29a8,8,0,1,0-13.78,8.14l21.6,36.55L71.8,152H24a8,8,0,0,0,0,16H142.47a8,8,0,1,0,0-16Z" fill="#FFFFFF"/></svg>
+          App Store
+        </a>
+        <a href="#" data-email-crop="btn-googleplay" data-email-bg="#151515" class="btn-secondary" style="margin-left:12px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.332a1 1 0 0 1 0 1.72L17.698 13.892l-2.467-2.467 2.467-2.467zM5.864 3.458L16.801 9.79l-2.302 2.302-8.635-8.635z" fill="#FFFFFF"/></svg>
+          Google Play
+        </a>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
