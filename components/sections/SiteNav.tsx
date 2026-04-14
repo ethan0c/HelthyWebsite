@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import CTAButton from "@/components/ui/CTAButton";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
@@ -93,41 +94,9 @@ export default function SiteNav() {
           ))}
         </ul>
 
-        {/* Inline CTA — lemon chip (mobile primary), mirrors app button style */}
-        <Link
-          href={APP_STORE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex items-center gap-2.5 transition-transform hover:scale-[1.02]"
-          style={{
-            background: "#CDFF50",
-            color: "#0B0B0B",
-            borderRadius: 999,
-            padding: "7px 8px 7px 18px",
-            fontFamily: "var(--font-body)",
-            fontWeight: 500,
-            fontSize: 14,
-            letterSpacing: "-0.005em",
-            boxShadow:
-              "inset 0 2px 1px 0 rgba(255,255,255,0.5)," +
-              "inset 0 0.6px 0.6px -1.25px rgba(255,255,255,0.72)," +
-              "inset 0 2.29px 2.29px -2.5px rgba(255,255,255,0.635)," +
-              "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)",
-          }}
-        >
-          <span>Download now</span>
-          <span
-            className="flex items-center justify-center"
-            style={{
-              width: 24,
-              height: 24,
-              borderRadius: 999,
-              background: "rgba(11,11,11,0.18)",
-            }}
-          >
-            <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={3} style={{ color: "#0B0B0B" }} />
-          </span>
-        </Link>
+        <CTAButton href={APP_STORE_URL} variant="primary" size="sm">
+          Download now
+        </CTAButton>
       </nav>
 
       {/* Mobile: hamburger top-right — matches main */}
@@ -184,17 +153,15 @@ export default function SiteNav() {
                 </Link>
               </li>
             ))}
-            <li className="pt-2">
-              <Link
+            <li className="pt-2 flex">
+              <CTAButton
                 href={APP_STORE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                variant="primary"
+                size="sm"
                 onClick={() => setOpen(false)}
-                className="btn-primary text-[14px] w-full justify-center"
-                style={{ padding: "10px 16px" }}
               >
                 Download now
-              </Link>
+              </CTAButton>
             </li>
           </ul>
         </div>
