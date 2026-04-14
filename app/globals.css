@@ -324,12 +324,12 @@ body {
   transition: border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
 }
 .glass-card-hover:hover {
-  border-color: rgba(205, 251, 80, 0.18);
+  border-color: rgba(205, 255, 80, 0.18);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
   box-shadow:
     rgba(255, 255, 255, 0.08) 0px 1px 0px 0px inset,
-    rgba(205, 251, 80, 0.12) 0px 12px 36px -12px;
+    rgba(205, 255, 80, 0.12) 0px 12px 36px -12px;
 }
 
 /* MOBILE-DNA card — premium depth with multi-layer shadows + inset highlights.
@@ -356,28 +356,28 @@ body {
     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .card-helthy-glow {
-  border-color: rgba(205, 251, 80, 0.25);
+  border-color: rgba(205, 255, 80, 0.25);
   background:
-    linear-gradient(135deg, rgba(205, 251, 80, 0.06) 0%, transparent 50%),
+    linear-gradient(135deg, rgba(205, 255, 80, 0.06) 0%, transparent 50%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.008) 100%);
   box-shadow:
     rgba(255, 255, 255, 0.1) 0px 1px 0px 0px inset,
-    rgba(205, 251, 80, 0.04) 0px 0px 20px 0px inset,
+    rgba(205, 255, 80, 0.04) 0px 0px 20px 0px inset,
     rgba(0, 0, 0, 0.12) 0px 2px 4px -1px,
     rgba(0, 0, 0, 0.15) 0px 8px 16px -4px,
-    rgba(205, 251, 80, 0.2) 0px 30px 60px -20px,
-    rgba(205, 251, 80, 0.12) 0px 12px 30px -10px;
+    rgba(205, 255, 80, 0.2) 0px 30px 60px -20px,
+    rgba(205, 255, 80, 0.12) 0px 12px 30px -10px;
 }
 .card-helthy-hover:hover {
-  border-color: rgba(205, 251, 80, 0.2);
+  border-color: rgba(205, 255, 80, 0.2);
   transform: translateY(-2px);
   box-shadow:
     rgba(255, 255, 255, 0.1) 0px 1px 0px 0px inset,
-    rgba(205, 251, 80, 0.03) 0px 0px 16px 0px inset,
+    rgba(205, 255, 80, 0.03) 0px 0px 16px 0px inset,
     rgba(0, 0, 0, 0.1) 0px 2px 4px -1px,
     rgba(0, 0, 0, 0.12) 0px 8px 16px -4px,
-    rgba(205, 251, 80, 0.18) 0px 36px 70px -24px,
-    rgba(205, 251, 80, 0.1) 0px 12px 30px -10px;
+    rgba(205, 255, 80, 0.18) 0px 36px 70px -24px,
+    rgba(205, 255, 80, 0.1) 0px 12px 30px -10px;
 }
 
 .bento-card {
@@ -394,8 +394,8 @@ body {
     rgba(0, 0, 0, 0.15) 0px 16px 40px -16px;
 }
 
-.lemon-glow      { box-shadow: 0 18px 50px -18px rgba(205, 251, 80, 0.45); }
-.lemon-glow-soft { box-shadow: 0 14px 36px -14px rgba(205, 251, 80, 0.25); }
+.lemon-glow      { box-shadow: 0 18px 50px -18px rgba(205, 255, 80, 0.45); }
+.lemon-glow-soft { box-shadow: 0 14px 36px -14px rgba(205, 255, 80, 0.25); }
 
 /* ── Buttons ──────────────────────────────────────────────────── */
 .btn-primary {
@@ -426,7 +426,7 @@ body {
     rgba(255,255,255,0.72) 0px 0.6px 0.6px -1.25px inset,
     rgba(255,255,255,0.635) 0px 2.29px 2.29px -2.5px inset,
     rgba(255,255,255,0.25) 0px 10px 10px -3.75px inset,
-    0 20px 60px rgba(205,251,80,0.4);
+    0 20px 60px rgba(205,255,80,0.4);
 }
 .btn-secondary {
   display: inline-flex;
@@ -492,7 +492,7 @@ body {
   pointer-events: none;
   background: radial-gradient(
     ellipse 60% 50% at 50% 40%,
-    rgba(205, 251, 80, 0.04) 0%,
+    rgba(205, 255, 80, 0.04) 0%,
     transparent 70%
   );
 }
@@ -503,7 +503,7 @@ body {
   pointer-events: none;
   background: radial-gradient(
     ellipse 80% 40% at 50% 0%,
-    rgba(205, 251, 80, 0.035) 0%,
+    rgba(205, 255, 80, 0.035) 0%,
     transparent 70%
   );
 }
@@ -536,8 +536,8 @@ html.lenis, html.lenis body { height: auto; }
   gap: 0.5rem;
   padding: 0.5rem 1.125rem;
   border-radius: 999px;
-  border: 1px solid rgba(205, 251, 80, 0.25);
-  background: rgba(205, 251, 80, 0.08);
+  border: 1px solid rgba(205, 255, 80, 0.25);
+  background: rgba(205, 255, 80, 0.08);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   font-family: var(--font-display);
@@ -561,7 +561,7 @@ html.lenis, html.lenis body { height: auto; }
   left: -10%;
   width: 70vmin;
   height: 70vmin;
-  background: radial-gradient(circle, rgba(205, 251, 80, 0.22) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(205, 255, 80, 0.22) 0%, transparent 65%);
   animation: mesh-drift-1 22s ease-in-out infinite;
 }
 .mesh-blob-2 {
@@ -569,7 +569,7 @@ html.lenis, html.lenis body { height: auto; }
   right: -10%;
   width: 75vmin;
   height: 75vmin;
-  background: radial-gradient(circle, rgba(205, 251, 80, 0.14) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(205, 255, 80, 0.14) 0%, transparent 65%);
   animation: mesh-drift-2 28s ease-in-out infinite;
 }
 .mesh-blob-3 {

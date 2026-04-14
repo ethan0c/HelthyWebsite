@@ -48,8 +48,7 @@ export default function PricingSection() {
     >
       {/* Light container */}
       <div
-        className="relative mx-auto max-w-6xl rounded-[2rem] px-8 py-16 md:px-16 md:py-20"
-        style={{ background: "#EBEBEB" }}
+        className="section-light relative mx-auto max-w-6xl rounded-[2rem] px-8 py-16 md:px-16 md:py-20"
       >
         {/* Eyebrow */}
         <p
@@ -109,7 +108,7 @@ export default function PricingSection() {
                 <li key={f} className="flex items-start gap-3">
                   <Check
                     className="w-[18px] h-[18px] flex-shrink-0 mt-0.5"
-                    style={{ color: "#CDFB50" }}
+                    style={{ color: "#CDFF50" }}
                     strokeWidth={2.5}
                   />
                   <span
@@ -128,7 +127,7 @@ export default function PricingSection() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center w-full rounded-full py-3.5 px-6 text-[14px] font-medium transition-all duration-200"
               style={{
-                background: "#CDFB50",
+                background: "#CDFF50",
                 color: "#111",
               }}
             >
@@ -163,10 +162,12 @@ export default function PricingSection() {
                 </span>
                 <button
                   type="button"
+                  role="switch"
+                  aria-checked={isYearly}
                   onClick={() => setIsYearly(!isYearly)}
                   className="relative w-[44px] h-[24px] rounded-full transition-colors duration-200 focus:outline-none"
                   style={{
-                    background: isYearly ? "#CDFB50" : "#ccc",
+                    background: isYearly ? "#CDFF50" : "#ccc",
                   }}
                   aria-label="Toggle yearly/monthly pricing"
                 >
@@ -229,11 +230,11 @@ export default function PricingSection() {
                 <li key={label} className="flex items-start gap-3">
                   <div
                     className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5"
-                    style={{ background: "#f3f3f3" }}
+                    style={{ background: "rgba(205,255,80,0.16)" }}
                   >
                     <Icon
                       className="w-3 h-3"
-                      style={{ color: "#666" }}
+                      style={{ color: "#4a7a00" }}
                       strokeWidth={2}
                     />
                   </div>

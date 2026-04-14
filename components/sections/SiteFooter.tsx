@@ -36,7 +36,7 @@ export default function SiteFooter() {
               <Image
                 src="/logos/logo-long-white.png"
                 alt="Helthy"
-                width={120}
+                width={162}
                 height={32}
                 className="h-7 w-auto"
               />

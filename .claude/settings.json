@@ -6,7 +6,9 @@
       "WebFetch(domain:myfitnesspal.com)",
       "WebFetch(domain:cal.ai)",
       "WebFetch(domain:macrofactor.com)",
-      "WebFetch(domain:www.cal.ai)"
+      "WebFetch(domain:www.cal.ai)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/ethanlma/Documents/dev/helthy-web/public/phones/step-2/__TRACKED_VAR__.png)",
+      "Bash(find app:*)"
     ]
   },
   "enabledPlugins": {

@@ -4,7 +4,7 @@ description: Recurring a11y issues found in April 2026 audit — focus styles, k
 type: project
 ---
 
-Zero focus-visible styles anywhere in the codebase as of April 2026. No `:focus-visible` rules in globals.css and no `focus:` Tailwind utilities used in any component. Every interactive element (nav links, CTA buttons, FAQ cards, LogoStrip icon links) is keyboard-inaccessible in a meaningful way.
+As of April 2026: `:focus-visible` IS now defined in globals.css (lines 146-155) — `outline: 2px solid var(--helthy-lemon); outline-offset: 3px; border-radius: 4px`. The base rule exists. However, many interactive elements inline `style={{ ... }}` overrides that may obscure the outline, and the rule is not applied via Tailwind utilities on any component — it relies solely on the browser respecting the global CSS cascade.
 
 dangerouslySetInnerHTML used in AICoachSection.tsx lines 250-253 to render bold markdown. The input is hardcoded CONVERSATIONS array (not user-supplied), so no live XSS risk, but the pattern is flagged for future maintenance risk if conversations ever become dynamic.
 

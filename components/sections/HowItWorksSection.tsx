@@ -167,8 +167,8 @@ function OnboardingMockup() {
       <Image
         src="/phones/set-goals.png"
         alt="Set your fitness goals and nutrition targets"
-        width={320}
-        height={693}
+        width={1320}
+        height={2274}
         style={{ width: "100%", height: "auto" }}
         className="object-cover object-top"
       />
@@ -182,9 +182,9 @@ function OnboardingMockup() {
 
 function LoggingMockup() {
   const phones = [
-    { src: "/phones/step-2/workout-log.png", alt: "Workout set tracking" },
-    { src: "/phones/step-2/food-search.png", alt: "Food search and meal logging" },
-    { src: "/phones/step-2/weight-log.png", alt: "Weight logging" },
+    { src: "/phones/step-2/workout-log.png", alt: "Workout set tracking", width: 1320, height: 2166 },
+    { src: "/phones/step-2/food-search.png", alt: "Food search and meal logging", width: 1320, height: 1751 },
+    { src: "/phones/step-2/weight-log.png", alt: "Weight logging", width: 1320, height: 1396 },
   ];
 
   return (
@@ -201,8 +201,8 @@ function LoggingMockup() {
           <Image
             src={phone.src}
             alt={phone.alt}
-            width={200}
-            height={433}
+            width={phone.width}
+            height={phone.height}
             style={{ width: "100%", height: "auto" }}
             className="object-cover object-top"
           />
@@ -227,8 +227,8 @@ function CoachingMockup() {
       <Image
         src="/phones/see-insights.png"
         alt="AI coaching insights connecting nutrition and training"
-        width={320}
-        height={693}
+        width={1243}
+        height={1529}
         style={{ width: "100%", height: "auto" }}
         className="object-cover object-top"
       />

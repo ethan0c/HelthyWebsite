@@ -189,7 +189,7 @@ function HeroContent({ mobile = false }: { mobile?: boolean }) {
         <Link
           href={APP_STORE_URL}
           target="_blank" rel="noopener noreferrer"
-          className="group inline-flex items-center justify-center gap-2.5 rounded-full transition-all hover:-translate-y-[2px] hover:shadow-[0_20px_60px_rgba(205,251,80,0.4)]"
+          className="group inline-flex items-center justify-center gap-2.5 rounded-full transition-all hover:-translate-y-[2px] hover:shadow-[0_20px_60px_rgba(205,255,80,0.4)]"
           style={{
             padding: mobile ? "12px 28px" : "14px 32px",
             backgroundColor: "#CDFF50",
@@ -206,7 +206,7 @@ function HeroContent({ mobile = false }: { mobile?: boolean }) {
         <Link
           href={PLAY_STORE_URL}
           target="_blank" rel="noopener noreferrer"
-          className="group inline-flex items-center justify-center gap-2.5 rounded-full transition-all hover:-translate-y-[2px] hover:shadow-[0_20px_60px_rgba(205,251,80,0.4)]"
+          className="group inline-flex items-center justify-center gap-2.5 rounded-full transition-all hover:-translate-y-[2px] hover:shadow-[0_20px_60px_rgba(205,255,80,0.4)]"
           style={{
             padding: mobile ? "12px 28px" : "14px 32px",
             backgroundColor: "#CDFF50",

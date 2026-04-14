@@ -50,9 +50,8 @@ export default function SiteNav() {
               src="/logos/logo-long-white.png"
               alt="Helthy"
               height={24}
-              width={104}
+              width={122}
               className="object-contain"
-              style={{ height: "auto" }}
               priority
             />
           </Link>

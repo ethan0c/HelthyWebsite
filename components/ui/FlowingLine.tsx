@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Abstract organic line art that flows down the entire page.
@@ -68,32 +68,33 @@ const LINES: Line[] = [
 ];
 
 export default function FlowingLine() {
+  const svgRef = useRef<SVGSVGElement>(null);
   const [pageHeight, setPageHeight] = useState(0);
 
   useEffect(() => {
+    const parent = svgRef.current?.parentElement;
+    if (!parent) return;
+
     const measure = () => {
-      setPageHeight(document.body.scrollHeight);
+      setPageHeight(parent.offsetHeight);
     };
 
     measure();
-    window.addEventListener("load", measure);
     const ro = new ResizeObserver(measure);
-    ro.observe(document.body);
+    ro.observe(parent);
     return () => {
-      window.removeEventListener("load", measure);
       ro.disconnect();
     };
   }, []);
-
-  if (pageHeight === 0) return null;
 
   const w = 1920;
   const h = pageHeight;
 
   return (
     <svg
+      ref={svgRef}
       className="absolute inset-x-0 top-0 w-full pointer-events-none"
-      style={{ height: pageHeight, zIndex: 0 }}
+      style={{ height: pageHeight || "100%", zIndex: 0 }}
       viewBox={`0 0 ${w} ${h}`}
       preserveAspectRatio="none"
       fill="none"
@@ -103,7 +104,7 @@ export default function FlowingLine() {
         <path
           key={i}
           d={line.d(w, h)}
-          stroke="#CDFB50"
+          stroke="#CDFF50"
           strokeWidth={line.strokeWidth}
           strokeLinecap="round"
           opacity={line.opacity}

@@ -109,9 +109,9 @@ export default function FeaturesRow() {
           >
             <TripleScreenshotMockup
               screens={[
-                { src: "/phones/exercise-library-screen.png", alt: "Exercise library with search" },
-                { src: "/phones/exercise-info-screen.png", alt: "Exercise form tips and how-to" },
-                { src: "/phones/activity-logging-screen.png", alt: "Cardio and activity logging" },
+                { src: "/phones/exercise-library-screen.png", alt: "Exercise library with search", width: 1321, height: 2659 },
+                { src: "/phones/exercise-info-screen.png", alt: "Exercise form tips and how-to", width: 1328, height: 2707 },
+                { src: "/phones/activity-logging-screen.png", alt: "Cardio and activity logging", width: 1328, height: 2117 },
               ]}
             />
           </FeatureCard>
@@ -263,7 +263,11 @@ function ScreenshotMockup({ src, alt, wide, noCrop, cropBottom }: { src: string;
 // ───────────────────────────────────────────────────────────
 // Triple screenshot mockup — 3 phones side by side
 
-function TripleScreenshotMockup({ screens }: { screens: { src: string; alt: string }[] }) {
+function TripleScreenshotMockup({
+  screens,
+}: {
+  screens: { src: string; alt: string; width: number; height: number }[];
+}) {
   return (
     <div className="flex items-end justify-center gap-3 sm:gap-5 px-4 mb-[-40px]">
       {screens.map((s, i) => (
@@ -278,8 +282,8 @@ function TripleScreenshotMockup({ screens }: { screens: { src: string; alt: stri
           <Image
             src={s.src}
             alt={s.alt}
-            width={300}
-            height={650}
+            width={s.width}
+            height={s.height}
             style={{ width: "100%", height: "auto" }}
             className="object-cover object-top"
           />

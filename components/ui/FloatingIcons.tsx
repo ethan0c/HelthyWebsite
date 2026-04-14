@@ -39,7 +39,7 @@ export default function FloatingIcons({
   curves,
   positions,
   opacity = 0.06,
-  color = "#CDFB50",
+  color = "#CDFF50",
   className,
 }: FloatingIconsProps) {
   const selected = curves

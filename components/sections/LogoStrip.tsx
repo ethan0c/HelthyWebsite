@@ -48,7 +48,7 @@ export default function LogoStrip() {
               flexShrink: 0,
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(205,251,80,0.3)";
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(205,255,80,0.3)";
               (e.currentTarget as HTMLElement).style.color = "#CDFF50";
             }}
             onMouseLeave={(e) => {

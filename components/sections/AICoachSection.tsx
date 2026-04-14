@@ -139,7 +139,7 @@ export default function AICoachSection() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(205,251,80,0.06) 0%, transparent 70%)",
+            "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(205,255,80,0.06) 0%, transparent 70%)",
         }}
         aria-hidden="true"
       />
@@ -307,7 +307,7 @@ function MealCard({ meal }: { meal: MealSuggestion }) {
     >
       <div
         className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-        style={{ background: "rgba(205,251,80,0.12)" }}
+        style={{ background: "rgba(205,255,80,0.12)" }}
       >
         <span className="text-base">🍽️</span>
       </div>
@@ -327,7 +327,7 @@ function MealCard({ meal }: { meal: MealSuggestion }) {
 
       <div
         className="flex items-center gap-1 px-2 py-1 rounded-md flex-shrink-0"
-        style={{ background: "rgba(205,251,80,0.12)" }}
+        style={{ background: "rgba(205,255,80,0.12)" }}
       >
         <span className="text-[11px] font-semibold" style={{ color: "#CDFF50" }}>
           {meal.kcal} kcal
