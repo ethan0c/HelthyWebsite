@@ -6,47 +6,50 @@ import { gsap } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { Star } from "lucide-react";
 
+/**
+ * Real App Store reviews. Do NOT paraphrase — these are verbatim
+ * (trimmed only where noted with […]) and must stay accurate.
+ */
 const TESTIMONIALS = [
   {
     quote:
-      "I've tried MyFitnessPal, Cronometer, MacroFactor — Helthy is the first one that stuck. Snap a photo and it's logged. That's it.",
-    name: "Marcus T.",
-    detail: "Lost 14 kg in 5 months",
+      "I used to hate logging food because it felt like homework. This app makes it surprisingly simple. The barcode scanner works well, and the AI meal logging is way more accurate than I expected. […] It feels like it was built for real people, not just bodybuilders or hardcore macro trackers.",
+    name: "Tasshtfxv",
+    detail: "App Store review · 🇳🇬",
     accent: "#22C55E",
   },
   {
     quote:
-      "The AI coach told me to skip legs after a bad sleep night. No other app connects my data like that.",
-    name: "Sarah K.",
-    detail: "Training 4x/week for 8 months",
+      "I've been using Helthy for about 3 months since it first launched. I was around 195 when I started and wanted to drop some weight and actually understand what I was eating instead of guessing. […] I'll do \"chicken and rice\" or scan a bar and it's done in a few seconds. […] Only food/health app I've stuck with and I recommend.",
+    name: "jasonc1122",
+    detail: "App Store review · 🇺🇸",
+    accent: "#CDFF50",
+  },
+  {
+    quote:
+      "Tries to do something you don't see often. The idea is there, an attempt to only make you require one fitness app. It does a great job of not making you feel overwhelmed, very smooth interface. […] All in all great app.",
+    name: "Avarricee",
+    detail: "App Store review · 🇺🇸",
     accent: "#2563EB",
   },
   {
     quote:
-      "I opened the app to log a meal and it already knew what I was eating. Genuinely felt like magic.",
-    name: "James R.",
-    detail: "200+ meals logged",
+      "This app might just be better than Apple's native fitness logging app. Not just fitness but also health! Can't wait to see the app support connecting to an Apple Watch. 👏🏻👏🏻👏🏻",
+    name: "noirvaze",
+    detail: "App Store review · 🇨🇦",
     accent: "#DC2626",
   },
   {
     quote:
-      "Finally an app that doesn't make me feel like I'm filling out a spreadsheet. The weight trend chart alone is worth it.",
-    name: "Priya M.",
-    detail: "Goal weight reached in 12 weeks",
+      "My guy has made the most reliable and flexible workout and food app! It's so easy to use, especially when tracking your meals and workouts! Highly recommended!",
+    name: "Obianuju8",
+    detail: "App Store review · 🇺🇸",
     accent: "#059669",
   },
   {
-    quote:
-      "I showed the insights screen to my PT and she said 'this is better than what I give my clients.' Switching her whole gym over.",
-    name: "Olivia W.",
-    detail: "Personal trainer, 12 clients on Helthy",
-    accent: "#C2410C",
-  },
-  {
-    quote:
-      "My coach suggested I add Greek yogurt to hit my protein target. Tapped one button and it was logged. Unreal.",
-    name: "Alex D.",
-    detail: "Hitting 180g protein daily",
+    quote: "The fitness app of all time.",
+    name: "Melliciousness",
+    detail: "App Store review · 🇻🇳",
     accent: "#B45309",
   },
 ];
@@ -301,7 +304,7 @@ export default function TestimonialsSection() {
           <SectionHeading
             title="Real people,"
             italicTail="real results"
-            subtitle="Don't take our word for it. Here's what Helthy users are saying."
+            subtitle="4.7★ on the App Store. Here's what Helthy users are saying."
           />
         </div>
 
