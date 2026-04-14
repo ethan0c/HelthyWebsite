@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import NewsletterForm from "@/components/ui/NewsletterForm";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
@@ -82,10 +83,11 @@ export default function SiteFooter() {
                 style={{ filter: "invert(1)" }}
               />
             </Link>
-            <p className="text-[13px] leading-relaxed font-light max-w-[320px]" style={{ color: "rgba(10,10,10,0.62)" }}>
+            <p className="text-[13px] leading-relaxed font-light max-w-[320px] mb-6" style={{ color: "rgba(10,10,10,0.62)" }}>
               One AI coach that connects nutrition, training, and recovery —
               so you stop guessing and start knowing.
             </p>
+            <NewsletterForm />
           </div>
 
           {COLUMNS.map((col) => (
