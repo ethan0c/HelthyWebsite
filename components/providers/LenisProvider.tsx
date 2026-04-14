@@ -41,8 +41,8 @@ export function LenisProvider({ children }: { children: ReactNode }) {
     };
 
     if (disabled) {
-      document.addEventListener("click", onAnchorClickNative);
-      return () => document.removeEventListener("click", onAnchorClickNative);
+      document.addEventListener("click", onAnchorClickNative, true);
+      return () => document.removeEventListener("click", onAnchorClickNative, true);
     }
 
     gsap.registerPlugin(ScrollTrigger);
@@ -109,10 +109,10 @@ export function LenisProvider({ children }: { children: ReactNode }) {
       });
       history.replaceState(null, "", hash);
     };
-    document.addEventListener("click", onAnchorClick);
+    document.addEventListener("click", onAnchorClick, true);
 
     return () => {
-      document.removeEventListener("click", onAnchorClick);
+      document.removeEventListener("click", onAnchorClick, true);
       lenis.off("scroll", onScroll);
       lenis.destroy();
       gsap.ticker.remove(update);
