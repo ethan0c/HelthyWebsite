@@ -205,11 +205,7 @@ export default function PricingSection() {
               href={APP_STORE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-full rounded-full py-3.5 px-6 text-[14px] font-medium transition-all duration-200 hover:-translate-y-[1px]"
-              style={{
-                background: "#CDFF50",
-                color: "#111",
-              }}
+              className="btn-primary text-[14px] w-full justify-center"
             >
               Start Premium
             </Link>

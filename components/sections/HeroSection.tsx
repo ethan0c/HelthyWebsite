@@ -10,13 +10,6 @@ const APP_STORE_URL =
 const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.helthy.app";
 
-const CTA_SHADOW =
-  "rgba(255,255,255,0.5) 0px 2px 1px 0px inset," +
-  "rgba(255,255,255,0.72) 0px 0.6px 0.6px -1.25px inset," +
-  "rgba(255,255,255,0.635) 0px 2.29px 2.29px -2.5px inset," +
-  "rgba(255,255,255,0.25) 0px 10px 10px -3.75px inset," +
-  "rgba(205,255,80,0.35) 0px 14px 6px -8px";
-
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -124,44 +117,30 @@ export default function HeroSection() {
 
         <div
           data-hero-cta
-          className="flex flex-col items-center gap-3"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3"
           style={{ marginTop: "clamp(28px, 3.6vh, 44px)" }}
         >
           <Link
             href={APP_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center justify-center gap-2.5 rounded-full transition-all hover:-translate-y-[2px] hover:shadow-[0_20px_60px_rgba(205,255,80,0.4)]"
-            style={{
-              padding: "14px 32px",
-              backgroundColor: "#CDFF50",
-              color: "#151515",
-              fontSize: 15,
-              fontWeight: 500,
-              letterSpacing: "-0.01em",
-              lineHeight: "1.2em",
-              textDecoration: "none",
-              boxShadow: CTA_SHADOW,
-            }}
+            className="btn-primary text-[15px]"
           >
             <svg width="16" height="16" viewBox="0 0 256 256" aria-hidden="true" style={{ flexShrink: 0 }}>
               <path d="M64.34,196.07l-9.45,16a8,8,0,1,1-13.78-8.14l9.46-16a8,8,0,1,1,13.77,8.14ZM232,152H184.2l-30.73-52a8,8,0,1,0-13.77,8.14l61.41,103.93a8,8,0,0,0,13.78-8.14L193.66,168H232a8,8,0,0,0,0-16Zm-89.53,0H90.38L158.89,36.07a8,8,0,0,0-13.78-8.14L128,56.89l-17.11-29a8,8,0,1,0-13.78,8.14l21.6,36.55L71.8,152H24a8,8,0,0,0,0,16H142.47a8,8,0,1,0,0-16Z" fill="#151515" />
             </svg>
-            Download on App Store
+            App Store
           </Link>
           <Link
             href={PLAY_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-white/55 hover:text-white/85 transition-colors"
-            style={{
-              fontSize: 13,
-              fontWeight: 500,
-              letterSpacing: "-0.005em",
-            }}
+            className="btn-secondary text-[15px]"
           >
-            Also on Google Play
-            <span aria-hidden="true" style={{ fontSize: 14 }}>→</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style={{ flexShrink: 0 }}>
+              <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.332a1 1 0 0 1 0 1.72L17.698 13.892l-2.467-2.467 2.467-2.467zM5.864 3.458L16.801 9.79l-2.302 2.302-8.635-8.635z" fill="currentColor" />
+            </svg>
+            Google Play
           </Link>
         </div>
 

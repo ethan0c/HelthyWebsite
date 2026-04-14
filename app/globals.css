@@ -163,6 +163,23 @@ body {
   display: none;
 }
 
+/* ── Section separator beam ──────────────────────────────────
+   Thin horizontal gradient line, lemon at center, fading to
+   transparent at the edges. Drop between dark sections as a
+   subtle punctuation mark. Inspired by Bevel Health. */
+.section-beam {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(205, 255, 80, 0.28) 50%,
+    transparent 100%
+  );
+  box-shadow: 0 0 24px rgba(205, 255, 80, 0.18);
+  pointer-events: none;
+}
+
 /* ── Section Backgrounds ─────────────────────────────────────── */
 /* Subtle radial ambient glows to break flat dark monotony */
 .section-glow-lemon {

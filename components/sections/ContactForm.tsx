@@ -126,12 +126,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex min-w-[180px] items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-[#151515] transition-all disabled:cursor-not-allowed disabled:opacity-70"
-          style={{
-            backgroundColor: "#CDFF50",
-            boxShadow:
-              "rgba(255,255,255,0.24) 0px 1px 0px 0px inset, rgba(205,255,80,0.2) 0px 16px 44px -16px",
-          }}
+          className="btn-primary min-w-[180px] justify-center text-sm disabled:cursor-not-allowed disabled:opacity-70"
         >
           {isSubmitting ? "Sending..." : "Send message"}
         </button>

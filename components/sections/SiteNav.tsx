@@ -71,12 +71,8 @@ export default function SiteNav() {
             href={APP_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-full px-4 py-2 text-[13px] font-medium transition-all hover:-translate-y-[1px]"
-            style={{
-              backgroundColor: "#CDFF50",
-              color: "#0A0A0A",
-              boxShadow: "0 8px 24px -10px rgba(205,255,80,0.6)",
-            }}
+            className="btn-primary text-[13px]"
+            style={{ padding: "8px 16px" }}
           >
             Get the app
           </Link>

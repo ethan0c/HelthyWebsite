@@ -294,7 +294,7 @@ export default function TestimonialsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative section-padding overflow-hidden"
+      className="relative section-padding overflow-hidden section-glow-cyan"
     >
       {/* Ambient glow */}
       <div

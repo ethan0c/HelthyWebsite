@@ -15,8 +15,10 @@ export default function Home() {
       <FlowingLine />
       <HeroSection />
       <FeaturesRow />
+      <div aria-hidden="true" className="section-beam" />
       <HowItWorksSection />
       <WhyHelthySection />
+      <div aria-hidden="true" className="section-beam" />
       <TestimonialsSection />
       <PricingSection />
       <FAQSection />

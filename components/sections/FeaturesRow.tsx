@@ -91,11 +91,11 @@ export default function FeaturesRow() {
           trailingPunctuation=""
         />
 
-        {/* 3 hero features — large cards, asymmetric bento */}
+        {/* 3 hero features — balanced bento */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
-          {/* Card 1: AI Photo Logging (narrow — 5 col, fits one phone) */}
+          {/* Card 1: AI Photo Logging (6 col) */}
           <FeatureCard
-            className="lg:col-span-5"
+            className="lg:col-span-6"
             bgImage="/textures/card-leaves.jpg"
             headline={<>
               <span className="text-italics">Snap</span> your plate
@@ -105,22 +105,16 @@ export default function FeaturesRow() {
             <ScreenshotMockup src="/phones/ai-meal-scan.png" alt="AI photo meal logging with instant macro breakdown" wide cropBottom={20} />
           </FeatureCard>
 
-          {/* Card 2: Weight Progress — chart (4 col) */}
+          {/* Card 2: Weight Progress — chart + history (6 col) */}
           <FeatureCard
-            className="lg:col-span-4"
+            className="lg:col-span-6"
             headline={<>See your <span className="text-italics text-helthy-lemon">progress</span></>}
-            subtitle="Every weigh-in, plotted."
+            subtitle="Every weigh-in, plotted. Every entry, tracked."
           >
-            <WeightGraphMockup />
-          </FeatureCard>
-
-          {/* Card 3: Weight History — timeline list (3 col) */}
-          <FeatureCard
-            className="lg:col-span-3"
-            headline={<>Your <span className="text-italics">history</span></>}
-            subtitle="Every entry, tracked."
-          >
-            <WeightHistoryList />
+            <div className="flex flex-col items-center gap-6 w-full">
+              <WeightGraphMockup />
+              <WeightHistoryList />
+            </div>
           </FeatureCard>
 
           {/* Card 3: Workouts — full width, 3 screenshots side by side */}
@@ -140,13 +134,28 @@ export default function FeaturesRow() {
           </FeatureCard>
         </div>
 
-        {/* ── Expanded features link ── */}
-        <div className="mt-16 text-center">
+        {/* ── Expanded features link — editorial, not a button ── */}
+        <div className="mt-20 flex flex-col sm:flex-row items-baseline gap-x-3 gap-y-2">
+          <span
+            className="font-heading font-light text-white/90"
+            style={{
+              fontSize: "clamp(28px, 3.4vw, 44px)",
+              letterSpacing: "-0.03em",
+              lineHeight: "1.05em",
+            }}
+          >
+            More where that came from.
+          </span>
           <Link
             href="/changelog"
-            className="inline-flex items-center justify-center gap-2 text-[14px] font-medium text-white/70 hover:text-white transition-all duration-300 border border-white/10 rounded-full px-6 py-3 hover:bg-white/5 hover:border-white/20"
+            className="group inline-flex items-baseline gap-1.5 text-helthy-lemon transition-colors hover:opacity-80"
+            style={{
+              fontSize: "clamp(18px, 1.8vw, 22px)",
+              letterSpacing: "-0.02em",
+            }}
           >
-            See all features &rarr;
+            <span className="text-italics">See all features</span>
+            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
           </Link>
         </div>
       </div>
@@ -567,7 +576,11 @@ function WeightGraphMockup() {
   useEffect(() => {
     if (!scaleRef.current) return;
     const ctx = gsap.context(() => {
-      const trigger = { trigger: scaleRef.current, start: "top 75%" };
+      const trigger = {
+        trigger: scaleRef.current,
+        start: "top 85%",
+        toggleActions: "restart none none reset" as const,
+      };
 
       // Press-down bounce on scale
       gsap.fromTo(
@@ -632,6 +645,22 @@ function WeightGraphMockup() {
         scrollTrigger: trigger,
       });
 
+      // Lemon glow pulse on the card when the line finishes drawing
+      gsap.fromTo(
+        "[data-weight-glow]",
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 0.5,
+          delay: flickerEnd + 1.4,
+          ease: "power2.out",
+          yoyo: true,
+          repeat: 1,
+          repeatDelay: 0.15,
+          scrollTrigger: trigger,
+        },
+      );
+
       // Fade in graph section label
       gsap.from("[data-weight-label]", {
         opacity: 0,
@@ -657,12 +686,27 @@ function WeightGraphMockup() {
   return (
     <div
       ref={scaleRef}
-      className="w-[92%] max-w-[360px] mb-2 rounded-[20px] overflow-hidden"
+      className="relative w-[96%] max-w-[460px] mb-2 rounded-[20px] overflow-hidden"
       style={{
         background: T.bg,
-        boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04)",
+        boxShadow:
+          "0 30px 80px -20px rgba(0,0,0,0.7)," +
+          "0 0 0 1px rgba(255,255,255,0.04)," +
+          "0 0 40px -12px rgba(205,255,80,0.18)",
       }}
     >
+      {/* Lemon glow pulse — fires when the line-draw completes */}
+      <div
+        data-weight-glow
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 rounded-[20px]"
+        style={{
+          opacity: 0,
+          boxShadow:
+            "0 0 60px -10px rgba(205,255,80,0.5)," +
+            "inset 0 0 40px rgba(205,255,80,0.12)",
+        }}
+      />
       {/* ── Digital Scale Section ── */}
       <div data-scale-body className="flex flex-col items-center pt-5 pb-4">
         {/* Scale display box */}
@@ -672,7 +716,7 @@ function WeightGraphMockup() {
         >
           <SevenSegDisplay
             value={padded}
-            digitSize={48}
+            digitSize={56}
             activeColor={activeColor}
             ghostColor={ghostColor}
           />
@@ -830,7 +874,7 @@ function WeightHistoryList() {
   }, []);
 
   return (
-    <div ref={listRef} className="w-full">
+    <div ref={listRef} className="w-[96%] max-w-[460px]">
       <div className="flex flex-col">
         {WEIGHT_HISTORY.map((entry, i) => {
           const isFirst = i === 0;
