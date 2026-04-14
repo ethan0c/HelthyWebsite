@@ -11,7 +11,6 @@
     </mj-attributes>
     <mj-style>
       a { text-decoration: none; }
-      .heading-serif { font-family: 'Lyon Display', Georgia, 'Times New Roman', serif !important; }
       .numeric-display { font-family: 'Unbounded', 'DM Sans', Arial, sans-serif !important; }
       /* Background gradient on the body wrapper (supported clients) */
       .bg-grad { background: #0F0F0F; background: linear-gradient(180deg, #0F0F0F 0%, #1A2024 35%, #1F282E 60%, #0F0F0F 100%) !important; }
@@ -42,22 +41,15 @@
       </mj-column>
     </mj-section>
 
-    <!-- Version badge + headline + intro -->
+    <!-- Headline + intro -->
     <mj-section background-color="#151515" padding="40px 40px 0">
       <mj-column>
 
-        <!-- Version badge (kept — it's the one meaningful pill) -->
-        <mj-text padding="0 0 24px">
-          <span style="display:inline-block;font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#CDFF50;background-color:#192208;border:1px solid #3A5010;border-radius:999px;padding:5px 14px;">
-            Version 2.0
-          </span>
-        </mj-text>
-
-        <!-- Headline (serif, light) -->
-        <mj-text css-class="heading-serif" padding="0 0 18px"
-          font-family="'Lyon Display', Georgia, 'Times New Roman', serif"
-          font-size="38px" font-weight="300"
-          line-height="1.05" letter-spacing="-0.035em" color="#FFFFFF">
+        <!-- Headline (Unbounded) -->
+        <mj-text padding="0 0 18px"
+          font-family="'Unbounded','DM Sans',Arial,sans-serif"
+          font-size="34px" font-weight="500"
+          line-height="1.1" letter-spacing="-0.02em" color="#FFFFFF">
           We rebuilt Helthy.<br />Here's what's new.
         </mj-text>
 
@@ -78,7 +70,7 @@
             <tr>
               <td style="background:linear-gradient(180deg,#212121 0%,#161616 100%);border:1px solid #2A2A2A;border-radius:16px;padding:24px 26px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 24px rgba(0,0,0,0.35);">
                 <p style="margin:0 0 10px;font-family:'Unbounded','DM Sans',Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.05em;color:#CDFF50;">01</p>
-                <p style="margin:0 0 8px;font-family:'Lyon Display',Georgia,'Times New Roman',serif;font-size:20px;font-weight:300;line-height:1.2;letter-spacing:-0.02em;color:#FFFFFF;">AI got a lot smarter.</p>
+                <p style="margin:0 0 8px;font-family:'Unbounded','DM Sans',Arial,sans-serif;font-size:17px;font-weight:500;line-height:1.3;letter-spacing:-0.01em;color:#FFFFFF;">AI got a lot smarter.</p>
                 <p style="margin:0;font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:15px;font-weight:400;line-height:1.6;color:rgba(255,255,255,0.72);">
                   Body fat estimates from progress photos. Plateau detection with a fix plan. Goal ETA predictor. Weekly physique report. Strength progression forecast. Your coach now sees four weeks ahead.
                 </p>
@@ -96,7 +88,7 @@
             <tr>
               <td style="background:linear-gradient(180deg,#212121 0%,#161616 100%);border:1px solid #2A2A2A;border-radius:16px;padding:24px 26px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 24px rgba(0,0,0,0.35);">
                 <p style="margin:0 0 10px;font-family:'Unbounded','DM Sans',Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.05em;color:#CDFF50;">02</p>
-                <p style="margin:0 0 8px;font-family:'Lyon Display',Georgia,'Times New Roman',serif;font-size:20px;font-weight:300;line-height:1.2;letter-spacing:-0.02em;color:#FFFFFF;">Insights that actually mean something.</p>
+                <p style="margin:0 0 8px;font-family:'Unbounded','DM Sans',Arial,sans-serif;font-size:17px;font-weight:500;line-height:1.3;letter-spacing:-0.01em;color:#FFFFFF;">Insights that actually mean something.</p>
                 <p style="margin:0;font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:15px;font-weight:400;line-height:1.6;color:rgba(255,255,255,0.72);">
                   Momentum Ring, signal cards, and a weekly narrative written in plain English. Your coach summarises your whole week — what worked, what didn't, and what to do next.
                 </p>
@@ -114,7 +106,7 @@
             <tr>
               <td style="background:linear-gradient(180deg,#212121 0%,#161616 100%);border:1px solid #2A2A2A;border-radius:16px;padding:24px 26px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 24px rgba(0,0,0,0.35);">
                 <p style="margin:0 0 10px;font-family:'Unbounded','DM Sans',Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.05em;color:#CDFF50;">03</p>
-                <p style="margin:0 0 8px;font-family:'Lyon Display',Georgia,'Times New Roman',serif;font-size:20px;font-weight:300;line-height:1.2;letter-spacing:-0.02em;color:#FFFFFF;">Logging got faster.</p>
+                <p style="margin:0 0 8px;font-family:'Unbounded','DM Sans',Arial,sans-serif;font-size:17px;font-weight:500;line-height:1.3;letter-spacing:-0.01em;color:#FFFFFF;">Logging got faster.</p>
                 <p style="margin:0;font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:15px;font-weight:400;line-height:1.6;color:rgba(255,255,255,0.72);">
                   Nutrition label scanner, quick meal entry, photo logging, and food suggestions for common meals. Swipe to delete. Import from MFP, MacroFactor, Hevy, Strong, and more.
                 </p>
@@ -132,7 +124,7 @@
             <tr>
               <td style="background:linear-gradient(180deg,#212121 0%,#161616 100%);border:1px solid #2A2A2A;border-radius:16px;padding:24px 26px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 24px rgba(0,0,0,0.35);">
                 <p style="margin:0 0 10px;font-family:'Unbounded','DM Sans',Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.05em;color:#CDFF50;">04</p>
-                <p style="margin:0 0 8px;font-family:'Lyon Display',Georgia,'Times New Roman',serif;font-size:20px;font-weight:300;line-height:1.2;letter-spacing:-0.02em;color:#FFFFFF;">Android is here + 6 languages.</p>
+                <p style="margin:0 0 8px;font-family:'Unbounded','DM Sans',Arial,sans-serif;font-size:17px;font-weight:500;line-height:1.3;letter-spacing:-0.01em;color:#FFFFFF;">Android is here + 6 languages.</p>
                 <p style="margin:0;font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:15px;font-weight:400;line-height:1.6;color:rgba(255,255,255,0.72);">
                   Helthy is now on Google Play. Full support for Arabic, German, Spanish, French, Hindi, and Chinese. Share the app with anyone, anywhere.
                 </p>
@@ -150,7 +142,7 @@
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
               <td style="background:linear-gradient(160deg,#1F2A0D 0%,#151A08 60%,#0F1106 100%);border:1px solid rgba(205,255,80,0.28);border-radius:18px;padding:28px 26px;box-shadow:inset 0 1px 0 rgba(205,255,80,0.18), 0 12px 40px rgba(205,255,80,0.1), 0 8px 24px rgba(0,0,0,0.4);">
-                <p style="margin:0 0 6px;font-family:'Lyon Display',Georgia,'Times New Roman',serif;font-size:15px;font-weight:300;letter-spacing:-0.01em;color:#CDFF50;">Introducing Premium</p>
+                <p style="margin:0 0 6px;font-family:'Unbounded','DM Sans',Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#CDFF50;">Introducing Premium</p>
                 <p style="margin:0 0 14px;font-family:'Unbounded','DM Sans',Arial,sans-serif;font-size:34px;font-weight:500;letter-spacing:-0.02em;line-height:1.1;color:#FFFFFF;">
                   $2.99<span style="font-family:'Unbounded','DM Sans',Arial,sans-serif;font-size:20px;font-weight:400;color:rgba(255,255,255,0.5);letter-spacing:0;">/mo</span>
                 </p>
@@ -180,29 +172,27 @@
       </mj-column>
     </mj-section>
 
-    <!-- App Store + Google Play (site btn-secondary) -->
+    <!-- App Store + Google Play (site btn-secondary with icons) -->
     <mj-section background-color="#151515" padding="0 40px 40px">
       <mj-column>
-        <mj-button
-          href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
-          background-color="rgba(255,255,255,0.06)" color="#FFFFFF"
-          border="1px solid rgba(255,255,255,0.12)" border-radius="999px"
-          font-size="15px" font-weight="500"
-          font-family="'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif"
-          inner-padding="14px 28px" padding="0 8px 0 0" align="left">
-          App Store
-        </mj-button>
-      </mj-column>
-      <mj-column>
-        <mj-button
-          href="https://play.google.com/store/apps/details?id=com.helthy.app"
-          background-color="rgba(255,255,255,0.06)" color="#FFFFFF"
-          border="1px solid rgba(255,255,255,0.12)" border-radius="999px"
-          font-size="15px" font-weight="500"
-          font-family="'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif"
-          inner-padding="14px 28px" padding="0" align="left">
-          Google Play
-        </mj-button>
+        <mj-raw>
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="padding-right:12px;">
+                <a href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974" style="display:inline-block;padding:14px 26px;font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:15px;font-weight:500;color:#FFFFFF;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:999px;text-decoration:none;white-space:nowrap;box-shadow:inset 0 2px 1px 0 rgba(255,255,255,0.12), inset 0 0.6px 0.6px -1.25px rgba(255,255,255,0.08);">
+                  <img src="https://cdn.simpleicons.org/apple/white" width="14" height="14" alt="" style="display:inline-block;vertical-align:-2px;margin-right:8px;border:0;" />
+                  App Store
+                </a>
+              </td>
+              <td>
+                <a href="https://play.google.com/store/apps/details?id=com.helthy.app" style="display:inline-block;padding:14px 26px;font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:15px;font-weight:500;color:#FFFFFF;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:999px;text-decoration:none;white-space:nowrap;box-shadow:inset 0 2px 1px 0 rgba(255,255,255,0.12), inset 0 0.6px 0.6px -1.25px rgba(255,255,255,0.08);">
+                  <img src="https://cdn.simpleicons.org/googleplay/white" width="14" height="14" alt="" style="display:inline-block;vertical-align:-2px;margin-right:8px;border:0;" />
+                  Google Play
+                </a>
+              </td>
+            </tr>
+          </table>
+        </mj-raw>
       </mj-column>
     </mj-section>
 
