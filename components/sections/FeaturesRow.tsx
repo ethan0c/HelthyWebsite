@@ -557,6 +557,7 @@ function buildWeightPath() {
 }
 
 const NUMERIC_FONT = "'Unbounded', sans-serif";
+const SF_PRO_FONT = "'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif";
 
 function WeightGraphMockup() {
   const scaleRef = useRef<HTMLDivElement>(null);
@@ -875,6 +876,22 @@ function WeightHistoryList() {
 
   return (
     <div ref={listRef} className="w-[96%] max-w-[460px]">
+      {/* Section header — matches mobile historySection */}
+      <div className="flex items-baseline justify-between mb-4">
+        <p
+          className="text-[15px]"
+          style={{ color: T.text, fontFamily: SF_PRO_FONT, fontWeight: 500 }}
+        >
+          History
+        </p>
+        <p
+          className="text-[12px]"
+          style={{ color: T.textSecondary, fontFamily: SF_PRO_FONT, fontWeight: 400 }}
+        >
+          {WEIGHT_HISTORY.length} entries
+        </p>
+      </div>
+
       <div className="flex flex-col">
         {WEIGHT_HISTORY.map((entry, i) => {
           const isFirst = i === 0;
@@ -892,7 +909,7 @@ function WeightHistoryList() {
               data-weight-entry
               className="flex items-start"
             >
-              {/* Timeline spine */}
+              {/* Timeline spine — width 20, paddingTop SPACING.md+2 = 14 */}
               <div className="flex flex-col items-center" style={{ width: 20, paddingTop: 14 }}>
                 <div
                   className="rounded-full"
@@ -909,31 +926,38 @@ function WeightHistoryList() {
                       flex: 1,
                       minHeight: 32,
                       marginTop: 4,
-                      backgroundColor: `${T.border}66`,
+                      backgroundColor: `${T.border}40`,
                     }}
                   />
                 )}
               </div>
 
-              {/* Entry card */}
+              {/* Entry card — marginLeft SPACING.sm = 8, marginBottom SPACING.sm = 8 */}
               <div
-                className="flex-1 rounded-[16px] mb-2 ml-2"
+                className="flex-1 rounded-[16px]"
                 style={{
                   backgroundColor: T.card,
                   padding: "10px 12px",
+                  marginLeft: 8,
+                  marginBottom: 8,
                 }}
               >
+                {/* historyEntryTop — alignItems: 'center' */}
                 <div className="flex items-center justify-between">
                   <span
-                    className="text-[16px] font-semibold"
-                    style={{ color: T.text, fontFamily: NUMERIC_FONT }}
+                    className="text-[16px]"
+                    style={{ color: T.text, fontFamily: NUMERIC_FONT, fontWeight: 400 }}
                   >
                     {entry.weight.toFixed(1)}
                     <span
-                      className="text-[13px] font-normal ml-1"
-                      style={{ color: T.textSecondary, fontFamily: "var(--font-body)" }}
+                      className="text-[13px]"
+                      style={{
+                        color: T.textSecondary,
+                        fontFamily: SF_PRO_FONT,
+                        fontWeight: 400,
+                      }}
                     >
-                      lbs
+                      {" "}lbs
                     </span>
                   </span>
                   {hasDelta && (
@@ -941,21 +965,31 @@ function WeightHistoryList() {
                       className="rounded-[8px]"
                       style={{
                         padding: "3px 8px",
-                        backgroundColor: `${changeColor}1F`,
+                        backgroundColor: `${changeColor}12`,
                       }}
                     >
                       <span
-                        className="text-[12px] font-medium"
-                        style={{ color: changeColor, fontFamily: NUMERIC_FONT }}
+                        className="text-[12px]"
+                        style={{
+                          color: changeColor,
+                          fontFamily: NUMERIC_FONT,
+                          fontWeight: 400,
+                        }}
                       >
                         {changeText}
                       </span>
                     </div>
                   )}
                 </div>
+                {/* historyDate — marginTop: 2 */}
                 <p
-                  className="text-[12px] mt-1"
-                  style={{ color: T.textSecondary, fontFamily: "var(--font-body)" }}
+                  className="text-[12px]"
+                  style={{
+                    color: T.textSecondary,
+                    fontFamily: SF_PRO_FONT,
+                    fontWeight: 400,
+                    marginTop: 2,
+                  }}
                 >
                   {entry.date} · {entry.time}
                 </p>

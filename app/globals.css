@@ -31,6 +31,20 @@
   font-display: swap;
 }
 
+/* SF Pro Display — used only where we mirror mobile UI exactly (e.g. weight history list). */
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/sf-pro/SFPRODISPLAYREGULAR.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/sf-pro/SFPRODISPLAYMEDIUM.otf") format("opentype");
+  font-weight: 500;
+  font-display: swap;
+}
+
 /* Lyon Display — display headings only. Light 300 + italic accent. */
 @font-face {
   font-family: "Lyon Display";
