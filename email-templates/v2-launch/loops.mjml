@@ -90,7 +90,7 @@
     <mj-section background-color="#151515" padding="0 40px 36px">
       <mj-column padding="0">
         <mj-raw>
-          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;">
             <tr>
               <td style="padding-right:12px;vertical-align:middle;">
                 <a href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974" style="display:block;text-decoration:none;">
