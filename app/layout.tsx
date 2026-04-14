@@ -70,13 +70,11 @@ export default function RootLayout({
         <GSAPProvider>
           <LenisProvider>
             <div
-              className="fixed top-0 left-0 w-full"
+              className="fixed top-0 left-0 w-full pointer-events-none"
               style={{ zIndex: 50 }}
             >
               <SiteNav />
             </div>
-            {/* Spacer — reserves space for the floating pill nav. */}
-            <div aria-hidden="true" style={{ height: 80 }} />
             {children}
           </LenisProvider>
         </GSAPProvider>

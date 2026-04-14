@@ -173,6 +173,23 @@ export default function SiteFooter() {
           </div>
         </div>
       </div>
+
+      {/* Massive HELTHY wordmark — footer closer. Bleeds edge-to-edge. */}
+      <div
+        aria-hidden="true"
+        className="w-full pt-8 pb-6"
+        style={{ backgroundColor: "#111111" }}
+      >
+        <div className="px-2 sm:px-4">
+          <img
+            src="/footer.svg"
+            alt=""
+            className="block w-full h-auto select-none"
+            loading="lazy"
+            draggable={false}
+          />
+        </div>
+      </div>
     </footer>
   );
 }

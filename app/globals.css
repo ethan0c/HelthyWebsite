@@ -147,15 +147,7 @@ html {
 }
 
 body {
-  background: var(--background);
-  background: linear-gradient(
-    180deg,
-    #0F0F0F 0%,
-    #1A2024 35%,
-    #1F282E 60%,
-    #0F0F0F 100%
-  );
-  background-attachment: fixed;
+  background: #0F0F0F;
   color: var(--foreground);
   font-family: var(--font-body);
   overflow-x: hidden;

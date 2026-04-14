@@ -100,24 +100,27 @@ export default function ComingSoonOverlay({
       >
         <div className="w-full max-w-[440px] text-center">
           <span
-            className="inline-block text-[11px] font-medium uppercase tracking-[0.18em] rounded-full px-[1.125rem] py-2"
+            className="inline-block text-[11px] font-semibold uppercase rounded-full px-4 py-2"
             style={{
               background: pillBg,
               border: `1px solid ${pillBorder}`,
               color: pillText,
+              letterSpacing: "0.14em",
+              fontFamily: "var(--font-body)",
             }}
           >
             {label}
           </span>
 
           <h3
-            className="font-heading font-light mt-5"
+            className="font-heading mt-6"
             style={{
-              fontSize: "clamp(28px, 3.6vw, 44px)",
-              letterSpacing: "-0.035em",
-              lineHeight: "1.05em",
+              fontSize: "clamp(26px, 3.2vw, 38px)",
+              fontWeight: 500,
+              letterSpacing: "-0.025em",
+              lineHeight: "1.08em",
               color: textColor,
-              margin: "20px 0 0",
+              margin: "22px 0 0",
             }}
           >
             Get on the list.
@@ -125,7 +128,7 @@ export default function ComingSoonOverlay({
 
           <p
             className="mx-auto mt-3 text-[14px] leading-relaxed"
-            style={{ color: subTextColor, maxWidth: 360 }}
+            style={{ color: subTextColor, maxWidth: 360, fontFamily: "var(--font-body)" }}
           >
             Be first to unlock this when we drop — no spam, just one email on launch day.
           </p>
@@ -149,10 +152,11 @@ export default function ComingSoonOverlay({
               }}
             />
             <div
-              className="flex items-stretch w-full rounded-full overflow-hidden"
+              className="flex items-stretch w-full overflow-hidden p-1"
               style={{
                 background: inputBg,
                 border: `1px solid ${inputBorder}`,
+                borderRadius: 999,
               }}
             >
               <input
@@ -163,20 +167,24 @@ export default function ComingSoonOverlay({
                 aria-label="Email address"
                 placeholder="you@email.com"
                 disabled={status === "loading" || status === "success"}
-                className="flex-1 bg-transparent outline-none px-4 py-2.5 text-[13px] disabled:opacity-60"
+                className="flex-1 bg-transparent outline-none px-4 text-[13px] disabled:opacity-60"
                 style={{
                   color: inputText,
                   minWidth: 0,
+                  fontFamily: "var(--font-body)",
                 }}
               />
               <button
                 type="submit"
                 disabled={status === "loading" || status === "success" || !email}
-                className="inline-flex items-center justify-center px-5 text-[13px] font-medium transition-opacity disabled:cursor-not-allowed"
+                className="inline-flex items-center justify-center px-5 py-2 text-[13px] font-medium transition-opacity disabled:cursor-not-allowed"
                 style={{
                   background: btnBg,
                   color: btnText,
                   opacity: status === "loading" || !email ? 0.6 : 1,
+                  borderRadius: 999,
+                  fontFamily: "var(--font-body)",
+                  letterSpacing: "-0.005em",
                 }}
               >
                 {status === "loading"

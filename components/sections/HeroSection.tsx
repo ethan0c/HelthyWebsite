@@ -92,7 +92,7 @@ export default function HeroSection() {
         className="container-page relative flex flex-col items-center text-center"
         style={{
           zIndex: 3,
-          paddingTop: "clamp(40px, 8vh, 96px)",
+          paddingTop: "clamp(120px, 14vh, 180px)",
           paddingBottom: "clamp(40px, 6vh, 80px)",
         }}
       >

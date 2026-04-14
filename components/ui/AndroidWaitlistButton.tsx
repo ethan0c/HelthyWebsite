@@ -40,14 +40,13 @@ export default function AndroidWaitlistButton({
       </button>
 
       {showNotify && (
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
+        <a
+          href="/#pricing"
           className="inline-flex items-center gap-1 text-[12px] text-white/55 hover:text-white/85 transition-colors"
         >
           Notify me
           <span aria-hidden="true">→</span>
-        </button>
+        </a>
       )}
 
       {open && (
@@ -153,11 +152,13 @@ function AndroidWaitlistModal({
         </button>
 
         <span
-          className="inline-block text-[11px] font-semibold uppercase tracking-[0.22em] rounded-full px-3 py-1.5"
+          className="inline-block text-[11px] font-semibold uppercase rounded-full px-3 py-1.5"
           style={{
             background: "rgba(205,255,80,0.12)",
             border: "1px solid rgba(205,255,80,0.35)",
             color: "#CDFF50",
+            letterSpacing: "0.14em",
+            fontFamily: "var(--font-body)",
           }}
         >
           Android — {launchDate}
@@ -165,24 +166,25 @@ function AndroidWaitlistModal({
 
         <h3
           id="android-wl-title"
-          className="font-heading font-light mt-5"
+          className="font-heading mt-6"
           style={{
-            fontSize: "clamp(28px, 3.4vw, 36px)",
-            letterSpacing: "-0.035em",
-            lineHeight: "1.05em",
+            fontSize: "clamp(26px, 3.2vw, 34px)",
+            fontWeight: 500,
+            letterSpacing: "-0.025em",
+            lineHeight: "1.08em",
             color: "#F9F9F9",
-            margin: "20px 0 0",
+            margin: "22px 0 0",
           }}
         >
-          We'll ping you.
+          We&apos;ll ping you.
         </h3>
 
         <p
           className="mt-3 text-[14px] leading-relaxed"
-          style={{ color: "rgba(249,249,249,0.62)" }}
+          style={{ color: "rgba(249,249,249,0.62)", fontFamily: "var(--font-body)" }}
         >
-          Android drops with v2 on {launchDate}. Drop your email and we'll
-          send a single link the moment it's live.
+          Android drops with v2 on {launchDate}. Drop your email and we&apos;ll
+          send a single link the moment it&apos;s live.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-6" noValidate>
@@ -204,10 +206,11 @@ function AndroidWaitlistModal({
             }}
           />
           <div
-            className="flex items-stretch w-full rounded-full overflow-hidden"
+            className="flex items-stretch w-full overflow-hidden p-1"
             style={{
               background: "rgba(255,255,255,0.05)",
               border: "1px solid rgba(255,255,255,0.12)",
+              borderRadius: 999,
             }}
           >
             <input
@@ -219,17 +222,20 @@ function AndroidWaitlistModal({
               aria-label="Email address"
               placeholder="you@email.com"
               disabled={status === "loading" || status === "success"}
-              className="flex-1 bg-transparent outline-none px-4 py-3 text-[13px] text-white placeholder:text-white/40 disabled:opacity-60"
-              style={{ minWidth: 0 }}
+              className="flex-1 bg-transparent outline-none px-4 text-[13px] text-white placeholder:text-white/40 disabled:opacity-60"
+              style={{ minWidth: 0, fontFamily: "var(--font-body)" }}
             />
             <button
               type="submit"
               disabled={status === "loading" || status === "success" || !email}
-              className="inline-flex items-center justify-center px-5 text-[13px] font-medium transition-opacity disabled:cursor-not-allowed"
+              className="inline-flex items-center justify-center px-5 py-2 text-[13px] font-medium transition-opacity disabled:cursor-not-allowed"
               style={{
                 background: "#CDFF50",
                 color: "#0A0A0A",
                 opacity: status === "loading" || !email ? 0.6 : 1,
+                borderRadius: 999,
+                fontFamily: "var(--font-body)",
+                letterSpacing: "-0.005em",
               }}
             >
               {status === "loading"
