@@ -61,11 +61,12 @@ export default function WhyHelthySection() {
         </p>
 
         <h2
-          className="font-heading font-light"
+          className="font-heading"
           style={{
-            fontSize: "clamp(44px, 7.2vw, 104px)",
-            letterSpacing: "-0.04em",
-            lineHeight: "0.98em",
+            fontSize: "clamp(36px, 5vw, 68px)",
+            fontWeight: 500,
+            letterSpacing: "-0.025em",
+            lineHeight: "1.05em",
             color: "#F9F9F9",
             margin: 0,
           }}
@@ -73,7 +74,7 @@ export default function WhyHelthySection() {
           <span data-why-line className="block">One body.</span>
           <span data-why-line className="block">One app.</span>
           <span data-why-line className="block">
-            <span className="text-italics text-helthy-lemon">Whole picture.</span>
+            <span className="text-helthy-lemon">Whole picture.</span>
           </span>
         </h2>
 

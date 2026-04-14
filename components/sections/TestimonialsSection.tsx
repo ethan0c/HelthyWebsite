@@ -112,26 +112,15 @@ function TestimonialCard({
   t: (typeof TESTIMONIALS)[number];
 }) {
   return (
-    <div
-      className="shrink-0 w-[85vw] max-w-[340px] sm:w-[380px] sm:max-w-none p-[1.5px] rounded-[1.5rem]"
-      style={{
-        background: `linear-gradient(135deg, ${t.accent}30 0%, transparent 50%, rgba(255,255,255,0.06) 100%)`,
-      }}
-    >
-      <div className="h-full rounded-[calc(1.5rem-1.5px)] p-7 flex flex-col"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.01) 100%)",
-          backdropFilter: "blur(12px)",
-        }}
-      >
+    <div className="card-helthy shrink-0 w-[85vw] max-w-[340px] sm:w-[380px] sm:max-w-none">
+      <div className="p-7 flex flex-col h-full">
         {/* Stars */}
         <div className="flex gap-0.5 mb-5">
           {Array.from({ length: 5 }).map((_, i) => (
             <Star
               key={i}
               className="w-3.5 h-3.5"
-              fill={t.accent}
+              fill="#CDFF50"
               stroke="none"
             />
           ))}
@@ -181,12 +170,7 @@ function TestimonialCard({
 
 function TransformationCard({ t }: { t: (typeof TRANSFORMATIONS)[number] }) {
   return (
-    <div className="shrink-0 w-[480px] sm:w-[560px] rounded-[1.5rem] overflow-hidden"
-      style={{
-        background: "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)",
-        border: "1px solid rgba(255,255,255,0.06)",
-      }}
-    >
+    <div className="card-helthy shrink-0 w-[480px] sm:w-[560px] overflow-hidden">
       {/* Before / After images */}
       <div className="grid grid-cols-2">
         <div className="relative aspect-[3/4] bg-black overflow-hidden">

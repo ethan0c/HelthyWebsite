@@ -60,7 +60,6 @@ export default function HowItWorksSection() {
           {/* ── Step 1: Set your goals ── */}
           <StepCard
             number="01"
-            accent="#22C55E"
             title="Tell us your goals"
             description="Pick your target, set your stats, and your AI coach builds a plan in under two minutes."
           >
@@ -70,7 +69,6 @@ export default function HowItWorksSection() {
           {/* ── Step 2: Log everything ── */}
           <StepCard
             number="02"
-            accent="#3B82F6"
             title="Log meals, workouts & weight"
             description="Snap a photo to log any meal. Track lifts from 1,500+ exercises. Step on the scale and go."
           >
@@ -80,7 +78,6 @@ export default function HowItWorksSection() {
           {/* ── Step 3: Get coached ── */}
           <StepCard
             number="03"
-            accent="#CDFF50"
             title="Get coached by AI"
             description="Your coach connects nutrition, training, and recovery to give you actionable guidance every single day."
           >
@@ -98,13 +95,11 @@ export default function HowItWorksSection() {
 
 function StepCard({
   number,
-  accent,
   title,
   description,
   children,
 }: {
   number: string;
-  accent: string;
   title: string;
   description: string;
   children: React.ReactNode;
@@ -113,9 +108,6 @@ function StepCard({
     <div
       data-step-block
       className="card-helthy flex flex-col lg:flex-row lg:items-stretch overflow-hidden"
-      style={{
-        background: `linear-gradient(135deg, ${accent}06 0%, rgba(255,255,255,0.02) 60%, rgba(255,255,255,0.01) 100%)`,
-      }}
     >
       {/* Noise overlay */}
       <div
@@ -127,8 +119,8 @@ function StepCard({
       <div className="relative flex flex-col justify-center p-8 sm:p-10 lg:p-12 lg:w-[42%] shrink-0">
         <span
           data-step-num
-          className="text-numeric text-[64px] sm:text-[80px] font-semibold leading-none block mb-5"
-          style={{ color: accent, opacity: 0.15, letterSpacing: "-0.04em" }}
+          className="text-numeric text-[64px] sm:text-[80px] font-medium leading-none block mb-5"
+          style={{ color: "#CDFF50", opacity: 0.18, letterSpacing: "-0.04em" }}
         >
           {number}
         </span>

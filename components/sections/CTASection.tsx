@@ -104,7 +104,7 @@ export default function CTASection() {
         {/* Heading — big display */}
         <h2
           data-cta-heading
-          className="text-display-xl font-heading font-light tracking-tight mb-6"
+          className="text-display-xl font-heading tracking-tight mb-6"
         >
           Stop guessing,{" "}
           <span className="text-italics text-helthy-lemon">start today</span>.
