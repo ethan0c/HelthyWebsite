@@ -4,8 +4,6 @@ import NewsletterForm from "@/components/ui/NewsletterForm";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
-const PLAY_STORE_URL =
-  "https://play.google.com/store/apps/details?id=com.helthy.app";
 
 const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
@@ -22,7 +20,6 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     links: [
       { label: "Contact", href: "/contact" },
       { label: "App Store", href: APP_STORE_URL },
-      { label: "Android (coming Apr 28)", href: "#" },
     ],
   },
   {

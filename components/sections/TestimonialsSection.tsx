@@ -16,13 +16,6 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "Built Helthy because nothing else would actually tell me what to fix. Down 28 lb, up 50 lb on bench.",
-    name: "Chibu",
-    detail: "Co-founder",
-    accent: "#CDFF50",
-  },
-  {
-    quote:
       "The AI coach told me to skip legs after a bad sleep night. No other app connects my data like that.",
     name: "Sarah K.",
     detail: "Training 4x/week for 8 months",
@@ -34,13 +27,6 @@ const TESTIMONIALS = [
     name: "James R.",
     detail: "200+ meals logged",
     accent: "#DC2626",
-  },
-  {
-    quote:
-      "I used to forget half my meals. Now Helthy logs them in seconds and the AI coach actually keeps me honest.",
-    name: "Ebu",
-    detail: "Co-founder",
-    accent: "#CDFF50",
   },
   {
     quote:
@@ -65,9 +51,9 @@ const TESTIMONIALS = [
   },
 ];
 
-// Split into two rows for dual-marquee
-const ROW_1 = TESTIMONIALS.slice(0, 4);
-const ROW_2 = TESTIMONIALS.slice(4);
+// Split into two rows for dual-marquee — 3 each
+const ROW_1 = TESTIMONIALS.slice(0, 3);
+const ROW_2 = TESTIMONIALS.slice(3);
 
 const TRANSFORMATIONS = [
   {

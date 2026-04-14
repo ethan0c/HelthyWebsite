@@ -25,7 +25,7 @@ const FAQS = [
   },
   {
     q: "Is Helthy on Android?",
-    a: "Yes! Helthy is available on both iOS and Android. Download it from the App Store or Google Play.",
+    a: "Android drops April 28 alongside our v2 launch. iOS is live on the App Store today. Add your email anywhere on this page and we'll send you the Play Store link the moment it's live.",
   },
   {
     q: "Can I cancel Premium?",

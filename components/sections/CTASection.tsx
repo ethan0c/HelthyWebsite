@@ -119,7 +119,7 @@ export default function CTASection() {
         </p>
 
         {/* CTA buttons */}
-        <div data-cta-button className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div data-cta-button className="flex flex-col items-center sm:flex-row sm:items-start sm:justify-center gap-4">
           <Link
             href={APP_STORE_URL}
             target="_blank"

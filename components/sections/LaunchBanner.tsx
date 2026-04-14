@@ -2,9 +2,6 @@
 
 import Link from "next/link";
 
-const APP_STORE_URL =
-  "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
-
 export default function LaunchBanner() {
   return (
     <div
@@ -28,15 +25,13 @@ export default function LaunchBanner() {
           className="text-[13px] font-medium tracking-tight text-center"
           style={{ color: "#0A0A0A" }}
         >
-          Helthy 2.0 is here — Premium, 30+ achievements, AI insights & more.
+          Helthy 2.0 lands April 28.
           <Link
-            href={APP_STORE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/#pricing"
             className="ml-2 underline underline-offset-4 transition-opacity hover:opacity-70"
             style={{ color: "#0A0A0A" }}
           >
-            Download →
+            Be first in line →
           </Link>
         </p>
       </div>

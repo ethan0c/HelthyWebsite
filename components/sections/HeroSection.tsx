@@ -116,7 +116,7 @@ export default function HeroSection() {
 
         <div
           data-hero-cta
-          className="flex flex-col sm:flex-row items-center justify-center gap-3"
+          className="flex flex-col items-center sm:flex-row sm:items-start sm:justify-center gap-3"
           style={{ marginTop: "clamp(28px, 3.6vh, 44px)" }}
         >
           <Link
