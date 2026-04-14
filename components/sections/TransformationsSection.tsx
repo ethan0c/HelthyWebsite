@@ -103,7 +103,7 @@ export default function TransformationsSection() {
                 </p>
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-semibold text-white">{t.name}</p>
+                    <p className="text-sm font-medium text-white">{t.name}</p>
                     <p className="text-xs text-white/45">{t.role}</p>
                   </div>
                 </div>

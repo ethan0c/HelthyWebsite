@@ -250,7 +250,7 @@ export default function AICoachSection() {
                   dangerouslySetInnerHTML={{
                     __html: currentTurn.ai.text.replace(
                       /\*\*(.+?)\*\*/g,
-                      '<strong class="text-white font-semibold">$1</strong>'
+                      '<strong class="text-white font-medium">$1</strong>'
                     ),
                   }}
                 />
@@ -313,7 +313,7 @@ function MealCard({ meal }: { meal: MealSuggestion }) {
       </div>
 
       <div className="flex-1 min-w-0 text-left">
-        <p className="text-[13px] font-semibold text-white truncate">
+        <p className="text-[13px] font-medium text-white truncate">
           {meal.name}
         </p>
         <p className="text-[11px] text-white/45 truncate">{meal.quantity}</p>

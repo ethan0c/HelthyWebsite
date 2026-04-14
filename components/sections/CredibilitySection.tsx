@@ -91,7 +91,7 @@ export default function CredibilitySection() {
 
               {/* Text */}
               <div>
-                <h3 className="text-[18px] lg:text-[20px] font-semibold text-white tracking-tight mb-3">
+                <h3 className="text-[18px] lg:text-[20px] font-medium text-white tracking-tight mb-3">
                   {card.title}
                 </h3>
                 <p className="text-[14px] lg:text-[15px] text-white/50 leading-relaxed font-light">

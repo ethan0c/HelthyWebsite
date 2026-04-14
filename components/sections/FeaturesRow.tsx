@@ -213,7 +213,7 @@ function MiniFeature({
         <Icon className="w-5 h-5" style={{ color: accent }} strokeWidth={1.75} />
       </div>
       <div className="relative">
-        <h4 className="text-[16px] font-semibold text-white tracking-tight mb-1.5">
+        <h4 className="text-[16px] font-medium text-white tracking-tight mb-1.5">
           {title}
         </h4>
         <p className="text-[13px] text-white/50 leading-relaxed font-light">
