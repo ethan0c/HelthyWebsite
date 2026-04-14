@@ -45,13 +45,18 @@
     <mj-section background-color="#151515" padding="40px 40px 0">
       <mj-column>
 
-        <!-- Headline (Unbounded) -->
-        <mj-text padding="0 0 18px"
-          font-family="'Unbounded','DM Sans',Arial,sans-serif"
-          font-size="34px" font-weight="500"
-          line-height="1.1" letter-spacing="-0.02em" color="#FFFFFF">
-          We rebuilt Helthy.<br />Here's what's new.
-        </mj-text>
+        <!-- Hero headline as image (preserves Unbounded branding across all clients) -->
+        <mj-image
+          src="img/hero-headline.png"
+          alt="We rebuilt Helthy. Here's what's new."
+          width="480px"
+          align="left"
+          padding="0 0 18px" />
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#151515" padding="0 40px 0">
+      <mj-column>
 
         <!-- Intro -->
         <mj-text padding="0 0 32px" font-size="16px" font-weight="400" line-height="1.65"
