@@ -64,10 +64,27 @@ export default function FeaturesRow() {
     <section
       id="features"
       ref={sectionRef}
-      className="relative section-padding px-6 lg:px-8"
-      style={{ backgroundColor: "#191B1D" }}
+      className="relative section-padding"
+      style={{ backgroundColor: "var(--background)" }}
     >
-      <div className="max-w-6xl mx-auto">
+      {/* Aurora carryover from hero — subtle */}
+      <div
+        aria-hidden="true"
+        className="absolute pointer-events-none left-1/2 -translate-x-1/2"
+        style={{
+          zIndex: 0,
+          top: "-200px",
+          width: "min(1200px, 120vw)",
+          height: 500,
+          background: [
+            "radial-gradient(ellipse 50% 50% at 35% 50%, rgba(120,170,255,0.06) 0%, transparent 60%)",
+            "radial-gradient(ellipse 50% 50% at 70% 50%, rgba(205,255,80,0.05) 0%, transparent 60%)",
+          ].join(","),
+          filter: "blur(30px)",
+        }}
+      />
+
+      <div className="container-page relative" style={{ zIndex: 1 }}>
         <SectionHeading
           title="Everything you need,"
           italicTail="nothing you don't"
@@ -75,37 +92,43 @@ export default function FeaturesRow() {
         />
 
         {/* 3 hero features — large cards, asymmetric bento */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-          {/* Card 1: AI Photo Logging (large — 7 col) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+          {/* Card 1: AI Photo Logging (narrow — 5 col, fits one phone) */}
           <FeatureCard
-            className="lg:col-span-7"
-            minH={580}
+            className="lg:col-span-5"
             bgImage="/textures/card-leaves.jpg"
             headline={<>
               <span className="text-italics">Snap</span> your plate
             </>}
-            subtitle="Point, shoot, logged. AI reads your meal, breaks down macros, and files it — no searching, no typing."
+            subtitle="Point, shoot, logged."
           >
             <ScreenshotMockup src="/phones/ai-meal-scan.png" alt="AI photo meal logging with instant macro breakdown" wide cropBottom={20} />
           </FeatureCard>
 
-          {/* Card 2: Weight Progress (5 col) */}
+          {/* Card 2: Weight Progress — chart (4 col) */}
           <FeatureCard
-            className="lg:col-span-5 self-start"
-            bgImage="/textures/card-water.jpg"
+            className="lg:col-span-4"
             headline={<>See your <span className="text-italics text-helthy-lemon">progress</span></>}
-            subtitle="Watch the weight trend chart tell your story. Every weigh-in plotted, every milestone visible."
+            subtitle="Every weigh-in, plotted."
           >
             <WeightGraphMockup />
+          </FeatureCard>
+
+          {/* Card 3: Weight History — timeline list (3 col) */}
+          <FeatureCard
+            className="lg:col-span-3"
+            headline={<>Your <span className="text-italics">history</span></>}
+            subtitle="Every entry, tracked."
+          >
+            <WeightHistoryList />
           </FeatureCard>
 
           {/* Card 3: Workouts — full width, 3 screenshots side by side */}
           <FeatureCard
             className="lg:col-span-12"
-            minH={480}
-            bgImage="/textures/card-stone.jpg"
+            minH={560}
             headline="Every lift, covered"
-            subtitle="1,500+ exercises with muscle maps, form cues, and personal records tracked automatically."
+            subtitle="1,500+ exercises. Every PR tracked."
           >
             <TripleScreenshotMockup
               screens={[
@@ -123,7 +146,7 @@ export default function FeaturesRow() {
             href="/changelog"
             className="inline-flex items-center justify-center gap-2 text-[14px] font-medium text-white/70 hover:text-white transition-all duration-300 border border-white/10 rounded-full px-6 py-3 hover:bg-white/5 hover:border-white/20"
           >
-            And so much more. See everything that changed since 1.2.7 &rarr;
+            See all features &rarr;
           </Link>
         </div>
       </div>
@@ -317,7 +340,6 @@ function FeatureCard({
       className={`card-helthy flex flex-col ${className}`}
       style={{
         ...(minH ? { minHeight: minH } : {}),
-        background: "linear-gradient(135deg, #151515 0%, #41515A 100%)",
       }}
     >
       {/* Background texture image */}
@@ -768,6 +790,135 @@ function WeightGraphMockup() {
             );
           })}
         </svg>
+      </div>
+    </div>
+  );
+}
+
+// ───────────────────────────────────────────────────────────
+// Weight history list — mirrors mobile /screens/home/WeightScreen.tsx
+// Timeline spine (dot + line) + entry card per row. Green = loss, orange = gain.
+
+const WEIGHT_HISTORY = [
+  { date: "Apr 13", time: "8:14 AM", weight: 152.0, delta: -0.4 },
+  { date: "Apr 11", time: "7:58 AM", weight: 152.4, delta: -0.2 },
+  { date: "Apr 08", time: "8:02 AM", weight: 152.6, delta: +0.1 },
+  { date: "Apr 06", time: "7:45 AM", weight: 152.5, delta: -0.3 },
+  { date: "Apr 04", time: "8:22 AM", weight: 152.8, delta: 0 },
+];
+
+const DELTA_GAIN = "#FF6B35";
+const DELTA_LOSS = "#4CAF50";
+
+function WeightHistoryList() {
+  const listRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!listRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.from("[data-weight-entry]", {
+        opacity: 0,
+        y: 12,
+        duration: 0.5,
+        stagger: 0.08,
+        ease: "power3.out",
+        scrollTrigger: { trigger: listRef.current, start: "top 80%" },
+        delay: 0.3,
+      });
+    }, listRef);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div ref={listRef} className="w-full">
+      <div className="flex flex-col">
+        {WEIGHT_HISTORY.map((entry, i) => {
+          const isFirst = i === 0;
+          const isLast = i === WEIGHT_HISTORY.length - 1;
+          const hasDelta = Math.abs(entry.delta) >= 0.1;
+          const isGain = entry.delta > 0;
+          const changeColor = isGain ? DELTA_GAIN : DELTA_LOSS;
+          const changeText = isGain
+            ? `+${entry.delta.toFixed(1)}`
+            : `−${Math.abs(entry.delta).toFixed(1)}`;
+
+          return (
+            <div
+              key={entry.date}
+              data-weight-entry
+              className="flex items-start"
+            >
+              {/* Timeline spine */}
+              <div className="flex flex-col items-center" style={{ width: 20, paddingTop: 14 }}>
+                <div
+                  className="rounded-full"
+                  style={{
+                    width: isFirst ? 10 : 8,
+                    height: isFirst ? 10 : 8,
+                    backgroundColor: isFirst ? T.primary : T.border,
+                  }}
+                />
+                {!isLast && (
+                  <div
+                    style={{
+                      width: 1.5,
+                      flex: 1,
+                      minHeight: 32,
+                      marginTop: 4,
+                      backgroundColor: `${T.border}66`,
+                    }}
+                  />
+                )}
+              </div>
+
+              {/* Entry card */}
+              <div
+                className="flex-1 rounded-[16px] mb-2 ml-2"
+                style={{
+                  backgroundColor: T.card,
+                  padding: "10px 12px",
+                }}
+              >
+                <div className="flex items-center justify-between">
+                  <span
+                    className="text-[16px] font-semibold"
+                    style={{ color: T.text, fontFamily: NUMERIC_FONT }}
+                  >
+                    {entry.weight.toFixed(1)}
+                    <span
+                      className="text-[13px] font-normal ml-1"
+                      style={{ color: T.textSecondary, fontFamily: "var(--font-body)" }}
+                    >
+                      lbs
+                    </span>
+                  </span>
+                  {hasDelta && (
+                    <div
+                      className="rounded-[8px]"
+                      style={{
+                        padding: "3px 8px",
+                        backgroundColor: `${changeColor}1F`,
+                      }}
+                    >
+                      <span
+                        className="text-[12px] font-medium"
+                        style={{ color: changeColor, fontFamily: NUMERIC_FONT }}
+                      >
+                        {changeText}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <p
+                  className="text-[12px] mt-1"
+                  style={{ color: T.textSecondary, fontFamily: "var(--font-body)" }}
+                >
+                  {entry.date} · {entry.time}
+                </p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

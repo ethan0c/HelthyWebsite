@@ -1,7 +1,7 @@
 import HeroSection from "@/components/sections/HeroSection";
 import HowItWorksSection from "@/components/sections/HowItWorksSection";
 import FeaturesRow from "@/components/sections/FeaturesRow";
-import CredibilitySection from "@/components/sections/CredibilitySection";
+import WhyHelthySection from "@/components/sections/WhyHelthySection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import PricingSection from "@/components/sections/PricingSection";
 import FAQSection from "@/components/sections/FAQSection";
@@ -16,7 +16,7 @@ export default function Home() {
       <HeroSection />
       <FeaturesRow />
       <HowItWorksSection />
-      <CredibilitySection />
+      <WhyHelthySection />
       <TestimonialsSection />
       <PricingSection />
       <FAQSection />

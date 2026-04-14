@@ -70,8 +70,18 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-white grain">
         <GSAPProvider>
           <LenisProvider>
-            <LaunchBanner />
-            <SiteNav />
+            <div
+              className="fixed top-0 left-0 w-full"
+              style={{
+                zIndex: 50,
+                maxHeight: "calc(100% - 32px - env(safe-area-inset-bottom))",
+              }}
+            >
+              <LaunchBanner />
+              <SiteNav />
+            </div>
+            {/* Spacer: reserves the height the fixed banner+nav occupy. */}
+            <div aria-hidden="true" style={{ height: "calc(40px + 64px)" }} />
             {children}
           </LenisProvider>
         </GSAPProvider>

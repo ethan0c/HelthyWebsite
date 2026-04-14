@@ -47,9 +47,9 @@ export default function HowItWorksSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative section-padding px-6 lg:px-8 section-glow-warm"
+      className="relative section-padding section-glow-warm"
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="container-page">
         <SectionHeading
           title="How it"
           italicTail="works"

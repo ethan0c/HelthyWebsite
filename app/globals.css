@@ -187,6 +187,21 @@ body {
     var(--background);
 }
 
+/* ── Page container ─────────────────────────────────────────────
+   Canonical width/padding for section content. Matches Robinhood's
+   1280px max width with generous desktop gutters. */
+.container-page {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+@media (min-width: 768px) {
+  .container-page { padding-left: 20px; padding-right: 20px; }
+}
+
 /* ── Light Section ───────────────────────────────────────────── */
 /* Warm cream background inspired by Wallet Template ref (#F2EFEB / #FFFAF5).
    Flips text, cards, and accents for light-on-dark → dark-on-light. */

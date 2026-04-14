@@ -126,7 +126,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex min-w-[180px] items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-[#151515] transition-all disabled:cursor-not-allowed disabled:opacity-70"
+          className="inline-flex min-w-[180px] items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-[#151515] transition-all disabled:cursor-not-allowed disabled:opacity-70"
           style={{
             backgroundColor: "#CDFF50",
             boxShadow:

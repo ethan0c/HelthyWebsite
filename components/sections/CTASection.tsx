@@ -67,7 +67,7 @@ export default function CTASection() {
   return (
     <section
       ref={sectionRef}
-      className="relative section-padding px-6 lg:px-8 overflow-hidden"
+      className="relative section-padding overflow-hidden"
     >
       {/* Layered ambient glows */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -132,7 +132,7 @@ export default function CTASection() {
             href={APP_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2.5 rounded-full bg-helthy-lemon px-8 py-4 sm:px-10 sm:py-4.5 text-helthy-black text-[14px] sm:text-[15px] font-semibold tracking-tight transition-all hover:-translate-y-[2px] hover:shadow-[0_20px_60px_rgba(205,255,80,0.4)]"
+            className="group inline-flex items-center gap-2.5 rounded-full bg-helthy-lemon px-8 py-4 sm:px-10 sm:py-4.5 text-helthy-black text-[14px] sm:text-[15px] font-medium tracking-tight transition-all hover:-translate-y-[2px] hover:shadow-[0_20px_60px_rgba(205,255,80,0.4)]"
             style={{ boxShadow: CTA_SHADOW }}
           >
             <svg width="16" height="16" viewBox="0 0 256 256" aria-hidden="true" style={{ flexShrink: 0 }}>
@@ -145,7 +145,7 @@ export default function CTASection() {
             href={PLAY_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2.5 rounded-full bg-helthy-lemon px-8 py-4 sm:px-10 sm:py-4.5 text-helthy-black text-[14px] sm:text-[15px] font-semibold tracking-tight transition-all hover:-translate-y-[2px] hover:shadow-[0_20px_60px_rgba(205,255,80,0.4)]"
+            className="group inline-flex items-center gap-2.5 rounded-full bg-helthy-lemon px-8 py-4 sm:px-10 sm:py-4.5 text-helthy-black text-[14px] sm:text-[15px] font-medium tracking-tight transition-all hover:-translate-y-[2px] hover:shadow-[0_20px_60px_rgba(205,255,80,0.4)]"
             style={{ boxShadow: CTA_SHADOW }}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style={{ flexShrink: 0 }}>

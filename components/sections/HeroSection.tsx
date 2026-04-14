@@ -82,11 +82,10 @@ export default function HeroSection() {
 
       {/* ── Centered vertical stack ── */}
       <div
-        className="relative mx-auto flex flex-col items-center text-center px-6 sm:px-8"
+        className="container-page relative flex flex-col items-center text-center"
         style={{
           zIndex: 3,
-          maxWidth: 1160,
-          paddingTop: "clamp(120px, 18vh, 200px)",
+          paddingTop: "clamp(40px, 8vh, 96px)",
           paddingBottom: "clamp(40px, 6vh, 80px)",
         }}
       >
@@ -138,7 +137,7 @@ export default function HeroSection() {
               backgroundColor: "#CDFF50",
               color: "#151515",
               fontSize: 15,
-              fontWeight: 600,
+              fontWeight: 500,
               letterSpacing: "-0.01em",
               lineHeight: "1.2em",
               textDecoration: "none",

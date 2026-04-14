@@ -127,7 +127,7 @@ function TestimonialCard({
         {/* Attribution */}
         <div className="flex items-center gap-3 pt-5 border-t border-white/[0.06]">
           <div
-            className="w-10 h-10 rounded-full flex items-center justify-center text-[14px] font-semibold shrink-0"
+            className="w-10 h-10 rounded-full flex items-center justify-center text-[14px] font-medium shrink-0"
             style={{
               background: `linear-gradient(135deg, ${t.accent}25 0%, ${t.accent}10 100%)`,
               color: t.accent,
@@ -311,7 +311,7 @@ export default function TestimonialsSection() {
       </div>
 
       <div className="relative">
-        <div className="px-6 lg:px-8">
+        <div className="container-page">
           <SectionHeading
             title="Real people,"
             italicTail="real results"
