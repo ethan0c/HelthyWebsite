@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import NewsletterForm from "@/components/ui/NewsletterForm";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
@@ -61,8 +60,8 @@ export default function SiteFooter() {
     <footer
       className="relative"
       style={{
-        backgroundColor: "#CDFF50",
-        color: "#0A0A0A",
+        backgroundColor: "#111111",
+        color: "rgba(255,255,255,0.65)",
       }}
     >
       <div className="container-page pt-16 pb-10">
@@ -77,19 +76,23 @@ export default function SiteFooter() {
                 width={162}
                 height={32}
                 className="h-7 w-auto"
-                style={{ filter: "invert(1)" }}
               />
             </Link>
-            <p className="text-[13px] leading-relaxed font-light max-w-[320px] mb-6" style={{ color: "rgba(10,10,10,0.62)" }}>
+            <p
+              className="text-[13px] leading-relaxed max-w-[320px]"
+              style={{ color: "rgba(255,255,255,0.55)", fontWeight: 400 }}
+            >
               One AI coach that connects nutrition, training, and recovery —
               so you stop guessing and start knowing.
             </p>
-            <NewsletterForm />
           </div>
 
           {COLUMNS.map((col) => (
             <div key={col.title} className="md:col-span-2">
-              <p className="text-[11px] uppercase tracking-[0.2em] font-semibold mb-4" style={{ color: "rgba(10,10,10,0.55)" }}>
+              <p
+                className="text-[11px] uppercase tracking-[0.2em] font-semibold mb-4"
+                style={{ color: "rgba(255,255,255,0.45)" }}
+              >
                 {col.title}
               </p>
               <ul className="space-y-2">
@@ -102,8 +105,8 @@ export default function SiteFooter() {
                         {...(isExternal
                           ? { target: "_blank", rel: "noopener noreferrer" }
                           : {})}
-                        className="text-[13px] transition-colors"
-                        style={{ color: "rgba(10,10,10,0.75)" }}
+                        className="text-[13px] transition-colors hover:text-white"
+                        style={{ color: "rgba(255,255,255,0.65)" }}
                       >
                         {link.label}
                       </Link>
@@ -115,12 +118,22 @@ export default function SiteFooter() {
           ))}
         </div>
 
-        {/* Disclaimer */}
+        {/* Email-style hairline */}
         <div
-          className="mt-16 pt-8"
-          style={{ borderTop: "1px solid rgba(10,10,10,0.12)" }}
-        >
-          <p className="text-[11px] leading-relaxed font-light max-w-3xl" style={{ color: "rgba(10,10,10,0.55)" }}>
+          className="mt-16"
+          style={{
+            height: 1,
+            background:
+              "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)",
+          }}
+        />
+
+        {/* Disclaimer */}
+        <div className="mt-8">
+          <p
+            className="text-[11px] leading-relaxed max-w-3xl"
+            style={{ color: "rgba(255,255,255,0.38)" }}
+          >
             Helthy is a fitness and nutrition tracking app. The information
             provided is for educational purposes only and is not a substitute
             for professional medical advice, diagnosis, or treatment. Always
@@ -133,9 +146,11 @@ export default function SiteFooter() {
         {/* Bottom bar */}
         <div
           className="mt-10 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-          style={{ borderTop: "1px solid rgba(10,10,10,0.12)" }}
+          style={{
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+          }}
         >
-          <p className="text-[12px]" style={{ color: "rgba(10,10,10,0.55)" }}>
+          <p className="text-[12px]" style={{ color: "rgba(255,255,255,0.38)" }}>
             © {new Date().getFullYear()} Helthy. All rights reserved.
           </p>
 
@@ -147,8 +162,8 @@ export default function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-black/10"
-                style={{ color: "rgba(10,10,10,0.65)" }}
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-white/10"
+                style={{ color: "rgba(255,255,255,0.55)" }}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d={s.path} />

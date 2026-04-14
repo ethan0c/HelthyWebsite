@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
@@ -11,54 +12,70 @@ const NAV = [
   { href: "/#features", label: "Features" },
   { href: "/#why-helthy", label: "Why Helthy" },
   { href: "/#pricing", label: "Pricing" },
-  { href: "/#faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
 
 export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header
-      className="w-full transition-colors duration-200"
-      style={{
-        backgroundColor: scrolled ? "rgba(10,10,10,0.82)" : "transparent",
-        backdropFilter: scrolled ? "blur(14px)" : undefined,
-        WebkitBackdropFilter: scrolled ? "blur(14px)" : undefined,
-      }}
-    >
-      <div className="container-page">
-        <nav className="flex items-center justify-between" style={{ height: 64 }}>
-          {/* Left: logo */}
+    <div className="w-full flex justify-center pointer-events-none">
+      <nav
+        className="pointer-events-auto mt-3 sm:mt-4 mx-4 transition-all duration-300"
+        aria-label="Primary"
+        style={{
+          backgroundColor: scrolled
+            ? "rgba(15,15,15,0.72)"
+            : "rgba(15,15,15,0.42)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          border: "1px solid rgba(255,255,255,0.08)",
+          borderRadius: 999,
+          boxShadow:
+            "inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.35)",
+        }}
+      >
+        <div
+          className="flex items-center gap-6 sm:gap-8"
+          style={{ padding: "10px 14px 10px 18px" }}
+        >
+          {/* Logo */}
           <Link
             href="/"
-            className="flex items-center"
+            className="flex items-center shrink-0"
             aria-label="Helthy home"
           >
             <Image
               src="/logos/logo-long-white.png"
               alt="Helthy"
-              height={22}
-              width={112}
+              height={20}
+              width={100}
               className="object-contain"
               priority
             />
           </Link>
 
-          {/* Center: tabs */}
-          <ul className="hidden md:flex items-center gap-8 text-[13px] text-white/70">
+          {/* Desktop links */}
+          <ul className="hidden md:flex items-center gap-6 text-[13px]">
             {NAV.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="transition-colors hover:text-white"
+                  className="transition-colors"
+                  style={{
+                    color: "rgba(255,255,255,0.72)",
+                    fontFamily: "var(--font-body)",
+                    fontWeight: 400,
+                    letterSpacing: "-0.005em",
+                  }}
                 >
                   {item.label}
                 </Link>
@@ -66,18 +83,59 @@ export default function SiteNav() {
             ))}
           </ul>
 
-          {/* Right: CTA */}
+          {/* CTA */}
           <Link
             href={APP_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary text-[13px]"
+            className="btn-primary text-[13px] shrink-0"
             style={{ padding: "8px 16px" }}
           >
             Get the app
           </Link>
-        </nav>
-      </div>
-    </header>
+
+          {/* Mobile toggle */}
+          <button
+            type="button"
+            onClick={() => setOpen((o) => !o)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            className="md:hidden shrink-0 -mr-1 p-1.5 rounded-full transition-colors"
+            style={{ color: "rgba(255,255,255,0.82)" }}
+          >
+            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
+
+        {/* Mobile dropdown */}
+        {open && (
+          <div
+            className="md:hidden"
+            style={{
+              borderTop: "1px solid rgba(255,255,255,0.08)",
+              padding: "12px 18px 16px",
+            }}
+          >
+            <ul className="flex flex-col gap-3">
+              {NAV.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="block text-[14px] transition-colors"
+                    style={{
+                      color: "rgba(255,255,255,0.78)",
+                      fontFamily: "var(--font-body)",
+                    }}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </nav>
+    </div>
   );
 }

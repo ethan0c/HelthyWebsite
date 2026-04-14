@@ -39,24 +39,39 @@ export default function HeroSection() {
       ref={sectionRef}
       id="hero"
       className="relative w-full overflow-hidden"
-      style={{ backgroundColor: "#0A0A0A" }}
+      style={{
+        // Brand gradient — same vertical teal lift as the v2 launch email body.
+        background:
+          "linear-gradient(180deg, #0F0F0F 0%, #1A2024 45%, #1F282E 70%, #0F0F0F 100%)",
+      }}
     >
-      {/* ── Aurora bloom behind phone ── */}
+      {/* ── Cool teal pool behind phone — anchors the email-brand blue/teal. ── */}
       <div
         aria-hidden="true"
         className="absolute pointer-events-none left-1/2 -translate-x-1/2"
         style={{
           zIndex: 0,
           top: "38%",
-          width: "min(1400px, 130vw)",
-          height: "min(1100px, 110vw)",
-          background: [
-            "radial-gradient(ellipse 55% 40% at 30% 35%, rgba(120,170,255,0.22) 0%, transparent 60%)",
-            "radial-gradient(ellipse 50% 35% at 72% 45%, rgba(255,170,120,0.18) 0%, transparent 60%)",
-            "radial-gradient(ellipse 60% 45% at 50% 65%, rgba(205,255,80,0.14) 0%, transparent 60%)",
-          ].join(","),
+          width: "min(1200px, 120vw)",
+          height: "min(900px, 100vw)",
+          background:
+            "radial-gradient(ellipse 60% 45% at 50% 50%, rgba(80,140,180,0.18) 0%, rgba(80,140,180,0.05) 45%, transparent 70%)",
           filter: "blur(40px)",
           opacity: 0.9,
+        }}
+      />
+      {/* Lemon punctuation — soft, bottom-anchored, single accent. */}
+      <div
+        aria-hidden="true"
+        className="absolute pointer-events-none left-1/2 -translate-x-1/2"
+        style={{
+          zIndex: 0,
+          top: "62%",
+          width: "min(800px, 80vw)",
+          height: 400,
+          background:
+            "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(205,255,80,0.08) 0%, transparent 65%)",
+          filter: "blur(50px)",
         }}
       />
       {/* Soft grain overlay — kept subtle */}

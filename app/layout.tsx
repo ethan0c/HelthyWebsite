@@ -3,7 +3,6 @@ import "./globals.css";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
 import SiteNav from "@/components/sections/SiteNav";
-import LaunchBanner from "@/components/sections/LaunchBanner";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://helthy.app"),
@@ -72,16 +71,12 @@ export default function RootLayout({
           <LenisProvider>
             <div
               className="fixed top-0 left-0 w-full"
-              style={{
-                zIndex: 50,
-                maxHeight: "calc(100% - 32px - env(safe-area-inset-bottom))",
-              }}
+              style={{ zIndex: 50 }}
             >
-              <LaunchBanner />
               <SiteNav />
             </div>
-            {/* Spacer: reserves the height the fixed banner+nav occupy. */}
-            <div aria-hidden="true" style={{ height: "calc(40px + 64px)" }} />
+            {/* Spacer — reserves space for the floating pill nav. */}
+            <div aria-hidden="true" style={{ height: 80 }} />
             {children}
           </LenisProvider>
         </GSAPProvider>

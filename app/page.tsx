@@ -6,6 +6,7 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import PricingSection from "@/components/sections/PricingSection";
 import FAQSection from "@/components/sections/FAQSection";
 import CTASection from "@/components/sections/CTASection";
+import NewsletterSection from "@/components/sections/NewsletterSection";
 import SiteFooter from "@/components/sections/SiteFooter";
 import FlowingLine from "@/components/ui/FlowingLine";
 
@@ -23,6 +24,7 @@ export default function Home() {
       <PricingSection />
       <FAQSection />
       <CTASection />
+      <NewsletterSection />
       <SiteFooter />
     </main>
   );

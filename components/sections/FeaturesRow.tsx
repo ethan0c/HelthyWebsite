@@ -108,7 +108,8 @@ export default function FeaturesRow() {
           {/* Card 2: Weight Progress — chart + history (6 col) */}
           <FeatureCard
             className="lg:col-span-6"
-            headline={<>See your <span className="text-italics text-helthy-lemon">progress</span></>}
+            bgImage="/textures/card-water.jpg"
+            headline={<>See your <span className="text-helthy-lemon">progress</span></>}
             subtitle="Every weigh-in, plotted. Every entry, tracked."
           >
             <div className="flex flex-col items-center gap-6 w-full">
@@ -121,6 +122,7 @@ export default function FeaturesRow() {
           <FeatureCard
             className="lg:col-span-12"
             minH={560}
+            bgImage="/textures/card-stone.jpg"
             headline="Every lift, covered"
             subtitle="1,500+ exercises. Every PR tracked."
           >
