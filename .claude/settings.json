@@ -8,7 +8,11 @@
       "WebFetch(domain:macrofactor.com)",
       "WebFetch(domain:www.cal.ai)",
       "Bash(sips -g pixelWidth -g pixelHeight /Users/ethanlma/Documents/dev/helthy-web/public/phones/step-2/__TRACKED_VAR__.png)",
-      "Bash(find app:*)"
+      "Bash(find app:*)",
+      "Bash(ls /Users/ethanlma/Documents/dev/helthy-web/references/head-platypus-b9903_rehost_site_20260408_234908/img/*_scale_down_to_1024*)"
+    ],
+    "additionalDirectories": [
+      "/Users/ethanlma/Downloads/mockuuups-free-transparent-iphone-air-mockup"
     ]
   },
   "enabledPlugins": {
