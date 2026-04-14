@@ -200,7 +200,7 @@ function TransformationCard({ t }: { t: (typeof TRANSFORMATIONS)[number] }) {
           &ldquo;{t.quote}&rdquo;
         </p>
         <div>
-          <p className="text-[15px] font-semibold text-white">{t.name}</p>
+          <p className="text-[15px] font-medium text-white">{t.name}</p>
           <p className="text-[13px] text-white/45">{t.role}</p>
         </div>
       </div>
