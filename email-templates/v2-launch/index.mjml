@@ -1,5 +1,9 @@
 <mjml>
   <mj-head>
+    <mj-raw>
+      <meta name="color-scheme" content="light dark" />
+      <meta name="supported-color-schemes" content="light dark" />
+    </mj-raw>
     <mj-title>Helthy v2 is here.</mj-title>
     <mj-preview>Android is live, AI got smarter, and Premium is now $2.99/mo. Here's everything new.</mj-preview>
     <mj-attributes>
@@ -12,6 +16,29 @@
       a { text-decoration: none; }
       .bg-grad { background: #0F0F0F; background: linear-gradient(180deg, #0F0F0F 0%, #1A2024 35%, #1F282E 65%, #0F0F0F 100%) !important; }
       
+      
+      :root {
+        color-scheme: light dark;
+        supported-color-schemes: light dark;
+      }
+      
+      /* Apple Mail / iOS Mail / General dark mode override */
+      @media (prefers-color-scheme: dark) {
+        body { background-color: #0F0F0F !important; }
+        .bg-grad, .bg-grad > table, .bg-grad td { background-color: #0F0F0F !important; }
+        .inner-card, .inner-card > table, .inner-card td { background-color: #151515 !important; }
+        .footer-bg, .footer-bg > table, .footer-bg td { background-color: #111111 !important; }
+        .sig-text, .sig-text div { color: rgba(255,255,255,0.55) !important; }
+        .sig-ps { color: #777777 !important; }
+        .footer-text, .footer-text div { color: rgba(255,255,255,0.3) !important; }
+        a.footer-link, .footer-link { color: rgba(255,255,255,0.3) !important; }
+      }
+      
+      /* Gmail app specific override */
+      u + .body .bg-grad, u + .body .bg-grad > table, u + .body .bg-grad td { background-color: #0F0F0F !important; }
+      u + .body .inner-card, u + .body .inner-card > table, u + .body .inner-card td { background-color: #151515 !important; }
+      u + .body .footer-bg, u + .body .footer-bg > table, u + .body .footer-bg td { background-color: #111111 !important; }
+
       /* Gmail dark-mode guard */
       [data-ogsc] body { background-color: #0F0F0F !important; }
       [data-ogsc] .bg-grad, [data-ogsc] .bg-grad > table, [data-ogsc] .bg-grad td { background-color: #0F0F0F !important; }
