@@ -68,15 +68,29 @@
         <table class="container inner-card" width="560" cellpadding="0" cellspacing="0" border="0" role="presentation" bgcolor="#151515"
           style="max-width:560px;width:100%;background-color:#151515;border-radius:20px;border:1px solid #1F1F1F;overflow:hidden;">
 
-          <!-- ─── FULL EMAIL VISUAL (hero + cards + premium + store buttons) ─── -->
+          <!-- ─── FULL EMAIL VISUAL with clickable button overlays ─── -->
           <tr>
-            <td style="padding:0;">
-              <img
-                src="img/full-email.png"
-                alt="We rebuilt Helthy. Here's what's new. v2 is live on iOS and Android. AI got smarter, deeper insights, faster logging, Android launch, and Premium at $2.99/mo."
-                width="560"
-                height="1577"
-                style="display:block;width:100%;max-width:560px;height:auto;border:0;" />
+            <td style="padding:0;position:relative;">
+              <div style="position:relative;display:block;font-size:0;line-height:0;">
+                <img
+                  src="img/full-email.png"
+                  alt="We rebuilt Helthy. Here's what's new. v2 is live on iOS and Android. AI got smarter, deeper insights, faster logging, Android launch, and Premium at $2.99/mo."
+                  width="560"
+                  height="1577"
+                  style="display:block;width:100%;max-width:560px;height:auto;border:0;" />
+                <!-- Unlock Premium overlay -->
+                <a href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
+                  style="position:absolute;display:block;top:82.4%;left:4.5%;width:91%;height:7.9%;text-indent:-9999px;background:transparent;"
+                  aria-label="Unlock Premium">Unlock Premium</a>
+                <!-- App Store overlay -->
+                <a href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
+                  style="position:absolute;display:block;top:92.6%;left:20.5%;width:29.3%;height:5.7%;text-indent:-9999px;background:transparent;"
+                  aria-label="Download on the App Store">App Store</a>
+                <!-- Google Play overlay -->
+                <a href="https://play.google.com/store/apps/details?id=com.helthy.app"
+                  style="position:absolute;display:block;top:92.6%;left:50%;width:29.3%;height:5.7%;text-indent:-9999px;background:transparent;"
+                  aria-label="Get it on Google Play">Google Play</a>
+              </div>
             </td>
           </tr>
 

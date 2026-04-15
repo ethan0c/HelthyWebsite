@@ -68,14 +68,26 @@
     <!-- Top spacer -->
     <mj-section padding="32px 0 0"><mj-column><mj-text padding="0"> </mj-text></mj-column></mj-section>
 
-    <!-- FULL EMAIL VISUAL: hero + cards + premium + store buttons (single PNG) -->
-    <mj-section padding="0">
+    <!-- FULL EMAIL VISUAL with transparent clickable overlays for buttons -->
+    <mj-section padding="0" background-color="#151515" css-class="inner-card">
       <mj-column padding="0">
-        <mj-image
-          src="img/full-email.png"
-          alt="We rebuilt Helthy. Here's what's new. v2 is live on iOS and Android. AI got smarter, deeper insights, faster logging, Android launch, and Premium at $2.99/mo."
-          width="560px"
-          padding="0" />
+        <mj-raw>
+          <div style="position:relative;display:block;font-size:0;line-height:0;">
+            <img src="img/full-email.png"
+              alt="We rebuilt Helthy. Here's what's new. v2 is live on iOS and Android. AI got smarter, deeper insights, faster logging, Android launch, and Premium at $2.99/mo."
+              width="560" height="1577"
+              style="display:block;width:100%;max-width:560px;height:auto;border:0;" />
+            <a href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
+              style="position:absolute;display:block;top:82.4%;left:4.5%;width:91%;height:7.9%;text-indent:-9999px;background:transparent;"
+              aria-label="Unlock Premium">Unlock Premium</a>
+            <a href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
+              style="position:absolute;display:block;top:92.6%;left:20.5%;width:29.3%;height:5.7%;text-indent:-9999px;background:transparent;"
+              aria-label="Download on the App Store">App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.helthy.app"
+              style="position:absolute;display:block;top:92.6%;left:50%;width:29.3%;height:5.7%;text-indent:-9999px;background:transparent;"
+              aria-label="Get it on Google Play">Google Play</a>
+          </div>
+        </mj-raw>
       </mj-column>
     </mj-section>
 
