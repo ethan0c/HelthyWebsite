@@ -15,6 +15,11 @@
     <mj-style>
       a { text-decoration: none; }
       .bg-grad { background: #0F0F0F; background: linear-gradient(180deg, #0F0F0F 0%, #1A2024 35%, #1F282E 65%, #0F0F0F 100%) !important; }
+      .mobile-only { display: none; max-height: 0; overflow: hidden; }
+      @media only screen and (max-width: 600px) {
+        .desktop-only { display: none !important; max-height: 0 !important; overflow: hidden !important; }
+        .mobile-only { display: block !important; max-height: none !important; overflow: visible !important; }
+      }
       
       
       :root {
@@ -56,10 +61,18 @@
       [data-ogsc] .footer-bg { background-color: #111111 !important; }
       [data-ogsc] .footer-bg > table { background-color: #111111 !important; }
       [data-ogsc] .footer-bg td { background-color: #111111 !important; }
-      [data-ogsc] .sig-text, [data-ogsc] .sig-text div { color: rgba(255,255,255,0.55) !important; }
+      [data-ogsc] .btn-appstore { background-color: #CDFF50 !important; }
+      [data-ogsc] .btn-appstore a { color: #0B0B0B !important; background-color: #CDFF50 !important; }
+      [data-ogsc] .btn-gplay { background-color: #2A2A2A !important; }
+      [data-ogsc] .btn-gplay a { color: #FFFFFF !important; background-color: #2A2A2A !important; }
+      u + .body .btn-appstore { background-color: #CDFF50 !important; }
+      u + .body .btn-appstore a { color: #0B0B0B !important; background-color: #CDFF50 !important; }
+      u + .body .btn-gplay { background-color: #2A2A2A !important; }
+      u + .body .btn-gplay a { color: #FFFFFF !important; background-color: #2A2A2A !important; }
+      [data-ogsc] .sig-text, [data-ogsc] .sig-text div { color: #9A9A9A !important; }
       [data-ogsc] .sig-ps { color: #777777 !important; }
-      [data-ogsc] .footer-text, [data-ogsc] .footer-text div { color: rgba(255,255,255,0.3) !important; }
-      [data-ogsc] a.footer-link { color: rgba(255,255,255,0.3) !important; }
+      [data-ogsc] .footer-text, [data-ogsc] .footer-text div { color: #666666 !important; }
+      [data-ogsc] a.footer-link { color: #666666 !important; }
     </mj-style>
   </mj-head>
 
@@ -68,59 +81,69 @@
     <!-- Top spacer -->
     <mj-section padding="32px 0 0"><mj-column><mj-text padding="0"> </mj-text></mj-column></mj-section>
 
-    <!-- FULL EMAIL VISUAL with transparent clickable overlays for buttons -->
-    <mj-section padding="0" background-color="#151515" css-class="inner-card">
+    <!-- MAIN VISUAL: hero + cards + premium — desktop (560px) -->
+    <mj-section padding="0" background-color="#151515" css-class="inner-card desktop-only">
+      <mj-column padding="0">
+        <mj-image src="img/full-email.png"
+          alt="We rebuilt Helthy. Here's what's new. v2 is live on iOS and Android. AI got smarter, deeper insights, faster logging, Android launch, and Premium at $2.99/mo."
+          width="560px" height="1442px" padding="0" />
+      </mj-column>
+    </mj-section>
+    <!-- MAIN VISUAL: hero + cards + premium — mobile (375px) -->
+    <mj-section padding="0" css-class="mobile-only">
+      <mj-column padding="0">
+        <mj-image src="img/full-email-mobile.png"
+          alt="We rebuilt Helthy. Here's what's new. v2 is live on iOS and Android. AI got smarter, deeper insights, faster logging, Android launch, and Premium at $2.99/mo."
+          width="375px" height="1413px" padding="0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- SIG + FOOTER — desktop (560px) -->
+    <mj-section padding="0" css-class="desktop-only">
+      <mj-column padding="0">
+        <mj-image src="img/sig-footer.png"
+          alt="Already have it? Update the app to get v2. – Chibu &amp; Ebuka. P.S. Reply directly with feedback — we read every message."
+          width="560px" height="303px" padding="0" />
+      </mj-column>
+    </mj-section>
+    <!-- SIG + FOOTER — mobile (375px) -->
+    <mj-section padding="0" css-class="mobile-only">
+      <mj-column padding="0">
+        <mj-image src="img/sig-footer-mobile.png"
+          alt="Already have it? Update the app to get v2. – Chibu &amp; Ebuka. P.S. Reply directly with feedback — we read every message."
+          width="375px" height="280px" padding="0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Real store button links — no background cell -->
+    <mj-section padding="0">
       <mj-column padding="0">
         <mj-raw>
-          <div style="position:relative;display:block;font-size:0;line-height:0;">
-            <img src="img/full-email.png"
-              alt="We rebuilt Helthy. Here's what's new. v2 is live on iOS and Android. AI got smarter, deeper insights, faster logging, Android launch, and Premium at $2.99/mo."
-              width="560" height="1577"
-              style="display:block;width:100%;max-width:560px;height:auto;border:0;" />
-            <a href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
-              style="position:absolute;display:block;top:82.4%;left:4.5%;width:91%;height:7.9%;text-indent:-9999px;background:transparent;"
-              aria-label="Unlock Premium">Unlock Premium</a>
-            <a href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
-              style="position:absolute;display:block;top:92.6%;left:20.5%;width:29.3%;height:5.7%;text-indent:-9999px;background:transparent;"
-              aria-label="Download on the App Store">App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=com.helthy.app"
-              style="position:absolute;display:block;top:92.6%;left:50%;width:29.3%;height:5.7%;text-indent:-9999px;background:transparent;"
-              aria-label="Get it on Google Play">Google Play</a>
-          </div>
+          <table cellpadding="0" cellspacing="0" border="0" role="presentation" style="margin:0 auto;">
+            <tr>
+              <td style="padding-right:12px;vertical-align:middle;">
+                <a href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974" style="display:block;text-decoration:none;">
+                  <img src="img/btn-appstore.png" alt="Download on the App Store" width="141" height="45" style="display:block;border:0;" />
+                </a>
+              </td>
+              <td style="vertical-align:middle;">
+                <a href="https://play.google.com/store/apps/details?id=com.helthy.app" style="display:block;text-decoration:none;">
+                  <img src="img/btn-googleplay.png" alt="Get it on Google Play" width="157" height="47" style="display:block;border:0;" />
+                </a>
+              </td>
+            </tr>
+          </table>
         </mj-raw>
       </mj-column>
     </mj-section>
 
-    <!-- Divider -->
-    <mj-section background-color="#151515" css-class="inner-card" padding="0 40px">
+    <!-- Compliance -->
+    <mj-section padding="16px 40px 0">
       <mj-column padding="0">
-        <mj-divider border-color="#2A2A2A" border-width="1px" padding="0" />
-      </mj-column>
-    </mj-section>
-
-    <!-- Signature -->
-    <mj-section background-color="#151515" css-class="inner-card" padding="24px 40px 28px">
-      <mj-column padding="0">
-        <mj-text padding="0" font-size="15px" font-weight="400" line-height="1.6"
-          color="rgba(255,255,255,0.55)" css-class="sig-text">
-          – Chibu &amp; Ebuka<br />
-          <span class="sig-ps" style="font-size:13px;">P.S. Reply directly with feedback — we read every message.</span>
-        </mj-text>
-      </mj-column>
-    </mj-section>
-
-    <!-- FOOTER -->
-    <mj-section background-color="#111111" css-class="footer-bg" padding="20px 40px 24px">
-      <mj-column padding="0">
-        <mj-text align="center" font-size="12px" font-weight="400" line-height="1.5"
-          color="rgba(255,255,255,0.3)" padding="0 0 8px" css-class="footer-text">
-          You're receiving this because you signed up for Helthy updates.<br />
-          Helthy App &middot; 115th Street, Cleveland, Ohio
-        </mj-text>
-        <mj-text align="center" font-size="12px" font-weight="400" padding="0" css-class="footer-text">
-          <a href="{unsubscribe_link}" class="footer-link" style="color:rgba(255,255,255,0.3);text-decoration:underline;">Unsubscribe</a>
+        <mj-text align="center" font-size="11px" color="#555555" padding="0">
+          <a href="{unsubscribe_link}" style="color:#555555;text-decoration:underline;">Unsubscribe</a>
           &nbsp;&middot;&nbsp;
-          <a href="https://helthy.app/privacy" class="footer-link" style="color:rgba(255,255,255,0.3);text-decoration:underline;">Privacy Policy</a>
+          <a href="https://helthy.app/privacy" style="color:#555555;text-decoration:underline;">Privacy Policy</a>
         </mj-text>
       </mj-column>
     </mj-section>
