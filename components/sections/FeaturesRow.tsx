@@ -276,7 +276,7 @@ function AchievementCardGrid() {
 function ScreenshotMockup({ src, alt, wide, noCrop, cropBottom }: { src: string; alt: string; wide?: boolean; noCrop?: boolean; cropBottom?: number }) {
   return (
     <div
-      className={`${wide ? "w-[85%] max-w-[380px]" : "w-[70%] max-w-[300px]"} ${noCrop ? "mb-4" : "mb-[-40px]"} rounded-[20px] overflow-hidden`}
+      className={`${wide ? "w-[95%] max-w-[460px]" : "w-[70%] max-w-[300px]"} ${noCrop ? "mb-4" : "mb-[-40px]"} rounded-[20px] overflow-hidden`}
       style={{
         boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04)",
         ...(cropBottom ? { marginBottom: -cropBottom } : {}),
