@@ -11,6 +11,16 @@
     <mj-style>
       a { text-decoration: none; }
       .bg-grad { background: #0F0F0F; background: linear-gradient(180deg, #0F0F0F 0%, #1A2024 35%, #1F282E 65%, #0F0F0F 100%) !important; }
+      
+      /* Gmail dark-mode guard */
+      [data-ogsc] body { background-color: #0F0F0F !important; }
+      [data-ogsc] .bg-grad, [data-ogsc] .bg-grad > table, [data-ogsc] .bg-grad td { background-color: #0F0F0F !important; }
+      [data-ogsc] .inner-card, [data-ogsc] .inner-card > table, [data-ogsc] .inner-card td { background-color: #151515 !important; }
+      [data-ogsc] .footer-bg, [data-ogsc] .footer-bg > table, [data-ogsc] .footer-bg td { background-color: #111111 !important; }
+      [data-ogsc] .sig-text, [data-ogsc] .sig-text div { color: rgba(255,255,255,0.55) !important; }
+      [data-ogsc] .sig-ps { color: #777777 !important; }
+      [data-ogsc] .footer-text, [data-ogsc] .footer-text div { color: rgba(255,255,255,0.3) !important; }
+      [data-ogsc] a.footer-link { color: rgba(255,255,255,0.3) !important; }
     </mj-style>
   </mj-head>
 
@@ -20,7 +30,7 @@
     <mj-section padding="32px 0 0"><mj-column><mj-text padding="0"> </mj-text></mj-column></mj-section>
 
     <!-- HERO: logo + headline + intro (baked-in image) -->
-    <mj-section background-color="#151515" padding="0">
+    <mj-section background-color="#151515" css-class="inner-card" padding="0">
       <mj-column padding="0">
         <mj-image
           src="img/hero-block.png"
@@ -31,63 +41,63 @@
     </mj-section>
 
     <!-- Feature card 01: AI -->
-    <mj-section background-color="#151515" padding="14px 40px 14px">
+    <mj-section background-color="#151515" css-class="inner-card" padding="14px 40px 14px">
       <mj-column padding="0">
         <mj-image
           src="img/card-ai.png"
           alt="01 — AI got a lot smarter. Body fat estimates from progress photos. Plateau detection. Goal ETA predictor. Weekly physique report."
-          width="478px"
+          width="480px"
           padding="0" />
       </mj-column>
     </mj-section>
 
     <!-- Feature card 02: Insights -->
-    <mj-section background-color="#151515" padding="0 40px 14px">
+    <mj-section background-color="#151515" css-class="inner-card" padding="0 40px 14px">
       <mj-column padding="0">
         <mj-image
           src="img/card-insights.png"
           alt="02 — Insights that actually mean something. Momentum Ring, signal cards, weekly narrative in plain English."
-          width="478px"
+          width="480px"
           padding="0" />
       </mj-column>
     </mj-section>
 
     <!-- Feature card 03: Logging -->
-    <mj-section background-color="#151515" padding="0 40px 14px">
+    <mj-section background-color="#151515" css-class="inner-card" padding="0 40px 14px">
       <mj-column padding="0">
         <mj-image
           src="img/card-logging.png"
           alt="03 — Logging got faster. Nutrition label scanner, quick meal entry, photo logging. Import from MFP, MacroFactor, Hevy, Strong."
-          width="478px"
+          width="480px"
           padding="0" />
       </mj-column>
     </mj-section>
 
     <!-- Feature card 04: Android -->
-    <mj-section background-color="#151515" padding="0 40px 28px">
+    <mj-section background-color="#151515" css-class="inner-card" padding="0 40px 28px">
       <mj-column padding="0">
         <mj-image
           src="img/card-android.png"
           alt="04 — Android is here + 6 languages. Helthy is now on Google Play. Arabic, German, Spanish, French, Hindi, Chinese."
-          width="478px"
+          width="480px"
           padding="0" />
       </mj-column>
     </mj-section>
 
     <!-- Premium card (clickable image) -->
-    <mj-section background-color="#151515" padding="0 40px 24px">
+    <mj-section background-color="#151515" css-class="inner-card" padding="0 40px 24px">
       <mj-column padding="0">
         <mj-image
           src="img/premium-card.png"
           alt="Introducing Premium — $2.99/mo. Everything unlimited. Tap to unlock."
           href="https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974"
-          width="478px"
+          width="480px"
           padding="0" />
       </mj-column>
     </mj-section>
 
     <!-- Store buttons (each clickable) -->
-    <mj-section background-color="#151515" padding="0 40px 36px">
+    <mj-section background-color="#151515" css-class="inner-card" padding="0 40px 36px">
       <mj-column padding="0">
         <mj-raw>
           <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;">
@@ -109,35 +119,35 @@
     </mj-section>
 
     <!-- Divider -->
-    <mj-section background-color="#151515" padding="0 40px">
+    <mj-section background-color="#151515" css-class="inner-card" padding="0 40px">
       <mj-column padding="0">
         <mj-divider border-color="#2A2A2A" border-width="1px" padding="0" />
       </mj-column>
     </mj-section>
 
     <!-- Signature -->
-    <mj-section background-color="#151515" padding="24px 40px 28px">
+    <mj-section background-color="#151515" css-class="inner-card" padding="24px 40px 28px">
       <mj-column padding="0">
         <mj-text padding="0" font-size="15px" font-weight="400" line-height="1.6"
-          color="rgba(255,255,255,0.55)">
+          color="rgba(255,255,255,0.55)" css-class="sig-text">
           – Chibu &amp; Ebuka<br />
-          <span style="font-size:13px;">P.S. Reply directly with feedback — we read every message.</span>
+          <span class="sig-ps" style="font-size:13px;">P.S. Reply directly with feedback — we read every message.</span>
         </mj-text>
       </mj-column>
     </mj-section>
 
     <!-- FOOTER -->
-    <mj-section background-color="#111111" padding="20px 40px 24px">
+    <mj-section background-color="#111111" css-class="footer-bg" padding="20px 40px 24px">
       <mj-column padding="0">
         <mj-text align="center" font-size="12px" font-weight="400" line-height="1.5"
-          color="rgba(255,255,255,0.3)" padding="0 0 8px">
+          color="rgba(255,255,255,0.3)" padding="0 0 8px" css-class="footer-text">
           You're receiving this because you signed up for Helthy updates.<br />
           Helthy App &middot; 115th Street, Cleveland, Ohio
         </mj-text>
-        <mj-text align="center" font-size="12px" font-weight="400" padding="0">
-          <a href="{unsubscribe_link}" style="color:rgba(255,255,255,0.3);text-decoration:underline;">Unsubscribe</a>
+        <mj-text align="center" font-size="12px" font-weight="400" padding="0" css-class="footer-text">
+          <a href="{{unsubscribeUrl}}" class="footer-link" style="color:rgba(255,255,255,0.3);text-decoration:underline;">Unsubscribe</a>
           &nbsp;&middot;&nbsp;
-          <a href="https://helthy.app/privacy" style="color:rgba(255,255,255,0.3);text-decoration:underline;">Privacy Policy</a>
+          <a href="https://helthy.app/privacy" class="footer-link" style="color:rgba(255,255,255,0.3);text-decoration:underline;">Privacy Policy</a>
         </mj-text>
       </mj-column>
     </mj-section>
