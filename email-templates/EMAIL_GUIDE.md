@@ -86,11 +86,12 @@ region, and writes it to `img/`.
   before the image loads.
 - For responsive mobile scaling use `style="width:100%;max-width:<display_w>px;height:auto;"`.
 
-## Dark mode (Gmail Android)
+## Dark mode (Gmail — iOS & Android)
 
-Gmail on Android applies its own forced dark mode and **inverts near-black
-backgrounds** — `#151515` becomes near-white, `#111111` becomes light gray.
-The `color-scheme: dark` meta tag alone does not stop this.
+Gmail applies its own forced dark mode (on both iOS and Android) and
+**inverts near-black backgrounds** — `#151515` becomes near-white, `#111111`
+becomes light gray. The `color-scheme: dark` meta tag alone does not stop this.
+Gmail's rendering engine is identical on both platforms so the fix is the same.
 
 **Required pattern for every `email.html`:**
 

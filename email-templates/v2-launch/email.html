@@ -27,9 +27,9 @@
       .stores td { display: block !important; padding: 0 0 12px 0 !important; }
     }
     /* ── Gmail dark-mode guard ────────────────────────────────────────────
-       Gmail adds [data-ogsc] to <html> when it forces dark mode and inverts
-       near-black backgrounds (#151515 → white). These rules run AFTER Gmail's
-       transformation and restore the original dark colors.
+       Gmail (iOS & Android) adds [data-ogsc] to <html> when it forces dark
+       mode and inverts near-black backgrounds (#151515 → white). These rules
+       run AFTER Gmail's transformation and restore the original dark colors.
        Always pair with bgcolor="" HTML attributes on the same elements so
        clients that ignore <style> blocks also stay dark.
     */

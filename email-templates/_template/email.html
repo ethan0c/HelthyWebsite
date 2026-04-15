@@ -28,12 +28,12 @@
       .img-full { width: 100% !important; height: auto !important; }
     }
     /* ── Gmail dark-mode guard ────────────────────────────────────────────
-       Gmail adds [data-ogsc] to <html> when it forces dark mode and inverts
-       near-black backgrounds (#151515 → white). These rules restore original
-       colors after Gmail's pass. Always pair with bgcolor="" attributes on
-       the same <table>/<td> elements (see below) for clients that ignore
+       Gmail (iOS & Android) adds [data-ogsc] to <html> when it forces dark
+       mode and inverts near-black backgrounds (#151515 → white). These rules
+       restore original colors after Gmail's pass. Always pair with bgcolor=""
+       attributes on the same <table>/<td> elements for clients that ignore
        <style> blocks entirely.
-       See EMAIL_GUIDE.md → "Dark mode (Gmail Android)" for full explanation.
+       See EMAIL_GUIDE.md → "Dark mode (Gmail — iOS & Android)" for details.
     */
     [data-ogsc] body        { background-color: #0F0F0F !important; }
     [data-ogsc] .outer-wrap { background-color: #141A1E !important; }
