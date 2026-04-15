@@ -86,6 +86,46 @@ region, and writes it to `img/`.
   before the image loads.
 - For responsive mobile scaling use `style="width:100%;max-width:<display_w>px;height:auto;"`.
 
+## Dark mode (Gmail Android)
+
+Gmail on Android applies its own forced dark mode and **inverts near-black
+backgrounds** — `#151515` becomes near-white, `#111111` becomes light gray.
+The `color-scheme: dark` meta tag alone does not stop this.
+
+**Required pattern for every `email.html`:**
+
+1. **`[data-ogsc]` CSS rules** — Gmail adds this attribute to `<html>` when
+   in dark mode. Rules in the `<style>` block targeting `[data-ogsc]` run
+   after Gmail's transformation and restore original colors:
+
+   ```css
+   [data-ogsc] body        { background-color: #0F0F0F !important; }
+   [data-ogsc] .outer-wrap { background-color: #141A1E !important; }
+   [data-ogsc] .inner-card { background-color: #151515 !important; }
+   [data-ogsc] .body-pad   { background-color: #151515 !important; }
+   [data-ogsc] .footer-bg  { background-color: #111111 !important; }
+   [data-ogsc] .sig-text   { color: #9A9A9A !important; }
+   [data-ogsc] .sig-ps     { color: #777777 !important; }
+   [data-ogsc] .footer-text{ color: #666666 !important; }
+   [data-ogsc] a.footer-link { color: #666666 !important; }
+   ```
+
+2. **`bgcolor=""` HTML attributes** — add to every `<table>` and `<td>` that
+   carries a dark background via inline `style`. Some clients ignore `<style>`
+   blocks entirely; `bgcolor` is the last-resort fallback:
+
+   ```html
+   <td class="body-pad" bgcolor="#151515" style="background-color:#151515;…">
+   ```
+
+3. **Class names** — the `[data-ogsc]` selectors target class names, not
+   element types. Apply them consistently: `outer-wrap`, `inner-card`,
+   `body-pad`, `footer-bg`, `sig-text`, `sig-ps`, `footer-text`, `footer-link`.
+
+The `_template/email.html` starter already includes all of the above.
+PNG image regions are immune to dark mode inversion — only the plain-HTML
+wrapper cells (background colors, signature text, footer text) need protection.
+
 ## Gotchas
 
 - **Webfont loading timing** — the script waits for `document.fonts.ready`
