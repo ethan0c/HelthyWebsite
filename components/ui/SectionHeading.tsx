@@ -41,12 +41,12 @@ export default function SectionHeading({
           {eyebrow}
         </div>
       )}
-      <h2 className="text-display-xl font-heading font-light tracking-tight">
+      <h2 className="text-display-xl font-heading tracking-tight">
         {title}
         {italicTail && (
           <>
             {" "}
-            <span className="text-italics text-helthy-lemon">{italicTail}</span>
+            <span className="text-helthy-lemon">{italicTail}</span>
           </>
         )}
         {trailingPunctuation}

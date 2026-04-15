@@ -13,21 +13,33 @@ export default function PrivacyPage() {
       <main className="relative overflow-hidden min-h-screen bg-background text-white">
         <div
           className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
           style={{
             background:
-              "radial-gradient(ellipse 70% 45% at 50% 0%, rgba(205,255,80,0.06), transparent 70%), radial-gradient(ellipse 50% 35% at 10% 80%, rgba(34,211,238,0.04), transparent 70%)",
+              "radial-gradient(ellipse 70% 45% at 50% 0%, rgba(205,255,80,0.05), transparent 70%)",
           }}
         />
 
-        <section className="relative mx-auto max-w-4xl px-6 lg:px-8 pb-20 pt-44 lg:pb-28 lg:pt-52">
+        <section className="relative mx-auto max-w-4xl px-6 lg:px-8 pb-20 pt-32 lg:pb-28 lg:pt-40">
           <div className="space-y-10">
             {/* Header */}
             <div className="space-y-5 pb-10 border-b border-white/10">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-white/45" style={{ fontFamily: "var(--font-body)" }}>
+              <p
+                className="text-[11px] font-semibold uppercase text-white/45"
+                style={{ fontFamily: "var(--font-body)", letterSpacing: "0.2em" }}
+              >
                 Legal
               </p>
-              <h1 className="font-heading text-[clamp(2.5rem,5.5vw,4.5rem)] font-light leading-[1.0] tracking-[-0.03em] text-white">
-                <span className="text-italics text-helthy-lemon">Privacy</span> Policy
+              <h1
+                className="font-heading text-white"
+                style={{
+                  fontSize: "clamp(36px, 5vw, 64px)",
+                  fontWeight: 500,
+                  lineHeight: 1.05,
+                  letterSpacing: "-0.025em",
+                }}
+              >
+                <span className="text-helthy-lemon">Privacy</span> Policy
               </h1>
               <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-white/50">
                 <span>Last Updated: March 2026</span>

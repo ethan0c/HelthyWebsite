@@ -1,5 +1,5 @@
-import Link from "next/link";
 import SiteFooter from "@/components/sections/SiteFooter";
+import CTAButton from "@/components/ui/CTAButton";
 
 export default function NotFound() {
   return (
@@ -22,18 +22,26 @@ export default function NotFound() {
             404
           </p>
 
-          <h1 className="font-heading text-[clamp(2rem,5vw,3.5rem)] font-light leading-[1.05] tracking-[-0.03em] text-white -mt-4">
-            Page not <span className="text-italics text-helthy-lemon">found</span>.
+          <h1
+            className="font-heading text-white -mt-4"
+            style={{
+              fontSize: "clamp(32px, 4.6vw, 56px)",
+              fontWeight: 500,
+              lineHeight: 1.05,
+              letterSpacing: "-0.025em",
+            }}
+          >
+            Page not <span className="text-helthy-lemon">found</span>.
           </h1>
 
           <p className="mt-5 text-base text-white/50 max-w-sm mx-auto leading-relaxed">
             This page doesn&apos;t exist or may have moved. Head back home to keep going.
           </p>
 
-          <div className="mt-10">
-            <Link href="/" className="btn-primary inline-flex items-center gap-2">
+          <div className="mt-10 flex justify-center">
+            <CTAButton href="/" variant="primary" size="md">
               Back to home
-            </Link>
+            </CTAButton>
           </div>
         </div>
       </main>

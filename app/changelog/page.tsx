@@ -1,5 +1,6 @@
 import React from "react";
 import SectionHeading from "@/components/ui/SectionHeading";
+import SiteFooter from "@/components/sections/SiteFooter";
 
 const UPDATES = [
   "Dynamic weekly TDEE updating based on activity",
@@ -84,29 +85,54 @@ const UPDATES = [
 
 export default function ChangelogPage() {
   return (
-    <main className="min-h-screen bg-[#111111] text-white pt-32 pb-20 px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <SectionHeading
-          title="What's new since"
-          italicTail="1.2.7"
-          trailingPunctuation=""
+    <>
+      <main className="relative min-h-screen bg-background text-white pt-32 pb-20 px-6 lg:px-8 overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 45% at 50% 0%, rgba(205,255,80,0.05), transparent 70%)",
+          }}
         />
-        
-        <div className="mt-16 space-y-12">
-          {/* Placeholder for changelog content */}
-          <div className="p-8 rounded-3xl bg-[#1A1A1A] border border-white/5">
-            <h2 className="text-2xl font-semibold mb-4">Helthy v2.0</h2>
-            <p className="text-white/60 mb-6">Released April 2026</p>
-            <ul className="list-disc list-inside space-y-3 text-white/80 ml-2">
-              {UPDATES.map((update, i) => (
-                <li key={i} className="pl-2 leading-relaxed">
-                  <span className="inline-block relative -left-2">{update}</span>
-                </li>
-              ))}
-            </ul>
+
+        <div className="relative max-w-4xl mx-auto">
+          <SectionHeading
+            title="What's new since"
+            italicTail="1.2.7"
+            trailingPunctuation=""
+          />
+
+          <div className="mt-16 space-y-12">
+            <div className="card-helthy p-8 sm:p-10">
+              <h2
+                className="font-heading text-white mb-2"
+                style={{
+                  fontSize: "clamp(22px, 2.6vw, 30px)",
+                  fontWeight: 500,
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                Helthy v2.0
+              </h2>
+              <p className="text-white/50 mb-8 text-[13px]">Released April 2026</p>
+              <ul className="space-y-2.5 text-white/75 text-[14px] leading-relaxed">
+                {UPDATES.map((update, i) => (
+                  <li key={i} className="flex gap-3">
+                    <span
+                      aria-hidden="true"
+                      className="shrink-0 mt-[0.55em] w-1 h-1 rounded-full"
+                      style={{ background: "#CDFF50", opacity: 0.55 }}
+                    />
+                    <span>{update}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+      <SiteFooter />
+    </>
   );
 }
