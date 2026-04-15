@@ -307,7 +307,7 @@ function TripleScreenshotMockup({
       {screens.map((s, i) => (
         <div
           key={s.src}
-          className="w-[70%] max-w-[300px] rounded-t-[20px] overflow-hidden"
+          className={`rounded-t-[20px] overflow-hidden${i === 1 ? " w-[70%] max-w-[300px]" : " hidden sm:block w-[70%] max-w-[300px]"}`}
           style={{
             boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04)",
             transform: i === 1 ? "translateY(-12px)" : undefined,
