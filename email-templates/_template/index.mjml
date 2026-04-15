@@ -1,0 +1,137 @@
+<mjml>
+  <mj-head>
+    <mj-title>Email subject line</mj-title>
+    <mj-preview>Descriptive preview text that shows in Gmail and Apple Mail.</mj-preview>
+    <mj-attributes>
+      <mj-all font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif" />
+      <mj-text color="#FFFFFF" font-size="15px" font-weight="400" line-height="1.6" padding="0" />
+      <mj-section padding="0" />
+      <mj-image padding="0" border="0" />
+    </mj-attributes>
+    <mj-style>
+      a { text-decoration: none; }
+      .bg-grad { background: #0F0F0F; background: linear-gradient(180deg, #0F0F0F 0%, #1A2024 35%, #1F282E 65%, #0F0F0F 100%) !important; }
+      
+      /* Gmail dark-mode guard */
+      [data-ogsc] body { background-color: #0F0F0F !important; }
+      [data-ogsc] .bg-grad, [data-ogsc] .bg-grad > table, [data-ogsc] .bg-grad td { background-color: #0F0F0F !important; }
+      [data-ogsc] .inner-card, [data-ogsc] .inner-card > table, [data-ogsc] .inner-card td { background-color: #151515 !important; }
+      [data-ogsc] .footer-bg, [data-ogsc] .footer-bg > table, [data-ogsc] .footer-bg td { background-color: #111111 !important; }
+      [data-ogsc] .sig-text, [data-ogsc] .sig-text div { color: rgba(255,255,255,0.55) !important; }
+      [data-ogsc] .sig-ps { color: #777777 !important; }
+      [data-ogsc] .footer-text, [data-ogsc] .footer-text div { color: rgba(255,255,255,0.3) !important; }
+      [data-ogsc] a.footer-link { color: rgba(255,255,255,0.3) !important; }
+    </mj-style>
+  </mj-head>
+
+  <mj-body background-color="#0F0F0F" width="560px" css-class="bg-grad">
+
+    <!-- Top spacer -->
+    <mj-section padding="32px 0 0"><mj-column><mj-text padding="0"> </mj-text></mj-column></mj-section>
+
+    <!-- HERO -->
+    <mj-section background-color="#151515" padding="0" css-class="inner-card">
+      <mj-column padding="0">
+        <mj-image
+          src="img/hero.png"
+          alt="Replace with descriptive alt text"
+          width="528px"
+          padding="16px" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Feature card 1 -->
+    <mj-section background-color="#151515" padding="14px 40px 14px" css-class="inner-card">
+      <mj-column padding="0">
+        <mj-image
+          src="img/card-1.png"
+          alt="Feature one description"
+          width="478px"
+          padding="0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Feature card 2 -->
+    <mj-section background-color="#151515" padding="0 40px 14px" css-class="inner-card">
+      <mj-column padding="0">
+        <mj-image
+          src="img/card-2.png"
+          alt="Feature two description"
+          width="478px"
+          padding="0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Premium card -->
+    <mj-section background-color="#151515" padding="0 40px 24px" css-class="inner-card">
+      <mj-column padding="0">
+        <mj-image
+          src="img/premium.png"
+          alt="Premium plan details — tap to subscribe"
+          href="https://apps.apple.com/us/app/helthy"
+          width="478px"
+          padding="0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Store buttons -->
+    <mj-section background-color="#151515" padding="0 40px 36px" css-class="inner-card">
+      <mj-column padding="0">
+        <mj-raw>
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;">
+            <tr>
+              <td style="padding-right:12px;vertical-align:middle;">
+                <a href="https://apps.apple.com" style="display:block;text-decoration:none;">
+                  <img src="img/btn-appstore.png" alt="Download on the App Store" width="151" height="49" style="display:block;width:151px;height:49px;border:0;" />
+                </a>
+              </td>
+              <td style="vertical-align:middle;">
+                <a href="https://play.google.com" style="display:block;text-decoration:none;">
+                  <img src="img/btn-googleplay.png" alt="Get it on Google Play" width="163" height="50" style="display:block;width:163px;height:50px;border:0;" />
+                </a>
+              </td>
+            </tr>
+          </table>
+        </mj-raw>
+      </mj-column>
+    </mj-section>
+
+    <!-- Divider -->
+    <mj-section background-color="#151515" padding="0 40px" css-class="inner-card">
+      <mj-column padding="0">
+        <mj-divider border-color="#2A2A2A" border-width="1px" padding="0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Signature -->
+    <mj-section background-color="#151515" padding="24px 40px 28px" css-class="inner-card">
+      <mj-column padding="0">
+        <mj-text padding="0" font-size="15px" font-weight="400" line-height="1.6"
+          color="rgba(255,255,255,0.55)" css-class="sig-text">
+          – The Team<br />
+          <span class="sig-ps" style="font-size:13px;">P.S. Reach out.</span>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- FOOTER -->
+    <mj-section background-color="#111111" padding="20px 40px 24px" css-class="footer-bg">
+      <mj-column padding="0">
+        <mj-text align="center" font-size="12px" font-weight="400" line-height="1.5"
+          color="rgba(255,255,255,0.3)" padding="0 0 8px" css-class="footer-text">
+          You're receiving this because you signed up for updates.<br />
+          Helthy App
+        </mj-text>
+        <mj-text align="center" font-size="12px" font-weight="400" padding="0" css-class="footer-text">
+          <a href="{unsubscribe_link}" class="footer-link" style="color:rgba(255,255,255,0.3);text-decoration:underline;">Unsubscribe</a>
+          &nbsp;&middot;&nbsp;
+          <a href="https://helthy.app/privacy" class="footer-link" style="color:rgba(255,255,255,0.3);text-decoration:underline;">Privacy Policy</a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Bottom spacer -->
+    <mj-section padding="40px 0 0"><mj-column><mj-text padding="0"> </mj-text></mj-column></mj-section>
+
+  </mj-body>
+</mjml>

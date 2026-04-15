@@ -156,6 +156,7 @@ email-templates/
   <your-campaign>/
     source.html
     email.html
+    index.mjml          — optional Loops version
     img/
 scripts/
   render_email_images.py
@@ -163,7 +164,7 @@ scripts/
 
 ## Loops upload
 
-If shipping via Loops, create a sibling `loops.mjml` that mirrors
-`email.html` using MJML components. Zip `loops.mjml` + `img/` at the root
-level and upload to Loops. Don't reference external URLs — Loops inlines
+If shipping via Loops, create a sibling `index.mjml` that mirrors
+`email.html` using MJML components. Zip `index.mjml` + `img/` at the root
+level and upload to Loops. **Note:** Loops requires campaign emails to use the exact `{unsubscribe_link}` tag for the unsubscribe URL. Don't reference external URLs — Loops inlines
 the images from the zip.
