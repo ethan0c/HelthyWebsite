@@ -34,17 +34,25 @@
        clients that ignore <style> blocks also stay dark.
     */
     [data-ogsc] body        { background-color: #0F0F0F !important; }
-    [data-ogsc] .outer-wrap { background-color: #141A1E !important; }
+    [data-ogsc] .outer-wrap { background-color: #0F0F0F !important; }
+    [data-ogsc] .outer-wrap > tbody > tr > td { background-color: #0F0F0F !important; }
     [data-ogsc] .inner-card { background-color: #151515 !important; }
     [data-ogsc] .body-pad   { background-color: #151515 !important; }
     [data-ogsc] .footer-bg  { background-color: #111111 !important; }
+    [data-ogsc] .footer-pad { background-color: #111111 !important; }
     [data-ogsc] .sig-text   { color: #9A9A9A !important; }
     [data-ogsc] .sig-ps     { color: #777777 !important; }
     [data-ogsc] .footer-text{ color: #666666 !important; }
     [data-ogsc] a.footer-link { color: #666666 !important; }
+    /* u+ targets Gmail iOS/Android specifically */
+    u + .body .outer-wrap  { background-color: #0F0F0F !important; }
+    u + .body .inner-card  { background-color: #151515 !important; }
+    u + .body .body-pad    { background-color: #151515 !important; }
+    u + .body .footer-bg   { background-color: #111111 !important; }
+    u + .body .footer-pad  { background-color: #111111 !important; }
   </style>
 </head>
-<body style="margin:0;padding:0;background-color:#0F0F0F;-webkit-font-smoothing:antialiased;">
+<body class="body" style="margin:0;padding:0;background-color:#0F0F0F;-webkit-font-smoothing:antialiased;">
 
   <!-- Preheader -->
   <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">
@@ -52,8 +60,8 @@
   </div>
 
   <!-- Gradient background wrapper — gradient via inline style, bgcolor fallback for Outlook -->
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation" bgcolor="#141A1E" class="outer-wrap"
-    style="background: linear-gradient(180deg, #0F0F0F 0%, #1A2024 30%, #1F282E 60%, #0F0F0F 100%); background-color:#141A1E;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation" bgcolor="#0F0F0F" class="outer-wrap"
+    style="background: linear-gradient(180deg, #0F0F0F 0%, #1A2024 30%, #1F282E 60%, #0F0F0F 100%); background-color:#0F0F0F;">
     <tr>
       <td align="center" style="padding:32px 16px;">
 

@@ -34,16 +34,28 @@
         a.footer-link, .footer-link { color: rgba(255,255,255,0.3) !important; }
       }
       
-      /* Gmail app specific override */
-      u + .body .bg-grad, u + .body .bg-grad > table, u + .body .bg-grad td { background-color: #0F0F0F !important; }
-      u + .body .inner-card, u + .body .inner-card > table, u + .body .inner-card td { background-color: #151515 !important; }
-      u + .body .footer-bg, u + .body .footer-bg > table, u + .body .footer-bg td { background-color: #111111 !important; }
+      /* Gmail iOS/Android specific override (u+ selector) */
+      u + .body .bg-grad { background-color: #0F0F0F !important; }
+      u + .body .bg-grad > table { background-color: #0F0F0F !important; }
+      u + .body .bg-grad td { background-color: #0F0F0F !important; }
+      u + .body .inner-card { background-color: #151515 !important; }
+      u + .body .inner-card > table { background-color: #151515 !important; }
+      u + .body .inner-card td { background-color: #151515 !important; }
+      u + .body .footer-bg { background-color: #111111 !important; }
+      u + .body .footer-bg > table { background-color: #111111 !important; }
+      u + .body .footer-bg td { background-color: #111111 !important; }
 
-      /* Gmail dark-mode guard */
+      /* Gmail dark-mode guard ([data-ogsc] = Gmail forced dark mode) */
       [data-ogsc] body { background-color: #0F0F0F !important; }
-      [data-ogsc] .bg-grad, [data-ogsc] .bg-grad > table, [data-ogsc] .bg-grad td { background-color: #0F0F0F !important; }
-      [data-ogsc] .inner-card, [data-ogsc] .inner-card > table, [data-ogsc] .inner-card td { background-color: #151515 !important; }
-      [data-ogsc] .footer-bg, [data-ogsc] .footer-bg > table, [data-ogsc] .footer-bg td { background-color: #111111 !important; }
+      [data-ogsc] .bg-grad { background-color: #0F0F0F !important; }
+      [data-ogsc] .bg-grad > table { background-color: #0F0F0F !important; }
+      [data-ogsc] .bg-grad td { background-color: #0F0F0F !important; }
+      [data-ogsc] .inner-card { background-color: #151515 !important; }
+      [data-ogsc] .inner-card > table { background-color: #151515 !important; }
+      [data-ogsc] .inner-card td { background-color: #151515 !important; }
+      [data-ogsc] .footer-bg { background-color: #111111 !important; }
+      [data-ogsc] .footer-bg > table { background-color: #111111 !important; }
+      [data-ogsc] .footer-bg td { background-color: #111111 !important; }
       [data-ogsc] .sig-text, [data-ogsc] .sig-text div { color: rgba(255,255,255,0.55) !important; }
       [data-ogsc] .sig-ps { color: #777777 !important; }
       [data-ogsc] .footer-text, [data-ogsc] .footer-text div { color: rgba(255,255,255,0.3) !important; }
