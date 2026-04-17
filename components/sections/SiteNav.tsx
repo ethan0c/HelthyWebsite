@@ -136,7 +136,7 @@ export default function SiteNav() {
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
-        className="lg:hidden pointer-events-auto absolute rounded-full p-2 transition-colors"
+        className="lg:hidden pointer-events-auto absolute rounded-full p-2.5 transition-colors"
         style={{
           top: "clamp(14px, 2.2vh, 24px)",
           right: "clamp(16px, 3vw, 32px)",
@@ -156,9 +156,9 @@ export default function SiteNav() {
           className="lg:hidden pointer-events-auto"
           style={{
             position: "fixed",
-            top: 72,
-            left: 16,
-            right: 16,
+            top: "calc(clamp(14px, 2.2vh, 24px) + 56px)",
+            left: "clamp(16px, 3vw, 32px)",
+            right: "clamp(16px, 3vw, 32px)",
             background: "rgba(20,20,20,0.94)",
             backdropFilter: "blur(32px) saturate(140%)",
             WebkitBackdropFilter: "blur(32px) saturate(140%)",

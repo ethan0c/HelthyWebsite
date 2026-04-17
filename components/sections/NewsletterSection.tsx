@@ -72,7 +72,7 @@ export default function NewsletterSection() {
               data-newsletter-heading
               className="font-heading"
               style={{
-                fontSize: "clamp(32px, 4.4vw, 56px)",
+                fontSize: "clamp(30px, 3.6vw, 48px)",
                 fontWeight: 500,
                 letterSpacing: "-0.025em",
                 lineHeight: "1.05em",

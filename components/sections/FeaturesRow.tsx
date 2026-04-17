@@ -376,7 +376,8 @@ function TripleScreenshotMockup({
                 fontWeight: 500,
                 fontSize: 13,
                 letterSpacing: "-0.005em",
-                padding: "8px 18px",
+                padding: "11px 20px",
+                minHeight: 42,
                 whiteSpace: "nowrap",
                 transition:
                   "transform 220ms cubic-bezier(0.16, 1, 0.3, 1), background-color 280ms ease, color 280ms ease, box-shadow 280ms ease",
@@ -722,9 +723,14 @@ function WeightGraphMockup() {
         scrollTrigger: trigger,
       });
 
-      // Draw weight trend line
-      gsap.fromTo("[data-weight-line]", 
-        { strokeDasharray: 1000, strokeDashoffset: 1000 },
+      // Draw weight trend line — measure actual length so it ends on the dot
+      const lineEl = scaleRef.current?.querySelector<SVGPathElement>(
+        "[data-weight-line]"
+      );
+      const pathLen = lineEl ? lineEl.getTotalLength() : 1000;
+      gsap.fromTo(
+        "[data-weight-line]",
+        { strokeDasharray: pathLen, strokeDashoffset: pathLen },
         {
           strokeDashoffset: 0,
           duration: 1.8,
@@ -743,15 +749,19 @@ function WeightGraphMockup() {
         scrollTrigger: trigger,
       });
 
-      // Pop in last dot
-      gsap.from("[data-weight-dot]", {
-        scale: 0,
-        opacity: 0,
-        duration: 0.5,
-        delay: flickerEnd + 1.4,
-        ease: "back.out(3)",
-        scrollTrigger: trigger,
-      });
+      // Pop in last dot — fade + settle, no overshoot
+      gsap.fromTo(
+        "[data-weight-dot]",
+        { scale: 0, opacity: 0, transformOrigin: "center center" },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.45,
+          delay: flickerEnd + 1.7,
+          ease: "power3.out",
+          scrollTrigger: trigger,
+        }
+      );
 
       // Lemon glow pulse on the card when the line finishes drawing
       gsap.fromTo(
