@@ -21,7 +21,7 @@ export default function SiteNav() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 72);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -32,6 +32,20 @@ export default function SiteNav() {
       className="relative w-full pointer-events-none"
       style={{ paddingTop: "clamp(14px, 2.2vh, 24px)" }}
     >
+      {/* Full-width frosted bar — fades in after hero scroll */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 pointer-events-none"
+        style={{
+          height: "clamp(60px, 9vh, 76px)",
+          background: "rgba(10,10,10,0.72)",
+          backdropFilter: "blur(24px) saturate(140%)",
+          WebkitBackdropFilter: "blur(24px) saturate(140%)",
+          borderBottom: "1px solid rgba(255,255,255,0.05)",
+          opacity: scrolled ? 1 : 0,
+          transition: "opacity 350ms ease",
+        }}
+      />
       {/* Left: logo — anchored to top-left like main */}
       <Link
         href="/"
@@ -58,7 +72,7 @@ export default function SiteNav() {
          Base color #141414 mirrors mobile app's tabBarBackground token.
          Border #2E2E30 mirrors mobile `border` token. */}
       <nav
-        className="pointer-events-auto hidden lg:flex mx-auto w-fit"
+        className="pointer-events-auto hidden lg:flex mx-auto w-fit relative"
         aria-label="Primary"
         style={{
           backgroundColor: scrolled
