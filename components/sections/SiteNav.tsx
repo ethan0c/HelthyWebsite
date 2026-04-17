@@ -18,14 +18,26 @@ const NAV = [
 
 export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 72);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const onMq = () => setIsDesktop(mq.matches);
+    onMq();
+    mq.addEventListener("change", onMq);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      mq.removeEventListener("change", onMq);
+    };
   }, []);
+
+  const hideLogo = isDesktop && scrolled;
 
   return (
     <div
@@ -46,7 +58,8 @@ export default function SiteNav() {
           transition: "opacity 350ms ease",
         }}
       />
-      {/* Left: logo — anchored to top-left like main */}
+      {/* Left: logo — anchored to top-left like main.
+          On desktop, fades out on scroll so the glass pill holds focus. */}
       <Link
         href="/"
         aria-label="Helthy home"
@@ -55,6 +68,10 @@ export default function SiteNav() {
           top: "clamp(14px, 2.2vh, 24px)",
           left: "clamp(16px, 3vw, 32px)",
           height: 40,
+          opacity: hideLogo ? 0 : 1,
+          transform: hideLogo ? "translateY(-6px)" : "translateY(0)",
+          transition: "opacity 300ms ease, transform 300ms ease",
+          pointerEvents: hideLogo ? "none" : "auto",
         }}
       >
         <Image

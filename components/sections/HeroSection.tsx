@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import { gsap } from "@/lib/gsap";
 import AndroidWaitlistButton from "@/components/ui/AndroidWaitlistButton";
 import CTAButton from "@/components/ui/CTAButton";
@@ -23,12 +22,6 @@ export default function HeroSection() {
       gsap.from("[data-hero-cta]", {
         y: 15, opacity: 0, duration: 0.7, delay: 0.45, ease: "power3.out",
       });
-      gsap.from("[data-hero-proof]", {
-        y: 10, opacity: 0, duration: 0.6, delay: 0.6, ease: "power3.out",
-      });
-      gsap.from("[data-hero-phone]", {
-        y: 80, opacity: 0, duration: 1.3, delay: 0.5, ease: "power3.out",
-      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -38,72 +31,68 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative w-full overflow-hidden"
-      style={{
-        // Brand gradient — same vertical teal lift as the v2 launch email body.
-        background:
-          "linear-gradient(180deg, #0F0F0F 0%, #1A2024 45%, #1F282E 70%, #0F0F0F 100%)",
-      }}
+      className="relative w-full overflow-hidden bg-[#0F0F0F]"
+      style={{ minHeight: "clamp(680px, 92svh, 980px)" }}
     >
-      {/* ── Cool teal pool behind phone — anchors the email-brand blue/teal. ── */}
+      {/* Mobile: dark gradient bg */}
       <div
         aria-hidden="true"
-        className="absolute pointer-events-none left-1/2 -translate-x-1/2"
+        className="absolute inset-0 md:hidden"
         style={{
-          zIndex: 0,
-          top: "38%",
-          width: "min(1200px, 120vw)",
-          height: "min(900px, 100vw)",
           background:
-            "radial-gradient(ellipse 60% 45% at 50% 50%, rgba(80,140,180,0.18) 0%, rgba(80,140,180,0.05) 45%, transparent 70%)",
-          filter: "blur(40px)",
-          opacity: 0.9,
-        }}
-      />
-      {/* Lemon punctuation — soft, bottom-anchored, single accent. */}
-      <div
-        aria-hidden="true"
-        className="absolute pointer-events-none left-1/2 -translate-x-1/2"
-        style={{
-          zIndex: 0,
-          top: "62%",
-          width: "min(800px, 80vw)",
-          height: 400,
-          background:
-            "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(205,255,80,0.08) 0%, transparent 65%)",
-          filter: "blur(50px)",
-        }}
-      />
-      {/* Soft grain overlay — kept subtle */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 0,
-          backgroundImage: "url(/textures/hero-noise.png)",
-          backgroundSize: "260px",
-          opacity: 0.22,
-          mixBlendMode: "overlay",
+            "linear-gradient(180deg, #0F0F0F 0%, #1A2024 45%, #1F282E 70%, #0F0F0F 100%)",
         }}
       />
 
-      {/* ── Centered vertical stack ── */}
+      {/* Desktop: background video */}
+      <video
+        className="hidden md:block absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden
+      >
+        <source src="/videos/hero-man-running.mp4" type="video/mp4" />
+      </video>
+
+      {/* Desktop video overlay — even darken so centered text stays legible */}
       <div
-        className="container-page relative flex flex-col items-center text-center"
+        aria-hidden="true"
+        className="hidden md:block absolute inset-0 pointer-events-none"
         style={{
-          zIndex: 3,
-          paddingTop: "clamp(120px, 14vh, 180px)",
-          paddingBottom: "clamp(40px, 6vh, 80px)",
+          zIndex: 1,
+          background:
+            "linear-gradient(180deg, rgba(10,10,10,0.78) 0%, rgba(10,10,10,0.48) 45%, rgba(10,10,10,0.80) 100%)",
+        }}
+      />
+
+      {/* Mobile accent pools */}
+      <div aria-hidden="true" className="md:hidden absolute pointer-events-none left-1/2 -translate-x-1/2" style={{ zIndex: 0, top: "30%", width: "min(1200px, 120vw)", height: "min(800px, 100vw)", background: "radial-gradient(ellipse 60% 45% at 50% 50%, rgba(80,140,180,0.22) 0%, rgba(80,140,180,0.06) 45%, transparent 70%)", filter: "blur(40px)" }} />
+      <div aria-hidden="true" className="md:hidden absolute pointer-events-none left-1/2 -translate-x-1/2" style={{ zIndex: 0, bottom: "-10%", width: "min(700px, 80vw)", height: 380, background: "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(205,255,80,0.08) 0%, transparent 65%)", filter: "blur(50px)" }} />
+
+      {/* Grain */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ zIndex: 2, backgroundImage: "url(/textures/hero-noise.png)", backgroundSize: "260px", opacity: 0.18, mixBlendMode: "overlay" }} />
+
+      {/* Centered content */}
+      <div
+        className="container-page relative flex flex-col items-center justify-center text-center"
+        style={{
+          zIndex: 4,
+          minHeight: "clamp(680px, 92svh, 980px)",
+          paddingTop: "clamp(100px, 12vh, 140px)",
+          paddingBottom: "clamp(60px, 8vh, 100px)",
         }}
       >
         <h1
           data-hero-h1
           className="font-heading"
           style={{
-            fontSize: "clamp(40px, 5.6vw, 76px)",
+            fontSize: "clamp(44px, 6vw, 88px)",
             fontWeight: 500,
             letterSpacing: "-0.03em",
-            lineHeight: "1.05em",
+            lineHeight: "1.02em",
             color: "#F9F9F9",
             margin: 0,
             maxWidth: "14ch",
@@ -117,13 +106,14 @@ export default function HeroSection() {
           data-hero-sub
           className="mx-auto"
           style={{
-            fontSize: "clamp(16px, 1.4vw, 19px)",
+            fontSize: "clamp(16px, 1.4vw, 20px)",
             fontWeight: 400,
             letterSpacing: "-0.01em",
             lineHeight: "1.55em",
-            color: "rgba(249,249,249,0.62)",
-            maxWidth: 560,
-            margin: "clamp(20px, 2.4vh, 32px) auto 0",
+            color: "rgba(249,249,249,0.72)",
+            maxWidth: 580,
+            margin: "clamp(22px, 2.6vh, 32px) auto 0",
+            textShadow: "0 2px 16px rgba(0,0,0,0.4)",
           }}
         >
           Log meals with a photo, track every lift, and get coached by AI that
@@ -149,71 +139,14 @@ export default function HeroSection() {
           </CTAButton>
           <AndroidWaitlistButton />
         </div>
-
-        {/* Proof strip */}
-        <div
-          data-hero-proof
-          className="flex items-center justify-center gap-4 sm:gap-6 flex-wrap"
-          style={{ marginTop: "clamp(28px, 3.4vh, 40px)" }}
-        >
-          <ProofStat value="4.9" label="App Store" />
-          <div className="w-px h-4 bg-white/10" />
-          <ProofStat value="10K+" label="meals logged" />
-          <div className="w-px h-4 bg-white/10" />
-          <ProofStat value="1,500+" label="exercises" />
-        </div>
-
-        {/* Phone — centered, floating */}
-        <div
-          data-hero-phone
-          className="relative w-full flex justify-center"
-          style={{ marginTop: "clamp(48px, 7vh, 96px)" }}
-        >
-          {/* Radial shadow pool beneath phone */}
-          <div
-            aria-hidden="true"
-            className="absolute pointer-events-none left-1/2 -translate-x-1/2"
-            style={{
-              bottom: "-40px",
-              width: "min(560px, 70vw)",
-              height: 120,
-              background: "radial-gradient(ellipse at center, rgba(0,0,0,0.65) 0%, transparent 70%)",
-              filter: "blur(20px)",
-            }}
-          />
-          <div
-            className="relative aspect-[1368/2828]"
-            style={{
-              width: "min(380px, 72vw)",
-            }}
-          >
-            <Image
-              src="/phones/hero-home-transparent.png"
-              alt="Helthy app home screen on iPhone"
-              fill
-              sizes="(max-width: 640px) 72vw, 380px"
-              className="object-contain"
-              priority
-            />
-          </div>
-        </div>
       </div>
 
-      {/* Fade to bg at section bottom */}
+      {/* Bottom fade into next section */}
       <div
         aria-hidden="true"
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
-        style={{ height: 140, background: "linear-gradient(transparent, #0A0A0A)", zIndex: 2 }}
+        style={{ height: 180, background: "linear-gradient(transparent, #0A0A0A)", zIndex: 5 }}
       />
     </section>
-  );
-}
-
-function ProofStat({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="flex items-center gap-2">
-      <span className="text-numeric text-[16px] sm:text-[18px] font-semibold text-white">{value}</span>
-      <span className="text-[12px] sm:text-[13px] text-white/45">{label}</span>
-    </div>
   );
 }

@@ -1,4 +1,5 @@
 import HeroSection from "@/components/sections/HeroSection";
+import PhoneShowcaseSection from "@/components/sections/PhoneShowcaseSection";
 import HowItWorksSection from "@/components/sections/HowItWorksSection";
 import FeaturesRow from "@/components/sections/FeaturesRow";
 import WhyHelthySection from "@/components/sections/WhyHelthySection";
@@ -15,6 +16,7 @@ export default function Home() {
     <main className="relative">
       <FlowingLine />
       <HeroSection />
+      <PhoneShowcaseSection />
       <FeaturesRow />
       <div aria-hidden="true" className="section-beam" />
       <HowItWorksSection />

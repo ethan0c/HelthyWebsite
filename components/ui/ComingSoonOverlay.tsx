@@ -100,15 +100,31 @@ export default function ComingSoonOverlay({
       >
         <div className="w-full max-w-[440px] text-center">
           <span
-            className="inline-block text-[11px] font-semibold uppercase rounded-full px-4 py-2"
+            className="inline-flex items-center gap-2 text-[11px] font-medium uppercase rounded-full"
             style={{
               background: pillBg,
               border: `1px solid ${pillBorder}`,
               color: pillText,
-              letterSpacing: "0.14em",
+              letterSpacing: "0.18em",
               fontFamily: "var(--font-body)",
+              padding: "6px 14px 6px 12px",
+              lineHeight: 1,
             }}
           >
+            <span
+              aria-hidden="true"
+              className="relative inline-flex"
+              style={{ width: 6, height: 6 }}
+            >
+              <span
+                className="absolute inset-0 rounded-full animate-ping"
+                style={{ background: pillText, opacity: 0.4 }}
+              />
+              <span
+                className="relative rounded-full"
+                style={{ width: 6, height: 6, background: pillText }}
+              />
+            </span>
             {label}
           </span>
 
