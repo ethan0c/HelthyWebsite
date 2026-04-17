@@ -32,10 +32,10 @@ export default function SiteNav() {
       className="relative w-full pointer-events-none"
       style={{ paddingTop: "clamp(14px, 2.2vh, 24px)" }}
     >
-      {/* Full-width frosted bar — fades in after hero scroll */}
+      {/* Full-width frosted bar — mobile only, fades in after hero scroll */}
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 top-0 pointer-events-none"
+        className="lg:hidden absolute inset-x-0 top-0 pointer-events-none"
         style={{
           height: "clamp(60px, 9vh, 76px)",
           background: "rgba(10,10,10,0.72)",
