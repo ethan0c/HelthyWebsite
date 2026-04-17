@@ -306,29 +306,7 @@ function TripleScreenshotMockup({
   tabs?: string[];
 }) {
   const [active, setActive] = React.useState(0);
-  const [userInteracted, setUserInteracted] = React.useState(false);
-  const progressRef = useRef<HTMLSpanElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
-
-  // Auto-advance until the user clicks a tab
-  useEffect(() => {
-    if (userInteracted) return;
-    const id = setInterval(() => {
-      setActive((a) => (a + 1) % screens.length);
-    }, 4600);
-    return () => clearInterval(id);
-  }, [userInteracted, screens.length]);
-
-  // Progress bar for current tab
-  useEffect(() => {
-    const el = progressRef.current;
-    if (!el || userInteracted) return;
-    gsap.fromTo(
-      el,
-      { scaleX: 0 },
-      { scaleX: 1, duration: 4.6, ease: "none" }
-    );
-  }, [active, userInteracted]);
 
   // Smoothly tween the phone frame's aspect ratio to match the active screen
   useEffect(() => {
@@ -349,63 +327,64 @@ function TripleScreenshotMockup({
     });
   }, [active, screens]);
 
-  const handleTab = (i: number) => {
-    setUserInteracted(true);
-    setActive(i);
-  };
-
   const labels = tabs ?? screens.map((s) => s.alt);
   const initialRatio = screens[0].width / screens[0].height;
 
   return (
     <div className="flex flex-col items-center w-full mb-[-40px]">
-      {/* Tab row */}
+      {/* Tab row — CTAButton-style pills */}
       <div
         role="tablist"
         aria-label="Workout features"
-        className="flex items-center gap-1.5 sm:gap-2 mb-8 rounded-full"
-        style={{
-          background: "rgba(255,255,255,0.04)",
-          border: "1px solid rgba(255,255,255,0.08)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
-          padding: 6,
-        }}
+        className="flex items-center gap-2 sm:gap-3 mb-8 flex-wrap justify-center"
       >
         {labels.map((label, i) => {
           const isActive = i === active;
+          const pillStyle: React.CSSProperties = isActive
+            ? {
+                background: "#CDFF50",
+                color: "#0B0B0B",
+                boxShadow:
+                  "inset 0 2px 1px 0 rgba(255,255,255,0.5)," +
+                  "inset 0 0.6px 0.6px -1.25px rgba(255,255,255,0.72)," +
+                  "inset 0 2.29px 2.29px -2.5px rgba(255,255,255,0.635)," +
+                  "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
+                  "0 14px 6px -8px rgba(205,255,80,0.35)",
+              }
+            : {
+                background: "rgba(20,20,20,0.62)",
+                color: "#FFFFFF",
+                border: "1.5px solid rgba(46,46,48,0.9)",
+                backdropFilter: "blur(20px) saturate(140%)",
+                WebkitBackdropFilter: "blur(20px) saturate(140%)",
+                boxShadow:
+                  "inset 0 1px 0 rgba(255,255,255,0.06)," +
+                  "0 8px 24px rgba(0,0,0,0.3)",
+              };
           return (
             <button
               key={label}
               role="tab"
               aria-selected={isActive}
-              onClick={() => handleTab(i)}
-              className="relative rounded-full transition-colors duration-300"
+              onClick={() => setActive(i)}
+              className="hover:scale-[1.02]"
               style={{
-                padding: "7px 14px",
-                fontSize: 12,
+                display: "inline-flex",
+                alignItems: "center",
+                borderRadius: 999,
                 fontFamily: "var(--font-body)",
                 fontWeight: 500,
+                fontSize: 13,
                 letterSpacing: "-0.005em",
-                color: isActive ? "#0B0B0B" : "rgba(255,255,255,0.72)",
-                background: isActive ? "#CDFF50" : "transparent",
+                padding: "8px 18px",
                 whiteSpace: "nowrap",
+                transition:
+                  "transform 220ms cubic-bezier(0.16, 1, 0.3, 1), background-color 280ms ease, color 280ms ease, box-shadow 280ms ease",
+                cursor: "pointer",
+                ...pillStyle,
               }}
             >
               {label}
-              {isActive && !userInteracted && (
-                <span
-                  aria-hidden="true"
-                  className="absolute left-2 right-2 bottom-[3px] h-[2px] rounded-full overflow-hidden"
-                  style={{ background: "rgba(11,11,11,0.15)" }}
-                >
-                  <span
-                    ref={progressRef}
-                    className="block h-full origin-left rounded-full"
-                    style={{ background: "#0B0B0B", transform: "scaleX(0)" }}
-                  />
-                </span>
-              )}
             </button>
           );
         })}
