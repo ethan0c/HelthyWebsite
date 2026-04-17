@@ -3,6 +3,7 @@ import "./globals.css";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
 import SiteNav from "@/components/sections/SiteNav";
+import CustomCursor from "@/components/ui/CustomCursor";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://helthy.app"),
@@ -69,6 +70,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-white grain">
         <GSAPProvider>
           <LenisProvider>
+            <CustomCursor />
             <div
               className="fixed top-0 left-0 w-full pointer-events-none"
               style={{ zIndex: 50 }}

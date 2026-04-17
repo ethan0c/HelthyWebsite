@@ -17,10 +17,6 @@ function initialsOf(name: string): string {
  * Real App Store reviews. Do NOT paraphrase — these are verbatim
  * (trimmed only where noted with […]) and must stay accurate.
  */
-/**
- * Real App Store reviews. Do NOT paraphrase — these are verbatim
- * (trimmed only where noted with […]) and must stay accurate.
- */
 const TESTIMONIALS = [
   {
     quote:
@@ -83,7 +79,6 @@ const TESTIMONIALS = [
   },
 ];
 
-// Split into two rows for dual-marquee — almost even
 const ROW_1 = TESTIMONIALS.slice(0, 5);
 const ROW_2 = TESTIMONIALS.slice(5);
 
@@ -106,34 +101,19 @@ const TRANSFORMATIONS = [
   },
 ];
 
-function TestimonialCard({
-  t,
-}: {
-  t: (typeof TESTIMONIALS)[number];
-}) {
+function TestimonialCard({ t }: { t: (typeof TESTIMONIALS)[number] }) {
   return (
     <div className="card-helthy shrink-0 w-[85vw] max-w-[340px] sm:w-[380px] sm:max-w-none">
       <div className="p-7 flex flex-col h-full">
-        {/* Stars */}
         <div className="flex gap-0.5 mb-5">
           {Array.from({ length: 5 }).map((_, i) => (
-            <Star
-              key={i}
-              className="w-3.5 h-3.5"
-              fill="#CDFF50"
-              stroke="none"
-            />
+            <Star key={i} className="w-3.5 h-3.5" fill="#CDFF50" stroke="none" />
           ))}
         </div>
-
-        {/* Quote */}
         <p className="text-[15px] leading-[1.65] font-light mb-6 text-white/70 flex-1">
           &ldquo;{t.quote}&rdquo;
         </p>
-
-        {/* Attribution */}
         <div className="flex items-center gap-3 pt-5 border-t border-white/[0.06]">
-          {/* iOS-Contacts-style avatar: colored circle + initials */}
           <div
             className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 relative"
             style={{
@@ -157,9 +137,7 @@ function TestimonialCard({
             </span>
           </div>
           <div>
-            <p className="text-[14px] font-medium text-white">
-              {t.name}
-            </p>
+            <p className="text-[14px] font-medium text-white">{t.name}</p>
             <p className="text-[12px] text-white/40">{t.detail}</p>
           </div>
         </div>
@@ -171,7 +149,6 @@ function TestimonialCard({
 function TransformationCard({ t }: { t: (typeof TRANSFORMATIONS)[number] }) {
   return (
     <div className="card-helthy shrink-0 w-[480px] sm:w-[560px] overflow-hidden">
-      {/* Before / After images */}
       <div className="grid grid-cols-2">
         <div className="relative aspect-[3/4] bg-black overflow-hidden">
           <Image
@@ -181,7 +158,6 @@ function TransformationCard({ t }: { t: (typeof TRANSFORMATIONS)[number] }) {
             className="object-cover grayscale-[30%]"
             sizes="280px"
           />
-          {/* Face blur overlay */}
           <div
             className="absolute inset-x-0 top-0 h-[38%]"
             style={{ backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)" }}
@@ -198,7 +174,6 @@ function TransformationCard({ t }: { t: (typeof TRANSFORMATIONS)[number] }) {
             className="object-cover"
             sizes="280px"
           />
-          {/* Face blur overlay */}
           <div
             className="absolute inset-x-0 top-0 h-[38%]"
             style={{ backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)" }}
@@ -208,8 +183,6 @@ function TransformationCard({ t }: { t: (typeof TRANSFORMATIONS)[number] }) {
           </span>
         </div>
       </div>
-
-      {/* Quote + attribution */}
       <div className="p-7">
         <p className="text-[15px] text-white/70 italic leading-relaxed mb-4">
           &ldquo;{t.quote}&rdquo;
@@ -223,37 +196,78 @@ function TransformationCard({ t }: { t: (typeof TRANSFORMATIONS)[number] }) {
   );
 }
 
+/**
+ * Simple seamless marquee. Uses a wrap modifier on `x` so the loop is
+ * truly continuous — no visible reset. Re-measures after images load.
+ */
+function useMarquee(
+  trackRef: React.RefObject<HTMLDivElement | null>,
+  opts: { duration: number; direction?: 1 | -1 }
+) {
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const ctx = gsap.context(() => {
+      const dir = opts.direction ?? -1;
+      let half = track.scrollWidth / 2;
+      let tween: gsap.core.Tween;
+
+      const build = () => {
+        if (tween) tween.kill();
+        gsap.set(track, { x: 0 });
+        const wrap = gsap.utils.wrap(-half, 0);
+        tween = gsap.to(track, {
+          x: `+=${dir * half}`,
+          duration: opts.duration,
+          ease: "none",
+          repeat: -1,
+          modifiers: { x: (x) => `${wrap(parseFloat(x))}px` },
+        });
+      };
+
+      build();
+
+      const imgs = Array.from(track.querySelectorAll("img"));
+      let remaining = imgs.filter((i) => !i.complete).length;
+      if (remaining > 0) {
+        imgs.forEach((img) => {
+          if (img.complete) return;
+          const done = () => {
+            remaining -= 1;
+            img.removeEventListener("load", done);
+            img.removeEventListener("error", done);
+            if (remaining <= 0) {
+              half = track.scrollWidth / 2;
+              build();
+            }
+          };
+          img.addEventListener("load", done);
+          img.addEventListener("error", done);
+        });
+      }
+    }, track);
+
+    return () => ctx.revert();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+}
+
 function TransformationCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!trackRef.current) return;
-    const track = trackRef.current;
-    const ctx = gsap.context(() => {
-      const halfWidth = track.scrollWidth / 2;
-      gsap.to(track, {
-        x: -halfWidth,
-        duration: 40,
-        ease: "none",
-        repeat: -1,
-      });
-    }, track);
-    return () => ctx.revert();
-  }, []);
-
-  // Duplicate for seamless loop (2x is sufficient)
+  useMarquee(trackRef, { duration: 40, direction: -1 });
   const items = [...TRANSFORMATIONS, ...TRANSFORMATIONS];
 
   return (
-    <div className="relative mb-12">
-      {/* Edge fades */}
-      <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none"
+    <div className="relative mb-12 overflow-hidden">
+      <div
+        className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none"
         style={{ background: "linear-gradient(90deg, var(--background) 0%, transparent 100%)" }}
       />
-      <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none"
+      <div
+        className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none"
         style={{ background: "linear-gradient(270deg, var(--background) 0%, transparent 100%)" }}
       />
-
       <div ref={trackRef} className="flex gap-6 w-max">
         {items.map((t, i) => (
           <TransformationCard key={`tf-${i}`} t={t} />
@@ -263,45 +277,51 @@ function TransformationCarousel() {
   );
 }
 
+function TestimonialRow({
+  row,
+  duration,
+  direction,
+  keyPrefix,
+}: {
+  row: typeof TESTIMONIALS;
+  duration: number;
+  direction: 1 | -1;
+  keyPrefix: string;
+}) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  useMarquee(trackRef, { duration, direction });
+
+  return (
+    <div className="relative overflow-hidden">
+      <div
+        className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(90deg, var(--background) 0%, transparent 100%)" }}
+      />
+      <div
+        className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(270deg, var(--background) 0%, transparent 100%)" }}
+      />
+      <div ref={trackRef} className="flex gap-5 w-max">
+        {[...row, ...row].map((t, i) => (
+          <TestimonialCard key={`${keyPrefix}-${i}`} t={t} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function TestimonialsSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const row1Ref = useRef<HTMLDivElement>(null);
-  const row2Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Fade-in the whole section
       gsap.from(sectionRef.current, {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-        },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
         opacity: 0,
         y: 40,
         duration: 1,
         ease: "power3.out",
       });
-
-      // Infinite marquee — row 1 scrolls left, row 2 scrolls right
-      if (row1Ref.current) {
-        const row1Width = row1Ref.current.scrollWidth / 2;
-        gsap.to(row1Ref.current, {
-          x: -row1Width,
-          duration: 50,
-          ease: "none",
-          repeat: -1,
-        });
-      }
-      if (row2Ref.current) {
-        const row2Width = row2Ref.current.scrollWidth / 2;
-        gsap.set(row2Ref.current, { x: -row2Width });
-        gsap.to(row2Ref.current, {
-          x: 0,
-          duration: 55,
-          ease: "none",
-          repeat: -1,
-        });
-      }
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -311,11 +331,7 @@ export default function TestimonialsSection() {
       ref={sectionRef}
       className="relative section-padding overflow-hidden section-glow-cyan"
     >
-      {/* Ambient glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-      >
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
           className="absolute left-1/2 top-0 -translate-x-1/2 w-full max-w-[1200px] h-[60%] rounded-full blur-[160px] opacity-40"
           style={{
@@ -334,44 +350,11 @@ export default function TestimonialsSection() {
           />
         </div>
 
-        {/* Transformation carousel */}
         <TransformationCarousel />
 
-        {/* Marquee rows */}
         <div className="flex flex-col gap-5">
-          {/* Row 1 — scrolls left */}
-          <div className="relative overflow-hidden">
-            {/* Edge fades */}
-            <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none"
-              style={{ background: "linear-gradient(90deg, var(--background) 0%, transparent 100%)" }}
-            />
-            <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none"
-              style={{ background: "linear-gradient(270deg, var(--background) 0%, transparent 100%)" }}
-            />
-
-            <div ref={row1Ref} className="flex gap-5 w-max">
-              {/* Duplicate for seamless loop */}
-              {[...ROW_1, ...ROW_1].map((t, i) => (
-                <TestimonialCard key={`r1-${i}`} t={t} />
-              ))}
-            </div>
-          </div>
-
-          {/* Row 2 — scrolls right */}
-          <div className="relative overflow-hidden">
-            <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none"
-              style={{ background: "linear-gradient(90deg, var(--background) 0%, transparent 100%)" }}
-            />
-            <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none"
-              style={{ background: "linear-gradient(270deg, var(--background) 0%, transparent 100%)" }}
-            />
-
-            <div ref={row2Ref} className="flex gap-5 w-max">
-              {[...ROW_2, ...ROW_2].map((t, i) => (
-                <TestimonialCard key={`r2-${i}`} t={t} />
-              ))}
-            </div>
-          </div>
+          <TestimonialRow row={ROW_1} duration={50} direction={-1} keyPrefix="r1" />
+          <TestimonialRow row={ROW_2} duration={55} direction={1} keyPrefix="r2" />
         </div>
       </div>
     </section>
