@@ -1,8 +1,51 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "@/lib/gsap";
 import NewsletterForm from "@/components/ui/NewsletterForm";
 
 export default function NewsletterSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(
+        [
+          "[data-newsletter-eyebrow]",
+          "[data-newsletter-heading]",
+          "[data-newsletter-sub]",
+        ],
+        {
+          y: 28,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+          },
+        }
+      );
+      gsap.from("[data-newsletter-form]", {
+        y: 28,
+        opacity: 0,
+        duration: 0.9,
+        delay: 0.1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="newsletter"
       className="relative"
       style={{
@@ -15,6 +58,7 @@ export default function NewsletterSection() {
           {/* Left: heading + copy */}
           <div>
             <p
+              data-newsletter-eyebrow
               className="text-[11px] font-semibold uppercase mb-5"
               style={{
                 letterSpacing: "0.2em",
@@ -25,6 +69,7 @@ export default function NewsletterSection() {
               Newsletter
             </p>
             <h2
+              data-newsletter-heading
               className="font-heading"
               style={{
                 fontSize: "clamp(32px, 4.4vw, 56px)",
@@ -39,6 +84,7 @@ export default function NewsletterSection() {
               Every month.
             </h2>
             <p
+              data-newsletter-sub
               className="mt-5 max-w-md"
               style={{
                 fontSize: 15,
@@ -53,7 +99,7 @@ export default function NewsletterSection() {
           </div>
 
           {/* Right: form */}
-          <div className="md:pt-2">
+          <div data-newsletter-form className="md:pt-2">
             <NewsletterForm />
           </div>
         </div>

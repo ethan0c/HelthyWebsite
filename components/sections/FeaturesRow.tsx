@@ -127,6 +127,7 @@ export default function FeaturesRow() {
             subtitle="1,500+ exercises. Every PR tracked."
           >
             <TripleScreenshotMockup
+              tabs={["Library", "Form tips", "Activity"]}
               screens={[
                 { src: "/phones/exercise-library-screen.png", alt: "Exercise library with search", width: 1321, height: 2659 },
                 { src: "/phones/exercise-info-screen.png", alt: "Exercise form tips and how-to", width: 1328, height: 2707 },
@@ -295,34 +296,159 @@ function ScreenshotMockup({ src, alt, wide, noCrop, cropBottom }: { src: string;
 }
 
 // ───────────────────────────────────────────────────────────
-// Triple screenshot mockup — 3 phones side by side
+// Tabbed screenshot mockup — click/auto-advance through screens
 
 function TripleScreenshotMockup({
   screens,
+  tabs,
 }: {
   screens: { src: string; alt: string; width: number; height: number }[];
+  tabs?: string[];
 }) {
+  const [active, setActive] = React.useState(0);
+  const [userInteracted, setUserInteracted] = React.useState(false);
+  const progressRef = useRef<HTMLSpanElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
+
+  // Auto-advance until the user clicks a tab
+  useEffect(() => {
+    if (userInteracted) return;
+    const id = setInterval(() => {
+      setActive((a) => (a + 1) % screens.length);
+    }, 4600);
+    return () => clearInterval(id);
+  }, [userInteracted, screens.length]);
+
+  // Progress bar for current tab
+  useEffect(() => {
+    const el = progressRef.current;
+    if (!el || userInteracted) return;
+    gsap.fromTo(
+      el,
+      { scaleX: 0 },
+      { scaleX: 1, duration: 4.6, ease: "none" }
+    );
+  }, [active, userInteracted]);
+
+  // Smoothly tween the phone frame's aspect ratio to match the active screen
+  useEffect(() => {
+    const el = frameRef.current;
+    if (!el) return;
+    const target = screens[active];
+    const ratio = target.width / target.height; // width / height
+    const proxy = {
+      r: parseFloat(el.style.getPropertyValue("--ar") || String(ratio)),
+    };
+    gsap.to(proxy, {
+      r: ratio,
+      duration: 0.9,
+      ease: "power3.inOut",
+      onUpdate: () => {
+        el.style.setProperty("--ar", String(proxy.r));
+      },
+    });
+  }, [active, screens]);
+
+  const handleTab = (i: number) => {
+    setUserInteracted(true);
+    setActive(i);
+  };
+
+  const labels = tabs ?? screens.map((s) => s.alt);
+  const initialRatio = screens[0].width / screens[0].height;
+
   return (
-    <div className="flex items-end justify-center gap-3 sm:gap-5 px-4 mb-[-40px]">
-      {screens.map((s, i) => (
+    <div className="flex flex-col items-center w-full mb-[-40px]">
+      {/* Tab row */}
+      <div
+        role="tablist"
+        aria-label="Workout features"
+        className="flex items-center gap-1.5 sm:gap-2 mb-8 rounded-full"
+        style={{
+          background: "rgba(255,255,255,0.04)",
+          border: "1px solid rgba(255,255,255,0.08)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+          padding: 6,
+        }}
+      >
+        {labels.map((label, i) => {
+          const isActive = i === active;
+          return (
+            <button
+              key={label}
+              role="tab"
+              aria-selected={isActive}
+              onClick={() => handleTab(i)}
+              className="relative rounded-full transition-colors duration-300"
+              style={{
+                padding: "7px 14px",
+                fontSize: 12,
+                fontFamily: "var(--font-body)",
+                fontWeight: 500,
+                letterSpacing: "-0.005em",
+                color: isActive ? "#0B0B0B" : "rgba(255,255,255,0.72)",
+                background: isActive ? "#CDFF50" : "transparent",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {label}
+              {isActive && !userInteracted && (
+                <span
+                  aria-hidden="true"
+                  className="absolute left-2 right-2 bottom-[3px] h-[2px] rounded-full overflow-hidden"
+                  style={{ background: "rgba(11,11,11,0.15)" }}
+                >
+                  <span
+                    ref={progressRef}
+                    className="block h-full origin-left rounded-full"
+                    style={{ background: "#0B0B0B", transform: "scaleX(0)" }}
+                  />
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Phone frame — aspect-ratio tweens smoothly between screens */}
+      <div
+        ref={frameRef}
+        className="relative w-[76%] sm:w-[62%] lg:w-[44%] max-w-[340px]"
+        style={
+          {
+            "--ar": String(initialRatio),
+            aspectRatio: "var(--ar)",
+          } as React.CSSProperties
+        }
+      >
         <div
-          key={s.src}
-          className={`rounded-t-[20px] overflow-hidden${i === 1 ? " w-[70%] max-w-[300px]" : " hidden sm:block w-[70%] max-w-[300px]"}`}
+          aria-hidden="true"
+          className="absolute inset-0 rounded-t-[28px] pointer-events-none"
           style={{
-            boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04)",
-            transform: i === 1 ? "translateY(-12px)" : undefined,
+            boxShadow:
+              "0 40px 100px -20px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.05)",
           }}
-        >
-          <Image
-            src={s.src}
-            alt={s.alt}
-            width={s.width}
-            height={s.height}
-            style={{ width: "100%", height: "auto" }}
-            className="object-cover object-top"
-          />
-        </div>
-      ))}
+        />
+        {screens.map((s, i) => (
+          <div
+            key={s.src}
+            className="absolute inset-0 rounded-t-[28px] overflow-hidden transition-opacity duration-[700ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
+            style={{
+              opacity: i === active ? 1 : 0,
+              pointerEvents: i === active ? "auto" : "none",
+            }}
+          >
+            <Image
+              src={s.src}
+              alt={s.alt}
+              fill
+              sizes="(max-width: 640px) 76vw, 340px"
+              className="object-cover object-top"
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

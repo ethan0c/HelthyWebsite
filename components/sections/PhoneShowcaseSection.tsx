@@ -150,11 +150,11 @@ export default function PhoneShowcaseSection() {
           className="flex items-center justify-center gap-4 sm:gap-6 flex-wrap"
           style={{ marginTop: "clamp(28px, 3.4vh, 40px)" }}
         >
-          <ProofStat value="4.9" label="App Store" />
+          <ProofStat target={4.9} decimals={1} label="App Store" />
           <div data-phone-stat className="w-px h-4 bg-white/10" />
-          <ProofStat value="10K+" label="meals logged" />
+          <ProofStat target={10} suffix="K+" label="meals logged" />
           <div data-phone-stat className="w-px h-4 bg-white/10" />
-          <ProofStat value="1,500+" label="exercises" />
+          <ProofStat target={1500} suffix="+" label="exercises" />
         </div>
 
         {/* Phone */}
@@ -217,11 +217,58 @@ export default function PhoneShowcaseSection() {
   );
 }
 
-function ProofStat({ value, label }: { value: string; label: string }) {
+function ProofStat({
+  target,
+  decimals = 0,
+  suffix = "",
+  prefix = "",
+  label,
+}: {
+  target: number;
+  decimals?: number;
+  suffix?: string;
+  prefix?: string;
+  label: string;
+}) {
+  const spanRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const el = spanRef.current;
+    if (!el) return;
+    const counter = { val: 0 };
+    const format = (v: number) =>
+      `${prefix}${v
+        .toFixed(decimals)
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}${suffix}`;
+
+    const tween = gsap.to(counter, {
+      val: target,
+      duration: 1.8,
+      ease: "power2.out",
+      onUpdate: () => {
+        el.textContent = format(counter.val);
+      },
+      scrollTrigger: {
+        trigger: el,
+        start: "top 90%",
+        once: true,
+      },
+    });
+    // initialize
+    el.textContent = format(0);
+    return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
+  }, [target, decimals, suffix, prefix]);
+
   return (
     <div data-phone-stat className="flex items-center gap-2">
-      <span className="text-numeric text-[16px] sm:text-[18px] font-semibold text-white">
-        {value}
+      <span
+        ref={spanRef}
+        className="text-numeric text-[16px] sm:text-[18px] font-semibold text-white tabular-nums"
+      >
+        {`${prefix}${(0).toFixed(decimals)}${suffix}`}
       </span>
       <span className="text-[12px] sm:text-[13px] text-white/45">{label}</span>
     </div>

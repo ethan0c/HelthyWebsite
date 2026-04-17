@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import { gsap } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 const FAQS = [
@@ -38,17 +40,45 @@ const FAQS = [
 ];
 
 export default function FAQSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from("[data-faq-card]", {
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        stagger: { each: 0.08, from: "start" },
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: "[data-faq-grid]",
+          start: "top 82%",
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="faq" className="relative section-padding section-glow-cyan">
+    <section
+      ref={sectionRef}
+      id="faq"
+      className="relative section-padding section-glow-cyan"
+    >
       <div className="container-page">
         <SectionHeading title="Questions, answered" trailingPunctuation="" />
 
         {/* 4 columns × 2 rows */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div
+          data-faq-grid
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+        >
           {FAQS.map((faq, i) => (
             <div
               key={faq.q}
-              className="card-helthy p-5 sm:p-7 flex flex-col"
+              data-faq-card
+              className="card-helthy p-5 sm:p-7 flex flex-col transition-colors duration-300 hover:bg-white/[0.04]"
               style={{ minHeight: "auto" }}
             >
               {/* Big numeric */}
