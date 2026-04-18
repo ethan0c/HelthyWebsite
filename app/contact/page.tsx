@@ -5,6 +5,7 @@ import SiteFooter from "@/components/sections/SiteFooter";
 export const metadata: Metadata = {
   title: "Contact",
   description: "Get in touch with the Helthy team about support, partnerships, or product questions.",
+  alternates: { canonical: "https://helthy.app/contact" },
 };
 
 const CONTACT_REASONS = [

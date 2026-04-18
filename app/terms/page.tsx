@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Terms of Service",
   description:
     "The terms governing your use of the Helthy app and services.",
+  alternates: { canonical: "https://helthy.app/terms" },
 };
 
 export default function TermsPage() {

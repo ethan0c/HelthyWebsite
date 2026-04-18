@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "How Helthy collects, uses, and protects your information when you use our app and services.",
+  alternates: { canonical: "https://helthy.app/privacy" },
 };
 
 export default function PrivacyPage() {

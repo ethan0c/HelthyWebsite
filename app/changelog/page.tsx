@@ -1,6 +1,14 @@
 import React from "react";
+import type { Metadata } from "next";
 import SectionHeading from "@/components/ui/SectionHeading";
 import SiteFooter from "@/components/sections/SiteFooter";
+
+export const metadata: Metadata = {
+  title: "Changelog",
+  description:
+    "See every feature added to Helthy — AI photo logging, voice logging, AI coach, workout routines, Apple Health sync, and more.",
+  alternates: { canonical: "https://helthy.app/changelog" },
+};
 
 const UPDATES = [
   "Dynamic weekly TDEE updating based on activity",
