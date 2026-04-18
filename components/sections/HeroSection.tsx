@@ -77,7 +77,7 @@ export default function HeroSection() {
 
       {/* Centered content */}
       <div
-        className="container-page relative flex flex-col items-center justify-center text-center"
+        className="w-full px-4 sm:px-6 md:px-8 relative flex flex-col items-center justify-center text-center"
         style={{
           zIndex: 4,
           minHeight: "clamp(680px, 92svh, 980px)",

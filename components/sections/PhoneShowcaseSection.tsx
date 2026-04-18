@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsap";
+import Icon from "@mdi/react";
+import { mdiBowlMixOutline, mdiDumbbell, mdiHeartOutline, mdiChartTimelineVariant } from "@mdi/js";
 
 export default function PhoneShowcaseSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -10,7 +12,7 @@ export default function PhoneShowcaseSection() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(
-        ["[data-phone-eyebrow]", "[data-phone-heading]", "[data-phone-sub]"],
+        ["[data-phone-heading]", "[data-phone-sub]"],
         {
           y: 24,
           opacity: 0,
@@ -56,7 +58,7 @@ export default function PhoneShowcaseSection() {
       className="relative w-full overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, #0F0F0F 0%, #1A2024 35%, #1F282E 65%, #0F0F0F 100%)",
+          "linear-gradient(180deg, #080d10 15%, #41515a 60%, #3f4e56 85%, #4a5d66 100%)",
         paddingTop: "clamp(72px, 10vh, 120px)",
         paddingBottom: "clamp(72px, 10vh, 120px)",
       }}
@@ -75,11 +77,11 @@ export default function PhoneShowcaseSection() {
         }}
       />
 
-      {/* Top fade — blends hero's bottom #0A0A0A into this gradient */}
+      {/* Top fade — blends hero's bottom into this gradient */}
       <div
         aria-hidden="true"
         className="absolute top-0 left-0 right-0 pointer-events-none"
-        style={{ height: 140, background: "linear-gradient(#0A0A0A, transparent)" }}
+        style={{ height: 180, zIndex: 1, background: "linear-gradient(#0A0A0A 0%, rgba(10,10,10,0) 100%)" }}
       />
 
       {/* Grain texture */}
@@ -89,26 +91,44 @@ export default function PhoneShowcaseSection() {
         style={{
           backgroundImage: "url(/textures/hero-noise.png)",
           backgroundSize: "260px",
-          opacity: 0.18,
+          opacity: 0.35,
           mixBlendMode: "overlay",
         }}
       />
 
-      <div className="container-page relative flex flex-col items-center text-center">
-        {/* Eyebrow */}
-        <span
-          data-phone-eyebrow
-          className="font-heading uppercase"
-          style={{
-            fontSize: "clamp(11px, 0.85vw, 13px)",
-            letterSpacing: "0.22em",
-            color: "rgba(205,255,80,0.8)",
-            fontWeight: 500,
-          }}
-        >
-          Built to adapt
-        </span>
+      {/* Dark Watermark Icons */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none overflow-hidden"
+        style={{ zIndex: 0 }}
+      >
+        <Icon
+          path={mdiBowlMixOutline}
+          size="560px"
+          color="#050B0F"
+          className="absolute -top-32 -left-48 opacity-[0.4] -rotate-12"
+        />
+        <Icon
+          path={mdiDumbbell}
+          size="500px"
+          color="#050B0F"
+          className="absolute top-40 -right-40 opacity-[0.4] rotate-[15deg]"
+        />
+        <Icon
+          path={mdiHeartOutline}
+          size="600px"
+          color="#050B0F"
+          className="absolute -bottom-48 -left-32 opacity-[0.4] rotate-[-35deg]"
+        />
+        <Icon
+          path={mdiChartTimelineVariant}
+          size="480px"
+          color="#050B0F"
+          className="absolute bottom-10 -right-40 opacity-[0.4] rotate-[45deg]"
+        />
+      </div>
 
+      <div className="container-page relative flex flex-col items-center text-center">
         {/* Heading */}
         <h2
           data-phone-heading
