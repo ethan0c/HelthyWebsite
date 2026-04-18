@@ -56,10 +56,9 @@ export default function WhyHelthySection() {
         className="absolute inset-0 pointer-events-none mix-blend-overlay"
         style={{
           zIndex: 2,
+          backgroundImage: "url(/textures/hero-noise.png)",
+          backgroundSize: "260px",
           opacity: 0.35,
-          backgroundImage: "url('/noise.png')",
-          backgroundRepeat: "repeat",
-          backgroundSize: "128px",
         }}
       />
 
