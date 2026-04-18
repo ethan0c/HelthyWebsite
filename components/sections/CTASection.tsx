@@ -2,9 +2,11 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
-import HelthyMark from "@/components/ui/HelthyMark";
+import HelthyLogoGlass from "@/components/ui/HelthyLogoGlass";
 import AndroidWaitlistButton from "@/components/ui/AndroidWaitlistButton";
 import CTAButton from "@/components/ui/CTAButton";
+import Icon from "@mdi/react";
+import { mdiLightningBoltOutline } from "@mdi/js";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
@@ -60,8 +62,17 @@ export default function CTASection() {
       ref={sectionRef}
       className="relative section-padding overflow-hidden section-glow-lemon"
     >
+      {/* Massive subtle background watermark */}
+      <div
+        className="absolute top-1/2 left-[60%] lg:left-[70%] -translate-y-1/2 opacity-[0.03] text-helthy-lemon pointer-events-none -z-10 blur-[2px]"
+        aria-hidden="true"
+        style={{ transform: "translateY(-50%) rotate(15deg) scale(1.2)" }}
+      >
+        <Icon path={mdiLightningBoltOutline} size={50} color="currentColor" />
+      </div>
+
       {/* Layered ambient glows */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div className="absolute inset-0 pointer-events-none -z-20" aria-hidden="true">
         {/* Primary lemon glow */}
         <div
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[900px] aspect-square rounded-full blur-[180px]"
@@ -94,10 +105,10 @@ export default function CTASection() {
         }}
       />
 
-      <div className="relative mx-auto max-w-3xl text-center">
-        {/* Mark */}
-        <div data-cta-mark className="flex justify-center mb-10">
-          <HelthyMark size={64} pulse />
+      <div className="relative mx-auto max-w-3xl text-center z-10">
+        {/* Glass Mark */}
+        <div data-cta-mark className="flex justify-center mb-8 drop-shadow-2xl">
+          <HelthyLogoGlass size={72} />
         </div>
 
         {/* Heading — big display */}

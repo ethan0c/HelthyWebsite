@@ -58,7 +58,7 @@ export default function PhoneShowcaseSection() {
       className="relative w-full overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, #080d10 15%, #41515a 60%, #3f4e56 85%, #4a5d66 100%)",
+          "linear-gradient(180deg, #080d10 10%, #41515a 45%, #3f4e56 65%, #0A0A0A 100%)",
         paddingTop: "clamp(72px, 10vh, 120px)",
         paddingBottom: "clamp(72px, 10vh, 120px)",
       }}
@@ -112,7 +112,7 @@ export default function PhoneShowcaseSection() {
           path={mdiDumbbell}
           size="500px"
           color="#050B0F"
-          className="absolute top-40 -right-40 opacity-[0.4] rotate-[15deg]"
+          className="hidden md:block absolute top-40 -right-40 opacity-[0.4] rotate-[15deg]"
         />
         <Icon
           path={mdiHeartOutline}
@@ -128,7 +128,7 @@ export default function PhoneShowcaseSection() {
         />
       </div>
 
-      <div className="container-page relative flex flex-col items-center text-center">
+      <div className="container-page relative flex flex-col items-center text-center z-10">
         {/* Heading */}
         <h2
           data-phone-heading
@@ -233,6 +233,13 @@ export default function PhoneShowcaseSection() {
           </div>
         </div>
       </div>
+
+      {/* Bottom fade — melts phone section back into the black canvas of Features */}
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 left-0 right-0 pointer-events-none"
+        style={{ height: 240, zIndex: 10, background: "linear-gradient(to bottom, transparent, #0A0A0A)" }}
+      />
     </section>
   );
 }

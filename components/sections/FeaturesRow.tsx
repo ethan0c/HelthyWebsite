@@ -67,20 +67,20 @@ export default function FeaturesRow() {
       className="relative section-padding"
       style={{ backgroundColor: "var(--background)" }}
     >
-      {/* Aurora carryover from hero — subtle */}
+      {/* Soft spotlight for features — sits behind the grid */}
       <div
         aria-hidden="true"
         className="absolute pointer-events-none left-1/2 -translate-x-1/2"
         style={{
           zIndex: 0,
-          top: "-200px",
+          top: "0px",
           width: "min(1200px, 120vw)",
-          height: 500,
+          height: 600,
           background: [
-            "radial-gradient(ellipse 50% 50% at 35% 50%, rgba(120,170,255,0.06) 0%, transparent 60%)",
-            "radial-gradient(ellipse 50% 50% at 70% 50%, rgba(205,255,80,0.05) 0%, transparent 60%)",
+            "radial-gradient(ellipse 50% 50% at 35% 0%, rgba(120,170,255,0.04) 0%, transparent 60%)",
+            "radial-gradient(ellipse 50% 50% at 70% 0%, rgba(205,255,80,0.03) 0%, transparent 60%)",
           ].join(","),
-          filter: "blur(30px)",
+          filter: "blur(40px)",
         }}
       />
 

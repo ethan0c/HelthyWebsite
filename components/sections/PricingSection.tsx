@@ -5,6 +5,8 @@ import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 import { Sparkles, Brain, MessageCircle, LineChart } from "lucide-react";
 import ComingSoonOverlay from "@/components/ui/ComingSoonOverlay";
+import Icon from "@mdi/react";
+import { mdiCertificateOutline } from "@mdi/js";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
@@ -46,8 +48,25 @@ export default function PricingSection() {
     <section
       id="pricing"
       ref={sectionRef}
-      className="section-light relative section-padding overflow-hidden"
+      className="section-light relative section-padding overflow-hidden rounded-[2rem] sm:rounded-[3rem] lg:rounded-[4rem] mx-2 sm:mx-4 lg:mx-8 my-10"
+      style={{
+        boxShadow: "0px -10px 40px rgba(255,255,255,0.02), 0px 20px 40px rgba(0,0,0,0.6)",
+      }}
     >
+      {/* Light Watermark Icon */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none overflow-hidden"
+        style={{ zIndex: 0 }}
+      >
+        <Icon
+          path={mdiCertificateOutline}
+          size="680px"
+          color="#000000"
+          className="absolute -right-64 top-1/2 -translate-y-1/2 opacity-[0.03] -rotate-12"
+        />
+      </div>
+
       {/* Waitlist gate — blurred lock until v2 drops */}
       <ComingSoonOverlay
         label="Premium drops April 28"
