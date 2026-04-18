@@ -76,6 +76,7 @@ export default function SiteFooter() {
                 width={162}
                 height={32}
                 className="h-7 w-auto"
+                style={{ width: "auto" }}
               />
             </Link>
             <p

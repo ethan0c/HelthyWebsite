@@ -24,9 +24,6 @@ export default function PricingSection() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const trigger = { trigger: sectionRef.current, start: "top 70%" };
-      gsap.from("[data-price-eyebrow]", {
-        opacity: 0, y: 10, duration: 0.5, ease: "power3.out", scrollTrigger: trigger,
-      });
       gsap.from("[data-price-head]", {
         opacity: 0, y: 20, duration: 0.8, delay: 0.15, ease: "power3.out", scrollTrigger: trigger,
       });
