@@ -129,7 +129,7 @@ export default function WhyHelthySection() {
 
         <p
           data-why-body
-          className="mx-auto"
+          className="mx-auto font-body"
           style={{
             marginTop: "clamp(32px, 4vh, 56px)",
             fontSize: "clamp(17px, 1.5vw, 21px)",
