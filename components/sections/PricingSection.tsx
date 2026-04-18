@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 import { Sparkles, Brain, MessageCircle, LineChart } from "lucide-react";
-import ComingSoonOverlay from "@/components/ui/ComingSoonOverlay";
 import Icon from "@mdi/react";
 import { mdiCertificateOutline } from "@mdi/js";
 
@@ -67,18 +66,9 @@ export default function PricingSection() {
         />
       </div>
 
-      {/* Waitlist gate — blurred lock until v2 drops */}
-      <ComingSoonOverlay
-        label="Premium drops April 28"
-        source="waitlist-pricing"
-        theme="light"
-        blurPx={10}
-      />
-
       <div
         className="container-page relative text-center"
-        aria-hidden="true"
-        style={{ pointerEvents: "none", userSelect: "none" }}
+        aria-hidden="false"
       >
         <p
           data-price-eyebrow
@@ -237,9 +227,10 @@ export default function PricingSection() {
               href={APP_STORE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary text-[14px] w-full justify-center"
+              className="btn-primary text-[14px] w-full justify-center opacity-80"
+              onClick={(e) => e.preventDefault()}
             >
-              Start Premium
+              Premium Unlocks April 28
             </Link>
           </div>
         </div>
