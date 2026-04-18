@@ -80,6 +80,7 @@ export default function SiteNav() {
           height={26}
           width={130}
           className="object-contain"
+          style={{ width: "auto", height: "100%" }}
           priority
           style={{ width: "auto", height: 26 }}
         />

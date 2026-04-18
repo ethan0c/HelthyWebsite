@@ -70,14 +70,7 @@ export default function PricingSection() {
         className="container-page relative text-center"
         aria-hidden="false"
       >
-        <p
-          data-price-eyebrow
-          className="text-[11px] font-semibold uppercase tracking-[0.25em] mb-10"
-          style={{ color: "rgba(17,17,17,0.45)", fontFamily: "var(--font-body)" }}
-        >
-          Pricing
-        </p>
-
+  
         <h2
           data-price-head
           className="font-heading font-light"
@@ -104,33 +97,40 @@ export default function PricingSection() {
             letterSpacing: "-0.01em",
             lineHeight: "1.55em",
             color: "rgba(17,17,17,0.55)",
-            maxWidth: 560,
+            maxWidth: 580,
           }}
         >
-          One plan unlocks everything. Cancel in two taps. The free tier is
-          actually free — forever.
+          One plan unlocks everything. Lock in your founder's price today and keep it for life. The free tier is actually free — forever.
         </p>
 
         {/* Premium card — the only card */}
         <div
           data-price-card
-          className="relative mx-auto mt-14 md:mt-20 rounded-[1.5rem] text-left overflow-hidden"
+          className="relative mx-auto mt-14 md:mt-20 rounded-[1.5rem] text-left overflow-hidden border border-white/10"
           style={{
             maxWidth: 520,
-            background: "#111",
+            background: "linear-gradient(145deg, #1A1A1A 0%, #0A0A0A 100%)",
             boxShadow:
-              "0 2px 4px rgba(0,0,0,0.04)," +
-              "0 12px 32px -12px rgba(0,0,0,0.14)," +
-              "0 40px 80px -30px rgba(0,0,0,0.18)",
+              "inset 0 1px 1px rgba(255,255,255,0.05), " +
+              "0 2px 4px rgba(0,0,0,0.4)," +
+              "0 12px 32px -12px rgba(0,0,0,0.6)," +
+              "0 40px 80px -30px rgba(0,0,0,0.8)",
           }}
         >
+          {/* Subtle reflection overlay */}
+          <div
+            className="absolute inset-0 pointer-events-none rounded-[1.5rem]"
+            style={{
+              background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 40%)",
+            }}
+          />
           {/* Header row: label + toggle */}
           <div className="flex items-center justify-between px-8 pt-8 md:px-10 md:pt-10">
             <p
               className="font-body text-[11px] font-semibold uppercase tracking-[0.22em]"
               style={{ color: "rgba(255,255,255,0.5)" }}
             >
-              Premium
+              Helthy Pro
             </p>
 
             <div className="flex items-center gap-2.5">
@@ -169,32 +169,62 @@ export default function PricingSection() {
           </div>
 
           {/* Price */}
-          <div className="px-8 md:px-10 mt-8">
-            <div className="flex items-baseline gap-2">
+          <div className="px-8 md:px-10 mt-8 relative">
+            <div className="mb-5 text-center">
               <span
-                className="text-numeric"
-                style={{
-                  fontSize: "clamp(56px, 8vw, 88px)",
-                  color: "#fff",
-                  lineHeight: 1,
-                  letterSpacing: "-0.04em",
-                }}
+                className="font-heading text-[11px] font-bold uppercase tracking-[0.16em]"
+                style={{ color: "#CDFF50" }}
               >
-                {isYearly ? "$83" : "$10"}
-              </span>
-              <span
-                className="text-sm font-light"
-                style={{ color: "rgba(255,255,255,0.4)" }}
-              >
-                {isYearly ? "/year" : "/month"}
+                Founders Special
               </span>
             </div>
-            <p
-              className="text-[13px] mt-2"
-              style={{ color: "rgba(255,255,255,0.45)" }}
+
+            <div
+              key={isYearly ? "yearly" : "monthly"}
+              className="animate-in fade-in slide-in-from-bottom-2 duration-[400ms] ease-out"
             >
-              {isYearly ? "That's $6.92/month — save 30%" : "or $83/year — save 30%"}
-            </p>
+              <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+                <span
+                  className="text-numeric"
+                  style={{
+                    fontSize: "clamp(46px, 12vw, 84px)",
+                    color: "#fff",
+                    lineHeight: 1,
+                    letterSpacing: "-0.04em",
+                  }}
+                >
+                  {isYearly ? "$19.99" : "$2.99"}
+                </span>
+                
+                <span
+                  className="text-numeric line-through"
+                  style={{
+                    fontSize: "clamp(24px, 5.5vw, 36px)",
+                    color: "rgba(255,255,255,0.25)",
+                    lineHeight: 1,
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  {isYearly ? "$79.99" : "$9.99"}
+                </span>
+
+                <span
+                  className="text-sm font-light ml-0.5"
+                  style={{ color: "rgba(255,255,255,0.4)" }}
+                >
+                  {isYearly ? "/year" : "/mo"}
+                </span>
+              </div>
+              <p
+                className="text-[14px] mt-2 font-medium"
+                style={{ color: "rgba(205,255,80,0.85)" }}
+              >
+                {isYearly 
+                  ? "That's just $1.66 a month · Price locked in for life" 
+                  : "Cancel anytime · Price locked in for life"
+                }
+              </p>
+            </div>
           </div>
 
           {/* Features */}
@@ -230,7 +260,7 @@ export default function PricingSection() {
               className="btn-primary text-[14px] w-full justify-center opacity-80"
               onClick={(e) => e.preventDefault()}
             >
-              Premium Unlocks April 28
+              Pro Unlocks April 28
             </Link>
           </div>
         </div>

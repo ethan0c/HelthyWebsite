@@ -2,6 +2,11 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
+import Icon from "@mdi/react";
+import {
+  mdiDna,
+  mdiInfinity
+} from "@mdi/js";
 
 export default function WhyHelthySection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -33,32 +38,77 @@ export default function WhyHelthySection() {
     <section
       ref={sectionRef}
       id="why-helthy"
-      className="relative section-padding"
-      style={{ backgroundColor: "var(--background)" }}
+      className="relative section-padding overflow-hidden"
+      style={{
+        background: "linear-gradient(180deg, #080d10 10%, #41515a 45%, #3f4e56 65%, #0A0A0A 100%)",
+      }}
     >
-      {/* Subtle aurora wash */}
+      {/* Top fade — blends features bottom into this gradient */}
+      <div
+        aria-hidden="true"
+        className="absolute top-0 left-0 right-0 pointer-events-none"
+        style={{ height: 180, zIndex: 1, background: "linear-gradient(#0A0A0A 0%, rgba(10,10,10,0) 100%)" }}
+      />
+
+      {/* Grain texture */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none mix-blend-overlay"
+        style={{
+          zIndex: 2,
+          opacity: 0.35,
+          backgroundImage: "url('/noise.png')",
+          backgroundRepeat: "repeat",
+          backgroundSize: "128px",
+        }}
+      />
+
+      {/* Abstract floating background icons */}
+      <div
+        className="absolute inset-0 pointer-events-none overflow-hidden"
+        style={{ zIndex: 1 }}
+        aria-hidden="true"
+      >
+        {/* Foundation - The code */}
+        <Icon
+          path={mdiDna}
+          size="420px"
+          className="absolute text-[#CDFF50]"
+          style={{ top: "30%", right: "-12%", opacity: 0.04, transform: "rotate(35deg)" }}
+        />
+        
+        {/* Whole Picture - Infinite integration */}
+        <Icon
+          path={mdiInfinity}
+          size="420px"
+          className="absolute text-white"
+          style={{ top: "60%", left: "-15%", opacity: 0.04, transform: "rotate(-35deg)" }}
+        />
+      </div>
+
+      {/* Deep lime aurora to give it that "Helthy" signature glow */}
       <div
         aria-hidden="true"
         className="absolute pointer-events-none left-1/2 -translate-x-1/2"
         style={{
           zIndex: 0,
-          top: "20%",
-          width: "min(1000px, 110vw)",
-          height: 600,
+          top: "15%",
+          width: "min(1200px, 150vw)",
+          height: 800,
           background:
-            "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(205,255,80,0.05) 0%, transparent 60%)",
-          filter: "blur(40px)",
+            "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(205,255,80,0.06) 0%, transparent 60%)",
+          filter: "blur(60px)",
         }}
       />
 
-      <div className="container-page relative text-center" style={{ zIndex: 1 }}>
-        <p
+      <div className="container-page relative text-center z-10 py-10 md:py-20">
+        <span
           data-why-eyebrow
-          className="text-[11px] font-semibold uppercase tracking-[0.25em] mb-10"
-          style={{ color: "rgba(249,249,249,0.45)", fontFamily: "var(--font-body)" }}
+          className="inline-block font-heading text-[11px] font-bold uppercase tracking-[0.25em] mb-10"
+          style={{ color: "rgba(249,249,249,0.3)" }}
         >
-          Why helthy
-        </p>
+          Why Helthy
+        </span>
 
         <h2
           className="font-heading"
@@ -110,6 +160,13 @@ export default function WhyHelthySection() {
           Because one number never tells the story.
         </p>
       </div>
+
+      {/* Bottom fade — melts back into black */}
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 left-0 right-0 pointer-events-none"
+        style={{ height: 240, zIndex: 10, background: "linear-gradient(to bottom, transparent, #0A0A0A)" }}
+      />
     </section>
   );
 }
