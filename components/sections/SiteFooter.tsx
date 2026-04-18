@@ -152,7 +152,18 @@ export default function SiteFooter() {
           }}
         >
           <p className="text-[12px]" style={{ color: "rgba(255,255,255,0.38)" }}>
-            © {new Date().getFullYear()} Helthy. All rights reserved.
+            © {new Date().getFullYear()} Helthy. All rights reserved. 
+            {" "}•{" "}
+            Built by{" "}
+            <a
+              href="https://ocelabs.tech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-white underline underline-offset-2"
+              style={{ color: "rgba(255,255,255,0.65)" }}
+            >
+              Ocelabs
+            </a>
           </p>
 
           <div className="flex items-center gap-3">
