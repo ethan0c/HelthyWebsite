@@ -1,10 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { Star } from "lucide-react";
+
+const APP_STORE_URL =
+  "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
 
 /** iOS Contacts-style: first two capitalized letters of the handle/name. */
 function initialsOf(name: string): string {
@@ -88,18 +92,37 @@ const TRANSFORMATIONS = [
     role: "Co-founder",
     before: "/transformations/chibu-before.jpg",
     after: "/transformations/chibu-after.jpg",
+    beforeFace: { cx: 33, cy: 30, r: 13 },
+    afterFace: { cx: 51, cy: 42, r: 11 },
     quote:
-      "Built Helthy because nothing else would actually tell me what to fix. Down 28 lb, up 50 lb on bench.",
+      "Built Helthy because nothing else would actually tell me what to fix.",
+    stats: [{ label: "lost", value: "−50 lb" }],
   },
   {
     name: "Ebu",
     role: "Co-founder",
     before: "/transformations/ebu-before.jpg",
     after: "/transformations/ebu-after.jpg",
+    beforeFace: { cx: 57, cy: 26, r: 12 },
+    afterFace: { cx: 56, cy: 37, r: 11 },
     quote:
       "I used to forget half my meals. Now Helthy logs them in seconds and the AI coach actually keeps me honest.",
+    stats: [{ label: "gained", value: "+50 lb" }],
+  },
+  {
+    name: "Oma",
+    role: "Early user",
+    before: "/transformations/oma-before.jpg",
+    after: "/transformations/oma-after.jpg",
+    beforeFace: { cx: 59, cy: 35, r: 11 },
+    afterFace: { cx: 49, cy: 25, r: 13 },
+    quote:
+      "Finally an app that doesn't shame me into logging. I just take a photo and go.",
+    stats: [{ label: "lost", value: "−23 kg" }],
   },
 ];
+
+type FaceBox = { cx: number; cy: number; r: number };
 
 function TestimonialCard({ t }: { t: (typeof TESTIMONIALS)[number] }) {
   return (
@@ -146,53 +169,284 @@ function TestimonialCard({ t }: { t: (typeof TESTIMONIALS)[number] }) {
   );
 }
 
-function TransformationCard({ t }: { t: (typeof TRANSFORMATIONS)[number] }) {
+/**
+ * Drag-to-reveal before/after slider. Drag the handle (or click the
+ * image) to wipe between the two states. Keyboard: arrow keys on the
+ * focused handle.
+ */
+function FaceBlur({ face }: { face: FaceBox }) {
   return (
-    <div className="card-helthy shrink-0 w-[480px] sm:w-[560px] overflow-hidden">
-      <div className="grid grid-cols-2">
-        <div className="relative aspect-[3/4] bg-black overflow-hidden">
-          <Image
-            src={t.before}
-            alt={`${t.name} before`}
-            fill
-            className="object-cover grayscale-[30%]"
-            sizes="280px"
-          />
-          <div
-            className="absolute inset-x-0 top-0 h-[38%]"
-            style={{ backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)" }}
-          />
-          <span className="absolute bottom-3 left-3 text-[11px] tracking-[0.18em] uppercase text-white/80 bg-black/60 backdrop-blur-sm px-2.5 py-1 rounded-full">
-            Before
-          </span>
-        </div>
-        <div className="relative aspect-[3/4] bg-black overflow-hidden">
-          <Image
-            src={t.after}
-            alt={`${t.name} after`}
-            fill
-            className="object-cover"
-            sizes="280px"
-          />
-          <div
-            className="absolute inset-x-0 top-0 h-[38%]"
-            style={{ backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)" }}
-          />
-          <span className="absolute bottom-3 left-3 text-[11px] tracking-[0.18em] uppercase text-helthy-black bg-helthy-lemon px-2.5 py-1 rounded-full font-semibold">
-            After
-          </span>
-        </div>
+    <div
+      aria-hidden="true"
+      className="absolute rounded-full pointer-events-none"
+      style={{
+        left: `${face.cx - face.r}%`,
+        top: `${face.cy - face.r}%`,
+        width: `${face.r * 2}%`,
+        height: `${face.r * 2}%`,
+        backdropFilter: "blur(14px)",
+        WebkitBackdropFilter: "blur(14px)",
+        // Soft-edged mask so the blur fades at the boundary instead of
+        // hard-cutting — much less "sticker on the face" than a flat disc.
+        maskImage:
+          "radial-gradient(circle at 50% 50%, #000 55%, rgba(0,0,0,0.6) 75%, transparent 95%)",
+        WebkitMaskImage:
+          "radial-gradient(circle at 50% 50%, #000 55%, rgba(0,0,0,0.6) 75%, transparent 95%)",
+      }}
+    />
+  );
+}
+
+function BeforeAfterSlider({
+  before,
+  after,
+  name,
+  beforeFace,
+  afterFace,
+}: {
+  before: string;
+  after: string;
+  name: string;
+  beforeFace?: FaceBox;
+  afterFace?: FaceBox;
+}) {
+  const [pct, setPct] = useState(50);
+  const [dragging, setDragging] = useState(false);
+  const frameRef = useRef<HTMLDivElement>(null);
+
+  const setFromClientX = useCallback((clientX: number) => {
+    const el = frameRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const next = ((clientX - rect.left) / rect.width) * 100;
+    setPct(Math.max(0, Math.min(100, next)));
+  }, []);
+
+  useEffect(() => {
+    if (!dragging) return;
+    const onMove = (e: PointerEvent) => setFromClientX(e.clientX);
+    const onUp = () => setDragging(false);
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+    };
+  }, [dragging, setFromClientX]);
+
+  const onKey = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowLeft") setPct((p) => Math.max(0, p - 4));
+    else if (e.key === "ArrowRight") setPct((p) => Math.min(100, p + 4));
+    else if (e.key === "Home") setPct(0);
+    else if (e.key === "End") setPct(100);
+  };
+
+  return (
+    <div
+      ref={frameRef}
+      className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden select-none bg-black"
+      onPointerDown={(e) => {
+        e.preventDefault();
+        setDragging(true);
+        setFromClientX(e.clientX);
+      }}
+      style={{ cursor: dragging ? "grabbing" : "ew-resize", touchAction: "none" }}
+    >
+      {/* After (base layer) */}
+      <Image
+        src={after}
+        alt={`${name} after`}
+        fill
+        className="object-cover pointer-events-none"
+        sizes="(max-width: 768px) 92vw, 1100px"
+        priority={false}
+      />
+      {afterFace && <FaceBlur face={afterFace} />}
+      {/* After label — Unbounded, no pill */}
+      <span
+        className="font-body absolute bottom-4 right-4 text-[11px] uppercase z-20 pointer-events-none"
+        style={{
+          color: "#CDFF50",
+          letterSpacing: "0.22em",
+          fontWeight: 500,
+          textShadow: "0 1px 8px rgba(0,0,0,0.55)",
+        }}
+      >
+        After
+      </span>
+
+      {/* Before (clipped by pct) */}
+      <div
+        className="absolute inset-0 overflow-hidden z-10"
+        style={{ clipPath: `inset(0 ${100 - pct}% 0 0)` }}
+      >
+        <Image
+          src={before}
+          alt={`${name} before`}
+          fill
+          className="object-cover pointer-events-none"
+          sizes="(max-width: 768px) 92vw, 1100px"
+        />
+        {beforeFace && <FaceBlur face={beforeFace} />}
+        {/* Before label — Unbounded, no pill */}
+        <span
+          className="font-body absolute bottom-4 left-4 text-[11px] uppercase pointer-events-none"
+          style={{
+            color: "rgba(255,255,255,0.85)",
+            letterSpacing: "0.22em",
+            fontWeight: 500,
+            textShadow: "0 1px 8px rgba(0,0,0,0.55)",
+          }}
+        >
+          Before
+        </span>
       </div>
-      <div className="p-7">
-        <p className="text-[15px] text-white/70 italic leading-relaxed mb-4">
-          &ldquo;{t.quote}&rdquo;
-        </p>
-        <div>
-          <p className="text-[15px] font-medium text-white">{t.name}</p>
-          <p className="text-[13px] text-white/45">{t.role}</p>
-        </div>
+
+      {/* Divider + handle */}
+      <div
+        className="absolute top-0 bottom-0 z-20 pointer-events-none"
+        style={{ left: `${pct}%`, transform: "translateX(-50%)" }}
+      >
+        <div
+          className="w-[2px] h-full"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(205,255,80,0) 0%, rgba(205,255,80,0.9) 20%, rgba(205,255,80,0.9) 80%, rgba(205,255,80,0) 100%)",
+            boxShadow: "0 0 18px rgba(205,255,80,0.55)",
+          }}
+        />
+        <button
+          type="button"
+          role="slider"
+          aria-label={`${name} before/after slider`}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(pct)}
+          tabIndex={0}
+          onKeyDown={onKey}
+          onPointerDown={(e) => {
+            e.stopPropagation();
+            setDragging(true);
+          }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center justify-center pointer-events-auto"
+          style={{
+            width: 44,
+            height: 44,
+            background: "#CDFF50",
+            border: "none",
+            cursor: dragging ? "grabbing" : "grab",
+            boxShadow:
+              "inset 0 2px 1px 0 rgba(255,255,255,0.5)," +
+              "inset 0 0.6px 0.6px -1.25px rgba(255,255,255,0.72)," +
+              "inset 0 2.29px 2.29px -2.5px rgba(255,255,255,0.635)," +
+              "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
+              "0 10px 24px -6px rgba(205,255,80,0.5)",
+          }}
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              d="M4 4L1 8l3 4M12 4l3 4-3 4"
+              stroke="#0B0B0B"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
       </div>
     </div>
+  );
+}
+
+function TransformationRow({
+  t,
+  flip = false,
+}: {
+  t: (typeof TRANSFORMATIONS)[number];
+  flip?: boolean;
+}) {
+  return (
+    <article
+      className={`card-helthy p-6 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center ${
+        flip ? "lg:[&>*:first-child]:order-2" : ""
+      }`}
+    >
+      <div className="lg:col-span-5">
+        <BeforeAfterSlider
+          before={t.before}
+          after={t.after}
+          name={t.name}
+          beforeFace={t.beforeFace}
+          afterFace={t.afterFace}
+        />
+      </div>
+
+      <div className="lg:col-span-7 flex flex-col gap-6">
+        {/* Eyebrow — DM Sans, standard metadata label */}
+        <p
+          className="font-body text-[11px] uppercase"
+          style={{
+            color: "rgba(255,255,255,0.55)",
+            letterSpacing: "0.2em",
+            fontWeight: 600,
+          }}
+        >
+          {t.role} · {t.name}
+        </p>
+
+        {/* Hero title — Unbounded display, mirrors mobile heroTitle */}
+        <h3
+          className="font-heading"
+          style={{
+            fontSize: "clamp(26px, 3vw, 34px)",
+            fontWeight: 500,
+            letterSpacing: "-0.025em",
+            lineHeight: "1.15",
+            color: "#F9F9F9",
+          }}
+        >
+          &ldquo;{t.quote}&rdquo;
+        </h3>
+
+        {/* Hero stat — solid lemon, the confident takeaway number */}
+        <div className="flex flex-wrap gap-5 items-end">
+          {t.stats.map((s) => (
+            <div key={s.label} className="flex flex-col">
+              <span
+                className="font-body text-[10px] uppercase"
+                style={{
+                  color: "#0B0B0B",
+                  letterSpacing: "0.2em",
+                  fontWeight: 600,
+                  background: "#CDFF50",
+                  padding: "4px 10px",
+                  borderRadius: 999,
+                  alignSelf: "flex-start",
+                  boxShadow:
+                    "inset 0 1px 0 rgba(255,255,255,0.4)," +
+                    "0 6px 14px -6px rgba(205,255,80,0.45)",
+                }}
+              >
+                {s.label}
+              </span>
+              <span
+                className="text-numeric"
+                style={{
+                  fontSize: "clamp(40px, 5.5vw, 64px)",
+                  fontWeight: 500,
+                  color: "#CDFF50",
+                  letterSpacing: "-0.035em",
+                  lineHeight: 1,
+                  marginTop: 10,
+                }}
+              >
+                {s.value}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </article>
   );
 }
 
@@ -253,25 +507,33 @@ function useMarquee(
   }, []);
 }
 
-function TransformationCarousel() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  useMarquee(trackRef, { duration: 40, direction: -1 });
-  const items = [...TRANSFORMATIONS, ...TRANSFORMATIONS];
-
+function TransformationStack() {
   return (
-    <div className="relative mb-12 overflow-hidden">
-      <div
-        className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none"
-        style={{ background: "linear-gradient(90deg, var(--background) 0%, transparent 100%)" }}
-      />
-      <div
-        className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none"
-        style={{ background: "linear-gradient(270deg, var(--background) 0%, transparent 100%)" }}
-      />
-      <div ref={trackRef} className="flex gap-6 w-max">
-        {items.map((t, i) => (
-          <TransformationCard key={`tf-${i}`} t={t} />
+    <div className="container-page mb-16 sm:mb-20">
+      <div className="flex flex-col gap-5 sm:gap-6">
+        {TRANSFORMATIONS.map((t, i) => (
+          <TransformationRow key={t.name} t={t} flip={i % 2 === 1} />
         ))}
+      </div>
+      <div className="mt-10 flex flex-col items-center gap-3">
+        <Link
+          href={APP_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-primary"
+        >
+          Start your transformation
+        </Link>
+        <p
+          className="text-[11px] uppercase"
+          style={{
+            color: "rgba(255,255,255,0.35)",
+            letterSpacing: "0.18em",
+            fontWeight: 500,
+          }}
+        >
+          Drag the handle to reveal before / after
+        </p>
       </div>
     </div>
   );
@@ -350,7 +612,7 @@ export default function TestimonialsSection() {
           />
         </div>
 
-        <TransformationCarousel />
+        <TransformationStack />
 
         <div className="flex flex-col gap-5">
           <TestimonialRow row={ROW_1} duration={50} direction={-1} keyPrefix="r1" />

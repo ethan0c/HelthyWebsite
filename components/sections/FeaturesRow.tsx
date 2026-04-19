@@ -102,7 +102,13 @@ export default function FeaturesRow() {
             </>}
             subtitle="Point, shoot, logged."
           >
-            <ScreenshotMockup src="/phones/ai-meal-scan.png" alt="AI photo meal logging with instant macro breakdown" wide cropBottom={20} />
+            <ScreenshotMockup
+              src="/phones/ai-meal-scan.png"
+              alt="AI photo meal logging with instant macro breakdown"
+              wide
+              cropBottom={20}
+              visibleRatio={2240 / 2572}
+            />
           </FeatureCard>
 
           {/* Card 2: Weight Progress — chart + history (6 col) */}
@@ -274,7 +280,7 @@ function AchievementCardGrid() {
 // ───────────────────────────────────────────────────────────
 // Screenshot mockup — real app screenshot in a phone-like frame
 
-function ScreenshotMockup({ src, alt, wide, noCrop, cropBottom }: { src: string; alt: string; wide?: boolean; noCrop?: boolean; cropBottom?: number }) {
+function ScreenshotMockup({ src, alt, wide, noCrop, cropBottom, visibleRatio }: { src: string; alt: string; wide?: boolean; noCrop?: boolean; cropBottom?: number; visibleRatio?: number }) {
   return (
     <div
       className={`${wide ? "w-[95%] max-w-[460px]" : "w-[70%] max-w-[300px]"} ${noCrop ? "mb-4" : "mb-[-40px]"} rounded-[20px] overflow-hidden`}
@@ -283,14 +289,26 @@ function ScreenshotMockup({ src, alt, wide, noCrop, cropBottom }: { src: string;
         ...(cropBottom ? { marginBottom: -cropBottom } : {}),
       }}
     >
-      <Image
-        src={src}
-        alt={alt}
-        width={300}
-        height={650}
-        style={{ width: "100%", height: "auto" }}
-        className="object-cover object-top"
-      />
+      <div
+        style={
+          visibleRatio
+            ? { width: "100%", paddingBottom: `${visibleRatio * (2572 / 1321) * 100}%`, position: "relative", overflow: "hidden" }
+            : undefined
+        }
+      >
+        <Image
+          src={src}
+          alt={alt}
+          width={300}
+          height={650}
+          style={
+            visibleRatio
+              ? { position: "absolute", top: 0, left: 0, width: "100%", height: "auto" }
+              : { width: "100%", height: "auto" }
+          }
+          className="object-cover object-top"
+        />
+      </div>
     </div>
   );
 }
@@ -332,57 +350,63 @@ function TripleScreenshotMockup({
 
   return (
     <div className="flex flex-col items-center w-full mb-[-40px]">
-      {/* Tab row — CTAButton-style pills */}
+      {/* Segmented track with sliding pill — mirrors mobile TabController */}
       <div
         role="tablist"
         aria-label="Workout features"
-        className="flex items-center gap-2 sm:gap-3 mb-8 flex-wrap justify-center"
+        className="relative flex items-center mb-8"
+        style={{
+          padding: 4,
+          borderRadius: 999,
+          background: "rgba(46,46,48,0.6)",
+          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
+        }}
       >
+        {/* Sliding lemon pill */}
+        <span
+          aria-hidden="true"
+          className="absolute top-1 bottom-1 rounded-full pointer-events-none"
+          style={{
+            left: 4,
+            width: `calc((100% - 8px) / ${labels.length})`,
+            background: "#CDFF50",
+            transform: `translateX(${active * 100}%)`,
+            transition: "transform 220ms cubic-bezier(0.33, 1, 0.68, 1)",
+            boxShadow:
+              "inset 0 2px 1px 0 rgba(255,255,255,0.5)," +
+              "inset 0 0.6px 0.6px -1.25px rgba(255,255,255,0.72)," +
+              "inset 0 2.29px 2.29px -2.5px rgba(255,255,255,0.635)," +
+              "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
+              "0 14px 6px -8px rgba(205,255,80,0.35)",
+          }}
+        />
+
         {labels.map((label, i) => {
           const isActive = i === active;
-          const pillStyle: React.CSSProperties = isActive
-            ? {
-                background: "#CDFF50",
-                color: "#0B0B0B",
-                boxShadow:
-                  "inset 0 2px 1px 0 rgba(255,255,255,0.5)," +
-                  "inset 0 0.6px 0.6px -1.25px rgba(255,255,255,0.72)," +
-                  "inset 0 2.29px 2.29px -2.5px rgba(255,255,255,0.635)," +
-                  "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
-                  "0 14px 6px -8px rgba(205,255,80,0.35)",
-              }
-            : {
-                background: "rgba(20,20,20,0.62)",
-                color: "#FFFFFF",
-                border: "1.5px solid rgba(46,46,48,0.9)",
-                backdropFilter: "blur(20px) saturate(140%)",
-                WebkitBackdropFilter: "blur(20px) saturate(140%)",
-                boxShadow:
-                  "inset 0 1px 0 rgba(255,255,255,0.06)," +
-                  "0 8px 24px rgba(0,0,0,0.3)",
-              };
           return (
             <button
               key={label}
               role="tab"
               aria-selected={isActive}
               onClick={() => setActive(i)}
-              className="hover:scale-[1.02]"
+              className="relative"
               style={{
-                display: "inline-flex",
-                alignItems: "center",
+                flex: 1,
+                minWidth: 84,
+                padding: "8px 18px",
+                minHeight: 36,
                 borderRadius: 999,
                 fontFamily: "var(--font-body)",
                 fontWeight: 500,
                 fontSize: 13,
                 letterSpacing: "-0.005em",
-                padding: "11px 20px",
-                minHeight: 42,
                 whiteSpace: "nowrap",
-                transition:
-                  "transform 220ms cubic-bezier(0.16, 1, 0.3, 1), background-color 280ms ease, color 280ms ease, box-shadow 280ms ease",
+                color: isActive ? "#0B0B0B" : "rgba(255,255,255,0.7)",
+                transition: "color 220ms ease",
                 cursor: "pointer",
-                ...pillStyle,
+                background: "transparent",
+                border: "none",
+                zIndex: 1,
               }}
             >
               {label}

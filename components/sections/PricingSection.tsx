@@ -121,8 +121,8 @@ export default function PricingSection() {
               background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 40%)",
             }}
           />
-          {/* Header row: label + toggle */}
-          <div className="flex items-center justify-between px-8 pt-8 md:px-10 md:pt-10">
+          {/* Header row: label + segmented toggle (matches FeaturesRow tabs) */}
+          <div className="flex items-center justify-between px-8 pt-8 md:px-10 md:pt-10 gap-3 flex-wrap">
             <p
               className="font-body text-[11px] font-semibold uppercase tracking-[0.22em]"
               style={{ color: "rgba(255,255,255,0.5)" }}
@@ -130,38 +130,72 @@ export default function PricingSection() {
               Helthy Pro
             </p>
 
-            <div className="flex items-center gap-2.5">
+            {/* Segmented track with sliding pill — mirrors mobile TabController. */}
+            <div
+              role="tablist"
+              aria-label="Toggle yearly/monthly pricing"
+              className="relative flex items-center"
+              style={{
+                padding: 4,
+                borderRadius: 999,
+                background: "rgba(46,46,48,0.6)",
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
+              }}
+            >
+              {/* Sliding lemon pill — translates on a 220ms easeOut cubic */}
               <span
-                className="text-[12px] font-medium"
-                style={{ color: isYearly ? "rgba(255,255,255,0.4)" : "#fff" }}
-              >
-                Monthly
-              </span>
-              <button
-                type="button"
-                role="switch"
-                aria-checked={isYearly}
-                onClick={() => setIsYearly(!isYearly)}
-                className="relative w-[44px] h-[24px] rounded-full transition-colors duration-200 focus:outline-none"
+                aria-hidden="true"
+                className="absolute top-1 bottom-1 rounded-full pointer-events-none"
                 style={{
-                  background: isYearly ? "#CDFF50" : "rgba(255,255,255,0.18)",
+                  left: 4,
+                  width: "calc(50% - 4px)",
+                  background: "#CDFF50",
+                  transform: isYearly ? "translateX(100%)" : "translateX(0%)",
+                  transition: "transform 220ms cubic-bezier(0.33, 1, 0.68, 1)",
+                  boxShadow:
+                    "inset 0 2px 1px 0 rgba(255,255,255,0.5)," +
+                    "inset 0 0.6px 0.6px -1.25px rgba(255,255,255,0.72)," +
+                    "inset 0 2.29px 2.29px -2.5px rgba(255,255,255,0.635)," +
+                    "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
+                    "0 14px 6px -8px rgba(205,255,80,0.35)",
                 }}
-                aria-label="Toggle yearly/monthly pricing"
-              >
-                <span
-                  className="absolute top-[3px] w-[18px] h-[18px] rounded-full bg-white shadow-sm transition-transform duration-200"
-                  style={{
-                    left: "3px",
-                    transform: isYearly ? "translateX(20px)" : "translateX(0)",
-                  }}
-                />
-              </button>
-              <span
-                className="text-[12px] font-medium"
-                style={{ color: isYearly ? "#fff" : "rgba(255,255,255,0.4)" }}
-              >
-                Yearly
-              </span>
+              />
+
+              {[
+                { key: "monthly", label: "Monthly" },
+                { key: "yearly", label: "Yearly" },
+              ].map(({ key, label }) => {
+                const isActive = key === "yearly" ? isYearly : !isYearly;
+                return (
+                  <button
+                    key={key}
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => setIsYearly(key === "yearly")}
+                    className="relative"
+                    style={{
+                      flex: 1,
+                      minWidth: 72,
+                      padding: "6px 16px",
+                      minHeight: 30,
+                      borderRadius: 999,
+                      fontFamily: "var(--font-body)",
+                      fontWeight: 500,
+                      fontSize: 12,
+                      letterSpacing: "-0.005em",
+                      whiteSpace: "nowrap",
+                      color: isActive ? "#0B0B0B" : "rgba(255,255,255,0.7)",
+                      transition: "color 220ms ease",
+                      cursor: "pointer",
+                      background: "transparent",
+                      border: "none",
+                      zIndex: 1,
+                    }}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
