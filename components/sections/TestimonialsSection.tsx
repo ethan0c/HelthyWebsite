@@ -110,8 +110,9 @@ const TRANSFORMATIONS = [
     stats: [{ label: "gained", value: "+50 lb" }],
   },
   {
-    name: "Oma",
-    role: "Early user",
+    name: "",
+    role: "Since day one",
+    hideName: true,
     before: "/transformations/oma-before.jpg",
     after: "/transformations/oma-after.jpg",
     beforeFace: { cx: 59, cy: 35, r: 11 },
@@ -391,7 +392,7 @@ function TransformationRow({
             fontWeight: 600,
           }}
         >
-          {t.role} · {t.name}
+          {t.hideName ? t.role : `${t.role} · ${t.name}`}
         </p>
 
         {/* Hero title — Unbounded display, mirrors mobile heroTitle */}
