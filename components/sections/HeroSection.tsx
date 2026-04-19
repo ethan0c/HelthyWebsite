@@ -34,19 +34,9 @@ export default function HeroSection() {
       className="relative w-full overflow-hidden bg-[#0F0F0F]"
       style={{ minHeight: "clamp(680px, 92svh, 980px)" }}
     >
-      {/* Mobile: dark gradient bg */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 md:hidden"
-        style={{
-          background:
-            "linear-gradient(180deg, #0F0F0F 0%, #1A2024 45%, #1F282E 70%, #0F0F0F 100%)",
-        }}
-      />
-
-      {/* Desktop: background video */}
+      {/* Background video — shown on all breakpoints */}
       <video
-        className="hidden md:block absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover"
         autoPlay
         muted
         loop
@@ -57,20 +47,16 @@ export default function HeroSection() {
         <source src="/videos/hero-man-running.mp4" type="video/mp4" />
       </video>
 
-      {/* Desktop video overlay — even darken so centered text stays legible */}
+      {/* Video overlay — even darken so centered text stays legible */}
       <div
         aria-hidden="true"
-        className="hidden md:block absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
         style={{
           zIndex: 1,
           background:
             "linear-gradient(180deg, rgba(10,10,10,0.78) 0%, rgba(10,10,10,0.48) 45%, rgba(10,10,10,0.80) 100%)",
         }}
       />
-
-      {/* Mobile accent pools */}
-      <div aria-hidden="true" className="md:hidden absolute pointer-events-none left-1/2 -translate-x-1/2" style={{ zIndex: 0, top: "30%", width: "min(1200px, 120vw)", height: "min(800px, 100vw)", background: "radial-gradient(ellipse 60% 45% at 50% 50%, rgba(80,140,180,0.22) 0%, rgba(80,140,180,0.06) 45%, transparent 70%)", filter: "blur(40px)" }} />
-      <div aria-hidden="true" className="md:hidden absolute pointer-events-none left-1/2 -translate-x-1/2" style={{ zIndex: 0, bottom: "-10%", width: "min(700px, 80vw)", height: 380, background: "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(205,255,80,0.08) 0%, transparent 65%)", filter: "blur(50px)" }} />
 
       {/* Grain */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ zIndex: 2, backgroundImage: "url(/textures/hero-noise.png)", backgroundSize: "260px", opacity: 0.18, mixBlendMode: "overlay" }} />

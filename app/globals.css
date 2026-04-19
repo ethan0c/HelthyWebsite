@@ -289,7 +289,9 @@ body {
 }
 
 /* ── Noise/Grain Texture Overlay ──────────────────────────────── */
-.grain::before {
+/* Skip on Safari — full-viewport fixed overlay repaints on every
+   scroll tick on WebKit and is the single biggest scroll-jank source. */
+html:not(.is-safari) .grain::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -618,6 +620,11 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
+
+/* When Lenis is on, hide the native scrollbar — the thumb tracks raw
+   wheel events while the page lerps, causing a visible desync. */
+html.lenis { scrollbar-width: none; }
+html.lenis::-webkit-scrollbar { display: none; width: 0; height: 0; }
 
 /* ── Marquee ──────────────────────────────────────────────────── */
 @keyframes marquee {

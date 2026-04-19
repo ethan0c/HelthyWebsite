@@ -10,11 +10,16 @@ import { gsap, ScrollTrigger } from "@/lib/gsap";
  */
 export function LenisProvider({ children }: { children: ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
-  const disabled =
+  const envDisabled =
     process.env.NEXT_PUBLIC_DISABLE_LENIS === "true" ||
     process.env.NEXT_PUBLIC_DISABLE_LENIS === "1";
 
   useEffect(() => {
+    const ua = typeof navigator !== "undefined" ? navigator.userAgent : "";
+    const isSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(ua);
+    if (isSafari) document.documentElement.classList.add("is-safari");
+    const disabled = envDisabled || isSafari;
+
     // Anchor interception works even when Lenis is disabled — fall back
     // to native smooth scroll.
     const onAnchorClickNative = (e: MouseEvent) => {
@@ -117,7 +122,7 @@ export function LenisProvider({ children }: { children: ReactNode }) {
       gsap.ticker.remove(update);
       htmlEl.style.scrollBehavior = prevScrollBehavior;
     };
-  }, [disabled]);
+  }, [envDisabled]);
 
   return <>{children}</>;
 }

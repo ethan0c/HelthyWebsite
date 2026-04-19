@@ -73,7 +73,8 @@ export default function PhoneShowcaseSection() {
           height: "min(820px, 90vw)",
           background:
             "radial-gradient(ellipse 50% 45% at 50% 50%, rgba(100,170,210,0.32) 0%, rgba(80,140,180,0.12) 40%, rgba(80,140,180,0.04) 65%, transparent 80%)",
-          filter: "blur(60px)",
+          filter: "blur(28px)",
+          willChange: "filter",
         }}
       />
 
@@ -191,7 +192,8 @@ export default function PhoneShowcaseSection() {
               height: "min(640px, 120vw)",
               background:
                 "radial-gradient(ellipse 45% 55% at 50% 45%, rgba(120,180,215,0.35) 0%, rgba(90,150,190,0.14) 40%, rgba(80,140,180,0.04) 65%, transparent 80%)",
-              filter: "blur(40px)",
+              filter: "blur(20px)",
+              willChange: "filter",
             }}
           />
           {/* Wide ambient glow — spreads the brightness into the section bg */}
@@ -203,7 +205,8 @@ export default function PhoneShowcaseSection() {
               height: "min(820px, 110vw)",
               background:
                 "radial-gradient(ellipse at center, rgba(80,140,180,0.18) 0%, rgba(80,140,180,0.05) 45%, transparent 70%)",
-              filter: "blur(70px)",
+              filter: "blur(32px)",
+              willChange: "filter",
             }}
           />
           {/* Soft tinted shadow pool — blends phone into section floor */}

@@ -77,11 +77,11 @@ export default function SiteNav() {
         <Image
           src="/logos/logo-long-white.png"
           alt="Helthy"
-          height={26}
-          width={130}
-          className="object-contain h-[26px] w-auto"
+          height={24}
+          width={120}
+          sizes="120px"
+          className="object-contain h-[22px] w-auto lg:h-[24px]"
           priority
-          style={{ width: "auto", height: "auto" }}
         />
       </Link>
 
