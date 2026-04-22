@@ -890,15 +890,6 @@ function WeightGraphMockup() {
 
       {/* ── Weight Trend Graph ── */}
       <div className="px-2 pb-4">
-        <p
-          data-weight-label
-          className="text-[11px] font-semibold tracking-[1px] mb-3 px-3"
-          style={{ color: T.textSecondary, fontFamily: "var(--font-body)" }}
-        >
-          7-DAY TREND
-        </p>
-
-
         <svg
           width="100%"
           viewBox={`0 0 ${W_SVG.w} ${W_SVG.h}`}
