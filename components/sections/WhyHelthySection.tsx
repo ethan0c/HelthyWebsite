@@ -156,7 +156,7 @@ export default function WhyHelthySection() {
             fontFamily: "var(--font-body)",
           }}
         >
-          Because one number never tells the story.
+          Because one number never tells the entire story.
         </p>
       </div>
 
