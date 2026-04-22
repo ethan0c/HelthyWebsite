@@ -598,8 +598,8 @@ export default function TestimonialsSection() {
         <TransformationStack />
 
         <div className="flex flex-col gap-5">
-          <TestimonialRow row={ROW_1} duration={50} direction={-1} keyPrefix="r1" />
-          <TestimonialRow row={ROW_2} duration={55} direction={1} keyPrefix="r2" />
+          <TestimonialRow row={ROW_1} duration={90} direction={-1} keyPrefix="r1" />
+          <TestimonialRow row={ROW_2} duration={100} direction={1} keyPrefix="r2" />
         </div>
       </div>
     </section>
