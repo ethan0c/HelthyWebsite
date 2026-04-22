@@ -58,33 +58,15 @@ const TESTIMONIALS = [
     accent: "#059669",
   },
   {
-    quote: "The fitness app of all time.",
-    name: "Melliciousness",
-    detail: "App Store review · 🇻🇳",
-    accent: "#B45309",
-  },
-  {
-    quote: "Great user experience.",
-    name: "iRobin78",
-    detail: "App Store review · 🇮🇳",
-    accent: "#8B5CF6",
-  },
-  {
     quote: "This is the best app! I use it everyday.",
     name: "arceus208",
     detail: "App Store review · 🇺🇸",
     accent: "#EC4899",
   },
-  {
-    quote: "Very amazing app.",
-    name: "caakino",
-    detail: "App Store review · 🇺🇸",
-    accent: "#14B8A6",
-  },
 ];
 
-const ROW_1 = TESTIMONIALS.slice(0, 5);
-const ROW_2 = TESTIMONIALS.slice(5);
+const ROW_1 = TESTIMONIALS.slice(0, 3);
+const ROW_2 = TESTIMONIALS.slice(3);
 
 const TRANSFORMATIONS = [
   {
