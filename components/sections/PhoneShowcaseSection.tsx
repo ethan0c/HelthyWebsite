@@ -171,11 +171,11 @@ export default function PhoneShowcaseSection() {
           className="flex items-center justify-center gap-4 sm:gap-6 flex-wrap"
           style={{ marginTop: "clamp(28px, 3.4vh, 40px)" }}
         >
-          <ProofStat target={4.9} decimals={1} label="App Store" />
+          <ProofStat target={4.8} decimals={1} label="App Store" />
           <div data-phone-stat className="w-px h-4 bg-white/10" />
           <ProofStat target={10} suffix="K+" label="meals logged" />
           <div data-phone-stat className="w-px h-4 bg-white/10" />
-          <ProofStat target={1500} suffix="+" label="exercises" />
+          <ProofStat target={500} suffix="+" label="exercises" />
         </div>
 
         {/* Phone */}
