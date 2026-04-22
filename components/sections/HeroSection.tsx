@@ -125,6 +125,18 @@ export default function HeroSection() {
           </CTAButton>
           <AndroidWaitlistButton />
         </div>
+
+        <p
+          style={{
+            marginTop: "clamp(16px, 2vh, 24px)",
+            fontSize: "clamp(13px, 1.1vw, 15px)",
+            color: "rgba(249,249,249,0.45)",
+            letterSpacing: "-0.01em",
+            textShadow: "0 1px 8px rgba(0,0,0,0.5)",
+          }}
+        >
+          Our core features will always be free. Download Helthy and get started.
+        </p>
       </div>
 
       {/* Bottom fade into next section */}
