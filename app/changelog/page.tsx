@@ -54,6 +54,7 @@ const SECTIONS = [
   {
     label: "Workouts",
     items: [
+      "Dynamic Island and Live Activity during workouts — see your active set, rest timer, and elapsed time without opening the app",
       "Muscle imbalance detection via left/right logging for unilateral exercises (Premium)",
       "Form tips and weight suggestions on every exercise info screen",
       "Workout history stats on exercise detail screens",
@@ -78,7 +79,6 @@ const SECTIONS = [
       "Simple Mode — a streamlined UI for users who want less noise",
       "Layout customization options",
       "Redesigned settings with search",
-      "iOS Live Activity during active workouts",
       "First-time home tour and contextual milestone hints",
       "First-time meal and workout celebration overlays",
       "Improved icon matching for hundreds of foods",

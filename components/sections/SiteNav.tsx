@@ -10,9 +10,9 @@ const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
 
 const NAV = [
-  { href: "/#features", label: "Features" },
-  { href: "/#why-helthy", label: "Why Helthy" },
-  { href: "/#pricing", label: "Pricing" },
+  { href: "/?section=features", label: "Features" },
+  { href: "/?section=why-helthy", label: "Why Helthy" },
+  { href: "/?section=pricing", label: "Pricing" },
   { href: "/contact", label: "Contact" },
 ];
 

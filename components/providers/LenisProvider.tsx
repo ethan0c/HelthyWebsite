@@ -14,24 +14,6 @@ export function LenisProvider({ children }: { children: ReactNode }) {
     process.env.NEXT_PUBLIC_DISABLE_LENIS === "true" ||
     process.env.NEXT_PUBLIC_DISABLE_LENIS === "1";
 
-  // On initial page load, scroll to the hash anchor if present.
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (!hash) return;
-    const id = hash.slice(1);
-    const attempt = (retries: number) => {
-      const el = document.getElementById(id);
-      if (el) {
-        const top = el.getBoundingClientRect().top + window.scrollY - 72;
-        window.scrollTo({ top, behavior: "smooth" });
-      } else if (retries > 0) {
-        setTimeout(() => attempt(retries - 1), 120);
-      }
-    };
-    // Small delay so the page has rendered before we measure
-    setTimeout(() => attempt(5), 100);
-  }, []);
-
   useEffect(() => {
     const ua = typeof navigator !== "undefined" ? navigator.userAgent : "";
     const isSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(ua);
@@ -65,6 +47,23 @@ export function LenisProvider({ children }: { children: ReactNode }) {
 
     if (disabled) {
       document.addEventListener("click", onAnchorClickNative, true);
+
+      const pendingHashNative =
+        sessionStorage.getItem("scrollToHash") || window.location.hash.slice(1);
+      sessionStorage.removeItem("scrollToHash");
+      if (pendingHashNative) {
+        const attempt = (retries: number) => {
+          const el = document.getElementById(pendingHashNative);
+          if (el) {
+            const top = el.getBoundingClientRect().top + window.scrollY - 72;
+            window.scrollTo({ top, behavior: "smooth" });
+          } else if (retries > 0) {
+            setTimeout(() => attempt(retries - 1), 150);
+          }
+        };
+        setTimeout(() => attempt(8), 600);
+      }
+
       return () => document.removeEventListener("click", onAnchorClickNative, true);
     }
 
@@ -84,6 +83,32 @@ export function LenisProvider({ children }: { children: ReactNode }) {
     });
 
     lenisRef.current = lenis;
+    (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
+
+    // Scroll to hash after cross-route navigation (e.g. /contact → /#pricing).
+    // We use sessionStorage so the hash survives the full page reload that
+    // Next.js does when navigating between routes. The delay lets GSAP
+    // page-entry animations finish before we scroll.
+    const pendingHash =
+      sessionStorage.getItem("scrollToHash") || window.location.hash.slice(1);
+    sessionStorage.removeItem("scrollToHash");
+
+    if (pendingHash) {
+      const attempt = (retries: number) => {
+        const el = document.getElementById(pendingHash);
+        if (el) {
+          lenis.scrollTo(el, {
+            offset: -72,
+            duration: 0.9,
+            easing: (t: number) => 1 - Math.pow(1 - t, 3),
+          });
+        } else if (retries > 0) {
+          setTimeout(() => attempt(retries - 1), 150);
+        }
+      };
+      // Wait for GSAP page-entry animations to settle before scrolling
+      setTimeout(() => attempt(8), 600);
+    }
 
     const update = (time: number) => {
       lenis.raf(time * 1000);
@@ -139,6 +164,7 @@ export function LenisProvider({ children }: { children: ReactNode }) {
       lenis.destroy();
       gsap.ticker.remove(update);
       htmlEl.style.scrollBehavior = prevScrollBehavior;
+      delete (window as unknown as { __lenis?: Lenis }).__lenis;
     };
   }, [envDisabled]);
 

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import HeroSection from "@/components/sections/HeroSection";
 import PhoneShowcaseSection from "@/components/sections/PhoneShowcaseSection";
 import HowItWorksSection from "@/components/sections/HowItWorksSection";
@@ -10,10 +11,14 @@ import CTASection from "@/components/sections/CTASection";
 import NewsletterSection from "@/components/sections/NewsletterSection";
 import SiteFooter from "@/components/sections/SiteFooter";
 import FlowingLine from "@/components/ui/FlowingLine";
+import SectionScroller from "@/components/ui/SectionScroller";
 
 export default function Home() {
   return (
     <main className="relative">
+      <Suspense fallback={null}>
+        <SectionScroller />
+      </Suspense>
       <FlowingLine />
       <HeroSection />
       <PhoneShowcaseSection />

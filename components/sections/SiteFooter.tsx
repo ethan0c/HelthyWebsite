@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 
@@ -8,9 +10,9 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "Product",
     links: [
-      { label: "Features", href: "/#features" },
-      { label: "Pricing", href: "/#pricing" },
-      { label: "Why Helthy", href: "/#why-helthy" },
+      { label: "Features", href: "/?section=features" },
+      { label: "Pricing", href: "/?section=pricing" },
+      { label: "Why Helthy", href: "/?section=why-helthy" },
       { label: "Changelog", href: "/changelog" },
     ],
   },
@@ -24,7 +26,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "Support",
     links: [
-      { label: "FAQ", href: "/#faq" },
+      { label: "FAQ", href: "/?section=faq" },
       { label: "Delete account", href: "/delete-account" },
     ],
   },
