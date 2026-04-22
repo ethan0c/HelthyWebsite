@@ -14,6 +14,24 @@ export function LenisProvider({ children }: { children: ReactNode }) {
     process.env.NEXT_PUBLIC_DISABLE_LENIS === "true" ||
     process.env.NEXT_PUBLIC_DISABLE_LENIS === "1";
 
+  // On initial page load, scroll to the hash anchor if present.
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const id = hash.slice(1);
+    const attempt = (retries: number) => {
+      const el = document.getElementById(id);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - 72;
+        window.scrollTo({ top, behavior: "smooth" });
+      } else if (retries > 0) {
+        setTimeout(() => attempt(retries - 1), 120);
+      }
+    };
+    // Small delay so the page has rendered before we measure
+    setTimeout(() => attempt(5), 100);
+  }, []);
+
   useEffect(() => {
     const ua = typeof navigator !== "undefined" ? navigator.userAgent : "";
     const isSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(ua);
