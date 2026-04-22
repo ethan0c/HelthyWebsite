@@ -18,11 +18,18 @@ const NAV = [
 
 export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
+  const [scrollingDown, setScrollingDown] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 72);
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 72);
+      setScrollingDown(y > lastY);
+      lastY = y;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
@@ -37,7 +44,7 @@ export default function SiteNav() {
     };
   }, []);
 
-  const hideLogo = isDesktop && scrolled;
+  const hideLogo = isDesktop && scrolled && scrollingDown;
 
   return (
     <div
