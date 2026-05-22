@@ -291,7 +291,7 @@ export default function PricingSection() {
               className="btn-primary text-[14px] w-full justify-center opacity-80"
               onClick={(e) => e.preventDefault()}
             >
-              Pro Unlocks April 28
+              Pro Unlocks June 1
             </Link>
           </div>
         </div>

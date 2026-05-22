@@ -25,7 +25,7 @@ export default function LaunchBanner() {
           className="text-[13px] font-medium tracking-tight text-center"
           style={{ color: "#0A0A0A" }}
         >
-          Helthy 2.0 lands April 28.
+          Helthy 2.0 lands June 1.
           <Link
             href="/#pricing"
             className="ml-2 underline underline-offset-4 transition-opacity hover:opacity-70"
