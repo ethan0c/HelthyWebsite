@@ -210,10 +210,7 @@ export default function PricingSection() {
               </span>
             </div>
 
-            <div
-              key={isYearly ? "yearly" : "monthly"}
-              className="animate-in fade-in slide-in-from-bottom-2 duration-[400ms] ease-out"
-            >
+            <div className="min-h-[112px] sm:min-h-[118px]">
               <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
                 <span
                   className="text-numeric"

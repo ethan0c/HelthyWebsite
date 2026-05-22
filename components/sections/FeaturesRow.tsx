@@ -324,29 +324,9 @@ function TripleScreenshotMockup({
   tabs?: string[];
 }) {
   const [active, setActive] = React.useState(0);
-  const frameRef = useRef<HTMLDivElement>(null);
-
-  // Smoothly tween the phone frame's aspect ratio to match the active screen
-  useEffect(() => {
-    const el = frameRef.current;
-    if (!el) return;
-    const target = screens[active];
-    const ratio = target.width / target.height; // width / height
-    const proxy = {
-      r: parseFloat(el.style.getPropertyValue("--ar") || String(ratio)),
-    };
-    gsap.to(proxy, {
-      r: ratio,
-      duration: 0.9,
-      ease: "power3.inOut",
-      onUpdate: () => {
-        el.style.setProperty("--ar", String(proxy.r));
-      },
-    });
-  }, [active, screens]);
 
   const labels = tabs ?? screens.map((s) => s.alt);
-  const initialRatio = screens[0].width / screens[0].height;
+  const frameRatio = Math.min(...screens.map((s) => s.width / s.height));
 
   return (
     <div className="flex flex-col items-center w-full mb-[-40px]">
@@ -415,13 +395,12 @@ function TripleScreenshotMockup({
         })}
       </div>
 
-      {/* Phone frame — aspect-ratio tweens smoothly between screens */}
+      {/* Keep the frame size stable so tab changes don't move the page. */}
       <div
-        ref={frameRef}
         className="relative w-[76%] sm:w-[62%] lg:w-[44%] max-w-[340px]"
         style={
           {
-            "--ar": String(initialRatio),
+            "--ar": String(frameRatio),
             aspectRatio: "var(--ar)",
           } as React.CSSProperties
         }
@@ -448,7 +427,7 @@ function TripleScreenshotMockup({
               alt={s.alt}
               fill
               sizes="(max-width: 640px) 76vw, 340px"
-              className="object-cover object-top"
+              className="object-contain object-top"
             />
           </div>
         ))}
