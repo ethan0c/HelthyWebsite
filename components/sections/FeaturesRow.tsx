@@ -868,7 +868,7 @@ function WeightGraphMockup() {
       </div>
 
       {/* ── Weight Trend Graph ── */}
-      <div className="px-2 pb-4">
+      <div data-weight-label className="px-2 pb-4">
         <svg
           width="100%"
           viewBox={`0 0 ${W_SVG.w} ${W_SVG.h}`}

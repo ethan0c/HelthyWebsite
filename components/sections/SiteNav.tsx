@@ -88,6 +88,7 @@ export default function SiteNav() {
           width={120}
           sizes="120px"
           className="object-contain h-[22px] w-auto lg:h-[24px]"
+          style={{ width: "auto" }}
           priority
         />
       </Link>
