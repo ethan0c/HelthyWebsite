@@ -223,7 +223,7 @@ export default function PricingSection() {
                 >
                   {isYearly ? "$19.99" : "$2.99"}
                 </span>
-                
+
                 <span
                   className="text-numeric line-through"
                   style={{
@@ -233,7 +233,7 @@ export default function PricingSection() {
                     letterSpacing: "-0.02em",
                   }}
                 >
-                  {isYearly ? "$79.99" : "$9.99"}
+                  {isYearly ? "$69.99" : "$9.99"}
                 </span>
 
                 <span
@@ -247,8 +247,8 @@ export default function PricingSection() {
                 className="text-[14px] mt-2 font-medium"
                 style={{ color: "rgba(205,255,80,0.85)" }}
               >
-                {isYearly 
-                  ? "That's just $1.66 a month · Price locked in for life" 
+                {isYearly
+                  ? "That's just $1.66 a month · Price locked in for life"
                   : "Cancel anytime · Price locked in for life"
                 }
               </p>
