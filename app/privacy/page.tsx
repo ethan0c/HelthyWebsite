@@ -43,7 +43,7 @@ export default function PrivacyPage() {
                 <span className="text-helthy-lemon">Privacy</span> Policy
               </h1>
               <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-white/50">
-                <span>Last Updated: March 2026</span>
+                <span>Last Updated: May 2026</span>
                 <span>Effective Date: March 2026</span>
               </div>
             </div>
@@ -95,8 +95,8 @@ export default function PrivacyPage() {
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <h3 className="font-body font-normal text-lg text-white/90">2.2 Health Data from Apple HealthKit</h3>
-                  <p>If you grant permission, we may access and store the following data from Apple HealthKit:</p>
+                  <h3 className="font-body font-normal text-lg text-white/90">2.2 Health Data from Apple HealthKit &amp; Google Health Connect</h3>
+                  <p>If you grant permission, we may access and store the following data from Apple HealthKit (iOS) or Google Health Connect (Android):</p>
                   <ul className="list-disc list-inside space-y-2 pl-4">
                     <li>Steps and activity data</li>
                     <li>Weight measurements</li>
@@ -105,7 +105,7 @@ export default function PrivacyPage() {
                   </ul>
                   <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5">
                     <p className="text-white/70">
-                      <strong className="text-white">Important:</strong> We only read and write HealthKit data with your explicit permission. You can revoke this permission at any time through your iOS Settings.
+                      <strong className="text-white">Important: </strong> We only read and write health platform data with your explicit permission. On iOS you can revoke this through iOS Settings → Privacy &amp; Security → Health. On Android you can revoke this through Android Settings → Apps → Health Connect.
                     </p>
                   </div>
                 </div>
@@ -237,7 +237,7 @@ export default function PrivacyPage() {
               <section className="space-y-4">
                 <h2 className="font-body font-semibold text-xl text-white">8. Permissions We Request</h2>
                 <div className="space-y-3">
-                  <h3 className="font-body font-normal text-lg text-white/90">iOS Permissions</h3>
+                  <h3 className="font-body font-normal text-lg text-white/90 mb-1">iOS Permissions</h3>
                   <div className="space-y-3">
                     <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5">
                       <p className="font-semibold text-white">HealthKit (Read/Write)</p>
@@ -263,6 +263,36 @@ export default function PrivacyPage() {
                       <p className="font-semibold text-white">Notifications</p>
                       <p className="text-sm text-white/60 mt-1">Usage: To send reminders and updates</p>
                       <p className="text-sm text-white/60">Revoke: iOS Settings → Notifications</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-3 mt-6">
+                  <h3 className="font-body font-normal text-lg text-white/90 mb-1">Android Permissions</h3>
+                  <div className="space-y-3">
+                    <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5">
+                      <p className="font-semibold text-white">Health Connect (Read/Write)</p>
+                      <p className="text-sm text-white/60 mt-1">Usage: To sync health data (steps, weight, workouts)</p>
+                      <p className="text-sm text-white/60">Revoke: Android Settings → Apps → Health Connect → App permissions</p>
+                    </div>
+                    <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5">
+                      <p className="font-semibold text-white">Camera</p>
+                      <p className="text-sm text-white/60 mt-1">Usage: To scan barcodes and take meal photos</p>
+                      <p className="text-sm text-white/60">Revoke: Android Settings → Apps → Helthy → Permissions → Camera</p>
+                    </div>
+                    <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5">
+                      <p className="font-semibold text-white">Photo Library / Media</p>
+                      <p className="text-sm text-white/60 mt-1">Usage: To attach meal images and save photos</p>
+                      <p className="text-sm text-white/60">Revoke: Android Settings → Apps → Helthy → Permissions → Photos &amp; Videos</p>
+                    </div>
+                    <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5">
+                      <p className="font-semibold text-white">Microphone</p>
+                      <p className="text-sm text-white/60 mt-1">Usage: To voice-log meals with speech-to-text</p>
+                      <p className="text-sm text-white/60">Revoke: Android Settings → Apps → Helthy → Permissions → Microphone</p>
+                    </div>
+                    <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5">
+                      <p className="font-semibold text-white">Notifications</p>
+                      <p className="text-sm text-white/60 mt-1">Usage: To send reminders and updates</p>
+                      <p className="text-sm text-white/60">Revoke: Android Settings → Apps → Helthy → Notifications</p>
                     </div>
                   </div>
                 </div>

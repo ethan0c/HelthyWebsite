@@ -6,7 +6,7 @@
  * almost read it, which creates the "I need to know" pull.
  *
  * Usage:
- *   <ComingSoonOverlay label="Premium drops June 1" source="waitlist-pricing" />
+ *   <ComingSoonOverlay label="Premium drops June 15" source="waitlist-pricing" />
  *
  * Place as the FIRST child of a section with `position: relative`.
  */
