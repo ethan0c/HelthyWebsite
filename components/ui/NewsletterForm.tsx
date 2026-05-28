@@ -127,7 +127,7 @@ export default function NewsletterForm() {
           ? errorMsg
           : status === "success"
             ? "You're in. Check your inbox."
-            : "One good thing a week. No spam."}
+            : "One good thing a month. No spam."}
       </p>
     </form>
   );
