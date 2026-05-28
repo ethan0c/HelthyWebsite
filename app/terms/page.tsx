@@ -43,7 +43,7 @@ export default function TermsPage() {
                 <span className="text-helthy-lemon">Terms</span> of Service
               </h1>
               <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-white/50">
-                <span>Last Updated: March 2026</span>
+                <span>Last Updated: May 2026</span>
                 <span>Effective Date: March 2026</span>
               </div>
             </div>
@@ -111,10 +111,59 @@ export default function TermsPage() {
                 </div>
               </section>
 
-              <section className="space-y-5 rounded-2xl border border-[rgba(239,68,68,0.2)] bg-[rgba(239,68,68,0.07)] p-7">
-                <h2 className="font-body font-semibold text-xl text-[#f87171]">5. Medical Disclaimer and Limitation of Liability</h2>
+              <section className="space-y-4">
+                <h2 className="font-body font-semibold text-xl text-white">5. Payments &amp; Subscriptions</h2>
                 <div className="space-y-3">
-                  <h3 className="font-body font-normal text-base text-[rgba(248,113,113,0.85)]">5.1 NOT MEDICAL ADVICE</h3>
+                  <h3 className="font-body font-normal text-lg text-white/90">5.1 In-App Purchases via Apple &amp; Google</h3>
+                  <p>
+                    Helthy Pro is sold as an in-app purchase through Apple&apos;s App Store (iOS) and Google Play (Android). All transactions are processed by the respective platform and are subject to their terms: <a href="https://www.apple.com/legal/internet-services/itunes/us/terms.html" target="_blank" rel="noopener noreferrer" className="text-helthy-lemon hover:underline">Apple Media Services Terms</a> and <a href="https://play.google.com/about/play-terms/" target="_blank" rel="noopener noreferrer" className="text-helthy-lemon hover:underline">Google Play Terms of Service</a>. We do not collect or store your payment information.
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <h3 className="font-body font-normal text-lg text-white/90">5.2 Subscription Plans</h3>
+                  <p>Helthy Pro is available on two billing cycles:</p>
+                  <ul className="list-disc list-inside space-y-2 pl-4">
+                    <li><strong className="text-white">Monthly:</strong> billed once per month</li>
+                    <li><strong className="text-white">Annual:</strong> billed once per year — the lower effective monthly rate</li>
+                  </ul>
+                  <p>Current pricing is displayed in the app and on our website. Prices are in USD and may vary by region as determined by Apple.</p>
+                </div>
+                <div className="space-y-3">
+                  <h3 className="font-body font-normal text-lg text-white/90">5.3 Auto-Renewal</h3>
+                  <p>
+                    Subscriptions automatically renew at the end of each billing period unless cancelled at least 24 hours before the renewal date. Your Apple ID or Google account will be charged upon confirmation of purchase and at renewal. You can manage or cancel your subscription at any time: on iOS via Settings &rarr; Apple ID &rarr; Subscriptions; on Android via Google Play &rarr; Subscriptions.
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <h3 className="font-body font-normal text-lg text-white/90">5.4 Free Tier</h3>
+                  <p>
+                    A free tier is available with no time limit. No credit card is required to use free features. Free tier features may change over time, but we will provide notice of any material reductions in free functionality.
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <h3 className="font-body font-normal text-lg text-white/90">5.5 Refunds</h3>
+                  <p>
+                    All purchases are final and non-refundable except as required by applicable law or the platform&apos;s own refund policies. To request a refund on iOS, visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer" className="text-helthy-lemon hover:underline">reportaproblem.apple.com</a>; on Android, request a refund through Google Play. We do not issue refunds directly.
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <h3 className="font-body font-normal text-lg text-white/90">5.6 Price Changes</h3>
+                  <p>
+                    We reserve the right to change subscription prices at any time. If we increase the price of your active subscription, Apple or Google will notify you before the change takes effect and your subscription will not auto-renew at the new price without your consent.
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <h3 className="font-body font-normal text-lg text-white/90">5.7 Cancellation &amp; Access After Cancellation</h3>
+                  <p>
+                    Cancelling your subscription stops future charges. You retain access to Pro features until the end of your current paid period, after which your account reverts to the free tier. No prorated refunds are issued for unused time. On Android, cancellation takes effect at the end of the current billing cycle per Google Play policy.
+                  </p>
+                </div>
+              </section>
+
+              <section className="space-y-5 rounded-2xl border border-[rgba(239,68,68,0.2)] bg-[rgba(239,68,68,0.07)] p-7">
+                <h2 className="font-body font-semibold text-xl text-[#f87171]">6. Medical Disclaimer and Limitation of Liability</h2>
+                <div className="space-y-3">
+                  <h3 className="font-body font-normal text-base text-[rgba(248,113,113,0.85)]">6.1 NOT MEDICAL ADVICE</h3>
                   <p className="text-[#f87171] font-semibold">
                     CRITICAL: Helthy is NOT a medical device and does NOT provide medical advice, diagnosis, or treatment. The Service is for general health and fitness tracking purposes only.
                   </p>
@@ -128,7 +177,7 @@ export default function TermsPage() {
                   </ul>
                 </div>
                 <div className="space-y-3">
-                  <h3 className="font-body font-normal text-base text-[rgba(248,113,113,0.85)]">5.2 Health Risks</h3>
+                  <h3 className="font-body font-normal text-base text-[rgba(248,113,113,0.85)]">6.2 Health Risks</h3>
                   <p>Physical exercise and dietary changes can be dangerous. You acknowledge that:</p>
                   <ul className="list-disc list-inside space-y-2 pl-4">
                     <li>You are using Helthy at your own risk</li>
@@ -138,7 +187,7 @@ export default function TermsPage() {
                   </ul>
                 </div>
                 <div className="space-y-3">
-                  <h3 className="font-body font-normal text-base text-[rgba(248,113,113,0.85)]">5.3 Limitation of Liability</h3>
+                  <h3 className="font-body font-normal text-base text-[rgba(248,113,113,0.85)]">6.3 Limitation of Liability</h3>
                   <p className="font-semibold text-white/90">TO THE MAXIMUM EXTENT PERMITTED BY LAW:</p>
                   <ul className="list-disc list-inside space-y-2 pl-4">
                     <li>Helthy is provided &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; without warranties of any kind</li>
@@ -151,9 +200,9 @@ export default function TermsPage() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-body font-semibold text-xl text-white">6. User Responsibilities and Acceptable Use</h2>
+                <h2 className="font-body font-semibold text-xl text-white">7. User Responsibilities and Acceptable Use</h2>
                 <div className="space-y-3">
-                  <h3 className="font-body font-normal text-lg text-white/90">6.1 Acceptable Use</h3>
+                  <h3 className="font-body font-normal text-lg text-white/90">7.1 Acceptable Use</h3>
                   <p>You agree to use the Service only for lawful purposes and in accordance with these Terms. You agree NOT to:</p>
                   <ul className="list-disc list-inside space-y-2 pl-4">
                     <li><strong className="text-white">Violate Laws:</strong> Use the Service in violation of any applicable laws or regulations</li>
@@ -171,14 +220,14 @@ export default function TermsPage() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-body font-semibold text-xl text-white">7. Intellectual Property</h2>
+                <h2 className="font-body font-semibold text-xl text-white">8. Intellectual Property</h2>
                 <p>
                   The Service, including all software, designs, text, graphics, and logos, is owned by Helthy or our licensors. You may not copy, modify, distribute, or create derivative works without our permission. &quot;Helthy&quot; is a trademark of Helthy. All rights reserved.
                 </p>
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-body font-semibold text-xl text-white">8. Account Suspension and Termination</h2>
+                <h2 className="font-body font-semibold text-xl text-white">9. Account Suspension and Termination</h2>
                 <p>
                   We may suspend or terminate your account immediately if you violate these Terms, engage in fraudulent or illegal activity, abuse the Service or other users, or violate any applicable laws.
                 </p>
@@ -188,14 +237,14 @@ export default function TermsPage() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-body font-semibold text-xl text-white">9. Third-Party Services</h2>
+                <h2 className="font-body font-semibold text-xl text-white">10. Third-Party Services</h2>
                 <p>
                   The Service may contain links to third-party websites or integrate with third-party services. We are not responsible for the content or practices of third-party websites or services. Your use of third-party services is subject to their terms and privacy policies.
                 </p>
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-body font-semibold text-xl text-white">10. Dispute Resolution</h2>
+                <h2 className="font-body font-semibold text-xl text-white">11. Dispute Resolution</h2>
                 <p>
                   Before filing a claim, you agree to contact us at <a href="mailto:support@helthy.app" className="text-helthy-lemon hover:underline">support@helthy.app</a> to attempt to resolve the dispute informally.
                 </p>
@@ -205,7 +254,7 @@ export default function TermsPage() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-body font-semibold text-xl text-white">11. Contact Information</h2>
+                <h2 className="font-body font-semibold text-xl text-white">12. Contact Information</h2>
                 <p>If you have questions about these Terms, please contact us:</p>
                 <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5 space-y-2">
                   <p><strong className="text-white">Email:</strong> <a href="mailto:support@helthy.app" className="text-helthy-lemon hover:underline">support@helthy.app</a></p>
