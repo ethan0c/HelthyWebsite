@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import AndroidWaitlistButton from "@/components/ui/AndroidWaitlistButton";
 import CTAButton from "@/components/ui/CTAButton";
+import HeroQRCode from "@/components/ui/HeroQRCode";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
@@ -126,9 +127,11 @@ export default function HeroSection() {
           <AndroidWaitlistButton />
         </div>
 
+        <HeroQRCode />
+
         <p
           style={{
-            marginTop: "clamp(16px, 2vh, 24px)",
+            marginTop: "clamp(28px, 3.4vh, 44px)",
             fontSize: "clamp(13px, 1.1vw, 15px)",
             color: "rgba(249,249,249,0.45)",
             letterSpacing: "-0.01em",

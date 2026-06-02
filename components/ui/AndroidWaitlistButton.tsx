@@ -5,7 +5,7 @@
  * overlay) — LenisProvider intercepts the anchor click and smooth-scrolls.
  */
 
-const LAUNCH_DATE = "June 15";
+const LAUNCH_DATE = "June 12";
 
 export default function AndroidWaitlistButton({
   size = "md",

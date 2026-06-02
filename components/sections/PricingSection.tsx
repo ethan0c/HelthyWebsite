@@ -12,7 +12,7 @@ const APP_STORE_URL =
 
 const PREMIUM_FEATURES = [
   { icon: Sparkles, label: "Unlimited AI photo & voice meal logging" },
-  { icon: MessageCircle, label: "Unlimited AI Coach powered by Claude" },
+  { icon: MessageCircle, label: "Unlimited AI Coach" },
   { icon: Brain, label: "AI-generated workout routines" },
   { icon: LineChart, label: "Full analytics, trends & all-time history" },
 ];
@@ -285,10 +285,9 @@ export default function PricingSection() {
               href={APP_STORE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary text-[14px] w-full justify-center opacity-80"
-              onClick={(e) => e.preventDefault()}
+              className="btn-primary text-[14px] w-full justify-center"
             >
-              Pro Unlocks June 15
+              Get Helthy Pro
             </Link>
           </div>
         </div>

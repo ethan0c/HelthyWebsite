@@ -11,7 +11,7 @@ const FAQS = [
   },
   {
     q: "How accurate is the AI photo logging?",
-    a: "Helthy uses a vision model trained on millions of meals plus the USDA and Open Food Facts databases. For most common meals it's within 5–10% of a hand-logged entry. You can always tap to adjust before saving.",
+    a: "Helthy's vision model is trained on millions of meals across an extensive food database. For most common meals it's within 5–10% of a hand-logged entry. You can always tap to adjust before saving.",
   },
   {
     q: "Does it sync with Apple Health & Google Health Connect?",
@@ -23,11 +23,11 @@ const FAQS = [
   },
   {
     q: "What's the AI coach actually like?",
-    a: "It's powered by Claude and has full context on your goals, recent meals, lifts, sleep, and weight trend. So it can answer questions like \"should I push squats today?\" with your actual numbers, not generic advice.",
+    a: "It has full context on your goals, recent meals, lifts, sleep, and weight trend. So it can answer questions like \"should I push squats today?\" with your actual numbers, not generic advice.",
   },
   {
     q: "Is Helthy on Android?",
-    a: "Android drops June 15 alongside our v2 launch. iOS is live on the App Store today. Add your email anywhere on this page and we'll send you the Play Store link the moment it's live.",
+    a: "iOS is live on the App Store today, with Helthy Pro available now. Android drops June 12. Add your email anywhere on this page and we'll send you the Play Store link the moment it's live.",
   },
   {
     q: "Can I cancel Premium?",

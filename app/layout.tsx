@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
-import SiteNav from "@/components/sections/SiteNav";
+import TopBar from "@/components/sections/TopBar";
 import CustomCursor from "@/components/ui/CustomCursor";
 
 export const metadata: Metadata = {
@@ -110,7 +110,7 @@ export default function RootLayout({
               applicationCategory: "HealthApplication",
               operatingSystem: "iOS, Android",
               description:
-                "Helthy is a free AI-powered fitness app that unifies calorie tracking, workout logging, weight tracking, and AI coaching in one place. Features include AI photo meal logging, voice logging, 1,500+ exercise library, and an AI coach powered by Claude.",
+                "Helthy is a free AI-powered fitness app that unifies calorie tracking, workout logging, weight tracking, and AI coaching in one place. Features include AI photo meal logging, voice logging, 1,500+ exercise library, and an AI coach.",
               url: "https://helthy.app",
               downloadUrl:
                 "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974",
@@ -166,7 +166,7 @@ export default function RootLayout({
               featureList: [
                 "AI photo meal logging",
                 "AI voice meal logging",
-                "AI personal coach powered by Claude",
+                "AI personal coach",
                 "AI-generated workout routines",
                 "Unlimited calorie and macro tracking",
                 "Barcode scanner for food logging",
@@ -185,12 +185,7 @@ export default function RootLayout({
         <GSAPProvider>
           <LenisProvider>
             <CustomCursor />
-            <div
-              className="fixed top-0 left-0 w-full pointer-events-none"
-              style={{ zIndex: 50 }}
-            >
-              <SiteNav />
-            </div>
+            <TopBar />
             {children}
           </LenisProvider>
         </GSAPProvider>

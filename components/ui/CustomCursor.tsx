@@ -46,10 +46,11 @@ export default function CustomCursor() {
 
     const setVars = () => {
       // Ease ring toward target; dot snaps.
-      ringPos.x += (target.x - ringPos.x) * 0.18;
-      ringPos.y += (target.y - ringPos.y) * 0.18;
+      // Tighter lerp = more responsive, less "sluggish trail" feel.
+      ringPos.x += (target.x - ringPos.x) * 0.28;
+      ringPos.y += (target.y - ringPos.y) * 0.28;
 
-      const hoverScale = isHover ? 1.6 : 1;
+      const hoverScale = isHover ? 1.45 : 1;
       const downScale = isDown ? 0.75 : 1;
       const ringScale = hoverScale * downScale;
 
@@ -121,15 +122,13 @@ export default function CustomCursor() {
         className="fixed top-0 left-0 pointer-events-none"
         style={{
           zIndex: 9999,
-          width: 34,
-          height: 34,
+          width: 28,
+          height: 28,
           borderRadius: "50%",
-          border: "1.5px solid rgba(205, 255, 80, 0.85)",
-          boxShadow: "0 0 18px -4px rgba(205, 255, 80, 0.55)",
+          border: "1.5px solid rgba(205, 255, 80, 0.6)",
           opacity: 0,
           transition: "opacity 200ms ease-out, border-color 200ms ease-out",
           willChange: "transform",
-          mixBlendMode: "difference",
         }}
       />
       <div
@@ -138,11 +137,11 @@ export default function CustomCursor() {
         className="fixed top-0 left-0 pointer-events-none"
         style={{
           zIndex: 10000,
-          width: 6,
-          height: 6,
+          width: 5,
+          height: 5,
           borderRadius: "50%",
           background: "#CDFF50",
-          boxShadow: "0 0 10px rgba(205, 255, 80, 0.8)",
+          boxShadow: "0 0 6px rgba(205, 255, 80, 0.5)",
           opacity: 0,
           transition: "opacity 200ms ease-out",
           willChange: "transform",
