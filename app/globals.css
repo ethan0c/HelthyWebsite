@@ -719,3 +719,50 @@ html.lenis::-webkit-scrollbar { display: none; width: 0; height: 0; }
 .animate-helthy-pulse {
   animation: helthy-pulse 1.4s ease-in-out infinite;
 }
+
+/* ── Animated background mesh (AnimatedMesh.tsx) ──────────────── */
+.mesh-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(110px);
+  will-change: transform, opacity;
+  /* large, soft, overflowing the viewport so edges never show */
+  width: 70vmax;
+  height: 70vmax;
+}
+.mesh-blob--lemon {
+  top: -20%;
+  left: -10%;
+  animation: mesh-drift-a 26s ease-in-out infinite;
+}
+.mesh-blob--cyan {
+  bottom: -25%;
+  right: -15%;
+  animation: mesh-drift-b 32s ease-in-out infinite;
+}
+.mesh-blob--orange {
+  top: 30%;
+  left: 40%;
+  width: 55vmax;
+  height: 55vmax;
+  animation: mesh-drift-c 38s ease-in-out infinite;
+}
+
+@keyframes mesh-drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.9; }
+  33%      { transform: translate3d(18vw, 12vh, 0) scale(1.15); opacity: 1; }
+  66%      { transform: translate3d(8vw, -10vh, 0) scale(0.95); opacity: 0.75; }
+}
+@keyframes mesh-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.85; }
+  40%      { transform: translate3d(-16vw, -14vh, 0) scale(1.2); opacity: 1; }
+  70%      { transform: translate3d(-6vw, 8vh, 0) scale(0.9); opacity: 0.7; }
+}
+@keyframes mesh-drift-c {
+  0%, 100% { transform: translate3d(-50%, 0, 0) scale(1); opacity: 0.8; }
+  50%      { transform: translate3d(-40%, 16vh, 0) scale(1.25); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mesh-blob { animation: none !important; }
+}

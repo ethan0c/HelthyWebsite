@@ -5,6 +5,7 @@ import { gsap } from "@/lib/gsap";
 import HelthyLogoGlass from "@/components/ui/HelthyLogoGlass";
 import AndroidWaitlistButton from "@/components/ui/AndroidWaitlistButton";
 import CTAButton from "@/components/ui/CTAButton";
+import AnimatedMesh from "@/components/ui/AnimatedMesh";
 import Icon from "@mdi/react";
 import { mdiLightningBoltOutline } from "@mdi/js";
 
@@ -71,25 +72,8 @@ export default function CTASection() {
         <Icon path={mdiLightningBoltOutline} size={50} color="currentColor" />
       </div>
 
-      {/* Layered ambient glows */}
-      <div className="absolute inset-0 pointer-events-none -z-20" aria-hidden="true">
-        {/* Primary lemon glow */}
-        <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[900px] aspect-square rounded-full blur-[180px]"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(205,255,80,0.18) 0%, rgba(205,255,80,0.04) 40%, transparent 65%)",
-          }}
-        />
-        {/* Secondary warm glow */}
-        <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[30%] w-[60vw] max-w-[600px] aspect-square rounded-full blur-[120px]"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(233,108,44,0.06) 0%, transparent 60%)",
-          }}
-        />
-      </div>
+      {/* Constantly-drifting ambient gradient mesh */}
+      <AnimatedMesh className="-z-20" />
 
       {/* Rotating gradient ring */}
       <div

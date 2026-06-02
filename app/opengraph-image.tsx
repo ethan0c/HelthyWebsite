@@ -7,7 +7,7 @@ export const contentType = "image/png";
 
 export default async function OgImage() {
   const [phoneData, logoData, fontBold] = await Promise.all([
-    readFile(join(process.cwd(), "public/phones/hero-home-transparent.png")),
+    readFile(join(process.cwd(), "public/phones/mobile-hero.png")),
     readFile(join(process.cwd(), "public/logos/logo-long-white.png")),
     readFile(join(process.cwd(), "public/fonts/unbounded/Unbounded-Bold.ttf")),
   ]);

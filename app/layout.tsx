@@ -78,9 +78,9 @@ export default function RootLayout({
         {/* Preload critical fonts to avoid FOIT/FOUT */}
         <link
           rel="preload"
-          href="/fonts/unbounded/Unbounded-Medium.ttf"
+          href="/fonts/unbounded/Unbounded-Medium.woff2"
           as="font"
-          type="font/ttf"
+          type="font/woff2"
           crossOrigin="anonymous"
         />
         <link
