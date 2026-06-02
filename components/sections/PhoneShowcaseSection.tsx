@@ -14,24 +14,10 @@ import {
   mdiFire,
 } from "@mdi/js";
 
-/**
- * Activity cards that slide out from BEHIND the phone as the user scrolls,
- * scrubbed to scroll position (reversible). Styled with the site's Helthy
- * design tokens (see globals.css) so they match the app 1:1: card surface
- * --helthy-card, border --helthy-border, white text, --helthy-text-secondary,
- * and accent colors from the shared semantic palette. Mirrors real in-app
- * rows — food logs with a calorie badge, a workout PR, a weight trend, an AI
- * coach nudge. Faded + slightly tilted so they read as ambient context.
- *
- * `side` = travel direction; `y` = resting vertical offset from the phone
- * center (px); `rot` = resting tilt. `accent` is a CSS var token. lg+ only.
- */
-// Macro pill colors — match --helthy-protein/carbs/fats in globals.css
-// (which mirror macroColors in helthy_app/mobile).
 const MACRO = {
   protein: "var(--helthy-protein)",
-  carbs: "var(--helthy-carbs)",
-  fats: "var(--helthy-fats)",
+  carbs:   "var(--helthy-carbs)",
+  fats:    "var(--helthy-fats)",
 };
 
 type ActivityCard = {
@@ -42,8 +28,7 @@ type ActivityCard = {
   title: string;
   status: string;
   accent: string;
-  // Food cards carry a calorie badge + 3 macro pills (like FoodItemCard).
-  // Non-food cards carry a single value badge instead.
+  img?: string;
   calories?: number;
   macros?: { protein: number; carbs: number; fats: number };
   value?: string;
@@ -52,26 +37,19 @@ type ActivityCard = {
 };
 
 const ACTIVITY_CARDS: ActivityCard[] = [
-  { side: "left", y: -190, rot: -3, icon: mdiCameraOutline, title: "Grilled chicken bowl", status: "AI photo log", accent: "var(--helthy-accent-orange)", calories: 612, macros: { protein: 48, carbs: 41, fats: 22 } },
-  { side: "left", y: 0, rot: 2.5, icon: mdiDumbbell, title: "Bench press", status: "New PR · 5 × 5", accent: "var(--helthy-lemon)", value: "102.5", unit: "kg", sub: "+2.5 kg" },
-  { side: "left", y: 190, rot: -2, icon: mdiHeartOutline, title: "Morning run", status: "Apple Health", accent: "var(--helthy-movement)", value: "6.2", unit: "km", sub: "452 kcal" },
-  { side: "right", y: -190, rot: 3, icon: mdiBowlMixOutline, title: "Greek yogurt", status: "Logged · 8:14 AM", accent: "var(--helthy-accent-orange)", calories: 180, macros: { protein: 18, carbs: 9, fats: 5 } },
-  { side: "right", y: 0, rot: -2.5, icon: mdiChartTimelineVariant, title: "Weight", status: "Trend · 30 days", accent: "var(--helthy-success)", value: "78.4", unit: "kg", sub: "−1.2 kg" },
-  { side: "right", y: 190, rot: 2, icon: mdiRobotHappyOutline, title: "AI Coach", status: "Suggestion", accent: "var(--helthy-lemon)", value: "Rest", unit: "day", sub: "Recovery low" },
+  { side: "left",  y: -190, rot: -3,   icon: mdiCameraOutline,       title: "Jerk chicken bowl", status: "AI photo log",     accent: "var(--helthy-accent-orange)", img: "/card-photos/Jerk-Chicken-Rice-Bowl-1.jpg", calories: 612, macros: { protein: 48, carbs: 41, fats: 22 } },
+  { side: "left",  y:    0, rot:  2.5, icon: mdiDumbbell,             title: "Preacher curl",     status: "New PR · 4 × 8",   accent: "var(--helthy-lemon)",         img: "/card-photos/Z-Bar-Preacher-Curl.gif",      value: "115",  unit: "lbs", sub: "+5 lbs" },
+  { side: "left",  y:  190, rot: -2,   icon: mdiHeartOutline,         title: "Morning run",       status: "Apple Health",     accent: "var(--helthy-movement)",      value: "6.2",   unit: "km",  sub: "452 kcal" },
+  { side: "right", y: -190, rot:  3,   icon: mdiBowlMixOutline,       title: "Greek yogurt",      status: "Logged · 8:14 AM", accent: "var(--helthy-accent-orange)", calories: 180, macros: { protein: 18, carbs: 9, fats: 5 } },
+  { side: "right", y:    0, rot: -2.5, icon: mdiChartTimelineVariant, title: "Weight",            status: "Trend · 30 days",  accent: "var(--helthy-success)",       value: "173",   unit: "lbs", sub: "−2.6 lbs" },
+  { side: "right", y:  190, rot:  2,   icon: mdiRobotHappyOutline,    title: "AI Coach",          status: "Suggestion",       accent: "var(--helthy-lemon)",         value: "Rest",  unit: "day", sub: "Recovery low" },
 ];
 
-// sm MacroPill — mirrors helthy_app MacroPill: tinted bg (color + 10% alpha),
-// white value, macro-colored label, baseline-aligned.
 function MacroPill({ value, label, color }: { value: number; label: string; color: string }) {
   return (
     <span
       className="inline-flex items-baseline"
-      style={{
-        gap: 2,
-        padding: "3px 7px",
-        borderRadius: 8,
-        background: `color-mix(in srgb, ${color} 12%, transparent)`,
-      }}
+      style={{ gap: 2, padding: "3px 7px", borderRadius: 8, background: `color-mix(in srgb, ${color} 12%, transparent)` }}
     >
       <span className="text-numeric tabular-nums" style={{ fontSize: 12, fontWeight: 500, color: "var(--foreground)", lineHeight: 1 }}>
         {Math.round(value)}
@@ -349,9 +327,8 @@ export default function PhoneShowcaseSection() {
             />
           </div>
 
-          {/* Activity cards — slide out from behind the phone, scrubbed to
-              scroll (reversible). Faded + tilted so they read as ambient
-              context. Hidden below lg (no room beside the phone). */}
+          {/* Activity cards — hardcoded, slide out from behind the phone,
+              scrubbed to scroll. lg+ only. */}
           {ACTIVITY_CARDS.map((c) => (
             <div
               key={c.title}
@@ -361,41 +338,51 @@ export default function PhoneShowcaseSection() {
               aria-hidden="true"
               className="hidden lg:flex absolute top-1/2 left-1/2 items-center gap-3 pointer-events-none"
               style={{
-                // Helthy dark-theme card via design tokens (globals.css):
-                // surface --helthy-card on --background, border --helthy-border.
-                // Slightly translucent so the section glow reads through.
                 zIndex: 1,
                 width: 330,
                 marginTop: c.y,
                 padding: "14px 16px",
                 borderRadius: 18,
-                background: "color-mix(in srgb, var(--helthy-card) 92%, transparent)",
-                backdropFilter: "blur(10px)",
-                WebkitBackdropFilter: "blur(10px)",
-                border: "1px solid var(--helthy-border)",
-                boxShadow: "0 18px 44px -22px rgba(0,0,0,0.85)",
-                // GSAP owns the transform (centers, then drives x outward +
-                // applies the resting tilt); keep hidden until it runs.
+                // 3D surface: slightly lighter at top, fading to card bg —
+                // simulates overhead lighting catching the top face.
+                background: `linear-gradient(160deg, var(--helthy-card-section) 0%, var(--helthy-card) 100%)`,
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
+                // Inset top highlight: 1px bright line on the top edge,
+                // like a beveled surface catching the light.
+                boxShadow: [
+                  "inset 0 1px 0 rgba(255,255,255,0.08)",
+                  "0 1px 2px rgba(0,0,0,0.6)",
+                  "0 6px 16px rgba(0,0,0,0.5)",
+                  // Accent-tinted ambient glow beneath the card.
+                  `0 20px 48px -8px color-mix(in srgb, ${c.accent} 20%, rgba(0,0,0,0.6))`,
+                ].join(", "),
+                border: "1px solid rgba(255,255,255,0.07)",
                 visibility: "hidden",
                 willChange: "transform, opacity",
               }}
             >
-              {/* Rounded icon tile (mirrors FoodItemCard's 40px icon) */}
-              <span
-                className="flex items-center justify-center shrink-0 self-start"
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 12,
-                  background: `color-mix(in srgb, ${c.accent} 14%, transparent)`,
-                }}
-              >
-                <Icon path={c.icon} size="20px" color={c.accent} />
-              </span>
+              {/* Thumbnail crop when available, bare icon otherwise */}
+              {c.img ? (
+                <span className="shrink-0 self-start overflow-hidden" style={{ width: 40, height: 40, borderRadius: 10 }}>
+                  <Image
+                    src={c.img}
+                    alt=""
+                    width={40}
+                    height={40}
+                    className="w-full h-full object-cover object-top"
+                    style={c.img.endsWith(".gif") ? { mixBlendMode: "screen", imageRendering: "crisp-edges" } : undefined}
+                    draggable={false}
+                  />
+                </span>
+              ) : (
+                <span className="shrink-0 self-start mt-0.5">
+                  <Icon path={c.icon} size="22px" color={c.accent} />
+                </span>
+              )}
 
-              {/* Content column */}
+              {/* Content */}
               <span className="flex flex-col min-w-0 flex-1" style={{ gap: 8 }}>
-                {/* Top row: name + (calorie badge for food | value badge otherwise) */}
                 <span className="flex items-start gap-2">
                   <span className="flex flex-col text-left min-w-0 flex-1">
                     <span className="truncate font-body" style={{ fontSize: 14, fontWeight: 500, color: "var(--foreground)", lineHeight: 1.25 }}>
@@ -407,52 +394,28 @@ export default function PhoneShowcaseSection() {
                   </span>
 
                   {c.macros ? (
-                    /* Calorie badge — mirrors FoodItemCard's flame badge */
-                    <span
-                      className="inline-flex items-center shrink-0"
-                      style={{
-                        gap: 3,
-                        padding: "3px 9px",
-                        borderRadius: 999,
-                        background: `color-mix(in srgb, ${c.accent} 14%, transparent)`,
-                      }}
-                    >
+                    <span className="inline-flex items-center shrink-0" style={{ gap: 3, padding: "3px 9px", borderRadius: 999, background: `color-mix(in srgb, ${c.accent} 14%, transparent)` }}>
                       <Icon path={mdiFire} size="12px" color={c.accent} />
                       <span className="text-numeric tabular-nums" style={{ fontSize: 13, fontWeight: 700, color: "var(--foreground)", lineHeight: 1 }}>
                         {c.calories}
                       </span>
                     </span>
                   ) : (
-                    /* Value badge — workouts / weight / run / coach */
                     <span className="flex flex-col items-end shrink-0" style={{ gap: 3 }}>
-                      <span
-                        className="inline-flex items-baseline gap-1 text-numeric tabular-nums"
-                        style={{
-                          padding: "3px 9px",
-                          borderRadius: 999,
-                          background: `color-mix(in srgb, ${c.accent} 14%, transparent)`,
-                        }}
-                      >
-                        <span className="text-numeric" style={{ fontSize: 14, fontWeight: 500, color: c.accent, lineHeight: 1.1 }}>
-                          {c.value}
-                        </span>
-                        <span className="font-body" style={{ fontSize: 10, fontWeight: 500, color: c.accent, opacity: 0.8 }}>
-                          {c.unit}
-                        </span>
+                      <span className="inline-flex items-baseline gap-1" style={{ padding: "3px 9px", borderRadius: 999, background: `color-mix(in srgb, ${c.accent} 14%, transparent)` }}>
+                        <span className="text-numeric tabular-nums" style={{ fontSize: 14, fontWeight: 500, color: c.accent, lineHeight: 1.1 }}>{c.value}</span>
+                        <span className="font-body" style={{ fontSize: 10, fontWeight: 500, color: c.accent, opacity: 0.8 }}>{c.unit}</span>
                       </span>
-                      <span className="font-body" style={{ fontSize: 11, color: "var(--helthy-text-secondary)", lineHeight: 1.3 }}>
-                        {c.sub}
-                      </span>
+                      <span className="font-body" style={{ fontSize: 11, color: "var(--helthy-text-secondary)", lineHeight: 1.3 }}>{c.sub}</span>
                     </span>
                   )}
                 </span>
 
-                {/* Macro pills row — only on food cards */}
                 {c.macros && (
                   <span className="flex" style={{ gap: 6 }}>
                     <MacroPill value={c.macros.protein} label="P" color={MACRO.protein} />
-                    <MacroPill value={c.macros.carbs} label="C" color={MACRO.carbs} />
-                    <MacroPill value={c.macros.fats} label="F" color={MACRO.fats} />
+                    <MacroPill value={c.macros.carbs}   label="C" color={MACRO.carbs} />
+                    <MacroPill value={c.macros.fats}    label="F" color={MACRO.fats} />
                   </span>
                 )}
               </span>
