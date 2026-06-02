@@ -364,13 +364,16 @@ export default function PhoneShowcaseSection() {
             >
               {/* Thumbnail crop when available, bare icon otherwise */}
               {c.img ? (
-                <span className="shrink-0 self-start overflow-hidden" style={{ width: 40, height: 40, borderRadius: 10 }}>
+                <span
+                  className="shrink-0 self-start overflow-hidden"
+                  style={{ width: c.img.endsWith(".gif") ? 52 : 40, height: c.img.endsWith(".gif") ? 52 : 40, borderRadius: 10 }}
+                >
                   <Image
                     src={c.img}
                     alt=""
-                    width={40}
-                    height={40}
-                    className="w-full h-full object-cover object-top"
+                    width={104}
+                    height={104}
+                    className="w-full h-full object-cover object-center"
                     style={c.img.endsWith(".gif") ? { mixBlendMode: "screen", imageRendering: "crisp-edges" } : undefined}
                     draggable={false}
                   />
