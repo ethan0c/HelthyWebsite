@@ -1,19 +1,19 @@
 /* ── Local Fonts: DM Sans (body/UI) ────── */
 @font-face {
   font-family: "DM Sans";
-  src: url("/fonts/dm-sans/DMSans-Regular.ttf") format("truetype");
+  src: url("/fonts/dm-sans/DMSans-Regular.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: "DM Sans";
-  src: url("/fonts/dm-sans/DMSans-Medium.ttf") format("truetype");
+  src: url("/fonts/dm-sans/DMSans-Medium.woff2") format("woff2");
   font-weight: 500;
   font-display: swap;
 }
 @font-face {
   font-family: "DM Sans";
-  src: url("/fonts/dm-sans/DMSans-Bold.ttf") format("truetype");
+  src: url("/fonts/dm-sans/DMSans-Bold.woff2") format("woff2");
   font-weight: 700;
   font-display: swap;
 }
@@ -25,25 +25,25 @@
 /* Unbounded — numeric/metric display font (matches mobile AppFonts.numeric) */
 @font-face {
   font-family: "Unbounded";
-  src: url("/fonts/unbounded/Unbounded-Regular.ttf") format("truetype");
+  src: url("/fonts/unbounded/Unbounded-Regular.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: "Unbounded";
-  src: url("/fonts/unbounded/Unbounded-Medium.ttf") format("truetype");
+  src: url("/fonts/unbounded/Unbounded-Medium.woff2") format("woff2");
   font-weight: 500;
   font-display: swap;
 }
 @font-face {
   font-family: "Unbounded";
-  src: url("/fonts/unbounded/Unbounded-SemiBold.ttf") format("truetype");
+  src: url("/fonts/unbounded/Unbounded-SemiBold.woff2") format("woff2");
   font-weight: 600;
   font-display: swap;
 }
 @font-face {
   font-family: "Unbounded";
-  src: url("/fonts/unbounded/Unbounded-Bold.ttf") format("truetype");
+  src: url("/fonts/unbounded/Unbounded-Bold.woff2") format("woff2");
   font-weight: 700;
   font-display: swap;
 }
@@ -51,13 +51,13 @@
 /* SF Pro Display — used only where we mirror mobile UI exactly (e.g. weight history list). */
 @font-face {
   font-family: "SF Pro Display";
-  src: url("/fonts/sf-pro/SFPRODISPLAYREGULAR.otf") format("opentype");
+  src: url("/fonts/sf-pro/SFPRODISPLAYREGULAR.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: "SF Pro Display";
-  src: url("/fonts/sf-pro/SFPRODISPLAYMEDIUM.otf") format("opentype");
+  src: url("/fonts/sf-pro/SFPRODISPLAYMEDIUM.woff2") format("woff2");
   font-weight: 500;
   font-display: swap;
 }

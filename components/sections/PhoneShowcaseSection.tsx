@@ -4,7 +4,34 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsap";
 import Icon from "@mdi/react";
-import { mdiBowlMixOutline, mdiDumbbell, mdiHeartOutline, mdiChartTimelineVariant } from "@mdi/js";
+import {
+  mdiBowlMixOutline,
+  mdiDumbbell,
+  mdiHeartOutline,
+  mdiChartTimelineVariant,
+  mdiCameraOutline,
+  mdiRobotHappyOutline,
+} from "@mdi/js";
+
+/**
+ * Activity cards that slide out from BEHIND the phone as the user scrolls,
+ * scrubbed to scroll position (reversible). Styled to match the Helthy app's
+ * dark-theme cards (surface #252525 on #0f0f0f, white text, #9CA3AF secondary)
+ * and mirror real in-app rows: food logs with a calorie badge, a workout PR,
+ * a weight trend, an AI coach nudge. Kept low-opacity + slightly tilted so
+ * they read as ambient context, not focal UI.
+ *
+ * `side` = travel direction; `y` = resting vertical offset from the phone
+ * center (px); `rot` = resting tilt. `accent` tints the value badge. lg+ only.
+ */
+const ACTIVITY_CARDS = [
+  { side: "left" as const, y: -190, rot: -3, icon: mdiCameraOutline, title: "Grilled chicken bowl", status: "AI photo log", value: "612", unit: "kcal", sub: "48g protein", accent: "#E96C2C" },
+  { side: "left" as const, y: 0, rot: 2.5, icon: mdiDumbbell, title: "Bench press", status: "New PR · 5 × 5", value: "102.5", unit: "kg", sub: "+2.5 kg", accent: "#CDFB50" },
+  { side: "left" as const, y: 190, rot: -2, icon: mdiHeartOutline, title: "Morning run", status: "Apple Health", value: "6.2", unit: "km", sub: "452 kcal", accent: "#339AF0" },
+  { side: "right" as const, y: -190, rot: 3, icon: mdiBowlMixOutline, title: "Greek yogurt", status: "Logged · 8:14 AM", value: "180", unit: "kcal", sub: "18g protein", accent: "#E96C2C" },
+  { side: "right" as const, y: 0, rot: -2.5, icon: mdiChartTimelineVariant, title: "Weight", status: "Trend · 30 days", value: "78.4", unit: "kg", sub: "−1.2 kg", accent: "#51CF66" },
+  { side: "right" as const, y: 190, rot: 2, icon: mdiRobotHappyOutline, title: "AI Coach", status: "Suggestion", value: "Rest", unit: "day", sub: "Recovery low", accent: "#CDFB50" },
+];
 
 export default function PhoneShowcaseSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -45,6 +72,43 @@ export default function PhoneShowcaseSection() {
           trigger: "[data-phone-stats]",
           start: "top 85%",
         },
+      });
+
+      // Activity cards slide out from behind the phone, scrubbed to scroll.
+      // NOT pinned — the page keeps scrolling normally; card extension is just
+      // tied to how far the section has travelled through the viewport, so
+      // scrolling down fans them out and scrolling up retracts them. lg+ only.
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 1024px)", () => {
+        const cards = gsap.utils.toArray<HTMLElement>("[data-activity-card]");
+        if (!cards.length) return;
+
+        // Resting (fully scrolled) state: fanned out by side + tilted.
+        gsap.set(cards, {
+          x: (_i, el) => ((el as HTMLElement).dataset.side === "left" ? -440 : 440),
+          rotation: (_i, el) => Number((el as HTMLElement).dataset.rot ?? 0),
+          autoAlpha: 1,
+          scale: 1,
+          xPercent: -50,
+          yPercent: -50,
+        });
+
+        // Animate FROM the tucked state (behind phone, hidden) → resting.
+        // start when the section's top hits 80% down the viewport, end when
+        // the phone is roughly centered. No pin, so nothing locks in place.
+        gsap.from(cards, {
+          x: 0,
+          rotation: 0,
+          autoAlpha: 0,
+          scale: 0.85,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            end: "center center",
+            scrub: 0.6,
+          },
+        });
       });
     }, sectionRef);
 
@@ -224,7 +288,7 @@ export default function PhoneShowcaseSection() {
           />
           <div
             className="relative aspect-[980/2000]"
-            style={{ width: "min(400px, 74vw)" }}
+            style={{ width: "min(400px, 74vw)", zIndex: 2 }}
           >
             <Image
               src="/phones/mobile-hero.png"
@@ -234,6 +298,84 @@ export default function PhoneShowcaseSection() {
               className="object-contain"
             />
           </div>
+
+          {/* Activity cards — slide out from behind the phone, scrubbed to
+              scroll (reversible). Faded + tilted so they read as ambient
+              context. Hidden below lg (no room beside the phone). */}
+          {ACTIVITY_CARDS.map((c) => (
+            <div
+              key={c.title}
+              data-activity-card
+              data-side={c.side}
+              data-rot={c.rot}
+              aria-hidden="true"
+              className="hidden lg:flex absolute top-1/2 left-1/2 items-center gap-3 pointer-events-none"
+              style={{
+                // Helthy dark-theme card: surface #252525 on #0f0f0f, border
+                // #2E2E30. Slightly translucent so the section glow reads
+                // through, with a soft drop shadow for elevation.
+                zIndex: 1,
+                width: 330,
+                marginTop: c.y,
+                padding: "14px 16px",
+                borderRadius: 18,
+                background: "rgba(37,37,37,0.92)",
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
+                border: "1px solid #2E2E30",
+                boxShadow: "0 18px 44px -22px rgba(0,0,0,0.85)",
+                // GSAP owns the transform (centers, then drives x outward +
+                // applies the resting tilt); keep hidden until it runs.
+                visibility: "hidden",
+                willChange: "transform, opacity",
+              }}
+            >
+              {/* Rounded icon tile (mirrors FoodItemCard's 40px icon) */}
+              <span
+                className="flex items-center justify-center shrink-0"
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 12,
+                  background: `${c.accent}1F`,
+                }}
+              >
+                <Icon path={c.icon} size="20px" color={c.accent} />
+              </span>
+
+              {/* Title + status */}
+              <span className="flex flex-col text-left min-w-0">
+                <span className="truncate" style={{ fontSize: 14, fontWeight: 600, color: "#FFFFFF", lineHeight: 1.25 }}>
+                  {c.title}
+                </span>
+                <span style={{ fontSize: 12, color: "#9CA3AF", lineHeight: 1.3, marginTop: 2 }}>
+                  {c.status}
+                </span>
+              </span>
+
+              {/* Value badge + sub-detail (mirrors the calorie badge) */}
+              <span className="flex flex-col items-end ml-auto shrink-0" style={{ gap: 3 }}>
+                <span
+                  className="inline-flex items-baseline gap-1 text-numeric tabular-nums"
+                  style={{
+                    padding: "3px 9px",
+                    borderRadius: 999,
+                    background: `${c.accent}1F`,
+                  }}
+                >
+                  <span style={{ fontSize: 14, fontWeight: 700, color: c.accent, lineHeight: 1.1 }}>
+                    {c.value}
+                  </span>
+                  <span style={{ fontSize: 10, fontWeight: 600, color: c.accent, opacity: 0.8 }}>
+                    {c.unit}
+                  </span>
+                </span>
+                <span style={{ fontSize: 11, color: "#9CA3AF", lineHeight: 1.3 }}>
+                  {c.sub}
+                </span>
+              </span>
+            </div>
+          ))}
         </div>
       </div>
 
