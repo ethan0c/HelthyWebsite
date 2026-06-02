@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import HeroSection from "@/components/sections/HeroSection";
+import PillarStrip from "@/components/sections/PillarStrip";
 import PhoneShowcaseSection from "@/components/sections/PhoneShowcaseSection";
 import HowItWorksSection from "@/components/sections/HowItWorksSection";
 import FeaturesRow from "@/components/sections/FeaturesRow";
@@ -21,6 +22,7 @@ export default function Home() {
       </Suspense>
       <FlowingLine />
       <HeroSection />
+      <PillarStrip />
       <PhoneShowcaseSection />
       <FeaturesRow />
       <div aria-hidden="true" className="section-beam" />

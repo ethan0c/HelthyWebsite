@@ -566,20 +566,6 @@ html:not(.is-safari) .grain::before {
   );
 }
 
-/* ── Custom cursor (fine pointers only) ──────────────────────── */
-@media (pointer: fine) {
-  body.custom-cursor-on,
-  body.custom-cursor-on * {
-    cursor: none !important;
-  }
-  /* Keep native caret on text inputs — typing without a cursor is miserable. */
-  body.custom-cursor-on input,
-  body.custom-cursor-on textarea,
-  body.custom-cursor-on [contenteditable="true"] {
-    cursor: text !important;
-  }
-}
-
 /* ── Custom scrollbar (vertical) ──────────────────────────────── */
 /* Firefox */
 html {

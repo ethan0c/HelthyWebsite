@@ -3,7 +3,6 @@ import "./globals.css";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
 import TopBar from "@/components/sections/TopBar";
-import CustomCursor from "@/components/ui/CustomCursor";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://helthy.app"),
@@ -183,7 +182,6 @@ export default function RootLayout({
         />
         <GSAPProvider>
           <LenisProvider>
-            <CustomCursor />
             <TopBar />
             {children}
           </LenisProvider>
