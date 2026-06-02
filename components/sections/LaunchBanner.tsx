@@ -46,10 +46,10 @@ export default function LaunchBanner() {
       className="relative w-full"
       style={{ background: "#CDFF50", zIndex: 60 }}
     >
-      <div className="container-page flex items-center justify-center gap-2 py-2.5 pr-10">
+      <div className="container-page flex items-center justify-center gap-2 py-1.5 pr-10">
         <span
           aria-hidden="true"
-          className="relative inline-flex"
+          className="relative inline-flex shrink-0"
           style={{ width: 6, height: 6 }}
         >
           <span
@@ -62,10 +62,11 @@ export default function LaunchBanner() {
           />
         </span>
         <p
-          className="text-[13px] font-medium tracking-tight text-center"
+          className="text-[12px] sm:text-[13px] font-medium tracking-tight text-center whitespace-nowrap"
           style={{ color: "#0A0A0A" }}
         >
-          Helthy Pro is live on iOS. Android lands June 12.
+          <span className="hidden sm:inline">Helthy Pro is live on iOS. Android lands June 12.</span>
+          <span className="sm:hidden">Pro live on iOS · Android June 12.</span>
           <Link
             href={APP_STORE_URL}
             target="_blank"

@@ -223,11 +223,11 @@ export default function PhoneShowcaseSection() {
             }}
           />
           <div
-            className="relative aspect-[1368/2828]"
+            className="relative aspect-[980/2000]"
             style={{ width: "min(400px, 74vw)" }}
           >
             <Image
-              src="/phones/hero-home-transparent.png"
+              src="/phones/mobile-hero.png"
               alt="Helthy app home screen on iPhone"
               fill
               sizes="(max-width: 640px) 74vw, 400px"

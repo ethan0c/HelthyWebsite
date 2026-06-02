@@ -30,7 +30,8 @@ export default function PillarStrip() {
         duration: 0.6,
         stagger: 0.1,
         ease: "power3.out",
-        scrollTrigger: { trigger: ref.current, start: "top 90%" },
+        delay: 0.7,
+        scrollTrigger: { trigger: ref.current, start: "top 98%" },
       });
     }, ref);
     return () => ctx.revert();
@@ -42,8 +43,8 @@ export default function PillarStrip() {
       aria-label="What Helthy does"
       className="relative w-full bg-[#0A0A0A] overflow-hidden"
       style={{
-        paddingTop: "clamp(48px, 7vh, 88px)",
-        paddingBottom: "clamp(48px, 7vh, 88px)",
+        paddingTop: "clamp(28px, 4vh, 48px)",
+        paddingBottom: "clamp(40px, 6vh, 72px)",
       }}
     >
       <div

@@ -33,7 +33,7 @@ export default function HeroSection() {
       ref={sectionRef}
       id="hero"
       className="relative w-full overflow-hidden bg-[#0F0F0F]"
-      style={{ minHeight: "clamp(680px, 92svh, 980px)" }}
+      style={{ minHeight: "clamp(620px, 82svh, 900px)" }}
     >
       {/* Background video — shown on all breakpoints */}
       <video
@@ -67,7 +67,7 @@ export default function HeroSection() {
         className="w-full px-4 sm:px-6 md:px-8 relative flex flex-col items-center justify-center text-center"
         style={{
           zIndex: 4,
-          minHeight: "clamp(680px, 92svh, 980px)",
+          minHeight: "clamp(620px, 82svh, 900px)",
           paddingTop: "clamp(100px, 12vh, 140px)",
           paddingBottom: "clamp(60px, 8vh, 100px)",
         }}
