@@ -13,6 +13,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { gsap } from "@/lib/gsap";
 
 const QR_SRC = "/qr-appstore.png";
 
@@ -29,6 +30,23 @@ export default function HeroQRCode() {
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
   }, []);
+
+  // Fade/slide in once mounted — sits after the hero CTA row in the entry
+  // sequence (hero CTA uses delay 0.45). Runs in the chip's own effect since
+  // the element only exists after the fine-pointer check passes.
+  useEffect(() => {
+    if (!finePointer || !wrapRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.from(wrapRef.current, {
+        y: 15,
+        opacity: 0,
+        duration: 0.7,
+        delay: 0.6,
+        ease: "power3.out",
+      });
+    }, wrapRef);
+    return () => ctx.revert();
+  }, [finePointer]);
 
   // Close the popover on outside click / Escape.
   useEffect(() => {
