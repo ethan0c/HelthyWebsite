@@ -76,17 +76,17 @@ export default function HeroSection() {
           data-hero-h1
           className="font-heading"
           style={{
-            fontSize: "clamp(44px, 6vw, 88px)",
+            fontSize: "clamp(34px, 5.2vw, 80px)",
             fontWeight: 500,
             letterSpacing: "-0.03em",
-            lineHeight: "1.02em",
+            lineHeight: "1.04em",
             color: "#F9F9F9",
             margin: 0,
-            maxWidth: "14ch",
+            maxWidth: "16ch",
           }}
         >
           A coach that{" "}
-          <span className="text-helthy-lemon">learns you</span>.
+          <span className="text-helthy-lemon whitespace-nowrap">learns&nbsp;you</span>.
         </h1>
 
         <p

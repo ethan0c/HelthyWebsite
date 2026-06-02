@@ -11,6 +11,7 @@ import {
   mdiChartTimelineVariant,
   mdiCameraOutline,
   mdiRobotHappyOutline,
+  mdiFire,
 } from "@mdi/js";
 
 /**
@@ -75,7 +76,7 @@ function MacroPill({ value, label, color }: { value: number; label: string; colo
       <span className="text-numeric tabular-nums" style={{ fontSize: 12, fontWeight: 500, color: "var(--foreground)", lineHeight: 1 }}>
         {Math.round(value)}
       </span>
-      <span className="font-body" style={{ fontSize: 9, fontWeight: 600, color, letterSpacing: 0.3 }}>
+      <span className="font-body" style={{ fontSize: 9, fontWeight: 500, color, letterSpacing: 0.3 }}>
         {label}
       </span>
     </span>
@@ -397,7 +398,7 @@ export default function PhoneShowcaseSection() {
                 {/* Top row: name + (calorie badge for food | value badge otherwise) */}
                 <span className="flex items-start gap-2">
                   <span className="flex flex-col text-left min-w-0 flex-1">
-                    <span className="truncate font-body" style={{ fontSize: 14, fontWeight: 600, color: "var(--foreground)", lineHeight: 1.25 }}>
+                    <span className="truncate font-body" style={{ fontSize: 14, fontWeight: 500, color: "var(--foreground)", lineHeight: 1.25 }}>
                       {c.title}
                     </span>
                     <span className="font-body truncate" style={{ fontSize: 12, color: "var(--helthy-text-secondary)", lineHeight: 1.3, marginTop: 2 }}>
@@ -416,7 +417,7 @@ export default function PhoneShowcaseSection() {
                         background: `color-mix(in srgb, ${c.accent} 14%, transparent)`,
                       }}
                     >
-                      <Icon path={mdiFireCircle} size="12px" color={c.accent} />
+                      <Icon path={mdiFire} size="12px" color={c.accent} />
                       <span className="text-numeric tabular-nums" style={{ fontSize: 13, fontWeight: 700, color: "var(--foreground)", lineHeight: 1 }}>
                         {c.calories}
                       </span>
@@ -432,10 +433,10 @@ export default function PhoneShowcaseSection() {
                           background: `color-mix(in srgb, ${c.accent} 14%, transparent)`,
                         }}
                       >
-                        <span style={{ fontSize: 14, fontWeight: 700, color: c.accent, lineHeight: 1.1 }}>
+                        <span className="text-numeric" style={{ fontSize: 14, fontWeight: 500, color: c.accent, lineHeight: 1.1 }}>
                           {c.value}
                         </span>
-                        <span style={{ fontSize: 10, fontWeight: 600, color: c.accent, opacity: 0.8 }}>
+                        <span className="font-body" style={{ fontSize: 10, fontWeight: 500, color: c.accent, opacity: 0.8 }}>
                           {c.unit}
                         </span>
                       </span>
