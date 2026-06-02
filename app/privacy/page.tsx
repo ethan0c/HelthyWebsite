@@ -138,30 +138,15 @@ export default function PrivacyPage() {
                     <p className="text-sm text-white/60">Purpose: Secure user authentication</p>
                   </div>
                   <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5">
-                    <p className="font-semibold text-white">Cloudinary — Media Storage</p>
-                    <p className="text-sm text-white/60 mt-1">Data shared: Profile pictures, meal photos, progress photos</p>
-                    <p className="text-sm text-white/60">Purpose: Store and serve images</p>
+                    <p className="font-semibold text-white">Cloud Hosting & Infrastructure Providers</p>
+                    <p className="text-sm text-white/60 mt-1">Data shared: Encrypted user data, profile images, and meal/progress photos</p>
+                    <p className="text-sm text-white/60">Purpose: Secure database storage, media hosting, and search functionality</p>
                   </div>
                   <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5">
-                    <p className="font-semibold text-white">Neon — Database Hosting</p>
-                    <p className="text-sm text-white/60 mt-1">Data shared: All user data stored in our database</p>
-                    <p className="text-sm text-white/60">Purpose: Data storage and management</p>
-                  </div>
-                  <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5">
-                    <p className="font-semibold text-white">Typesense — Search Engine</p>
-                    <p className="text-sm text-white/60 mt-1">Data shared: Food library data, exercise data, user search queries</p>
-                    <p className="text-sm text-white/60">Purpose: Fast search functionality</p>
-                  </div>
-                  <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5">
-                    <p className="font-semibold text-white">Anthropic (Claude) — AI Coaching, Insights &amp; Body Composition</p>
-                    <p className="text-sm text-white/60 mt-1">Data shared: Food descriptions, meal images, progress photos (for body fat estimation), user queries, biometric context (height, weight, age, gender)</p>
-                    <p className="text-sm text-white/60">Purpose: AI health coaching chat, parse food intake, generate personalized insights, estimate body fat percentage from photos</p>
-                    <p className="text-sm text-helthy-lemon mt-2"><strong>Important:</strong> Anthropic does not use your data to train their models. Progress photos are processed in real-time and not stored by Anthropic.</p>
-                  </div>
-                  <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5">
-                    <p className="font-semibold text-white">OpenAI — Meal Photo Analysis</p>
-                    <p className="text-sm text-white/60 mt-1">Data shared: Meal images, food descriptions</p>
-                    <p className="text-sm text-white/60">Purpose: Identify foods and estimate nutrition from meal photos</p>
+                    <p className="font-semibold text-white">Third-Party AI Partners</p>
+                    <p className="text-sm text-white/60 mt-1">Data shared: Food descriptions, meal images, progress photos, user chat queries, biometric context (height, weight, age, gender)</p>
+                    <p className="text-sm text-white/60">Purpose: Power our AI health coaching chat, analyze meal photos for nutrition estimation, generate personalized insights, and estimate body composition.</p>
+                    <p className="text-sm text-helthy-lemon mt-2"><strong>Important:</strong> Our AI infrastructure partners are strictly prohibited from using your data or images to train their models. Photos are processed temporarily for analysis and are not retained by these external AI services.</p>
                   </div>
                   <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5">
                     <p className="font-semibold text-white">RevenueCat — Subscription Management</p>
