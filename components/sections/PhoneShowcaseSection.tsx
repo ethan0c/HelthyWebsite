@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsap";
+import { Star } from "lucide-react";
 import Icon from "@mdi/react";
 import {
   mdiBowlMixOutline,
@@ -263,7 +264,7 @@ export default function PhoneShowcaseSection() {
           className="flex items-center justify-center gap-4 sm:gap-6 flex-wrap"
           style={{ marginTop: "clamp(28px, 3.4vh, 40px)" }}
         >
-          <ProofStat target={4.8} decimals={1} label="App Store" />
+          <ProofStat target={4.8} decimals={1} label="App Store" hasStar />
           <div data-phone-stat className="w-px h-4 bg-white/10" />
           <ProofStat target={10} suffix="K+" label="meals logged" />
           <div data-phone-stat className="w-px h-4 bg-white/10" />
@@ -399,7 +400,7 @@ export default function PhoneShowcaseSection() {
                   {c.macros ? (
                     <span className="inline-flex items-center shrink-0" style={{ gap: 3, padding: "3px 9px", borderRadius: 999, background: `color-mix(in srgb, ${c.accent} 14%, transparent)` }}>
                       <Icon path={mdiFire} size="12px" color={c.accent} />
-                      <span className="text-numeric tabular-nums" style={{ fontSize: 13, fontWeight: 700, color: "var(--foreground)", lineHeight: 1 }}>
+                      <span className="text-numeric tabular-nums" style={{ fontSize: 13, fontWeight: 500, color: "var(--foreground)", lineHeight: 1 }}>
                         {c.calories}
                       </span>
                     </span>
@@ -443,12 +444,14 @@ function ProofStat({
   suffix = "",
   prefix = "",
   label,
+  hasStar = false,
 }: {
   target: number;
   decimals?: number;
   suffix?: string;
   prefix?: string;
   label: string;
+  hasStar?: boolean;
 }) {
   const spanRef = useRef<HTMLSpanElement>(null);
 
@@ -484,12 +487,15 @@ function ProofStat({
 
   return (
     <div data-phone-stat className="flex items-center gap-2">
-      <span
-        ref={spanRef}
-        className="text-numeric text-[16px] sm:text-[18px] font-semibold text-white tabular-nums"
-      >
-        {`${prefix}${(0).toFixed(decimals)}${suffix}`}
-      </span>
+      <div className="flex items-center gap-1">
+        <span
+          ref={spanRef}
+          className="text-numeric text-[16px] sm:text-[18px] font-semibold text-white tabular-nums"
+        >
+          {`${prefix}${(0).toFixed(decimals)}${suffix}`}
+        </span>
+        {hasStar && <Star className="w-3.5 h-3.5 mb-0.5" fill="#CDFF50" stroke="none" />}
+      </div>
       <span className="text-[12px] sm:text-[13px] text-white/45">{label}</span>
     </div>
   );

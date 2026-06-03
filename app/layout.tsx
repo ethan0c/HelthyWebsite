@@ -109,7 +109,7 @@ export default function RootLayout({
               applicationCategory: "HealthApplication",
               operatingSystem: "iOS, Android",
               description:
-                "Helthy is a free AI-powered fitness app that unifies calorie tracking, workout logging, weight tracking, and AI coaching in one place. Features include AI photo meal logging, voice logging, 1,500+ exercise library, and an AI coach.",
+                "Helthy is a free AI-powered fitness app that unifies calorie tracking, workout logging, weight tracking, and AI coaching in one place. Features include AI photo meal logging, voice logging, 500+ exercise library, and an AI coach.",
               url: "https://helthy.app",
               downloadUrl:
                 "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974",
@@ -121,7 +121,7 @@ export default function RootLayout({
                   priceCurrency: "USD",
                   name: "Free Plan",
                   description:
-                    "Unlimited calorie and workout logging, barcode scanner, 1,500+ exercises, Apple Health sync, weight tracking — free forever.",
+                    "Unlimited calorie and workout logging, barcode scanner, 500+ exercises, Apple Health sync, weight tracking — free forever.",
                 },
                 {
                   "@type": "Offer",
@@ -169,7 +169,7 @@ export default function RootLayout({
                 "AI-generated workout routines",
                 "Unlimited calorie and macro tracking",
                 "Barcode scanner for food logging",
-                "1,500+ exercise library",
+                "500+ exercise library",
                 "Unlimited workout tracking",
                 "Personal record (PR) detection",
                 "Weight tracking with trend graphs",

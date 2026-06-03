@@ -130,7 +130,7 @@ export default function FeaturesRow() {
             minH={560}
             bgImage="/textures/card-stone.jpg"
             headline="Every lift, covered"
-            subtitle="1,500+ exercises. Every PR tracked."
+            subtitle="500+ exercises. Every PR tracked."
           >
             <TripleScreenshotMockup
               tabs={["Library", "Form tips", "Activity"]}
