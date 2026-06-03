@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import Icon from "@mdi/react";
-import { mdiCameraOutline, mdiDumbbell, mdiRobotHappyOutline, mdiSleep } from "@mdi/js";
+import { mdiCameraOutline, mdiArmFlexOutline, mdiRobotHappyOutline, mdiSleep } from "@mdi/js";
 
 /**
  * Slim value-pillar band that bridges the hero and the phone showcase.
@@ -14,7 +14,7 @@ import { mdiCameraOutline, mdiDumbbell, mdiRobotHappyOutline, mdiSleep } from "@
 
 const PILLARS = [
   { icon: mdiCameraOutline, label: "Snap a photo, log a meal" },
-  { icon: mdiDumbbell, label: "Track every lift" },
+  { icon: mdiArmFlexOutline, label: "Track every lift" },
   { icon: mdiRobotHappyOutline, label: "AI coach that learns you" },
   { icon: mdiSleep, label: "Recovery-aware plans" },
 ];

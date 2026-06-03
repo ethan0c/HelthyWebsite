@@ -18,33 +18,20 @@ const NAV = [
 
 export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
-  const [scrollingDown, setScrollingDown] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    let lastY = window.scrollY;
     const onScroll = () => {
       const y = window.scrollY;
       setScrolled(y > 72);
-      setScrollingDown(y > lastY);
-      lastY = y;
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const onMq = () => setIsDesktop(mq.matches);
-    onMq();
-    mq.addEventListener("change", onMq);
-
     return () => {
       window.removeEventListener("scroll", onScroll);
-      mq.removeEventListener("change", onMq);
     };
   }, []);
-
-  const hideLogo = isDesktop && scrolled && scrollingDown;
 
   return (
     <div
@@ -66,19 +53,15 @@ export default function SiteNav() {
         }}
       />
       {/* Left: logo — anchored to top-left like main.
-          On desktop, fades out on scroll so the glass pill holds focus. */}
+          On desktop, it is hidden because it is integrated into the navbar pill. */}
       <Link
         href="/"
         aria-label="Helthy home"
-        className="pointer-events-auto absolute flex items-center"
+        className="pointer-events-auto absolute flex items-center lg:hidden"
         style={{
           top: "clamp(14px, 2.2vh, 24px)",
           left: "clamp(16px, 3vw, 32px)",
           height: 40,
-          opacity: hideLogo ? 0 : 1,
-          transform: hideLogo ? "translateY(-6px)" : "translateY(0)",
-          transition: "opacity 300ms ease, transform 300ms ease",
-          pointerEvents: hideLogo ? "none" : "auto",
         }}
       >
         <Image
@@ -87,7 +70,7 @@ export default function SiteNav() {
           height={24}
           width={120}
           sizes="120px"
-          className="object-contain h-[22px] w-auto lg:h-[24px]"
+          className="object-contain h-[22px] w-auto"
           style={{ width: "auto" }}
           priority
         />
@@ -97,7 +80,7 @@ export default function SiteNav() {
          Base color #141414 mirrors mobile app's tabBarBackground token.
          Border #2E2E30 mirrors mobile `border` token. */}
       <nav
-        className="pointer-events-auto hidden lg:flex mx-auto w-fit relative"
+        className="pointer-events-auto hidden lg:flex mx-auto w-fit relative items-center"
         aria-label="Primary"
         style={{
           backgroundColor: scrolled
@@ -110,21 +93,39 @@ export default function SiteNav() {
           boxShadow:
             "inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.35)",
           transition: "background-color 250ms ease",
-          padding: "8px 8px 8px 28px",
+          padding: "8px 8px 8px 24px",
+          gap: 40,
         }}
       >
-        <ul className="flex items-center gap-7 mr-5">
+        <Link
+          href="/"
+          aria-label="Helthy home"
+          className="flex items-center shrink-0"
+        >
+          <Image
+            src="/logos/logo-long-white.png"
+            alt="Helthy"
+            height={22}
+            width={110}
+            className="object-contain h-[22px] w-auto"
+            style={{ width: "auto" }}
+            priority
+          />
+        </Link>
+        <ul className="flex items-center gap-1 shrink-0">
           {NAV.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
                 className="transition-colors hover:text-white"
                 style={{
-                  color: "rgba(255,255,255,0.82)",
+                  padding: "8px 16px",
+                  display: "inline-block",
+                  color: "rgba(255,255,255,0.9)",
                   fontFamily: "var(--font-body)",
-                  fontWeight: 400,
-                  fontSize: 14,
-                  letterSpacing: "-0.005em",
+                  fontWeight: 500,
+                  fontSize: 16,
+                  letterSpacing: "-0.01em",
                 }}
               >
                 {item.label}
@@ -133,8 +134,8 @@ export default function SiteNav() {
           ))}
         </ul>
 
-        <CTAButton href={APP_STORE_URL} variant="primary" size="sm">
-          Download now
+        <CTAButton href={APP_STORE_URL} variant="primary" size="md">
+          Download app
         </CTAButton>
       </nav>
 

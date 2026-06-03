@@ -3,6 +3,7 @@ import "./globals.css";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
 import TopBar from "@/components/sections/TopBar";
+import FloatingQRCode from "@/components/ui/FloatingQRCode";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://helthy.app"),
@@ -184,6 +185,7 @@ export default function RootLayout({
           <LenisProvider>
             <TopBar />
             {children}
+            <FloatingQRCode />
           </LenisProvider>
         </GSAPProvider>
       </body>

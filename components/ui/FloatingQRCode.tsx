@@ -17,7 +17,7 @@ import { gsap } from "@/lib/gsap";
 
 const QR_SRC = "/qr-appstore.png";
 
-export default function HeroQRCode() {
+export default function FloatingQRCode() {
   const [finePointer, setFinePointer] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -72,15 +72,20 @@ export default function HeroQRCode() {
   return (
     <div
       ref={wrapRef}
-      className="relative hidden sm:flex flex-col items-center"
-      style={{ marginTop: "clamp(40px, 5vh, 64px)" }}
+      className="hidden sm:flex flex-col items-end"
+      style={{ 
+        position: "fixed",
+        bottom: 24,
+        right: 24,
+        zIndex: 50,
+      }}
     >
       {/* Expanded popover — larger QR + label, anchored above the chip */}
       {expanded && (
         <div
           role="dialog"
           aria-label="Scan to download Helthy on the App Store"
-          className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2"
+          className="absolute bottom-full mb-3 right-0"
           style={{
             zIndex: 20,
             padding: 16,
@@ -112,19 +117,30 @@ export default function HeroQRCode() {
           <p
             className="text-center mt-3"
             style={{
-              fontSize: 12,
+              fontSize: 13,
               fontWeight: 500,
               letterSpacing: "-0.005em",
-              color: "rgba(249,249,249,0.7)",
+              color: "rgba(249,249,249,0.9)",
               fontFamily: "var(--font-body)",
             }}
           >
-            Scan to download on iOS
+            Scan to download
+          </p>
+          <p
+            className="text-center mt-1"
+            style={{
+              fontSize: 12,
+              fontWeight: 400,
+              color: "rgba(249,249,249,0.5)",
+              fontFamily: "var(--font-body)",
+            }}
+          >
+            Available for free on iOS
           </p>
           {/* Pointer notch */}
           <span
             aria-hidden="true"
-            className="absolute left-1/2 -translate-x-1/2"
+            className="absolute right-8"
             style={{
               bottom: -6,
               width: 12,
@@ -179,19 +195,33 @@ export default function HeroQRCode() {
             style={{ width: "100%", height: "100%" }}
           />
         </span>
-        <span
-          className="pr-1.5 text-left"
-          style={{
-            fontSize: 13,
-            fontWeight: 500,
-            lineHeight: "1.2em",
-            letterSpacing: "-0.005em",
-            color: "rgba(249,249,249,0.78)",
-            fontFamily: "var(--font-body)",
-            whiteSpace: "nowrap",
-          }}
-        >
-          Scan to download on iOS
+        <span className="pr-2 flex flex-col text-left justify-center">
+          <span
+            style={{
+              fontSize: 13,
+              fontWeight: 500,
+              lineHeight: "1.2em",
+              letterSpacing: "-0.005em",
+              color: "rgba(249,249,249,0.9)",
+              fontFamily: "var(--font-body)",
+              whiteSpace: "nowrap",
+            }}
+          >
+            Scan to download
+          </span>
+          <span
+            style={{
+              fontSize: 12,
+              fontWeight: 400,
+              lineHeight: "1.2em",
+              color: "rgba(249,249,249,0.5)",
+              fontFamily: "var(--font-body)",
+              marginTop: 2,
+              whiteSpace: "nowrap",
+            }}
+          >
+            Available for free
+          </span>
         </span>
       </button>
     </div>

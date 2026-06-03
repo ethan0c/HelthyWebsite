@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import AndroidWaitlistButton from "@/components/ui/AndroidWaitlistButton";
 import CTAButton from "@/components/ui/CTAButton";
-import HeroQRCode from "@/components/ui/HeroQRCode";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
@@ -69,17 +68,17 @@ export default function HeroSection() {
           zIndex: 4,
           minHeight: "clamp(620px, 82svh, 900px)",
           paddingTop: "clamp(100px, 12vh, 140px)",
-          paddingBottom: "clamp(60px, 8vh, 100px)",
+          paddingBottom: "clamp(32px, 4vh, 60px)",
         }}
       >
         <h1
           data-hero-h1
           className="font-heading"
           style={{
-            fontSize: "clamp(34px, 5.2vw, 80px)",
+            fontSize: "clamp(38px, 5.5vw, 68px)",
             fontWeight: 500,
-            letterSpacing: "-0.03em",
-            lineHeight: "1.04em",
+            letterSpacing: "-0.035em",
+            lineHeight: "1.05em",
             color: "#F9F9F9",
             margin: 0,
             maxWidth: "16ch",
@@ -93,13 +92,13 @@ export default function HeroSection() {
           data-hero-sub
           className="mx-auto"
           style={{
-            fontSize: "clamp(16px, 1.4vw, 20px)",
+            fontSize: "clamp(16px, 1.3vw, 18px)",
             fontWeight: 400,
-            letterSpacing: "-0.01em",
-            lineHeight: "1.55em",
+            letterSpacing: "-0.005em",
+            lineHeight: "1.5em",
             color: "rgba(249,249,249,0.72)",
-            maxWidth: 580,
-            margin: "clamp(22px, 2.6vh, 32px) auto 0",
+            maxWidth: 540,
+            margin: "clamp(16px, 2.2vh, 24px) auto 0",
             textShadow: "0 2px 16px rgba(0,0,0,0.4)",
           }}
         >
@@ -110,7 +109,7 @@ export default function HeroSection() {
         <div
           data-hero-cta
           className="flex flex-col items-center sm:flex-row sm:items-center sm:justify-center gap-3"
-          style={{ marginTop: "clamp(28px, 3.6vh, 44px)" }}
+          style={{ marginTop: "clamp(36px, 5vh, 60px)" }}
         >
           <CTAButton
             href={APP_STORE_URL}
@@ -127,11 +126,9 @@ export default function HeroSection() {
           <AndroidWaitlistButton />
         </div>
 
-        <HeroQRCode />
-
         <p
           style={{
-            marginTop: "clamp(28px, 3.4vh, 44px)",
+            marginTop: "clamp(24px, 3vh, 32px)",
             fontSize: "clamp(13px, 1.1vw, 15px)",
             color: "rgba(249,249,249,0.45)",
             letterSpacing: "-0.01em",
