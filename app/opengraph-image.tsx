@@ -98,7 +98,7 @@ export default async function OgImage() {
                 maxWidth: 540,
               }}
             >
-              Photo meal logging · 500+ exercises · AI coach · Free forever
+              Photo meal logging · 1,500 exercises · AI coach · Free forever
             </span>
             {/* Rating pill */}
             <div

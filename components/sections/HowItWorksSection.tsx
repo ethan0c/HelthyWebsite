@@ -70,7 +70,7 @@ export default function HowItWorksSection() {
           <StepCard
             number="02"
             title="Log meals, workouts & weight"
-            description="Snap a photo to log any meal. Track lifts from 500+ exercises. Step on the scale and go."
+            description="Snap a photo to log any meal. Track lifts from 1,500 exercises. Step on the scale and go."
           >
             <LoggingMockup />
           </StepCard>

@@ -268,7 +268,7 @@ export default function PhoneShowcaseSection() {
           <div data-phone-stat className="w-px h-4 bg-white/10" />
           <ProofStat target={10} suffix="K+" label="meals logged" />
           <div data-phone-stat className="w-px h-4 bg-white/10" />
-          <ProofStat target={500} suffix="+" label="exercises" />
+          <ProofStat target={1500} suffix="+" label="exercises" />
         </div>
 
         {/* Phone */}
