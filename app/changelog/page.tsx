@@ -10,7 +10,24 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://helthy.app/changelog" },
 };
 
-const SECTIONS = [
+const V2_1_SECTIONS = [
+  {
+    label: "AI Coach",
+    items: [
+      "AI Coach Tone — choose how your coach talks to you: Direct, Balanced, or Warm (Settings > AI Coach Tone)",
+    ],
+  },
+  {
+    label: "Insights",
+    items: [
+      "Helthy Weekly — your week as a full-screen magazine in the Insights tab, with a hero highlight, quiet win, honest look, and narrative summary",
+      "New issue card on the Home tab so you never miss a weekly recap",
+      "Trends screen — weight projection toward your goal, 30-day nutrition charts, goal ETA, plateau alerts, and muscle imbalance data",
+    ],
+  },
+];
+
+const V2_0_SECTIONS = [
   {
     label: "AI & Logging",
     items: [
@@ -76,7 +93,6 @@ const SECTIONS = [
     label: "Customization & UI",
     items: [
       "Custom app icons",
-      "Simple Mode — a streamlined UI for users who want less noise",
       "Layout customization options",
       "Redesigned settings with search",
       "First-time home tour and contextual milestone hints",
@@ -102,6 +118,56 @@ const SECTIONS = [
   },
 ];
 
+function ReleaseBlock({
+  version,
+  date,
+  sections,
+}: {
+  version: string;
+  date: string;
+  sections: { label: string; items: string[] }[];
+}) {
+  return (
+    <div className="card-helthy p-8 sm:p-10">
+      <h2
+        className="font-heading text-white mb-2"
+        style={{
+          fontSize: "clamp(22px, 2.6vw, 30px)",
+          fontWeight: 500,
+          letterSpacing: "-0.02em",
+        }}
+      >
+        {version}
+      </h2>
+      <p className="text-white/50 mb-8 text-[13px]">{date}</p>
+      <div className="space-y-8">
+        {sections.map((section) => (
+          <div key={section.label}>
+            <p
+              className="text-[11px] font-semibold uppercase text-white/35 mb-3"
+              style={{ fontFamily: "var(--font-body)", letterSpacing: "0.18em" }}
+            >
+              {section.label}
+            </p>
+            <ul className="space-y-2.5 text-white/75 text-[14px] leading-relaxed">
+              {section.items.map((item, i) => (
+                <li key={i} className="flex gap-3">
+                  <span
+                    aria-hidden="true"
+                    className="shrink-0 mt-[0.55em] w-1 h-1 rounded-full"
+                    style={{ background: "#CDFF50", opacity: 0.55 }}
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function ChangelogPage() {
   return (
     <>
@@ -117,49 +183,22 @@ export default function ChangelogPage() {
 
         <div className="relative max-w-4xl mx-auto">
           <SectionHeading
-            title="What's new since"
-            italicTail="1.2.7"
+            title="What's"
+            italicTail="new"
             trailingPunctuation=""
           />
 
           <div className="mt-16 space-y-12">
-            <div className="card-helthy p-8 sm:p-10">
-              <h2
-                className="font-heading text-white mb-2"
-                style={{
-                  fontSize: "clamp(22px, 2.6vw, 30px)",
-                  fontWeight: 500,
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                Helthy v2.0
-              </h2>
-              <p className="text-white/50 mb-8 text-[13px]">Released April 2026</p>
-              <div className="space-y-8">
-                {SECTIONS.map((section) => (
-                  <div key={section.label}>
-                    <p
-                      className="text-[11px] font-semibold uppercase text-white/35 mb-3"
-                      style={{ fontFamily: "var(--font-body)", letterSpacing: "0.18em" }}
-                    >
-                      {section.label}
-                    </p>
-                    <ul className="space-y-2.5 text-white/75 text-[14px] leading-relaxed">
-                      {section.items.map((item, i) => (
-                        <li key={i} className="flex gap-3">
-                          <span
-                            aria-hidden="true"
-                            className="shrink-0 mt-[0.55em] w-1 h-1 rounded-full"
-                            style={{ background: "#CDFF50", opacity: 0.55 }}
-                          />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <ReleaseBlock
+              version="Helthy 2.1"
+              date="June 2026"
+              sections={V2_1_SECTIONS}
+            />
+            <ReleaseBlock
+              version="Helthy 2.0"
+              date="April 2026"
+              sections={V2_0_SECTIONS}
+            />
           </div>
         </div>
       </main>
