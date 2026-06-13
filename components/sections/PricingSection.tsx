@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { gsap } from "@/lib/gsap";
-import { Sparkles, Brain, MessageCircle, LineChart } from "lucide-react";
+import { Sparkles, Brain, MessageCircle, LineChart, Check } from "lucide-react";
 import Icon from "@mdi/react";
 import { mdiCertificateOutline } from "@mdi/js";
 
@@ -15,6 +15,13 @@ const PREMIUM_FEATURES = [
   { icon: MessageCircle, label: "Unlimited AI Coach" },
   { icon: Brain, label: "AI-generated workout routines" },
   { icon: LineChart, label: "Full analytics, trends & all-time history" },
+];
+
+const FREE_FEATURES = [
+  "Unlimited manual food & workout logging",
+  "Calories, macros & nutrition tracking",
+  "Apple Health sync (steps + weight)",
+  "1,000+ exercises & basic progress history",
 ];
 
 export default function PricingSection() {
@@ -100,12 +107,124 @@ export default function PricingSection() {
           One plan unlocks everything. Lock in your founder's price today and keep it for life. The free tier is actually free — forever.
         </p>
 
-        {/* Premium card — the only card */}
+        {/* Free + Pro cards, side by side */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6 mx-auto mt-14 md:mt-20 items-stretch" style={{ maxWidth: 920 }}>
+
+        {/* Free card */}
         <div
           data-price-card
-          className="relative mx-auto mt-14 md:mt-20 rounded-[1.5rem] text-left overflow-hidden border border-white/10"
+          className="relative rounded-[1.5rem] text-left overflow-hidden border flex flex-col"
           style={{
-            maxWidth: 520,
+            background: "linear-gradient(145deg, #FFFFFF 0%, #F2F2F2 100%)",
+            borderColor: "rgba(17,17,17,0.08)",
+            boxShadow:
+              "inset 0 1px 1px rgba(255,255,255,0.9), " +
+              "0 2px 4px rgba(0,0,0,0.06)," +
+              "0 12px 32px -12px rgba(0,0,0,0.15)," +
+              "0 40px 80px -30px rgba(0,0,0,0.22)",
+          }}
+        >
+          {/* Subtle reflection overlay — mirrors the Pro card's glossy sheen */}
+          <div
+            className="absolute inset-0 pointer-events-none rounded-[1.5rem]"
+            style={{
+              background: "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, transparent 40%)",
+            }}
+          />
+          <div className="relative flex items-center justify-between px-8 pt-8 md:px-10 md:pt-10 gap-3 flex-wrap">
+            <p
+              className="font-body text-[11px] font-semibold uppercase tracking-[0.22em]"
+              style={{ color: "rgba(17,17,17,0.5)" }}
+            >
+              Helthy Free
+            </p>
+            {/* Spacer matching the Pro card's toggle height so both headers align */}
+            <div aria-hidden="true" style={{ minHeight: 38 }} />
+          </div>
+
+          <div className="px-8 md:px-10 mt-8 relative">
+            <div className="mb-5 text-center">
+              <span
+                className="font-heading text-[11px] font-bold uppercase tracking-[0.16em]"
+                style={{ color: "rgba(17,17,17,0.45)" }}
+              >
+                Free forever
+              </span>
+            </div>
+            <div className="min-h-[112px] sm:min-h-[118px]">
+              <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+                <span
+                  className="text-numeric"
+                  style={{
+                    fontSize: "clamp(46px, 12vw, 84px)",
+                    color: "#111",
+                    lineHeight: 1,
+                    letterSpacing: "-0.04em",
+                  }}
+                >
+                  $0
+                </span>
+                <span
+                  className="text-sm font-light ml-0.5"
+                  style={{ color: "rgba(17,17,17,0.4)" }}
+                >
+                  /forever
+                </span>
+              </div>
+              <p
+                className="text-[14px] mt-2 font-medium"
+                style={{ color: "rgba(17,17,17,0.55)" }}
+              >
+                No card · No trial · No catch
+              </p>
+            </div>
+          </div>
+
+          <ul className="mt-10 px-8 md:px-10 space-y-4">
+            {FREE_FEATURES.map((label) => (
+              <li key={label} className="flex items-start gap-3">
+                <div
+                  className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5"
+                  style={{ background: "rgba(17,17,17,0.06)" }}
+                >
+                  <Check
+                    className="w-3 h-3"
+                    style={{ color: "rgba(17,17,17,0.7)" }}
+                    strokeWidth={2.5}
+                  />
+                </div>
+                <span
+                  className="text-[14px] leading-relaxed"
+                  style={{ color: "rgba(17,17,17,0.7)" }}
+                >
+                  {label}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="px-8 md:px-10 pt-10 pb-8 md:pb-10 mt-auto">
+            <Link
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[14px] w-full inline-flex justify-center items-center rounded-full font-medium transition-colors"
+              style={{
+                padding: "14px 20px",
+                border: "1px solid rgba(17,17,17,0.15)",
+                color: "#111",
+              }}
+            >
+              Start free
+            </Link>
+          </div>
+        </div>
+
+        {/* Premium card */}
+        <div
+          data-price-card
+          className="relative rounded-[1.5rem] text-left overflow-hidden border border-white/10 flex flex-col"
+          style={{
             background: "linear-gradient(145deg, #1A1A1A 0%, #0A0A0A 100%)",
             boxShadow:
               "inset 0 1px 1px rgba(255,255,255,0.05), " +
@@ -280,7 +399,7 @@ export default function PricingSection() {
           </ul>
 
           {/* CTA */}
-          <div className="px-8 md:px-10 pt-10 pb-8 md:pb-10">
+          <div className="px-8 md:px-10 pt-10 pb-8 md:pb-10 mt-auto">
             <Link
               href={APP_STORE_URL}
               target="_blank"
@@ -292,23 +411,15 @@ export default function PricingSection() {
           </div>
         </div>
 
-        {/* Free tier link */}
+        </div>
+
+        {/* Reassurance line */}
         <p
           data-price-free
           className="mt-10 text-[14px]"
           style={{ color: "rgba(17,17,17,0.55)" }}
         >
-          Or{" "}
-          <Link
-            href={APP_STORE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-4 transition-colors hover:text-black"
-            style={{ color: "rgba(17,17,17,0.85)" }}
-          >
-            use Helthy free, forever
-          </Link>
-          {" "}— manual logging, macros, Apple Health sync, all included.
+          Start free, forever — no account or card needed. Upgrade to Pro anytime.
         </p>
       </div>
     </section>
