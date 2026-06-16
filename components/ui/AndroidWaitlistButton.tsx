@@ -1,11 +1,7 @@
 "use client";
 
-/**
- * "Coming to Android" pill. Scrolls to #pricing (which owns the waitlist
- * overlay) — LenisProvider intercepts the anchor click and smooth-scrolls.
- */
-
-const LAUNCH_DATE = "June 12";
+const PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=app.helthy.mobile";
 
 export default function AndroidWaitlistButton({
   size = "md",
@@ -19,8 +15,10 @@ export default function AndroidWaitlistButton({
 
   return (
     <a
-      href="/#pricing"
-      aria-label={`Android coming ${LAUNCH_DATE} — join the waitlist`}
+      href={PLAY_STORE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Download Helthy on Google Play"
       className="group hover:scale-[1.02]"
       style={{
         display: "inline-flex",
@@ -47,10 +45,20 @@ export default function AndroidWaitlistButton({
         textDecoration: "none",
       }}
     >
-      <svg width={s.icon - 2} height={s.icon - 2} viewBox="0 0 24 24" aria-hidden="true" style={{ flexShrink: 0 }}>
-        <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.332a1 1 0 0 1 0 1.72L17.698 13.892l-2.467-2.467 2.467-2.467zM5.864 3.458L16.801 9.79l-2.302 2.302-8.635-8.635z" fill="currentColor" />
+      {/* Google Play triangle icon */}
+      <svg
+        width={s.icon - 2}
+        height={s.icon - 2}
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        style={{ flexShrink: 0 }}
+      >
+        <path
+          d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.332a1 1 0 0 1 0 1.72L17.698 13.892l-2.467-2.467 2.467-2.467zM5.864 3.458L16.801 9.79l-2.302 2.302-8.635-8.635z"
+          fill="currentColor"
+        />
       </svg>
-      <span>Coming to Android</span>
+      <span>Google Play</span>
       <span
         className="flex items-center justify-center shrink-0"
         style={{
@@ -60,8 +68,20 @@ export default function AndroidWaitlistButton({
           background: "rgba(255,255,255,0.14)",
         }}
       >
-        <svg width={s.icon - 2} height={s.icon - 2} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M7 17L17 7M17 7H8M17 7V16" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        <svg
+          width={s.icon - 2}
+          height={s.icon - 2}
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M7 17L17 7M17 7H8M17 7V16"
+            stroke="#FFFFFF"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       </span>
     </a>

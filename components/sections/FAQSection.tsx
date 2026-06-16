@@ -27,7 +27,7 @@ const FAQS = [
   },
   {
     q: "Is Helthy on Android?",
-    a: "iOS is live on the App Store today, with Helthy Pro available now. Android drops June 12. Add your email anywhere on this page and we'll send you the Play Store link the moment it's live.",
+    a: "Yes — Helthy is live on Google Play. Download it free and get the same features as iOS, including Helthy Pro.",
   },
   {
     q: "Can I cancel Premium?",

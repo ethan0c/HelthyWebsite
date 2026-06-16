@@ -6,8 +6,12 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import CTAButton from "@/components/ui/CTAButton";
 
-const APP_STORE_URL =
-  "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
+function handleDownloadClick(e: React.MouseEvent) {
+  if (window.matchMedia("(pointer: fine)").matches) {
+    e.preventDefault();
+    window.dispatchEvent(new CustomEvent("helthy:qr-open"));
+  }
+}
 
 const NAV = [
   { href: "/?section=features", label: "Features" },
@@ -36,14 +40,13 @@ export default function SiteNav() {
   return (
     <div
       className="relative w-full pointer-events-none"
-      style={{ paddingTop: "clamp(14px, 2.2vh, 24px)" }}
+      style={{ height: "clamp(60px, 9vh, 76px)" }}
     >
       {/* Full-width frosted bar — mobile only, fades in after hero scroll */}
       <div
         aria-hidden="true"
-        className="lg:hidden absolute inset-x-0 top-0 pointer-events-none"
+        className="lg:hidden absolute inset-0 pointer-events-none"
         style={{
-          height: "clamp(60px, 9vh, 76px)",
           background: "rgba(10,10,10,0.72)",
           backdropFilter: "blur(24px) saturate(140%)",
           WebkitBackdropFilter: "blur(24px) saturate(140%)",
@@ -52,14 +55,14 @@ export default function SiteNav() {
           transition: "opacity 350ms ease",
         }}
       />
-      {/* Left: logo — anchored to top-left like main.
-          On desktop, it is hidden because it is integrated into the navbar pill. */}
+      {/* Left: logo — vertically centered in the nav bar height */}
       <Link
         href="/"
         aria-label="Helthy home"
         className="pointer-events-auto absolute flex items-center lg:hidden"
         style={{
-          top: "clamp(14px, 2.2vh, 24px)",
+          top: "50%",
+          transform: "translateY(-50%)",
           left: "clamp(16px, 3vw, 32px)",
           height: 40,
         }}
@@ -80,7 +83,7 @@ export default function SiteNav() {
          Base color #141414 mirrors mobile app's tabBarBackground token.
          Border #2E2E30 mirrors mobile `border` token. */}
       <nav
-        className="pointer-events-auto hidden lg:flex mx-auto w-fit relative items-center"
+        className="pointer-events-auto hidden lg:flex w-fit items-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
         aria-label="Primary"
         style={{
           backgroundColor: scrolled
@@ -134,7 +137,7 @@ export default function SiteNav() {
           ))}
         </ul>
 
-        <CTAButton href={APP_STORE_URL} variant="primary" size="md">
+        <CTAButton href="/download" variant="primary" size="md" onClick={handleDownloadClick}>
           Download app
         </CTAButton>
       </nav>
@@ -147,7 +150,8 @@ export default function SiteNav() {
         aria-expanded={open}
         className="lg:hidden pointer-events-auto absolute rounded-full p-2.5 transition-colors"
         style={{
-          top: "clamp(14px, 2.2vh, 24px)",
+          top: "50%",
+          transform: "translateY(-50%)",
           right: "clamp(16px, 3vw, 32px)",
           background: "rgba(20,20,20,0.82)",
           border: "1.5px solid rgba(46,46,48,0.9)",
@@ -195,10 +199,10 @@ export default function SiteNav() {
             ))}
             <li className="pt-2 flex">
               <CTAButton
-                href={APP_STORE_URL}
+                href="/download"
                 variant="primary"
                 size="sm"
-                onClick={() => setOpen(false)}
+                onClick={(e: React.MouseEvent) => { setOpen(false); handleDownloadClick(e); }}
               >
                 Download now
               </CTAButton>

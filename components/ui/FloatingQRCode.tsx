@@ -6,23 +6,35 @@
  * wider viewport via the `hidden sm:` + JS pointer check.
  *
  * Small card is always visible; clicking it expands a larger, easier-to-scan
- * QR in a popover anchored above the card. The static PNG lives at
- * /public/qr-appstore.png and encodes the App Store URL (see
- * docs/launch-banner-cta.md).
+ * QR in a popover anchored above the card. The static PNGs live at
+ * /public/qr-appstore.png and /public/qr-playstore.png.
  */
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsap";
 
-const QR_SRC = "/qr-appstore.png";
+const STORES = [
+  {
+    id: "ios",
+    label: "App Store",
+    qr: "/qr-appstore.png",
+    alt: "QR code linking to Helthy on the App Store",
+  },
+  {
+    id: "android",
+    label: "Google Play",
+    qr: "/qr-playstore.png",
+    alt: "QR code linking to Helthy on Google Play",
+  },
+] as const;
 
 export default function FloatingQRCode() {
   const [finePointer, setFinePointer] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [activeStore, setActiveStore] = useState<"ios" | "android">("ios");
   const wrapRef = useRef<HTMLDivElement>(null);
 
-  // Only show on devices with a precise pointer (laptops/desktops).
   useEffect(() => {
     const mq = window.matchMedia("(pointer: fine)");
     setFinePointer(mq.matches);
@@ -31,9 +43,6 @@ export default function FloatingQRCode() {
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
-  // Fade/slide in once mounted — sits after the hero CTA row in the entry
-  // sequence (hero CTA uses delay 0.45). Runs in the chip's own effect since
-  // the element only exists after the fine-pointer check passes.
   useEffect(() => {
     if (!finePointer || !wrapRef.current) return;
     const ctx = gsap.context(() => {
@@ -48,7 +57,13 @@ export default function FloatingQRCode() {
     return () => ctx.revert();
   }, [finePointer]);
 
-  // Close the popover on outside click / Escape.
+  // Listen for external open requests (e.g. from pricing buttons).
+  useEffect(() => {
+    const onOpen = () => setExpanded(true);
+    window.addEventListener("helthy:qr-open", onOpen);
+    return () => window.removeEventListener("helthy:qr-open", onOpen);
+  }, []);
+
   useEffect(() => {
     if (!expanded) return;
     const onDown = (e: MouseEvent) => {
@@ -69,22 +84,24 @@ export default function FloatingQRCode() {
 
   if (!finePointer) return null;
 
+  const active = STORES.find((s) => s.id === activeStore)!;
+
   return (
     <div
       ref={wrapRef}
       className="hidden sm:flex flex-col items-end"
-      style={{ 
+      style={{
         position: "fixed",
         bottom: 24,
         right: 24,
         zIndex: 50,
       }}
     >
-      {/* Expanded popover — larger QR + label, anchored above the chip */}
+      {/* Expanded popover */}
       {expanded && (
         <div
           role="dialog"
-          aria-label="Scan to download Helthy on the App Store"
+          aria-label="Scan to download Helthy"
           className="absolute bottom-full mb-3 right-0"
           style={{
             zIndex: 20,
@@ -95,25 +112,67 @@ export default function FloatingQRCode() {
             backdropFilter: "blur(20px) saturate(140%)",
             WebkitBackdropFilter: "blur(20px) saturate(140%)",
             boxShadow: "0 16px 48px rgba(0,0,0,0.5)",
+            width: 200,
           }}
         >
+          {/* Store tabs */}
+          <div
+            className="flex gap-1 mb-3"
+            style={{
+              background: "rgba(255,255,255,0.07)",
+              borderRadius: 10,
+              padding: 3,
+            }}
+          >
+            {STORES.map((s) => (
+              <button
+                key={s.id}
+                type="button"
+                onClick={() => setActiveStore(s.id)}
+                style={{
+                  flex: 1,
+                  fontSize: 11,
+                  fontWeight: 500,
+                  fontFamily: "var(--font-body)",
+                  padding: "4px 0",
+                  borderRadius: 7,
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "background 160ms ease, color 160ms ease",
+                  background:
+                    activeStore === s.id
+                      ? "rgba(255,255,255,0.12)"
+                      : "transparent",
+                  color:
+                    activeStore === s.id
+                      ? "rgba(249,249,249,0.95)"
+                      : "rgba(249,249,249,0.45)",
+                }}
+              >
+                {s.label}
+              </button>
+            ))}
+          </div>
+
+          {/* QR image */}
           <div
             style={{
-              width: 168,
-              height: 168,
+              width: "100%",
+              aspectRatio: "1",
               borderRadius: 12,
               background: "#fff",
               padding: 10,
             }}
           >
             <Image
-              src={QR_SRC}
-              alt="QR code linking to Helthy on the App Store"
+              src={active.qr}
+              alt={active.alt}
               width={148}
               height={148}
               style={{ width: "100%", height: "100%" }}
             />
           </div>
+
           <p
             className="text-center mt-3"
             style={{
@@ -135,8 +194,9 @@ export default function FloatingQRCode() {
               fontFamily: "var(--font-body)",
             }}
           >
-            Available for free on iOS
+            Available free on iOS & Android
           </p>
+
           {/* Pointer notch */}
           <span
             aria-hidden="true"
@@ -159,7 +219,7 @@ export default function FloatingQRCode() {
         type="button"
         onClick={() => setExpanded((v) => !v)}
         aria-expanded={expanded}
-        aria-label="Show QR code to download on the App Store"
+        aria-label="Show QR code to download Helthy"
         className="group flex items-center gap-3 hover:scale-[1.02]"
         style={{
           padding: 8,
@@ -187,7 +247,7 @@ export default function FloatingQRCode() {
           }}
         >
           <Image
-            src={QR_SRC}
+            src={STORES[0].qr}
             alt=""
             aria-hidden="true"
             width={30}
@@ -220,7 +280,7 @@ export default function FloatingQRCode() {
               whiteSpace: "nowrap",
             }}
           >
-            Available for free
+            iOS & Android
           </span>
         </span>
       </button>
