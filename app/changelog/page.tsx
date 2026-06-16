@@ -10,6 +10,26 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://helthy.app/changelog" },
 };
 
+const V2_1_3_SECTIONS = [
+  {
+    label: "Added",
+    items: [
+      "Free plan now shown on the upgrade screen with a clear side-by-side comparison of free vs Premium",
+      "A \"+1\" animation plays on your streak ring on the Home tab when you keep it going",
+    ],
+  },
+  {
+    label: "Fixed",
+    items: [
+      "Fixed a pop-up that could appear every time you opened the app asking about your app icon",
+      "You can now finish a workout even if you forgot to mark your sets as done — the app offers to save the sets you filled in",
+      "The week dates on your weekly recap now match everywhere they appear: the Home card, the magazine rack, and the issue itself",
+      "Weekly recap notifications no longer arrive before the recap is actually ready to read",
+      "AI-logged foods now show a clear serving amount on the edit screen instead of a raw weight",
+    ],
+  },
+];
+
 const V2_1_SECTIONS = [
   {
     label: "AI Coach",
@@ -189,6 +209,11 @@ export default function ChangelogPage() {
           />
 
           <div className="mt-16 space-y-12">
+            <ReleaseBlock
+              version="Helthy 2.1.3"
+              date="June 2026"
+              sections={V2_1_3_SECTIONS}
+            />
             <ReleaseBlock
               version="Helthy 2.1"
               date="June 2026"
