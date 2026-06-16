@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 import { Sparkles, Brain, MessageCircle, LineChart, Check } from "lucide-react";
 import Icon from "@mdi/react";
@@ -9,6 +8,16 @@ import { mdiCertificateOutline } from "@mdi/js";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
+const PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=app.helthy.mobile";
+
+function openQROrStore(e: React.MouseEvent) {
+  if (window.matchMedia("(pointer: fine)").matches) {
+    e.preventDefault();
+    window.dispatchEvent(new CustomEvent("helthy:qr-open"));
+  }
+  // On touch devices, href="/download" navigates to the store picker page.
+}
 
 const PREMIUM_FEATURES = [
   { icon: Sparkles, label: "Unlimited AI photo & voice meal logging" },
@@ -204,10 +213,9 @@ export default function PricingSection() {
           </ul>
 
           <div className="px-8 md:px-10 pt-10 pb-8 md:pb-10 mt-auto">
-            <Link
-              href={APP_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <a
+              href="/download"
+              onClick={openQROrStore}
               className="text-[14px] w-full inline-flex justify-center items-center rounded-full font-medium transition-colors"
               style={{
                 padding: "14px 20px",
@@ -216,7 +224,7 @@ export default function PricingSection() {
               }}
             >
               Start free
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -400,14 +408,13 @@ export default function PricingSection() {
 
           {/* CTA */}
           <div className="px-8 md:px-10 pt-10 pb-8 md:pb-10 mt-auto">
-            <Link
-              href={APP_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <a
+              href="/download"
+              onClick={openQROrStore}
               className="btn-primary text-[14px] w-full justify-center"
             >
               Get Helthy Pro
-            </Link>
+            </a>
           </div>
         </div>
 

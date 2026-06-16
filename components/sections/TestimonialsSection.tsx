@@ -2,13 +2,16 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { Star } from "lucide-react";
 
-const APP_STORE_URL =
-  "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
+function handleDownloadClick(e: React.MouseEvent) {
+  if (window.matchMedia("(pointer: fine)").matches) {
+    e.preventDefault();
+    window.dispatchEvent(new CustomEvent("helthy:qr-open"));
+  }
+}
 
 /** iOS Contacts-style: first two capitalized letters of the handle/name. */
 function initialsOf(name: string): string {
@@ -499,14 +502,13 @@ function TransformationStack() {
         ))}
       </div>
       <div className="mt-10 flex flex-col items-center gap-3">
-        <Link
-          href={APP_STORE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+        <a
+          href="/download"
+          onClick={handleDownloadClick}
           className="btn-primary"
         >
           Start your transformation
-        </Link>
+        </a>
         <p
           className="text-[11px] uppercase"
           style={{

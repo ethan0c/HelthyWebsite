@@ -11,7 +11,7 @@ type CTAButtonProps = {
   variant?: Variant;
   external?: boolean;
   size?: "sm" | "md";
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
 };
 
 /**
@@ -108,7 +108,7 @@ export default function CTAButton({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="group hover:scale-[1.02]"
+        className="group hover:scale-[1.02] pointer-events-auto"
         style={style}
         onClick={onClick}
       >
@@ -120,7 +120,7 @@ export default function CTAButton({
   return (
     <Link
       href={href}
-      className="group hover:scale-[1.02]"
+      className="group hover:scale-[1.02] pointer-events-auto"
       style={style}
       onClick={onClick}
     >

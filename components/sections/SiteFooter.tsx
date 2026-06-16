@@ -5,6 +5,8 @@ import Image from "next/image";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
+const PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=app.helthy.mobile";
 
 const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
@@ -21,6 +23,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     links: [
       { label: "Contact", href: "/contact" },
       { label: "App Store", href: APP_STORE_URL },
+      { label: "Google Play", href: PLAY_STORE_URL },
     ],
   },
   {

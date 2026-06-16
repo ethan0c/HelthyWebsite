@@ -103,7 +103,7 @@ export default function HeroSection() {
           }}
         >
           Log meals with a photo, track every lift, and get coached by AI that
-          connects nutrition, training, and recovery.
+          connects nutrition, training, and recovery. Free on iOS & Android.
         </p>
 
         <div
@@ -126,17 +126,6 @@ export default function HeroSection() {
           <AndroidWaitlistButton />
         </div>
 
-        <p
-          style={{
-            marginTop: "clamp(24px, 3vh, 32px)",
-            fontSize: "clamp(13px, 1.1vw, 15px)",
-            color: "rgba(249,249,249,0.45)",
-            letterSpacing: "-0.01em",
-            textShadow: "0 1px 8px rgba(0,0,0,0.5)",
-          }}
-        >
-          Our core features will always be free. Download Helthy and get started.
-        </p>
       </div>
 
       {/* Bottom fade into next section */}

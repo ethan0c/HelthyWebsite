@@ -1,16 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 
 const STORAGE_KEY = "helthy-launch-banner-dismissed";
-
-// For now, Pro is iOS-only, so the CTA goes straight to the App Store.
-// Post Android launch this should instead scroll to the hero so users can
-// pick iOS/Android (with a QR code for desktop visitors) — see
-// docs/launch-banner-cta.md.
-const APP_STORE_URL =
-  "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
 
 /**
  * Dismissible launch announcement bar. Sits in normal flow at the very top
@@ -65,17 +57,20 @@ export default function LaunchBanner() {
           className="text-[12px] sm:text-[13px] font-medium tracking-tight text-center whitespace-nowrap"
           style={{ color: "#0A0A0A" }}
         >
-          <span className="hidden sm:inline">Helthy Pro is live on iOS. Android lands June 12.</span>
-          <span className="sm:hidden">Pro live on iOS · Android June 12.</span>
-          <Link
-            href={APP_STORE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          Helthy is live on iOS & Android.
+          <a
+            href="/download"
+            onClick={(e) => {
+              if (window.matchMedia("(pointer: fine)").matches) {
+                e.preventDefault();
+                window.dispatchEvent(new CustomEvent("helthy:qr-open"));
+              }
+            }}
             className="ml-2 underline underline-offset-4 transition-opacity hover:opacity-70"
             style={{ color: "#0A0A0A" }}
           >
-            Get Pro →
-          </Link>
+            Download →
+          </a>
         </p>
       </div>
 
