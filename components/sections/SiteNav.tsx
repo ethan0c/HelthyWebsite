@@ -137,8 +137,8 @@ export default function SiteNav() {
           ))}
         </ul>
 
-        <CTAButton href="/download" variant="primary" size="md" onClick={handleDownloadClick}>
-          Download app
+        <CTAButton href="/download" variant="primary" size="sm" onClick={handleDownloadClick}>
+          Download
         </CTAButton>
       </nav>
 
