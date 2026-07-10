@@ -25,24 +25,71 @@ const V2_1_3_SECTIONS = [
       "You can now finish a workout even if you forgot to mark your sets as done — the app offers to save the sets you filled in",
       "The week dates on your weekly recap now match everywhere they appear: the Home card, the magazine rack, and the issue itself",
       "Weekly recap notifications no longer arrive before the recap is actually ready to read",
-      "AI-logged foods now show a clear serving amount on the edit screen instead of a raw weight",
+    ],
+  },
+];
+
+const V2_2_SECTIONS = [
+  {
+    label: "Added",
+    items: [
+      "Global leaderboards — rank against other Helthy users on Steps (daily or weekly), Workouts, Activity minutes, and Calories burned. Open from the podium icon on Home and share your rank. Opt-in via Settings > Profile.",
+      "Usernames — set one in Settings > Profile, used on leaderboards and shared cards",
+      "Smart action cards on Home — a meal card near your usual meal times and a workout card near your usual workout time, so logging is one tap away. Swipe to dismiss for the day.",
+      "Your frequently logged meals — one-tap logging of the meals you log most often around that time of day, right inside the smart meal card (Premium)",
+      "Weight trend card on the Home tab showing your recent weight progress",
+      "Live reading of today's steps from Apple Health for immediate display on Home",
+      "+/- steppers for reps and weight during a workout — nudge a value without retyping it, hold to repeat quickly",
+      "Swipe an exercise's header right during a workout to replace it with a different exercise",
+      "Meal and workout reminders now open straight into the logging screen instead of just the tab",
+      "Voice-logged and described foods that aren't in the database now get an AI nutrition estimate instead of logging at zero",
+    ],
+  },
+  {
+    label: "Changed",
+    items: [
+      "Silky-smooth throughout — refined animations and transitions for a faster, more responsive feel across the whole app",
+      "Fewer taps to log — meal, weight, and exercise logging are now quicker and more streamlined",
+      "New swipe gestures for faster logging and navigation",
+      "New Premium color themes: Oat Milk, Matcha, and Concrete",
+      "Home screen redesigned around goal progress and today's activity",
+      "Create Food — name and brand fields now auto-advance to the next field",
+      "Faster loading for exercise demo GIFs and the Exercise Info screen",
+    ],
+  },
+  {
+    label: "Fixed",
+    items: [
+      "Adding a new set during a workout now copies the reps and weight you actually logged on the previous set, instead of a stale default",
+      "Volume personal records are no longer falsely triggered for exercises with no prior volume history",
+      "Voice logging now requires the \"Hey Helthy\" wake word instead of firing on any speech",
+    ],
+  },
+  {
+    label: "Removed",
+    items: [
+      "Deep Abyss and Crimson Volcanic color themes",
+      "Home layout customization (Bento/Stacked layouts and card customization)",
     ],
   },
 ];
 
 const V2_1_SECTIONS = [
   {
-    label: "AI Coach",
+    label: "Added",
     items: [
       "AI Coach Tone — choose how your coach talks to you: Direct, Balanced, or Warm (Settings > AI Coach Tone)",
-    ],
-  },
-  {
-    label: "Insights",
-    items: [
       "Helthy Weekly — your week as a full-screen magazine in the Insights tab, with a hero highlight, quiet win, honest look, and narrative summary",
       "New issue card on the Home tab so you never miss a weekly recap",
       "Trends screen — weight projection toward your goal, 30-day nutrition charts, goal ETA, plateau alerts, and muscle imbalance data",
+      "A quick, optional \"How did you hear about us?\" step during setup",
+    ],
+  },
+  {
+    label: "Changed",
+    items: [
+      "Settings now has a search bar",
+      "Exercise Library filters redesigned — muscle group and equipment filters open in a modal",
     ],
   },
 ];
@@ -209,6 +256,11 @@ export default function ChangelogPage() {
           />
 
           <div className="mt-16 space-y-12">
+            <ReleaseBlock
+              version="Helthy 2.2"
+              date="July 2026"
+              sections={V2_2_SECTIONS}
+            />
             <ReleaseBlock
               version="Helthy 2.1.3"
               date="June 2026"
