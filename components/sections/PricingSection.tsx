@@ -375,7 +375,7 @@ export default function PricingSection() {
                 style={{ color: "rgba(205,255,80,0.85)" }}
               >
                 {isYearly
-                  ? "That's just $1.66 a month · Price locked in for life"
+                  ? "That's just $1.67 a month · Price locked in for life"
                   : "Cancel anytime · Price locked in for life"
                 }
               </p>
