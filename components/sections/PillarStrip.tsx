@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import Icon from "@mdi/react";
-import { mdiCameraOutline, mdiArmFlexOutline, mdiRobotHappyOutline, mdiSleep } from "@mdi/js";
+import { mdiCameraOutline, mdiArmFlexOutline, mdiRobotHappyOutline, mdiChartLineVariant } from "@mdi/js";
 
 /**
  * Slim value-pillar band that bridges the hero and the phone showcase.
@@ -15,8 +15,8 @@ import { mdiCameraOutline, mdiArmFlexOutline, mdiRobotHappyOutline, mdiSleep } f
 const PILLARS = [
   { icon: mdiCameraOutline, label: "Snap a photo, log a meal" },
   { icon: mdiArmFlexOutline, label: "Track every lift" },
-  { icon: mdiRobotHappyOutline, label: "AI coach that learns you" },
-  { icon: mdiSleep, label: "Recovery-aware plans" },
+  { icon: mdiChartLineVariant, label: "See your trends" },
+  { icon: mdiRobotHappyOutline, label: "AI that learns you" },
 ];
 
 export default function PillarStrip() {

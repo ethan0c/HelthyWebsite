@@ -60,8 +60,8 @@ export default function HowItWorksSection() {
           {/* ── Step 1: Set your goals ── */}
           <StepCard
             number="01"
-            title="Tell us your goals"
-            description="Pick your target, set your stats, and your AI coach builds a plan in under two minutes."
+            title="Set your goals"
+            description="Pick your target and enter your stats. Helthy sets your daily calories, macros, and step goal in under two minutes."
           >
             <OnboardingMockup />
           </StepCard>
@@ -78,8 +78,8 @@ export default function HowItWorksSection() {
           {/* ── Step 3: Get coached ── */}
           <StepCard
             number="03"
-            title="Get coached by AI"
-            description="Your coach connects nutrition, training, and recovery to give you actionable guidance every single day."
+            title="See what to fix"
+            description="Because it's all in one place, Helthy's AI connects your food, training, and weight — and tells you the one thing to change next."
           >
             <CoachingMockup />
           </StepCard>

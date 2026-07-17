@@ -85,8 +85,8 @@ export default function HeroSection() {
             maxWidth: "16ch",
           }}
         >
-          A coach that{" "}
-          <span className="text-helthy-lemon whitespace-nowrap">learns&nbsp;you</span>.
+          Every meal, every lift,{" "}
+          <span className="text-helthy-lemon whitespace-nowrap">one&nbsp;app</span>.
         </h1>
 
         <p
@@ -103,9 +103,10 @@ export default function HeroSection() {
             textShadow: "0 2px 16px rgba(0,0,0,0.4)",
           }}
         >
-          We built Helthy because no app would tell us what to actually fix.
-          Snap a photo to log a meal, track every lift, and get real guidance
-          from a coach that sees your whole picture. Free on iOS &amp; Android.
+          Snap a photo to log food, track every workout, and watch your weight
+          trend — all in one app, with an AI that connects the dots most trackers
+          miss. We built it because juggling four apps never told us what to fix.
+          Free on iOS &amp; Android.
         </p>
 
         <div
