@@ -151,7 +151,7 @@ export default function PhoneShowcaseSection() {
       className="relative w-full overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, #080d10 10%, #41515a 45%, #3f4e56 65%, #0A0A0A 100%)",
+          "linear-gradient(180deg, #080d10 10%, #41515a 45%, #3f4e56 65%, #101012 100%)",
         paddingTop: "clamp(72px, 10vh, 120px)",
         paddingBottom: "clamp(72px, 10vh, 120px)",
       }}
@@ -175,7 +175,7 @@ export default function PhoneShowcaseSection() {
       <div
         aria-hidden="true"
         className="absolute top-0 left-0 right-0 pointer-events-none"
-        style={{ height: 180, zIndex: 1, background: "linear-gradient(#0A0A0A 0%, rgba(10,10,10,0) 100%)" }}
+        style={{ height: 180, zIndex: 1, background: "linear-gradient(#101012 0%, rgba(10,10,10,0) 100%)" }}
       />
 
       {/* Grain texture */}
@@ -432,7 +432,7 @@ export default function PhoneShowcaseSection() {
       <div
         aria-hidden="true"
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
-        style={{ height: 240, zIndex: 10, background: "linear-gradient(to bottom, transparent, #0A0A0A)" }}
+        style={{ height: 240, zIndex: 10, background: "linear-gradient(to bottom, transparent, #101012)" }}
       />
     </section>
   );

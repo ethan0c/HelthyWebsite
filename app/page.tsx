@@ -3,8 +3,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import PillarStrip from "@/components/sections/PillarStrip";
 import PhoneShowcaseSection from "@/components/sections/PhoneShowcaseSection";
 import HowItWorksSection from "@/components/sections/HowItWorksSection";
-import FeaturesRow from "@/components/sections/FeaturesRow";
-import WhyHelthySection from "@/components/sections/WhyHelthySection";
+import FeaturesTeaser from "@/components/sections/FeaturesTeaser";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import PricingSection from "@/components/sections/PricingSection";
 import FAQSection from "@/components/sections/FAQSection";
@@ -24,10 +23,9 @@ export default function Home() {
       <HeroSection />
       <PillarStrip />
       <PhoneShowcaseSection />
-      <FeaturesRow />
+      <FeaturesTeaser />
       <div aria-hidden="true" className="section-beam" />
       <HowItWorksSection />
-      <WhyHelthySection />
       <div aria-hidden="true" className="section-beam" />
       <TestimonialsSection />
       <PricingSection />

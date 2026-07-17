@@ -87,8 +87,8 @@
 
 /* ── Design Tokens ────────────────────────────────────────────── */
 :root {
-  --background: #0A0A0A;
-  --foreground: #ffffff;
+  --background: #101012;
+  --foreground: #ededed;
   --helthy-black: #151515;
   --helthy-lemon: #CDFF50;
   --helthy-lemon-deep: #7BB820;

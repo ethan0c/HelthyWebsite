@@ -41,7 +41,7 @@ export default function PillarStrip() {
     <section
       ref={ref}
       aria-label="What Helthy does"
-      className="relative w-full bg-[#0A0A0A] overflow-hidden"
+      className="relative w-full bg-[#101012] overflow-hidden"
       style={{
         paddingTop: "clamp(28px, 4vh, 48px)",
         paddingBottom: "clamp(40px, 6vh, 72px)",

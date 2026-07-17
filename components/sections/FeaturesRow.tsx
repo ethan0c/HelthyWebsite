@@ -86,8 +86,8 @@ export default function FeaturesRow() {
 
       <div className="container-page relative" style={{ zIndex: 1 }}>
         <SectionHeading
-          title="Everything you need,"
-          italicTail="nothing you don't"
+          title="Four apps' worth of tracking,"
+          italicTail="in one"
           trailingPunctuation=""
         />
 

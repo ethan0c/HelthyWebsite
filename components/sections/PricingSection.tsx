@@ -233,7 +233,7 @@ export default function PricingSection() {
           data-price-card
           className="relative rounded-[1.5rem] text-left overflow-hidden border border-white/10 flex flex-col"
           style={{
-            background: "linear-gradient(145deg, #1A1A1A 0%, #0A0A0A 100%)",
+            background: "linear-gradient(145deg, #1A1A1A 0%, #101012 100%)",
             boxShadow:
               "inset 0 1px 1px rgba(255,255,255,0.05), " +
               "0 2px 4px rgba(0,0,0,0.4)," +

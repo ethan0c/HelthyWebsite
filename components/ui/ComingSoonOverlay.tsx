@@ -67,17 +67,17 @@ export default function ComingSoonOverlay({
   const bgGradient = isLight
     ? "linear-gradient(180deg, rgba(242,239,235,0.55) 0%, rgba(242,239,235,0.85) 100%)"
     : "linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.85) 100%)";
-  const textColor = isLight ? "#0A0A0A" : "#F9F9F9";
+  const textColor = isLight ? "#101012" : "#F9F9F9";
   const subTextColor = isLight ? "rgba(10,10,10,0.6)" : "rgba(249,249,249,0.6)";
   const pillBg = isLight ? "rgba(10,10,10,0.06)" : "rgba(205,255,80,0.08)";
   const pillBorder = isLight ? "rgba(10,10,10,0.12)" : "rgba(205,255,80,0.25)";
   const pillText = isLight ? "rgba(10,10,10,0.7)" : "#CDFF50";
   const inputBg = isLight ? "rgba(10,10,10,0.06)" : "rgba(255,255,255,0.06)";
   const inputBorder = isLight ? "rgba(10,10,10,0.14)" : "rgba(255,255,255,0.14)";
-  const inputText = isLight ? "#0A0A0A" : "#FFFFFF";
+  const inputText = isLight ? "#101012" : "#FFFFFF";
   const inputPlaceholder = isLight ? "rgba(10,10,10,0.4)" : "rgba(255,255,255,0.4)";
-  const btnBg = isLight ? "#0A0A0A" : "#CDFF50";
-  const btnText = isLight ? "#CDFF50" : "#0A0A0A";
+  const btnBg = isLight ? "#101012" : "#CDFF50";
+  const btnText = isLight ? "#CDFF50" : "#101012";
 
   return (
     <>

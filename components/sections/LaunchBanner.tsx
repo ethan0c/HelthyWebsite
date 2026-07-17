@@ -46,16 +46,16 @@ export default function LaunchBanner() {
         >
           <span
             className="absolute inset-0 rounded-full animate-ping"
-            style={{ background: "#0A0A0A", opacity: 0.35 }}
+            style={{ background: "#101012", opacity: 0.35 }}
           />
           <span
             className="relative rounded-full"
-            style={{ width: 6, height: 6, background: "#0A0A0A" }}
+            style={{ width: 6, height: 6, background: "#101012" }}
           />
         </span>
         <p
           className="text-[12px] sm:text-[13px] font-medium tracking-tight text-center whitespace-nowrap"
-          style={{ color: "#0A0A0A" }}
+          style={{ color: "#101012" }}
         >
           Helthy is live on iOS & Android.
           <a
@@ -67,7 +67,7 @@ export default function LaunchBanner() {
               }
             }}
             className="ml-2 underline underline-offset-4 transition-opacity hover:opacity-70"
-            style={{ color: "#0A0A0A" }}
+            style={{ color: "#101012" }}
           >
             Download →
           </a>
@@ -79,7 +79,7 @@ export default function LaunchBanner() {
         onClick={dismiss}
         aria-label="Dismiss announcement"
         className="absolute top-1/2 -translate-y-1/2 right-3 flex items-center justify-center rounded-full transition-opacity hover:opacity-60"
-        style={{ width: 24, height: 24, color: "#0A0A0A" }}
+        style={{ width: 24, height: 24, color: "#101012" }}
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path

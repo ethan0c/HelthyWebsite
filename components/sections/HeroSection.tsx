@@ -31,7 +31,7 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative w-full overflow-hidden bg-[#0F0F0F]"
+      className="relative w-full overflow-hidden bg-[#141416]"
       style={{ minHeight: "clamp(620px, 82svh, 900px)" }}
     >
       {/* Background video — shown on all breakpoints */}
@@ -42,6 +42,7 @@ export default function HeroSection() {
         loop
         playsInline
         preload="metadata"
+        poster="/videos/hero-poster.jpg"
         aria-hidden
       >
         <source src="/videos/hero-man-running.mp4" type="video/mp4" />
@@ -102,8 +103,9 @@ export default function HeroSection() {
             textShadow: "0 2px 16px rgba(0,0,0,0.4)",
           }}
         >
-          Log meals with a photo, track every lift, and get coached by AI that
-          connects nutrition, training, and recovery. Free on iOS & Android.
+          We built Helthy because no app would tell us what to actually fix.
+          Snap a photo to log a meal, track every lift, and get real guidance
+          from a coach that sees your whole picture. Free on iOS &amp; Android.
         </p>
 
         <div
@@ -132,7 +134,7 @@ export default function HeroSection() {
       <div
         aria-hidden="true"
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
-        style={{ height: 180, background: "linear-gradient(transparent, #0A0A0A)", zIndex: 5 }}
+        style={{ height: 180, background: "linear-gradient(transparent, #101012)", zIndex: 5 }}
       />
     </section>
   );
