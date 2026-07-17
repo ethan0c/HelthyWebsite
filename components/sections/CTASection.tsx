@@ -112,8 +112,8 @@ export default function CTASection() {
           data-cta-sub
           className="text-[15px] sm:text-[17px] lg:text-[19px] text-white/55 font-light leading-relaxed max-w-lg mx-auto mb-8 sm:mb-10"
         >
-          Free forever. No credit card. Unlock unlimited AI with Premium
-          whenever you&apos;re ready.
+          The free plan is genuinely free, forever. No credit card. Add the
+          full AI coach with Premium whenever you&apos;re ready — not before.
         </p>
 
         {/* CTA buttons */}
