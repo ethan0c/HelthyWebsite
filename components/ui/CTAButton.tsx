@@ -57,18 +57,25 @@ export default function CTAButton({
       "inset 0 0.6px 0.6px -1.25px rgba(255,255,255,0.72)," +
       "inset 0 2.29px 2.29px -2.5px rgba(255,255,255,0.635)," +
       "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
-      "0 14px 6px -8px rgba(205,255,80,0.35)",
+      "0 14px 6px -8px rgba(205,255,80,0.35)," +
+      "0 4px 12px -2px rgba(0,0,0,0.35)",
   };
 
   const secondary: React.CSSProperties = {
-    background: "rgba(20,20,20,0.62)",
+    background:
+      "linear-gradient(180deg, rgba(50,50,54,0.9) 0%, rgba(24,24,26,0.92) 100%)",
     color: "#FFFFFF",
-    border: "1.5px solid rgba(46,46,48,0.9)",
+    border: "1.5px solid rgba(255,255,255,0.12)",
     backdropFilter: "blur(20px) saturate(140%)",
     WebkitBackdropFilter: "blur(20px) saturate(140%)",
     boxShadow:
-      "inset 0 1px 0 rgba(255,255,255,0.06)," +
-      "0 8px 24px rgba(0,0,0,0.3)",
+      // raised top bevel
+      "inset 0 1.5px 0 rgba(255,255,255,0.14)," +
+      // bottom inner shade — gives the pill its curvature
+      "inset 0 -6px 12px -6px rgba(0,0,0,0.5)," +
+      // grounding shadows
+      "0 2px 4px -1px rgba(0,0,0,0.4)," +
+      "0 12px 24px -8px rgba(0,0,0,0.5)",
   };
 
   const chipBg = isPrimary ? "rgba(11,11,11,0.18)" : "rgba(255,255,255,0.18)";

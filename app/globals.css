@@ -408,14 +408,17 @@ html:not(.is-safari) .grain::before {
    Solid #212121 → #161616 gradient, hairline #2A2A2A border,
    single subtle inset highlight + single outer depth shadow. */
 .card-helthy {
-  background: linear-gradient(180deg, #212121 0%, #161616 100%);
-  border: 1px solid #2A2A2A;
+  background: linear-gradient(145deg, #242427 0%, #1a1a1d 55%, #151517 100%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 8px 24px rgba(0, 0, 0, 0.35);
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 24px rgba(205, 255, 80, 0.02),
+    0 2px 4px -1px rgba(0, 0, 0, 0.3),
+    0 12px 24px -8px rgba(0, 0, 0, 0.45),
+    0 32px 56px -20px rgba(0, 0, 0, 0.55);
   transition:
     border-color 0.3s ease,
     box-shadow 0.3s ease,
@@ -423,19 +426,24 @@ html:not(.is-safari) .grain::before {
 }
 /* Premium variant — mirrors email premium-card (lemon-tinted gradient). */
 .card-helthy-glow {
-  background: linear-gradient(160deg, #1F2A0D 0%, #151A08 60%, #0F1106 100%);
+  background: linear-gradient(145deg, #22300E 0%, #151A08 60%, #0F1106 100%);
   border: 1px solid rgba(205, 255, 80, 0.28);
   box-shadow:
-    inset 0 1px 0 rgba(205, 255, 80, 0.18),
+    inset 0 1.5px 0 rgba(205, 255, 80, 0.22),
+    inset 0 -8px 16px -8px rgba(0, 0, 0, 0.5),
+    0 2px 4px -1px rgba(0, 0, 0, 0.35),
     0 12px 40px rgba(205, 255, 80, 0.1),
-    0 8px 24px rgba(0, 0, 0, 0.4);
+    0 16px 32px -12px rgba(0, 0, 0, 0.5);
 }
 .card-helthy-hover:hover {
   border-color: rgba(205, 255, 80, 0.25);
   transform: translateY(-2px);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 12px 32px rgba(0, 0, 0, 0.4);
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 0 24px rgba(205, 255, 80, 0.04),
+    0 4px 8px -2px rgba(0, 0, 0, 0.35),
+    0 16px 32px -8px rgba(0, 0, 0, 0.5),
+    0 40px 64px -24px rgba(0, 0, 0, 0.6);
 }
 
 .bento-card {

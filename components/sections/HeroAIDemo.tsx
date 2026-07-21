@@ -3,6 +3,15 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "@/lib/gsap";
 import HelthyLogoGlass from "@/components/ui/HelthyLogoGlass";
+import {
+  Drumstick,
+  Fish,
+  Salad,
+  EggFried,
+  Cherry,
+  Cookie,
+  type LucideIcon,
+} from "lucide-react";
 
 /**
  * HeroAIDemo — interactive AI-chat demo under the hero CTAs.
@@ -26,7 +35,7 @@ const MACRO = {
 const LEMON = "#CDFF50";
 
 interface DemoMeal {
-  emoji: string;
+  icon: LucideIcon;
   name: string;
   desc: string;
   cal: number;
@@ -50,13 +59,13 @@ const DEMOS: Demo[] = [
       "You're 52g short of your protein goal with one meal left. Either of these closes the gap:",
     meals: [
       {
-        emoji: "🍗",
+        icon: Drumstick,
         name: "Garlic Chicken & Rice Bowl",
         desc: "Pan-seared thighs, jasmine rice, charred broccoli.",
         cal: 620, p: 52, c: 58, f: 16,
       },
       {
-        emoji: "🐟",
+        icon: Fish,
         name: "Salmon + Sweet Potato Plate",
         desc: "Roasted salmon, mashed sweet potato, greens.",
         cal: 560, p: 43, c: 41, f: 22,
@@ -70,13 +79,13 @@ const DEMOS: Demo[] = [
       "Under 400 calories, over 25g protein, and nothing takes more than 10 minutes:",
     meals: [
       {
-        emoji: "🥣",
+        icon: Salad,
         name: "Greek Yogurt Power Bowl",
         desc: "2% Greek yogurt, granola, blueberries, honey.",
         cal: 380, p: 32, c: 41, f: 9,
       },
       {
-        emoji: "🍳",
+        icon: EggFried,
         name: "3-Egg Spinach Scramble",
         desc: "Eggs, spinach, feta, on sourdough thin.",
         cal: 340, p: 28, c: 16, f: 20,
@@ -90,13 +99,13 @@ const DEMOS: Demo[] = [
       "You have 210 calories left today. These fit without touching tomorrow:",
     meals: [
       {
-        emoji: "🫐",
+        icon: Cherry,
         name: "Cottage Cheese + Berries",
         desc: "Whipped cottage cheese, mixed berries, cinnamon.",
         cal: 160, p: 19, c: 14, f: 3,
       },
       {
-        emoji: "🍫",
+        icon: Cookie,
         name: "Chocolate Protein Pudding",
         desc: "Casein, cocoa, almond milk — sets in 5 min.",
         cal: 190, p: 24, c: 11, f: 4,
@@ -229,9 +238,14 @@ export default function HeroAIDemo() {
       <div
         className="rounded-3xl backdrop-blur-md overflow-hidden"
         style={{
-          background: "rgba(255,255,255,0.04)",
-          border: "1px solid rgba(255,255,255,0.09)",
-          boxShadow: "0 24px 60px -24px rgba(0,0,0,0.6)",
+          background:
+            "linear-gradient(160deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.028) 100%)",
+          border: "1px solid rgba(255,255,255,0.1)",
+          boxShadow:
+            "inset 0 1px 0 0 rgba(255,255,255,0.09)," +
+            "0 2px 6px -2px rgba(0,0,0,0.3)," +
+            "0 24px 60px -24px rgba(0,0,0,0.6)," +
+            "0 0 80px -30px rgba(205,255,80,0.12)",
         }}
       >
         {/* Input row */}
@@ -266,13 +280,17 @@ export default function HeroAIDemo() {
             type="submit"
             aria-label="Send"
             disabled={busy || !input.trim()}
-            className="flex items-center justify-center rounded-full flex-shrink-0 transition-opacity"
+            className="flex items-center justify-center rounded-full flex-shrink-0 transition-all active:scale-95"
             style={{
               width: 34,
               height: 34,
               background: LEMON,
               opacity: busy || !input.trim() ? 0.35 : 1,
               cursor: busy || !input.trim() ? "default" : "pointer",
+              boxShadow:
+                "inset 0 2px 1px 0 rgba(255,255,255,0.5)," +
+                "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
+                "0 8px 16px -6px rgba(205,255,80,0.4)",
             }}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -339,20 +357,44 @@ export default function HeroAIDemo() {
             {demo.meals.map((meal, idx) => (
               <div
                 key={meal.name}
-                className="rounded-2xl transition-all duration-500"
+                className="group rounded-2xl transition-all duration-500 hover:-translate-y-[2px]"
                 style={{
                   marginTop: 10,
-                  padding: "12px 14px",
-                  background: "rgba(42,42,42,0.75)",
-                  border: "1px solid rgba(255,255,255,0.06)",
+                  padding: "13px 14px",
+                  background:
+                    "linear-gradient(145deg, rgba(52,52,56,0.85) 0%, rgba(34,34,38,0.9) 55%, rgba(28,28,32,0.92) 100%)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  boxShadow:
+                    // top bevel highlight
+                    "inset 0 1px 0 0 rgba(255,255,255,0.08)," +
+                    // inner lemon wash
+                    "inset 0 0 24px 0 rgba(205,255,80,0.03)," +
+                    // outer depth
+                    "0 2px 4px -1px rgba(0,0,0,0.25)," +
+                    "0 12px 24px -8px rgba(0,0,0,0.45)",
                   opacity: idx < visibleCards ? 1 : 0,
                   transform: idx < visibleCards ? "translateY(0)" : "translateY(10px)",
                   pointerEvents: idx < visibleCards ? "auto" : "none",
                 }}
               >
                 <div className="flex items-start gap-3">
-                  <span style={{ fontSize: 22, lineHeight: "28px" }} aria-hidden="true">
-                    {meal.emoji}
+                  {/* 3D icon tile — lemon-tinted, beveled */}
+                  <span
+                    className="flex items-center justify-center flex-shrink-0"
+                    aria-hidden="true"
+                    style={{
+                      width: 38,
+                      height: 38,
+                      borderRadius: 12,
+                      background:
+                        "linear-gradient(145deg, rgba(205,255,80,0.16) 0%, rgba(205,255,80,0.05) 100%)",
+                      border: "1px solid rgba(205,255,80,0.25)",
+                      boxShadow:
+                        "inset 0 1px 0 0 rgba(255,255,255,0.15)," +
+                        "0 4px 12px -4px rgba(205,255,80,0.3)",
+                    }}
+                  >
+                    <meal.icon size={19} color={LEMON} strokeWidth={1.75} />
                   </span>
                   <div className="flex-1 min-w-0">
                     <p
@@ -403,14 +445,22 @@ export default function HeroAIDemo() {
                     type="button"
                     onClick={() => toggleLog(idx)}
                     aria-label={logged.has(idx) ? `${meal.name} logged` : `Log ${meal.name}`}
-                    className="flex items-center justify-center flex-shrink-0 transition-colors"
+                    className="flex items-center justify-center flex-shrink-0 transition-all active:scale-95"
                     style={{
                       width: 34,
                       height: 34,
                       borderRadius: 12,
-                      background: logged.has(idx) ? `${LEMON}33` : LEMON,
+                      background: logged.has(idx) ? `${LEMON}26` : LEMON,
                       cursor: "pointer",
-                      border: "none",
+                      border: logged.has(idx)
+                        ? `1px solid ${LEMON}40`
+                        : "none",
+                      boxShadow: logged.has(idx)
+                        ? "none"
+                        : // glossy top, lemon glow below — matches app pill
+                          "inset 0 2px 1px 0 rgba(255,255,255,0.5)," +
+                          "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
+                          "0 8px 16px -6px rgba(205,255,80,0.45)",
                     }}
                   >
                     {logged.has(idx) ? (
@@ -453,7 +503,13 @@ function MacroPill({ value, label, color }: { value: number; label: string; colo
   return (
     <span
       className="inline-flex items-center rounded-full"
-      style={{ padding: "3px 9px", gap: 2, background: `${color}10` }}
+      style={{
+        padding: "3px 9px",
+        gap: 2,
+        background: `${color}14`,
+        border: `1px solid ${color}26`,
+        boxShadow: `inset 0 1px 0 0 rgba(255,255,255,0.07)`,
+      }}
     >
       <span
         style={{

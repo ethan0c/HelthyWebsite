@@ -5,9 +5,12 @@ import { gsap } from "@/lib/gsap";
 import HelthyLogoGlass from "@/components/ui/HelthyLogoGlass";
 import AndroidWaitlistButton from "@/components/ui/AndroidWaitlistButton";
 import CTAButton from "@/components/ui/CTAButton";
-import AnimatedMesh from "@/components/ui/AnimatedMesh";
-import Icon from "@mdi/react";
-import { mdiLightningBoltOutline } from "@mdi/js";
+
+/**
+ * Final CTA — bookends the page with the hero's brand line.
+ * Same construction as the hero: small line → giant "Get [mark] Helthy."
+ * with the glass mark popping in — replayed on scroll into view.
+ */
 
 function handleDownloadClick(e: React.MouseEvent) {
   if (window.matchMedia("(pointer: fine)").matches) {
@@ -26,38 +29,30 @@ export default function CTASection() {
           trigger: sectionRef.current,
           start: "top 70%",
         },
+        defaults: { ease: "power3.out" },
       });
 
-      tl.from("[data-cta-mark]", {
-        scale: 0.5,
-        opacity: 0,
-        duration: 0.8,
-        ease: "back.out(2)",
-      })
-        .from(
-          "[data-cta-heading]",
-          { y: 40, opacity: 0, duration: 0.9, ease: "power3.out" },
-          "-=0.4"
-        )
-        .from(
-          "[data-cta-sub]",
-          { y: 20, opacity: 0, duration: 0.7, ease: "power3.out" },
-          "-=0.5"
-        )
-        .from(
-          "[data-cta-button]",
-          { y: 15, opacity: 0, duration: 0.6, ease: "power3.out" },
-          "-=0.4"
-        )
-;
-
-      // Slowly rotate the glow ring
-      gsap.to("[data-glow-ring]", {
-        rotation: 360,
-        duration: 30,
-        ease: "none",
-        repeat: -1,
-      });
+      tl.from("[data-cta-kicker]", { y: 16, opacity: 0, duration: 0.6 });
+      tl.from(
+        "[data-cta-word]",
+        { yPercent: 115, duration: 0.9, stagger: 0.1, ease: "power4.out" },
+        0.1,
+      );
+      tl.fromTo(
+        "[data-cta-mark]",
+        { width: 0, scale: 0, rotation: -120, opacity: 0 },
+        {
+          width: "0.82em",
+          scale: 1,
+          rotation: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: "back.out(1.7)",
+        },
+        0.7,
+      );
+      tl.from("[data-cta-sub]", { y: 14, opacity: 0, duration: 0.6 }, 1.0);
+      tl.from("[data-cta-button]", { y: 15, opacity: 0, duration: 0.6 }, 1.15);
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -65,59 +60,90 @@ export default function CTASection() {
   return (
     <section
       ref={sectionRef}
-      className="relative section-padding overflow-hidden section-glow-lemon"
+      className="relative section-padding overflow-hidden"
     >
-      {/* Massive subtle background watermark */}
+      {/* Lemon glow — same bloom language as the hero */}
       <div
-        className="absolute top-1/2 left-[60%] lg:left-[70%] -translate-y-1/2 opacity-[0.03] text-helthy-lemon pointer-events-none -z-10 blur-[2px]"
         aria-hidden="true"
-        style={{ transform: "translateY(-50%) rotate(15deg) scale(1.2)" }}
-      >
-        <Icon path={mdiLightningBoltOutline} size={50} color="currentColor" />
-      </div>
-
-      {/* Constantly-drifting ambient gradient mesh */}
-      <AnimatedMesh className="-z-20" />
-
-      {/* Rotating gradient ring */}
-      <div
-        data-glow-ring
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vw] max-w-[700px] max-h-[700px] lg:max-w-[900px] lg:max-h-[900px] rounded-full pointer-events-none"
-        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "conic-gradient(from 0deg, transparent 0%, rgba(205,255,80,0.08) 15%, transparent 30%, transparent 50%, rgba(205,255,80,0.05) 65%, transparent 80%, transparent 100%)",
-          mask: "radial-gradient(circle, transparent 48%, black 49%, black 51%, transparent 52%)",
-          WebkitMask:
-            "radial-gradient(circle, transparent 48%, black 49%, black 51%, transparent 52%)",
+            "radial-gradient(90% 70% at 50% 55%, rgba(205,255,80,0.09) 0%, rgba(205,255,80,0.025) 40%, transparent 65%)",
         }}
       />
 
-      <div className="relative mx-auto max-w-3xl text-center z-10">
-        {/* Glass Mark */}
-        <div data-cta-mark className="flex justify-center mb-8 drop-shadow-2xl">
-          <HelthyLogoGlass size={72} />
-        </div>
-
-        {/* Heading — big display */}
-        <h2
-          data-cta-heading
-          className="text-display-xl font-heading tracking-tight mb-6"
+      <div className="relative mx-auto max-w-4xl text-center z-10 flex flex-col items-center">
+        {/* Small line */}
+        <p
+          data-cta-kicker
+          className="font-display"
+          style={{
+            fontSize: "clamp(16px, 1.8vw, 24px)",
+            fontWeight: 500,
+            letterSpacing: "-0.015em",
+            color: "rgba(249,249,249,0.78)",
+            margin: 0,
+          }}
         >
-          Stop guessing,{" "}
-          <span className="text-italics text-helthy-lemon">start today</span>.
+          Stop guessing. Start today.
+        </p>
+
+        {/* Giant brand line — mirrors the hero */}
+        <h2
+          className="font-heading flex items-center justify-center flex-nowrap"
+          style={{
+            fontSize: "clamp(52px, 10vw, 130px)",
+            fontWeight: 600,
+            letterSpacing: "-0.05em",
+            lineHeight: "0.95em",
+            color: "#F9F9F9",
+            margin: "clamp(8px, 1.4vh, 16px) 0 0",
+            gap: "0.14em",
+          }}
+        >
+          <span
+            className="inline-block overflow-hidden"
+            style={{ padding: "0.08em 0.05em 0.14em", margin: "-0.08em -0.05em -0.14em" }}
+          >
+            <span data-cta-word className="inline-block">Get</span>
+          </span>
+
+          <span
+            data-cta-mark
+            aria-hidden="true"
+            className="inline-flex items-center justify-center flex-shrink-0"
+            style={{ width: "0.82em", height: "0.82em", marginTop: "0.06em" }}
+          >
+            <HelthyLogoGlass size={1} style={{ width: "100%", height: "100%" }} />
+          </span>
+
+          <span
+            className="inline-block overflow-hidden"
+            style={{ padding: "0.08em 0.05em 0.14em", margin: "-0.08em -0.05em -0.14em" }}
+          >
+            <span data-cta-word className="inline-block text-helthy-lemon">Helthy.</span>
+          </span>
         </h2>
 
+        {/* Quiet reassurance line */}
         <p
           data-cta-sub
-          className="text-[15px] sm:text-[17px] lg:text-[19px] text-white/55 font-light leading-relaxed max-w-lg mx-auto mb-8 sm:mb-10"
+          style={{
+            fontSize: "clamp(14px, 1.2vw, 16px)",
+            color: "rgba(249,249,249,0.55)",
+            fontWeight: 300,
+            margin: "clamp(18px, 2.4vh, 28px) 0 0",
+          }}
         >
-          The free plan is genuinely free, forever. No credit card. Add the
-          full AI coach with Premium whenever you&apos;re ready — not before.
+          Free on iOS &amp; Android. The free plan is free forever — no credit card.
         </p>
 
         {/* CTA buttons */}
-        <div data-cta-button className="flex flex-col items-center sm:flex-row sm:items-center sm:justify-center gap-4">
+        <div
+          data-cta-button
+          className="flex flex-col items-center sm:flex-row sm:items-center sm:justify-center gap-4"
+          style={{ marginTop: "clamp(28px, 3.6vh, 40px)" }}
+        >
           <CTAButton
             href="/download"
             variant="primary"

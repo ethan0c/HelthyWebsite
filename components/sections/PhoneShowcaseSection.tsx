@@ -50,7 +50,14 @@ function MacroPill({ value, label, color }: { value: number; label: string; colo
   return (
     <span
       className="inline-flex items-baseline"
-      style={{ gap: 2, padding: "3px 7px", borderRadius: 8, background: `color-mix(in srgb, ${color} 12%, transparent)` }}
+      style={{
+        gap: 2,
+        padding: "3px 8px",
+        borderRadius: 999,
+        background: `color-mix(in srgb, ${color} 14%, transparent)`,
+        border: `1px solid color-mix(in srgb, ${color} 24%, transparent)`,
+        boxShadow: "inset 0 1px 0 rgba(255,255,255,0.07)",
+      }}
     >
       <span className="text-numeric tabular-nums" style={{ fontSize: 12, fontWeight: 500, color: "var(--foreground)", lineHeight: 1 }}>
         {Math.round(value)}
@@ -344,21 +351,24 @@ export default function PhoneShowcaseSection() {
                 marginTop: c.y,
                 padding: "14px 16px",
                 borderRadius: 18,
-                // 3D surface: slightly lighter at top, fading to card bg —
-                // simulates overhead lighting catching the top face.
-                background: `linear-gradient(160deg, var(--helthy-card-section) 0%, var(--helthy-card) 100%)`,
+                // 3D surface: diagonal light — brighter top-left face
+                // falling to the card bg, like the hero demo cards.
+                background: `linear-gradient(145deg, color-mix(in srgb, var(--helthy-card-section) 88%, #FFFFFF 12%) 0%, var(--helthy-card-section) 40%, var(--helthy-card) 100%)`,
                 backdropFilter: "blur(12px)",
                 WebkitBackdropFilter: "blur(12px)",
-                // Inset top highlight: 1px bright line on the top edge,
-                // like a beveled surface catching the light.
                 boxShadow: [
-                  "inset 0 1px 0 rgba(255,255,255,0.08)",
+                  // beveled top edge catching the light
+                  "inset 0 1px 0 rgba(255,255,255,0.1)",
+                  // faint accent inner wash
+                  `inset 0 0 24px color-mix(in srgb, ${c.accent} 4%, transparent)`,
+                  // bottom inner shade — surface curvature
+                  "inset 0 -8px 16px -8px rgba(0,0,0,0.4)",
                   "0 1px 2px rgba(0,0,0,0.6)",
                   "0 6px 16px rgba(0,0,0,0.5)",
                   // Accent-tinted ambient glow beneath the card.
                   `0 20px 48px -8px color-mix(in srgb, ${c.accent} 20%, rgba(0,0,0,0.6))`,
                 ].join(", "),
-                border: "1px solid rgba(255,255,255,0.07)",
+                border: "1px solid rgba(255,255,255,0.09)",
                 visibility: "hidden",
                 willChange: "transform, opacity",
               }}
@@ -389,16 +399,16 @@ export default function PhoneShowcaseSection() {
               <span className="flex flex-col min-w-0 flex-1" style={{ gap: 8 }}>
                 <span className="flex items-start gap-2">
                   <span className="flex flex-col text-left min-w-0 flex-1">
-                    <span className="truncate font-body" style={{ fontSize: 14, fontWeight: 500, color: "var(--foreground)", lineHeight: 1.25 }}>
+                    <span className="truncate font-body" style={{ fontSize: 14, fontWeight: 500, letterSpacing: "-0.01em", color: "var(--foreground)", lineHeight: 1.25 }}>
                       {c.title}
                     </span>
-                    <span className="font-body truncate" style={{ fontSize: 12, color: "var(--helthy-text-secondary)", lineHeight: 1.3, marginTop: 2 }}>
+                    <span className="font-body truncate" style={{ fontSize: 10.5, fontWeight: 600, textTransform: "uppercase", letterSpacing: 0.5, color: `color-mix(in srgb, ${c.accent} 55%, var(--helthy-text-secondary))`, lineHeight: 1.3, marginTop: 3 }}>
                       {c.status}
                     </span>
                   </span>
 
                   {c.macros ? (
-                    <span className="inline-flex items-center shrink-0" style={{ gap: 3, padding: "3px 9px", borderRadius: 999, background: `color-mix(in srgb, ${c.accent} 14%, transparent)` }}>
+                    <span className="inline-flex items-center shrink-0" style={{ gap: 3, padding: "3px 9px", borderRadius: 999, background: `color-mix(in srgb, ${c.accent} 14%, transparent)`, border: `1px solid color-mix(in srgb, ${c.accent} 24%, transparent)`, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.07)" }}>
                       <Icon path={mdiFire} size="12px" color={c.accent} />
                       <span className="text-numeric tabular-nums" style={{ fontSize: 13, fontWeight: 500, color: "var(--foreground)", lineHeight: 1 }}>
                         {c.calories}
@@ -406,7 +416,7 @@ export default function PhoneShowcaseSection() {
                     </span>
                   ) : (
                     <span className="flex flex-col items-end shrink-0" style={{ gap: 3 }}>
-                      <span className="inline-flex items-baseline gap-1" style={{ padding: "3px 9px", borderRadius: 999, background: `color-mix(in srgb, ${c.accent} 14%, transparent)` }}>
+                      <span className="inline-flex items-baseline gap-1" style={{ padding: "3px 9px", borderRadius: 999, background: `color-mix(in srgb, ${c.accent} 14%, transparent)`, border: `1px solid color-mix(in srgb, ${c.accent} 24%, transparent)`, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.07)" }}>
                         <span className="text-numeric tabular-nums" style={{ fontSize: 14, fontWeight: 500, color: c.accent, lineHeight: 1.1 }}>{c.value}</span>
                         <span className="font-body" style={{ fontSize: 10, fontWeight: 500, color: c.accent, opacity: 0.8 }}>{c.unit}</span>
                       </span>

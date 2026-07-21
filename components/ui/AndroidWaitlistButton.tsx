@@ -31,14 +31,20 @@ export default function AndroidWaitlistButton({
         letterSpacing: "-0.005em",
         padding: `${s.padY}px ${s.padR}px ${s.padY}px ${s.padL}px`,
         whiteSpace: "nowrap",
-        background: "rgba(20,20,20,0.62)",
+        background:
+          "linear-gradient(180deg, rgba(50,50,54,0.9) 0%, rgba(24,24,26,0.92) 100%)",
         color: "#FFFFFF",
-        border: "1.5px solid rgba(46,46,48,0.9)",
+        border: "1.5px solid rgba(255,255,255,0.12)",
         backdropFilter: "blur(20px) saturate(140%)",
         WebkitBackdropFilter: "blur(20px) saturate(140%)",
         boxShadow:
-          "inset 0 1px 0 rgba(255,255,255,0.06)," +
-          "0 8px 24px rgba(0,0,0,0.3)",
+          // raised top bevel
+          "inset 0 1.5px 0 rgba(255,255,255,0.14)," +
+          // bottom inner shade — gives the pill its curvature
+          "inset 0 -6px 12px -6px rgba(0,0,0,0.5)," +
+          // grounding shadows
+          "0 2px 4px -1px rgba(0,0,0,0.4)," +
+          "0 12px 24px -8px rgba(0,0,0,0.5)",
         transition:
           "transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms ease",
         cursor: "pointer",

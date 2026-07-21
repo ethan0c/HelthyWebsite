@@ -248,14 +248,20 @@ function BeforeAfterSlider({
         priority={false}
       />
       {afterFace && <FaceBlur face={afterFace} />}
-      {/* After label — Unbounded, no pill */}
+      {/* After label — glossy lemon pill */}
       <span
-        className="font-body absolute bottom-4 right-4 text-[11px] uppercase z-20 pointer-events-none"
+        className="font-body absolute bottom-4 right-4 text-[10px] uppercase z-20 pointer-events-none rounded-full"
         style={{
-          color: "#CDFF50",
-          letterSpacing: "0.22em",
-          fontWeight: 500,
-          textShadow: "0 1px 8px rgba(0,0,0,0.55)",
+          padding: "5px 12px",
+          color: "#0B0B0B",
+          letterSpacing: "0.14em",
+          fontWeight: 700,
+          background: "#CDFF50",
+          boxShadow:
+            "inset 0 1.5px 1px 0 rgba(255,255,255,0.5)," +
+            "inset 0 8px 8px -4px rgba(255,255,255,0.25)," +
+            "0 6px 16px -4px rgba(205,255,80,0.45)," +
+            "0 2px 6px rgba(0,0,0,0.35)",
         }}
       >
         After
@@ -274,14 +280,19 @@ function BeforeAfterSlider({
           sizes="(max-width: 768px) 92vw, 1100px"
         />
         {beforeFace && <FaceBlur face={beforeFace} />}
-        {/* Before label — Unbounded, no pill */}
+        {/* Before label — dark glass pill */}
         <span
-          className="font-body absolute bottom-4 left-4 text-[11px] uppercase pointer-events-none"
+          className="font-body absolute bottom-4 left-4 text-[10px] uppercase pointer-events-none rounded-full backdrop-blur-md"
           style={{
-            color: "rgba(255,255,255,0.85)",
-            letterSpacing: "0.22em",
-            fontWeight: 500,
-            textShadow: "0 1px 8px rgba(0,0,0,0.55)",
+            padding: "5px 12px",
+            color: "rgba(255,255,255,0.9)",
+            letterSpacing: "0.14em",
+            fontWeight: 600,
+            background: "rgba(10,10,12,0.55)",
+            border: "1px solid rgba(255,255,255,0.18)",
+            boxShadow:
+              "inset 0 1px 0 rgba(255,255,255,0.12)," +
+              "0 2px 8px rgba(0,0,0,0.4)",
           }}
         >
           Before
