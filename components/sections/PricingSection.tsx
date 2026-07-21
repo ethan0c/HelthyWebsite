@@ -339,29 +339,27 @@ export default function PricingSection() {
 
             <div className="min-h-[112px] sm:min-h-[118px]">
               <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
-                <span
-                  className="text-numeric"
+                <RollingPrice
+                  price={isYearly ? 19.99 : 2.99}
+                  className="text-numeric tabular-nums"
                   style={{
                     fontSize: "clamp(46px, 12vw, 84px)",
                     color: "#fff",
                     lineHeight: 1,
                     letterSpacing: "-0.04em",
                   }}
-                >
-                  {isYearly ? "$19.99" : "$2.99"}
-                </span>
+                />
 
-                <span
-                  className="text-numeric line-through"
+                <RollingPrice
+                  price={isYearly ? 69.99 : 9.99}
+                  className="text-numeric tabular-nums line-through"
                   style={{
                     fontSize: "clamp(24px, 5.5vw, 36px)",
                     color: "rgba(255,255,255,0.25)",
                     lineHeight: 1,
                     letterSpacing: "-0.02em",
                   }}
-                >
-                  {isYearly ? "$69.99" : "$9.99"}
-                </span>
+                />
 
                 <span
                   className="text-sm font-light ml-0.5"
@@ -430,5 +428,47 @@ export default function PricingSection() {
         </p>
       </div>
     </section>
+  );
+}
+
+// ───────────────────────────────────────────────────────────
+// RollingPrice — digits roll between values when the billing
+// toggle flips, instead of snapping.
+
+function RollingPrice({
+  price,
+  className,
+  style,
+}: {
+  price: number;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const shown = useRef(price);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || shown.current === price) return;
+    const obj = { v: shown.current };
+    shown.current = price;
+    const tween = gsap.to(obj, {
+      v: price,
+      duration: 0.55,
+      ease: "power2.out",
+      onUpdate: () => {
+        el.textContent = `$${obj.v.toFixed(2)}`;
+      },
+    });
+    return () => {
+      tween.kill();
+      el.textContent = `$${price.toFixed(2)}`;
+    };
+  }, [price]);
+
+  return (
+    <span ref={ref} className={className} style={style}>
+      {`$${price.toFixed(2)}`}
+    </span>
   );
 }

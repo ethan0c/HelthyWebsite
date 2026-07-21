@@ -479,6 +479,13 @@ function useMarquee(
 
       build();
 
+      // Pause on hover — ease the speed down/up instead of hard-stopping,
+      // so readers can actually finish a testimonial.
+      const slow = () => gsap.to(tween, { timeScale: 0, duration: 0.5, ease: "power2.out", overwrite: true });
+      const resume = () => gsap.to(tween, { timeScale: 1, duration: 0.6, ease: "power2.out", overwrite: true });
+      track.addEventListener("pointerenter", slow);
+      track.addEventListener("pointerleave", resume);
+
       const imgs = Array.from(track.querySelectorAll("img"));
       let remaining = imgs.filter((i) => !i.complete).length;
       if (remaining > 0) {

@@ -78,7 +78,7 @@ export default function FAQSection() {
             <div
               key={faq.q}
               data-faq-card
-              className="card-helthy p-5 sm:p-7 flex flex-col transition-colors duration-300 hover:bg-white/[0.04]"
+              className="card-helthy card-helthy-hover p-5 sm:p-7 flex flex-col"
               style={{ minHeight: "auto" }}
             >
               {/* Big numeric */}
