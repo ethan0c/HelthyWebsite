@@ -228,7 +228,7 @@ export default function PricingSection() {
           </div>
         </div>
 
-        {/* Premium card */}
+        {/* Pro card */}
         <div
           data-price-card
           className="relative rounded-[1.5rem] text-left overflow-hidden border border-white/10 flex flex-col"

@@ -113,7 +113,7 @@ export default function HeroSection() {
         <h1
           className="font-heading flex items-center justify-center flex-nowrap"
           style={{
-            fontSize: "clamp(64px, 13vw, 168px)",
+            fontSize: "clamp(40px, 13vw, 168px)",
             fontWeight: 600,
             letterSpacing: "-0.05em",
             lineHeight: "0.95em",

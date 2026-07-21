@@ -14,7 +14,7 @@ const V2_1_3_SECTIONS = [
   {
     label: "Added",
     items: [
-      "Free plan now shown on the upgrade screen with a clear side-by-side comparison of free vs Premium",
+      "Free plan now shown on the upgrade screen with a clear side-by-side comparison of free vs Helthy Pro",
       "A \"+1\" animation plays on your streak ring on the Home tab when you keep it going",
     ],
   },
@@ -36,7 +36,7 @@ const V2_2_SECTIONS = [
       "Global leaderboards — rank against other Helthy users on Steps (daily or weekly), Workouts, Activity minutes, and Calories burned. Open from the podium icon on Home and share your rank. Opt-in via Settings > Profile.",
       "Usernames — set one in Settings > Profile, used on leaderboards and shared cards",
       "Smart action cards on Home — a meal card near your usual meal times and a workout card near your usual workout time, so logging is one tap away. Swipe to dismiss for the day.",
-      "Your frequently logged meals — one-tap logging of the meals you log most often around that time of day, right inside the smart meal card (Premium)",
+      "Your frequently logged meals — one-tap logging of the meals you log most often around that time of day, right inside the smart meal card (Pro)",
       "Weight trend card on the Home tab showing your recent weight progress",
       "Live reading of today's steps from Apple Health for immediate display on Home",
       "+/- steppers for reps and weight during a workout — nudge a value without retyping it, hold to repeat quickly",
@@ -51,7 +51,7 @@ const V2_2_SECTIONS = [
       "Silky-smooth throughout — refined animations and transitions for a faster, more responsive feel across the whole app",
       "Fewer taps to log — meal, weight, and exercise logging are now quicker and more streamlined",
       "New swipe gestures for faster logging and navigation",
-      "New Premium color themes: Oat Milk, Matcha, and Concrete",
+      "New Pro color themes: Oat Milk, Matcha, and Concrete",
       "Home screen redesigned around goal progress and today's activity",
       "Create Food — name and brand fields now auto-advance to the next field",
       "Faster loading for exercise demo GIFs and the Exercise Info screen",
@@ -139,7 +139,7 @@ const V2_0_SECTIONS = [
     label: "Workouts",
     items: [
       "Dynamic Island and Live Activity during workouts — see your active set, rest timer, and elapsed time without opening the app",
-      "Muscle imbalance detection via left/right logging for unilateral exercises (Premium)",
+      "Muscle imbalance detection via left/right logging for unilateral exercises (Pro)",
       "Form tips and weight suggestions on every exercise info screen",
       "Workout history stats on exercise detail screens",
       "Workout calendar view",

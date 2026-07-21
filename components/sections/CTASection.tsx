@@ -92,7 +92,7 @@ export default function CTASection() {
         <h2
           className="font-heading flex items-center justify-center flex-nowrap"
           style={{
-            fontSize: "clamp(52px, 10vw, 130px)",
+            fontSize: "clamp(38px, 10vw, 130px)",
             fontWeight: 600,
             letterSpacing: "-0.05em",
             lineHeight: "0.95em",

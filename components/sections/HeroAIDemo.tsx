@@ -269,9 +269,10 @@ export default function HeroAIDemo() {
             }}
             placeholder="Ask Helthy for meal ideas…"
             aria-label="Ask Helthy AI for meal ideas"
-            className="flex-1 bg-transparent outline-none"
+            className="flex-1 bg-transparent outline-none min-w-0"
             style={{
-              fontSize: 15,
+              // 16px min — anything smaller makes iOS Safari zoom the page on focus
+              fontSize: 16,
               color: "rgba(249,249,249,0.92)",
               fontFamily: "var(--font-body)",
             }}
