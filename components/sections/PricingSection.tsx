@@ -30,7 +30,7 @@ const FREE_FEATURES = [
   "Unlimited manual food & workout logging",
   "Calories, macros & nutrition tracking",
   "Apple Health sync (steps + weight)",
-  "1,000+ exercises & basic progress history",
+  "1,500 exercises & basic progress history",
 ];
 
 export default function PricingSection() {
@@ -331,7 +331,7 @@ export default function PricingSection() {
             <div className="mb-5 text-center">
               <span
                 className="font-heading text-[11px] font-bold uppercase tracking-[0.16em]"
-                style={{ color: "#CDFB50" }}
+                style={{ color: "var(--helthy-lemon)" }}
               >
                 Founders Special
               </span>
