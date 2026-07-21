@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { ScrollTrigger } from "@/lib/gsap";
 import HelthyLogoGlass from "@/components/ui/HelthyLogoGlass";
 
 /**
@@ -8,6 +9,11 @@ import HelthyLogoGlass from "@/components/ui/HelthyLogoGlass";
  * Type (or tap a prompt) → thinking → reply streams in → meal suggestion
  * cards render, styled to match the mobile app's AIChatMealSuggestions.
  * Entirely canned — no backend.
+ *
+ * Scroll behavior: when the demo scrolls into view it auto-types a full
+ * question into the input and plays the whole sequence. Any manual
+ * interaction (focus, typing, submit) cancels the auto-run and lets the
+ * user drive.
  */
 
 // Real tokens from mobile (utils/macroIcons.ts + dark theme)
@@ -30,7 +36,7 @@ interface DemoMeal {
 }
 
 interface Demo {
-  chip: string;
+  query: string;
   keywords: RegExp;
   reply: string;
   meals: DemoMeal[];
@@ -38,7 +44,7 @@ interface Demo {
 
 const DEMOS: Demo[] = [
   {
-    chip: "Dinner, high protein",
+    query: "What should I eat for dinner? I've still got 52g of protein to hit.",
     keywords: /dinner|protein|lift|gym|bulk/i,
     reply:
       "You're 52g short of your protein goal with one meal left. Either of these closes the gap:",
@@ -58,7 +64,7 @@ const DEMOS: Demo[] = [
     ],
   },
   {
-    chip: "Breakfast under 400 cal",
+    query: "Give me a quick breakfast under 400 calories.",
     keywords: /breakfast|morning|egg|oats|yogurt/i,
     reply:
       "Under 400 calories, over 25g protein, and nothing takes more than 10 minutes:",
@@ -78,7 +84,7 @@ const DEMOS: Demo[] = [
     ],
   },
   {
-    chip: "Late-night snack",
+    query: "I'm craving something late-night that won't wreck my macros.",
     keywords: /snack|night|late|sweet|craving/i,
     reply:
       "You have 210 calories left today. These fit without touching tomorrow:",
@@ -109,6 +115,10 @@ export default function HeroAIDemo() {
   const [visibleCards, setVisibleCards] = useState(0);
   const [logged, setLogged] = useState<Set<number>>(new Set());
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  // Set on first run (auto or manual) — stops the scroll auto-play from
+  // hijacking a session the user already started themselves.
+  const startedRef = useRef(false);
 
   const clearTimers = useCallback(() => {
     timersRef.current.forEach(clearTimeout);
@@ -121,6 +131,7 @@ export default function HeroAIDemo() {
     (text: string) => {
       const query = text.trim();
       if (!query) return;
+      startedRef.current = true;
       clearTimers();
 
       const matched =
@@ -158,6 +169,46 @@ export default function HeroAIDemo() {
     [clearTimers],
   );
 
+  // Auto-play: simulate typing the prompt into the input, then run it.
+  const typeAndRun = useCallback(
+    (text: string) => {
+      if (startedRef.current) return;
+      startedRef.current = true;
+      clearTimers();
+      const TYPE_MS = 42;
+      for (let i = 1; i <= text.length; i++) {
+        timersRef.current.push(
+          setTimeout(() => setInput(text.slice(0, i)), i * TYPE_MS),
+        );
+      }
+      timersRef.current.push(
+        setTimeout(() => {
+          startedRef.current = false; // let run() reclaim it
+          run(text);
+        }, text.length * TYPE_MS + 380),
+      );
+    },
+    [clearTimers, run],
+  );
+
+  // Auto-play once the demo is in view. A short delay keeps it from
+  // colliding with the hero entrance animation on tall viewports.
+  useEffect(() => {
+    if (!wrapRef.current) return;
+
+    const st = ScrollTrigger.create({
+      trigger: wrapRef.current,
+      start: "top 85%",
+      once: true,
+      onEnter: () => {
+        timersRef.current.push(
+          setTimeout(() => typeAndRun(DEMOS[0].query), 900),
+        );
+      },
+    });
+    return () => st.kill();
+  }, [typeAndRun]);
+
   const toggleLog = (idx: number) => {
     setLogged((prev) => {
       const next = new Set(prev);
@@ -170,6 +221,7 @@ export default function HeroAIDemo() {
 
   return (
     <div
+      ref={wrapRef}
       className="w-full text-left"
       style={{ maxWidth: 560, marginTop: "clamp(32px, 4.5vh, 52px)" }}
     >
@@ -196,6 +248,11 @@ export default function HeroAIDemo() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            onFocus={() => {
+              // Taking the input mid-auto-type hands control to the user.
+              if (phase === "idle") clearTimers();
+              startedRef.current = true;
+            }}
             placeholder="Ask Helthy for meal ideas…"
             aria-label="Ask Helthy AI for meal ideas"
             className="flex-1 bg-transparent outline-none"
@@ -223,34 +280,6 @@ export default function HeroAIDemo() {
             </svg>
           </button>
         </form>
-
-        {/* Prompt chips — hidden once a response is showing */}
-        {phase === "idle" && (
-          <div
-            className="flex flex-wrap gap-2"
-            style={{ padding: "0 18px 16px" }}
-          >
-            {DEMOS.map((d) => (
-              <button
-                key={d.chip}
-                type="button"
-                onClick={() => run(d.chip)}
-                className="rounded-full transition-colors hover:border-white/30"
-                style={{
-                  padding: "6px 13px",
-                  fontSize: 13,
-                  color: "rgba(249,249,249,0.65)",
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  fontFamily: "var(--font-body)",
-                  cursor: "pointer",
-                }}
-              >
-                {d.chip}
-              </button>
-            ))}
-          </div>
-        )}
 
         {/* Response area */}
         {phase !== "idle" && demo && (
