@@ -104,7 +104,7 @@ export default function FlowingLine() {
         <path
           key={i}
           d={line.d(w, h)}
-          stroke="#CDFF50"
+          stroke="#CDFB50"
           strokeWidth={line.strokeWidth}
           strokeLinecap="round"
           opacity={line.opacity}

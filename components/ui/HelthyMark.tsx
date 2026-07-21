@@ -13,7 +13,7 @@ interface HelthyMarkProps {
 
 export default function HelthyMark({
   size = 32,
-  color1 = "#CDFF50",
+  color1 = "#CDFB50",
   color2 = "#7BB820",
   pulse = false,
   className = "",

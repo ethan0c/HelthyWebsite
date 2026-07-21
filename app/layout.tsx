@@ -125,18 +125,18 @@ export default function RootLayout({
                 },
                 {
                   "@type": "Offer",
-                  price: "10",
+                  price: "2.99",
                   priceCurrency: "USD",
-                  name: "Premium Monthly",
+                  name: "Helthy Pro Monthly",
                   description:
                     "AI photo logging, voice logging, unlimited AI coach, AI workout routines, full health sync, advanced analytics.",
                 },
                 {
                   "@type": "Offer",
-                  price: "83",
+                  price: "19.99",
                   priceCurrency: "USD",
-                  name: "Premium Yearly",
-                  description: "All Premium features at $6.92/month — save 30%.",
+                  name: "Helthy Pro Yearly",
+                  description: "All Helthy Pro features at $1.67/month — save 44%.",
                 },
               ],
               aggregateRating: {

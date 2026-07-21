@@ -139,7 +139,7 @@ export default function AICoachSection() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(205,255,80,0.06) 0%, transparent 70%)",
+            "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(205,251,80,0.06) 0%, transparent 70%)",
         }}
         aria-hidden="true"
       />
@@ -153,7 +153,7 @@ export default function AICoachSection() {
             />
             <defs>
               <radialGradient id="aiStarGrad" cx="40%" cy="35%" r="70%">
-                <stop offset="0%" stopColor="#CDFF50" />
+                <stop offset="0%" stopColor="#CDFB50" />
                 <stop offset="100%" stopColor="#7bff6a" />
               </radialGradient>
             </defs>
@@ -195,7 +195,7 @@ export default function AICoachSection() {
               className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-all"
               style={{
                 background:
-                  phase !== "typing" ? "#CDFF50" : "rgba(255,255,255,0.12)",
+                  phase !== "typing" ? "#CDFB50" : "rgba(255,255,255,0.12)",
               }}
               aria-label="Send"
             >
@@ -212,7 +212,7 @@ export default function AICoachSection() {
               <div
                 className="rounded-2xl rounded-br-md px-4 py-2.5 text-[14px] font-medium text-black max-w-[85%] text-left"
                 style={{
-                  background: "#CDFF50",
+                  background: "#CDFB50",
                   animation: "aiFadeIn 0.3s ease-out",
                 }}
               >
@@ -307,7 +307,7 @@ function MealCard({ meal }: { meal: MealSuggestion }) {
     >
       <div
         className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-        style={{ background: "rgba(205,255,80,0.12)" }}
+        style={{ background: "rgba(205,251,80,0.12)" }}
       >
         <span className="text-base">🍽️</span>
       </div>
@@ -327,9 +327,9 @@ function MealCard({ meal }: { meal: MealSuggestion }) {
 
       <div
         className="flex items-center gap-1 px-2 py-1 rounded-md flex-shrink-0"
-        style={{ background: "rgba(205,255,80,0.12)" }}
+        style={{ background: "rgba(205,251,80,0.12)" }}
       >
-        <span className="text-[11px] font-semibold" style={{ color: "#CDFF50" }}>
+        <span className="text-[11px] font-semibold" style={{ color: "#CDFB50" }}>
           {meal.kcal} kcal
         </span>
       </div>

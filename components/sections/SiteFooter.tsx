@@ -65,7 +65,7 @@ export default function SiteFooter() {
     <footer
       className="relative"
       style={{
-        backgroundColor: "#111111",
+        backgroundColor: "var(--background)",
         color: "rgba(255,255,255,0.65)",
       }}
     >
@@ -195,7 +195,7 @@ export default function SiteFooter() {
       <div
         aria-hidden="true"
         className="w-full pt-8 pb-6"
-        style={{ backgroundColor: "#111111" }}
+        style={{ backgroundColor: "var(--background)" }}
       >
         <div className="px-2 sm:px-4">
           <img

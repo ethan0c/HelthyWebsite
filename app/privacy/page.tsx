@@ -17,7 +17,7 @@ export default function PrivacyPage() {
           aria-hidden="true"
           style={{
             background:
-              "radial-gradient(ellipse 70% 45% at 50% 0%, rgba(205,255,80,0.05), transparent 70%)",
+              "radial-gradient(ellipse 70% 45% at 50% 0%, rgba(205,251,80,0.05), transparent 70%)",
           }}
         />
 

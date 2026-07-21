@@ -66,9 +66,9 @@ export default function FeaturesTeaser() {
             >
               <span
                 className="inline-flex items-center justify-center rounded-xl mb-6"
-                style={{ width: 48, height: 48, backgroundColor: "rgba(205,255,80,0.1)" }}
+                style={{ width: 48, height: 48, backgroundColor: "rgba(205,251,80,0.1)" }}
               >
-                <Icon size={24} color="#CDFF50" strokeWidth={1.75} />
+                <Icon size={24} color="#CDFB50" strokeWidth={1.75} />
               </span>
               <h3 className="font-heading text-[22px] font-light tracking-tight text-white mb-3">
                 {title}

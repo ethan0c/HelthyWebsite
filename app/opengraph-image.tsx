@@ -36,7 +36,7 @@ export default async function OgImage() {
             width: 500,
             height: 500,
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(205,255,80,0.12) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(205,251,80,0.12) 0%, transparent 70%)",
           }}
         />
 
@@ -66,7 +66,7 @@ export default async function OgImage() {
           >
             <span
               style={{
-                color: "#CDFF50",
+                color: "#CDFB50",
                 fontSize: 14,
                 fontFamily: "Unbounded",
                 fontWeight: 700,
@@ -114,7 +114,7 @@ export default async function OgImage() {
                 gap: 8,
               }}
             >
-              <span style={{ color: "#CDFF50", fontSize: 16 }}>★ 4.7</span>
+              <span style={{ color: "#CDFB50", fontSize: 16 }}>★ 4.7</span>
               <span style={{ color: "#6B7280", fontSize: 14 }}>App Store · iOS & Android</span>
             </div>
           </div>

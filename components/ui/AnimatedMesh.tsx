@@ -33,7 +33,7 @@ export default function AnimatedMesh({
       {/* Lemon — primary brand glow, slow figure-eight drift */}
       <span
         className="mesh-blob mesh-blob--lemon"
-        style={{ background: "radial-gradient(circle, rgba(205,255,80,0.22) 0%, transparent 65%)" }}
+        style={{ background: "radial-gradient(circle, rgba(205,251,80,0.22) 0%, transparent 65%)" }}
       />
       {/* Cyan — cool counterpoint, opposite drift */}
       <span

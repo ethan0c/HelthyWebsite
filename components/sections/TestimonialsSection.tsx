@@ -37,7 +37,7 @@ const TESTIMONIALS = [
       "I've been using Helthy for about 3 months since it first launched. I was around 195 when I started and wanted to drop some weight and actually understand what I was eating instead of guessing. […] I'll do \"chicken and rice\" or scan a bar and it's done in a few seconds. […] Only food/health app I've stuck with and I recommend.",
     name: "jasonc1122",
     detail: "App Store review · 🇺🇸",
-    accent: "#CDFF50",
+    accent: "#CDFB50",
   },
   {
     quote:
@@ -116,7 +116,7 @@ function TestimonialCard({ t }: { t: (typeof TESTIMONIALS)[number] }) {
       <div className="p-7 flex flex-col h-full">
         <div className="flex gap-0.5 mb-5">
           {Array.from({ length: 5 }).map((_, i) => (
-            <Star key={i} className="w-3.5 h-3.5" fill="#CDFF50" stroke="none" />
+            <Star key={i} className="w-3.5 h-3.5" fill="#CDFB50" stroke="none" />
           ))}
         </div>
         <p className="text-[15px] leading-[1.65] font-light mb-6 text-white/70 flex-1">
@@ -256,11 +256,11 @@ function BeforeAfterSlider({
           color: "#0B0B0B",
           letterSpacing: "0.14em",
           fontWeight: 700,
-          background: "#CDFF50",
+          background: "#CDFB50",
           boxShadow:
             "inset 0 1.5px 1px 0 rgba(255,255,255,0.5)," +
             "inset 0 8px 8px -4px rgba(255,255,255,0.25)," +
-            "0 6px 16px -4px rgba(205,255,80,0.45)," +
+            "0 6px 16px -4px rgba(205,251,80,0.45)," +
             "0 2px 6px rgba(0,0,0,0.35)",
         }}
       >
@@ -308,8 +308,8 @@ function BeforeAfterSlider({
           className="w-[2px] h-full"
           style={{
             background:
-              "linear-gradient(180deg, rgba(205,255,80,0) 0%, rgba(205,255,80,0.9) 20%, rgba(205,255,80,0.9) 80%, rgba(205,255,80,0) 100%)",
-            boxShadow: "0 0 18px rgba(205,255,80,0.55)",
+              "linear-gradient(180deg, rgba(205,251,80,0) 0%, rgba(205,251,80,0.9) 20%, rgba(205,251,80,0.9) 80%, rgba(205,251,80,0) 100%)",
+            boxShadow: "0 0 18px rgba(205,251,80,0.55)",
           }}
         />
         <button
@@ -329,7 +329,7 @@ function BeforeAfterSlider({
           style={{
             width: 44,
             height: 44,
-            background: "#CDFF50",
+            background: "#CDFB50",
             border: "none",
             cursor: dragging ? "grabbing" : "grab",
             boxShadow:
@@ -337,7 +337,7 @@ function BeforeAfterSlider({
               "inset 0 0.6px 0.6px -1.25px rgba(255,255,255,0.72)," +
               "inset 0 2.29px 2.29px -2.5px rgba(255,255,255,0.635)," +
               "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
-              "0 10px 24px -6px rgba(205,255,80,0.5)",
+              "0 10px 24px -6px rgba(205,251,80,0.5)",
           }}
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -415,13 +415,13 @@ function TransformationRow({
                   color: "#0B0B0B",
                   letterSpacing: "0.2em",
                   fontWeight: 600,
-                  background: "#CDFF50",
+                  background: "#CDFB50",
                   padding: "4px 10px",
                   borderRadius: 999,
                   alignSelf: "flex-start",
                   boxShadow:
                     "inset 0 1px 0 rgba(255,255,255,0.4)," +
-                    "0 6px 14px -6px rgba(205,255,80,0.45)",
+                    "0 6px 14px -6px rgba(205,251,80,0.45)",
                 }}
               >
                 {s.label}
@@ -431,7 +431,7 @@ function TransformationRow({
                 style={{
                   fontSize: "clamp(40px, 5.5vw, 64px)",
                   fontWeight: 500,
-                  color: "#CDFF50",
+                  color: "#CDFB50",
                   letterSpacing: "-0.035em",
                   lineHeight: 1,
                   marginTop: 10,
@@ -594,7 +594,7 @@ export default function TestimonialsSection() {
           className="absolute left-1/2 top-0 -translate-x-1/2 w-full max-w-[1200px] h-[60%] rounded-full blur-[160px] opacity-40"
           style={{
             background:
-              "radial-gradient(ellipse, rgba(205,255,80,0.04) 0%, transparent 70%)",
+              "radial-gradient(ellipse, rgba(205,251,80,0.04) 0%, transparent 70%)",
           }}
         />
       </div>

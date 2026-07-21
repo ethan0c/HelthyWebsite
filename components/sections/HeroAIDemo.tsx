@@ -32,7 +32,7 @@ const MACRO = {
   carbs: "#2196F3",
   fats: "#FF9800",
 };
-const LEMON = "#CDFF50";
+const LEMON = "#CDFB50";
 
 interface DemoMeal {
   icon: LucideIcon;
@@ -245,7 +245,7 @@ export default function HeroAIDemo() {
             "inset 0 1px 0 0 rgba(255,255,255,0.09)," +
             "0 2px 6px -2px rgba(0,0,0,0.3)," +
             "0 24px 60px -24px rgba(0,0,0,0.6)," +
-            "0 0 80px -30px rgba(205,255,80,0.12)",
+            "0 0 80px -30px rgba(205,251,80,0.12)",
         }}
       >
         {/* Input row */}
@@ -290,7 +290,7 @@ export default function HeroAIDemo() {
               boxShadow:
                 "inset 0 2px 1px 0 rgba(255,255,255,0.5)," +
                 "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
-                "0 8px 16px -6px rgba(205,255,80,0.4)",
+                "0 8px 16px -6px rgba(205,251,80,0.4)",
             }}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -368,7 +368,7 @@ export default function HeroAIDemo() {
                     // top bevel highlight
                     "inset 0 1px 0 0 rgba(255,255,255,0.08)," +
                     // inner lemon wash
-                    "inset 0 0 24px 0 rgba(205,255,80,0.03)," +
+                    "inset 0 0 24px 0 rgba(205,251,80,0.03)," +
                     // outer depth
                     "0 2px 4px -1px rgba(0,0,0,0.25)," +
                     "0 12px 24px -8px rgba(0,0,0,0.45)",
@@ -387,11 +387,11 @@ export default function HeroAIDemo() {
                       height: 38,
                       borderRadius: 12,
                       background:
-                        "linear-gradient(145deg, rgba(205,255,80,0.16) 0%, rgba(205,255,80,0.05) 100%)",
-                      border: "1px solid rgba(205,255,80,0.25)",
+                        "linear-gradient(145deg, rgba(205,251,80,0.16) 0%, rgba(205,251,80,0.05) 100%)",
+                      border: "1px solid rgba(205,251,80,0.25)",
                       boxShadow:
                         "inset 0 1px 0 0 rgba(255,255,255,0.15)," +
-                        "0 4px 12px -4px rgba(205,255,80,0.3)",
+                        "0 4px 12px -4px rgba(205,251,80,0.3)",
                     }}
                   >
                     <meal.icon size={19} color={LEMON} strokeWidth={1.75} />
@@ -460,7 +460,7 @@ export default function HeroAIDemo() {
                         : // glossy top, lemon glow below — matches app pill
                           "inset 0 2px 1px 0 rgba(255,255,255,0.5)," +
                           "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
-                          "0 8px 16px -6px rgba(205,255,80,0.45)",
+                          "0 8px 16px -6px rgba(205,251,80,0.45)",
                     }}
                   >
                     {logged.has(idx) ? (

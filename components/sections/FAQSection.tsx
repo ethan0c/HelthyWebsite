@@ -7,7 +7,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 const FAQS = [
   {
     q: "Is Helthy really free?",
-    a: "Yes — calorie logging, workouts, TDEE, and form tips are unlimited and free forever. Premium ($2.99/mo or $19.99/yr) unlocks unlimited AI photo & voice logging, the AI coach, generated routines, full analytics, and all-time history.",
+    a: "Yes — calorie logging, workouts, TDEE, and form tips are unlimited and free forever. Helthy Pro ($2.99/mo or $19.99/yr) unlocks unlimited AI photo & voice logging, the AI coach, generated routines, full analytics, and all-time history.",
   },
   {
     q: "How accurate is the AI photo logging?",
@@ -15,7 +15,7 @@ const FAQS = [
   },
   {
     q: "Does it sync with Apple Health & Google Health Connect?",
-    a: "Yes. Free users get steps and weight sync. Premium users get full two-way sync — heart rate, workouts, active energy, and nutrition data flow both directions.",
+    a: "Yes. Free users get steps and weight sync. Helthy Pro gets full two-way sync — heart rate, workouts, active energy, and nutrition data flow both directions.",
   },
   {
     q: "Is my data private?",
@@ -23,15 +23,15 @@ const FAQS = [
   },
   {
     q: "What's the AI coach actually like?",
-    a: "It has full context on your goals, recent meals, lifts, sleep, and weight trend. So it can answer questions like \"should I push squats today?\" with your actual numbers, not generic advice.",
+    a: "It has full context on your goals, recent meals, lifts, steps, and weight trend. So it can answer questions like \"should I push squats today?\" with your actual numbers, not generic advice.",
   },
   {
     q: "Is Helthy on Android?",
     a: "Yes — Helthy is live on Google Play. Download it free and get the same features as iOS, including Helthy Pro.",
   },
   {
-    q: "Can I cancel Premium?",
-    a: "Anytime. Manage your subscription in Settings → Subscription, or directly through the App Store. Cancel and you keep Free forever.",
+    q: "Can I cancel Helthy Pro?",
+    a: "Anytime. Manage your subscription in Settings → Subscription, or directly through the App Store or Google Play. Cancel and you keep Free forever.",
   },
   {
     q: "Does it work offline?",

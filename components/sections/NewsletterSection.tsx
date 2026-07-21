@@ -49,8 +49,8 @@ export default function NewsletterSection() {
       id="newsletter"
       className="relative"
       style={{
-        backgroundColor: "#CDFF50",
-        color: "#101012",
+        backgroundColor: "#CDFB50",
+        color: "var(--background)",
       }}
     >
       <div className="container-page py-16 md:py-20">
@@ -76,7 +76,7 @@ export default function NewsletterSection() {
                 fontWeight: 500,
                 letterSpacing: "-0.025em",
                 lineHeight: "1.05em",
-                color: "#101012",
+                color: "var(--background)",
                 margin: 0,
               }}
             >

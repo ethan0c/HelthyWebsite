@@ -233,7 +233,7 @@ export default function PricingSection() {
           data-price-card
           className="relative rounded-[1.5rem] text-left overflow-hidden border border-white/10 flex flex-col"
           style={{
-            background: "linear-gradient(145deg, #1A1A1A 0%, #101012 100%)",
+            background: "linear-gradient(145deg, #1A1A1A 0%, var(--background) 100%)",
             boxShadow:
               "inset 0 1px 1px rgba(255,255,255,0.05), " +
               "0 2px 4px rgba(0,0,0,0.4)," +
@@ -276,7 +276,7 @@ export default function PricingSection() {
                 style={{
                   left: 4,
                   width: "calc(50% - 4px)",
-                  background: "#CDFF50",
+                  background: "#CDFB50",
                   transform: isYearly ? "translateX(100%)" : "translateX(0%)",
                   transition: "transform 220ms cubic-bezier(0.33, 1, 0.68, 1)",
                   boxShadow:
@@ -284,7 +284,7 @@ export default function PricingSection() {
                     "inset 0 0.6px 0.6px -1.25px rgba(255,255,255,0.72)," +
                     "inset 0 2.29px 2.29px -2.5px rgba(255,255,255,0.635)," +
                     "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
-                    "0 14px 6px -8px rgba(205,255,80,0.35)",
+                    "0 14px 6px -8px rgba(205,251,80,0.35)",
                 }}
               />
 
@@ -331,7 +331,7 @@ export default function PricingSection() {
             <div className="mb-5 text-center">
               <span
                 className="font-heading text-[11px] font-bold uppercase tracking-[0.16em]"
-                style={{ color: "#CDFF50" }}
+                style={{ color: "#CDFB50" }}
               >
                 Founders Special
               </span>
@@ -372,7 +372,7 @@ export default function PricingSection() {
               </div>
               <p
                 className="text-[14px] mt-2 font-medium"
-                style={{ color: "rgba(205,255,80,0.85)" }}
+                style={{ color: "rgba(205,251,80,0.85)" }}
               >
                 {isYearly
                   ? "That's just $1.67 a month · Price locked in for life"
@@ -388,11 +388,11 @@ export default function PricingSection() {
               <li key={label} className="flex items-start gap-3">
                 <div
                   className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5"
-                  style={{ background: "rgba(205,255,80,0.16)" }}
+                  style={{ background: "rgba(205,251,80,0.16)" }}
                 >
                   <Icon
                     className="w-3 h-3"
-                    style={{ color: "#CDFF50" }}
+                    style={{ color: "#CDFB50" }}
                     strokeWidth={2}
                   />
                 </div>

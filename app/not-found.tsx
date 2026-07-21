@@ -10,14 +10,14 @@ export default function NotFound() {
           aria-hidden="true"
           style={{
             background:
-              "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(205,255,80,0.07), transparent 70%)",
+              "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(205,251,80,0.07), transparent 70%)",
           }}
         />
 
         <div className="relative text-center px-6">
           <p
             className="font-numeric text-[clamp(7rem,22vw,14rem)] font-medium leading-none tracking-tight"
-            style={{ color: "rgba(205,255,80,0.15)" }}
+            style={{ color: "rgba(205,251,80,0.15)" }}
           >
             404
           </p>

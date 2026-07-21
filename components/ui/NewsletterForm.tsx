@@ -82,15 +82,15 @@ export default function NewsletterForm() {
           placeholder="you@email.com"
           disabled={status === "loading" || status === "success"}
           className="flex-1 bg-transparent outline-none px-4 py-2.5 text-[13px] placeholder:text-black/40 disabled:opacity-60"
-          style={{ color: "#101012", minWidth: 0 }}
+          style={{ color: "var(--background)", minWidth: 0 }}
         />
         <button
           type="submit"
           disabled={status === "loading" || status === "success" || !email}
           className="inline-flex items-center justify-center px-5 text-[13px] font-medium transition-all disabled:cursor-not-allowed"
           style={{
-            background: "#101012",
-            color: "#CDFF50",
+            background: "var(--background)",
+            color: "#CDFB50",
             opacity: status === "loading" || !email ? 0.6 : 1,
           }}
           aria-label="Subscribe"

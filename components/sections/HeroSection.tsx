@@ -54,7 +54,7 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative w-full overflow-hidden bg-[#101012]"
+      className="relative w-full overflow-hidden bg-[var(--background)]"
       style={{ minHeight: "clamp(620px, 82svh, 900px)" }}
     >
       {/* Lemon glow — soft brand-tinted radial bloom behind the headline */}
@@ -64,7 +64,7 @@ export default function HeroSection() {
         style={{
           zIndex: 1,
           background:
-            "radial-gradient(120% 90% at 50% 32%, rgba(205,255,80,0.10) 0%, rgba(205,255,80,0.03) 34%, transparent 62%)",
+            "radial-gradient(120% 90% at 50% 32%, rgba(205,251,80,0.10) 0%, rgba(205,251,80,0.03) 34%, transparent 62%)",
         }}
       />
 
@@ -75,7 +75,7 @@ export default function HeroSection() {
         style={{
           zIndex: 1,
           background:
-            "linear-gradient(180deg, transparent 55%, rgba(16,16,18,0.85) 100%)",
+            "linear-gradient(180deg, transparent 55%, rgba(15,15,15,0.85) 100%)",
         }}
       />
 
@@ -178,7 +178,7 @@ export default function HeroSection() {
       <div
         aria-hidden="true"
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
-        style={{ height: 180, background: "linear-gradient(transparent, #101012)", zIndex: 5 }}
+        style={{ height: 180, background: "linear-gradient(transparent, var(--background))", zIndex: 5 }}
       />
     </section>
   );

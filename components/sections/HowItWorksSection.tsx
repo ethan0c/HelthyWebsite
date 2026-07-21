@@ -120,7 +120,7 @@ function StepCard({
         <span
           data-step-num
           className="text-numeric text-[64px] sm:text-[80px] font-medium leading-none block mb-5"
-          style={{ color: "#CDFF50", opacity: 0.18, letterSpacing: "-0.04em" }}
+          style={{ color: "#CDFB50", opacity: 0.18, letterSpacing: "-0.04em" }}
         >
           {number}
         </span>

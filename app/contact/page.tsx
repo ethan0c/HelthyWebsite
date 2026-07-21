@@ -32,7 +32,7 @@ export default function ContactPage() {
           aria-hidden="true"
           style={{
             background:
-              "radial-gradient(ellipse 55% 40% at 50% 10%, rgba(205,255,80,0.06), transparent 70%)",
+              "radial-gradient(ellipse 55% 40% at 50% 10%, rgba(205,251,80,0.06), transparent 70%)",
           }}
         />
 

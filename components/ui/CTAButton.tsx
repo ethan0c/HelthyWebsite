@@ -50,14 +50,14 @@ export default function CTAButton({
   };
 
   const primary: React.CSSProperties = {
-    background: "#CDFF50",
+    background: "#CDFB50",
     color: "#0B0B0B",
     boxShadow:
       "inset 0 2px 1px 0 rgba(255,255,255,0.5)," +
       "inset 0 0.6px 0.6px -1.25px rgba(255,255,255,0.72)," +
       "inset 0 2.29px 2.29px -2.5px rgba(255,255,255,0.635)," +
       "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
-      "0 14px 6px -8px rgba(205,255,80,0.35)," +
+      "0 14px 6px -8px rgba(205,251,80,0.35)," +
       "0 4px 12px -2px rgba(0,0,0,0.35)",
   };
 

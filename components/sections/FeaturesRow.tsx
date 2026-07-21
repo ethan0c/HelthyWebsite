@@ -18,9 +18,9 @@ import {
 
 // Real tokens from mobile app dark theme (constants/colors.ts)
 const T = {
-  primary: "#CDFF50",
+  primary: "#CDFB50",
   buttonText: "#151515",
-  bg: "#111111",
+  bg: "#0F0F0F",
   card: "#2A2A2A",
   text: "#FFFFFF",
   textSecondary: "#9CA3AF",
@@ -78,7 +78,7 @@ export default function FeaturesRow() {
           height: 600,
           background: [
             "radial-gradient(ellipse 50% 50% at 35% 0%, rgba(120,170,255,0.04) 0%, transparent 60%)",
-            "radial-gradient(ellipse 50% 50% at 70% 0%, rgba(205,255,80,0.03) 0%, transparent 60%)",
+            "radial-gradient(ellipse 50% 50% at 70% 0%, rgba(205,251,80,0.03) 0%, transparent 60%)",
           ].join(","),
           filter: "blur(40px)",
         }}
@@ -349,7 +349,7 @@ function TripleScreenshotMockup({
           style={{
             left: 4,
             width: `calc((100% - 8px) / ${labels.length})`,
-            background: "#CDFF50",
+            background: "#CDFB50",
             transform: `translateX(${active * 100}%)`,
             transition: "transform 220ms cubic-bezier(0.33, 1, 0.68, 1)",
             boxShadow:
@@ -357,7 +357,7 @@ function TripleScreenshotMockup({
               "inset 0 0.6px 0.6px -1.25px rgba(255,255,255,0.72)," +
               "inset 0 2.29px 2.29px -2.5px rgba(255,255,255,0.635)," +
               "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
-              "0 14px 6px -8px rgba(205,255,80,0.35)",
+              "0 14px 6px -8px rgba(205,251,80,0.35)",
           }}
         />
 
@@ -813,7 +813,7 @@ function WeightGraphMockup() {
         boxShadow:
           "0 30px 80px -20px rgba(0,0,0,0.7)," +
           "0 0 0 1px rgba(255,255,255,0.04)," +
-          "0 0 40px -12px rgba(205,255,80,0.18)",
+          "0 0 40px -12px rgba(205,251,80,0.18)",
       }}
     >
       {/* Lemon glow pulse — fires when the line-draw completes */}
@@ -824,8 +824,8 @@ function WeightGraphMockup() {
         style={{
           opacity: 0,
           boxShadow:
-            "0 0 60px -10px rgba(205,255,80,0.5)," +
-            "inset 0 0 40px rgba(205,255,80,0.12)",
+            "0 0 60px -10px rgba(205,251,80,0.5)," +
+            "inset 0 0 40px rgba(205,251,80,0.12)",
         }}
       />
       {/* ── Digital Scale Section ── */}

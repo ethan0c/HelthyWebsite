@@ -17,7 +17,7 @@ export default function DownloadPage() {
       <main
         className="relative flex flex-col items-center justify-center px-6 text-center pt-40 pb-24"
         style={{
-          background: "linear-gradient(180deg, #080d10 10%, #41515a 45%, #3f4e56 65%, #101012 100%)",
+          background: "linear-gradient(180deg, #080d10 10%, #41515a 45%, #3f4e56 65%, var(--background) 100%)",
         }}
       >
         {/* Grain texture */}
@@ -34,13 +34,13 @@ export default function DownloadPage() {
         <div
           aria-hidden="true"
           className="absolute top-0 left-0 right-0 pointer-events-none"
-          style={{ height: 160, background: "linear-gradient(#101012 0%, transparent 100%)", zIndex: 1 }}
+          style={{ height: 160, background: "linear-gradient(var(--background) 0%, transparent 100%)", zIndex: 1 }}
         />
         {/* Bottom fade */}
         <div
           aria-hidden="true"
           className="absolute bottom-0 left-0 right-0 pointer-events-none"
-          style={{ height: 160, background: "linear-gradient(transparent 0%, #101012 100%)", zIndex: 1 }}
+          style={{ height: 160, background: "linear-gradient(transparent 0%, var(--background) 100%)", zIndex: 1 }}
         />
         <h1
           className="font-heading"
@@ -53,7 +53,7 @@ export default function DownloadPage() {
           }}
         >
           Download{" "}
-          <span style={{ color: "#CDFF50" }}>Helthy</span>
+          <span style={{ color: "#CDFB50" }}>Helthy</span>
         </h1>
 
         <p

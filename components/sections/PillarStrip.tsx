@@ -41,7 +41,7 @@ export default function PillarStrip() {
     <section
       ref={ref}
       aria-label="What Helthy does"
-      className="relative w-full bg-[#101012] overflow-hidden"
+      className="relative w-full bg-[var(--background)] overflow-hidden"
       style={{
         paddingTop: "clamp(28px, 4vh, 48px)",
         paddingBottom: "clamp(40px, 6vh, 72px)",
@@ -58,7 +58,7 @@ export default function PillarStrip() {
             className="flex items-center gap-2.5"
             style={{ color: "rgba(249,249,249,0.62)" }}
           >
-            <Icon path={p.icon} size="22px" color="#CDFF50" />
+            <Icon path={p.icon} size="22px" color="#CDFB50" />
             <span
               style={{
                 fontSize: "clamp(13px, 1.2vw, 15px)",

@@ -158,7 +158,7 @@ export default function PhoneShowcaseSection() {
       className="relative w-full overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, #080d10 10%, #41515a 45%, #3f4e56 65%, #101012 100%)",
+          "linear-gradient(180deg, #080d10 10%, #41515a 45%, #3f4e56 65%, var(--background) 100%)",
         paddingTop: "clamp(72px, 10vh, 120px)",
         paddingBottom: "clamp(72px, 10vh, 120px)",
       }}
@@ -182,7 +182,7 @@ export default function PhoneShowcaseSection() {
       <div
         aria-hidden="true"
         className="absolute top-0 left-0 right-0 pointer-events-none"
-        style={{ height: 180, zIndex: 1, background: "linear-gradient(#101012 0%, rgba(10,10,10,0) 100%)" }}
+        style={{ height: 180, zIndex: 1, background: "linear-gradient(var(--background) 0%, rgba(10,10,10,0) 100%)" }}
       />
 
       {/* Grain texture */}
@@ -442,7 +442,7 @@ export default function PhoneShowcaseSection() {
       <div
         aria-hidden="true"
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
-        style={{ height: 240, zIndex: 10, background: "linear-gradient(to bottom, transparent, #101012)" }}
+        style={{ height: 240, zIndex: 10, background: "linear-gradient(to bottom, transparent, var(--background))" }}
       />
     </section>
   );
@@ -504,7 +504,7 @@ function ProofStat({
         >
           {`${prefix}${(0).toFixed(decimals)}${suffix}`}
         </span>
-        {hasStar && <Star className="w-3.5 h-3.5 mb-0.5" fill="#CDFF50" stroke="none" />}
+        {hasStar && <Star className="w-3.5 h-3.5 mb-0.5" fill="#CDFB50" stroke="none" />}
       </div>
       <span className="text-[12px] sm:text-[13px] text-white/45">{label}</span>
     </div>
