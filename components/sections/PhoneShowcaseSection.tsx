@@ -154,46 +154,28 @@ export default function PhoneShowcaseSection() {
   return (
     <section
       ref={sectionRef}
-      id="phone-showcase"
       className="relative w-full overflow-hidden"
       style={{
-        background:
-          "linear-gradient(180deg, #080d10 10%, #41515a 45%, #3f4e56 65%, var(--background) 100%)",
+        // App-dark base (#0F0F0F) lifted with a soft lemon brand glow so the
+        // section reads warm rather than gloomy — keeps the flat app feel
+        // without returning to the old blue-teal gradient.
+        background: "#0F0F0F",
         paddingTop: "clamp(72px, 10vh, 120px)",
         paddingBottom: "clamp(72px, 10vh, 120px)",
       }}
     >
-      {/* Soft teal pool — positioned behind phone (lower in the section) */}
+      {/* Soft lemon brand glow — lifts the flat dark, sits behind the phone */}
       <div
         aria-hidden="true"
         className="absolute pointer-events-none left-1/2 -translate-x-1/2"
         style={{
-          top: "40%",
-          width: "min(1100px, 115vw)",
-          height: "min(820px, 90vw)",
+          zIndex: 0,
+          top: "38%",
+          width: "min(1100px, 120vw)",
+          height: "min(780px, 90vw)",
           background:
-            "radial-gradient(ellipse 50% 45% at 50% 50%, rgba(100,170,210,0.32) 0%, rgba(80,140,180,0.12) 40%, rgba(80,140,180,0.04) 65%, transparent 80%)",
-          filter: "blur(28px)",
-          willChange: "filter",
-        }}
-      />
-
-      {/* Top fade — blends hero's bottom into this gradient */}
-      <div
-        aria-hidden="true"
-        className="absolute top-0 left-0 right-0 pointer-events-none"
-        style={{ height: 180, zIndex: 1, background: "linear-gradient(var(--background) 0%, rgba(10,10,10,0) 100%)" }}
-      />
-
-      {/* Grain texture */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: "url(/textures/hero-noise.png)",
-          backgroundSize: "260px",
-          opacity: 0.35,
-          mixBlendMode: "overlay",
+            "radial-gradient(ellipse 50% 45% at 50% 50%, rgba(205,251,80,0.10) 0%, rgba(205,251,80,0.035) 42%, transparent 72%)",
+          filter: "blur(30px)",
         }}
       />
 
@@ -206,25 +188,25 @@ export default function PhoneShowcaseSection() {
         <Icon
           path={mdiBowlMixOutline}
           size="560px"
-          color="#050B0F"
+          color="#1E1E1A"
           className="absolute -top-32 -left-48 opacity-[0.4] -rotate-12"
         />
         <Icon
           path={mdiDumbbell}
           size="500px"
-          color="#050B0F"
+          color="#1E1E1A"
           className="hidden md:block absolute top-40 -right-40 opacity-[0.4] rotate-[15deg]"
         />
         <Icon
           path={mdiHeartOutline}
           size="600px"
-          color="#050B0F"
+          color="#1E1E1A"
           className="absolute -bottom-48 -left-32 opacity-[0.4] rotate-[-35deg]"
         />
         <Icon
           path={mdiChartTimelineVariant}
           size="480px"
-          color="#050B0F"
+          color="#1E1E1A"
           className="absolute bottom-10 -right-40 opacity-[0.4] rotate-[45deg]"
         />
       </div>

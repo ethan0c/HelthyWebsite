@@ -13,11 +13,12 @@ function handleDownloadClick(e: React.MouseEvent) {
   }
 }
 
-const NAV = [
-  { href: "/?section=features", label: "Features" },
-  { href: "/?section=why-helthy", label: "Why Helthy" },
-  { href: "/?section=pricing", label: "Pricing" },
-  { href: "/contact", label: "Contact" },
+type NavItem = { label: string; href: string };
+
+const NAV: NavItem[] = [
+  { label: "How it works", href: "/?section=why-helthy" },
+  { label: "Pricing", href: "/?section=pricing" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function SiteNav() {
@@ -117,7 +118,7 @@ export default function SiteNav() {
         </Link>
         <ul className="flex items-center gap-1 shrink-0">
           {NAV.map((item) => (
-            <li key={item.href}>
+            <li key={item.label}>
               <Link
                 href={item.href}
                 className="transition-colors hover:text-white"
@@ -181,23 +182,25 @@ export default function SiteNav() {
             boxShadow: "0 16px 40px rgba(0,0,0,0.5)",
           }}
         >
-          <ul className="flex flex-col gap-3">
+          <ul className="flex flex-col gap-1">
             {NAV.map((item) => (
-              <li key={item.href}>
+              <li key={item.label}>
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block text-[15px]"
+                  className="block rounded-lg transition-colors hover:bg-white/[0.06]"
                   style={{
                     color: "rgba(255,255,255,0.85)",
                     fontFamily: "var(--font-body)",
+                    fontSize: 15,
+                    padding: "9px 10px",
                   }}
                 >
                   {item.label}
                 </Link>
               </li>
             ))}
-            <li className="pt-2 flex">
+            <li className="pt-3 flex">
               <CTAButton
                 href="/download"
                 variant="primary"

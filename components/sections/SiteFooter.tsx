@@ -12,9 +12,8 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "Product",
     links: [
-      { label: "Features", href: "/?section=features" },
+      { label: "How it works", href: "/?section=why-helthy" },
       { label: "Pricing", href: "/?section=pricing" },
-      { label: "Why Helthy", href: "/?section=why-helthy" },
       { label: "Changelog", href: "/changelog" },
     ],
   },

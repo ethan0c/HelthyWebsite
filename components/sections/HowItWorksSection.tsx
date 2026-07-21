@@ -47,6 +47,7 @@ export default function HowItWorksSection() {
   return (
     <section
       ref={sectionRef}
+      id="why-helthy"
       className="relative section-padding section-glow-warm"
     >
       <div className="container-page">

@@ -4,12 +4,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "@/lib/gsap";
 import HelthyLogoGlass from "@/components/ui/HelthyLogoGlass";
 import {
-  Drumstick,
+  Soup,
   Fish,
-  Salad,
+  IceCreamBowl,
   EggFried,
   Cherry,
-  Cookie,
+  Dessert,
   type LucideIcon,
 } from "lucide-react";
 
@@ -46,6 +46,9 @@ interface DemoMeal {
 
 interface Demo {
   query: string;
+  /** Shorter phrasing auto-typed on narrow screens so the input doesn't
+   *  overflow mid-animation. Falls back to `query` when absent. */
+  shortQuery?: string;
   keywords: RegExp;
   reply: string;
   meals: DemoMeal[];
@@ -54,12 +57,13 @@ interface Demo {
 const DEMOS: Demo[] = [
   {
     query: "What should I eat for dinner? I've still got 52g of protein to hit.",
+    shortQuery: "Dinner ideas — 52g protein left?",
     keywords: /dinner|protein|lift|gym|bulk/i,
     reply:
       "You're 52g short of your protein goal with one meal left. Either of these closes the gap:",
     meals: [
       {
-        icon: Drumstick,
+        icon: Soup,
         name: "Garlic Chicken & Rice Bowl",
         desc: "Pan-seared thighs, jasmine rice, charred broccoli.",
         cal: 620, p: 52, c: 58, f: 16,
@@ -79,7 +83,7 @@ const DEMOS: Demo[] = [
       "Under 400 calories, over 25g protein, and nothing takes more than 10 minutes:",
     meals: [
       {
-        icon: Salad,
+        icon: IceCreamBowl,
         name: "Greek Yogurt Power Bowl",
         desc: "2% Greek yogurt, granola, blueberries, honey.",
         cal: 380, p: 32, c: 41, f: 9,
@@ -105,7 +109,7 @@ const DEMOS: Demo[] = [
         cal: 160, p: 19, c: 14, f: 3,
       },
       {
-        icon: Cookie,
+        icon: Dessert,
         name: "Chocolate Protein Pudding",
         desc: "Casein, cocoa, almond milk — sets in 5 min.",
         cal: 190, p: 24, c: 11, f: 4,
@@ -210,9 +214,10 @@ export default function HeroAIDemo() {
       start: "top 85%",
       once: true,
       onEnter: () => {
-        timersRef.current.push(
-          setTimeout(() => typeAndRun(DEMOS[0].query), 900),
-        );
+        const d = DEMOS[0];
+        const narrow = window.matchMedia("(max-width: 480px)").matches;
+        const q = narrow && d.shortQuery ? d.shortQuery : d.query;
+        timersRef.current.push(setTimeout(() => typeAndRun(q), 900));
       },
     });
     return () => st.kill();
