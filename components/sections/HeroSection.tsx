@@ -4,6 +4,8 @@ import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import AndroidWaitlistButton from "@/components/ui/AndroidWaitlistButton";
 import CTAButton from "@/components/ui/CTAButton";
+import HelthyLogoGlass from "@/components/ui/HelthyLogoGlass";
+import HeroAIDemo from "@/components/sections/HeroAIDemo";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
@@ -13,15 +15,36 @@ export default function HeroSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from("[data-hero-h1]", {
-        y: 30, opacity: 0, duration: 1, ease: "power3.out",
-      });
-      gsap.from("[data-hero-sub]", {
-        y: 20, opacity: 0, duration: 0.8, delay: 0.25, ease: "power3.out",
-      });
-      gsap.from("[data-hero-cta]", {
-        y: 15, opacity: 0, duration: 0.7, delay: 0.45, ease: "power3.out",
-      });
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      // 1 — tagline settles in
+      tl.from("[data-hero-sub]", { y: 20, opacity: 0, duration: 0.7 });
+
+      // 2 — the two big words rise out of their masks
+      tl.from(
+        "[data-hero-word]",
+        { yPercent: 115, duration: 0.9, stagger: 0.1, ease: "power4.out" },
+        0.15,
+      );
+
+      // 3 — the mark pops in between and pushes the words apart
+      tl.fromTo(
+        "[data-hero-mark]",
+        { width: 0, scale: 0, rotation: -120, opacity: 0 },
+        {
+          width: "0.82em",
+          scale: 1,
+          rotation: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: "back.out(1.7)",
+        },
+        0.8,
+      );
+
+      // 4 — CTAs, then the AI demo panel
+      tl.from("[data-hero-cta]", { y: 15, opacity: 0, duration: 0.6 }, 1.15);
+      tl.from("[data-hero-demo]", { y: 20, opacity: 0, duration: 0.7 }, 1.35);
     }, sectionRef);
 
     return () => ctx.revert();
@@ -31,31 +54,28 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative w-full overflow-hidden bg-[#141416]"
+      className="relative w-full overflow-hidden bg-[#101012]"
       style={{ minHeight: "clamp(620px, 82svh, 900px)" }}
     >
-      {/* Background video — shown on all breakpoints */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster="/videos/hero-poster.jpg"
-        aria-hidden
-      >
-        <source src="/videos/hero-man-running.mp4" type="video/mp4" />
-      </video>
-
-      {/* Video overlay — even darken so centered text stays legible */}
+      {/* Lemon glow — soft brand-tinted radial bloom behind the headline */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none"
         style={{
           zIndex: 1,
           background:
-            "linear-gradient(180deg, rgba(10,10,10,0.78) 0%, rgba(10,10,10,0.48) 45%, rgba(10,10,10,0.80) 100%)",
+            "radial-gradient(120% 90% at 50% 32%, rgba(205,255,80,0.10) 0%, rgba(205,255,80,0.03) 34%, transparent 62%)",
+        }}
+      />
+
+      {/* Bottom vignette — settles the glow into the section fade */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          zIndex: 1,
+          background:
+            "linear-gradient(180deg, transparent 55%, rgba(16,16,18,0.85) 100%)",
         }}
       />
 
@@ -72,42 +92,60 @@ export default function HeroSection() {
           paddingBottom: "clamp(32px, 4vh, 60px)",
         }}
       >
-        <h1
-          data-hero-h1
-          className="font-heading"
-          style={{
-            fontSize: "clamp(38px, 5.5vw, 68px)",
-            fontWeight: 500,
-            letterSpacing: "-0.035em",
-            lineHeight: "1.05em",
-            color: "#F9F9F9",
-            margin: 0,
-            maxWidth: "16ch",
-          }}
-        >
-          Every meal, every lift,{" "}
-          <span className="text-helthy-lemon whitespace-nowrap">one&nbsp;app</span>.
-        </h1>
-
+        {/* Small tagline — carries the description */}
         <p
           data-hero-sub
-          className="mx-auto"
+          className="font-display"
           style={{
-            fontSize: "clamp(16px, 1.3vw, 18px)",
-            fontWeight: 400,
-            letterSpacing: "-0.005em",
-            lineHeight: "1.5em",
-            color: "rgba(249,249,249,0.72)",
-            maxWidth: 540,
-            margin: "clamp(16px, 2.2vh, 24px) auto 0",
-            textShadow: "0 2px 16px rgba(0,0,0,0.4)",
+            fontSize: "clamp(17px, 1.9vw, 26px)",
+            fontWeight: 500,
+            letterSpacing: "-0.015em",
+            lineHeight: "1.2em",
+            color: "rgba(249,249,249,0.78)",
+            margin: 0,
+            maxWidth: "22ch",
           }}
         >
-          Snap a photo to log food, track every workout, and watch your weight
-          trend — all in one app, with an AI that connects the dots most trackers
-          miss. We built it because juggling four apps never told us what to fix.
-          Free on iOS &amp; Android.
+          Every meal, every lift, one&nbsp;app
         </p>
+
+        {/* Giant brand line — mark pops in between the words */}
+        <h1
+          className="font-heading flex items-center justify-center flex-nowrap"
+          style={{
+            fontSize: "clamp(64px, 13vw, 168px)",
+            fontWeight: 600,
+            letterSpacing: "-0.05em",
+            lineHeight: "0.95em",
+            color: "#F9F9F9",
+            margin: "clamp(8px, 1.4vh, 18px) 0 0",
+            gap: "0.14em",
+          }}
+        >
+          {/* Mask — clips the word as it rises in; padding keeps descenders visible */}
+          <span
+            className="inline-block overflow-hidden"
+            style={{ padding: "0.08em 0.05em 0.14em", margin: "-0.08em -0.05em -0.14em" }}
+          >
+            <span data-hero-word className="inline-block">Get</span>
+          </span>
+
+          <span
+            data-hero-mark
+            aria-hidden="true"
+            className="inline-flex items-center justify-center flex-shrink-0"
+            style={{ width: "0.82em", height: "0.82em", marginTop: "0.06em" }}
+          >
+            <HelthyLogoGlass size={1} style={{ width: "100%", height: "100%" }} />
+          </span>
+
+          <span
+            className="inline-block overflow-hidden"
+            style={{ padding: "0.08em 0.05em 0.14em", margin: "-0.08em -0.05em -0.14em" }}
+          >
+            <span data-hero-word className="inline-block text-helthy-lemon">Helthy.</span>
+          </span>
+        </h1>
 
         <div
           data-hero-cta
@@ -127,6 +165,11 @@ export default function HeroSection() {
             App Store
           </CTAButton>
           <AndroidWaitlistButton />
+        </div>
+
+        {/* AI chat demo — try Helthy AI right in the hero */}
+        <div data-hero-demo className="w-full flex justify-center">
+          <HeroAIDemo />
         </div>
 
       </div>

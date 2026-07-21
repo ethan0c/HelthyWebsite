@@ -8,6 +8,7 @@ interface HelthyMarkProps {
   color2?: string;
   pulse?: boolean;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export default function HelthyMark({
@@ -16,6 +17,7 @@ export default function HelthyMark({
   color2 = "#7BB820",
   pulse = false,
   className = "",
+  style,
 }: HelthyMarkProps) {
   const gradId = `hg-${color1.replace("#", "")}-${color2.replace("#", "")}`;
 
@@ -25,6 +27,7 @@ export default function HelthyMark({
       height={size}
       viewBox="0 0 64 64"
       className={`${pulse ? "animate-helthy-pulse" : ""} ${className}`}
+      style={style}
       aria-hidden="true"
     >
       <defs>

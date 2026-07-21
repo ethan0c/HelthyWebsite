@@ -3,11 +3,13 @@ import React from "react";
 interface HelthyLogoGlassProps {
   size?: number;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export default function HelthyLogoGlass({
   size = 64,
   className = "",
+  style,
 }: HelthyLogoGlassProps) {
   return (
     <svg
@@ -15,6 +17,7 @@ export default function HelthyLogoGlass({
       height={size}
       viewBox="0 0 64 64"
       className={className}
+      style={style}
       aria-hidden="true"
     >
       <defs>

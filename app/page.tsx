@@ -1,9 +1,7 @@
 import { Suspense } from "react";
 import HeroSection from "@/components/sections/HeroSection";
-import PillarStrip from "@/components/sections/PillarStrip";
 import PhoneShowcaseSection from "@/components/sections/PhoneShowcaseSection";
 import HowItWorksSection from "@/components/sections/HowItWorksSection";
-import FeaturesTeaser from "@/components/sections/FeaturesTeaser";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import PricingSection from "@/components/sections/PricingSection";
 import FAQSection from "@/components/sections/FAQSection";
@@ -21,9 +19,7 @@ export default function Home() {
       </Suspense>
       <FlowingLine />
       <HeroSection />
-      <PillarStrip />
       <PhoneShowcaseSection />
-      <FeaturesTeaser />
       <div aria-hidden="true" className="section-beam" />
       <HowItWorksSection />
       <div aria-hidden="true" className="section-beam" />
