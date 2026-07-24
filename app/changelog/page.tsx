@@ -10,6 +10,53 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://helthy.app/changelog" },
 };
 
+const V2_3_SECTIONS = [
+  {
+    label: "Added",
+    items: [
+      "Streaks leaderboard — see how your current daily streak stacks up against everyone else, ranked longest first",
+      "A new Weight page in your weekly issue: your start, end, and change on the scale for the week",
+      "Haptics across the app — a light tap when you log, save, or complete a set, and a bigger celebration buzz for personal records, achievements, and streaks",
+      "Drag to reorder exercises during a workout using the new handle on each exercise card",
+      "Redeem App Store promo and offer codes right from the paywall",
+      "The log weight sheet now starts from your last logged weight, so you nudge the number instead of retyping it",
+    ],
+  },
+  {
+    label: "Changed",
+    items: [
+      "Weekly issues now drop every Sunday, and the current week's issue is free for everyone — opening past issues is the Pro part",
+      "AI chat replies now stream in smoothly at a steady pace, and chat opens faster",
+      "Photo meal scanning is more accurate and more reliable — photos are analyzed at higher resolution by a stronger vision model",
+      "The AI coach now answers macro and calorie questions about any food, including fast food and restaurant items",
+      "The AI coach can see more of your app data and handle more kinds of requests",
+      "Redesigned workout creation, AI routine generator, and exercise screens",
+      "Manual macro targets fill themselves in: enter your calories, protein, and carbs, and fat is calculated from what's left",
+      "Toasts are quicker and all appear at the top of the screen",
+      "Past meals, past workouts, and progress photos all load faster",
+    ],
+  },
+  {
+    label: "Fixed",
+    items: [
+      "Some foods showed a \"logged\" confirmation but weren't actually saved — they now log correctly",
+      "Barcode scans no longer save the wrong quantity",
+      "Personal records are more reliable, and the \"PR!\" feedback fires the moment you complete the set",
+      "Your first body fat scan is now reachable — new users could never log or scan anything before",
+      "The Home screen no longer gets stuck behind a pile-up of pop-ups — celebrations and prompts show one at a time",
+      "Smoother onboarding, with fixes to profile setup and macro targets",
+    ],
+  },
+  {
+    label: "Removed",
+    items: [
+      "The attachment button and unfinished voice mode in AI chat",
+      "The Feature Requests screen (feedback is moving to surveys)",
+      "The progress dots under meals on the Food tab",
+    ],
+  },
+];
+
 const V2_1_3_SECTIONS = [
   {
     label: "Added",
@@ -256,6 +303,11 @@ export default function ChangelogPage() {
           />
 
           <div className="mt-16 space-y-12">
+            <ReleaseBlock
+              version="Helthy 2.3"
+              date="July 2026"
+              sections={V2_3_SECTIONS}
+            />
             <ReleaseBlock
               version="Helthy 2.2"
               date="July 2026"
