@@ -379,6 +379,11 @@ export default function ChangelogPage() {
 
           <div className="mt-16 space-y-12">
             <ReleaseBlock
+              version="Helthy 2.4.1"
+              date="July 2026"
+              sections={V2_4_1_SECTIONS}
+            />
+            <ReleaseBlock
               version="Helthy 2.4"
               date="July 2026"
               sections={V2_4_SECTIONS}
