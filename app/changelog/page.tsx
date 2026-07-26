@@ -10,6 +10,35 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://helthy.app/changelog" },
 };
 
+const V2_4_1_SECTIONS = [
+  {
+    label: "Changed",
+    items: [
+      "Picking your date of birth during signup is much quicker: the year list covers only realistic ages, and Android uses a wheel picker instead of a calendar",
+      "The issue rack now shows a live \"Drops in X hours\" countdown on Sundays, and tells you the drop day on other days",
+      "Dismissing the weekly issue card on Home now sticks instead of the card coming back",
+    ],
+  },
+  {
+    label: "Fixed",
+    items: [
+      "Android: typing numbers that end in 0 (like 10) into the reps and weight fields during a workout now works reliably",
+      "Android: the resume bar after minimizing a workout responds to taps again",
+      "Android: the selected label on the Monthly and Yearly toggle and the imperial and metric toggle is visible again",
+      "Android: the reps and weight fields during a workout no longer look squeezed",
+      "The big price on the upgrade screen now fits on one line on small screens",
+      "Leaderboard filter names like \"Workouts\" no longer wrap onto a second line",
+      "Meals you log by voice or description now keep every food: items not found in the database get an AI nutrition estimate instead of being dropped from the meal",
+      "Editing or deleting an AI-logged meal with several foods now works correctly: edit lets you pick which item to change, and delete removes the whole meal",
+      "Sharing a progress photo from the weight screen now works",
+      "The weight graph now appears from your first entry instead of needing two",
+      "Weekly issue pages about calories and protein no longer show the steps chart",
+      "The weekly issue's new and read state stays correct across week boundaries",
+      "The one-time survey for Pro members no longer reappears after you have answered it",
+    ],
+  },
+];
+
 const V2_4_SECTIONS = [
   {
     label: "Added",
