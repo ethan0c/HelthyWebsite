@@ -160,7 +160,7 @@ export default function SiteFooter() {
             {" "}•{" "}
             Built by{" "}
             <a
-              href="https://ocelabs.tech"
+              href="https://ocelabs.xyz"
               target="_blank"
               rel="noopener noreferrer"
               className="transition-colors hover:text-white underline underline-offset-2"
