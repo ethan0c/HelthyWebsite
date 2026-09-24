@@ -340,7 +340,7 @@ export default function PricingSection() {
             <div className="min-h-[112px] sm:min-h-[118px]">
               <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
                 <RollingPrice
-                  price={isYearly ? 19.99 : 2.99}
+                  price={isYearly ? 24.99 : 4.99}
                   className="text-numeric tabular-nums"
                   style={{
                     fontSize: "clamp(46px, 12vw, 84px)",
@@ -373,7 +373,7 @@ export default function PricingSection() {
                 style={{ color: "rgba(205,251,80,0.85)" }}
               >
                 {isYearly
-                  ? "That's just $1.67 a month · Price locked in for life"
+                  ? "That's just $2.08 a month · Price locked in for life"
                   : "Cancel anytime · Price locked in for life"
                 }
               </p>

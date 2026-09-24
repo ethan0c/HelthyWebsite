@@ -7,7 +7,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 const FAQS = [
   {
     q: "Is Helthy really free?",
-    a: "Yes — calorie logging, workouts, TDEE, and form tips are unlimited and free forever. Helthy Pro ($2.99/mo or $19.99/yr) unlocks unlimited AI photo & voice logging, the AI coach, generated routines, full analytics, and all-time history.",
+    a: "Yes — calorie logging, workouts, TDEE, and form tips are unlimited and free forever. Helthy Pro ($4.99/mo or $24.99/yr) unlocks unlimited AI photo & voice logging, the AI coach, generated routines, full analytics, and all-time history.",
   },
   {
     q: "How accurate is the AI photo logging?",

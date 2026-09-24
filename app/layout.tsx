@@ -125,7 +125,7 @@ export default function RootLayout({
                 },
                 {
                   "@type": "Offer",
-                  price: "2.99",
+                  price: "4.99",
                   priceCurrency: "USD",
                   name: "Helthy Pro Monthly",
                   description:
@@ -133,10 +133,10 @@ export default function RootLayout({
                 },
                 {
                   "@type": "Offer",
-                  price: "19.99",
+                  price: "24.99",
                   priceCurrency: "USD",
                   name: "Helthy Pro Yearly",
-                  description: "All Helthy Pro features at $1.67/month — save 44%.",
+                  description: "All Helthy Pro features at $2.08/month — save 58% vs monthly.",
                 },
               ],
               aggregateRating: {
