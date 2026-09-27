@@ -41,6 +41,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "Company",
     links: [
+      { label: "Blog", href: "/blog" },
       { label: "Contact", href: "/contact" },
       { label: "FAQ", href: "/?section=faq" },
       { label: "App Store", href: APP_STORE_URL },
@@ -106,7 +107,7 @@ export default function SiteFooter() {
           {COLUMNS.map((col) => (
             <div key={col.title} className="md:col-span-2">
               <p
-                className="text-[11px] uppercase tracking-[0.2em] font-semibold mb-4"
+                className="text-[13px] font-medium mb-4"
                 style={{ color: "rgba(255,255,255,0.45)" }}
               >
                 {col.title}

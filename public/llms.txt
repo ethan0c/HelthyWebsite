@@ -10,23 +10,23 @@ Android: https://play.google.com/store/apps/details?id=app.helthy.mobile
 
 Most people juggle several apps to understand one body. Helthy puts nutrition, training, weight and coaching in a single app that sees the whole picture. The tagline is "A coach that learns you."
 
-Helthy was built by co-founders Chibu and Ebu, who use the app themselves. Chibu lost 28 lb and added 50 lb to his bench press; Ebu uses photo logging daily.
+Helthy was built by co-founders Chibu and Ebu, who use the app every day for their own training and nutrition.
 
 ## Free plan (no trial, no expiry)
 
 - Unlimited food logging by database search, saved meals and quick-add calories/macros
 - Calorie, protein, carb, fat and fiber tracking against personalised targets
-- TDEE and calorie/macro targets calculated from your profile and goal
+- TDEE and calorie/macro targets calculated from your profile and goal, refreshed weekly from your real steps and workouts
 - 2 camera scans a week (meal photo, barcode or nutrition label), 2 voice food logs and 2 typed meal descriptions a week
 - Unlimited workout logging: sets, reps, weight and cardio
-- 1,500-exercise library with how-to, target muscles and form tips
+- 1,500-exercise library with how-to and target muscles, and form tips on popular lifts
 - Automatic personal records (max weight, max reps, max volume) and "Your records"
 - Weight logging with a trend chart
 - Up to 4 saved workouts, 10 custom foods and 5 custom meals
 - The last 7 days of meal and workout history
-- Apple Watch app, Apple Health and Google Health Connect sync
-- Offline logging that syncs when you reconnect
-- Achievements and streaks
+- Apple Watch app: cardio tracking with heart rate and calories, and voice food logging
+- Apple Health sync: reads steps, weight, workouts, active energy and heart rate (for workout calories); writes weigh-ins, workouts and meals
+- 15 achievements across four rarity tiers, and streaks
 
 ## Helthy Pro ($4.99/month or $24.99/year)
 
@@ -37,15 +37,16 @@ Called "Premium" inside the app. Cancel any time in Settings → Subscription or
 - Helthy AI Chat: the AI coach
 - Workout Coach chat during workouts and on exercise screens
 - AI Routine Generator: builds a program for your goal, equipment, experience and schedule
-- Dynamic TDEE: recalculated weekly from your real steps, workouts and weight
+- Smart Calories: an adaptive TDEE from your weight trend and intake, calorie cycling and a dynamic goal date
 - Full meal and workout history with search, trends, plateau alerts and goal projections
 - AI body fat estimate from photos
+- Apple Watch strength workouts: follow the live workout, complete sets and run rest timers from the watch
 - Unlimited saved workouts, custom foods and custom meals
-- Data export, themes and app icons
+- Data export (ZIP or CSV), themes and app icons
 
 ## The AI coach
 
-The AI coach runs on Claude by Anthropic. Every conversation includes the user's own data: profile, calorie and macro targets, TDEE, today's meals, 14-day nutrition averages, the last 5 workouts, recent PRs, weight trend, goals, streaks, scheduled workouts and recent steps. It can look up saved workouts and full exercise history on demand.
+The AI coach runs on Claude by Anthropic, with a backup provider during outages. Every conversation includes the user's own data: profile, calorie and macro targets, TDEE, today's meals, 14-day nutrition averages, the last 5 workouts, recent PRs, weight trend, goals, streaks, scheduled workouts and recent steps. It can look up saved workouts and full exercise history on demand.
 
 It can also act: log a meal, log a weight, schedule a workout, set a goal, suggest meals, save a custom meal and create a workout. It does not see sleep, water or heart-rate data.
 
@@ -53,18 +54,19 @@ Example questions: "Am I eating enough protein on training days?", "Why has my w
 
 ## Photo meal logging
 
-Take a photo and Helthy identifies each item on the plate, estimates grams and fills in calories and macros, grounded in the food database and the user's own logging history. Users review each item before saving and can add a hint ("Chipotle bowl, no rice") to re-analyze. For most common meals the result is within 5–10% of a carefully hand-logged entry.
+Take a photo and Helthy identifies each item on the plate, estimates grams and fills in calories and macros, grounded in the food database and the user's own logging history. Users review each item before saving and can add a hint ("Chipotle bowl, no rice") to re-analyze.
 
 ## How Helthy calculates targets
 
 - BMR: Katch-McArdle when body fat is known, otherwise Mifflin-St Jeor
 - TDEE: built from BMR + everyday movement (NEAT, with a step bonus) + logged exercise + thermic effect of food, not a single activity multiplier
 - Calorie target: TDEE adjusted for the chosen weekly rate using about 7,700 kcal per kg, with floors of roughly 1,500 kcal (men) / 1,200 kcal (women)
-- Protein: about 2.2 g/kg when cutting, 2.0 g/kg when bulking, 1.8 g/kg at maintenance
+- Protein: 0.85 g per lb of bodyweight when cutting (anchored on the lower of current and goal weight), 0.8 g per lb otherwise, +0.3 g/kg on the high-protein style
+- Carbs and fat split the remaining calories 55/45 (balanced), 30/70 (low carb) or 50/50 (high protein)
 
 ## Privacy
 
-Helthy never sells user data and never uses it to train AI models. Users can export or delete their data from inside the app.
+Helthy never sells user data and never uses it to train AI models. Users can delete their account from inside the app at any time; Pro members can also export their data.
 
 ## Key pages
 
@@ -76,6 +78,7 @@ Helthy never sells user data and never uses it to train AI models. Users can exp
 - [Compare Helthy](https://helthy.app/compare): vs MyFitnessPal, Cal AI, Hevy and Strong
 - [Free tools](https://helthy.app/tools): TDEE, macro, protein and one-rep max calculators
 - [Exercise guides](https://helthy.app/exercises): form tips and strength standards for 45 popular lifts
+- [Blog](https://helthy.app/blog): weekly articles on nutrition, training and AI coaching
 - [Changelog](https://helthy.app/changelog)
 - [Contact](https://helthy.app/contact)
 - [Privacy](https://helthy.app/privacy) · [Terms](https://helthy.app/terms)

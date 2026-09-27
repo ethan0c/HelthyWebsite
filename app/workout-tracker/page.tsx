@@ -13,6 +13,7 @@ import {
   DownloadBanner,
   seoMetadata,
 } from "@/components/seo/SeoPage";
+import AppleWatch from "@/components/ui/AppleWatch";
 import { PRO_PRICE } from "@/lib/site";
 
 export const metadata: Metadata = seoMetadata({
@@ -41,11 +42,7 @@ const FAQS = [
   },
   {
     q: "Does Helthy work on Apple Watch?",
-    a: "Yes. Helthy has its own Apple Watch app: start and control a workout from your wrist, and sets you log there sync to your phone live.",
-  },
-  {
-    q: "Does it work without signal in the gym?",
-    a: "Yes. Workout logging works fully offline and syncs automatically when you're back online.",
+    a: "Yes. Helthy has its own Apple Watch app. Track runs, walks, rides and HIIT with heart rate and calories, and log meals by voice. With Helthy Pro, the watch also follows your strength workout live, so you can complete sets and start rest timers from your wrist.",
   },
   {
     q: "Why track workouts and food in the same app?",
@@ -58,7 +55,6 @@ export default function WorkoutTrackerPage() {
     <SeoPage crumbs={[{ name: "Workout tracker", href: "/workout-tracker" }]}>
       <div className="grid items-center gap-12 md:grid-cols-[1.3fr_1fr]">
         <PageHero
-          eyebrow="Workout tracker"
           title={
             <>
               The free workout tracker for people who want to{" "}
@@ -100,7 +96,7 @@ export default function WorkoutTrackerPage() {
             },
             {
               title: "Apple Watch app",
-              body: "Start a workout and log sets from your wrist. Everything syncs to your phone live.",
+              body: "Track cardio with heart rate from your wrist. With Pro, complete sets and start rests without touching your phone.",
             },
             {
               title: "AI-built routines",
@@ -138,6 +134,28 @@ export default function WorkoutTrackerPage() {
         </div>
       </div>
 
+      <div className="mt-24 grid items-center gap-12 md:grid-cols-[1.3fr_1fr]">
+        <div>
+          <h2 className="flex flex-wrap items-center gap-3 text-display-md text-white">
+            Log sets from your wrist
+            <span className="rounded-full border border-helthy-lemon/30 bg-helthy-lemon/10 px-2.5 py-0.5 text-[12px] font-semibold text-helthy-lemon">
+              Pro
+            </span>
+          </h2>
+          <div className="mt-6">
+            <Prose
+              paragraphs={[
+                "Leave your phone in your bag. The Helthy Apple Watch app follows your workout live: see the current exercise and every set, tap Complete Set, and start your rest timer without picking up your phone.",
+                "On any plan, the watch also tracks runs, walks, rides and HIIT with heart rate and calories, and lets you log a meal by voice. Everything syncs straight to your phone.",
+              ]}
+            />
+          </div>
+        </div>
+        <div className="flex justify-center">
+          <AppleWatch width={280} />
+        </div>
+      </div>
+
       <Section title="Start tracking your workouts">
         <Steps
           items={[
@@ -147,7 +165,7 @@ export default function WorkoutTrackerPage() {
             },
             {
               title: "Log as you lift",
-              body: "Tap in weight and reps after each set. Rest, repeat. It works offline.",
+              body: "Tap in weight and reps after each set. Rest, repeat. Your session is saved on your phone as you go.",
             },
             {
               title: "Beat last time",

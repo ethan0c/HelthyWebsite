@@ -103,7 +103,6 @@ export default async function ExercisePage({ params }: PageProps<"/exercises/[sl
       ]}
     >
       <PageHero
-        eyebrow={`${e.group} exercise`}
         title={
           <>
             How to do the <span className="text-helthy-lemon">{e.name.toLowerCase()}</span>
@@ -120,7 +119,7 @@ export default async function ExercisePage({ params }: PageProps<"/exercises/[sl
           { k: "Difficulty", v: e.difficulty[0].toUpperCase() + e.difficulty.slice(1) },
         ].map((f) => (
           <div key={f.k} className="card-helthy p-5">
-            <dt className="text-[12px] uppercase tracking-[0.14em] text-white/45">{f.k}</dt>
+            <dt className="text-[13px] text-white/50">{f.k}</dt>
             <dd className="mt-2 text-[15px] text-white">{f.v}</dd>
           </div>
         ))}

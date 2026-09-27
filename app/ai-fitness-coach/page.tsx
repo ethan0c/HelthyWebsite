@@ -38,7 +38,7 @@ const FAQS = [
   },
   {
     q: "Which AI model powers the Helthy coach?",
-    a: "Helthy's coach runs on Claude by Anthropic, with your Helthy data supplied as context for each conversation.",
+    a: "Helthy's coach runs on Claude by Anthropic, with your Helthy data supplied as context for each conversation. A backup provider takes over during outages.",
   },
   {
     q: "How much does the AI coach cost?",
@@ -50,7 +50,7 @@ const FAQS = [
   },
   {
     q: "Is my data used to train AI models?",
-    a: "No. Helthy never sells your data and never uses it to train AI models. You can export or delete everything from inside the app.",
+    a: "No. Helthy never sells your data and never uses it to train AI models. You can delete your account from inside the app at any time, and Pro members can export their data.",
   },
 ];
 
@@ -59,7 +59,6 @@ export default function AICoachPage() {
     <SeoPage crumbs={[{ name: "AI fitness coach", href: "/ai-fitness-coach" }]}>
       <div className="grid items-center gap-12 md:grid-cols-[1.3fr_1fr]">
         <PageHero
-          eyebrow="AI fitness coach"
           title={
             <>
               An AI coach that has actually{" "}

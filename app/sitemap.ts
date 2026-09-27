@@ -2,6 +2,9 @@ import { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/site";
 import { COMPARISONS } from "@/lib/content/comparisons";
 import { EXERCISES } from "@/lib/content/exercises";
+import { getPosts } from "@/lib/blog";
+
+export const revalidate = 86400;
 
 type Entry = MetadataRoute.Sitemap[number];
 
@@ -11,9 +14,11 @@ const page = (
   changeFrequency: Entry["changeFrequency"] = "monthly",
 ): Entry => ({ url: absoluteUrl(path), priority, changeFrequency });
 
-// No lastModified: stamping every URL with the build time tells search
-// engines nothing, and Google ignores lastmod once it proves unreliable.
-export default function sitemap(): MetadataRoute.Sitemap {
+// No lastModified on static pages: stamping every URL with the build time
+// tells search engines nothing, and Google ignores lastmod once it proves
+// unreliable. Blog posts use their real publish date.
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const posts = await getPosts();
   return [
     page("/", 1, "weekly"),
     page("/calorie-tracker", 0.9),
@@ -29,6 +34,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/tools/one-rep-max-calculator", 0.8),
     page("/exercises", 0.7),
     ...EXERCISES.map((e) => page(`/exercises/${e.slug}`, 0.6)),
+    page("/blog", 0.8, "weekly"),
+    ...posts.map((p) => ({
+      url: absoluteUrl(`/blog/${p.slug}`),
+      lastModified: p.meta.date,
+      changeFrequency: "yearly" as const,
+      priority: 0.7,
+    })),
     page("/download", 0.6),
     page("/changelog", 0.5, "weekly"),
     page("/contact", 0.4, "yearly"),

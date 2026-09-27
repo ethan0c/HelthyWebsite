@@ -12,11 +12,11 @@ export const metadata: Metadata = seoMetadata({
 const FAQS = [
   {
     q: "How much protein do I need to build muscle?",
-    a: "Research on resistance training generally supports around 1.6–2.2 g of protein per kg of bodyweight a day (about 0.7–1 g per lb). This calculator uses 2.0 g/kg when you're building muscle.",
+    a: "Research on resistance training generally supports around 1.6–2.2 g of protein per kg of bodyweight a day (about 0.7–1 g per lb). This calculator uses 0.8 g per lb (about 1.8 g/kg) when you're building muscle, the same target the Helthy app sets.",
   },
   {
     q: "Why is protein higher when losing fat?",
-    a: "In a calorie deficit your body is more likely to break down muscle for energy. Higher protein, around 2.2 g/kg, together with strength training helps you keep muscle while you lose fat. It also keeps you fuller.",
+    a: "In a calorie deficit your body is more likely to break down muscle for energy. Higher protein, around 0.85 g per lb (about 1.9 g/kg), together with strength training helps you keep muscle while you lose fat. It also keeps you fuller.",
   },
   {
     q: "How much protein can I absorb in one meal?",
@@ -37,7 +37,6 @@ export default function ProteinPage() {
       ]}
     >
       <PageHero
-        eyebrow="Free tool"
         title={
           <>
             Protein <span className="text-helthy-lemon">calculator</span>
@@ -53,8 +52,7 @@ export default function ProteinPage() {
       <Section title="How much protein you need">
         <Prose
           paragraphs={[
-            "Protein targets here are based on bodyweight: about 2.2 g per kg when losing fat, 1.8 g/kg to maintain and 2.0 g/kg to build muscle. They're the same targets the Helthy app sets, and they sit within the range sports nutrition research supports for people who train.",
-            "Daily totals are capped at 220 g for men and 170 g for women. Above that, extra protein adds little for most people and crowds out carbs and fat.",
+            "Protein targets here are based on bodyweight: 0.85 g per lb (about 1.9 g/kg) when losing fat, and 0.8 g per lb (about 1.8 g/kg) to maintain or build muscle. They're the same targets the Helthy app sets, and they sit within the range sports nutrition research supports for people who train.",
           ]}
         />
       </Section>

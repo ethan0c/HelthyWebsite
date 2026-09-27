@@ -60,7 +60,7 @@ const DEMOS: Demo[] = [
     shortQuery: "Dinner ideas — 52g protein left?",
     keywords: /dinner|protein|lift|gym|bulk/i,
     reply:
-      "You're 52g short of your protein goal with one meal left. Either of these closes the gap:",
+      "You're 52g short of your protein goal with one meal left. The first closes the gap, the second gets you most of the way:",
     meals: [
       {
         icon: Soup,

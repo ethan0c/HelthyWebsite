@@ -11,7 +11,6 @@ export default function NewsletterSection() {
     const ctx = gsap.context(() => {
       gsap.from(
         [
-          "[data-newsletter-eyebrow]",
           "[data-newsletter-heading]",
           "[data-newsletter-sub]",
         ],
@@ -57,17 +56,6 @@ export default function NewsletterSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
           {/* Left: heading + copy */}
           <div>
-            <p
-              data-newsletter-eyebrow
-              className="text-[11px] font-semibold uppercase mb-5"
-              style={{
-                letterSpacing: "0.2em",
-                color: "rgba(10,10,10,0.55)",
-                fontFamily: "var(--font-body)",
-              }}
-            >
-              Newsletter
-            </p>
             <h2
               data-newsletter-heading
               className="font-heading"

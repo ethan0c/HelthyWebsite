@@ -16,7 +16,7 @@ const FAQS = [
   },
   {
     q: "What macro split is best for fat loss?",
-    a: "The most important part is enough protein, around 2.2 g per kg of bodyweight when cutting, to protect muscle. Beyond that, the carb and fat split matters far less than total calories, so choose the style you can stick to.",
+    a: "The most important part is enough protein, around 0.85 g per lb of bodyweight when cutting, to protect muscle. Beyond that, the carb and fat split matters far less than total calories, so choose the style you can stick to.",
   },
   {
     q: "Do I need to hit my macros exactly?",
@@ -37,7 +37,6 @@ export default function MacroPage() {
       ]}
     >
       <PageHero
-        eyebrow="Free tool"
         title={
           <>
             Macro <span className="text-helthy-lemon">calculator</span>
@@ -53,9 +52,9 @@ export default function MacroPage() {
       <Section title="How your macros are calculated">
         <Prose
           paragraphs={[
-            "Calories come from your TDEE (Mifflin-St Jeor or Katch-McArdle BMR multiplied by your activity level), adjusted for your goal: about 0.5 kg a week of fat loss, or a smaller surplus for muscle gain.",
-            "Protein is set from bodyweight first: about 2.2 g per kg when losing fat, 1.8 g/kg at maintenance and 2.0 g/kg when building muscle, with 0.3 g/kg more on the high-protein style. These are the same targets the Helthy app uses.",
-            "Fat takes roughly a quarter of calories (40% on low carb), never dropping below a healthy minimum, and carbohydrates fill the rest.",
+            "Calories come from your TDEE (Mifflin-St Jeor or Katch-McArdle BMR multiplied by your activity level), adjusted for your goal: 20% below it to lose fat (up to 500 calories a day) or 10% above it to build muscle.",
+            "Protein is set from bodyweight first: 0.85 g per lb (about 1.9 g/kg) when losing fat and 0.8 g per lb (about 1.8 g/kg) otherwise, plus 0.3 g/kg on the high-protein style. These are the same targets the Helthy app uses.",
+            "The calories left after protein are split between carbs and fat: 55/45 on balanced, 30/70 on low carb and 50/50 on high protein, with minimums of 100 g of carbs and 40 g of fat (35 g for women).",
           ]}
         />
       </Section>

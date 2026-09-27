@@ -11,15 +11,15 @@ const FAQS = [
   },
   {
     q: "How accurate is the AI photo logging?",
-    a: "Helthy's vision model is trained on millions of meals across an extensive food database. For most common meals it's within 5–10% of a hand-logged entry. You can always tap to adjust before saving.",
+    a: "Helthy uses Claude's vision model to identify each item, then checks the nutrition against the food database and your own logging history. You see every item before saving and can adjust anything.",
   },
   {
-    q: "Does it sync with Apple Health & Google Health Connect?",
-    a: "Yes. Free users get steps and weight sync. Helthy Pro gets full two-way sync — heart rate, workouts, active energy, and nutrition data flow both directions.",
+    q: "Does it sync with Apple Health?",
+    a: "Yes, on every plan. Helthy reads your steps, weight, workouts, active energy and heart rate (used to estimate workout calories) from Apple Health, and writes your weigh-ins, workouts and meals back.",
   },
   {
     q: "Is my data private?",
-    a: "Your data is yours. We never sell it, never use it to train AI models, and you can export or delete everything from inside the app at any time.",
+    a: "Your data is yours. We never sell it or use it to train AI models. You can delete your account from inside the app at any time, and Pro members can export their data.",
   },
   {
     q: "What's the AI coach actually like?",
@@ -27,15 +27,15 @@ const FAQS = [
   },
   {
     q: "Is Helthy on Android?",
-    a: "Yes — Helthy is live on Google Play. Download it free and get the same features as iOS, including Helthy Pro.",
+    a: "Yes — Helthy is live on Google Play, with the same logging, AI and Pro features. The Apple Watch app and home-screen widgets are iOS only.",
   },
   {
     q: "Can I cancel Helthy Pro?",
     a: "Anytime. Manage your subscription in Settings → Subscription, or directly through the App Store or Google Play. Cancel and you keep Free forever.",
   },
   {
-    q: "Does it work offline?",
-    a: "Logging meals, workouts, and weight works fully offline. Your data syncs automatically when you're back online. AI features need a connection.",
+    q: "Does it work on Apple Watch?",
+    a: "Yes. Track runs, walks, rides and HIIT with heart rate and calories, and log meals by voice from your wrist. With Pro, the watch also follows your strength workout so you can complete sets and start rests.",
   },
 ];
 

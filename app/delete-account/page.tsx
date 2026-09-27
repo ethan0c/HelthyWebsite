@@ -24,12 +24,6 @@ export default function DeleteAccountPage() {
           <div className="space-y-10">
             {/* Header */}
             <div className="space-y-5 pb-10 border-b border-white/10">
-              <p
-                className="text-[11px] font-semibold uppercase text-white/45"
-                style={{ fontFamily: "var(--font-body)", letterSpacing: "0.2em" }}
-              >
-                Account
-              </p>
               <h1
                 className="font-heading text-white"
                 style={{

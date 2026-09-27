@@ -37,7 +37,6 @@ export default function TdeePage() {
       ]}
     >
       <PageHero
-        eyebrow="Free tool"
         title={
           <>
             TDEE <span className="text-helthy-lemon">calculator</span>
@@ -55,14 +54,14 @@ export default function TdeePage() {
           paragraphs={[
             "First it estimates your BMR, the calories you burn at complete rest. By default it uses the Mifflin-St Jeor equation, which is based on weight, height, age and sex. If you enter your body fat percentage it uses Katch-McArdle instead, which works from lean body mass.",
             "It then multiplies your BMR by an activity factor, from 1.2 for a desk job with little exercise up to 1.9 for athletes, to estimate your total daily energy expenditure.",
-            "Calorie targets use a deficit of about 0.5 kg (1.1 lb) a week to lose fat and a surplus of about 0.25 kg (0.55 lb) a week to build muscle, at roughly 7,700 calories per kilogram. Fat-loss targets aren't set below 1,500 calories for men or 1,200 for women.",
+            "Calorie targets use the same defaults as the Helthy app: 20% below your TDEE to lose fat (never more than 500 calories a day), and 10% above it to build muscle. Fat-loss targets aren't set below 1,500 calories for men or 1,200 for women.",
           ]}
         />
       </Section>
 
       <Section
         title="Get a TDEE that learns from you"
-        intro="A calculator gives you a starting point. The Helthy app builds your TDEE from its parts (resting burn, daily movement, logged workouts and digestion) and, with Pro, recalculates it every week from your real steps, workouts and weight, so your targets stay accurate as you change."
+        intro="A calculator gives you a starting point. The Helthy app builds your TDEE from its parts (resting burn, daily movement, logged workouts and digestion) and refreshes it every week from your real steps and workouts, free. Pro adds Smart Calories, an adaptive TDEE that learns from your weight trend and intake."
       />
 
       <Section title="TDEE questions">

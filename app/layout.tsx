@@ -119,7 +119,7 @@ function siteJsonLd(rating: AppRating | null) {
             price: String(PRO_PRICE.monthly),
             priceCurrency: "USD",
             description:
-              "Unlimited AI photo, barcode, voice and text logging, AI coach chat, AI-built workout programs, dynamic TDEE, full history and trends.",
+              "Unlimited AI photo, barcode, voice and text logging, AI coach chat, AI-built workout programs, Smart Calories, Apple Watch workout control, full history and trends.",
           },
           {
             "@type": "Offer",
@@ -150,8 +150,7 @@ function siteJsonLd(rating: AppRating | null) {
           "AI-generated workout programs",
           "Weight tracking with trend graphs",
           "Apple Watch app",
-          "Apple Health and Google Health Connect sync",
-          "Offline logging",
+          "Apple Health sync",
         ],
       },
     ],

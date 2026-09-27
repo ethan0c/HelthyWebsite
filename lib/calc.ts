@@ -1,9 +1,9 @@
 /**
- * Formulas behind the /tools calculators. BMR formulas, protein targets,
- * the 7700 kcal/kg rule and calorie floors match the app (see "HOW HELTHY
- * CALCULATES" in helthy_app/backend/src/ai/prompts/appKnowledge.ts). The app
- * builds TDEE from components with real step and workout data; the web
- * calculators use standard activity multipliers instead.
+ * Formulas behind the /tools calculators. BMR formulas, goal adjustments,
+ * calorie floors, protein (policy v4) and the macro split mirror
+ * helthy_app/backend/src/utils/nutrition.ts. The app builds TDEE from
+ * components with real step and workout data; the web calculators use
+ * standard activity multipliers instead.
  */
 
 export type Sex = "male" | "female";
@@ -11,7 +11,6 @@ export type Goal = "lose" | "maintain" | "gain";
 export type MacroStyle = "balanced" | "low-carb" | "high-protein";
 
 export const LB_PER_KG = 2.20462;
-export const KCAL_PER_KG = 7700;
 
 export const ACTIVITY_LEVELS = [
   { key: "sedentary", label: "Sedentary (desk job, little exercise)", factor: 1.2 },
@@ -23,10 +22,16 @@ export const ACTIVITY_LEVELS = [
 
 export type ActivityKey = (typeof ACTIVITY_LEVELS)[number]["key"];
 
-/** Default weekly rate when a goal is picked, in kg per week. */
-const GOAL_RATE_KG: Record<Goal, number> = { lose: -0.5, maintain: 0, gain: 0.25 };
+/** Protein policy v4: 0.85 g/lb when cutting, 0.8 g/lb otherwise, no cap. */
+const PROTEIN_G_PER_KG: Record<Goal, number> = {
+  lose: 0.85 * LB_PER_KG,
+  maintain: 0.8 * LB_PER_KG,
+  gain: 0.8 * LB_PER_KG,
+};
+const HIGH_PROTEIN_BONUS_G_PER_KG = 0.3;
 
-const PROTEIN_G_PER_KG: Record<Goal, number> = { lose: 2.2, maintain: 1.8, gain: 2.0 };
+/** Share of the calories left after protein that goes to carbs; fat gets the rest. */
+const CARB_SHARE: Record<MacroStyle, number> = { balanced: 0.55, "low-carb": 0.3, "high-protein": 0.5 };
 
 export function bmr({
   sex,
@@ -54,19 +59,19 @@ export function tdee(bmrKcal: number, activity: ActivityKey) {
   return bmrKcal * level.factor;
 }
 
+/** The app's default when no weekly rate is chosen: a 20% deficit up to 500 kcal, or a 10% surplus. */
 export function calorieTarget(tdeeKcal: number, goal: Goal, sex: Sex) {
-  const target = tdeeKcal + (GOAL_RATE_KG[goal] * KCAL_PER_KG) / 7;
+  if (goal === "maintain") return tdeeKcal;
+  if (goal === "gain") return tdeeKcal + Math.min(tdeeKcal * 0.1, 1000);
   const floor = sex === "male" ? 1500 : 1200;
-  return goal === "lose" ? Math.max(target, floor) : target;
+  return Math.max(tdeeKcal - Math.min(tdeeKcal * 0.2, 500), floor);
 }
 
-export function proteinGrams(weightKg: number, goal: Goal, sex: Sex, style: MacroStyle = "balanced") {
-  const perKg = PROTEIN_G_PER_KG[goal] + (style === "high-protein" ? 0.3 : 0);
-  const cap = sex === "male" ? 220 : 170;
-  return Math.min(weightKg * perKg, cap);
+export function proteinGrams(weightKg: number, goal: Goal, style: MacroStyle = "balanced") {
+  return weightKg * (PROTEIN_G_PER_KG[goal] + (style === "high-protein" ? HIGH_PROTEIN_BONUS_G_PER_KG : 0));
 }
 
-/** Protein from bodyweight, fat as a share of calories, carbs fill the rest. */
+/** Protein from bodyweight first; the macro style splits what's left between carbs and fat. */
 export function macros({
   calories,
   weightKg,
@@ -80,12 +85,21 @@ export function macros({
   sex: Sex;
   style: MacroStyle;
 }) {
-  const protein = proteinGrams(weightKg, goal, sex, style);
-  const fatShare = style === "low-carb" ? 0.4 : 0.27;
-  const minFat = weightKg * 0.6;
-  const fat = Math.max((calories * fatShare) / 9, minFat);
-  const carbs = Math.max((calories - protein * 4 - fat * 9) / 4, 50);
-  return { protein, fat, carbs };
+  const protein = proteinGrams(weightKg, goal, style);
+  const fatMin = sex === "male" ? 40 : 35;
+  const carbFloor = 100;
+  const remaining = calories - protein * 4;
+  let carbs = (remaining * CARB_SHARE[style]) / 4;
+  let fat = (remaining * (1 - CARB_SHARE[style])) / 9;
+  if (fat < fatMin) {
+    fat = fatMin;
+    carbs = (calories - protein * 4 - fat * 9) / 4;
+  }
+  if (carbs < carbFloor) {
+    carbs = carbFloor;
+    fat = (calories - protein * 4 - carbs * 4) / 9;
+  }
+  return { protein, carbs: Math.max(carbs, carbFloor), fat: Math.max(fat, fatMin) };
 }
 
 /** Estimated one-rep max: mean of Epley and Brzycki. Reliable up to ~12 reps. */

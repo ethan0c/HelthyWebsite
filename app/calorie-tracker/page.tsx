@@ -29,7 +29,7 @@ const FAQS = [
   },
   {
     q: "How accurate is AI photo calorie counting?",
-    a: "For most common meals, Helthy's photo logging lands within 5–10% of a carefully hand-logged entry. You see every item it detected and can adjust portions before you save, so you stay in control of the numbers.",
+    a: "Helthy uses Claude's vision model to identify each item on the plate, then checks the nutrition against the food database and your own logging history. It's most accurate on simple plates, and you see every item and portion before you save, so you can correct anything that looks off.",
   },
   {
     q: "Does Helthy track macros as well as calories?",
@@ -37,15 +37,11 @@ const FAQS = [
   },
   {
     q: "How does Helthy set my calorie goal?",
-    a: "During setup Helthy estimates your daily energy needs (TDEE) from your age, height, weight, activity and goal, then sets calorie and macro targets. With Pro, it recalculates your TDEE every week from your real data so targets stay accurate. Try the free TDEE calculator on this site to see the math.",
+    a: "During setup Helthy estimates your daily energy needs (TDEE) from your age, height, weight, activity and goal, then sets calorie and macro targets. Every week it refreshes your TDEE from your real steps and workouts, free. Pro adds Smart Calories: an adaptive TDEE from your weight trend and intake, calorie cycling and a goal date. Try the free TDEE calculator on this site to see the math.",
   },
   {
-    q: "Can I log food offline?",
-    a: "Yes. You can keep logging without a connection, and everything syncs automatically once you're back online. AI photo and voice logging need a connection.",
-  },
-  {
-    q: "Does it sync with Apple Health and Google Health Connect?",
-    a: "Yes. Free users sync steps and weight. Helthy Pro adds full two-way sync, including nutrition, workouts, heart rate and active energy.",
+    q: "Does it sync with Apple Health?",
+    a: "Yes, on every plan. Helthy reads your steps, weight, workouts, active energy and heart rate (used to estimate workout calories) from Apple Health, and writes your weigh-ins, workouts and meals back.",
   },
 ];
 
@@ -54,7 +50,6 @@ export default function CalorieTrackerPage() {
     <SeoPage crumbs={[{ name: "Calorie tracker", href: "/calorie-tracker" }]}>
       <div className="grid items-center gap-12 md:grid-cols-[1.3fr_1fr]">
         <PageHero
-          eyebrow="Calorie tracker"
           title={
             <>
               The free calorie tracker that logs a meal from a{" "}
@@ -118,8 +113,8 @@ export default function CalorieTrackerPage() {
               body: "Copy a meal from yesterday or save your regulars, so repeat meals take one tap.",
             },
             {
-              title: "Offline logging",
-              body: "Log on a plane or in a basement gym. Everything syncs when you reconnect.",
+              title: "Apple Health sync",
+              body: "Your weigh-ins, workouts and meals flow into Apple Health, and your steps and activity flow back. Free on every plan.",
             },
             {
               title: "AI coach that sees your food",

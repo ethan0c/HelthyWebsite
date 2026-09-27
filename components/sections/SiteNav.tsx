@@ -19,6 +19,7 @@ const NAV: NavItem[] = [
   { label: "How it works", href: "/?section=why-helthy" },
   { label: "Pricing", href: "/?section=pricing" },
   { label: "Free tools", href: "/tools" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 

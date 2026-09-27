@@ -13,7 +13,6 @@ export default function ExercisesPage() {
   return (
     <SeoPage crumbs={[{ name: "Exercises", href: "/exercises" }]}>
       <PageHero
-        eyebrow="Exercise guides"
         title={
           <>
             Lift with better <span className="text-helthy-lemon">form</span>.

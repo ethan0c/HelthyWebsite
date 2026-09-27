@@ -29,7 +29,7 @@ const PREMIUM_FEATURES = [
 const FREE_FEATURES = [
   "Unlimited manual food & workout logging",
   "Calories, macros & nutrition tracking",
-  "Apple Health sync (steps + weight)",
+  "Apple Health sync",
   "1,500 exercises & basic progress history",
 ];
 
@@ -142,7 +142,7 @@ export default function PricingSection() {
           />
           <div className="relative flex items-center justify-between px-8 pt-8 md:px-10 md:pt-10 gap-3 flex-wrap">
             <p
-              className="font-body text-[11px] font-semibold uppercase tracking-[0.22em]"
+              className="font-body text-[14px] font-semibold"
               style={{ color: "rgba(17,17,17,0.5)" }}
             >
               Helthy Free
@@ -154,7 +154,7 @@ export default function PricingSection() {
           <div className="px-8 md:px-10 mt-8 relative">
             <div className="mb-5 text-center">
               <span
-                className="font-heading text-[11px] font-bold uppercase tracking-[0.16em]"
+                className="font-body text-[13px] font-semibold"
                 style={{ color: "rgba(17,17,17,0.45)" }}
               >
                 Free forever
@@ -251,7 +251,7 @@ export default function PricingSection() {
           {/* Header row: label + segmented toggle (matches FeaturesRow tabs) */}
           <div className="flex items-center justify-between px-8 pt-8 md:px-10 md:pt-10 gap-3 flex-wrap">
             <p
-              className="font-body text-[11px] font-semibold uppercase tracking-[0.22em]"
+              className="font-body text-[14px] font-semibold"
               style={{ color: "rgba(255,255,255,0.5)" }}
             >
               Helthy Pro
@@ -330,10 +330,10 @@ export default function PricingSection() {
           <div className="px-8 md:px-10 mt-8 relative">
             <div className="mb-5 text-center">
               <span
-                className="font-heading text-[11px] font-bold uppercase tracking-[0.16em]"
+                className="font-body text-[13px] font-semibold"
                 style={{ color: "var(--helthy-lemon)" }}
               >
-                Founders Special
+                Founders special
               </span>
             </div>
 
@@ -424,7 +424,7 @@ export default function PricingSection() {
           className="mt-10 text-[14px]"
           style={{ color: "rgba(17,17,17,0.55)" }}
         >
-          Start free, forever — no account or card needed. Upgrade to Pro anytime.
+          Start free, forever — no card needed. Upgrade to Pro anytime.
         </p>
       </div>
     </section>

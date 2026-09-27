@@ -100,12 +100,11 @@ export default function ComingSoonOverlay({
       >
         <div className="w-full max-w-[440px] text-center">
           <span
-            className="inline-flex items-center gap-2 text-[11px] font-medium uppercase rounded-full"
+            className="inline-flex items-center gap-2 text-[12px] font-medium rounded-full"
             style={{
               background: pillBg,
               border: `1px solid ${pillBorder}`,
               color: pillText,
-              letterSpacing: "0.18em",
               fontFamily: "var(--font-body)",
               padding: "6px 14px 6px 12px",
               lineHeight: 1,

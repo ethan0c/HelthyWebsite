@@ -48,8 +48,9 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "This app might just be better than Apple's native fitness logging app. Not just fitness but also health! Can't wait to see the app support connecting to an Apple Watch. 👏🏻👏🏻👏🏻",
+      "This app might just be better than Apple's native fitness logging app. Not just fitness but also health! […] 👏🏻👏🏻👏🏻",
     name: "noirvaze",
+    rating: 4,
     detail: "App Store review · 🇨🇦",
     accent: "#DC2626",
   },
@@ -116,7 +117,12 @@ function TestimonialCard({ t }: { t: (typeof TESTIMONIALS)[number] }) {
       <div className="p-7 flex flex-col h-full">
         <div className="flex gap-0.5 mb-5">
           {Array.from({ length: 5 }).map((_, i) => (
-            <Star key={i} className="w-3.5 h-3.5" fill="#CDFB50" stroke="none" />
+            <Star
+              key={i}
+              className="w-3.5 h-3.5"
+              fill={i < (("rating" in t && t.rating) || 5) ? "#CDFB50" : "rgba(255,255,255,0.15)"}
+              stroke="none"
+            />
           ))}
         </div>
         <p className="text-[15px] leading-[1.65] font-light mb-6 text-white/70 flex-1">
@@ -250,11 +256,10 @@ function BeforeAfterSlider({
       {afterFace && <FaceBlur face={afterFace} />}
       {/* After label — glossy lemon pill */}
       <span
-        className="font-body absolute bottom-4 right-4 text-[10px] uppercase z-20 pointer-events-none rounded-full"
+        className="font-body absolute bottom-4 right-4 text-[11px] z-20 pointer-events-none rounded-full"
         style={{
           padding: "5px 12px",
           color: "#0B0B0B",
-          letterSpacing: "0.14em",
           fontWeight: 700,
           background: "#CDFB50",
           boxShadow:
@@ -282,11 +287,10 @@ function BeforeAfterSlider({
         {beforeFace && <FaceBlur face={beforeFace} />}
         {/* Before label — dark glass pill */}
         <span
-          className="font-body absolute bottom-4 left-4 text-[10px] uppercase pointer-events-none rounded-full backdrop-blur-md"
+          className="font-body absolute bottom-4 left-4 text-[11px] pointer-events-none rounded-full backdrop-blur-md"
           style={{
             padding: "5px 12px",
             color: "rgba(255,255,255,0.9)",
-            letterSpacing: "0.14em",
             fontWeight: 600,
             background: "rgba(10,10,12,0.55)",
             border: "1px solid rgba(255,255,255,0.18)",
@@ -381,10 +385,9 @@ function TransformationRow({
       <div className="lg:col-span-7 flex flex-col gap-6">
         {/* Eyebrow — DM Sans, standard metadata label */}
         <p
-          className="font-body text-[11px] uppercase"
+          className="font-body text-[13px]"
           style={{
             color: "rgba(255,255,255,0.55)",
-            letterSpacing: "0.2em",
             fontWeight: 600,
           }}
         >
@@ -410,10 +413,9 @@ function TransformationRow({
           {t.stats.map((s) => (
             <div key={s.label} className="flex flex-col">
               <span
-                className="font-body text-[10px] uppercase"
+                className="font-body text-[11px]"
                 style={{
                   color: "#0B0B0B",
-                  letterSpacing: "0.2em",
                   fontWeight: 600,
                   background: "#CDFB50",
                   padding: "4px 10px",
@@ -528,10 +530,9 @@ function TransformationStack() {
           Start your transformation
         </a>
         <p
-          className="text-[11px] uppercase"
+          className="text-[12px]"
           style={{
             color: "rgba(255,255,255,0.35)",
-            letterSpacing: "0.18em",
             fontWeight: 500,
           }}
         >
@@ -611,7 +612,7 @@ export default function TestimonialsSection() {
           <SectionHeading
             title="Real people,"
             italicTail="real results"
-            subtitle="4.7★ on the App Store. Here's what Helthy users are saying."
+            subtitle="4.9★ on the App Store. Here's what Helthy users are saying."
           />
         </div>
 

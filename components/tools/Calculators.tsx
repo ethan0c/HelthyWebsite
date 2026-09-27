@@ -157,7 +157,7 @@ function Shell({ form, result }: { form: ReactNode; result: ReactNode }) {
 function Stat({ label, value, unit, big }: { label: string; value: string; unit?: string; big?: boolean }) {
   return (
     <div>
-      <p className="text-[12px] uppercase tracking-[0.14em] text-white/45">{label}</p>
+      <p className="text-[13px] text-white/50">{label}</p>
       <p className={`mt-1 text-numeric text-white ${big ? "text-[44px] leading-none" : "text-[26px]"}`}>
         {value}
         {unit && <span className="ml-1.5 text-[14px] text-white/50">{unit}</span>}
@@ -383,7 +383,7 @@ export function ProteinCalculator() {
   const body = useBody();
   const [goal, setGoal] = useState<Goal>("gain");
   const [meals, setMeals] = useState("4");
-  const grams = body.weightKg > 20 ? proteinGrams(body.weightKg, goal, body.sex) : 0;
+  const grams = body.weightKg > 20 ? proteinGrams(body.weightKg, goal) : 0;
   const perMeal = grams / Math.max(parseInt(meals) || 1, 1);
 
   return (

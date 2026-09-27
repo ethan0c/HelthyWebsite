@@ -12,7 +12,6 @@ export default function ToolsPage() {
   return (
     <SeoPage crumbs={[{ name: "Free tools", href: "/tools" }]}>
       <PageHero
-        eyebrow="Free tools"
         title={
           <>
             Fitness calculators, <span className="text-helthy-lemon">free</span>.

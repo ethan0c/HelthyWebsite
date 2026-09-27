@@ -39,12 +39,6 @@ export default function ContactPage() {
         <section className="relative mx-auto max-w-6xl px-6 pb-20 pt-32 lg:px-8 lg:pb-28 lg:pt-40">
           <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
             <div>
-              <p
-                className="text-[11px] font-semibold uppercase text-white/45"
-                style={{ fontFamily: "var(--font-body)", letterSpacing: "0.2em" }}
-              >
-                Contact Helthy
-              </p>
               <h1
                 className="mt-6 max-w-xl font-heading text-white"
                 style={{
@@ -74,12 +68,6 @@ export default function ContactPage() {
 
             <div className="card-helthy p-6 sm:p-8">
               <div className="mb-8">
-                <p
-                  className="text-[11px] font-semibold uppercase text-white/45"
-                  style={{ letterSpacing: "0.2em", fontFamily: "var(--font-body)" }}
-                >
-                  Send a message
-                </p>
                 <h2
                   className="mt-3 font-heading text-white"
                   style={{

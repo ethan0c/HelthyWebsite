@@ -37,7 +37,6 @@ export default function OneRepMaxPage() {
       ]}
     >
       <PageHero
-        eyebrow="Free tool"
         title={
           <>
             One-rep max <span className="text-helthy-lemon">calculator</span>

@@ -25,12 +25,6 @@ export default function PrivacyPage() {
           <div className="space-y-10">
             {/* Header */}
             <div className="space-y-5 pb-10 border-b border-white/10">
-              <p
-                className="text-[11px] font-semibold uppercase text-white/45"
-                style={{ fontFamily: "var(--font-body)", letterSpacing: "0.2em" }}
-              >
-                Legal
-              </p>
               <h1
                 className="font-heading text-white"
                 style={{
@@ -179,7 +173,7 @@ export default function PrivacyPage() {
                   </div>
                   <div>
                     <h3 className="font-body font-normal text-lg text-white/90">6.2 Data Export</h3>
-                    <p className="mt-1">You can request a copy of your data in JSON, CSV, or PDF format through the app settings (Settings → Privacy &amp; Security → Export My Data).</p>
+                    <p className="mt-1">Helthy Pro members can export a ZIP of all their data, or CSV files of their workouts or nutrition, from Settings → Privacy → Export Data. Anyone can request a copy of their data by emailing support@helthy.app.</p>
                   </div>
                   <div>
                     <h3 className="font-body font-normal text-lg text-white/90">6.3 Account Deletion</h3>

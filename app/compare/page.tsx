@@ -19,7 +19,6 @@ export default function CompareIndexPage() {
   return (
     <SeoPage crumbs={[{ name: "Compare", href: "/compare" }]}>
       <PageHero
-        eyebrow="Compare"
         title={
           <>
             How Helthy compares to the apps you <span className="text-helthy-lemon">already know</span>.

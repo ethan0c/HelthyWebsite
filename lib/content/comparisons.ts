@@ -95,7 +95,7 @@ export const COMPARISONS: Comparison[] = [
       { label: "Barcode and nutrition-label scanning", helthy: true, them: true },
       { label: "Strength log with sets, reps and PRs", helthy: true, them: "Exercise and calorie-burn logging" },
       { label: "AI coach you can chat with", helthy: "Pro", them: "Not advertised" },
-      { label: "Apple Watch app", helthy: true, them: true },
+      { label: "Apple Watch app", helthy: "Yes (set logging with Pro)", them: true },
     ],
     helthyWins: [
       "A real free tier: unlimited search and manual logging, plus free AI scans every week.",
@@ -121,7 +121,7 @@ export const COMPARISONS: Comparison[] = [
       },
       {
         q: "Is Helthy's photo logging as accurate as Cal AI?",
-        a: "For most common meals Helthy lands within 5–10% of a carefully hand-logged entry, and it grounds estimates in your own logging history and the food database. Both apps let you correct an item before saving.",
+        a: "Helthy uses Claude's vision model to identify each item, then grounds the nutrition in the food database and your own logging history. Both apps let you review and correct items before saving.",
       },
     ],
   },
@@ -138,7 +138,7 @@ export const COMPARISONS: Comparison[] = [
       { label: "Unlimited free workout logging", helthy: true, them: true },
       { label: "Saved routines on the free plan", helthy: "4", them: "4" },
       { label: "Automatic PRs", helthy: true, them: true },
-      { label: "Apple Watch app", helthy: true, them: true },
+      { label: "Apple Watch app", helthy: "Yes (set logging with Pro)", them: true },
       { label: "Calorie and macro tracking", helthy: true, them: false },
       { label: "AI photo meal logging", helthy: true, them: false },
       { label: "Built-in AI coach", helthy: "Pro", them: "Export workouts to ChatGPT or Claude" },
@@ -180,7 +180,7 @@ export const COMPARISONS: Comparison[] = [
     rows: [
       { label: "Unlimited free workout logging", helthy: true, them: true },
       { label: "Saved routines on the free plan", helthy: "4", them: "3" },
-      { label: "Apple Watch app", helthy: true, them: true },
+      { label: "Apple Watch app", helthy: "Yes (set logging with Pro)", them: true },
       { label: "Calorie and macro tracking", helthy: true, them: false },
       { label: "AI photo meal logging", helthy: true, them: false },
       { label: "AI coach and AI-built programs", helthy: "Pro", them: false },

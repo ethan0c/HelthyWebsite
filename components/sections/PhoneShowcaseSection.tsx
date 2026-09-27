@@ -38,12 +38,12 @@ type ActivityCard = {
 };
 
 const ACTIVITY_CARDS: ActivityCard[] = [
-  { side: "left",  y: -190, rot: -3,   icon: mdiCameraOutline,       title: "Jerk chicken bowl", status: "AI photo log",     accent: "var(--helthy-accent-orange)", img: "/card-photos/Jerk-Chicken-Rice-Bowl-1.jpg", calories: 612, macros: { protein: 48, carbs: 41, fats: 22 } },
+  { side: "left",  y: -190, rot: -3,   icon: mdiCameraOutline,       title: "Jerk chicken bowl", status: "AI photo log",     accent: "var(--helthy-accent-orange)", img: "/card-photos/Jerk-Chicken-Rice-Bowl-1.jpg", calories: 554, macros: { protein: 48, carbs: 41, fats: 22 } },
   { side: "left",  y:    0, rot:  2.5, icon: mdiDumbbell,             title: "Preacher curl",     status: "New PR · 4 × 8",   accent: "var(--helthy-lemon)",         img: "/card-photos/Z-Bar-Preacher-Curl.gif",      value: "115",  unit: "lbs", sub: "+5 lbs" },
   { side: "left",  y:  190, rot: -2,   icon: mdiHeartOutline,         title: "Morning run",       status: "Apple Health",     accent: "var(--helthy-movement)",      value: "6.2",   unit: "km",  sub: "452 kcal" },
-  { side: "right", y: -190, rot:  3,   icon: mdiBowlMixOutline,       title: "Greek yogurt",      status: "Logged · 8:14 AM", accent: "var(--helthy-accent-orange)", calories: 180, macros: { protein: 18, carbs: 9, fats: 5 } },
+  { side: "right", y: -190, rot:  3,   icon: mdiBowlMixOutline,       title: "Greek yogurt",      status: "Logged · 8:14 AM", accent: "var(--helthy-accent-orange)", calories: 153, macros: { protein: 18, carbs: 9, fats: 5 } },
   { side: "right", y:    0, rot: -2.5, icon: mdiChartTimelineVariant, title: "Weight",            status: "Trend · 30 days",  accent: "var(--helthy-success)",       value: "173",   unit: "lbs", sub: "−2.6 lbs" },
-  { side: "right", y:  190, rot:  2,   icon: mdiRobotHappyOutline,    title: "AI Coach",          status: "Suggestion",       accent: "var(--helthy-lemon)",         value: "Rest",  unit: "day", sub: "Recovery low" },
+  { side: "right", y:  190, rot:  2,   icon: mdiRobotHappyOutline,    title: "AI Coach",          status: "Suggestion",       accent: "var(--helthy-lemon)",         value: "+40",   unit: "g",   sub: "Protein to target" },
 ];
 
 function MacroPill({ value, label, color }: { value: number; label: string; color: string }) {
@@ -384,7 +384,7 @@ export default function PhoneShowcaseSection() {
                     <span className="truncate font-body" style={{ fontSize: 14, fontWeight: 500, letterSpacing: "-0.01em", color: "var(--foreground)", lineHeight: 1.25 }}>
                       {c.title}
                     </span>
-                    <span className="font-body truncate" style={{ fontSize: 10.5, fontWeight: 600, textTransform: "uppercase", letterSpacing: 0.5, color: `color-mix(in srgb, ${c.accent} 55%, var(--helthy-text-secondary))`, lineHeight: 1.3, marginTop: 3 }}>
+                    <span className="font-body truncate" style={{ fontSize: 11.5, fontWeight: 500, color: `color-mix(in srgb, ${c.accent} 55%, var(--helthy-text-secondary))`, lineHeight: 1.3, marginTop: 3 }}>
                       {c.status}
                     </span>
                   </span>

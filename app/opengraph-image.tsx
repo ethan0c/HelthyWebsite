@@ -67,11 +67,9 @@ export default async function OgImage() {
             <span
               style={{
                 color: "#CDFB50",
-                fontSize: 14,
+                fontSize: 18,
                 fontFamily: "Unbounded",
-                fontWeight: 700,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
+                fontWeight: 500,
                 marginBottom: 20,
               }}
             >
@@ -114,7 +112,7 @@ export default async function OgImage() {
                 gap: 8,
               }}
             >
-              <span style={{ color: "#CDFB50", fontSize: 16 }}>★ 4.7</span>
+              <span style={{ color: "#CDFB50", fontSize: 16 }}>★ 4.9</span>
               <span style={{ color: "#6B7280", fontSize: 14 }}>App Store · iOS & Android</span>
             </div>
           </div>

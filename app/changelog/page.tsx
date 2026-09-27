@@ -254,7 +254,7 @@ const V2_0_SECTIONS = [
       "Protein target streak",
       "Adherence score",
       "Habit streaks and habit score",
-      "Over 30 achievements with rarity tiers, unlock animations, and progress tracking in settings",
+      "15 achievements across four rarity tiers, with unlock animations and progress tracking in settings",
     ],
   },
   {
@@ -333,8 +333,8 @@ function ReleaseBlock({
         {sections.map((section) => (
           <div key={section.label}>
             <p
-              className="text-[11px] font-semibold uppercase text-white/35 mb-3"
-              style={{ fontFamily: "var(--font-body)", letterSpacing: "0.18em" }}
+              className="text-[13px] font-medium text-white/45 mb-3"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               {section.label}
             </p>

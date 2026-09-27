@@ -842,8 +842,8 @@ function WeightGraphMockup() {
             ghostColor={ghostColor}
           />
           <span
-            className="text-[13px] font-semibold uppercase mt-3"
-            style={{ color: T.textSecondary, letterSpacing: 2, fontFamily: "var(--font-body)" }}
+            className="text-[13px] font-semibold mt-3"
+            style={{ color: T.textSecondary, fontFamily: "var(--font-body)" }}
           >
             lbs
           </span>

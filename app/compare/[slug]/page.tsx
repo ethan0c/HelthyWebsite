@@ -56,7 +56,6 @@ export default async function ComparisonPage({ params }: PageProps<"/compare/[sl
       ]}
     >
       <PageHero
-        eyebrow="Comparison"
         title={
           <>
             Helthy vs <span className="text-helthy-lemon">{c.competitor}</span>

@@ -82,21 +82,18 @@ function Breadcrumbs({ crumbs }: { crumbs: Crumb[] }) {
 }
 
 export function PageHero({
-  eyebrow,
   title,
   lede,
   children,
 }: {
-  eyebrow: string;
   title: ReactNode;
   lede: ReactNode;
   children?: ReactNode;
 }) {
   return (
     <header className="max-w-3xl">
-      <p className="text-eyebrow text-[12px]">{eyebrow}</p>
       <h1
-        className="mt-5 font-heading text-white"
+        className="font-heading text-white"
         style={{
           fontSize: "clamp(34px, 5.2vw, 60px)",
           fontWeight: 500,
@@ -172,7 +169,7 @@ export function FeatureGrid({
           <h3 className="flex items-center gap-2 text-[16px] font-medium tracking-tight text-white">
             {f.title}
             {f.pro && (
-              <span className="rounded-full border border-helthy-lemon/30 bg-helthy-lemon/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-helthy-lemon">
+              <span className="rounded-full border border-helthy-lemon/30 bg-helthy-lemon/10 px-2 py-0.5 text-[11px] font-semibold text-helthy-lemon">
                 Pro
               </span>
             )}
