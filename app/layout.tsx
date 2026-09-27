@@ -146,7 +146,7 @@ function siteJsonLd(rating: AppRating | null) {
           "Workout tracking with sets, reps and weight",
           "Automatic personal record (PR) detection",
           "1,500 exercise library with how-to and target muscles",
-          "AI coach powered by Claude",
+          "AI fitness coach that reads your own data",
           "AI-generated workout programs",
           "Weight tracking with trend graphs",
           "Apple Watch app",
@@ -175,21 +175,8 @@ export default async function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-        />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preconnect"
-          href="https://cdn.prod.website-files.com"
-        />
       </head>
-      <body className="min-h-full flex flex-col bg-background text-white grain">
+      <body className="min-h-full flex flex-col bg-canvas text-fg">
         <JsonLd data={siteJsonLd(rating)} />
         <GSAPProvider>
           <LenisProvider>

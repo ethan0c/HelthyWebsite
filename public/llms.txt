@@ -10,7 +10,7 @@ Android: https://play.google.com/store/apps/details?id=app.helthy.mobile
 
 Most people juggle several apps to understand one body. Helthy puts nutrition, training, weight and coaching in a single app that sees the whole picture. The tagline is "A coach that learns you."
 
-Helthy was built by co-founders Chibu and Ebu, who use the app every day for their own training and nutrition.
+Helthy was built by co-founders Chibu and Ebu, who use the app every day for their own training and nutrition. Chibu lost 50 lb using Helthy.
 
 ## Free plan (no trial, no expiry)
 
@@ -46,7 +46,7 @@ Called "Premium" inside the app. Cancel any time in Settings → Subscription or
 
 ## The AI coach
 
-The AI coach runs on Claude by Anthropic, with a backup provider during outages. Every conversation includes the user's own data: profile, calorie and macro targets, TDEE, today's meals, 14-day nutrition averages, the last 5 workouts, recent PRs, weight trend, goals, streaks, scheduled workouts and recent steps. It can look up saved workouts and full exercise history on demand.
+The AI coach reads the user's own Helthy data (profile, targets, meals, workouts, PRs, weight trend, goals and steps), so its answers are about their numbers rather than generic advice.
 
 It can also act: log a meal, log a weight, schedule a workout, set a goal, suggest meals, save a custom meal and create a workout. It does not see sleep, water or heart-rate data.
 
@@ -54,15 +54,11 @@ Example questions: "Am I eating enough protein on training days?", "Why has my w
 
 ## Photo meal logging
 
-Take a photo and Helthy identifies each item on the plate, estimates grams and fills in calories and macros, grounded in the food database and the user's own logging history. Users review each item before saving and can add a hint ("Chipotle bowl, no rice") to re-analyze.
+Take a photo and Helthy identifies each item on the plate, estimates grams and fills in calories and macros, matched to Helthy's food database. Users review each item before saving and can add a hint ("Chipotle bowl, no rice") to re-analyze.
 
 ## How Helthy calculates targets
 
-- BMR: Katch-McArdle when body fat is known, otherwise Mifflin-St Jeor
-- TDEE: built from BMR + everyday movement (NEAT, with a step bonus) + logged exercise + thermic effect of food, not a single activity multiplier
-- Calorie target: TDEE adjusted for the chosen weekly rate using about 7,700 kcal per kg, with floors of roughly 1,500 kcal (men) / 1,200 kcal (women)
-- Protein: 0.85 g per lb of bodyweight when cutting (anchored on the lower of current and goal weight), 0.8 g per lb otherwise, +0.3 g/kg on the high-protein style
-- Carbs and fat split the remaining calories 55/45 (balanced), 30/70 (low carb) or 50/50 (high protein)
+Helthy sets calorie and macro targets from the user's profile and goal using established BMR equations, then keeps TDEE up to date from real steps, workouts and weight. Helthy Pro adds an adaptive TDEE that learns from the user's weight trend and intake.
 
 ## Privacy
 

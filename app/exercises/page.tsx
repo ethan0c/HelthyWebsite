@@ -15,7 +15,7 @@ export default function ExercisesPage() {
       <PageHero
         title={
           <>
-            Lift with better <span className="text-helthy-lemon">form</span>.
+            Lift with better <span className="text-accent-ink">form</span>
           </>
         }
         lede="Coaching cues, common mistakes and how much weight to use for the most popular gym exercises, the same guidance built into the Helthy app."

@@ -23,9 +23,8 @@ export const metadata: Metadata = {
 export default function FeaturesPage() {
   return (
     <>
-      <main className="relative pt-24 md:pt-28">
+      <main className="relative bg-canvas text-fg">
         <FeaturesRow />
-        <div aria-hidden="true" className="section-beam" />
         <HowItWorksSection />
         <CTASection />
       </main>

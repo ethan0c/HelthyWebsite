@@ -151,7 +151,8 @@ export default function AppleWatch({ width = 300 }: { width?: number }) {
           padding: inset,
           background: "linear-gradient(145deg, #3a3a3e 0%, #1c1c1f 45%, #0e0e10 100%)",
           boxShadow:
-            "inset 0 1px 1px rgba(255,255,255,0.25), inset 0 -2px 6px rgba(0,0,0,0.6), 0 30px 60px -20px rgba(0,0,0,0.8), 0 0 60px -10px rgba(205,251,80,0.12)",
+            // Device shading only; no drop shadow or glow around the mockup.
+            "inset 0 1px 1px rgba(255,255,255,0.25), inset 0 -2px 6px rgba(0,0,0,0.6)",
         }}
       >
         {/* Screen */}

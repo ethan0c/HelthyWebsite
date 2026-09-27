@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
+import CTAButton from "@/components/ui/CTAButton";
 import { Star } from "lucide-react";
 
 function handleDownloadClick(e: React.MouseEvent) {
@@ -113,47 +114,39 @@ type FaceBox = { cx: number; cy: number; r: number };
 
 function TestimonialCard({ t }: { t: (typeof TESTIMONIALS)[number] }) {
   return (
-    <div className="card-helthy shrink-0 w-[85vw] max-w-[340px] sm:w-[380px] sm:max-w-none">
+    <div className="card shrink-0 w-[85vw] max-w-[340px] sm:w-[380px] sm:max-w-none">
       <div className="p-7 flex flex-col h-full">
         <div className="flex gap-0.5 mb-5">
           {Array.from({ length: 5 }).map((_, i) => (
             <Star
               key={i}
-              className="w-3.5 h-3.5"
-              fill={i < (("rating" in t && t.rating) || 5) ? "#CDFB50" : "rgba(255,255,255,0.15)"}
+              className={`w-3.5 h-3.5 ${
+                i < (("rating" in t && t.rating) || 5) ? "text-accent-ink" : "text-surface-3"
+              }`}
+              fill="currentColor"
               stroke="none"
             />
           ))}
         </div>
-        <p className="text-[15px] leading-[1.65] font-light mb-6 text-white/70 flex-1">
+        <p className="text-[15px] leading-7 mb-6 text-fg-muted flex-1">
           &ldquo;{t.quote}&rdquo;
         </p>
-        <div className="flex items-center gap-3 pt-5 border-t border-white/[0.06]">
+        <div className="flex items-center gap-3 pt-5 border-t border-line">
+          {/* Avatar colours are per-reviewer, like iOS Contacts */}
           <div
-            className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 relative"
-            style={{
-              background: `linear-gradient(180deg, ${t.accent} 0%, ${t.accent}CC 100%)`,
-              boxShadow:
-                `inset 0 1px 0 rgba(255,255,255,0.35),` +
-                `inset 0 -1px 2px rgba(0,0,0,0.15),` +
-                `0 2px 6px -2px ${t.accent}55`,
-            }}
+            className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+            style={{ background: t.accent }}
           >
             <span
               className="text-[13px] font-medium"
-              style={{
-                color: "#fff",
-                fontFamily: "'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif",
-                letterSpacing: "-0.01em",
-                textShadow: "0 1px 1px rgba(0,0,0,0.15)",
-              }}
+              style={{ color: t.accent === "#CDFB50" ? "#0B0B0B" : "#fff" }}
             >
               {initialsOf(t.name)}
             </span>
           </div>
           <div>
-            <p className="text-[14px] font-medium text-white">{t.name}</p>
-            <p className="text-[12px] text-white/40">{t.detail}</p>
+            <p className="text-[14px] font-medium text-fg">{t.name}</p>
+            <p className="text-[12px] text-fg-subtle">{t.detail}</p>
           </div>
         </div>
       </div>
@@ -236,7 +229,7 @@ function BeforeAfterSlider({
   return (
     <div
       ref={frameRef}
-      className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden select-none bg-black"
+      className="relative w-full aspect-[3/4] rounded-xl overflow-hidden select-none bg-surface-2"
       onPointerDown={(e) => {
         e.preventDefault();
         setDragging(true);
@@ -254,21 +247,7 @@ function BeforeAfterSlider({
         priority={false}
       />
       {afterFace && <FaceBlur face={afterFace} />}
-      {/* After label — glossy lemon pill */}
-      <span
-        className="font-body absolute bottom-4 right-4 text-[11px] z-20 pointer-events-none rounded-full"
-        style={{
-          padding: "5px 12px",
-          color: "#0B0B0B",
-          fontWeight: 700,
-          background: "#CDFB50",
-          boxShadow:
-            "inset 0 1.5px 1px 0 rgba(255,255,255,0.5)," +
-            "inset 0 8px 8px -4px rgba(255,255,255,0.25)," +
-            "0 6px 16px -4px rgba(205,251,80,0.45)," +
-            "0 2px 6px rgba(0,0,0,0.35)",
-        }}
-      >
+      <span className="absolute bottom-4 right-4 z-20 pointer-events-none rounded-full bg-accent text-on-accent px-3 py-1 text-[11px] font-semibold">
         After
       </span>
 
@@ -285,20 +264,7 @@ function BeforeAfterSlider({
           sizes="(max-width: 768px) 92vw, 1100px"
         />
         {beforeFace && <FaceBlur face={beforeFace} />}
-        {/* Before label — dark glass pill */}
-        <span
-          className="font-body absolute bottom-4 left-4 text-[11px] pointer-events-none rounded-full backdrop-blur-md"
-          style={{
-            padding: "5px 12px",
-            color: "rgba(255,255,255,0.9)",
-            fontWeight: 600,
-            background: "rgba(10,10,12,0.55)",
-            border: "1px solid rgba(255,255,255,0.18)",
-            boxShadow:
-              "inset 0 1px 0 rgba(255,255,255,0.12)," +
-              "0 2px 8px rgba(0,0,0,0.4)",
-          }}
-        >
+        <span className="absolute bottom-4 left-4 pointer-events-none rounded-full bg-surface text-fg border border-line px-3 py-1 text-[11px] font-semibold">
           Before
         </span>
       </div>
@@ -308,14 +274,7 @@ function BeforeAfterSlider({
         className="absolute top-0 bottom-0 z-20 pointer-events-none"
         style={{ left: `${pct}%`, transform: "translateX(-50%)" }}
       >
-        <div
-          className="w-[2px] h-full"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(205,251,80,0) 0%, rgba(205,251,80,0.9) 20%, rgba(205,251,80,0.9) 80%, rgba(205,251,80,0) 100%)",
-            boxShadow: "0 0 18px rgba(205,251,80,0.55)",
-          }}
-        />
+        <div className="w-[2px] h-full bg-accent" />
         <button
           type="button"
           role="slider"
@@ -329,25 +288,13 @@ function BeforeAfterSlider({
             e.stopPropagation();
             setDragging(true);
           }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center justify-center pointer-events-auto"
-          style={{
-            width: 44,
-            height: 44,
-            background: "#CDFB50",
-            border: "none",
-            cursor: dragging ? "grabbing" : "grab",
-            boxShadow:
-              "inset 0 2px 1px 0 rgba(255,255,255,0.5)," +
-              "inset 0 0.6px 0.6px -1.25px rgba(255,255,255,0.72)," +
-              "inset 0 2.29px 2.29px -2.5px rgba(255,255,255,0.635)," +
-              "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
-              "0 10px 24px -6px rgba(205,251,80,0.5)",
-          }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center pointer-events-auto bg-accent text-on-accent"
+          style={{ cursor: dragging ? "grabbing" : "grab" }}
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path
               d="M4 4L1 8l3 4M12 4l3 4-3 4"
-              stroke="#0B0B0B"
+              stroke="currentColor"
               strokeWidth="1.8"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -368,7 +315,7 @@ function TransformationRow({
 }) {
   return (
     <article
-      className={`card-helthy p-6 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center ${
+      className={`card p-6 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center ${
         flip ? "lg:[&>*:first-child]:order-2" : ""
       }`}
     >
@@ -383,62 +330,18 @@ function TransformationRow({
       </div>
 
       <div className="lg:col-span-7 flex flex-col gap-6">
-        {/* Eyebrow — DM Sans, standard metadata label */}
-        <p
-          className="font-body text-[13px]"
-          style={{
-            color: "rgba(255,255,255,0.55)",
-            fontWeight: 600,
-          }}
-        >
+        <p className="text-[13px] font-medium text-fg-subtle">
           {t.hideName ? t.role : `${t.role} · ${t.name}`}
         </p>
 
-        {/* Hero title — Unbounded display, mirrors mobile heroTitle */}
-        <h3
-          className="font-heading"
-          style={{
-            fontSize: "clamp(26px, 3vw, 34px)",
-            fontWeight: 500,
-            letterSpacing: "-0.025em",
-            lineHeight: "1.15",
-            color: "#F9F9F9",
-          }}
-        >
-          &ldquo;{t.quote}&rdquo;
-        </h3>
+        <h3 className="text-display-md text-fg">&ldquo;{t.quote}&rdquo;</h3>
 
-        {/* Hero stat — solid lemon, the confident takeaway number */}
+        {/* Result */}
         <div className="flex flex-wrap gap-5 items-end">
           {t.stats.map((s) => (
-            <div key={s.label} className="flex flex-col">
-              <span
-                className="font-body text-[11px]"
-                style={{
-                  color: "#0B0B0B",
-                  fontWeight: 600,
-                  background: "#CDFB50",
-                  padding: "4px 10px",
-                  borderRadius: 999,
-                  alignSelf: "flex-start",
-                  boxShadow:
-                    "inset 0 1px 0 rgba(255,255,255,0.4)," +
-                    "0 6px 14px -6px rgba(205,251,80,0.45)",
-                }}
-              >
-                {s.label}
-              </span>
-              <span
-                className="text-numeric"
-                style={{
-                  fontSize: "clamp(40px, 5.5vw, 64px)",
-                  fontWeight: 500,
-                  color: "#CDFB50",
-                  letterSpacing: "-0.035em",
-                  lineHeight: 1,
-                  marginTop: 10,
-                }}
-              >
+            <div key={s.label} className="flex flex-col items-start gap-3">
+              <span className="badge badge-accent">{s.label}</span>
+              <span className="text-numeric text-accent-ink text-[clamp(40px,5.5vw,64px)] leading-none tracking-[-0.035em]">
                 {s.value}
               </span>
             </div>
@@ -460,6 +363,8 @@ function useMarquee(
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
+    // Reduced motion: leave the rows still.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const ctx = gsap.context(() => {
       const dir = opts.direction ?? -1;
@@ -522,20 +427,10 @@ function TransformationStack() {
         ))}
       </div>
       <div className="mt-10 flex flex-col items-center gap-3">
-        <a
-          href="/download"
-          onClick={handleDownloadClick}
-          className="btn-primary"
-        >
+        <CTAButton href="/download" onClick={handleDownloadClick}>
           Start your transformation
-        </a>
-        <p
-          className="text-[12px]"
-          style={{
-            color: "rgba(255,255,255,0.35)",
-            fontWeight: 500,
-          }}
-        >
+        </CTAButton>
+        <p className="text-[13px] text-fg-subtle">
           Drag the handle to reveal before / after
         </p>
       </div>
@@ -558,15 +453,13 @@ function TestimonialRow({
   useMarquee(trackRef, { duration, direction });
 
   return (
-    <div className="relative overflow-hidden">
-      <div
-        className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none"
-        style={{ background: "linear-gradient(90deg, var(--background) 0%, transparent 100%)" }}
-      />
-      <div
-        className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none"
-        style={{ background: "linear-gradient(270deg, var(--background) 0%, transparent 100%)" }}
-      />
+    <div
+      className="relative overflow-hidden"
+      style={{
+        maskImage: "linear-gradient(90deg, transparent, black 6%, black 94%, transparent)",
+        WebkitMaskImage: "linear-gradient(90deg, transparent, black 6%, black 94%, transparent)",
+      }}
+    >
       <div ref={trackRef} className="flex gap-5 w-max">
         {[...row, ...row].map((t, i) => (
           <TestimonialCard key={`${keyPrefix}-${i}`} t={t} />
@@ -581,12 +474,14 @@ export default function TestimonialsSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(sectionRef.current, {
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
-        opacity: 0,
-        y: 40,
-        duration: 1,
-        ease: "power3.out",
+      gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.from(sectionRef.current, {
+          scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
+          opacity: 0,
+          y: 40,
+          duration: 1,
+          ease: "power3.out",
+        });
       });
     }, sectionRef);
     return () => ctx.revert();
@@ -595,18 +490,8 @@ export default function TestimonialsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative section-padding overflow-hidden section-glow-cyan"
+      className="section relative overflow-hidden bg-canvas"
     >
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div
-          className="absolute left-1/2 top-0 -translate-x-1/2 w-full max-w-[1200px] h-[60%] rounded-full blur-[160px] opacity-40"
-          style={{
-            background:
-              "radial-gradient(ellipse, rgba(205,251,80,0.04) 0%, transparent 70%)",
-          }}
-        />
-      </div>
-
       <div className="relative">
         <div className="container-page">
           <SectionHeading

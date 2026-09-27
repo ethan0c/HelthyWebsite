@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap } from "@/lib/gsap";
+import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 const FAQS = [
@@ -11,7 +11,7 @@ const FAQS = [
   },
   {
     q: "How accurate is the AI photo logging?",
-    a: "Helthy uses Claude's vision model to identify each item, then checks the nutrition against the food database and your own logging history. You see every item before saving and can adjust anything.",
+    a: "Helthy's AI identifies each item on your plate, estimates portions and matches them to its food database. You see every item before saving and can adjust anything.",
   },
   {
     q: "Does it sync with Apple Health?",
@@ -43,12 +43,13 @@ export default function FAQSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
     const ctx = gsap.context(() => {
       gsap.from("[data-faq-card]", {
-        y: 40,
+        y: 16,
         opacity: 0,
-        duration: 0.7,
-        stagger: { each: 0.08, from: "start" },
+        duration: 0.6,
+        stagger: { each: 0.05, from: "start" },
         ease: "power3.out",
         scrollTrigger: {
           trigger: "[data-faq-grid]",
@@ -61,41 +62,26 @@ export default function FAQSection() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="faq"
-      className="relative section-padding section-glow-cyan"
-    >
-      <div className="container-page">
-        <SectionHeading title="Questions, answered" trailingPunctuation="" />
+    <section ref={sectionRef} id="faq" className="section">
+      <div className="container-page grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <SectionHeading title="Questions, answered" align="left" className="lg:mb-0" />
+        </div>
 
-        {/* 4 columns × 2 rows */}
-        <div
-          data-faq-grid
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
-        >
-          {FAQS.map((faq, i) => (
-            <div
-              key={faq.q}
-              data-faq-card
-              className="card-helthy card-helthy-hover p-5 sm:p-7 flex flex-col"
-              style={{ minHeight: "auto" }}
-            >
-              {/* Big numeric */}
-              <span
-                className="text-numeric text-white/10 leading-none mb-4 sm:mb-5 select-none text-[56px] sm:text-[72px] lg:text-[84px]"
-                style={{ letterSpacing: -4 }}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-
-              <h3 className="text-[17px] font-medium text-white mb-3 tracking-tight leading-snug">
+        <div data-faq-grid className="divide-y divide-line border-y border-line">
+          {FAQS.map((faq) => (
+            <details key={faq.q} data-faq-card className="group py-5">
+              <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-[16px] font-medium text-fg [&::-webkit-details-marker]:hidden">
                 {faq.q}
-              </h3>
-              <p className="text-[13px] text-white/65 leading-relaxed font-light">
-                {faq.a}
-              </p>
-            </div>
+                <span
+                  aria-hidden="true"
+                  className="mt-0.5 text-lg leading-none text-fg-muted transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-3 text-[15px] leading-7 text-fg-muted">{faq.a}</p>
+            </details>
           ))}
         </div>
       </div>

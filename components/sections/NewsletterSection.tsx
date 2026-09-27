@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap } from "@/lib/gsap";
+import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import NewsletterForm from "@/components/ui/NewsletterForm";
 
 export default function NewsletterSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
     const ctx = gsap.context(() => {
       gsap.from(
         [
@@ -43,44 +44,17 @@ export default function NewsletterSection() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="newsletter"
-      className="relative"
-      style={{
-        backgroundColor: "#CDFB50",
-        color: "var(--background)",
-      }}
-    >
-      <div className="container-page py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
+    <section ref={sectionRef} id="newsletter" className="section">
+      <div className="container-page">
+        <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 md:gap-16">
           {/* Left: heading + copy */}
           <div>
-            <h2
-              data-newsletter-heading
-              className="font-heading"
-              style={{
-                fontSize: "clamp(30px, 3.6vw, 48px)",
-                fontWeight: 500,
-                letterSpacing: "-0.025em",
-                lineHeight: "1.05em",
-                color: "var(--background)",
-                margin: 0,
-              }}
-            >
-              One email.<br />
-              Every month.
+            <h2 data-newsletter-heading className="text-display-lg text-fg">
+              One email.
+              <br />
+              Every month
             </h2>
-            <p
-              data-newsletter-sub
-              className="mt-5 max-w-md"
-              style={{
-                fontSize: 15,
-                lineHeight: 1.65,
-                color: "rgba(10,10,10,0.7)",
-                fontFamily: "var(--font-body)",
-              }}
-            >
+            <p data-newsletter-sub className="mt-5 max-w-md text-base leading-7 text-fg-muted">
               New features, progress experiments, and what we&apos;re learning
               building Helthy. No filler, no spam.
             </p>

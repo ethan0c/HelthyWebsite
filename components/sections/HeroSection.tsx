@@ -2,13 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
-import AndroidWaitlistButton from "@/components/ui/AndroidWaitlistButton";
-import CTAButton from "@/components/ui/CTAButton";
+import StoreButtons from "@/components/ui/StoreButtons";
 import HelthyLogoGlass from "@/components/ui/HelthyLogoGlass";
 import HeroAIDemo from "@/components/sections/HeroAIDemo";
-
-const APP_STORE_URL =
-  "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -54,34 +50,9 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative w-full overflow-hidden bg-[var(--background)]"
+      className="relative w-full overflow-hidden bg-canvas"
       style={{ minHeight: "clamp(620px, 82svh, 900px)" }}
     >
-      {/* Lemon glow — soft brand-tinted radial bloom behind the headline */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 1,
-          background:
-            "radial-gradient(120% 90% at 50% 32%, rgba(205,251,80,0.10) 0%, rgba(205,251,80,0.03) 34%, transparent 62%)",
-        }}
-      />
-
-      {/* Bottom vignette — settles the glow into the section fade */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 1,
-          background:
-            "linear-gradient(180deg, transparent 55%, rgba(15,15,15,0.85) 100%)",
-        }}
-      />
-
-      {/* Grain */}
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ zIndex: 2, backgroundImage: "url(/textures/hero-noise.png)", backgroundSize: "260px", opacity: 0.18, mixBlendMode: "overlay" }} />
-
       {/* Centered content */}
       <div
         className="w-full px-4 sm:px-6 md:px-8 relative flex flex-col items-center justify-center text-center"
@@ -95,13 +66,12 @@ export default function HeroSection() {
         {/* Small tagline — carries the description */}
         <p
           data-hero-sub
-          className="font-display"
+          className="font-body text-fg/80"
           style={{
             fontSize: "clamp(17px, 1.9vw, 26px)",
             fontWeight: 500,
             letterSpacing: "-0.015em",
             lineHeight: "1.2em",
-            color: "rgba(249,249,249,0.78)",
             margin: 0,
             maxWidth: "22ch",
           }}
@@ -111,13 +81,12 @@ export default function HeroSection() {
 
         {/* Giant brand line — mark pops in between the words */}
         <h1
-          className="font-heading flex items-center justify-center flex-nowrap"
+          className="font-heading text-fg flex items-center justify-center flex-nowrap"
           style={{
             fontSize: "clamp(40px, 13vw, 168px)",
             fontWeight: 600,
             letterSpacing: "-0.05em",
             lineHeight: "0.95em",
-            color: "#F9F9F9",
             margin: "clamp(8px, 1.4vh, 18px) 0 0",
             gap: "0.14em",
           }}
@@ -143,28 +112,12 @@ export default function HeroSection() {
             className="inline-block overflow-hidden"
             style={{ padding: "0.08em 0.05em 0.14em", margin: "-0.08em -0.05em -0.14em" }}
           >
-            <span data-hero-word className="inline-block text-helthy-lemon">Helthy.</span>
+            <span data-hero-word className="inline-block text-accent-ink">Helthy.</span>
           </span>
         </h1>
 
-        <div
-          data-hero-cta
-          className="flex flex-col items-center sm:flex-row sm:items-center sm:justify-center gap-3"
-          style={{ marginTop: "clamp(36px, 5vh, 60px)" }}
-        >
-          <CTAButton
-            href={APP_STORE_URL}
-            variant="primary"
-            size="md"
-            icon={
-              <svg width="14" height="14" viewBox="0 0 256 256" aria-hidden="true">
-                <path d="M64.34,196.07l-9.45,16a8,8,0,1,1-13.78-8.14l9.46-16a8,8,0,1,1,13.77,8.14ZM232,152H184.2l-30.73-52a8,8,0,1,0-13.77,8.14l61.41,103.93a8,8,0,0,0,13.78-8.14L193.66,168H232a8,8,0,0,0,0-16Zm-89.53,0H90.38L158.89,36.07a8,8,0,0,0-13.78-8.14L128,56.89l-17.11-29a8,8,0,1,0-13.78,8.14l21.6,36.55L71.8,152H24a8,8,0,0,0,0,16H142.47a8,8,0,1,0,0-16Z" fill="#0B0B0B" />
-              </svg>
-            }
-          >
-            App Store
-          </CTAButton>
-          <AndroidWaitlistButton />
+        <div data-hero-cta style={{ marginTop: "clamp(36px, 5vh, 60px)" }}>
+          <StoreButtons align="center" />
         </div>
 
         {/* AI chat demo — try Helthy AI right in the hero */}
@@ -178,7 +131,7 @@ export default function HeroSection() {
       <div
         aria-hidden="true"
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
-        style={{ height: 180, background: "linear-gradient(transparent, var(--background))", zIndex: 5 }}
+        style={{ height: 180, background: "linear-gradient(transparent, var(--canvas))", zIndex: 5 }}
       />
     </section>
   );

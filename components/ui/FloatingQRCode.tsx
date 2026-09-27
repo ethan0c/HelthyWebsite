@@ -89,81 +89,32 @@ export default function FloatingQRCode() {
   return (
     <div
       ref={wrapRef}
-      className="hidden sm:flex flex-col items-end"
-      style={{
-        position: "fixed",
-        bottom: 24,
-        right: 24,
-        zIndex: 50,
-      }}
+      className="hidden sm:flex flex-col items-end fixed bottom-6 right-6 z-50"
     >
       {/* Expanded popover */}
       {expanded && (
         <div
           role="dialog"
           aria-label="Scan to download Helthy"
-          className="absolute bottom-full mb-3 right-0"
-          style={{
-            zIndex: 20,
-            padding: 16,
-            borderRadius: 18,
-            background: "rgba(15,15,15,0.92)",
-            border: "1px solid rgba(255,255,255,0.12)",
-            backdropFilter: "blur(20px) saturate(140%)",
-            WebkitBackdropFilter: "blur(20px) saturate(140%)",
-            boxShadow: "0 16px 48px rgba(0,0,0,0.5)",
-            width: 200,
-          }}
+          className="absolute bottom-full right-0 z-20 mb-3 w-[208px] rounded-2xl border border-line bg-surface p-4"
         >
           {/* Store tabs */}
-          <div
-            className="flex gap-1 mb-3"
-            style={{
-              background: "rgba(255,255,255,0.07)",
-              borderRadius: 10,
-              padding: 3,
-            }}
-          >
+          <div className="segmented mb-3 w-full" role="group" aria-label="Store">
             {STORES.map((s) => (
               <button
                 key={s.id}
                 type="button"
+                aria-pressed={activeStore === s.id}
                 onClick={() => setActiveStore(s.id)}
-                style={{
-                  flex: 1,
-                  fontSize: 11,
-                  fontWeight: 500,
-                  fontFamily: "var(--font-body)",
-                  padding: "4px 0",
-                  borderRadius: 7,
-                  border: "none",
-                  cursor: "pointer",
-                  transition: "background 160ms ease, color 160ms ease",
-                  background:
-                    activeStore === s.id
-                      ? "rgba(255,255,255,0.12)"
-                      : "transparent",
-                  color:
-                    activeStore === s.id
-                      ? "rgba(249,249,249,0.95)"
-                      : "rgba(249,249,249,0.45)",
-                }}
+                style={{ height: 28, padding: "0 8px", fontSize: 12 }}
               >
                 {s.label}
               </button>
             ))}
           </div>
 
-          {/* QR image */}
-          <div
-            style={{
-              width: "100%",
-              aspectRatio: "1",
-              borderRadius: 12,
-              background: "#fff",
-              padding: 10,
-            }}
-          >
+          {/* QR image. White plate is functional: scanners need the contrast. */}
+          <div className="aspect-square w-full rounded-xl bg-white p-2.5">
             <Image
               src={active.qr}
               alt={active.alt}
@@ -173,43 +124,15 @@ export default function FloatingQRCode() {
             />
           </div>
 
-          <p
-            className="text-center mt-3"
-            style={{
-              fontSize: 13,
-              fontWeight: 500,
-              letterSpacing: "-0.005em",
-              color: "rgba(249,249,249,0.9)",
-              fontFamily: "var(--font-body)",
-            }}
-          >
-            Scan to download
-          </p>
-          <p
-            className="text-center mt-1"
-            style={{
-              fontSize: 12,
-              fontWeight: 400,
-              color: "rgba(249,249,249,0.5)",
-              fontFamily: "var(--font-body)",
-            }}
-          >
+          <p className="mt-3 text-center text-[13px] font-medium text-fg">Scan to download</p>
+          <p className="mt-1 text-center text-[12px] text-fg-subtle">
             Available free on iOS & Android
           </p>
 
           {/* Pointer notch */}
           <span
             aria-hidden="true"
-            className="absolute right-8"
-            style={{
-              bottom: -6,
-              width: 12,
-              height: 12,
-              rotate: "45deg",
-              background: "rgba(15,15,15,0.92)",
-              borderRight: "1px solid rgba(255,255,255,0.12)",
-              borderBottom: "1px solid rgba(255,255,255,0.12)",
-            }}
+            className="absolute -bottom-[6.5px] right-8 h-3 w-3 rotate-45 border-b border-r border-line bg-surface"
           />
         </div>
       )}
@@ -220,32 +143,10 @@ export default function FloatingQRCode() {
         onClick={() => setExpanded((v) => !v)}
         aria-expanded={expanded}
         aria-label="Show QR code to download Helthy"
-        className="group flex items-center gap-3 hover:scale-[1.02]"
-        style={{
-          padding: 8,
-          borderRadius: 16,
-          background: "rgba(20,20,20,0.62)",
-          border: "1.5px solid rgba(46,46,48,0.9)",
-          backdropFilter: "blur(20px) saturate(140%)",
-          WebkitBackdropFilter: "blur(20px) saturate(140%)",
-          boxShadow:
-            "inset 0 1px 0 rgba(255,255,255,0.06)," +
-            "0 8px 24px rgba(0,0,0,0.3)",
-          transition:
-            "transform 220ms cubic-bezier(0.16, 1, 0.3, 1), border-color 220ms ease",
-          cursor: "pointer",
-        }}
+        className="flex cursor-pointer items-center gap-3 rounded-2xl border border-line bg-surface p-2 transition-colors duration-150 hover:border-line-strong hover:bg-surface-2"
       >
-        <span
-          style={{
-            width: 38,
-            height: 38,
-            borderRadius: 9,
-            background: "#fff",
-            padding: 4,
-            flexShrink: 0,
-          }}
-        >
+        {/* White plate is functional: scanners need the contrast. */}
+        <span className="h-[38px] w-[38px] shrink-0 rounded-lg bg-white p-1">
           <Image
             src={STORES[0].qr}
             alt=""
@@ -255,31 +156,11 @@ export default function FloatingQRCode() {
             style={{ width: "100%", height: "100%" }}
           />
         </span>
-        <span className="pr-2 flex flex-col text-left justify-center">
-          <span
-            style={{
-              fontSize: 13,
-              fontWeight: 500,
-              lineHeight: "1.2em",
-              letterSpacing: "-0.005em",
-              color: "rgba(249,249,249,0.9)",
-              fontFamily: "var(--font-body)",
-              whiteSpace: "nowrap",
-            }}
-          >
+        <span className="flex flex-col justify-center pr-2 text-left">
+          <span className="whitespace-nowrap text-[13px] font-medium leading-tight text-fg">
             Scan to download
           </span>
-          <span
-            style={{
-              fontSize: 12,
-              fontWeight: 400,
-              lineHeight: "1.2em",
-              color: "rgba(249,249,249,0.5)",
-              fontFamily: "var(--font-body)",
-              marginTop: 2,
-              whiteSpace: "nowrap",
-            }}
-          >
+          <span className="mt-0.5 whitespace-nowrap text-[12px] leading-tight text-fg-subtle">
             iOS & Android
           </span>
         </span>

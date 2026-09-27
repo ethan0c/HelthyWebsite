@@ -51,18 +51,18 @@ function StrengthTable({ e }: { e: Exercise }) {
   return (
     <Section
       title={`How much weight should you use on the ${e.name.toLowerCase()}?`}
-      intro={`These are typical working weights by experience level: the weight for your normal sets, not a one-rep max. Beginner is about ${r.beginner}× bodyweight, intermediate ${r.intermediate}× and advanced ${r.advanced}×${perDumbbell ? ", per dumbbell" : ""}. Helthy uses the same ratios to suggest your starting weight.`}
+      intro={`These are typical working weights by experience level: the weight for your normal sets, not a one-rep max. Beginner is about ${r.beginner}× bodyweight, intermediate ${r.intermediate}× and advanced ${r.advanced}×${perDumbbell ? ", per dumbbell" : ""}.`}
     >
-      <div className="card-helthy overflow-x-auto">
-        <table className="w-full min-w-[520px] text-left text-[14px]">
+      <div className="card overflow-x-auto">
+        <table className="w-full min-w-[520px] text-left text-[15px]">
           <caption className="sr-only">
             {e.name} working weights by bodyweight and experience{perDumbbell ? ", per dumbbell" : ""}
           </caption>
           <thead>
-            <tr className="border-b border-white/10 text-white/50">
-              <th scope="col" className="px-5 py-4 font-medium">Bodyweight</th>
+            <tr className="border-b border-line text-fg-subtle">
+              <th scope="col" className="px-5 py-4 text-[14px] font-medium">Bodyweight</th>
               {LEVELS.map((l) => (
-                <th key={l} scope="col" className="px-5 py-4 font-medium capitalize">
+                <th key={l} scope="col" className="px-5 py-4 text-[14px] font-medium capitalize">
                   {l}
                 </th>
               ))}
@@ -70,12 +70,12 @@ function StrengthTable({ e }: { e: Exercise }) {
           </thead>
           <tbody>
             {BODYWEIGHTS_LB.map((bw) => (
-              <tr key={bw} className="border-b border-white/5 last:border-0">
-                <th scope="row" className="px-5 py-4 font-normal text-white/75">
+              <tr key={bw} className="border-b border-line last:border-0">
+                <th scope="row" className="px-5 py-4 font-normal text-fg-muted">
                   {bw} lb ({Math.round(bw / LB_PER_KG)} kg)
                 </th>
                 {LEVELS.map((l) => (
-                  <td key={l} className="px-5 py-4 text-numeric text-white">
+                  <td key={l} className="px-5 py-4 tabular-nums text-fg">
                     {fmt(bw, r[l])}
                   </td>
                 ))}
@@ -105,7 +105,7 @@ export default async function ExercisePage({ params }: PageProps<"/exercises/[sl
       <PageHero
         title={
           <>
-            How to do the <span className="text-helthy-lemon">{e.name.toLowerCase()}</span>
+            How to do the <span className="text-accent-ink">{e.name.toLowerCase()}</span>
           </>
         }
         lede={e.tips}
@@ -118,9 +118,9 @@ export default async function ExercisePage({ params }: PageProps<"/exercises/[sl
           { k: "Equipment", v: e.equipment },
           { k: "Difficulty", v: e.difficulty[0].toUpperCase() + e.difficulty.slice(1) },
         ].map((f) => (
-          <div key={f.k} className="card-helthy p-5">
-            <dt className="text-[13px] text-white/50">{f.k}</dt>
-            <dd className="mt-2 text-[15px] text-white">{f.v}</dd>
+          <div key={f.k} className="card p-5">
+            <dt className="text-[13px] font-medium text-fg-subtle">{f.k}</dt>
+            <dd className="mt-2 text-[15px] text-fg">{f.v}</dd>
           </div>
         ))}
       </dl>
@@ -128,8 +128,8 @@ export default async function ExercisePage({ params }: PageProps<"/exercises/[sl
       <Section title="Common mistakes">
         <ul className="max-w-3xl space-y-3">
           {e.commonMistakes.map((m) => (
-            <li key={m} className="flex gap-3 text-[15px] leading-7 text-white/70">
-              <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-helthy-lemon" />
+            <li key={m} className="flex gap-3 text-base leading-7 text-fg-muted">
+              <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent-ink" />
               {m}
             </li>
           ))}
@@ -137,7 +137,7 @@ export default async function ExercisePage({ params }: PageProps<"/exercises/[sl
       </Section>
 
       <Section title="How to breathe">
-        <p className="max-w-3xl text-[15px] leading-7 text-white/70 sm:text-base">{e.breathing}</p>
+        <p className="max-w-3xl text-base leading-7 text-fg-muted">{e.breathing}</p>
       </Section>
 
       <StrengthTable e={e} />

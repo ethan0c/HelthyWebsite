@@ -37,8 +37,8 @@ const FAQS = [
     a: "An AI fitness coach is software that gives personalised training and nutrition guidance. The useful ones base their advice on your own data. Helthy's coach reads your goals, targets, meals, recent workouts, PRs and weight trend before answering, so it responds like a coach who has seen your log.",
   },
   {
-    q: "Which AI model powers the Helthy coach?",
-    a: "Helthy's coach runs on Claude by Anthropic, with your Helthy data supplied as context for each conversation. A backup provider takes over during outages.",
+    q: "How does the coach know about me?",
+    a: "Everything you log in Helthy (meals, workouts, PRs, weight and goals) is available to the coach, so its answers are about your numbers, not generic advice. It can also take actions for you, like logging a meal or building a workout.",
   },
   {
     q: "How much does the AI coach cost?",
@@ -62,7 +62,7 @@ export default function AICoachPage() {
           title={
             <>
               An AI coach that has actually{" "}
-              <span className="text-helthy-lemon">read your log</span>.
+              <span className="text-accent-ink">read your log</span>
             </>
           }
           lede="Most AI fitness apps give generic advice. Helthy's coach sees your meals, lifts, PRs and weight trend, so when you ask what to change, the answer is about you."
@@ -88,7 +88,7 @@ export default function AICoachPage() {
           {QUESTIONS.map((q) => (
             <li
               key={q}
-              className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-[15px] text-white/80"
+              className="card px-5 py-4 text-[15px] leading-6 text-fg"
             >
               &ldquo;{q}&rdquo;
             </li>
@@ -96,7 +96,7 @@ export default function AICoachPage() {
         </ul>
       </Section>
 
-      <Section title="What the coach knows about you">
+      <Section title="What the coach knows about you" tone="light">
         <FeatureGrid
           items={[
             { title: "Your targets", body: "Your TDEE, calorie and macro targets, deficit or surplus, and today's remaining budget." },

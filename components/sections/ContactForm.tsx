@@ -123,7 +123,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="mb-2 block text-sm font-medium text-white/82">
+        <label htmlFor="message" className="mb-2 block text-[14px] font-medium text-fg-muted">
           Message
         </label>
         <textarea
@@ -135,10 +135,10 @@ export default function ContactForm() {
           placeholder="Tell us how we can help."
           aria-invalid={fieldErrors.message ? "true" : "false"}
           aria-describedby={fieldErrors.message ? "message-error" : undefined}
-          className="w-full rounded-[28px] border border-white/10 bg-white/[0.03] px-5 py-4 text-[15px] text-white placeholder:text-white/30 transition-colors outline-none focus:border-helthy-lemon/60"
+          className="input resize-y leading-6"
         />
         {fieldErrors.message ? (
-          <p id="message-error" className="mt-2 text-sm text-[#ff8f8f]">
+          <p id="message-error" className="mt-2 text-sm text-danger">
             {fieldErrors.message}
           </p>
         ) : null}
@@ -151,14 +151,14 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="btn-primary min-w-[180px] justify-center text-sm disabled:cursor-not-allowed disabled:opacity-70"
+          className="btn-primary min-w-[180px]"
         >
           {isSubmitting ? "Sending..." : "Send message"}
         </button>
 
         <p
           className={`text-sm ${
-            isSuccess ? "text-helthy-lemon" : feedback ? "text-[#ffb6b6]" : "text-white/45"
+            isSuccess ? "text-accent-ink" : feedback ? "text-danger" : "text-fg-subtle"
           }`}
           aria-live="polite"
         >
@@ -186,7 +186,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-2 block text-sm font-medium text-white/82">
+      <label htmlFor={id} className="mb-2 block text-[14px] font-medium text-fg-muted">
         {label}
       </label>
       <input
@@ -198,10 +198,10 @@ function Field({
         aria-invalid={error ? "true" : "false"}
         aria-describedby={error ? `${id}-error` : undefined}
         placeholder={placeholder}
-        className="w-full rounded-full border border-white/10 bg-white/[0.03] px-5 py-3.5 text-[15px] text-white placeholder:text-white/30 transition-colors outline-none focus:border-helthy-lemon/60"
+        className="input"
       />
       {error ? (
-        <p id={`${id}-error`} className="mt-2 text-sm text-[#ff8f8f]">
+        <p id={`${id}-error`} className="mt-2 text-sm text-danger">
           {error}
         </p>
       ) : null}

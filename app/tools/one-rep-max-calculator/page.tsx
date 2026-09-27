@@ -39,7 +39,7 @@ export default function OneRepMaxPage() {
       <PageHero
         title={
           <>
-            One-rep max <span className="text-helthy-lemon">calculator</span>
+            One-rep max <span className="text-accent-ink">calculator</span>
           </>
         }
         lede="Enter a set you've done and get your estimated one-rep max, plus the weights to use at common training percentages."

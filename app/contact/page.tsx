@@ -26,60 +26,33 @@ const CONTACT_REASONS = [
 export default function ContactPage() {
   return (
     <>
-      <main className="relative overflow-hidden bg-background text-white">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          aria-hidden="true"
-          style={{
-            background:
-              "radial-gradient(ellipse 55% 40% at 50% 10%, rgba(205,251,80,0.06), transparent 70%)",
-          }}
-        />
-
-        <section className="relative mx-auto max-w-6xl px-6 pb-20 pt-32 lg:px-8 lg:pb-28 lg:pt-40">
+      <main className="relative bg-canvas text-fg">
+        <section className="container-narrow pb-24 pt-32 lg:pt-40">
           <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
             <div>
-              <h1
-                className="mt-6 max-w-xl font-heading text-white"
-                style={{
-                  fontSize: "clamp(36px, 5vw, 64px)",
-                  fontWeight: 500,
-                  lineHeight: 1.05,
-                  letterSpacing: "-0.025em",
-                }}
-              >
+              <h1 className="max-w-xl text-display-xl text-fg">
                 Let&apos;s make your next move{" "}
-                <span className="text-helthy-lemon">clear</span>.
+                <span className="text-accent-ink">clear</span>
               </h1>
-              <p className="mt-6 max-w-lg text-base leading-7 text-white/62 sm:text-lg">
+              <p className="mt-6 max-w-lg text-lede">
                 Reach out for product support, partnerships, or anything else on your mind.
                 Your message goes straight into the team&apos;s contact queue.
               </p>
 
-              <div className="mt-10 grid gap-4">
+              <div className="mt-10 grid gap-3">
                 {CONTACT_REASONS.map((reason) => (
-                  <div key={reason.title} className="card-helthy p-5">
-                    <p className="text-sm font-semibold text-white">{reason.title}</p>
-                    <p className="mt-2 text-sm leading-6 text-white/55">{reason.body}</p>
+                  <div key={reason.title} className="card p-5">
+                    <p className="text-title">{reason.title}</p>
+                    <p className="mt-1.5 text-[15px] leading-6 text-fg-muted">{reason.body}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="card-helthy p-6 sm:p-8">
-              <div className="mb-8">
-                <h2
-                  className="mt-3 font-heading text-white"
-                  style={{
-                    fontSize: "clamp(22px, 2.4vw, 28px)",
-                    fontWeight: 500,
-                    letterSpacing: "-0.02em",
-                    lineHeight: 1.15,
-                  }}
-                >
-                  We&apos;ll route it to the right person.
-                </h2>
-              </div>
+            <div className="card p-6 sm:p-8">
+              <h2 className="mb-8 text-xl font-semibold tracking-[-0.01em] text-fg">
+                We&apos;ll route it to the right person
+              </h2>
               <ContactForm />
             </div>
           </div>

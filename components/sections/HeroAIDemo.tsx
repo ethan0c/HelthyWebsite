@@ -240,19 +240,7 @@ export default function HeroAIDemo() {
       style={{ maxWidth: 560, marginTop: "clamp(32px, 4.5vh, 52px)" }}
     >
       {/* Panel */}
-      <div
-        className="rounded-3xl backdrop-blur-md overflow-hidden"
-        style={{
-          background:
-            "linear-gradient(160deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.028) 100%)",
-          border: "1px solid rgba(255,255,255,0.1)",
-          boxShadow:
-            "inset 0 1px 0 0 rgba(255,255,255,0.09)," +
-            "0 2px 6px -2px rgba(0,0,0,0.3)," +
-            "0 24px 60px -24px rgba(0,0,0,0.6)," +
-            "0 0 80px -30px rgba(205,251,80,0.12)",
-        }}
-      >
+      <div className="rounded-3xl overflow-hidden bg-surface border border-line">
         {/* Input row */}
         <form
           className="flex items-center gap-2"
@@ -274,33 +262,24 @@ export default function HeroAIDemo() {
             }}
             placeholder="Ask Helthy for meal ideas…"
             aria-label="Ask Helthy AI for meal ideas"
-            className="flex-1 bg-transparent outline-none min-w-0"
-            style={{
-              // 16px min — anything smaller makes iOS Safari zoom the page on focus
-              fontSize: 16,
-              color: "rgba(249,249,249,0.92)",
-              fontFamily: "var(--font-body)",
-            }}
+            className="flex-1 bg-transparent outline-none min-w-0 font-body text-fg placeholder:text-fg-subtle"
+            // 16px min — anything smaller makes iOS Safari zoom the page on focus
+            style={{ fontSize: 16 }}
           />
           <button
             type="submit"
             aria-label="Send"
             disabled={busy || !input.trim()}
-            className="flex items-center justify-center rounded-full flex-shrink-0 transition-all active:scale-95"
+            className="flex items-center justify-center rounded-full flex-shrink-0 bg-accent text-on-accent transition-colors duration-150 hover:bg-accent-hover"
             style={{
               width: 34,
               height: 34,
-              background: LEMON,
               opacity: busy || !input.trim() ? 0.35 : 1,
               cursor: busy || !input.trim() ? "default" : "pointer",
-              boxShadow:
-                "inset 0 2px 1px 0 rgba(255,255,255,0.5)," +
-                "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
-                "0 8px 16px -6px rgba(205,251,80,0.4)",
             }}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 19V5M5 12l7-7 7 7" stroke="#0B0B0B" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
         </form>
@@ -309,10 +288,8 @@ export default function HeroAIDemo() {
         {phase !== "idle" && demo && (
           <div
             aria-live="polite"
-            style={{
-              padding: "4px 18px 18px",
-              borderTop: "1px solid rgba(255,255,255,0.07)",
-            }}
+            className="border-t border-line"
+            style={{ padding: "4px 18px 18px" }}
           >
             {/* Thinking dots */}
             {phase === "thinking" && (
@@ -321,17 +298,16 @@ export default function HeroAIDemo() {
                   {[0, 1, 2].map((i) => (
                     <span
                       key={i}
-                      className="rounded-full animate-pulse"
+                      className="rounded-full animate-pulse bg-accent"
                       style={{
                         width: 6,
                         height: 6,
-                        background: LEMON,
                         animationDelay: `${i * 180}ms`,
                       }}
                     />
                   ))}
                 </span>
-                <span style={{ fontSize: 13, color: "rgba(249,249,249,0.5)" }}>
+                <span className="text-fg-subtle" style={{ fontSize: 13 }}>
                   Helthy is thinking…
                 </span>
               </div>
@@ -340,20 +316,19 @@ export default function HeroAIDemo() {
             {/* Streamed reply */}
             {phase !== "thinking" && (
               <p
+                className="font-body text-fg/80"
                 style={{
                   fontSize: 14,
                   lineHeight: "1.5em",
-                  color: "rgba(249,249,249,0.8)",
                   padding: "12px 0 4px",
                   margin: 0,
-                  fontFamily: "var(--font-body)",
                 }}
               >
                 {typedReply}
                 {phase === "streaming" && typedReply.length < demo.reply.length && (
                   <span
-                    className="inline-block animate-pulse"
-                    style={{ width: 7, height: 14, background: LEMON, marginLeft: 2, verticalAlign: "-2px" }}
+                    className="inline-block animate-pulse bg-accent"
+                    style={{ width: 7, height: 14, marginLeft: 2, verticalAlign: "-2px" }}
                   />
                 )}
               </p>
@@ -363,7 +338,7 @@ export default function HeroAIDemo() {
             {demo.meals.map((meal, idx) => (
               <div
                 key={meal.name}
-                className="group rounded-2xl transition-all duration-500 hover:-translate-y-[2px]"
+                className="group rounded-2xl transition-all duration-500"
                 style={{
                   marginTop: 10,
                   padding: "13px 14px",
@@ -486,9 +461,9 @@ export default function HeroAIDemo() {
             {/* Reset hint */}
             {phase === "done" && (
               <p
+                className="text-fg-subtle"
                 style={{
                   fontSize: 12,
-                  color: "rgba(249,249,249,0.4)",
                   margin: "12px 0 0",
                   textAlign: "center",
                 }}

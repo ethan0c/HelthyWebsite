@@ -29,7 +29,7 @@ const FAQS = [
   },
   {
     q: "How accurate is AI photo calorie counting?",
-    a: "Helthy uses Claude's vision model to identify each item on the plate, then checks the nutrition against the food database and your own logging history. It's most accurate on simple plates, and you see every item and portion before you save, so you can correct anything that looks off.",
+    a: "Helthy's AI identifies each item on the plate, estimates portions and matches them to its food database. It's most accurate on simple plates, and you see every item and portion before you save, so you can correct anything that looks off.",
   },
   {
     q: "Does Helthy track macros as well as calories?",
@@ -53,7 +53,7 @@ export default function CalorieTrackerPage() {
           title={
             <>
               The free calorie tracker that logs a meal from a{" "}
-              <span className="text-helthy-lemon">photo</span>.
+              <span className="text-accent-ink">photo</span>
             </>
           }
           lede="Count calories and macros without the homework. Search the food database, scan a barcode, or snap a picture and let AI break the plate down for you. Logging is free and unlimited, and you get free AI scans every week."
@@ -93,7 +93,7 @@ export default function CalorieTrackerPage() {
         />
       </Section>
 
-      <Section title="Everything a calorie counter should track">
+      <Section title="Everything a calorie counter should track" tone="light">
         <FeatureGrid
           items={[
             {

@@ -1,6 +1,8 @@
 "use client";
 
 import { useId, useState, type ReactNode } from "react";
+import { ChevronDown } from "lucide-react";
+import Segmented from "@/components/ui/Segmented";
 import {
   ACTIVITY_LEVELS,
   LB_PER_KG,
@@ -27,16 +29,15 @@ const round = (n: number) => Math.round(n).toLocaleString("en-US");
 
 // ── Inputs ────────────────────────────────────────────────────────
 
-const inputCls =
-  "w-full rounded-xl border border-white/12 bg-white/[0.04] px-4 py-3 text-[15px] text-white outline-none transition-colors focus:border-helthy-lemon/60";
+const labelCls = "mb-2 block text-[14px] text-fg-muted";
 
 function Field({ label, hint, children }: { label: string; hint?: string; children: (id: string) => ReactNode }) {
   const id = useId();
   return (
     <div>
-      <label htmlFor={id} className="mb-2 block text-[13px] font-medium text-white/70">
+      <label htmlFor={id} className={labelCls}>
         {label}
-        {hint && <span className="ml-1 font-normal text-white/40">{hint}</span>}
+        {hint && <span className="ml-1 text-fg-subtle">{hint}</span>}
       </label>
       {children(id)}
     </div>
@@ -71,10 +72,10 @@ function NumberInput({
         step={step}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className={`${inputCls} ${suffix ? "pr-12" : ""}`}
+        className={`input ${suffix ? "pr-12!" : ""}`}
       />
       {suffix && (
-        <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[13px] text-white/40">
+        <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[14px] text-fg-subtle">
           {suffix}
         </span>
       )}
@@ -82,7 +83,7 @@ function NumberInput({
   );
 }
 
-function Segmented<T extends string>({
+function Toggle<T extends string>({
   label,
   value,
   options,
@@ -94,24 +95,17 @@ function Segmented<T extends string>({
   onChange: (v: T) => void;
 }) {
   return (
-    <div role="radiogroup" aria-label={label}>
-      <p className="mb-2 text-[13px] font-medium text-white/70">{label}</p>
-      <div className="flex rounded-xl border border-white/12 bg-white/[0.04] p-1">
-        {options.map((o) => (
-          <button
-            key={o.value}
-            type="button"
-            role="radio"
-            aria-checked={value === o.value}
-            onClick={() => onChange(o.value)}
-            className={`flex-1 rounded-lg px-3 py-2 text-[13px] font-medium transition-colors ${
-              value === o.value ? "bg-helthy-lemon text-black" : "text-white/65 hover:text-white"
-            }`}
-          >
-            {o.label}
-          </button>
-        ))}
-      </div>
+    <div>
+      <p className={labelCls} aria-hidden="true">
+        {label}
+      </p>
+      <Segmented
+        label={label}
+        value={value}
+        onChange={onChange}
+        options={options}
+        className={`w-full ${options.length > 2 ? "[&>button]:px-2!" : ""}`}
+      />
     </div>
   );
 }
@@ -128,13 +122,24 @@ function Select<T extends string>({
   onChange: (v: T) => void;
 }) {
   return (
-    <select id={id} value={value} onChange={(e) => onChange(e.target.value as T)} className={inputCls}>
-      {options.map((o) => (
-        <option key={o.value} value={o.value} className="bg-[#1a1a1d]">
-          {o.label}
-        </option>
-      ))}
-    </select>
+    <div className="relative">
+      <select
+        id={id}
+        value={value}
+        onChange={(e) => onChange(e.target.value as T)}
+        className="input cursor-pointer appearance-none truncate pr-11!"
+      >
+        {options.map((o) => (
+          <option key={o.value} value={o.value} className="bg-surface text-fg">
+            {o.label}
+          </option>
+        ))}
+      </select>
+      <ChevronDown
+        aria-hidden="true"
+        className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-fg-subtle"
+      />
+    </div>
   );
 }
 
@@ -142,12 +147,9 @@ function Select<T extends string>({
 
 function Shell({ form, result }: { form: ReactNode; result: ReactNode }) {
   return (
-    <div className="card-helthy grid gap-8 p-6 md:grid-cols-[1.1fr_1fr] md:p-8">
+    <div className="card grid gap-8 p-6 md:grid-cols-[1.1fr_1fr] md:p-8">
       <div className="space-y-5">{form}</div>
-      <div
-        aria-live="polite"
-        className="rounded-2xl border border-helthy-lemon/20 bg-helthy-lemon/[0.05] p-6"
-      >
+      <div aria-live="polite" className="tile self-start p-6">
         {result}
       </div>
     </div>
@@ -157,17 +159,17 @@ function Shell({ form, result }: { form: ReactNode; result: ReactNode }) {
 function Stat({ label, value, unit, big }: { label: string; value: string; unit?: string; big?: boolean }) {
   return (
     <div>
-      <p className="text-[13px] text-white/50">{label}</p>
-      <p className={`mt-1 text-numeric text-white ${big ? "text-[44px] leading-none" : "text-[26px]"}`}>
+      <p className="text-[14px] text-fg-muted">{label}</p>
+      <p className={`mt-1 text-numeric text-fg ${big ? "text-[44px] leading-none" : "text-[26px]"}`}>
         {value}
-        {unit && <span className="ml-1.5 text-[14px] text-white/50">{unit}</span>}
+        {unit && <span className="ml-1.5 font-body text-[14px] text-fg-subtle">{unit}</span>}
       </p>
     </div>
   );
 }
 
 function Empty() {
-  return <p className="text-[14px] leading-6 text-white/55">Fill in your details to see your numbers.</p>;
+  return <p className="text-[15px] leading-6 text-fg-muted">Fill in your details to see your numbers.</p>;
 }
 
 // ── Shared body inputs ───────────────────────────────────────────
@@ -205,7 +207,7 @@ function useBody() {
   const fields = ({ withHeight = true, withActivity = true, withBodyFat = true } = {}) => (
     <>
       <div className="grid grid-cols-2 gap-4">
-        <Segmented
+        <Toggle
           label="Units"
           value={units}
           onChange={switchUnits}
@@ -214,7 +216,7 @@ function useBody() {
             { value: "metric", label: "kg / cm" },
           ]}
         />
-        <Segmented
+        <Toggle
           label="Sex"
           value={sex}
           onChange={setSex}
@@ -291,11 +293,14 @@ export function TdeeCalculator() {
           <div className="space-y-6">
             <Stat label="Your TDEE" value={round(t)} unit="kcal / day" big />
             <Stat label={`BMR (${b.formula})`} value={round(b.kcal)} unit="kcal / day" />
-            <div className="space-y-2 border-t border-white/10 pt-5 text-[14px]">
+            <div className="divide-y divide-line border-t border-line text-[15px]">
               {GOAL_OPTIONS.map((g) => (
-                <div key={g.value} className="flex justify-between text-white/70">
+                <div key={g.value} className="flex justify-between py-3 text-fg-muted last:pb-0">
                   <span>{g.label}</span>
-                  <span className="text-numeric text-white">{round(calorieTarget(t, g.value, body.sex))} kcal</span>
+                  <span className="text-numeric text-fg">
+                    {round(calorieTarget(t, g.value, body.sex))}
+                    <span className="ml-1 font-body text-fg-subtle">kcal</span>
+                  </span>
                 </div>
               ))}
             </div>
@@ -321,8 +326,8 @@ export function MacroCalculator() {
       form={
         <>
           {body.fields()}
-          <Segmented label="Goal" value={goal} onChange={setGoal} options={GOAL_OPTIONS} />
-          <Segmented
+          <Toggle label="Goal" value={goal} onChange={setGoal} options={GOAL_OPTIONS} />
+          <Toggle
             label="Macro style"
             value={style}
             onChange={setStyle}
@@ -338,7 +343,7 @@ export function MacroCalculator() {
         m ? (
           <div className="space-y-6">
             <Stat label="Daily calories" value={round(calories)} unit="kcal" big />
-            <div className="grid grid-cols-3 gap-4 border-t border-white/10 pt-5">
+            <div className="grid grid-cols-3 gap-4 border-t border-line pt-5">
               <Stat label="Protein" value={round(m.protein)} unit="g" />
               <Stat label="Carbs" value={round(m.carbs)} unit="g" />
               <Stat label="Fat" value={round(m.fat)} unit="g" />
@@ -362,12 +367,12 @@ function MacroBar({ p, c, f }: { p: number; c: number; f: number }) {
   ];
   return (
     <div>
-      <div className="flex h-2.5 overflow-hidden rounded-full bg-white/10">
+      <div className="flex h-2.5 overflow-hidden rounded-full bg-surface-3">
         {parts.map((x) => (
           <div key={x.label} style={{ width: `${(x.kcal / total) * 100}%`, background: x.color }} />
         ))}
       </div>
-      <div className="mt-3 flex gap-4 text-[12px] text-white/55">
+      <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-fg-muted">
         {parts.map((x) => (
           <span key={x.label} className="flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full" style={{ background: x.color }} />
@@ -391,7 +396,7 @@ export function ProteinCalculator() {
       form={
         <>
           {body.fields({ withHeight: false, withActivity: false, withBodyFat: false })}
-          <Segmented label="Goal" value={goal} onChange={setGoal} options={GOAL_OPTIONS} />
+          <Toggle label="Goal" value={goal} onChange={setGoal} options={GOAL_OPTIONS} />
           <Field label="Meals per day">
             {(id) => <NumberInput id={id} value={meals} onChange={setMeals} min={1} max={8} />}
           </Field>
@@ -402,7 +407,7 @@ export function ProteinCalculator() {
           <div className="space-y-6">
             <Stat label="Protein per day" value={round(grams)} unit="g" big />
             <Stat label="Per meal" value={round(perMeal)} unit="g" />
-            <p className="border-t border-white/10 pt-5 text-[13px] leading-6 text-white/55">
+            <p className="border-t border-line pt-5 text-[14px] leading-6 text-fg-muted">
               That&apos;s {(grams / body.weightKg).toFixed(1)} g per kg of bodyweight (
               {(grams / (body.weightKg * LB_PER_KG)).toFixed(2)} g per lb).
             </p>
@@ -429,7 +434,7 @@ export function OneRepMaxCalculator() {
     <Shell
       form={
         <>
-          <Segmented
+          <Toggle
             label="Units"
             value={units}
             onChange={setUnits}
@@ -447,7 +452,7 @@ export function OneRepMaxCalculator() {
             </Field>
           </div>
           {r > 12 && (
-            <p className="text-[13px] leading-6 text-white/55">
+            <p className="text-[14px] leading-6 text-fg-subtle">
               Estimates get less reliable above 12 reps. For a better number, use a heavier set of 3–8.
             </p>
           )}
@@ -457,16 +462,17 @@ export function OneRepMaxCalculator() {
         valid ? (
           <div className="space-y-6">
             <Stat label="Estimated 1RM" value={round(max)} unit={unit} big />
-            <table className="w-full border-t border-white/10 text-[14px]">
+            <table className="w-full border-t border-line text-[15px]">
               <caption className="sr-only">Training weights as a percentage of your one-rep max</caption>
-              <tbody>
+              <tbody className="divide-y divide-line">
                 {[95, 90, 85, 80, 75, 70, 60].map((pct) => (
-                  <tr key={pct} className="text-white/70">
-                    <th scope="row" className="py-1.5 pt-3 text-left font-normal">
+                  <tr key={pct} className="text-fg-muted">
+                    <th scope="row" className="py-2.5 text-left font-normal">
                       {pct}%
                     </th>
-                    <td className="py-1.5 pt-3 text-right text-numeric text-white">
-                      {round((max * pct) / 100)} {unit}
+                    <td className="py-2.5 text-right text-numeric text-fg">
+                      {round((max * pct) / 100)}
+                      <span className="ml-1 font-body text-fg-subtle">{unit}</span>
                     </td>
                   </tr>
                 ))}

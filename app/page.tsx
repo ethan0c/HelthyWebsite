@@ -9,7 +9,6 @@ import FAQSection from "@/components/sections/FAQSection";
 import CTASection from "@/components/sections/CTASection";
 import NewsletterSection from "@/components/sections/NewsletterSection";
 import SiteFooter from "@/components/sections/SiteFooter";
-import FlowingLine from "@/components/ui/FlowingLine";
 import SectionScroller from "@/components/ui/SectionScroller";
 
 export const metadata: Metadata = {
@@ -22,12 +21,9 @@ export default function Home() {
       <Suspense fallback={null}>
         <SectionScroller />
       </Suspense>
-      <FlowingLine />
       <HeroSection />
       <PhoneShowcaseSection />
-      <div aria-hidden="true" className="section-beam" />
       <HowItWorksSection />
-      <div aria-hidden="true" className="section-beam" />
       <TestimonialsSection />
       <PricingSection />
       <FAQSection />

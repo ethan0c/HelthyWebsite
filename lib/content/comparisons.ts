@@ -121,7 +121,7 @@ export const COMPARISONS: Comparison[] = [
       },
       {
         q: "Is Helthy's photo logging as accurate as Cal AI?",
-        a: "Helthy uses Claude's vision model to identify each item, then grounds the nutrition in the food database and your own logging history. Both apps let you review and correct items before saving.",
+        a: "Helthy's AI identifies each item on the plate, estimates portions and matches them to its food database. Both apps let you review and correct items before saving.",
       },
     ],
   },

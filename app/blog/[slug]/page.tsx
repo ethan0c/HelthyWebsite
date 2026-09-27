@@ -63,35 +63,32 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
         }}
       />
 
-      <article className="mx-auto max-w-[720px]">
+      <article className="max-w-3xl">
         <header>
-          <h1
-            className="font-heading text-white"
-            style={{ fontSize: "clamp(32px, 4.6vw, 52px)", fontWeight: 500, lineHeight: 1.08, letterSpacing: "-0.025em" }}
-          >
-            {meta.title}
-          </h1>
-          <p className="mt-5 text-[16px] leading-7 text-white/60">{meta.description}</p>
-          <p className="mt-6 text-[13px] text-white/45">
+          <h1 className="text-display-xl text-fg">{meta.title}</h1>
+          <p className="mt-6 text-lede">{meta.description}</p>
+          <p className="mt-6 text-[13px] text-fg-subtle">
             {meta.author} · <time dateTime={meta.date}>{formatDate(meta.date)}</time> · {readingMinutes} min read
           </p>
         </header>
 
-        <div className="mt-10 border-t border-white/10 pt-4">
+        <div className="mt-10 border-t border-line pt-4">
           <Content />
         </div>
       </article>
 
       {more.length > 0 && (
-        <section className="mx-auto mt-24 max-w-[720px]">
-          <h2 className="text-display-md text-white">More from the blog</h2>
-          <ul className="mt-6 divide-y divide-white/10 border-y border-white/10">
+        <section className="mt-24 max-w-3xl">
+          <h2 className="text-display-md text-fg">More from the blog</h2>
+          <ul className="mt-6 divide-y divide-line border-y border-line">
             {more.map((p) => (
-              <li key={p.slug} className="py-5">
-                <Link href={`/blog/${p.slug}`} className="text-[16px] font-medium text-white hover:text-helthy-lemon">
-                  {p.meta.title}
+              <li key={p.slug}>
+                <Link href={`/blog/${p.slug}`} className="group block py-5">
+                  <span className="text-[16px] font-medium text-fg transition-colors group-hover:text-accent-ink">
+                    {p.meta.title}
+                  </span>
+                  <span className="mt-1 block text-[13px] text-fg-subtle">{formatDate(p.meta.date)}</span>
                 </Link>
-                <p className="mt-1 text-[13px] text-white/45">{formatDate(p.meta.date)}</p>
               </li>
             ))}
           </ul>

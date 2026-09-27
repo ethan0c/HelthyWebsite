@@ -21,7 +21,7 @@ export default function CompareIndexPage() {
       <PageHero
         title={
           <>
-            How Helthy compares to the apps you <span className="text-helthy-lemon">already know</span>.
+            How Helthy compares to the apps you <span className="text-accent-ink">already know</span>
           </>
         }
         lede="Side-by-side comparisons with the most popular calorie counters and workout trackers, including where they beat us."

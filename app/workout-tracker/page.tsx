@@ -58,7 +58,7 @@ export default function WorkoutTrackerPage() {
           title={
             <>
               The free workout tracker for people who want to{" "}
-              <span className="text-helthy-lemon">progress</span>.
+              <span className="text-accent-ink">progress</span>
             </>
           }
           lede="Log every set, rep and weight in seconds, see your PRs as they happen, and know exactly what to lift next time. 1,500 exercises and unlimited workouts, free."
@@ -77,6 +77,7 @@ export default function WorkoutTrackerPage() {
       </div>
 
       <Section
+        tone="light"
         title="A gym log that keeps up with you"
         intro="Between sets you have about ten seconds of attention. Helthy is built so logging fits inside them."
       >
@@ -122,7 +123,7 @@ export default function WorkoutTrackerPage() {
           />
         </div>
         <div className="order-1 md:order-2">
-          <h2 className="text-display-md text-white">Progressive overload, made obvious</h2>
+          <h2 className="text-display-md text-fg">Progressive overload, made obvious</h2>
           <div className="mt-6">
             <Prose
               paragraphs={[
@@ -136,9 +137,9 @@ export default function WorkoutTrackerPage() {
 
       <div className="mt-24 grid items-center gap-12 md:grid-cols-[1.3fr_1fr]">
         <div>
-          <h2 className="flex flex-wrap items-center gap-3 text-display-md text-white">
+          <h2 className="flex flex-wrap items-center gap-3 text-display-md text-fg">
             Log sets from your wrist
-            <span className="rounded-full border border-helthy-lemon/30 bg-helthy-lemon/10 px-2.5 py-0.5 text-[12px] font-semibold text-helthy-lemon">
+            <span className="badge badge-accent">
               Pro
             </span>
           </h2>

@@ -2,9 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import SiteFooter from "@/components/sections/SiteFooter";
-import CTAButton from "@/components/ui/CTAButton";
+import StoreButtonsBase from "@/components/ui/StoreButtons";
 import JsonLd from "@/components/seo/JsonLd";
-import { APP_STORE_URL, PLAY_STORE_URL, absoluteUrl } from "@/lib/site";
+import { absoluteUrl } from "@/lib/site";
 
 /**
  * Building blocks for the search landing pages (/calorie-tracker, /compare,
@@ -24,16 +24,8 @@ export function SeoPage({
 }) {
   return (
     <>
-      <main className="relative overflow-hidden bg-background text-white">
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-[520px] pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 55% 60% at 50% 0%, rgba(205,251,80,0.07), transparent 70%)",
-          }}
-        />
-        <div className="relative mx-auto max-w-5xl px-5 pb-24 pt-32 md:px-8 lg:pt-40">
+      <main className="relative bg-canvas text-fg">
+        <div className="container-narrow pb-24 pt-32 lg:pt-40">
           <Breadcrumbs crumbs={crumbs} />
           {children}
         </div>
@@ -60,16 +52,16 @@ function Breadcrumbs({ crumbs }: { crumbs: Crumb[] }) {
         }}
       />
       <nav aria-label="Breadcrumb" className="mb-8">
-        <ol className="flex flex-wrap items-center gap-2 text-[12px] text-white/45">
+        <ol className="flex flex-wrap items-center gap-2 text-[13px] text-fg-subtle">
           {all.map((c, i) => (
             <li key={c.href} className="flex items-center gap-2">
               {i > 0 && <span aria-hidden="true">/</span>}
               {i === all.length - 1 ? (
-                <span aria-current="page" className="text-white/70">
+                <span aria-current="page" className="text-fg-muted">
                   {c.name}
                 </span>
               ) : (
-                <Link href={c.href} className="hover:text-white transition-colors">
+                <Link href={c.href} className="hover:text-fg transition-colors">
                   {c.name}
                 </Link>
               )}
@@ -92,18 +84,10 @@ export function PageHero({
 }) {
   return (
     <header className="max-w-3xl">
-      <h1
-        className="font-heading text-white"
-        style={{
-          fontSize: "clamp(34px, 5.2vw, 60px)",
-          fontWeight: 500,
-          lineHeight: 1.05,
-          letterSpacing: "-0.025em",
-        }}
-      >
+      <h1 className="text-display-xl text-fg">
         {title}
       </h1>
-      <p className="mt-6 text-base leading-7 text-white/65 sm:text-lg sm:leading-8">
+      <p className="mt-6 text-lede">
         {lede}
       </p>
       {children && <div className="mt-8">{children}</div>}
@@ -112,44 +96,46 @@ export function PageHero({
 }
 
 export function StoreButtons() {
-  return (
-    <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-      <CTAButton href={APP_STORE_URL} variant="primary">
-        Download on iOS
-      </CTAButton>
-      <CTAButton href={PLAY_STORE_URL} variant="secondary">
-        Get it on Android
-      </CTAButton>
-    </div>
-  );
+  return <StoreButtonsBase />;
 }
 
 export function Section({
   title,
   intro,
   children,
+  tone = "dark",
 }: {
   title: string;
   intro?: ReactNode;
   children?: ReactNode;
+  /** "light" renders a full-bleed light band (MacroFactor-style rhythm) */
+  tone?: "dark" | "light";
 }) {
-  return (
-    <section className="mt-20 md:mt-24">
-      <h2 className="text-display-md text-white max-w-3xl">{title}</h2>
+  const body = (
+    <>
+      <h2 className="text-display-md text-fg max-w-3xl">{title}</h2>
       {intro && (
-        <p className="mt-4 max-w-3xl text-[15px] leading-7 text-white/65 sm:text-base">
+        <p className="mt-4 max-w-3xl text-base leading-7 text-fg-muted">
           {intro}
         </p>
       )}
       {children && <div className="mt-8">{children}</div>}
-    </section>
+    </>
   );
+  if (tone === "light") {
+    return (
+      <section className="theme-light mt-20 mx-[calc(50%-50vw)] py-20 md:mt-24 md:py-24">
+        <div className="container-narrow">{body}</div>
+      </section>
+    );
+  }
+  return <section className="mt-20 md:mt-24">{body}</section>;
 }
 
 /** Long-form body copy. Paragraph strings, rendered with readable measure. */
 export function Prose({ paragraphs }: { paragraphs: string[] }) {
   return (
-    <div className="max-w-3xl space-y-5 text-[15px] leading-7 text-white/70 sm:text-base sm:leading-8">
+    <div className="max-w-3xl space-y-5 text-base leading-8 text-fg-muted">
       {paragraphs.map((p) => (
         <p key={p}>{p}</p>
       ))}
@@ -165,16 +151,14 @@ export function FeatureGrid({
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {items.map((f) => (
-        <div key={f.title} className="card-helthy p-6">
-          <h3 className="flex items-center gap-2 text-[16px] font-medium tracking-tight text-white">
+        <div key={f.title} className="card p-6">
+          <h3 className="text-title flex items-center gap-2">
             {f.title}
             {f.pro && (
-              <span className="rounded-full border border-helthy-lemon/30 bg-helthy-lemon/10 px-2 py-0.5 text-[11px] font-semibold text-helthy-lemon">
-                Pro
-              </span>
+              <span className="badge badge-accent">Pro</span>
             )}
           </h3>
-          <p className="mt-3 text-[14px] leading-6 text-white/60">{f.body}</p>
+          <p className="mt-2 text-[15px] leading-6 text-fg-muted">{f.body}</p>
         </div>
       ))}
     </div>
@@ -185,12 +169,12 @@ export function Steps({ items }: { items: { title: string; body: string }[] }) {
   return (
     <ol className="grid gap-4 md:grid-cols-3">
       {items.map((s, i) => (
-        <li key={s.title} className="card-helthy p-6">
-          <span className="text-numeric text-[36px] leading-none text-helthy-lemon/80">
+        <li key={s.title} className="card p-6">
+          <span className="text-numeric text-[15px] text-accent-ink">
             {String(i + 1).padStart(2, "0")}
           </span>
-          <h3 className="mt-4 text-[16px] font-medium tracking-tight text-white">{s.title}</h3>
-          <p className="mt-2 text-[14px] leading-6 text-white/60">{s.body}</p>
+          <h3 className="text-title mt-4">{s.title}</h3>
+          <p className="mt-2 text-[15px] leading-6 text-fg-muted">{s.body}</p>
         </li>
       ))}
     </ol>
@@ -218,7 +202,7 @@ export function Screenshot({
       height={height}
       priority={priority}
       sizes="(min-width: 768px) 320px, 70vw"
-      className="h-auto w-full max-w-[320px] rounded-[28px] border border-white/10"
+      className="h-auto w-full max-w-[320px] rounded-3xl border border-line"
     />
   );
 }
@@ -233,22 +217,22 @@ export function CompareTable({
 }) {
   const cell = (v: ReactNode) =>
     v === true ? (
-      <span className="text-helthy-lemon" aria-label="Yes">✓</span>
+      <span className="text-accent-ink" aria-label="Yes">✓</span>
     ) : v === false ? (
-      <span className="text-white/30" aria-label="No">—</span>
+      <span className="text-fg-subtle" aria-label="No">—</span>
     ) : (
       v
     );
   return (
-    <div className="card-helthy overflow-x-auto">
-      <table className="w-full min-w-[520px] text-left text-[14px]">
+    <div className="card overflow-x-auto">
+      <table className="w-full min-w-[520px] text-left text-[15px]">
         <thead>
-          <tr className="border-b border-white/10 text-white/50">
+          <tr className="border-b border-line text-fg-subtle">
             {columns.map((c, i) => (
               <th
                 key={c}
                 scope="col"
-                className={`px-5 py-4 font-medium ${i === 1 ? "text-helthy-lemon" : ""}`}
+                className={`px-5 py-4 text-[14px] font-medium ${i === 1 ? "text-accent-ink" : ""}`}
               >
                 {c}
               </th>
@@ -257,12 +241,12 @@ export function CompareTable({
         </thead>
         <tbody>
           {rows.map((r) => (
-            <tr key={r.label} className="border-b border-white/5 last:border-0">
-              <th scope="row" className="px-5 py-4 font-normal text-white/75">
+            <tr key={r.label} className="border-b border-line last:border-0">
+              <th scope="row" className="px-5 py-4 font-normal text-fg-muted">
                 {r.label}
               </th>
-              <td className="px-5 py-4 text-white">{cell(r.values[0])}</td>
-              <td className="px-5 py-4 text-white/70">{cell(r.values[1])}</td>
+              <td className="px-5 py-4 text-fg">{cell(r.values[0])}</td>
+              <td className="px-5 py-4 text-fg-muted">{cell(r.values[1])}</td>
             </tr>
           ))}
         </tbody>
@@ -286,19 +270,19 @@ export function FaqList({ faqs }: { faqs: Faq[] }) {
           })),
         }}
       />
-      <div className="max-w-3xl divide-y divide-white/10 border-y border-white/10">
+      <div className="max-w-3xl divide-y divide-line border-y border-line">
         {faqs.map((f) => (
           <details key={f.q} className="group py-5">
-            <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-[16px] font-medium text-white [&::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-[16px] font-medium text-fg [&::-webkit-details-marker]:hidden">
               {f.q}
               <span
                 aria-hidden="true"
-                className="mt-0.5 text-helthy-lemon transition-transform group-open:rotate-45"
+                className="mt-0.5 text-lg leading-none text-fg-muted transition-transform group-open:rotate-45"
               >
                 +
               </span>
             </summary>
-            <p className="mt-3 text-[15px] leading-7 text-white/65">{f.a}</p>
+            <p className="mt-3 text-[15px] leading-7 text-fg-muted">{f.a}</p>
           </details>
         ))}
       </div>
@@ -317,10 +301,10 @@ export function LinkGrid({
         <Link
           key={l.href}
           href={l.href}
-          className="card-helthy card-helthy-hover block p-5"
+          className="card card-hover block p-5"
         >
-          <span className="text-[15px] font-medium text-white">{l.title} →</span>
-          {l.body && <span className="mt-2 block text-[13px] leading-6 text-white/55">{l.body}</span>}
+          <span className="text-title text-[15px]">{l.title} →</span>
+          {l.body && <span className="mt-1.5 block text-[14px] leading-6 text-fg-muted">{l.body}</span>}
         </Link>
       ))}
     </div>
@@ -335,9 +319,9 @@ export function DownloadBanner({
   body?: string;
 }) {
   return (
-    <section className="card-helthy-glow card-helthy mt-24 p-8 md:p-12">
-      <h2 className="text-display-md text-white">{title}</h2>
-      <p className="mt-4 max-w-2xl text-[15px] leading-7 text-white/70">{body}</p>
+    <section className="card card-accent mt-24 rounded-3xl p-8 md:p-12">
+      <h2 className="text-display-md text-fg">{title}</h2>
+      <p className="mt-4 max-w-2xl text-base leading-7 text-fg-muted">{body}</p>
       <div className="mt-8">
         <StoreButtons />
       </div>

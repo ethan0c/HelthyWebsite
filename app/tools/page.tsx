@@ -14,10 +14,10 @@ export default function ToolsPage() {
       <PageHero
         title={
           <>
-            Fitness calculators, <span className="text-helthy-lemon">free</span>.
+            Fitness calculators, <span className="text-accent-ink">free</span>
           </>
         }
-        lede="The same math the Helthy app runs, with no sign-up. Work out your calories, macros, protein and strength numbers in seconds."
+        lede="Free, private and no sign-up. Work out your calories, macros, protein and strength numbers in seconds."
       />
       <div className="mt-12">
         <LinkGrid
