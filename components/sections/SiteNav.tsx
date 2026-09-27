@@ -18,6 +18,7 @@ type NavItem = { label: string; href: string };
 const NAV: NavItem[] = [
   { label: "How it works", href: "/?section=why-helthy" },
   { label: "Pricing", href: "/?section=pricing" },
+  { label: "Free tools", href: "/tools" },
   { label: "Contact", href: "/contact" },
 ];
 

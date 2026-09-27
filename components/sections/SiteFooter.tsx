@@ -12,31 +12,42 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "Product",
     links: [
-      { label: "How it works", href: "/?section=why-helthy" },
+      { label: "Calorie tracker", href: "/calorie-tracker" },
+      { label: "Workout tracker", href: "/workout-tracker" },
+      { label: "AI fitness coach", href: "/ai-fitness-coach" },
       { label: "Pricing", href: "/?section=pricing" },
       { label: "Changelog", href: "/changelog" },
+    ],
+  },
+  {
+    title: "Free tools",
+    links: [
+      { label: "TDEE calculator", href: "/tools/tdee-calculator" },
+      { label: "Macro calculator", href: "/tools/macro-calculator" },
+      { label: "Protein calculator", href: "/tools/protein-calculator" },
+      { label: "1RM calculator", href: "/tools/one-rep-max-calculator" },
+      { label: "Exercise guides", href: "/exercises" },
+    ],
+  },
+  {
+    title: "Compare",
+    links: [
+      { label: "vs MyFitnessPal", href: "/compare/helthy-vs-myfitnesspal" },
+      { label: "vs Cal AI", href: "/compare/helthy-vs-cal-ai" },
+      { label: "vs Hevy", href: "/compare/helthy-vs-hevy" },
+      { label: "vs Strong", href: "/compare/helthy-vs-strong" },
     ],
   },
   {
     title: "Company",
     links: [
       { label: "Contact", href: "/contact" },
+      { label: "FAQ", href: "/?section=faq" },
       { label: "App Store", href: APP_STORE_URL },
       { label: "Google Play", href: PLAY_STORE_URL },
-    ],
-  },
-  {
-    title: "Support",
-    links: [
-      { label: "FAQ", href: "/?section=faq" },
-      { label: "Delete account", href: "/delete-account" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
       { label: "Privacy", href: "/privacy" },
       { label: "Terms", href: "/terms" },
+      { label: "Delete account", href: "/delete-account" },
     ],
   },
 ];

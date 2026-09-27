@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import HeroSection from "@/components/sections/HeroSection";
 import PhoneShowcaseSection from "@/components/sections/PhoneShowcaseSection";
 import HowItWorksSection from "@/components/sections/HowItWorksSection";
@@ -10,6 +11,10 @@ import NewsletterSection from "@/components/sections/NewsletterSection";
 import SiteFooter from "@/components/sections/SiteFooter";
 import FlowingLine from "@/components/ui/FlowingLine";
 import SectionScroller from "@/components/ui/SectionScroller";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "https://helthy.app" },
+};
 
 export default function Home() {
   return (

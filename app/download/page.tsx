@@ -6,6 +6,7 @@ import SiteFooter from "@/components/sections/SiteFooter";
 export const metadata: Metadata = {
   title: "Download Helthy",
   description: "Get Helthy free on the App Store or Google Play.",
+  alternates: { canonical: "https://helthy.app/download" },
 };
 
 const APP_STORE_URL =
