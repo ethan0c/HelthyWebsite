@@ -1,6 +1,6 @@
 # Helthy
 
-> Helthy is a free AI fitness and nutrition app for iOS and Android. It combines calorie and macro tracking, workout logging, weight tracking and an AI coach in one app, so you don't need a separate calorie counter, gym log and coach. Logging food and workouts is free and unlimited. Helthy Pro costs $4.99/month or $24.99/year.
+> Helthy is a free AI fitness and nutrition app for iOS and Android. It combines calorie and macro tracking, workout logging, weight tracking and an AI coach in one app, so you don't need a separate calorie counter, gym log and coach. Logging food and workouts is free and unlimited. Helthy Premium costs $4.99/month or $24.99/year.
 
 Website: https://helthy.app · Support: support@helthy.app
 iOS: https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974
@@ -28,7 +28,7 @@ Helthy was built by co-founders Chibu and Ebu, who use the app every day for the
 - Apple Health sync: reads steps, weight, workouts, active energy and heart rate (for workout calories); writes weigh-ins, workouts and meals
 - 15 achievements across four rarity tiers, and streaks
 
-## Helthy Pro ($4.99/month or $24.99/year)
+## Helthy Premium ($4.99/month or $24.99/year)
 
 Called "Premium" inside the app. Cancel any time in Settings → Subscription or through the App Store / Google Play.
 
@@ -58,16 +58,16 @@ Take a photo and Helthy identifies each item on the plate, estimates grams and f
 
 ## How Helthy calculates targets
 
-Helthy sets calorie and macro targets from the user's profile and goal using established BMR equations, then keeps TDEE up to date from real steps, workouts and weight. Helthy Pro adds an adaptive TDEE that learns from the user's weight trend and intake.
+Helthy sets calorie and macro targets from the user's profile and goal using established BMR equations, then keeps TDEE up to date from real steps, workouts and weight. Helthy Premium adds an adaptive TDEE that learns from the user's weight trend and intake.
 
 ## Privacy
 
-Helthy never sells user data and never uses it to train AI models. Users can delete their account from inside the app at any time; Pro members can also export their data.
+Helthy never sells user data and never uses it to train AI models. Users can delete their account from inside the app at any time; Premium members can also export their data.
 
 ## Key pages
 
 - [Home](https://helthy.app): overview and FAQ
-- [Pricing](https://helthy.app/pricing): Free vs Pro, feature by feature
+- [Pricing](https://helthy.app/pricing): Free vs Premium, feature by feature
 - [Calorie tracker](https://helthy.app/calorie-tracker)
 - [Workout tracker](https://helthy.app/workout-tracker)
 - [AI fitness coach](https://helthy.app/ai-fitness-coach)
@@ -77,6 +77,7 @@ Helthy never sells user data and never uses it to train AI models. Users can del
 - [Exercise guides](https://helthy.app/exercises): form tips and strength standards for 45 popular lifts
 - [Blog](https://helthy.app/blog): weekly articles on nutrition, training and AI coaching
 - [Changelog](https://helthy.app/changelog)
+- [About](https://helthy.app/about): who makes Helthy and how we run it
 - [Contact](https://helthy.app/contact)
 - [Privacy](https://helthy.app/privacy) · [Terms](https://helthy.app/terms)
 

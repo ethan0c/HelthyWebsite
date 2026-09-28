@@ -47,7 +47,7 @@ export default function HeroSection() {
           {/* The mask clips the line as it rises; padding keeps descenders visible */}
           <span className="block overflow-hidden pb-[0.08em]">
             <span data-hero-line className="block">
-              Food, lifts and a coach <span className="text-highlight">in one app</span>
+              Every meal. <span className="text-highlight">Every set.</span>
             </span>
           </span>
         </h1>
@@ -56,7 +56,7 @@ export default function HeroSection() {
           data-hero-sub
           className="mt-3 max-w-[64ch] text-balance font-body text-[clamp(1.0625rem,1.5vw,1.375rem)] leading-snug text-fg-muted"
         >
-          The free AI calorie tracker and workout tracker for iPhone, Android and Apple Watch.
+          The free AI calorie ,and workout tracker with a built-in  coach for your iPhone, Android and Apple Watch.
         </p>
 
         {/* One button, like MacroFactor's. The store buttons live in the nav. */}

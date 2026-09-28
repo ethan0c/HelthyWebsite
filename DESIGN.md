@@ -76,7 +76,7 @@ Two families only.
 - Unbounded is for headings and numbers only. Everything else uses DM Sans.
 - A heading can have at most one highlighted phrase, wrapped in `<span className="text-highlight">`
   (`<SectionHeading italicTail>` does this for you). Headings have no trailing period (the hero's
-  "Get Helthy." is the exception).
+  "Every meal. Every set." is the exception).
 - On light bands the highlight marker is a band behind the letters, not a full box, so it
   never covers descenders on the line above in tight display line-heights. Don't override
   `.text-highlight` with a solid `background`.

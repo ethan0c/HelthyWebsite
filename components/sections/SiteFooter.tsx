@@ -41,6 +41,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     title: "Company",
     links: [
       { label: "Blog", href: "/blog" },
+      { label: "About", href: "/about" },
       { label: "Contact", href: "/contact" },
       { label: "FAQ", href: "/?section=faq" },
       { label: "App Store", href: APP_STORE_URL },

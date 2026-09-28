@@ -74,7 +74,7 @@ const LINKS = [
 ];
 
 /**
- * Full-width flat top bar (64px), fixed to the top of the viewport by
+ * Full-width flat top bar (72px), fixed to the top of the viewport by
  * TopBar. Product and Resources open full-width menu panels on desktop, on
  * hover (click still works for touch and keyboard); on mobile everything
  * folds into one panel under the bar.
@@ -145,7 +145,7 @@ export default function SiteNav() {
       onPointerLeave={scheduleClose}
       className="pointer-events-auto relative w-full border-b border-line bg-canvas"
     >
-      <div className="container-page flex h-16 items-center gap-8">
+      <div className="container-page flex h-[72px] items-center gap-8">
         <Link
           href="/"
           aria-label="Helthy home"
@@ -153,7 +153,7 @@ export default function SiteNav() {
           onClick={close}
           onPointerEnter={openOnHover(null)}
         >
-          <HelthyWordmark className="h-6 w-auto text-fg" />
+          <HelthyWordmark className="h-7 w-auto text-fg" />
         </Link>
 
         {/* Desktop */}
@@ -175,7 +175,7 @@ export default function SiteNav() {
                     }}
                     aria-expanded={isOpen}
                     aria-controls={`menu-${m.key}`}
-                    className={`inline-flex items-center gap-1 rounded-full px-3 py-2 text-[15px] font-medium transition-colors duration-150 hover:bg-surface-2 hover:text-fg ${
+                    className={`inline-flex items-center gap-1 rounded-full px-3 py-2 text-[16px] font-medium transition-colors duration-150 hover:bg-surface-2 hover:text-fg ${
                       isOpen ? "bg-surface-2 text-fg" : "text-fg"
                     }`}
                   >
@@ -193,7 +193,7 @@ export default function SiteNav() {
                 <Link
                   href={l.href}
                   onClick={close}
-                  className="inline-block rounded-full px-3 py-2 text-[15px] font-medium text-fg transition-colors duration-150 hover:bg-surface-2 hover:text-fg"
+                  className="inline-block rounded-full px-3 py-2 text-[16px] font-medium text-fg transition-colors duration-150 hover:bg-surface-2 hover:text-fg"
                 >
                   {l.label}
                 </Link>
@@ -205,7 +205,7 @@ export default function SiteNav() {
             <Link
               href="/contact"
               onClick={close}
-              className="rounded-full px-3 py-2 text-[15px] font-medium text-fg transition-colors duration-150 hover:bg-surface-2 hover:text-fg"
+              className="rounded-full px-3 py-2 text-[16px] font-medium text-fg transition-colors duration-150 hover:bg-surface-2 hover:text-fg"
             >
               Contact
             </Link>

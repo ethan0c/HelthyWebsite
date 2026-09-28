@@ -78,6 +78,10 @@ function siteJsonLd(rating: AppRating | null) {
         url: SITE_URL,
         logo: `${SITE_URL}/logos/helthylogo.png`,
         sameAs: SOCIAL_PROFILES,
+        founder: [
+          { "@type": "Person", name: "Chibudom Onyejesi" },
+          { "@type": "Person", name: "Chiebuka Onyejesi" },
+        ],
         contactPoint: {
           "@type": "ContactPoint",
           email: "support@helthy.app",

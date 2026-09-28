@@ -24,7 +24,7 @@ Create at crunchbase.com → "Add a company". Crunchbase moderates new profiles,
 | Industries | Fitness, Health Care, Nutrition, Wellness, Mobile Apps, Artificial Intelligence (AI), Consumer Applications |
 | Headquarters | **TODO** (city, state/region, country) |
 | Founded date | **TODO** (month and year; the iOS app ID 6751759974 suggests the first App Store listing was around late 2025, so check App Store Connect) |
-| Founders | Chibudom Ethan Onyejesi (Chibu), **TODO** Ebu's full name |
+| Founders | Chibudom Ethan Onyejesi (Chibu), Chiebuka Onyejesi (Ebu) |
 | Operating status | Active |
 | Company type | For Profit |
 | Number of employees | 1–10 |
@@ -47,7 +47,7 @@ Create at crunchbase.com → "Add a company". Crunchbase moderates new profiles,
 >
 > Food can be logged by search, barcode, meal photo, nutrition label or voice. Workouts are logged set by set across a 1,500-exercise library, with personal records tracked automatically. Calorie and macro targets are calculated from each user's profile and goal, then updated weekly from real steps and workouts. The app also includes an Apple Watch app and Apple Health sync.
 >
-> Food and workout logging are free and unlimited. Helthy Pro ($4.99/month or $24.99/year) adds unlimited photo and voice logging, the AI coach, an AI routine generator, adaptive calorie targets and full history. Helthy doesn't sell user data or use it to train AI models.
+> Food and workout logging are free and unlimited. Helthy Premium ($4.99/month or $24.99/year) adds unlimited photo and voice logging, the AI coach, an AI routine generator, adaptive calorie targets and full history. Helthy doesn't sell user data or use it to train AI models.
 >
 > Helthy was founded by Chibu and Ebu, who use the app every day for their own training and nutrition.
 

@@ -73,12 +73,15 @@ export function LenisProvider({ children }: { children: ReactNode }) {
     const prevScrollBehavior = htmlEl.style.scrollBehavior;
     htmlEl.style.scrollBehavior = "auto";
 
+    // Tuned to feel quick rather than floaty: a higher lerp catches up to
+    // the target faster (less trailing drift after the wheel stops), and
+    // each wheel notch travels a little further.
     const lenis = new Lenis({
-      lerp: 0.1,
+      lerp: 0.16,
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1.0,
+      wheelMultiplier: 1.2,
       touchMultiplier: 2.0,
     });
 
@@ -99,7 +102,7 @@ export function LenisProvider({ children }: { children: ReactNode }) {
         if (el) {
           lenis.scrollTo(el, {
             offset: -72,
-            duration: 0.9,
+            duration: 0.6,
             easing: (t: number) => 1 - Math.pow(1 - t, 3),
           });
         } else if (retries > 0) {
@@ -151,7 +154,7 @@ export function LenisProvider({ children }: { children: ReactNode }) {
       e.preventDefault();
       lenis.scrollTo(el, {
         offset: -72,
-        duration: 0.9,
+        duration: 0.6,
         easing: (t: number) => 1 - Math.pow(1 - t, 3),
       });
       history.replaceState(null, "", hash);
