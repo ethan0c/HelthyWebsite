@@ -139,6 +139,7 @@ export const COMPARISONS: Comparison[] = [
       { label: "AI photo meal logging", helthy: true, them: false },
       { label: "Built-in AI coach", helthy: "Pro", them: "No, export to a chatbot yourself" },
       { label: "AI-built workout programs", helthy: "Pro", them: false },
+      { label: "Unilateral (single-arm or single-leg) logging", helthy: true, them: false },
       { label: "Unlimited free workout logging", helthy: true, them: true },
       { label: "Saved routines on the free plan", helthy: "4", them: "4" },
       { label: "Automatic PRs", helthy: true, them: true },
@@ -149,7 +150,7 @@ export const COMPARISONS: Comparison[] = [
       "Nutrition built in: calories, macros and AI photo logging next to your lifts.",
       "An AI coach inside the app that sees your training and your food, and can build and schedule workouts.",
       "One app instead of a gym log plus a separate calorie counter.",
-      "The same free logging and 4 free routines as Hevy, so you give nothing up on the training side.",
+      "The same free logging and 4 free routines as Hevy, plus unilateral logging for single-arm and single-leg work, which Hevy doesn't have.",
     ],
     theyWin: [
       "A social feed, if you want to follow friends' workouts.",
@@ -157,7 +158,7 @@ export const COMPARISONS: Comparison[] = [
       "A web app and Wear OS support.",
     ],
     verdict:
-      "On the training side the two are close, free logging and 4 routines each. The difference is everything around it: Helthy tracks your food and has a coach that sees both, so you don't need a second app. Hevy is the pick only if you want a gym log with a social feed and nothing else.",
+      "On the training side the two are close, with free logging and 4 routines each, though only Helthy logs single-arm and single-leg sets. The bigger difference is everything around it: Helthy tracks your food and has a coach that sees both, so you don't need a second app. Hevy is the pick only if you want a gym log with a social feed and nothing else.",
     faqs: [
       {
         q: "Is Helthy a good Hevy alternative?",
@@ -183,6 +184,7 @@ export const COMPARISONS: Comparison[] = [
       { label: "Calorie and macro tracking", helthy: true, them: false },
       { label: "AI photo meal logging", helthy: true, them: false },
       { label: "AI coach and AI-built programs", helthy: "Pro", them: false },
+      { label: "Unilateral (single-arm or single-leg) logging", helthy: true, them: false },
       { label: "Unlimited free workout logging", helthy: true, them: true },
       { label: "Apple Watch app", helthy: "Yes (set logging with Pro)", them: true },
       { label: "Premium price", helthy: HELTHY_PRO, them: "$4.99/mo or $29.99/yr, lifetime available" },
@@ -192,9 +194,10 @@ export const COMPARISONS: Comparison[] = [
       "An AI coach and AI-built programs based on your real sessions.",
       "The same price as Strong PRO, but you also get nutrition tracking and the AI coach.",
       "One more free routine: 4 against Strong's 3.",
+      "Plate and warm-up calculators, with plates you can set up to match your gym's.",
+      "Unilateral logging for single-arm and single-leg work, which Strong doesn't have.",
     ],
     theyWin: [
-      "Built-in plate and warm-up calculators.",
       "A lifetime purchase option.",
       "A long track record and a big base of App Store ratings.",
     ],
