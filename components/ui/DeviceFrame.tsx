@@ -27,6 +27,8 @@ const DEVICES = {
     width: 1470,
     height: 3000,
     screen: { left: 4.898, top: 2.1, width: 90.204, height: 95.8 },
+    // True black behind the island, like the real status bar area
+    screenBg: "#000000",
   },
   android: {
     frame: "/phones/android-frame-photo.png",
@@ -34,6 +36,7 @@ const DEVICES = {
     width: 1462,
     height: 2998,
     screen: { left: 3.146, top: 1.434, width: 93.639, height: 97.131 },
+    screenBg: "#0F0F0F",
   },
   watch: {
     frame: "/phones/watch-frame-photo.png",
@@ -41,6 +44,7 @@ const DEVICES = {
     width: 753,
     height: 1199,
     screen: { left: 13.135, top: 21.732, width: 73.73, height: 56.509 },
+    screenBg: "#0F0F0F",
   },
 } as const;
 
@@ -64,12 +68,13 @@ export default function DeviceFrame(
   return (
     <div className={`relative ${className}`} style={{ aspectRatio: `${d.width} / ${d.height}` }}>
       <div
-        className="absolute overflow-hidden bg-[#0F0F0F]"
+        className="absolute overflow-hidden"
         style={{
           left: `${d.screen.left}%`,
           top: `${d.screen.top}%`,
           width: `${d.screen.width}%`,
           height: `${d.screen.height}%`,
+          background: d.screenBg,
           mask,
           WebkitMask: mask,
         }}
