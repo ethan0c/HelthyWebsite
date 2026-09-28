@@ -3,14 +3,13 @@
 import { useEffect, useRef } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import HelthyLogoGlass from "@/components/ui/HelthyLogoGlass";
-import HeroAIDemo from "@/components/sections/HeroAIDemo";
+import PhoneFrame from "@/components/ui/PhoneFrame";
 
 /**
- * "Meet [clover] Helthy AI" on a light band, then the interactive chat demo.
- * On scroll-in the words rise out of their masks and the glass clover pops in
- * between them (the same move as the hero), then the demo panel rises and
- * auto-plays its first question. The chat keeps the app's dark look
- * (theme-dark), like an app window on the page.
+ * "Meet [clover] Helthy AI" on a light band, then a real screenshot of the
+ * coach answering from the user's own numbers. On scroll-in the words rise
+ * out of their masks and the glass clover pops in between them, then the
+ * phone rises.
  */
 export default function CoachDemoSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -66,8 +65,15 @@ export default function CoachDemoSection() {
           It reads your meals, lifts and weight trend, so the answer is about you, not everyone.
         </p>
 
-        <div data-coach-demo className="theme-dark mt-12 flex w-full justify-center bg-transparent md:mt-16">
-          <HeroAIDemo />
+        <div data-coach-demo className="mt-12 flex w-full justify-center md:mt-16">
+          <PhoneFrame
+            src="/phones/ai-coach-chat.png"
+            alt="Helthy AI coach answering 'What's my weight trend looking like?' with the user's own numbers: 0.9 lb down in 21 days, a 1,695 calorie average against an 1,800 target, and 6 of 14 days logged"
+            width={1320}
+            height={2868}
+            statusBar="crop"
+            className="w-[min(300px,75vw)]"
+          />
         </div>
       </div>
     </section>

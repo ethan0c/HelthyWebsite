@@ -3,7 +3,7 @@ import "./globals.css";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
 import TopBar from "@/components/sections/TopBar";
-import FloatingQRCode from "@/components/ui/FloatingQRCode";
+import DownloadQRDialog from "@/components/ui/DownloadQRDialog";
 import JsonLd from "@/components/seo/JsonLd";
 import { getAppRating, type AppRating } from "@/lib/app-rating";
 import {
@@ -209,7 +209,7 @@ export default async function RootLayout({
           <LenisProvider>
             <TopBar />
             {children}
-            <FloatingQRCode />
+            <DownloadQRDialog />
           </LenisProvider>
         </GSAPProvider>
       </body>

@@ -15,7 +15,7 @@ export default function EatSection() {
         "Scan a barcode or nutrition label",
         "Search the food database, or just type or say what you ate",
       ]}
-      footnote="Calorie and macro tracking is free and unlimited. 2 AI scans a week are free, unlimited with Pro."
+      footnote="Calorie and macro tracking is free and unlimited. 2 AI scans a week are free, unlimited with Premium."
       visual={
         <PhoneVideo
           src="/videos/app/food-log.mp4"

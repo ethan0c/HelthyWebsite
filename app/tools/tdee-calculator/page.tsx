@@ -62,7 +62,7 @@ export default function TdeePage() {
 
       <Section
         title="Get a TDEE that learns from you"
-        intro="A calculator gives you a starting point. The Helthy app keeps your TDEE up to date from your real steps and workouts, free. Pro adds Smart Calories, an adaptive TDEE that learns from your weight trend and intake."
+        intro="A calculator gives you a starting point. The Helthy app keeps your TDEE up to date from your real steps and workouts, free. Premium adds Smart Calories, an adaptive TDEE that learns from your weight trend and intake."
       />
 
       <Section title="TDEE questions">

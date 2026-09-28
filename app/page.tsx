@@ -4,10 +4,8 @@ import HeroSection from "@/components/sections/HeroSection";
 import EatSection from "@/components/sections/EatSection";
 import LiftSection from "@/components/sections/LiftSection";
 import CoachDemoSection from "@/components/sections/CoachDemoSection";
-import WeeklySection from "@/components/sections/WeeklySection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import PricingStrip from "@/components/sections/PricingStrip";
-import GuidesSection from "@/components/sections/GuidesSection";
 import FAQSection from "@/components/sections/FAQSection";
 import CTASection from "@/components/sections/CTASection";
 import SiteFooter from "@/components/sections/SiteFooter";
@@ -23,15 +21,15 @@ export default function Home() {
       <Suspense fallback={null}>
         <SectionScroller />
       </Suspense>
-      {/* One feature per band; bands alternate dark / light (see DESIGN.md) */}
+      {/* One feature per band; bands alternate dark / light (see DESIGN.md).
+          Helthy Weekly lives on /features; tools and guides are in the nav
+          and footer. */}
       <HeroSection /> {/* dark */}
       <EatSection /> {/* light */}
       <LiftSection /> {/* dark */}
       <CoachDemoSection /> {/* light */}
-      <WeeklySection /> {/* dark */}
-      <TestimonialsSection /> {/* light */}
       <PricingStrip /> {/* dark */}
-      <GuidesSection /> {/* light */}
+      <TestimonialsSection /> {/* light */}
       <FAQSection /> {/* dark */}
       <CTASection /> {/* light */}
       <SiteFooter />

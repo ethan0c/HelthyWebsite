@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import {
   SeoPage,
   PageHero,
-  StoreButtons,
+  DownloadButton,
   Section,
   Prose,
   FeatureGrid,
@@ -67,7 +67,7 @@ export default function WorkoutTrackerPage() {
           }
           lede="Log every set, rep and weight in seconds, see your PRs as they happen, and know exactly what to lift next time. 1,500 exercises and unlimited workouts, free."
         >
-          <StoreButtons />
+          <DownloadButton />
         </PageHero>
         <div className="flex justify-center md:justify-end">
           <PhoneVideo
@@ -100,7 +100,7 @@ export default function WorkoutTrackerPage() {
             },
             {
               title: "Apple Watch app",
-              body: "Track cardio with heart rate from your wrist. With Pro, complete sets and start rests without touching your phone.",
+              body: "Track cardio with heart rate from your wrist. With Premium, complete sets and start rests without touching your phone.",
             },
             {
               title: "AI-built routines",
@@ -157,7 +157,7 @@ export default function WorkoutTrackerPage() {
           items={[
             {
               title: "Pick or build a routine",
-              body: "Save your own workout, start an empty one, or have the AI build a full program (Pro).",
+              body: "Save your own workout, start an empty one, or have the AI build a full program (Premium).",
             },
             {
               title: "Log as you lift",

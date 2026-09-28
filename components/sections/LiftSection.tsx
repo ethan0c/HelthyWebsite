@@ -27,7 +27,8 @@ export default function LiftSection() {
             className="w-[min(280px,60vw)]"
           />
           <div className="hidden sm:block">
-            <AppleWatch width={150} />
+            {/* The hero's watch shows the strength workout; this one shows cardio */}
+            <AppleWatch width={150} screen="cardio" />
           </div>
         </div>
       }

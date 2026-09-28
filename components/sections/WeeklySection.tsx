@@ -185,7 +185,7 @@ export default function WeeklySection() {
           <li aria-hidden="true" className="hidden text-fg-subtle sm:block">·</li>
           <li>Share any issue as a story card</li>
           <li aria-hidden="true" className="hidden text-fg-subtle sm:block">·</li>
-          <li>This week&apos;s issue is free, back issues with Pro</li>
+          <li>This week&apos;s issue is free, back issues with Premium</li>
         </ul>
       </div>
     </section>

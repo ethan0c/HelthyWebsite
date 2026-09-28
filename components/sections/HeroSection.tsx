@@ -2,8 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
-import CTAButton from "@/components/ui/CTAButton";
-import { handleDownloadClick } from "@/lib/download";
+import DownloadButton from "@/components/ui/DownloadButton";
 import DeviceFrame from "@/components/ui/DeviceFrame";
 import WatchScreen from "@/components/ui/WatchScreen";
 
@@ -61,9 +60,7 @@ export default function HeroSection() {
 
         {/* One button, like MacroFactor's. The store buttons live in the nav. */}
         <div data-hero-cta className="mt-5">
-          <CTAButton href="/download" size="lg" onClick={handleDownloadClick}>
-            Download
-          </CTAButton>
+          <DownloadButton size="lg" />
         </div>
       </div>
 

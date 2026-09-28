@@ -7,7 +7,7 @@ const FREE = ["Unlimited food and workout logging", "Calories, macros and PRs", 
 const PRO = ["Unlimited AI scans and voice logging", "The AI coach and AI-built routines", "Full history and every Weekly issue"];
 
 /**
- * Homepage pricing: the free-forever message and what Pro adds, with no
+ * Homepage pricing: the free-forever message and what Premium adds, with no
  * plan cards (none of the six competitors price on the homepage; app stores
  * charge in local currency). The full comparison lives on /pricing.
  * Keeps id="pricing" so /?section=pricing links still land here.
@@ -20,7 +20,7 @@ export default function PricingStrip() {
           eyebrow="Pricing"
           title="Free"
           italicTail="forever"
-          subtitle={`Tracking never costs a thing. Pro adds the AI, from $${PRO_PRICE.monthly} a month.`}
+          subtitle={`Tracking never costs a thing. Premium adds the AI, from $${PRO_PRICE.monthly} a month.`}
           align="left"
           className="mb-0 md:mb-0"
         />
@@ -28,7 +28,7 @@ export default function PricingStrip() {
         <div className="card p-6 md:p-8">
           <div className="grid gap-8 sm:grid-cols-2">
             <PlanList title="Free" items={FREE} />
-            <PlanList title="Pro adds" items={PRO} />
+            <PlanList title="Premium adds" items={PRO} />
           </div>
           <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
             <p className="text-[14px] text-fg-muted">

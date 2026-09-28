@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import {
   SeoPage,
   PageHero,
-  StoreButtons,
+  DownloadButton,
   Section,
   Prose,
   FeatureGrid,
@@ -38,7 +38,7 @@ const FAQS = [
   },
   {
     q: "How does Helthy set my calorie goal?",
-    a: "During setup Helthy estimates your daily energy needs (TDEE) from your age, height, weight, activity and goal, then sets calorie and macro targets. Every week it refreshes your TDEE from your real steps and workouts, free. Pro adds Smart Calories: an adaptive TDEE from your weight trend and intake, calorie cycling and a goal date. Try the free TDEE calculator on this site to see the math.",
+    a: "During setup Helthy estimates your daily energy needs (TDEE) from your age, height, weight, activity and goal, then sets calorie and macro targets. Every week it refreshes your TDEE from your real steps and workouts, free. Premium adds Smart Calories: an adaptive TDEE from your weight trend and intake, calorie cycling and a goal date. Try the free TDEE calculator on this site to see the math.",
   },
   {
     q: "Does it sync with Apple Health?",
@@ -62,7 +62,7 @@ export default function CalorieTrackerPage() {
           }
           lede="Count calories and macros without the homework. Search the food database, scan a barcode, or snap a picture and let AI break the plate down for you. Logging is free and unlimited, and you get free AI scans every week."
         >
-          <StoreButtons />
+          <DownloadButton />
         </PageHero>
         <div className="flex justify-center md:justify-end">
           <PhoneVideo
@@ -82,7 +82,7 @@ export default function CalorieTrackerPage() {
           items={[
             {
               title: "Snap a photo",
-              body: "Point your camera at the plate. Helthy identifies each item, estimates portions and fills in calories and macros. 2 free scans a week, unlimited with Pro.",
+              body: "Point your camera at the plate. Helthy identifies each item, estimates portions and fills in calories and macros. 2 free scans a week, unlimited with Premium.",
             },
             {
               title: "Scan a barcode or label",
@@ -141,7 +141,7 @@ export default function CalorieTrackerPage() {
             },
             {
               title: "Watch the trend",
-              body: "Check your weekly averages and weight trend, and adjust. With Pro, ask the AI coach what to change.",
+              body: "Check your weekly averages and weight trend, and adjust. With Premium, ask the AI coach what to change.",
             },
           ]}
         />

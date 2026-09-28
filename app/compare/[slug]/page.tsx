@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import {
   SeoPage,
   PageHero,
-  StoreButtons,
+  DownloadButton,
   Section,
   CompareTable,
   FaqList,
@@ -64,7 +64,7 @@ export default async function ComparisonPage({ params }: PageProps<"/compare/[sl
         }
         lede={c.lede}
       >
-        <StoreButtons />
+        <DownloadButton />
       </PageHero>
 
       <Section title="Side by side" tone="light">

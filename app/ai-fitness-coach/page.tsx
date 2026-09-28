@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import {
   SeoPage,
   PageHero,
-  StoreButtons,
+  DownloadButton,
   Section,
   Prose,
   FeatureGrid,
@@ -12,7 +12,7 @@ import {
   DownloadBanner,
   seoMetadata,
 } from "@/components/seo/SeoPage";
-import HeroAIDemo from "@/components/sections/HeroAIDemo";
+import PhoneFrame from "@/components/ui/PhoneFrame";
 import { PRO_PRICE } from "@/lib/site";
 
 export const metadata: Metadata = seoMetadata({
@@ -75,11 +75,18 @@ export default function AICoachPage() {
           }
           lede="Most AI fitness apps give generic advice. Helthy's coach sees your meals, lifts, PRs and weight trend, so when you ask what to change, the answer is about you."
         >
-          <StoreButtons />
+          <DownloadButton />
         </PageHero>
-        {/* Reserve the finished answer's height so the demo grows down, not up */}
-        <div className="flex justify-center md:min-h-[390px] md:items-start md:justify-end">
-          <HeroAIDemo />
+        <div className="flex justify-center md:justify-end">
+          <PhoneFrame
+            src="/phones/ai-coach-chat.png"
+            alt="Helthy AI coach answering 'What's my weight trend looking like?' with the user's own numbers: 0.9 lb down in 21 days, a 1,695 calorie average against an 1,800 target, and 6 of 14 days logged"
+            width={1320}
+            height={2868}
+            statusBar="crop"
+            priority
+            className="w-[min(280px,70vw)]"
+          />
         </div>
       </div>
 

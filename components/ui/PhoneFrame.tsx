@@ -8,6 +8,15 @@ type ImageScreen = {
   height: number;
   priority?: boolean;
   sizes?: string;
+  /**
+   * How the screenshot's top meets the Dynamic Island. Leave unset for
+   * screens whose top is fine under it (a full-bleed photo).
+   * - "crop": an iPhone capture with the status bar in it; the bar (and its
+   *   own island, which pokes out from under the frame's) is cropped off.
+   * - "pad": a capture that starts right at the app's content; it's pushed
+   *   down so the island doesn't cover the first line.
+   */
+  statusBar?: "crop" | "pad";
   children?: never;
 };
 type CustomScreen = { children: ReactNode; src?: never };
@@ -64,15 +73,23 @@ export default function PhoneFrame(props: (ImageScreen | CustomScreen) & { class
         }}
       >
         {"src" in props && props.src ? (
-          <Image
-            src={props.src}
-            alt={props.alt}
-            width={props.width}
-            height={props.height}
-            priority={props.priority}
-            sizes={props.sizes ?? "(min-width: 1024px) 300px, 60vw"}
-            className="block h-auto w-full"
-          />
+          <div
+            className="absolute inset-x-0 bottom-0 overflow-hidden"
+            // 6% of the screen height clears the island
+            style={{ top: props.statusBar ? "6%" : 0 }}
+          >
+            <Image
+              src={props.src}
+              alt={props.alt}
+              width={props.width}
+              height={props.height}
+              priority={props.priority}
+              sizes={props.sizes ?? "(min-width: 1024px) 300px, 60vw"}
+              className="block h-auto w-full"
+              // The iOS status bar is the top 13% of the screenshot's width
+              style={props.statusBar === "crop" ? { marginTop: "-13%" } : undefined}
+            />
+          </div>
         ) : (
           props.children
         )}

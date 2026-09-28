@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import SiteFooter from "@/components/sections/SiteFooter";
-import StoreButtonsBase from "@/components/ui/StoreButtons";
+import DownloadButton from "@/components/ui/DownloadButton";
 import JsonLd from "@/components/seo/JsonLd";
 import { absoluteUrl } from "@/lib/site";
 
@@ -102,9 +102,8 @@ export function PageHero({
   );
 }
 
-export function StoreButtons() {
-  return <StoreButtonsBase />;
-}
+/** One Download button, never the store pair: that lives in the nav only. */
+export { DownloadButton };
 
 export function Section({
   title,
@@ -346,7 +345,7 @@ export function DownloadBanner({
         <div>
           <p className="max-w-lg text-base leading-7 text-fg-muted">{body}</p>
           <div className="mt-8">
-            <StoreButtons />
+            <DownloadButton />
           </div>
         </div>
       </div>

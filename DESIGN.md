@@ -114,8 +114,11 @@ Two families only.
   plain `<button>`. Primary is lemon on dark and black on light; `btn-accent` forces lemon
   (lemon fill with black text reads fine on white).
   Give each band one primary button.
-- **Store links**: `<StoreButtons />` (App Store primary, Google Play secondary). The labels
-  are always "App Store" and "Google Play".
+- **Download**: `<DownloadButton />`, one button per spot: the hero and the closing band. It
+  opens a QR popup on desktop and goes straight to the right store on phones. The
+  App Store / Google Play pair (`<StoreButtons />`, labels always "App Store" and
+  "Google Play") appears only in the nav and on the `/download` fallback page. Never put the
+  pair, or two download CTAs, in the same band.
 - **App screenshots**: `<PhoneFrame>` (`components/ui/PhoneFrame.tsx`), a flat black bezel with a
   1px line and no tilt or shadow. Use bare screen images, not pre-framed renders.
 - **Card**: `card` (+ `card-hover` if clickable, `card-accent` for a highlighted panel). Nested stat or result areas use `tile`.

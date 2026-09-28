@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
-import StoreButtons from "@/components/ui/StoreButtons";
+import DownloadButton from "@/components/ui/DownloadButton";
 import HelthyLogoGlass from "@/components/ui/HelthyLogoGlass";
 
 /**
@@ -49,7 +49,7 @@ export default function CTASection() {
         </p>
 
         <div data-cta-button className="mt-10">
-          <StoreButtons align="center" />
+          <DownloadButton size="lg" />
         </div>
       </div>
     </section>

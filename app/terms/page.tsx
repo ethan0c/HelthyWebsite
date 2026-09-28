@@ -132,7 +132,7 @@ export default function TermsPage() {
                 <div className="space-y-3">
                   <h3 className="text-[17px] font-medium text-fg">5.7 Cancellation &amp; Access After Cancellation</h3>
                   <p>
-                    Cancelling your subscription stops future charges. You retain access to Pro features until the end of your current paid period, after which your account reverts to the free tier. No prorated refunds are issued for unused time. On Android, cancellation takes effect at the end of the current billing cycle per Google Play policy.
+                    Cancelling your subscription stops future charges. You retain access to Premium features until the end of your current paid period, after which your account reverts to the free tier. No prorated refunds are issued for unused time. On Android, cancellation takes effect at the end of the current billing cycle per Google Play policy.
                   </p>
                 </div>
               </section>
