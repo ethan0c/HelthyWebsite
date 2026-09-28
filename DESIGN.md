@@ -91,8 +91,9 @@ Two families only.
   Depth comes from the surface steps and 1px lines. **Exception:** the homepage hero's device
   row uses photographic device renders (`components/ui/DeviceFrame.tsx`), laid out like
   MacroFactor's: the Apple Watch (left) and iPhone (middle) straight on, the Android phone
-  (right) turned in 3D. The realism and the 3D turn stay inside that one row.
-  Everywhere else, devices use the flat `PhoneFrame` and `AppleWatch`.
+  (right) turned in 3D. The 3D turn stays inside that one row.
+  Everywhere else, phones use the flat `PhoneFrame`. The Apple Watch always uses the photo
+  watch (`<DeviceFrame device="watch">` with a live `<WatchScreen>`), in the hero and out.
 - Hover changes colour only (border, background), with a 150ms transition. No lift, no scale.
 - The glossy 3D clover is the logo and appears only in the homepage's closing CTA
   ("Get [clover] Helthy") and as the AI coach's avatar.

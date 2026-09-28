@@ -2,7 +2,8 @@ import Image from "next/image";
 import { Check, CheckCircle2, Heart, Timer } from "lucide-react";
 
 /**
- * Apple Watch mockup showing one of Helthy's watch screens.
+ * Helthy's Apple Watch screens, rendered live (no screenshots). They're shown
+ * inside the photographic watch in DeviceFrame, scaled by WatchScreen.
  *
  * The screens are copies of the views in
  * helthy_app/mobile/ios/HelthyWatch Watch App/: same layout, strings,
@@ -189,100 +190,3 @@ export const SCREENS = {
     label: "Helthy on Apple Watch: a live outdoor run showing heart rate, distance, pace and calories",
   },
 } as const;
-
-/** Watch case drawn in CSS. `width` is the case width in px. */
-export default function AppleWatch({
-  width = 300,
-  screen = "workout",
-}: {
-  width?: number;
-  screen?: keyof typeof SCREENS;
-}) {
-  const caseH = width * 1.25;
-  const inset = width * 0.07;
-  const screenW = width - inset * 2;
-  const scale = screenW / 208;
-  const { render: Screen, label: ariaLabel } = SCREENS[screen];
-
-  return (
-    <div
-      role="img"
-      aria-label={ariaLabel}
-      className="relative mx-auto"
-      style={{ width: width + width * 0.06, height: caseH + width * 0.5 }}
-    >
-      {/* Band stubs */}
-      {[0, 1].map((i) => (
-        <div
-          key={i}
-          aria-hidden="true"
-          className="absolute"
-          style={{
-            width: width * 0.72,
-            height: width * 0.36,
-            [i === 0 ? "top" : "bottom"]: 0,
-            left: width * 0.14,
-            borderRadius: i === 0 ? "18px 18px 0 0" : "0 0 18px 18px",
-            background:
-              i === 0
-                ? "linear-gradient(to top, #1f1f22, rgba(31,31,34,0))"
-                : "linear-gradient(to bottom, #1f1f22, rgba(31,31,34,0))",
-          }}
-        />
-      ))}
-
-      {/* Case */}
-      <div
-        className="absolute left-0"
-        style={{
-          top: width * 0.25,
-          width,
-          height: caseH,
-          borderRadius: width * 0.26,
-          padding: inset,
-          background: "linear-gradient(145deg, #3a3a3e 0%, #1c1c1f 45%, #0e0e10 100%)",
-          boxShadow:
-            // Device shading only; no drop shadow or glow around the mockup.
-            "inset 0 1px 1px rgba(255,255,255,0.25), inset 0 -2px 6px rgba(0,0,0,0.6)",
-        }}
-      >
-        {/* Screen */}
-        <div
-          className="relative h-full w-full overflow-hidden"
-          style={{ borderRadius: width * 0.2, background: C.bg, boxShadow: "0 0 0 2px #000" }}
-        >
-          <div style={{ width: 208, height: 280, transform: `scale(${scale})`, transformOrigin: "top left" }}>
-            <Screen />
-          </div>
-        </div>
-
-        {/* Digital crown + side button */}
-        <div
-          aria-hidden="true"
-          className="absolute"
-          style={{
-            right: -width * 0.045,
-            top: caseH * 0.22,
-            width: width * 0.06,
-            height: caseH * 0.16,
-            borderRadius: 6,
-            background: "repeating-linear-gradient(to bottom, #3b3b40 0 2px, #202024 2px 4px)",
-            boxShadow: "inset 0 0 2px rgba(0,0,0,0.8)",
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="absolute"
-          style={{
-            right: -width * 0.02,
-            top: caseH * 0.5,
-            width: width * 0.03,
-            height: caseH * 0.2,
-            borderRadius: 4,
-            background: "linear-gradient(to right, #2b2b2f, #18181b)",
-          }}
-        />
-      </div>
-    </div>
-  );
-}
