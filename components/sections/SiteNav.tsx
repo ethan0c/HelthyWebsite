@@ -274,25 +274,28 @@ export default function SiteNav() {
         </div>
       )}
 
-      {/* Mobile menu: full-width panel under the bar */}
+      {/* Mobile menu: full-width panel under the bar. Compact enough to fit a
+          small phone without scrolling: two-column link grids, one row for
+          the plain links, and the store buttons side by side. It still
+          scrolls if a screen is shorter than that. */}
       {mobileOpen && (
         <div
           id="mobile-menu"
-          className="absolute left-0 right-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-line bg-canvas lg:hidden"
+          className="absolute left-0 right-0 top-full max-h-[calc(100dvh-72px)] overflow-y-auto border-b border-line bg-canvas lg:hidden"
         >
-          <div className="container-page pb-6">
+          <div className="container-page pb-5">
             {MENUS.map((m) => (
-              <div key={m.key} className="border-b border-line py-4">
-                <p className="pb-2 text-[13px] font-medium text-fg-subtle">{m.label}</p>
-                <ul>
+              <div key={m.key} className="border-b border-line py-3">
+                <p className="pb-1 text-[13px] font-medium text-fg-subtle">{m.label}</p>
+                <ul className="grid grid-cols-2 gap-x-4">
                   {m.links.map(({ label, href, Icon }) => (
                     <li key={href}>
                       <Link
                         href={href}
                         onClick={close}
-                        className="flex items-center gap-3 py-2.5 text-[16px] font-medium text-fg transition-colors duration-150 hover:text-fg"
+                        className="flex items-center gap-2.5 py-2 text-[15px] font-medium text-fg transition-colors duration-150 hover:text-fg"
                       >
-                        <Icon aria-hidden="true" className="h-[18px] w-[18px] text-fg-subtle" />
+                        <Icon aria-hidden="true" className="h-4 w-4 shrink-0 text-fg-subtle" />
                         {label}
                       </Link>
                     </li>
@@ -300,13 +303,13 @@ export default function SiteNav() {
                 </ul>
               </div>
             ))}
-            <ul className="divide-y divide-line">
+            <ul className="grid grid-cols-3 border-b border-line py-1">
               {[...LINKS, { label: "Contact", href: "/contact" }].map((l) => (
                 <li key={l.label}>
                   <Link
                     href={l.href}
                     onClick={close}
-                    className="block py-4 text-[16px] font-medium text-fg transition-colors duration-150 hover:text-fg"
+                    className="block py-3 text-[15px] font-medium text-fg transition-colors duration-150 hover:text-fg"
                   >
                     {l.label}
                   </Link>
@@ -314,7 +317,7 @@ export default function SiteNav() {
               ))}
             </ul>
             {/* Side by side, splitting the row equally */}
-            <div className="border-t border-line pt-6 [&>div]:flex-nowrap [&_a]:min-w-0 [&_a]:flex-1">
+            <div className="pt-4 [&>div]:flex-nowrap [&_a]:min-w-0 [&_a]:flex-1">
               <StoreButtons />
             </div>
           </div>
