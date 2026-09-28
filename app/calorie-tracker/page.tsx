@@ -20,6 +20,7 @@ export const metadata: Metadata = seoMetadata({
   description:
     "Helthy is a free calorie and macro tracker. Search foods, scan barcodes, or snap a photo and let AI log the meal. Unlimited calorie and macro logging, free.",
   path: "/calorie-tracker",
+  image: "/videos/app/food-log-poster.jpg",
 });
 
 const FAQS = [

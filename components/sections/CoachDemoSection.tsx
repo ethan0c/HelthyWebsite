@@ -42,7 +42,7 @@ export default function CoachDemoSection() {
     <section ref={sectionRef} id="coach" className="theme-light section">
       <div className="container-page flex flex-col items-center text-center">
         <p data-coach-eyebrow className="mb-4 text-[13px] font-medium text-fg-muted">
-          AI coach · Helthy Pro
+          AI coach · Helthy Premium
         </p>
         <h2
           data-coach-title

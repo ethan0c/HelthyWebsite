@@ -53,7 +53,7 @@ export default function FeaturesPage() {
               </h1>
               <p className="mt-6 max-w-xl text-lede">
                 Calories, macros, workouts, weight and an AI coach that sees all of it. Free on iOS and
-                Android, with Helthy Pro when you want the AI extras.
+                Android, with Helthy Premium when you want the AI extras.
               </p>
               <div className="mt-8">
                 <StoreButtons />

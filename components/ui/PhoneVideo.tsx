@@ -5,7 +5,9 @@ import PhoneFrame from "@/components/ui/PhoneFrame";
 
 /**
  * A screen recording inside the flat PhoneFrame. The frame itself never
- * moves. The video loads only when it nears the viewport, plays while
+ * moves. The `src` is always in the markup (so crawlers can resolve the
+ * video without running an IntersectionObserver), but `preload="none"`
+ * keeps the browser from fetching it until playback starts. It plays while
  * visible and pauses off-screen. With reduced motion it shows the poster
  * and native controls instead of auto-playing.
  */
@@ -22,7 +24,6 @@ export default function PhoneVideo({
   className?: string;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [load, setLoad] = useState(false);
   const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
@@ -34,10 +35,7 @@ export default function PhoneVideo({
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // First entry attaches the source (autoPlay starts it); later
-          // entries resume a video that already has one.
-          setLoad(true);
-          if (!reduce && video.currentSrc) video.play().catch(() => {});
+          if (!reduce) video.play().catch(() => {});
         } else {
           video.pause();
         }
@@ -52,13 +50,12 @@ export default function PhoneVideo({
     <PhoneFrame className={className}>
       <video
         ref={videoRef}
-        src={load ? src : undefined}
+        src={src}
         poster={poster}
         muted
         loop
         playsInline
         preload="none"
-        autoPlay={!reduced}
         controls={reduced}
         aria-label={label}
         // Fill the screen cut-out. The recordings are within ~1% of the

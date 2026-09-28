@@ -88,9 +88,14 @@ Two families only.
   24px `rounded-3xl` for large panels and screenshots. Buttons, toggles and badges are
   `rounded-full`.
 - No shadows, glows, inner bevels, gradients, glass blur, grain, noise, perspective or tilt.
-  Depth comes from the surface steps and 1px lines.
+  Depth comes from the surface steps and 1px lines. **Exception:** the homepage hero's device
+  row uses photographic device renders (`components/ui/DeviceFrame.tsx`), laid out like
+  MacroFactor's: the Apple Watch (left) and iPhone (middle) straight on, the Android phone
+  (right) turned in 3D. The realism and the 3D turn stay inside that one row.
+  Everywhere else, devices use the flat `PhoneFrame` and `AppleWatch`.
 - Hover changes colour only (border, background), with a 150ms transition. No lift, no scale.
-- The glossy 3D clover is the logo and appears only in the hero.
+- The glossy 3D clover is the logo and appears only in the homepage's closing CTA
+  ("Get [clover] Helthy") and as the AI coach's avatar.
 
 ## Logo
 

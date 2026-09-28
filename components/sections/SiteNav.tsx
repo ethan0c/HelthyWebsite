@@ -74,10 +74,10 @@ const LINKS = [
 ];
 
 /**
- * Full-width flat top bar (64px). Positioned by TopBar (fixed, flush under
- * the launch banner). Product and Resources open full-width menu panels on
- * desktop, on hover (click still works for touch and keyboard); on mobile
- * everything folds into one panel under the bar.
+ * Full-width flat top bar (64px), fixed to the top of the viewport by
+ * TopBar. Product and Resources open full-width menu panels on desktop, on
+ * hover (click still works for touch and keyboard); on mobile everything
+ * folds into one panel under the bar.
  */
 export default function SiteNav() {
   const pathname = usePathname();
@@ -209,9 +209,7 @@ export default function SiteNav() {
             >
               Contact
             </Link>
-            <CTAButton href="/download" variant="primary" size="sm" onClick={handleDownloadClick}>
-              Download
-            </CTAButton>
+            <StoreButtons size="sm" />
           </div>
         </nav>
 

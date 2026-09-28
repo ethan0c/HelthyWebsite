@@ -154,6 +154,28 @@ function siteJsonLd(rating: AppRating | null) {
           "Apple Health sync",
         ],
       },
+      {
+        "@type": "VideoObject",
+        "@id": `${SITE_URL}/#video-food-log`,
+        name: "Log a meal by photo in Helthy",
+        description:
+          "Screen recording: scanning a plate of food with the camera, then logging its calories and macros in Helthy.",
+        thumbnailUrl: `${SITE_URL}/videos/app/food-log-poster.jpg`,
+        contentUrl: `${SITE_URL}/videos/app/food-log.mp4`,
+        uploadDate: "2026-09-27",
+        publisher: { "@id": org },
+      },
+      {
+        "@type": "VideoObject",
+        "@id": `${SITE_URL}/#video-workout-log`,
+        name: "Log a workout in Helthy",
+        description:
+          "Screen recording: starting a workout, adding an exercise from the library and logging sets in Helthy.",
+        thumbnailUrl: `${SITE_URL}/videos/app/workout-log-poster.jpg`,
+        contentUrl: `${SITE_URL}/videos/app/workout-log.mp4`,
+        uploadDate: "2026-09-27",
+        publisher: { "@id": org },
+      },
     ],
   };
 }

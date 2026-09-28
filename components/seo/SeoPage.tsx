@@ -162,7 +162,7 @@ export function FeatureGrid({
           <h3 className="text-title flex items-center gap-2">
             {f.title}
             {f.pro && (
-              <span className="badge badge-accent">Pro</span>
+              <span className="badge badge-accent">Premium</span>
             )}
           </h3>
           <p className="mt-2 text-[15px] leading-6 text-fg-muted">{f.body}</p>
@@ -332,7 +332,7 @@ export function LinkGrid({
  */
 export function DownloadBanner({
   title = "Track it all in one free app",
-  body = "Calories, macros, workouts, weight and an AI coach that sees all of it. Free forever, with Helthy Pro when you want the AI extras.",
+  body = "Calories, macros, workouts, weight and an AI coach that sees all of it. Free forever, with Helthy Premium when you want the AI extras.",
   tone = "light",
 }: {
   title?: string;
@@ -359,17 +359,21 @@ export function seoMetadata({
   title,
   description,
   path,
+  image,
 }: {
   title: string;
   description: string;
   path: string;
+  /** Page-specific OG/Twitter image, e.g. "/videos/app/food-log-poster.jpg". Falls back to the global OG image when omitted. */
+  image?: string;
 }) {
   const url = absoluteUrl(path);
+  const images = image ? [absoluteUrl(image)] : undefined;
   return {
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, type: "website" as const },
-    twitter: { card: "summary_large_image" as const, title, description },
+    openGraph: { title, description, url, type: "website" as const, ...(images && { images }) },
+    twitter: { card: "summary_large_image" as const, title, description, ...(images && { images }) },
   };
 }

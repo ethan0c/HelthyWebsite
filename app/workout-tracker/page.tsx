@@ -21,6 +21,7 @@ export const metadata: Metadata = seoMetadata({
   description:
     "Log every set, rep and weight across 1,500 exercises. Helthy is a free workout tracker with automatic PR detection, an Apple Watch app and an AI coach that builds your routine.",
   path: "/workout-tracker",
+  image: "/videos/app/workout-log-poster.jpg",
 });
 
 const FAQS = [
@@ -38,11 +39,11 @@ const FAQS = [
   },
   {
     q: "Can Helthy build a workout plan for me?",
-    a: "With Helthy Pro, tell the AI your goal, experience and schedule and it builds a structured routine you can start logging right away. You can edit any day or exercise.",
+    a: "With Helthy Premium, tell the AI your goal, experience and schedule and it builds a structured routine you can start logging right away. You can edit any day or exercise.",
   },
   {
     q: "Does Helthy work on Apple Watch?",
-    a: "Yes. Helthy has its own Apple Watch app. Track runs, walks, rides and HIIT with heart rate and calories, and log meals by voice. With Helthy Pro, the watch also follows your strength workout live, so you can complete sets and start rest timers from your wrist.",
+    a: "Yes. Helthy has its own Apple Watch app. Track runs, walks, rides and HIIT with heart rate and calories, and log meals by voice. With Helthy Premium, the watch also follows your strength workout live, so you can complete sets and start rest timers from your wrist.",
   },
   {
     q: "Why track workouts and food in the same app?",

@@ -175,7 +175,10 @@ function CardioScreen() {
   );
 }
 
-const SCREENS = {
+/** Watch screen canvas size in points, and its background. */
+export const WATCH_CANVAS = { width: 208, height: 280, background: C.bg };
+
+export const SCREENS = {
   workout: {
     render: WorkoutScreen,
     label:

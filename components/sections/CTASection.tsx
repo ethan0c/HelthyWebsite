@@ -3,9 +3,11 @@
 import { useEffect, useRef } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import StoreButtons from "@/components/ui/StoreButtons";
+import HelthyLogoGlass from "@/components/ui/HelthyLogoGlass";
 
 /**
- * Final CTA — light band that bookends the page with the hero's brand line.
+ * Final CTA — light band that closes the page on the brand line, with the
+ * glossy clover between the words.
  */
 
 export default function CTASection() {
@@ -33,8 +35,13 @@ export default function CTASection() {
           Stop guessing. Start today.
         </p>
 
-        <h2 data-cta-heading className="mt-4 text-display-xl text-fg">
-          Get <span className="text-highlight">Helthy</span>
+        <h2
+          data-cta-heading
+          className="mt-4 flex items-center justify-center gap-[0.2em] text-display-xl text-fg"
+        >
+          Get
+          <HelthyLogoGlass size={1} style={{ width: "0.9em", height: "0.9em" }} />
+          <span className="text-highlight">Helthy</span>
         </h2>
 
         <p data-cta-sub className="mt-5 max-w-2xl text-lede">

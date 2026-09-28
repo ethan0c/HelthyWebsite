@@ -271,12 +271,13 @@ body {
 .font-mono    { font-family: var(--font-mono); }
 .font-numeric { font-family: var(--font-numeric); }
 
-/* Hero only */
+/* Hero only. Sized so the homepage headline stays on one line from tablet
+   up (it's ~19.4em wide), taking MacroFactor's footprint. */
 .text-display-2xl {
   font-family: var(--font-heading);
   font-weight: 500;
-  font-size: clamp(2.75rem, 6.5vw, 5.5rem);
-  line-height: 1.02;
+  font-size: clamp(2rem, 3.9vw, 3.625rem);
+  line-height: 1.05;
   letter-spacing: -0.03em;
 }
 /* Page H1 and homepage section titles */

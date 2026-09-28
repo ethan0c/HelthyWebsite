@@ -7,7 +7,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 const FAQS = [
   {
     q: "Is Helthy really free?",
-    a: "Yes — calorie logging, workouts, TDEE, and form tips are unlimited and free forever. Helthy Pro ($4.99/mo or $24.99/yr) unlocks unlimited AI photo & voice logging, the AI coach, generated routines, full analytics, and all-time history.",
+    a: "Yes — calorie logging, workouts, TDEE, and form tips are unlimited and free forever. Helthy Premium ($4.99/mo or $24.99/yr) unlocks unlimited AI photo & voice logging, the AI coach, generated routines, full analytics, and all-time history.",
   },
   {
     q: "How accurate is the AI photo logging?",
@@ -15,19 +15,19 @@ const FAQS = [
   },
   {
     q: "Is my data private?",
-    a: "Your data is yours. We never sell it or use it to train AI models. You can delete your account from inside the app at any time, and Pro members can export their data.",
+    a: "Your data is yours. We never sell it or use it to train AI models. You can delete your account from inside the app at any time, and Premium members can export their data.",
   },
   {
     q: "Is Helthy on Android?",
-    a: "Yes — Helthy is live on Google Play, with the same logging, AI and Pro features. The Apple Watch app and home-screen widgets are iOS only.",
+    a: "Yes — Helthy is live on Google Play, with the same logging, AI and Premium features. The Apple Watch app and home-screen widgets are iOS only.",
   },
   {
-    q: "Can I cancel Helthy Pro?",
+    q: "Can I cancel Helthy Premium?",
     a: "Anytime. Manage your subscription in Settings → Subscription, or directly through the App Store or Google Play. Cancel and you keep Free forever.",
   },
   {
     q: "Does it work on Apple Watch?",
-    a: "Yes. Track runs, walks, rides and HIIT with heart rate and calories, and log meals by voice from your wrist. With Pro, the watch also follows your strength workout so you can complete sets and start rests.",
+    a: "Yes. Track runs, walks, rides and HIIT with heart rate and calories, and log meals by voice from your wrist. With Premium, the watch also follows your strength workout so you can complete sets and start rests.",
   },
 ];
 
