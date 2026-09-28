@@ -30,7 +30,7 @@ const FOUNDERS = [
     photo: "/team/chibudom-onyejesi.png",
     width: 800,
     height: 800,
-    stat: "Lost 50 lb",
+    stat: "247 → 188 lb",
     quote: "Built Helthy because nothing else would actually tell me what to fix.",
   },
   {
