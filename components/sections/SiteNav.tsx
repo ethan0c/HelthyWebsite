@@ -313,7 +313,8 @@ export default function SiteNav() {
                 </li>
               ))}
             </ul>
-            <div className="border-t border-line pt-6 [&_a]:w-full">
+            {/* Side by side, splitting the row equally */}
+            <div className="border-t border-line pt-6 [&>div]:flex-nowrap [&_a]:min-w-0 [&_a]:flex-1">
               <StoreButtons />
             </div>
           </div>
