@@ -50,7 +50,7 @@ export default function MacroPage() {
         <MacroCalculator />
       </div>
 
-      <Section title="How your macros are calculated">
+      <Section title="How your macros are calculated" tone="light">
         <Prose
           paragraphs={[
             "Calories come from your TDEE (Mifflin-St Jeor or Katch-McArdle BMR multiplied by your activity level), adjusted for your goal: 20% below it to lose fat (up to 500 calories a day) or 10% above it to build muscle.",

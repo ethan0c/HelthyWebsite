@@ -36,6 +36,20 @@ function isPublished(meta: PostMeta) {
   return !meta.draft && meta.date <= today;
 }
 
+/**
+ * Whether /blog/<slug> is live right now. Read from the file's meta without
+ * importing it, so article links can check it while rendering: a link to a
+ * post that's scheduled for later renders as plain text until its date.
+ */
+export function isPostLive(slug: string) {
+  const file = path.join(DIR, `${slug}.mdx`);
+  if (slug.startsWith("_") || !fs.existsSync(file)) return false;
+  const head = fs.readFileSync(file, "utf8").slice(0, 2000);
+  const date = head.match(/date:\s*"(\d{4}-\d{2}-\d{2})"/)?.[1];
+  const draft = /draft:\s*true/.test(head);
+  return !!date && !draft && isPublished({ date, draft } as PostMeta);
+}
+
 function readingMinutes(slug: string) {
   const raw = fs.readFileSync(path.join(DIR, `${slug}.mdx`), "utf8");
   const words = raw.replace(/export const meta[\s\S]*?\n};?\n/, "").split(/\s+/).length;

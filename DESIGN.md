@@ -24,11 +24,11 @@ lemon is the only brand colour.
   token inside it. `theme-dark` switches back inside a light band.
 - **Homepage:** alternate the bands. Never put two light bands next to each other.
 - **Single-block pages** (hubs like /blog, /tools, /exercises, /compare, plus contact, download,
-  changelog, legal and 404) and **blog posts** (long reading is easier on white) are one white
-  page: `theme-light` on `<main>`, or `<SeoPage tone="light">`. The dark nav and footer frame
-  them.
-- **Multi-section content pages** (pricing, tool calculators, comparisons, exercise guides,
-  product landing pages) stay dark. They may use one light band through `<Section tone="light">`
+  changelog, legal and 404), **blog posts** and **exercise guides** (long reading is easier on
+  white) are one white page: `theme-light` on `<main>`, or `<SeoPage tone="light">`. The dark
+  nav and footer frame them.
+- **Multi-section content pages** (pricing, tool calculators, comparisons, product landing
+  pages) stay dark. They may use one light band through `<Section tone="light">`
   in `components/seo/SeoPage.tsx`.
 - Bands are always full width. Never float a rounded light panel on a dark page. The one
   exception is the recommended plan on /pricing: a white card beside the dark Free card, so the
@@ -125,9 +125,9 @@ Two families only.
   (default) emphasises the Helthy column on vs pages; pass `highlightFirst={false}` when the
   columns are equals (Free vs Pro).
 - **Download CTA**: `DownloadBanner` in SeoPage, always passed to SeoPage's `closing` slot so it
-  runs full width and flush against the footer, with a phone rising from its bottom edge on
-  desktop. Its tone is the opposite of the page: the default light band on dark pages,
-  `tone="dark"` on white pages. Never a floating card mid-page.
+  runs full width and flush against the footer. It's text only (no app screenshot): heading on
+  the left, line and store buttons on the right. Its tone is the opposite of the page: the
+  default light band on dark pages, `tone="dark"` on white pages. Never a floating card mid-page.
 - **Icons**: `lucide-react` for UI. Use `react-icons` for brand logos only (Apple, Google
   Play, X, Instagram, TikTok).
 

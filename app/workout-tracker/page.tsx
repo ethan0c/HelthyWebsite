@@ -13,7 +13,6 @@ import {
   seoMetadata,
 } from "@/components/seo/SeoPage";
 import AppleWatch from "@/components/ui/AppleWatch";
-import PhoneFrame from "@/components/ui/PhoneFrame";
 import PhoneVideo from "@/components/ui/PhoneVideo";
 import { PRO_PRICE } from "@/lib/site";
 
@@ -116,28 +115,14 @@ export default function WorkoutTrackerPage() {
         />
       </Section>
 
-      <div className="mt-20 grid items-center gap-12 md:grid-cols-[1fr_1.3fr]">
-        <div className="order-2 flex justify-center md:order-1 md:justify-start">
-          <PhoneFrame
-            src="/phones/exercise-info-screen.png"
-            alt="Helthy exercise detail screen with form tips and history"
-            width={1328}
-            height={2707}
-            className="w-[min(280px,70vw)]"
-          />
-        </div>
-        <div className="order-1 md:order-2">
-          <h2 className="text-display-md text-fg">Progressive overload, made obvious</h2>
-          <div className="mt-6">
-            <Prose
-              paragraphs={[
-                "Muscle and strength come from doing a little more over time: another rep, a few more pounds, one more set. The problem is remembering what you did last week.",
-                "Helthy shows your previous numbers as you log and flags new records automatically, and every exercise has its own how-to and target muscles, with form tips on popular lifts. You walk into every session knowing the target.",
-              ]}
-            />
-          </div>
-        </div>
-      </div>
+      <Section title="Progressive overload, made obvious">
+        <Prose
+          paragraphs={[
+            "Muscle and strength come from doing a little more over time: another rep, a few more pounds, one more set. The problem is remembering what you did last week.",
+            "Helthy shows your previous numbers as you log and flags new records automatically, and every exercise has its own how-to and target muscles, with form tips on popular lifts. You walk into every session knowing the target.",
+          ]}
+        />
+      </Section>
 
       <div className="mt-24 grid items-center gap-12 md:grid-cols-[1.3fr_1fr]">
         <div>

@@ -147,9 +147,9 @@ function Select<T extends string>({
 
 function Shell({ form, result }: { form: ReactNode; result: ReactNode }) {
   return (
-    <div className="card grid gap-8 p-6 md:grid-cols-[1.1fr_1fr] md:p-8">
-      <div className="space-y-5">{form}</div>
-      <div aria-live="polite" className="tile self-start p-6">
+    <div className="card grid overflow-hidden md:grid-cols-[1.1fr_1fr]">
+      <div className="space-y-5 p-6 md:p-8">{form}</div>
+      <div aria-live="polite" className="border-t border-line bg-surface-2 p-6 md:border-l md:border-t-0 md:p-8">
         {result}
       </div>
     </div>

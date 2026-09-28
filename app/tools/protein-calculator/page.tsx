@@ -50,7 +50,7 @@ export default function ProteinPage() {
         <ProteinCalculator />
       </div>
 
-      <Section title="How much protein you need">
+      <Section title="How much protein you need" tone="light">
         <Prose
           paragraphs={[
             "Protein targets here are based on bodyweight: 0.85 g per lb (about 1.9 g/kg) when losing fat, and 0.8 g per lb (about 1.8 g/kg) to maintain or build muscle. They sit within the range sports nutrition research supports for people who train.",

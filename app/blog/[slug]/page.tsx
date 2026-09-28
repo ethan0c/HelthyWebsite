@@ -7,6 +7,10 @@ import JsonLd from "@/components/seo/JsonLd";
 import { getPost, getPosts, formatDate } from "@/lib/blog";
 import { SITE_URL, absoluteUrl } from "@/lib/site";
 
+// Scheduled posts go live on their date (and links to them start working)
+// without a redeploy: re-render at most once an hour.
+export const revalidate = 3600;
+
 // Posts dated in the future aren't prerendered; they render on first visit
 // once their date arrives (see isPublished in lib/blog.ts).
 export async function generateStaticParams() {

@@ -9,6 +9,10 @@ import { formatDate } from "@/lib/blog";
 import { LB_PER_KG } from "@/lib/calc";
 import { SITE_URL, absoluteUrl } from "@/lib/site";
 
+// Scheduled posts go live on their date (and links to them start working)
+// without a redeploy: re-render at most once an hour.
+export const revalidate = 3600;
+
 export const dynamicParams = false;
 
 export function generateStaticParams() {

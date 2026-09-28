@@ -4,7 +4,6 @@ import type { ReactNode } from "react";
 import SiteFooter from "@/components/sections/SiteFooter";
 import StoreButtonsBase from "@/components/ui/StoreButtons";
 import JsonLd from "@/components/seo/JsonLd";
-import PhoneFrame from "@/components/ui/PhoneFrame";
 import { absoluteUrl } from "@/lib/site";
 
 /**
@@ -303,11 +302,14 @@ export function FaqList({ faqs }: { faqs: Faq[] }) {
 
 export function LinkGrid({
   links,
+  columns = 3,
 }: {
   links: { href: string; title: string; body?: string }[];
+  /** 2 keeps an even set of four from leaving one card on its own row */
+  columns?: 2 | 3;
 }) {
   return (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <div className={`grid gap-3 sm:grid-cols-2 ${columns === 3 ? "lg:grid-cols-3" : ""}`}>
       {links.map((l) => (
         <Link
           key={l.href}
@@ -326,7 +328,7 @@ export function LinkGrid({
  * Closing download band, full width and flush against the footer. Goes in
  * SeoPage's `closing` slot. Its tone is the opposite of the page's, so it
  * always reads as a new band: light on dark pages, dark on light pages.
- * A phone rises from the bottom edge on desktop.
+ * Text only: the heading sits left, the line and store buttons right.
  */
 export function DownloadBanner({
   title = "Track it all in one free app",
@@ -338,24 +340,14 @@ export function DownloadBanner({
   tone?: "light" | "dark";
 }) {
   return (
-    <section className={`${tone === "light" ? "theme-light" : "theme-dark"} overflow-hidden`}>
-      <div className="container-page grid items-end gap-10 md:grid-cols-[1.5fr_1fr]">
-        <div className="py-20 md:py-24">
-          <h2 className="max-w-xl text-display-lg text-fg">{title}</h2>
-          <p className="mt-4 max-w-lg text-base leading-7 text-fg-muted">{body}</p>
+    <section className={tone === "light" ? "theme-light" : "theme-dark"}>
+      <div className="container-page grid items-end gap-6 py-20 md:grid-cols-2 md:gap-16 md:py-24">
+        <h2 className="max-w-xl text-display-lg text-fg">{title}</h2>
+        <div>
+          <p className="max-w-lg text-base leading-7 text-fg-muted">{body}</p>
           <div className="mt-8">
             <StoreButtons />
           </div>
-        </div>
-        <div aria-hidden="true" className="relative hidden h-[300px] md:block">
-          <PhoneFrame
-            src="/phones/home.png"
-            alt=""
-            width={1320}
-            height={2868}
-            sizes="240px"
-            className="absolute left-1/2 top-0 w-[240px] -translate-x-1/2"
-          />
         </div>
       </div>
     </section>

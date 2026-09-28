@@ -89,7 +89,7 @@ export default function HeroSection() {
       {/* Three real screens, cut off by the bottom of the band */}
       <div
         role="img"
-        aria-label="Helthy app screens: calorie breakdown, home dashboard and a workout with the rest timer running"
+        aria-label="Helthy app screens: calorie breakdown, home dashboard and a workout in progress"
         className="container-page relative mt-[clamp(40px,6vh,64px)] flex h-[clamp(320px,36vw,500px)] items-start justify-center gap-[clamp(12px,2.5vw,32px)] overflow-hidden"
       >
         <div data-hero-phone className="mt-[8%] hidden w-[clamp(180px,21vw,270px)] shrink-0 sm:block">

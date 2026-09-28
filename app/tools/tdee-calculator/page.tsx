@@ -50,7 +50,7 @@ export default function TdeePage() {
         <TdeeCalculator />
       </div>
 
-      <Section title="How this TDEE calculator works">
+      <Section title="How this TDEE calculator works" tone="light">
         <Prose
           paragraphs={[
             "First it estimates your BMR, the calories you burn at complete rest. By default it uses the Mifflin-St Jeor equation, which is based on weight, height, age and sex. If you enter your body fat percentage it uses Katch-McArdle instead, which works from lean body mass.",

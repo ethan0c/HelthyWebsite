@@ -67,7 +67,7 @@ export default async function ComparisonPage({ params }: PageProps<"/compare/[sl
         <StoreButtons />
       </PageHero>
 
-      <Section title="Side by side">
+      <Section title="Side by side" tone="light">
         <CompareTable
           columns={["", "Helthy", c.competitor]}
           rows={c.rows.map((r) => ({ label: r.label, values: [r.helthy, r.them] }))}

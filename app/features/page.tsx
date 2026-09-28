@@ -46,8 +46,8 @@ export default function FeaturesPage() {
       <main className="relative bg-canvas text-fg">
         {/* dark */}
         <section className="pb-20 pt-32 md:pb-28 lg:pt-40">
-          <div className="container-page grid items-center gap-12 md:grid-cols-[1.2fr_1fr] md:gap-16">
-            <div>
+          <div className="container-page">
+            <div className="max-w-3xl">
               <h1 className="text-display-xl text-fg">
                 Everything you track, in <span className="text-highlight">one app</span>
               </h1>
@@ -58,16 +58,6 @@ export default function FeaturesPage() {
               <div className="mt-8">
                 <StoreButtons />
               </div>
-            </div>
-            <div className="flex justify-center md:justify-end">
-              <PhoneFrame
-                src="/phones/home.png"
-                alt="Helthy home screen with today's calories, protein, active days and steps"
-                width={1320}
-                height={2868}
-                priority
-                className="w-[min(280px,70vw)]"
-              />
             </div>
           </div>
         </section>
