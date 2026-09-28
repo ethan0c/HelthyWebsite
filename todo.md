@@ -9,3 +9,4 @@ App Store listing: your App Store name is "Helthy - Calorie Tracker". Put "worko
 Brand profiles: create a Wikidata entry and a Crunchbase profile, and launch on Product Hunt, all under the exact name "Helthy".
 Links: pitch the "best calorie tracker 2026" roundup articles and fitness creators, and link to the calculators when you post on Reddit.
 The competitor facts and prices were checked as of September 2026, so re-check them every few months.
+Hero mockups: add widget mockups to the hero — an Apple Watch face/complication and an Android home screen widget — alongside the existing phone mockup.

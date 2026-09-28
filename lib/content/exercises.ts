@@ -146,12 +146,7 @@ export const EXERCISES: Exercise[] = [
       "Going too deep and straining shoulders",
       "Using too heavy a weight"
     ],
-    breathing: "Inhale as you open your arms. Exhale as you bring them together.",
-    ratios: {
-      beginner: 0.08,
-      intermediate: 0.15,
-      advanced: 0.22
-    }
+    breathing: "Inhale as you open your arms. Exhale as you bring them together."
   },
   {
     slug: "cable-crossover",
@@ -1062,7 +1057,7 @@ export const EXERCISES: Exercise[] = [
     difficulty: "beginner",
     tips: "Keep a slight bend in elbows. Open arms wide in a hugging motion until you feel a chest stretch. Squeeze at the top.",
     commonMistakes: [
-      "Straightening arms (turns into a press)",
+      "Bending elbows too much (turns into a press)",
       "Going too deep",
       "Using too heavy a weight"
     ],
@@ -1103,7 +1098,7 @@ export const EXERCISES: Exercise[] = [
     slug: "shrug",
     name: "Shrug",
     group: "Back",
-    equipment: "Barbell or dumbbells",
+    equipment: "Dumbbells or barbell",
     primaryMuscles: [
       "Traps"
     ],

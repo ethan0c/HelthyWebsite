@@ -92,7 +92,8 @@ specific, a bit opinionated, never salesy.
 - Only claim features that exist: check `helthy_app/backend/src/ai/prompts/appKnowledge.ts`.
 - Follow the copy rules in AGENTS.md: never name AI providers, models, data sources or internals.
 - Link to our own pages where they help: calculators (`/tools/...`), exercise guides
-  (`/exercises/<slug>`), blog posts (`/blog/<slug>`). Only link to pages that exist.
+  (`/exercises/<slug>`), blog posts (`/blog/<slug>`). Only link to pages that exist. Linking to a
+  post scheduled for a later Sunday is fine: the link shows as plain text until that post is live.
 
 ## Banned phrases
 
