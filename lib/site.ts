@@ -11,7 +11,7 @@ export const APP_STORE_URL = `https://apps.apple.com/us/app/helthy-track-food-wo
 export const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=app.helthy.mobile";
 
-export const PRO_PRICE = { monthly: 4.99, yearly: 24.99 };
+export const PRO_PRICE = { monthly: 4.99, yearly: 29.99 };
 
 export const SOCIAL_PROFILES = [
   "https://x.com/helthyapp",

@@ -41,11 +41,11 @@ export default function PricingPlans() {
 
   return (
     <div>
-      <div className="mb-8 flex">
+      <div className="mb-8 flex justify-center">
         <Segmented label="Billing period" options={BILLING_OPTIONS} value={billing} onChange={setBilling} />
       </div>
 
-      <div className="grid max-w-[880px] grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="mx-auto grid max-w-[880px] grid-cols-1 gap-4 md:grid-cols-2">
         <PlanCard
           name="Free"
           blurb="Everything you need to track."

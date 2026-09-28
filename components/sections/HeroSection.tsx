@@ -69,7 +69,7 @@ export default function HeroSection() {
           wrapper so it doesn't fight the entrance animation's transform. */}
       <div
         role="img"
-        aria-label="Helthy on Apple Watch, iPhone and Android: a live bench press workout on the watch, the food search on the iPhone, and a weight trend chart on Android"
+        aria-label="Helthy on Apple Watch, iPhone and Android: a live bench press workout on the watch, the camera scanning a plate of chicken, greens and rice on the iPhone, and a weight trend chart on Android"
         className="container-page mt-[clamp(40px,6vh,64px)] pb-[clamp(56px,8vh,96px)]"
       >
         <div className="relative mx-auto w-[clamp(250px,26vw,390px)]">
@@ -81,9 +81,13 @@ export default function HeroSection() {
           </div>
 
           <div data-hero-device className="relative z-10">
+            {/* The app's real Add Food camera screen. Only the viewfinder is
+                composited: a free Unsplash photo by Nathan Dumlao
+                (unsplash.com/photos/cooked-meat-on-white-ceramic-plate-Xt4yZUIpRTo),
+                with the app's own controls laid back on top. */}
             <DeviceFrame
               device="iphone"
-              src="/phones/food-search.png"
+              src="/phones/ai-camera-scan.png"
               alt=""
               width={1320}
               height={2868}

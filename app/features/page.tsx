@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import FeatureBand from "@/components/sections/FeatureBand";
 import WeeklySection from "@/components/sections/WeeklySection";
 import CTASection from "@/components/sections/CTASection";
@@ -170,21 +169,21 @@ export default function FeaturesPage() {
           eyebrow="AI coach"
           title="A coach that reads"
           accent="your numbers"
-          lede="Insights come from what you actually logged, and they connect your eating to your training."
+          lede="Ask it anything. The answer comes from what you actually logged, not advice written for everyone."
           points={[
-            "Flags what needs attention, like eating well under your calorie target",
-            "Links problems across your data: missed workouts next to a weight plateau",
-            "Ask it anything about your meals, lifts or weight trend",
+            "Ask how your weight is trending and get your real weekly rate, and whether you're on pace for your goal date",
+            "It tells you what's holding you back, like logging only 6 of the last 14 days",
+            "Plans start from your own averages: your calories and protein against your targets",
           ]}
           footnote="AI coach chat is part of Helthy Premium."
           visual={
-            <Image
-              src="/phones/see-insights.png"
-              alt="Helthy insights: a needs-attention card on low calorie intake and a card connecting missed workouts to a weight plateau"
-              width={1243}
-              height={1529}
-              sizes="(min-width: 768px) 380px, 85vw"
-              className="h-auto w-[min(380px,85vw)]"
+            <PhoneFrame
+              src="/phones/ai-coach-chat.png"
+              alt="Helthy AI coach answering 'What's my weight trend looking like?' with the user's own numbers: 0.9 lb down in 21 days, a 1,695 calorie average against an 1,800 target, and 6 of 14 days logged"
+              width={1320}
+              height={2868}
+              statusBar="crop"
+              className="w-[min(280px,70vw)]"
             />
           }
         />
