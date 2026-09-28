@@ -39,16 +39,16 @@ export const COMPARISONS: Comparison[] = [
     title: "Helthy vs MyFitnessPal: Free Calorie Tracker Compared",
     description:
       "Helthy vs MyFitnessPal in 2026: barcode scanning, AI photo logging, workout tracking, AI coach and price. See which calorie tracker fits you.",
-    lede: "MyFitnessPal is the biggest name in calorie counting, with a huge food database. Helthy is newer: it adds real strength tracking and a far cheaper AI tier, and it doesn't put the basics behind a paywall.",
+    lede: "MyFitnessPal is the name everyone knows, but most of what makes logging fast now sits behind a $79.99 Premium plan. Helthy gives you barcode, photo and voice logging free every week, adds a real strength tracker, and its AI tier costs well under half as much.",
     rows: [
       { label: "Premium price", helthy: HELTHY_PRO, them: "$19.99/mo or $79.99/yr list price" },
-      { label: "Free calorie and macro logging", helthy: true, them: true },
       { label: "Barcode scanning on the free plan", helthy: "2 scans a week", them: "Premium only" },
       { label: "AI photo meal logging", helthy: "2 a week free, unlimited with Pro", them: "Premium only" },
       { label: "Voice food logging", helthy: "2 a week free, unlimited with Pro", them: "Premium only" },
       { label: "Strength log with sets, reps and PRs", helthy: true, them: "Basic exercise logging" },
-      { label: "AI coach", helthy: "Pro", them: "Premium (US, UK, CA, AU, NZ)" },
       { label: "AI-built workout programs", helthy: "Pro", them: false },
+      { label: "AI coach", helthy: "Pro, sees food and workouts", them: "Premium, in 5 countries" },
+      { label: "Free calorie and macro logging", helthy: true, them: true },
       { label: "Web app", helthy: false, them: true },
     ],
     helthyWins: [
@@ -56,14 +56,15 @@ export const COMPARISONS: Comparison[] = [
       `Much cheaper AI: Helthy Pro is $${PRO_PRICE.yearly} a year against MyFitnessPal Premium's $79.99 list price.`,
       "Free users can try barcode, photo and voice logging every week. MyFitnessPal keeps all three behind Premium.",
       "The AI coach reads your lifts as well as your food, so it can connect training and nutrition.",
+      "AI-built workout programs that adjust to what you actually lift. MyFitnessPal doesn't build programs.",
     ],
     theyWin: [
-      "A much larger food database (20.5 million+ foods), especially for branded and regional products.",
-      "A web app and a long list of connected devices and apps.",
-      "A large community and more than a decade of history.",
+      "A larger food database (20.5 million+ foods), which helps if you eat a lot of obscure branded or regional products.",
+      "A web app and a long list of connected devices, if you like logging from a laptop.",
+      "More than a decade of history and a big community forum.",
     ],
     verdict:
-      "Pick MyFitnessPal if you mostly log packaged foods and want the biggest database or a web app. Pick Helthy if you lift, want food and training in one place, or want AI logging and coaching without paying MyFitnessPal Premium prices.",
+      "If you lift, or you just don't want to pay $79.99 a year for barcode scanning, Helthy is the better pick: food and training in one app, fast AI logging you can try free, and a coach for a fraction of the price. MyFitnessPal still makes sense if you only log food and need its giant database or a web app.",
     faqs: [
       {
         q: "Is Helthy a good MyFitnessPal alternative?",
@@ -89,12 +90,12 @@ export const COMPARISONS: Comparison[] = [
       "Helthy vs Cal AI: both log meals from a photo. Compare free tiers, price, workout tracking and AI coaching to pick the right AI calorie tracker.",
     lede: "Cal AI made photo calorie counting mainstream and is now owned by MyFitnessPal. Helthy logs meals from a photo too, but it also has a free tier, a full workout tracker and an AI coach.",
     rows: [
-      { label: "AI photo meal logging", helthy: true, them: true },
       { label: "Free plan", helthy: "Unlimited manual logging + 2 free scans a week", them: "3-day trial; scan results need a subscription" },
       { label: "Premium price", helthy: HELTHY_PRO, them: "Subscription; price varies by offer" },
-      { label: "Barcode and nutrition-label scanning", helthy: true, them: true },
       { label: "Strength log with sets, reps and PRs", helthy: true, them: "Exercise and calorie-burn logging" },
       { label: "AI coach you can chat with", helthy: "Pro", them: "Not advertised" },
+      { label: "AI photo meal logging", helthy: true, them: true },
+      { label: "Barcode and nutrition-label scanning", helthy: true, them: true },
       { label: "Apple Watch app", helthy: "Yes (set logging with Pro)", them: true },
     ],
     helthyWins: [
@@ -104,12 +105,11 @@ export const COMPARISONS: Comparison[] = [
       `Clear pricing: ${HELTHY_PRO}.`,
     ],
     theyWin: [
-      "Photo-first design that many people find the fastest way to log.",
       "Uses the phone's depth sensor to help estimate portion size.",
       "A very large user base and hundreds of thousands of App Store ratings.",
     ],
     verdict:
-      "Pick Cal AI if you only want photo calorie counting and don't mind paying from day one. Pick Helthy if you want photo logging plus a free tier, workout tracking and a coach in one app.",
+      "Both apps log a meal from a photo. Helthy lets you keep using it free, then adds a full workout tracker and a coach that can see both. Cal AI only makes sense if photo counting is all you want and you're happy to pay from day one.",
     faqs: [
       {
         q: "Is Cal AI free?",
@@ -133,30 +133,31 @@ export const COMPARISONS: Comparison[] = [
     title: "Helthy vs Hevy: Free Workout Trackers Compared",
     description:
       "Helthy vs Hevy: compare free workout logging, routine limits, price, nutrition tracking and AI coaching to find the best gym log for you.",
-    lede: "Hevy is one of the most popular free gym logs, with a big social community. Helthy is a workout tracker too, but it also tracks your food and includes an AI coach that reads both.",
+    lede: "Hevy is a popular free gym log with a social feed. Helthy logs your lifts just as well, then does what Hevy can't: tracks your food and gives you an AI coach that reads both.",
     rows: [
+      { label: "Calorie and macro tracking", helthy: true, them: false },
+      { label: "AI photo meal logging", helthy: true, them: false },
+      { label: "Built-in AI coach", helthy: "Pro", them: "No, export to a chatbot yourself" },
+      { label: "AI-built workout programs", helthy: "Pro", them: false },
       { label: "Unlimited free workout logging", helthy: true, them: true },
       { label: "Saved routines on the free plan", helthy: "4", them: "4" },
       { label: "Automatic PRs", helthy: true, them: true },
       { label: "Apple Watch app", helthy: "Yes (set logging with Pro)", them: true },
-      { label: "Calorie and macro tracking", helthy: true, them: false },
-      { label: "AI photo meal logging", helthy: true, them: false },
-      { label: "Built-in AI coach", helthy: "Pro", them: "Export workouts to ChatGPT or Claude" },
       { label: "Premium price", helthy: HELTHY_PRO, them: "$2.99/mo, $23.99/yr or $74.99 lifetime" },
-      { label: "Web app", helthy: false, them: true },
     ],
     helthyWins: [
       "Nutrition built in: calories, macros and AI photo logging next to your lifts.",
       "An AI coach inside the app that sees your training and your food, and can build and schedule workouts.",
       "One app instead of a gym log plus a separate calorie counter.",
+      "The same free logging and 4 free routines as Hevy, so you give nothing up on the training side.",
     ],
     theyWin: [
-      "A social feed and a large lifting community.",
-      "A lifetime plan, a slightly cheaper yearly price, and a web app plus Wear OS support.",
-      "A long track record, with tens of thousands of App Store ratings.",
+      "A social feed, if you want to follow friends' workouts.",
+      "A lifetime plan and a slightly cheaper yearly price, though that buys a gym log only.",
+      "A web app and Wear OS support.",
     ],
     verdict:
-      "Pick Hevy if you only want a gym log with a social feed. Pick Helthy if you want your training and your nutrition in one place, with an AI coach that can see both.",
+      "On the training side the two are close, free logging and 4 routines each. The difference is everything around it: Helthy tracks your food and has a coach that sees both, so you don't need a second app. Hevy is the pick only if you want a gym log with a social feed and nothing else.",
     faqs: [
       {
         q: "Is Helthy a good Hevy alternative?",
@@ -178,30 +179,31 @@ export const COMPARISONS: Comparison[] = [
       "Helthy vs Strong: free routine limits, price, nutrition tracking and AI features compared. Find out which workout tracker is right for you.",
     lede: "Strong is a clean, focused lifting log that has been around for years. Helthy logs your workouts just as simply, and adds nutrition tracking and an AI coach.",
     rows: [
-      { label: "Unlimited free workout logging", helthy: true, them: true },
       { label: "Saved routines on the free plan", helthy: "4", them: "3" },
-      { label: "Apple Watch app", helthy: "Yes (set logging with Pro)", them: true },
       { label: "Calorie and macro tracking", helthy: true, them: false },
       { label: "AI photo meal logging", helthy: true, them: false },
       { label: "AI coach and AI-built programs", helthy: "Pro", them: false },
+      { label: "Unlimited free workout logging", helthy: true, them: true },
+      { label: "Apple Watch app", helthy: "Yes (set logging with Pro)", them: true },
       { label: "Premium price", helthy: HELTHY_PRO, them: "$4.99/mo or $29.99/yr, lifetime available" },
     ],
     helthyWins: [
       "Food tracking and AI photo logging in the same app as your training.",
       "An AI coach and AI-built programs based on your real sessions.",
-      `A cheaper yearly plan: $${PRO_PRICE.yearly} against $29.99.`,
+      "The same price as Strong PRO, but you also get nutrition tracking and the AI coach.",
+      "One more free routine: 4 against Strong's 3.",
     ],
     theyWin: [
-      "A very focused, minimal logger if you never want to track food.",
-      "Built-in plate and warm-up calculators, and a lifetime purchase option.",
-      "More than a hundred thousand App Store ratings over many years.",
+      "Built-in plate and warm-up calculators.",
+      "A lifetime purchase option.",
+      "A long track record and a big base of App Store ratings.",
     ],
     verdict:
-      "Pick Strong if you want a pure lifting log and nothing else. Pick Helthy if you want your workouts, food and an AI coach together, for less per year.",
+      "Helthy and Strong cost the same, but Helthy gives you more for it: an extra free routine, food tracking and an AI coach that plans your training. Strong is only the better fit if you want a bare lifting log and will never track what you eat.",
     faqs: [
       {
         q: "Is Strong free?",
-        a: "Strong's free version saves unlimited workouts but limits you to 3 custom routines. Strong PRO removes the limit. Helthy's free plan allows 4 saved workouts, plus free nutrition tracking.",
+        a: "Strong's free version saves unlimited workouts but limits you to 3 custom routines. Strong PRO removes the limit. Helthy's free plan allows 4 saved routines, plus free nutrition tracking.",
       },
       {
         q: "Does Strong track calories?",

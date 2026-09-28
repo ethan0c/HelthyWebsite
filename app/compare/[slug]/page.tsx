@@ -85,7 +85,7 @@ export default async function ComparisonPage({ params }: PageProps<"/compare/[sl
           </div>
         </div>
         <div className="card p-7">
-          <h2 className="text-title">Where {c.competitor} is better</h2>
+          <h2 className="text-title">Where {c.competitor} has the edge</h2>
           <div className="mt-5">
             <Bullets items={c.theyWin} />
           </div>
