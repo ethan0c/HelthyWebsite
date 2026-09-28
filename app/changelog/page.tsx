@@ -1,14 +1,106 @@
 import React from "react";
 import type { Metadata } from "next";
-import SectionHeading from "@/components/ui/SectionHeading";
 import SiteFooter from "@/components/sections/SiteFooter";
 
 export const metadata: Metadata = {
   title: "Changelog",
   description:
-    "See every feature added to Helthy — AI photo logging, voice logging, AI coach, workout routines, Apple Health sync, and more.",
+    "See every feature added to Helthy — Apple Watch, programs, AI photo logging, voice logging, the AI coach, Apple Health sync and more.",
   alternates: { canonical: "https://helthy.app/changelog" },
 };
+
+const V2_7_SECTIONS = [
+  {
+    label: "Added",
+    items: [
+      "Helthy for Apple Watch: track runs, walks, rides and HIIT with heart rate and calories, and log a meal by voice from your wrist. With Pro, the watch also follows your strength workout live, so you can complete sets and start rest timers without your phone",
+      "Programs: group your workouts into the order you train them, like Push, Pull, Legs. Helthy tells you which one is up next and moves you along as you finish each one. Build one from your library or let the AI generator create the whole program. Free for everyone",
+      "Allergen warnings: pick from 14 allergens in Food settings and foods that contain them are flagged in search, on food cards and on the food's own screen. Your coach knows your allergens too",
+      "A new workout editor: rename, reorder, add, replace or remove exercises on a saved workout and start it from the same screen. It saves as you go",
+      "Your records on the You tab: your best lifts with each exercise's animation, and a full Personal Records screen. Free for everyone",
+      "Your trends on the You tab: a weight trend chart with your goal arrival date, 12 weeks of training volume, and a plateau alert when progress stalls (Pro)",
+      "A Quick option when logging food: enter calories on their own, or calories plus macros, without searching",
+      "Notes mode when describing food: write your whole day out under Breakfast, Lunch, Dinner and Snacks and log it in one go",
+      "An optional fiber target, shown as a fiber bar next to protein, carbs and fat",
+      "Share your weekly issue as a story-sized card, and preview your leaderboard rank card before you post it",
+      "A breakdown of where your calorie target comes from: maintenance, steps, workouts and your deficit or surplus, line by line",
+      "A \"Like You\" coach tone (experimental) that writes back the way you write"
+    ]
+  },
+  {
+    label: "Changed",
+    items: [
+      "The coach can now act for you: log a meal or a weight, schedule a workout, set a goal, save a custom meal and build a routine",
+      "Logging food is now one screen with six ways in: Library, Search, Scan, Describe, Voice and Quick",
+      "Meal photo scans show each food as the AI recognises it, and the review screen opens before the scan has finished",
+      "The Home tab was redesigned: your streak is a flame in the header, the week shows as seven dots, and Today's Goals is a grid of calories, protein, active days and steps",
+      "The Exercise tab was redesigned around one Up next card that follows your program, or picks the workout whose muscles have rested longest",
+      "A rebuilt welcome tour that highlights the real app on screen, one step at a time. Replay it from Settings",
+      "Step history now follows your own calendar day, so evening steps no longer spill into tomorrow",
+      "Free accounts now get 2 scans a week, alongside 2 voice logs and 2 describes",
+      "Onboarding is shorter, and goal setup explains an unusual calorie target instead of blocking it"
+    ]
+  },
+  {
+    label: "Removed",
+    items: [
+      "Workout, rest day, meal time and step reminders. Notifications now has three switches: meal logging, weekly progress and milestones"
+    ]
+  }
+];
+
+const V2_5_SECTIONS = [
+  {
+    label: "Added",
+    items: [
+      "One Scan camera for everything: point it at a meal, a barcode or a nutrition label and it works out which one it is. Scanned items collect in one list you can adjust and log together",
+      "Meal ideas on the Food tab: suggestions that fit your remaining macros, with ingredients and step-by-step cooking instructions",
+      "Thousands of new foods: restaurant chain menus, more branded products, and dishes from Nigeria, Ghana and India. Verified foods now rank first in search",
+      "A welcome tour for new users, replayable from Settings > Replay App Guide"
+    ]
+  },
+  {
+    label: "Changed",
+    items: [
+      "Free accounts can now use the scanner: 4 scans each week, plus 2 voice logs and 2 describes each week",
+      "The Food, Exercise and You tabs were redesigned, with an Up next card to start your next routine in one tap",
+      "Photo scans now identify what's on the plate first, then fill in nutrition from your own logging history and the food database",
+      "Reading a nutrition label is noticeably faster, and voice quantities like \"2 slices\" convert to more accurate grams",
+      "Popups take turns instead of stacking, and the rating request no longer interrupts your first meal or workout celebration"
+    ]
+  }
+];
+
+const V2_4_3_SECTIONS = [
+  {
+    label: "Added",
+    items: [
+      "Meal photo scans show each food as the AI identifies it, instead of a spinner",
+      "A redesigned photo review screen where you can type or dictate what the meal is before analyzing, for much better results on tricky dishes",
+      "Body fat scans now use 2 to 3 photos from different angles",
+      "Quick reply chips under AI chat replies, and a summary card when you ask for your day so far",
+      "Swipe an exercise card left during a workout to remove it"
+    ]
+  },
+  {
+    label: "Changed",
+    items: [
+      "Meal photo scans take about half as long, and saving a scanned meal is instant",
+      "Scan portions are better calibrated, so small plates and light meals no longer come back with inflated calories",
+      "AI chat replies that look up your meals, workouts or weight respond faster"
+    ]
+  },
+  {
+    label: "Fixed",
+    items: [
+      "Tapping the rest timer notification no longer restarts the timer or inflates your workout duration",
+      "Body fat scans no longer hang on a bad connection",
+      "The AI chat input bar no longer overlaps the tab bar",
+      "Android: yearbook swiping and live step counting work again",
+      "Lock screen Live Activity display issues"
+    ]
+  }
+];
 
 const V2_4_1_SECTIONS = [
   {
@@ -61,7 +153,7 @@ const V2_4_SECTIONS = [
       "The sign-in and welcome screens were redesigned to match the app's look, and they load faster",
       "Picking a username is no longer part of sign-up — set one any time in Settings > Profile",
       "Switching plans is clearer: the confirmation says whether you're upgrading or downgrading, and your subscription updates right away",
-      "AI chat and coaching now switch to a backup AI provider during outages, so they keep working",
+      "AI chat and coaching are more reliable and keep working through service hiccups",
       "Leaderboards now update right after you log activity instead of waiting for the next refresh",
       "Settings search now finds actions inside settings (change plan, restore purchases, units, edit profile), not just screen names",
       "Sections in the workout library can now be collapsed",
@@ -102,7 +194,7 @@ const V2_3_SECTIONS = [
     items: [
       "Weekly issues now drop every Sunday, and the current week's issue is free for everyone — opening past issues is the Pro part",
       "AI chat replies now stream in smoothly at a steady pace, and chat opens faster",
-      "Photo meal scanning is more accurate and more reliable — photos are analyzed at higher resolution by a stronger vision model",
+      "Photo meal scanning is more accurate and more reliable",
       "The AI coach now answers macro and calorie questions about any food, including fast food and restaurant items",
       "The AI coach can see more of your app data and handle more kinds of requests",
       "Redesigned workout creation, AI routine generator, and exercise screens",
@@ -254,7 +346,7 @@ const V2_0_SECTIONS = [
       "Protein target streak",
       "Adherence score",
       "Habit streaks and habit score",
-      "Over 30 achievements with rarity tiers, unlock animations, and progress tracking in settings",
+      "15 achievements across four rarity tiers, with unlock animations and progress tracking in settings",
     ],
   },
   {
@@ -317,34 +409,23 @@ function ReleaseBlock({
   sections: { label: string; items: string[] }[];
 }) {
   return (
-    <div className="card-helthy p-8 sm:p-10">
-      <h2
-        className="font-heading text-white mb-2"
-        style={{
-          fontSize: "clamp(22px, 2.6vw, 30px)",
-          fontWeight: 500,
-          letterSpacing: "-0.02em",
-        }}
-      >
-        {version}
-      </h2>
-      <p className="text-white/50 mb-8 text-[13px]">{date}</p>
-      <div className="space-y-8">
+    <article className="border-t border-line py-12 md:py-16">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+        <h2 className="text-display-md text-fg">{version}</h2>
+        <p className="text-[13px] text-fg-subtle">{date}</p>
+      </div>
+      <div className="mt-8 space-y-8">
         {sections.map((section) => (
           <div key={section.label}>
-            <p
-              className="text-[11px] font-semibold uppercase text-white/35 mb-3"
-              style={{ fontFamily: "var(--font-body)", letterSpacing: "0.18em" }}
-            >
+            <span className={`badge ${section.label === "Added" ? "badge-accent" : ""}`}>
               {section.label}
-            </p>
-            <ul className="space-y-2.5 text-white/75 text-[14px] leading-relaxed">
+            </span>
+            <ul className="mt-4 space-y-3 text-[15px] leading-7 text-fg-muted">
               {section.items.map((item, i) => (
                 <li key={i} className="flex gap-3">
                   <span
                     aria-hidden="true"
-                    className="shrink-0 mt-[0.55em] w-1 h-1 rounded-full"
-                    style={{ background: "#CDFB50", opacity: 0.55 }}
+                    className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-accent-ink"
                   />
                   <span>{item}</span>
                 </li>
@@ -353,66 +434,37 @@ function ReleaseBlock({
           </div>
         ))}
       </div>
-    </div>
+    </article>
   );
 }
+
+const RELEASES = [
+  { version: "Helthy 2.7", date: "September 2026", sections: V2_7_SECTIONS },
+  { version: "Helthy 2.5", date: "August 2026", sections: V2_5_SECTIONS },
+  { version: "Helthy 2.4.3", date: "July 2026", sections: V2_4_3_SECTIONS },
+  { version: "Helthy 2.4.1", date: "July 2026", sections: V2_4_1_SECTIONS },
+  { version: "Helthy 2.4", date: "July 2026", sections: V2_4_SECTIONS },
+  { version: "Helthy 2.3", date: "July 2026", sections: V2_3_SECTIONS },
+  { version: "Helthy 2.2", date: "July 2026", sections: V2_2_SECTIONS },
+  { version: "Helthy 2.1.3", date: "June 2026", sections: V2_1_3_SECTIONS },
+  { version: "Helthy 2.1", date: "June 2026", sections: V2_1_SECTIONS },
+  { version: "Helthy 2.0", date: "April 2026", sections: V2_0_SECTIONS },
+];
 
 export default function ChangelogPage() {
   return (
     <>
-      <main className="relative min-h-screen bg-background text-white pt-32 pb-20 px-6 lg:px-8 overflow-hidden">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          aria-hidden="true"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 45% at 50% 0%, rgba(205,251,80,0.05), transparent 70%)",
-          }}
-        />
-
-        <div className="relative max-w-4xl mx-auto">
-          <SectionHeading
-            title="What's"
-            italicTail="new"
-            trailingPunctuation=""
-          />
-
-          <div className="mt-16 space-y-12">
-            <ReleaseBlock
-              version="Helthy 2.4.1"
-              date="July 2026"
-              sections={V2_4_1_SECTIONS}
-            />
-            <ReleaseBlock
-              version="Helthy 2.4"
-              date="July 2026"
-              sections={V2_4_SECTIONS}
-            />
-            <ReleaseBlock
-              version="Helthy 2.3"
-              date="July 2026"
-              sections={V2_3_SECTIONS}
-            />
-            <ReleaseBlock
-              version="Helthy 2.2"
-              date="July 2026"
-              sections={V2_2_SECTIONS}
-            />
-            <ReleaseBlock
-              version="Helthy 2.1.3"
-              date="June 2026"
-              sections={V2_1_3_SECTIONS}
-            />
-            <ReleaseBlock
-              version="Helthy 2.1"
-              date="June 2026"
-              sections={V2_1_SECTIONS}
-            />
-            <ReleaseBlock
-              version="Helthy 2.0"
-              date="April 2026"
-              sections={V2_0_SECTIONS}
-            />
+      <main className="theme-light relative min-h-screen bg-canvas text-fg">
+        <div className="container-page pb-24 pt-32 lg:pt-40">
+          <div className="max-w-3xl">
+            <h1 className="text-display-xl text-fg">
+              What&apos;s <span className="text-highlight">new</span>
+            </h1>
+            <div className="mt-12 md:mt-16">
+              {RELEASES.map((r) => (
+                <ReleaseBlock key={r.version} version={r.version} date={r.date} sections={r.sections} />
+              ))}
+            </div>
           </div>
         </div>
       </main>

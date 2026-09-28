@@ -1,32 +1,24 @@
 import type { ReactNode } from "react";
 
 /**
- * Canonical section heading for all marketing sections.
+ * Canonical heading for homepage sections.
+ * Unbounded title (.text-display-xl), optional accent phrase, optional
+ * eyebrow and subtitle. No trailing punctuation by default.
  *
- * Typography rules:
- * - Lyon Display light 300 via `text-display-xl` / `font-heading font-light`
- * - Italic emphasis on the trailing phrase, applied via <span className="text-italics">
- * - Optional eyebrow slot above the heading (icon, logo, or label)
- * - Optional subtitle below
- *
- * Usage:
- *   <SectionHeading
- *     title="Plays nice with"
- *     italicTail="your gear"
- *     subtitle="Auto-syncs steps, weight, workouts, and heart rate."
- *   />
+ *   <SectionHeading title="How it" italicTail="works" subtitle="Three steps." />
  */
 export default function SectionHeading({
   eyebrow,
   title,
   italicTail,
-  trailingPunctuation = ".",
+  trailingPunctuation = "",
   subtitle,
   align = "center",
   className = "",
 }: {
   eyebrow?: ReactNode;
   title: ReactNode;
+  /** Accent-coloured phrase appended to the title */
   italicTail?: ReactNode;
   trailingPunctuation?: string;
   subtitle?: ReactNode;
@@ -35,27 +27,27 @@ export default function SectionHeading({
 }) {
   const alignCls = align === "center" ? "text-center mx-auto" : "text-left";
   return (
-    <div className={`max-w-3xl mb-16 ${alignCls} ${className}`}>
+    <div className={`max-w-3xl mb-12 md:mb-16 ${alignCls} ${className}`}>
       {eyebrow && (
-        <div className={`mb-6 flex ${align === "center" ? "justify-center" : "justify-start"}`}>
-          {eyebrow}
+        <div className={`mb-4 flex ${align === "center" ? "justify-center" : "justify-start"}`}>
+          {typeof eyebrow === "string" ? (
+            <span className="text-[13px] font-medium text-fg-muted">{eyebrow}</span>
+          ) : (
+            eyebrow
+          )}
         </div>
       )}
-      <h2 className="text-display-xl font-heading tracking-tight">
+      <h2 className="text-display-xl text-fg">
         {title}
         {italicTail && (
           <>
             {" "}
-            <span className="text-helthy-lemon">{italicTail}</span>
+            <span className="text-highlight">{italicTail}</span>
           </>
         )}
         {trailingPunctuation}
       </h2>
-      {subtitle && (
-        <p className="mt-5 text-base text-white/60 leading-relaxed font-light">
-          {subtitle}
-        </p>
-      )}
+      {subtitle && <p className="mt-5 text-lede">{subtitle}</p>}
     </div>
   );
 }

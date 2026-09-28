@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap } from "@/lib/gsap";
+import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 const FAQS = [
@@ -11,31 +11,23 @@ const FAQS = [
   },
   {
     q: "How accurate is the AI photo logging?",
-    a: "Helthy's vision model is trained on millions of meals across an extensive food database. For most common meals it's within 5–10% of a hand-logged entry. You can always tap to adjust before saving.",
-  },
-  {
-    q: "Does it sync with Apple Health & Google Health Connect?",
-    a: "Yes. Free users get steps and weight sync. Helthy Pro gets full two-way sync — heart rate, workouts, active energy, and nutrition data flow both directions.",
+    a: "Helthy's AI identifies each item on your plate, estimates portions and matches them to its food database. You see every item before saving and can adjust anything.",
   },
   {
     q: "Is my data private?",
-    a: "Your data is yours. We never sell it, never use it to train AI models, and you can export or delete everything from inside the app at any time.",
-  },
-  {
-    q: "What's the AI coach actually like?",
-    a: "It has full context on your goals, recent meals, lifts, steps, and weight trend. So it can answer questions like \"should I push squats today?\" with your actual numbers, not generic advice.",
+    a: "Your data is yours. We never sell it or use it to train AI models. You can delete your account from inside the app at any time, and Pro members can export their data.",
   },
   {
     q: "Is Helthy on Android?",
-    a: "Yes — Helthy is live on Google Play. Download it free and get the same features as iOS, including Helthy Pro.",
+    a: "Yes — Helthy is live on Google Play, with the same logging, AI and Pro features. The Apple Watch app and home-screen widgets are iOS only.",
   },
   {
     q: "Can I cancel Helthy Pro?",
     a: "Anytime. Manage your subscription in Settings → Subscription, or directly through the App Store or Google Play. Cancel and you keep Free forever.",
   },
   {
-    q: "Does it work offline?",
-    a: "Logging meals, workouts, and weight works fully offline. Your data syncs automatically when you're back online. AI features need a connection.",
+    q: "Does it work on Apple Watch?",
+    a: "Yes. Track runs, walks, rides and HIIT with heart rate and calories, and log meals by voice from your wrist. With Pro, the watch also follows your strength workout so you can complete sets and start rests.",
   },
 ];
 
@@ -43,12 +35,13 @@ export default function FAQSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
     const ctx = gsap.context(() => {
       gsap.from("[data-faq-card]", {
-        y: 40,
+        y: 16,
         opacity: 0,
-        duration: 0.7,
-        stagger: { each: 0.08, from: "start" },
+        duration: 0.6,
+        stagger: { each: 0.05, from: "start" },
         ease: "power3.out",
         scrollTrigger: {
           trigger: "[data-faq-grid]",
@@ -61,41 +54,26 @@ export default function FAQSection() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="faq"
-      className="relative section-padding section-glow-cyan"
-    >
-      <div className="container-page">
-        <SectionHeading title="Questions, answered" trailingPunctuation="" />
+    <section ref={sectionRef} id="faq" className="section">
+      <div className="container-page grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <SectionHeading title="Questions, answered" align="left" className="lg:mb-0" />
+        </div>
 
-        {/* 4 columns × 2 rows */}
-        <div
-          data-faq-grid
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
-        >
-          {FAQS.map((faq, i) => (
-            <div
-              key={faq.q}
-              data-faq-card
-              className="card-helthy card-helthy-hover p-5 sm:p-7 flex flex-col"
-              style={{ minHeight: "auto" }}
-            >
-              {/* Big numeric */}
-              <span
-                className="text-numeric text-white/10 leading-none mb-4 sm:mb-5 select-none text-[56px] sm:text-[72px] lg:text-[84px]"
-                style={{ letterSpacing: -4 }}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-
-              <h3 className="text-[17px] font-medium text-white mb-3 tracking-tight leading-snug">
+        <div data-faq-grid className="divide-y divide-line border-y border-line">
+          {FAQS.map((faq) => (
+            <details key={faq.q} data-faq-card className="group py-5">
+              <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-[16px] font-medium text-fg [&::-webkit-details-marker]:hidden">
                 {faq.q}
-              </h3>
-              <p className="text-[13px] text-white/65 leading-relaxed font-light">
-                {faq.a}
-              </p>
-            </div>
+                <span
+                  aria-hidden="true"
+                  className="mt-0.5 text-lg leading-none text-fg-muted transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-3 text-[15px] leading-7 text-fg-muted">{faq.a}</p>
+            </details>
           ))}
         </div>
       </div>

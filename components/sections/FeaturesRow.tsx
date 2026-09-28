@@ -1,22 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap } from "@/lib/gsap";
-import SectionHeading from "@/components/ui/SectionHeading";
+import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import {
-  TrendingUp,
-  Target,
-  Camera,
-  Import,
-  Zap,
-  Shield,
-  ImageIcon,
-} from "lucide-react";
+import CTAButton from "@/components/ui/CTAButton";
 
-// Real tokens from mobile app dark theme (constants/colors.ts)
+// Real tokens from mobile app dark theme (constants/colors.ts).
+// Used only inside the app mockups; marketing chrome uses the site tokens.
 const T = {
   primary: "#CDFB50",
   buttonText: "#151515",
@@ -40,66 +31,41 @@ const T = {
   warning: "#F59E0B",
 };
 
+/**
+ * /features: one feature per full-bleed band, alternating dark and light
+ * (MacroFactor-style). Copy on one side, the real app UI on the other.
+ */
 export default function FeaturesRow() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
     const ctx = gsap.context(() => {
-      gsap.from("[data-feature-card]", {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 65%",
-        },
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.12,
-        ease: "power3.out",
+      gsap.utils.toArray<HTMLElement>("[data-feature-card]").forEach((el) => {
+        gsap.from(el, {
+          scrollTrigger: { trigger: el, start: "top 80%" },
+          y: 32,
+          opacity: 0,
+          duration: 0.9,
+          ease: "power3.out",
+        });
       });
-    }, sectionRef);
+    }, rootRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section
-      id="features"
-      ref={sectionRef}
-      className="relative section-padding"
-      style={{ backgroundColor: "var(--background)" }}
-    >
-      {/* Soft spotlight for features — sits behind the grid */}
-      <div
-        aria-hidden="true"
-        className="absolute pointer-events-none left-1/2 -translate-x-1/2"
-        style={{
-          zIndex: 0,
-          top: "0px",
-          width: "min(1200px, 120vw)",
-          height: 600,
-          background: [
-            "radial-gradient(ellipse 50% 50% at 35% 0%, rgba(120,170,255,0.04) 0%, transparent 60%)",
-            "radial-gradient(ellipse 50% 50% at 70% 0%, rgba(205,251,80,0.03) 0%, transparent 60%)",
-          ].join(","),
-          filter: "blur(40px)",
-        }}
-      />
+    <div id="features" ref={rootRef}>
+      {/* Band 1 (dark): page title + photo logging */}
+      <section className="pb-20 pt-32 md:pb-28 lg:pt-40">
+        <div className="container-page">
+          <h1 className="max-w-3xl text-display-xl text-fg">
+            Four apps&apos; worth of tracking, <span className="text-highlight">in one</span>
+          </h1>
 
-      <div className="container-page relative" style={{ zIndex: 1 }}>
-        <SectionHeading
-          title="Four apps' worth of tracking,"
-          italicTail="in one"
-          trailingPunctuation=""
-        />
-
-        {/* 3 hero features — balanced bento */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
-          {/* Card 1: AI Photo Logging (6 col) */}
-          <FeatureCard
-            className="lg:col-span-6"
-            bgImage="/textures/card-leaves.jpg"
-            headline={<>
-              <span className="text-italics">Snap</span> your plate
-            </>}
+          <FeatureRow
+            className="mt-16 md:mt-20"
+            headline="Snap your plate"
             subtitle="Point, shoot, logged."
           >
             <ScreenshotMockup
@@ -109,26 +75,33 @@ export default function FeaturesRow() {
               cropBottom={20}
               visibleRatio={2240 / 2572}
             />
-          </FeatureCard>
+          </FeatureRow>
+        </div>
+      </section>
 
-          {/* Card 2: Weight Progress — chart + history (6 col) */}
-          <FeatureCard
-            className="lg:col-span-6"
-            bgImage="/textures/card-water.jpg"
-            headline={<>See your <span className="text-helthy-lemon">progress</span></>}
+      {/* Band 2 (light): weight progress */}
+      <section className="section theme-light">
+        <div className="container-page">
+          <FeatureRow
+            reverse
+            headline={<>See your <span className="text-highlight">progress</span></>}
             subtitle="Every weigh-in, plotted. Every entry, tracked."
           >
-            <div className="flex flex-col items-center gap-6 w-full">
+            <div
+              className="max-h-[640px] w-[92%] max-w-[440px] space-y-6 overflow-hidden rounded-t-[28px] px-3 pt-4 pb-2"
+              style={{ background: T.bg }}
+            >
               <WeightGraphMockup />
               <WeightHistoryList />
             </div>
-          </FeatureCard>
+          </FeatureRow>
+        </div>
+      </section>
 
-          {/* Card 3: Workouts — full width, 3 screenshots side by side */}
-          <FeatureCard
-            className="lg:col-span-12"
-            minH={560}
-            bgImage="/textures/card-stone.jpg"
+      {/* Band 3 (dark): workouts */}
+      <section className="section">
+        <div className="container-page">
+          <FeatureRow
             headline="Every lift, covered"
             subtitle="1,500 exercises. Every PR tracked."
           >
@@ -140,139 +113,17 @@ export default function FeaturesRow() {
                 { src: "/phones/activity-logging-screen.png", alt: "Cardio and activity logging", width: 1328, height: 2117 },
               ]}
             />
-          </FeatureCard>
+          </FeatureRow>
+
+          {/* More features */}
+          <div className="mt-20 flex flex-col gap-6 border-t border-line pt-10 sm:flex-row sm:items-center sm:justify-between md:mt-28">
+            <p className="text-display-md text-fg">More where that came from</p>
+            <CTAButton href="/changelog" variant="secondary">
+              See all features →
+            </CTAButton>
+          </div>
         </div>
-
-        {/* ── Expanded features link — editorial, not a button ── */}
-        <div className="mt-20 flex flex-col sm:flex-row items-baseline gap-x-3 gap-y-2">
-          <span
-            className="font-heading font-light text-white/90"
-            style={{
-              fontSize: "clamp(28px, 3.4vw, 44px)",
-              letterSpacing: "-0.03em",
-              lineHeight: "1.05em",
-            }}
-          >
-            More where that came from.
-          </span>
-          <Link
-            href="/changelog"
-            className="group inline-flex items-baseline gap-1.5 text-helthy-lemon transition-colors hover:opacity-80"
-            style={{
-              fontSize: "clamp(18px, 1.8vw, 22px)",
-              letterSpacing: "-0.02em",
-            }}
-          >
-            <span className="text-italics">See all features</span>
-            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ───────────────────────────────────────────────────────────
-// Mini feature card for the expanded grid
-
-function MiniFeature({
-  icon: Icon,
-  accent,
-  title,
-  description,
-}: {
-  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties; strokeWidth?: number }>;
-  accent: string;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div
-      data-feature-card
-      className="relative p-6 sm:p-7 flex flex-col gap-4 rounded-[1.5rem] overflow-hidden transition-all duration-400 hover:-translate-y-[2px]"
-      style={{
-        minHeight: "auto",
-        background: `linear-gradient(135deg, ${accent}06 0%, rgba(255,255,255,0.025) 40%, rgba(255,255,255,0.01) 100%)`,
-        border: `1.5px solid ${accent}18`,
-        boxShadow:
-          /* Top bevel highlight */
-          `rgba(255,255,255,0.06) 0px 1px 0px 0px inset,` +
-          `${accent}08 0px 0px 12px 0px inset,` +
-          /* Outer depth */
-          `rgba(0,0,0,0.1) 0px 2px 4px -1px,` +
-          `rgba(0,0,0,0.12) 0px 8px 16px -4px,` +
-          `${accent}12 0px 20px 40px -16px,` +
-          `rgba(0,0,0,0.2) 0px 32px 56px -20px`,
-      }}
-    >
-      {/* Top edge bevel — accent-tinted */}
-      <div
-        className="absolute inset-x-0 top-0 h-[1px] pointer-events-none"
-        style={{ background: `linear-gradient(90deg, transparent, ${accent}25, transparent)` }}
-      />
-
-      {/* Noise overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.25] mix-blend-overlay"
-        style={{
-          backgroundImage: "url(/textures/hero-noise.png)",
-          backgroundSize: "200px",
-        }}
-      />
-
-      <div
-        className="relative w-10 h-10 rounded-[12px] flex items-center justify-center shrink-0"
-        style={{
-          background: `${accent}14`,
-          border: `1.5px solid ${accent}30`,
-          boxShadow: `0 4px 12px -4px ${accent}25, inset 0 1px 0 0 ${accent}15`,
-        }}
-      >
-        <Icon className="w-5 h-5" style={{ color: accent }} strokeWidth={1.75} />
-      </div>
-      <div className="relative">
-        <h4 className="text-[16px] font-medium text-white tracking-tight mb-1.5">
-          {title}
-        </h4>
-        <p className="text-[13px] text-white/50 leading-relaxed font-light">
-          {description}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-// ───────────────────────────────────────────────────────────
-// Achievement card grid — 2×2 real rarity card screenshots
-
-const ACHIEVEMENT_CARDS = [
-  { src: "/phones/achievements/common.png", alt: "Common achievement - All Rings Closed", glow: "#9CA3AF" },
-  { src: "/phones/achievements/rare.png", alt: "Rare achievement - PR Hunter", glow: "#339AF0" },
-  { src: "/phones/achievements/epic.png", alt: "Epic achievement - Centurion", glow: "#A855F7" },
-  { src: "/phones/achievements/legendary.png", alt: "Legendary achievement - Year of Iron", glow: "#F59E0B" },
-];
-
-function AchievementCardGrid() {
-  return (
-    <div className="grid grid-cols-2 gap-3 px-6 pb-4 mb-[-20px] w-full max-w-[460px]">
-      {ACHIEVEMENT_CARDS.map((card) => (
-        <div
-          key={card.alt}
-          className="rounded-[16px] overflow-hidden"
-          style={{
-            boxShadow: `0 8px 24px -8px ${card.glow}40, 0 2px 8px rgba(0,0,0,0.3)`,
-          }}
-        >
-          <Image
-            src={card.src}
-            alt={card.alt}
-            width={220}
-            height={140}
-            style={{ width: "100%", height: "auto" }}
-            className="object-cover"
-          />
-        </div>
-      ))}
+      </section>
     </div>
   );
 }
@@ -283,11 +134,8 @@ function AchievementCardGrid() {
 function ScreenshotMockup({ src, alt, wide, noCrop, cropBottom, visibleRatio }: { src: string; alt: string; wide?: boolean; noCrop?: boolean; cropBottom?: number; visibleRatio?: number }) {
   return (
     <div
-      className={`${wide ? "w-[95%] max-w-[460px]" : "w-[70%] max-w-[300px]"} ${noCrop ? "mb-4" : "mb-[-40px]"} rounded-[20px] overflow-hidden`}
-      style={{
-        boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04)",
-        ...(cropBottom ? { marginBottom: -cropBottom } : {}),
-      }}
+      className={`${wide ? "w-[92%] max-w-[440px]" : "w-[70%] max-w-[300px]"} ${noCrop ? "mb-4" : "mb-[-40px]"} rounded-[20px] overflow-hidden border border-line`}
+      style={cropBottom ? { marginBottom: -cropBottom } : undefined}
     >
       <div
         style={
@@ -314,7 +162,7 @@ function ScreenshotMockup({ src, alt, wide, noCrop, cropBottom, visibleRatio }: 
 }
 
 // ───────────────────────────────────────────────────────────
-// Tabbed screenshot mockup — click/auto-advance through screens
+// Tabbed screenshot mockup — click through screens
 
 function TripleScreenshotMockup({
   screens,
@@ -329,184 +177,80 @@ function TripleScreenshotMockup({
   const frameRatio = Math.min(...screens.map((s) => s.width / s.height));
 
   return (
-    <div className="flex flex-col items-center w-full mb-[-40px]">
-      {/* Segmented track with sliding pill — mirrors mobile TabController */}
-      <div
-        role="tablist"
-        aria-label="Workout features"
-        className="relative flex items-center mb-8"
-        style={{
-          padding: 4,
-          borderRadius: 999,
-          background: "rgba(46,46,48,0.6)",
-          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
-        }}
-      >
-        {/* Sliding lemon pill */}
-        <span
-          aria-hidden="true"
-          className="absolute top-1 bottom-1 rounded-full pointer-events-none"
-          style={{
-            left: 4,
-            width: `calc((100% - 8px) / ${labels.length})`,
-            background: "#CDFB50",
-            transform: `translateX(${active * 100}%)`,
-            transition: "transform 220ms cubic-bezier(0.33, 1, 0.68, 1)",
-            boxShadow:
-              "inset 0 2px 1px 0 rgba(255,255,255,0.5)," +
-              "inset 0 0.6px 0.6px -1.25px rgba(255,255,255,0.72)," +
-              "inset 0 2.29px 2.29px -2.5px rgba(255,255,255,0.635)," +
-              "inset 0 10px 10px -3.75px rgba(255,255,255,0.25)," +
-              "0 14px 6px -8px rgba(205,251,80,0.35)",
-          }}
-        />
-
-        {labels.map((label, i) => {
-          const isActive = i === active;
-          return (
-            <button
-              key={label}
-              role="tab"
-              aria-selected={isActive}
-              onClick={() => setActive(i)}
-              className="relative"
-              style={{
-                flex: 1,
-                minWidth: 84,
-                padding: "8px 18px",
-                minHeight: 36,
-                borderRadius: 999,
-                fontFamily: "var(--font-body)",
-                fontWeight: 500,
-                fontSize: 13,
-                letterSpacing: "-0.005em",
-                whiteSpace: "nowrap",
-                color: isActive ? "#0B0B0B" : "rgba(255,255,255,0.7)",
-                transition: "color 220ms ease",
-                cursor: "pointer",
-                background: "transparent",
-                border: "none",
-                zIndex: 1,
-              }}
-            >
-              {label}
-            </button>
-          );
-        })}
+    <div className="flex w-full flex-col items-center">
+      <div role="tablist" aria-label="Workout features" className="segmented mb-8">
+        {labels.map((label, i) => (
+          <button
+            key={label}
+            type="button"
+            role="tab"
+            aria-selected={i === active}
+            onClick={() => setActive(i)}
+          >
+            {label}
+          </button>
+        ))}
       </div>
 
-      {/* Keep the frame size stable so tab changes don't move the page. */}
-      <div
-        className="relative w-[76%] sm:w-[62%] lg:w-[44%] max-w-[340px]"
-        style={
-          {
-            "--ar": String(frameRatio),
-            aspectRatio: "var(--ar)",
-          } as React.CSSProperties
-        }
-      >
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 rounded-t-[28px] pointer-events-none"
-          style={{
-            boxShadow:
-              "0 40px 100px -20px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.05)",
-          }}
-        />
-        {screens.map((s, i) => (
-          <div
-            key={s.src}
-            className="absolute inset-0 rounded-t-[28px] overflow-hidden transition-opacity duration-[700ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
-            style={{
-              opacity: i === active ? 1 : 0,
-              pointerEvents: i === active ? "auto" : "none",
-            }}
-          >
-            <Image
-              src={s.src}
-              alt={s.alt}
-              fill
-              sizes="(max-width: 640px) 76vw, 340px"
-              className="object-contain object-top"
-            />
-          </div>
-        ))}
+      {/* Keep the frame size stable so tab changes don't move the page.
+          The panel crops the bottom of the phone. */}
+      <div className="w-[72%] max-w-[300px] max-h-[460px] overflow-hidden rounded-t-[28px] border border-b-0 border-line">
+        <div className="relative w-full" style={{ aspectRatio: String(frameRatio) }}>
+          {screens.map((s, i) => (
+            <div
+              key={s.src}
+              className="absolute inset-0 transition-opacity duration-300 ease-out"
+              style={{
+                opacity: i === active ? 1 : 0,
+                pointerEvents: i === active ? "auto" : "none",
+              }}
+            >
+              <Image
+                src={s.src}
+                alt={s.alt}
+                fill
+                sizes="(max-width: 640px) 72vw, 300px"
+                className="object-contain object-top"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 }
 
 // ───────────────────────────────────────────────────────────
-// Shell
+// Feature row: copy + mockup panel
 
-function FeatureCard({
+function FeatureRow({
   className = "",
-  minH,
+  reverse,
   headline,
   subtitle,
-  bgImage,
   children,
 }: {
   className?: string;
-  minH?: number;
+  reverse?: boolean;
   headline: React.ReactNode;
   subtitle: string;
-  bgImage?: string;
   children: React.ReactNode;
 }) {
   return (
     <div
       data-feature-card
-      className={`card-helthy flex flex-col ${className}`}
-      style={{
-        ...(minH ? { minHeight: minH } : {}),
-      }}
+      className={`grid items-center gap-10 lg:grid-cols-2 lg:gap-16 ${className}`}
     >
-      {/* Background texture image */}
-      {bgImage && (
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage: `url(${bgImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            opacity: 0.45,
-            filter: "brightness(0.7) saturate(0.5)",
-          }}
-        />
-      )}
-
-      {/* Gradient overlay for text readability */}
-      {bgImage && (
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.75) 100%)",
-          }}
-        />
-      )}
-
-      {/* Noise overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.3] mix-blend-overlay"
-        style={{
-          backgroundImage: "url(/textures/hero-noise.png)",
-          backgroundSize: "200px",
-        }}
-      />
-
-      {/* Copy block */}
-      <div className="relative px-6 lg:px-10 pt-10 lg:pt-12 pb-6 text-center">
-        <h3 className="font-heading font-light text-[30px] lg:text-[36px] leading-[1.05] tracking-tight text-white mb-3">
-          {headline}
-        </h3>
-        <p className="text-[14px] lg:text-[15px] text-white/65 max-w-md mx-auto font-light leading-relaxed">
-          {subtitle}
-        </p>
+      <div className={`max-w-xl ${reverse ? "lg:order-2" : ""}`}>
+        <h2 className="text-display-lg text-fg">{headline}</h2>
+        <p className="mt-5 text-lede">{subtitle}</p>
       </div>
 
-      {/* Mockup area — grows to fill, aligns content */}
-      <div className="relative flex-1 flex items-end justify-center overflow-hidden">
+      <div
+        className={`flex min-h-[420px] items-end justify-center overflow-hidden rounded-3xl border border-line bg-surface pt-12 md:min-h-[520px] md:pt-16 ${
+          reverse ? "lg:order-1" : ""
+        }`}
+      >
         {children}
       </div>
     </div>
@@ -686,6 +430,10 @@ function WeightGraphMockup() {
   }
 
   useEffect(() => {
+    if (prefersReducedMotion()) {
+      setFrameIdx(FLICKER_FRAMES.length - 1); // show the settled reading
+      return;
+    }
     if (!scaleRef.current) return;
     const ctx = gsap.context(() => {
       const trigger = {
@@ -766,22 +514,6 @@ function WeightGraphMockup() {
         }
       );
 
-      // Lemon glow pulse on the card when the line finishes drawing
-      gsap.fromTo(
-        "[data-weight-glow]",
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 0.5,
-          delay: flickerEnd + 1.4,
-          ease: "power2.out",
-          yoyo: true,
-          repeat: 1,
-          repeatDelay: 0.15,
-          scrollTrigger: trigger,
-        },
-      );
-
       // Fade in graph section label
       gsap.from("[data-weight-label]", {
         opacity: 0,
@@ -807,27 +539,9 @@ function WeightGraphMockup() {
   return (
     <div
       ref={scaleRef}
-      className="relative w-[96%] max-w-[460px] mb-2 rounded-[20px] overflow-hidden"
-      style={{
-        background: T.bg,
-        boxShadow:
-          "0 30px 80px -20px rgba(0,0,0,0.7)," +
-          "0 0 0 1px rgba(255,255,255,0.04)," +
-          "0 0 40px -12px rgba(205,251,80,0.18)",
-      }}
+      className="relative w-full overflow-hidden rounded-[20px]"
+      style={{ background: T.bg }}
     >
-      {/* Lemon glow pulse — fires when the line-draw completes */}
-      <div
-        data-weight-glow
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-[20px]"
-        style={{
-          opacity: 0,
-          boxShadow:
-            "0 0 60px -10px rgba(205,251,80,0.5)," +
-            "inset 0 0 40px rgba(205,251,80,0.12)",
-        }}
-      />
       {/* ── Digital Scale Section ── */}
       <div data-scale-body className="flex flex-col items-center pt-5 pb-4">
         {/* Scale display box */}
@@ -842,8 +556,8 @@ function WeightGraphMockup() {
             ghostColor={ghostColor}
           />
           <span
-            className="text-[13px] font-semibold uppercase mt-3"
-            style={{ color: T.textSecondary, letterSpacing: 2, fontFamily: "var(--font-body)" }}
+            className="text-[13px] font-semibold mt-3"
+            style={{ color: T.textSecondary, fontFamily: "var(--font-body)" }}
           >
             lbs
           </span>
@@ -970,6 +684,7 @@ function WeightHistoryList() {
   const listRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
     if (!listRef.current) return;
     const ctx = gsap.context(() => {
       gsap.from("[data-weight-entry]", {
@@ -986,7 +701,7 @@ function WeightHistoryList() {
   }, []);
 
   return (
-    <div ref={listRef} className="w-[96%] max-w-[460px]">
+    <div ref={listRef} className="w-full px-1">
       {/* Section header — matches mobile historySection */}
       <div className="flex items-baseline justify-between mb-4">
         <p

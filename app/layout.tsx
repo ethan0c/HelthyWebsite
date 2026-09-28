@@ -4,45 +4,36 @@ import { LenisProvider } from "@/components/providers/LenisProvider";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
 import TopBar from "@/components/sections/TopBar";
 import FloatingQRCode from "@/components/ui/FloatingQRCode";
+import JsonLd from "@/components/seo/JsonLd";
+import { getAppRating, type AppRating } from "@/lib/app-rating";
+import {
+  APP_STORE_URL,
+  PLAY_STORE_URL,
+  PRO_PRICE,
+  SITE_URL,
+  SOCIAL_PROFILES,
+} from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://helthy.app"),
   title: {
-    default: "Helthy AI - The Best Free Calorie and Workout Tracker",
-    template: "%s · Helthy AI",
+    default: "Helthy: Free AI Calorie Tracker, Workout Tracker & Coach",
+    template: "%s · Helthy",
   },
   description:
     "Your AI fitness coach that actually learns you. Log meals with a photo, track every lift, and get coached by AI that connects nutrition, training, and recovery.",
-  keywords: [
-    "calorie tracker",
-    "workout tracker",
-    "AI fitness app",
-    "free calorie counter",
-    "macro tracker",
-    "AI meal logging",
-    "photo food logging",
-    "AI personal trainer",
-    "fitness app",
-    "nutrition tracker",
-    "weight loss app",
-    "muscle building app",
-    "free workout app",
-  ],
-  alternates: {
-    canonical: "https://helthy.app",
-  },
   openGraph: {
-    title: "Helthy AI - The Best Free Calorie and Workout Tracker",
+    title: "Helthy: Free AI Calorie Tracker, Workout Tracker & Coach",
     description:
       "Your AI fitness coach that actually learns you. Log meals with a photo, track every lift, and get coached by AI that connects nutrition, training, and recovery.",
     url: "https://helthy.app",
-    siteName: "Helthy AI",
+    siteName: "Helthy",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Helthy AI - The Best Free Calorie and Workout Tracker",
+    title: "Helthy: Free AI Calorie Tracker, Workout Tracker & Coach",
     description:
       "Your AI fitness coach that actually learns you. Photo logging, workouts, insights & more.",
     site: "@helthyapp",
@@ -50,10 +41,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/helthy-favicon.png", sizes: "717x717", type: "image/png" },
+      { url: "/helthy-icon.svg", type: "image/svg+xml" },
+      { url: "/helthy-favicon-96.png", sizes: "96x96", type: "image/png" },
     ],
     apple: "/helthy-apple-touch-icon.png",
-    shortcut: "/helthy-favicon.png",
+    shortcut: "/helthy-favicon-96.png",
   },
   robots: {
     index: true,
@@ -68,11 +60,111 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+/**
+ * Organization + WebSite + app entities. Consistent names and @ids help
+ * search engines treat "Helthy" as a brand instead of a typo of "healthy".
+ * Plan descriptions must match appKnowledge.ts in the app repo.
+ */
+function siteJsonLd(rating: AppRating | null) {
+  const org = `${SITE_URL}/#organization`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": org,
+        name: "Helthy",
+        alternateName: "Helthy AI",
+        url: SITE_URL,
+        logo: `${SITE_URL}/logos/helthylogo.png`,
+        sameAs: SOCIAL_PROFILES,
+        contactPoint: {
+          "@type": "ContactPoint",
+          email: "support@helthy.app",
+          contactType: "customer support",
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        name: "Helthy",
+        alternateName: ["Helthy AI", "helthy.app"],
+        url: SITE_URL,
+        publisher: { "@id": org },
+      },
+      {
+        "@type": "MobileApplication",
+        "@id": `${SITE_URL}/#app`,
+        name: "Helthy",
+        alternateName: "Helthy AI",
+        applicationCategory: "HealthApplication",
+        operatingSystem: "iOS, Android",
+        description:
+          "Helthy is a free AI fitness app that combines calorie and macro tracking, workout logging, weight tracking and an AI coach. Log meals by search, barcode, photo or voice, track every set across 1,500 exercises, and get coaching based on your own data.",
+        url: SITE_URL,
+        installUrl: [APP_STORE_URL, PLAY_STORE_URL],
+        screenshot: `${SITE_URL}/phones/mobile-hero.png`,
+        publisher: { "@id": org },
+        offers: [
+          {
+            "@type": "Offer",
+            name: "Free",
+            price: "0",
+            priceCurrency: "USD",
+            description:
+              "Unlimited food search and manual logging, calorie and macro tracking, unlimited workout logging, 1,500 exercises, automatic PRs, weight tracking and 2 free AI scans, voice logs and typed descriptions a week.",
+          },
+          {
+            "@type": "Offer",
+            name: "Helthy Pro (monthly)",
+            price: String(PRO_PRICE.monthly),
+            priceCurrency: "USD",
+            description:
+              "Unlimited AI photo, barcode, voice and text logging, AI coach chat, AI-built workout programs, Smart Calories, Apple Watch workout control, full history and trends.",
+          },
+          {
+            "@type": "Offer",
+            name: "Helthy Pro (yearly)",
+            price: String(PRO_PRICE.yearly),
+            priceCurrency: "USD",
+            description: "Everything in Helthy Pro, billed yearly.",
+          },
+        ],
+        ...(rating && {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: String(rating.value),
+            ratingCount: String(rating.count),
+            bestRating: "5",
+            worstRating: "1",
+          },
+        }),
+        featureList: [
+          "AI photo meal logging",
+          "Barcode and nutrition label scanning",
+          "AI voice and text meal logging",
+          "Calorie and macro tracking",
+          "Workout tracking with sets, reps and weight",
+          "Automatic personal record (PR) detection",
+          "1,500 exercise library with how-to and target muscles",
+          "AI fitness coach that reads your own data",
+          "AI-generated workout programs",
+          "Weight tracking with trend graphs",
+          "Apple Watch app",
+          "Apple Health sync",
+        ],
+      },
+    ],
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const rating = await getAppRating();
+
   return (
     <html lang="en" className="h-full antialiased">
       <head>
@@ -84,103 +176,9 @@ export default function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-        />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preconnect"
-          href="https://cdn.prod.website-files.com"
-        />
       </head>
-      <body className="min-h-full flex flex-col bg-background text-white grain">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              name: "Helthy AI",
-              applicationCategory: "HealthApplication",
-              operatingSystem: "iOS, Android",
-              description:
-                "Helthy is a free AI-powered fitness app that unifies calorie tracking, workout logging, weight tracking, and AI coaching in one place. Features include AI photo meal logging, voice logging, 1,500 exercise library, and an AI coach.",
-              url: "https://helthy.app",
-              downloadUrl:
-                "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974",
-              screenshot: "https://helthy.app/phones/home.png",
-              offers: [
-                {
-                  "@type": "Offer",
-                  price: "0",
-                  priceCurrency: "USD",
-                  name: "Free Plan",
-                  description:
-                    "Unlimited calorie and workout logging, barcode scanner, 1,500 exercises, Apple Health sync, weight tracking — free forever.",
-                },
-                {
-                  "@type": "Offer",
-                  price: "4.99",
-                  priceCurrency: "USD",
-                  name: "Helthy Pro Monthly",
-                  description:
-                    "AI photo logging, voice logging, unlimited AI coach, AI workout routines, full health sync, advanced analytics.",
-                },
-                {
-                  "@type": "Offer",
-                  price: "24.99",
-                  priceCurrency: "USD",
-                  name: "Helthy Pro Yearly",
-                  description: "All Helthy Pro features at $2.08/month — save 58% vs monthly.",
-                },
-              ],
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "4.7",
-                ratingCount: "100",
-                bestRating: "5",
-                worstRating: "1",
-              },
-              publisher: {
-                "@type": "Organization",
-                name: "Helthy AI",
-                url: "https://helthy.app",
-                contactPoint: {
-                  "@type": "ContactPoint",
-                  email: "support@helthy.app",
-                  contactType: "customer support",
-                },
-                sameAs: [
-                  "https://x.com/helthyapp",
-                  "https://instagram.com/helthy.app",
-                  "https://tiktok.com/@helthyapp",
-                  "https://apps.apple.com/us/app/helthy-track-food-workouts/id6751759974",
-                ],
-              },
-              featureList: [
-                "AI photo meal logging",
-                "AI voice meal logging",
-                "AI personal coach",
-                "AI-generated workout routines",
-                "Unlimited calorie and macro tracking",
-                "Barcode scanner for food logging",
-                "1,500 exercise library",
-                "Unlimited workout tracking",
-                "Personal record (PR) detection",
-                "Weight tracking with trend graphs",
-                "Apple Health sync",
-                "Google Health Connect sync",
-                "Full offline support",
-                "Achievements and gamification",
-              ],
-            }),
-          }}
-        />
+      <body className="min-h-full flex flex-col bg-canvas text-fg">
+        <JsonLd data={siteJsonLd(rating)} />
         <GSAPProvider>
           <LenisProvider>
             <TopBar />

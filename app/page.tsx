@@ -1,15 +1,21 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import HeroSection from "@/components/sections/HeroSection";
-import PhoneShowcaseSection from "@/components/sections/PhoneShowcaseSection";
-import HowItWorksSection from "@/components/sections/HowItWorksSection";
+import EatSection from "@/components/sections/EatSection";
+import LiftSection from "@/components/sections/LiftSection";
+import CoachDemoSection from "@/components/sections/CoachDemoSection";
+import WeeklySection from "@/components/sections/WeeklySection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import PricingSection from "@/components/sections/PricingSection";
+import PricingStrip from "@/components/sections/PricingStrip";
+import GuidesSection from "@/components/sections/GuidesSection";
 import FAQSection from "@/components/sections/FAQSection";
 import CTASection from "@/components/sections/CTASection";
-import NewsletterSection from "@/components/sections/NewsletterSection";
 import SiteFooter from "@/components/sections/SiteFooter";
-import FlowingLine from "@/components/ui/FlowingLine";
 import SectionScroller from "@/components/ui/SectionScroller";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "https://helthy.app" },
+};
 
 export default function Home() {
   return (
@@ -17,17 +23,17 @@ export default function Home() {
       <Suspense fallback={null}>
         <SectionScroller />
       </Suspense>
-      <FlowingLine />
-      <HeroSection />
-      <PhoneShowcaseSection />
-      <div aria-hidden="true" className="section-beam" />
-      <HowItWorksSection />
-      <div aria-hidden="true" className="section-beam" />
-      <TestimonialsSection />
-      <PricingSection />
-      <FAQSection />
-      <CTASection />
-      <NewsletterSection />
+      {/* One feature per band; bands alternate dark / light (see DESIGN.md) */}
+      <HeroSection /> {/* dark */}
+      <EatSection /> {/* light */}
+      <LiftSection /> {/* dark */}
+      <CoachDemoSection /> {/* light */}
+      <WeeklySection /> {/* dark */}
+      <TestimonialsSection /> {/* light */}
+      <PricingStrip /> {/* dark */}
+      <GuidesSection /> {/* light */}
+      <FAQSection /> {/* dark */}
+      <CTASection /> {/* light */}
       <SiteFooter />
     </main>
   );

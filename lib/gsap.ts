@@ -34,4 +34,13 @@ if (typeof window !== "undefined") {
   });
 }
 
+/**
+ * Entrance/scroll animations should bail out when this is true, so content
+ * renders in its final state. (Scroll-triggered `from` tweens can otherwise
+ * leave elements stuck at opacity 0 for reduced-motion users.)
+ */
+export function prefersReducedMotion() {
+  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 export { gsap, ScrollTrigger };

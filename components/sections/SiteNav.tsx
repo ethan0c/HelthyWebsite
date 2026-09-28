@@ -1,218 +1,326 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { handleDownloadClick } from "@/lib/download";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import {
+  ArrowRight,
+  BookOpen,
+  Calculator,
+  ChevronDown,
+  Dumbbell,
+  GitCompareArrows,
+  History,
+  LayoutGrid,
+  Menu,
+  Sparkles,
+  Utensils,
+  X,
+  type LucideIcon,
+} from "lucide-react";
 import CTAButton from "@/components/ui/CTAButton";
+import StoreButtons from "@/components/ui/StoreButtons";
+import HelthyWordmark from "@/components/ui/HelthyWordmark";
 
-function handleDownloadClick(e: React.MouseEvent) {
-  if (window.matchMedia("(pointer: fine)").matches) {
-    e.preventDefault();
-    window.dispatchEvent(new CustomEvent("helthy:qr-open"));
-  }
-}
+type MenuLink = { label: string; description: string; href: string; Icon: LucideIcon };
+type MenuKey = "product" | "resources";
+type NavMenu = {
+  key: MenuKey;
+  label: string;
+  links: MenuLink[];
+  feature: { title: string; body: string; cta: string; href: string; download?: boolean };
+};
 
-type NavItem = { label: string; href: string };
-
-const NAV: NavItem[] = [
-  { label: "How it works", href: "/?section=why-helthy" },
-  { label: "Pricing", href: "/?section=pricing" },
-  { label: "Contact", href: "/contact" },
+const MENUS: NavMenu[] = [
+  {
+    key: "product",
+    label: "Product",
+    links: [
+      { label: "AI coach", description: "Ask about your meals, training and weight trend.", href: "/ai-fitness-coach", Icon: Sparkles },
+      { label: "Calorie tracker", description: "Log meals and stay on top of your macros.", href: "/calorie-tracker", Icon: Utensils },
+      { label: "Workout tracker", description: "Plan sessions and track every set.", href: "/workout-tracker", Icon: Dumbbell },
+      { label: "All features", description: "Everything the app does, in one place.", href: "/features", Icon: LayoutGrid },
+    ],
+    feature: {
+      title: "Get Helthy on your phone",
+      body: "Free to download on iOS and Android.",
+      cta: "Download",
+      href: "/download",
+      download: true,
+    },
+  },
+  {
+    key: "resources",
+    label: "Resources",
+    links: [
+      { label: "Free tools", description: "TDEE, macro, protein and one-rep max calculators.", href: "/tools", Icon: Calculator },
+      { label: "Exercise guides", description: "How to do the main lifts, with form tips.", href: "/exercises", Icon: BookOpen },
+      { label: "Compare", description: "How Helthy compares with other apps.", href: "/compare", Icon: GitCompareArrows },
+      { label: "Changelog", description: "What's new in each update.", href: "/changelog", Icon: History },
+    ],
+    feature: {
+      title: "From the blog",
+      body: "Guides on eating, training and staying consistent.",
+      cta: "Read the blog",
+      href: "/blog",
+    },
+  },
 ];
 
+const LINKS = [
+  { label: "Blog", href: "/blog" },
+  { label: "Pricing", href: "/pricing" },
+];
+
+/**
+ * Full-width flat top bar (64px). Positioned by TopBar (fixed, flush under
+ * the launch banner). Product and Resources open full-width menu panels on
+ * desktop, on hover (click still works for touch and keyboard); on mobile
+ * everything folds into one panel under the bar.
+ */
 export default function SiteNav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const headerRef = useRef<HTMLElement>(null);
+  const [menu, setMenu] = useState<MenuKey | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // True while the open menu was opened by mouse hover, so a click on the
+  // same trigger doesn't immediately toggle it shut.
+  const openedByHover = useRef(false);
+
+  const cancelClose = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = null;
+  };
+
+  const close = () => {
+    cancelClose();
+    setMenu(null);
+    setMobileOpen(false);
+  };
+
+  const openOnHover = (key: MenuKey | null) => (e: React.PointerEvent) => {
+    if (e.pointerType !== "mouse") return;
+    cancelClose();
+    openedByHover.current = key !== null;
+    setMenu(key);
+  };
+
+  const scheduleClose = (e: React.PointerEvent) => {
+    if (e.pointerType !== "mouse") return;
+    cancelClose();
+    closeTimer.current = setTimeout(() => setMenu(null), 150);
+  };
+
+  useEffect(() => cancelClose, []);
+
+  // Close everything on navigation.
+  useEffect(() => {
+    close();
+  }, [pathname]);
 
   useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 72);
+    if (!menu && !mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
     };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-
+    const onPointer = (e: PointerEvent) => {
+      if (!headerRef.current?.contains(e.target as Node)) close();
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onPointer);
     return () => {
-      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onPointer);
     };
-  }, []);
+  }, [menu, mobileOpen]);
+
+  const active = MENUS.find((m) => m.key === menu);
 
   return (
-    <div
-      className="relative w-full pointer-events-none"
-      style={{ height: "clamp(60px, 9vh, 76px)" }}
+    <header
+      ref={headerRef}
+      onPointerEnter={(e) => e.pointerType === "mouse" && cancelClose()}
+      onPointerLeave={scheduleClose}
+      className="pointer-events-auto relative w-full border-b border-line bg-canvas"
     >
-      {/* Full-width frosted bar — mobile only, fades in after hero scroll */}
-      <div
-        aria-hidden="true"
-        className="lg:hidden absolute inset-0 pointer-events-none"
-        style={{
-          background: "rgba(10,10,10,0.72)",
-          backdropFilter: "blur(24px) saturate(140%)",
-          WebkitBackdropFilter: "blur(24px) saturate(140%)",
-          borderBottom: "1px solid rgba(255,255,255,0.05)",
-          opacity: scrolled ? 1 : 0,
-          transition: "opacity 350ms ease",
-        }}
-      />
-      {/* Left: logo — vertically centered in the nav bar height */}
-      <Link
-        href="/"
-        aria-label="Helthy home"
-        className="pointer-events-auto absolute flex items-center lg:hidden"
-        style={{
-          top: "50%",
-          transform: "translateY(-50%)",
-          left: "clamp(16px, 3vw, 32px)",
-          height: 40,
-        }}
-      >
-        <Image
-          src="/logos/logo-long-white.png"
-          alt="Helthy"
-          height={24}
-          width={120}
-          sizes="120px"
-          className="object-contain h-[22px] w-auto"
-          style={{ width: "auto" }}
-          priority
-        />
-      </Link>
-
-      {/* Center: floating glass pill — desktop only.
-         Base color #141414 mirrors mobile app's tabBarBackground token.
-         Border #2E2E30 mirrors mobile `border` token. */}
-      <nav
-        className="pointer-events-auto hidden lg:flex w-fit items-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-        aria-label="Primary"
-        style={{
-          backgroundColor: scrolled
-            ? "rgba(20,20,20,0.82)"
-            : "rgba(20,20,20,0.62)",
-          backdropFilter: "blur(40px) saturate(140%)",
-          WebkitBackdropFilter: "blur(40px) saturate(140%)",
-          border: "1.5px solid rgba(46,46,48,0.9)",
-          borderRadius: 999,
-          boxShadow:
-            "inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.35)",
-          transition: "background-color 250ms ease",
-          padding: "8px 8px 8px 24px",
-          gap: 40,
-        }}
-      >
+      <div className="container-page flex h-16 items-center gap-8">
         <Link
           href="/"
           aria-label="Helthy home"
-          className="flex items-center shrink-0"
+          className="flex shrink-0 items-center"
+          onClick={close}
+          onPointerEnter={openOnHover(null)}
         >
-          <Image
-            src="/logos/logo-long-white.png"
-            alt="Helthy"
-            height={22}
-            width={110}
-            className="object-contain h-[22px] w-auto"
-            style={{ width: "auto" }}
-            priority
-          />
+          <HelthyWordmark className="h-6 w-auto text-fg" />
         </Link>
-        <ul className="flex items-center gap-1 shrink-0">
-          {NAV.map((item) => (
-            <li key={item.label}>
-              <Link
-                href={item.href}
-                className="transition-colors hover:text-white"
-                style={{
-                  padding: "8px 16px",
-                  display: "inline-block",
-                  color: "rgba(255,255,255,0.9)",
-                  fontFamily: "var(--font-body)",
-                  fontWeight: 500,
-                  fontSize: 16,
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
 
-        <CTAButton href="/download" variant="primary" size="sm" onClick={handleDownloadClick}>
-          Download
-        </CTAButton>
-      </nav>
-
-      {/* Mobile: hamburger top-right — matches main */}
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        aria-label={open ? "Close menu" : "Open menu"}
-        aria-expanded={open}
-        className="lg:hidden pointer-events-auto absolute rounded-full p-2.5 transition-colors"
-        style={{
-          top: "50%",
-          transform: "translateY(-50%)",
-          right: "clamp(16px, 3vw, 32px)",
-          background: "rgba(20,20,20,0.82)",
-          border: "1.5px solid rgba(46,46,48,0.9)",
-          backdropFilter: "blur(24px) saturate(140%)",
-          WebkitBackdropFilter: "blur(24px) saturate(140%)",
-          color: "#FFFFFF",
-        }}
-      >
-        {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-      </button>
-
-      {/* Mobile sheet — mirrors mobile app card surface */}
-      {open && (
-        <div
-          className="lg:hidden pointer-events-auto"
-          style={{
-            position: "fixed",
-            top: "calc(clamp(14px, 2.2vh, 24px) + 56px)",
-            left: "clamp(16px, 3vw, 32px)",
-            right: "clamp(16px, 3vw, 32px)",
-            background: "rgba(20,20,20,0.94)",
-            backdropFilter: "blur(32px) saturate(140%)",
-            WebkitBackdropFilter: "blur(32px) saturate(140%)",
-            border: "1.5px solid rgba(46,46,48,0.9)",
-            borderRadius: 20,
-            padding: "16px 18px 18px",
-            boxShadow: "0 16px 40px rgba(0,0,0,0.5)",
-          }}
-        >
-          <ul className="flex flex-col gap-1">
-            {NAV.map((item) => (
-              <li key={item.label}>
+        {/* Desktop */}
+        <nav aria-label="Primary" className="hidden flex-1 items-center lg:flex">
+          <ul className="flex items-center gap-1">
+            {MENUS.map((m) => {
+              const isOpen = menu === m.key;
+              return (
+                <li key={m.key} onPointerEnter={openOnHover(m.key)}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (isOpen && openedByHover.current) {
+                        openedByHover.current = false;
+                        return;
+                      }
+                      openedByHover.current = false;
+                      setMenu(isOpen ? null : m.key);
+                    }}
+                    aria-expanded={isOpen}
+                    aria-controls={`menu-${m.key}`}
+                    className={`inline-flex items-center gap-1 rounded-full px-3 py-2 text-[15px] font-medium transition-colors duration-150 hover:bg-surface-2 hover:text-fg ${
+                      isOpen ? "bg-surface-2 text-fg" : "text-fg"
+                    }`}
+                  >
+                    {m.label}
+                    <ChevronDown
+                      aria-hidden="true"
+                      className={`h-3.5 w-3.5 transition-transform duration-150 ${isOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                </li>
+              );
+            })}
+            {LINKS.map((l) => (
+              <li key={l.label} onPointerEnter={openOnHover(null)}>
                 <Link
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-lg transition-colors hover:bg-white/[0.06]"
-                  style={{
-                    color: "rgba(255,255,255,0.85)",
-                    fontFamily: "var(--font-body)",
-                    fontSize: 15,
-                    padding: "9px 10px",
-                  }}
+                  href={l.href}
+                  onClick={close}
+                  className="inline-block rounded-full px-3 py-2 text-[15px] font-medium text-fg transition-colors duration-150 hover:bg-surface-2 hover:text-fg"
                 >
-                  {item.label}
+                  {l.label}
                 </Link>
               </li>
             ))}
-            <li className="pt-3 flex">
-              <CTAButton
-                href="/download"
-                variant="primary"
-                size="sm"
-                onClick={(e: React.MouseEvent) => { setOpen(false); handleDownloadClick(e); }}
-              >
-                Download now
-              </CTAButton>
-            </li>
           </ul>
+
+          <div className="ml-auto flex items-center gap-2" onPointerEnter={openOnHover(null)}>
+            <Link
+              href="/contact"
+              onClick={close}
+              className="rounded-full px-3 py-2 text-[15px] font-medium text-fg transition-colors duration-150 hover:bg-surface-2 hover:text-fg"
+            >
+              Contact
+            </Link>
+            <CTAButton href="/download" variant="primary" size="sm" onClick={handleDownloadClick}>
+              Download
+            </CTAButton>
+          </div>
+        </nav>
+
+        {/* Mobile: menu button */}
+        <button
+          type="button"
+          onClick={() => setMobileOpen((o) => !o)}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-menu"
+          className="-mr-2 ml-auto flex h-10 w-10 items-center justify-center rounded-full text-fg transition-colors duration-150 hover:bg-surface-2 lg:hidden"
+        >
+          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
+
+      {/* Desktop menu panel: full width under the bar */}
+      {active && (
+        <div
+          id={`menu-${active.key}`}
+          className="absolute left-0 right-0 top-full hidden border-b border-line bg-canvas lg:block"
+        >
+          <div className="container-page grid grid-cols-[1fr_1fr_0.9fr] gap-x-3 gap-y-1 py-5">
+            {active.links.map(({ label, description, href, Icon }) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={close}
+                className="flex gap-3 rounded-2xl p-3 transition-colors duration-150 hover:bg-surface"
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-surface-2 text-fg">
+                  <Icon aria-hidden="true" className="h-[18px] w-[18px]" />
+                </span>
+                <span>
+                  <span className="block text-[14px] font-medium text-fg">{label}</span>
+                  <span className="mt-0.5 block text-[13px] leading-5 text-fg-muted">{description}</span>
+                </span>
+              </Link>
+            ))}
+            <div className="card col-start-3 row-span-2 row-start-1 flex flex-col justify-between gap-4 p-5">
+              <div>
+                <p className="text-[14px] font-medium text-fg">{active.feature.title}</p>
+                <p className="mt-1 text-[13px] leading-5 text-fg-muted">{active.feature.body}</p>
+              </div>
+              <CTAButton
+                href={active.feature.href}
+                variant="secondary"
+                size="sm"
+                className="self-start"
+                onClick={(e) => {
+                  if (active.feature.download) handleDownloadClick(e);
+                  close();
+                }}
+              >
+                <span className="inline-flex items-center gap-1.5">
+                  {active.feature.cta}
+                  <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
+                </span>
+              </CTAButton>
+            </div>
+          </div>
         </div>
       )}
-    </div>
+
+      {/* Mobile menu: full-width panel under the bar */}
+      {mobileOpen && (
+        <div
+          id="mobile-menu"
+          className="absolute left-0 right-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-line bg-canvas lg:hidden"
+        >
+          <div className="container-page pb-6">
+            {MENUS.map((m) => (
+              <div key={m.key} className="border-b border-line py-4">
+                <p className="pb-2 text-[13px] font-medium text-fg-subtle">{m.label}</p>
+                <ul>
+                  {m.links.map(({ label, href, Icon }) => (
+                    <li key={href}>
+                      <Link
+                        href={href}
+                        onClick={close}
+                        className="flex items-center gap-3 py-2.5 text-[16px] font-medium text-fg transition-colors duration-150 hover:text-fg"
+                      >
+                        <Icon aria-hidden="true" className="h-[18px] w-[18px] text-fg-subtle" />
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <ul className="divide-y divide-line">
+              {[...LINKS, { label: "Contact", href: "/contact" }].map((l) => (
+                <li key={l.label}>
+                  <Link
+                    href={l.href}
+                    onClick={close}
+                    className="block py-4 text-[16px] font-medium text-fg transition-colors duration-150 hover:text-fg"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="border-t border-line pt-6 [&_a]:w-full">
+              <StoreButtons />
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
   );
 }
