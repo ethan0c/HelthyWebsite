@@ -74,14 +74,14 @@ export function LenisProvider({ children }: { children: ReactNode }) {
     htmlEl.style.scrollBehavior = "auto";
 
     // Tuned to feel quick rather than floaty: a higher lerp catches up to
-    // the target faster (less trailing drift after the wheel stops), and
-    // each wheel notch travels a little further.
+    // the target faster (less trailing drift after the wheel stops). The
+    // wheel multiplier stays at 1: above that, trackpad scrolling overshoots.
     const lenis = new Lenis({
       lerp: 0.16,
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1.2,
+      wheelMultiplier: 1.0,
       touchMultiplier: 2.0,
     });
 

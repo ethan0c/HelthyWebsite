@@ -66,7 +66,13 @@ export default function CoachDemoSection() {
           It reads your meals, lifts and weight trend, so the answer is about you, not everyone.
         </p>
 
-        <div data-coach-demo className="theme-dark mt-12 flex w-full justify-center bg-transparent md:mt-16">
+        {/* Reserve the finished answer's height so the demo grows into its
+            own space instead of pushing the page down mid-scroll (same as
+            /ai-fitness-coach). Taller on phones, where the answer wraps more. */}
+        <div
+          data-coach-demo
+          className="theme-dark mt-12 flex min-h-[480px] w-full items-start justify-center bg-transparent sm:min-h-[400px] md:mt-16"
+        >
           <HeroAIDemo />
         </div>
       </div>
