@@ -39,7 +39,7 @@ export default function ProteinPage() {
       <PageHero
         title={
           <>
-            Protein <span className="text-accent-ink">calculator</span>
+            Protein <span className="text-highlight">calculator</span>
           </>
         }
         lede="Work out how much protein to eat each day for your goal, and how to split it across your meals."

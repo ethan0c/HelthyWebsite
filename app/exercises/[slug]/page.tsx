@@ -105,7 +105,7 @@ export default async function ExercisePage({ params }: PageProps<"/exercises/[sl
       <PageHero
         title={
           <>
-            How to do the <span className="text-accent-ink">{e.name.toLowerCase()}</span>
+            How to do the <span className="text-highlight">{e.name.toLowerCase()}</span>
           </>
         }
         lede={e.tips}

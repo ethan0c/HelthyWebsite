@@ -39,7 +39,7 @@ export default function TdeePage() {
       <PageHero
         title={
           <>
-            TDEE <span className="text-accent-ink">calculator</span>
+            TDEE <span className="text-highlight">calculator</span>
           </>
         }
         lede="Find out how many calories you burn each day, and how much to eat to lose fat, maintain or build muscle."

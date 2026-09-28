@@ -4,15 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
-import CTAButton from "@/components/ui/CTAButton";
 import { Star } from "lucide-react";
-
-function handleDownloadClick(e: React.MouseEvent) {
-  if (window.matchMedia("(pointer: fine)").matches) {
-    e.preventDefault();
-    window.dispatchEvent(new CustomEvent("helthy:qr-open"));
-  }
-}
 
 /** iOS Contacts-style: first two capitalized letters of the handle/name. */
 function initialsOf(name: string): string {
@@ -31,21 +23,18 @@ const TESTIMONIALS = [
       "I used to hate logging food because it felt like homework. This app makes it surprisingly simple. The barcode scanner works well, and the AI meal logging is way more accurate than I expected. […] It feels like it was built for real people, not just bodybuilders or hardcore macro trackers.",
     name: "Tasshtfxv",
     detail: "App Store review · 🇳🇬",
-    accent: "#22C55E",
   },
   {
     quote:
       "I've been using Helthy for about 3 months since it first launched. I was around 195 when I started and wanted to drop some weight and actually understand what I was eating instead of guessing. […] I'll do \"chicken and rice\" or scan a bar and it's done in a few seconds. […] Only food/health app I've stuck with and I recommend.",
     name: "jasonc1122",
     detail: "App Store review · 🇺🇸",
-    accent: "#CDFB50",
   },
   {
     quote:
       "Tries to do something you don't see often. The idea is there, an attempt to only make you require one fitness app. It does a great job of not making you feel overwhelmed, very smooth interface. […] All in all great app.",
     name: "Avarricee",
     detail: "App Store review · 🇺🇸",
-    accent: "#2563EB",
   },
   {
     quote:
@@ -53,20 +42,17 @@ const TESTIMONIALS = [
     name: "noirvaze",
     rating: 4,
     detail: "App Store review · 🇨🇦",
-    accent: "#DC2626",
   },
   {
     quote:
       "My guy has made the most reliable and flexible workout and food app! It's so easy to use, especially when tracking your meals and workouts! Highly recommended!",
     name: "Obianuju8",
     detail: "App Store review · 🇺🇸",
-    accent: "#059669",
   },
   {
     quote: "This is the best app! I use it everyday.",
     name: "arceus208",
     detail: "App Store review · 🇺🇸",
-    accent: "#EC4899",
   },
 ];
 
@@ -132,17 +118,8 @@ function TestimonialCard({ t }: { t: (typeof TESTIMONIALS)[number] }) {
           &ldquo;{t.quote}&rdquo;
         </p>
         <div className="flex items-center gap-3 pt-5 border-t border-line">
-          {/* Avatar colours are per-reviewer, like iOS Contacts */}
-          <div
-            className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-            style={{ background: t.accent }}
-          >
-            <span
-              className="text-[13px] font-medium"
-              style={{ color: t.accent === "#CDFB50" ? "#0B0B0B" : "#fff" }}
-            >
-              {initialsOf(t.name)}
-            </span>
+          <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-fg">
+            <span className="text-[13px] font-medium text-canvas">{initialsOf(t.name)}</span>
           </div>
           <div>
             <p className="text-[14px] font-medium text-fg">{t.name}</p>
@@ -306,44 +283,28 @@ function BeforeAfterSlider({
   );
 }
 
-function TransformationRow({
-  t,
-  flip = false,
-}: {
-  t: (typeof TRANSFORMATIONS)[number];
-  flip?: boolean;
-}) {
+function TransformationCard({ t }: { t: (typeof TRANSFORMATIONS)[number] }) {
   return (
-    <article
-      className={`card p-6 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center ${
-        flip ? "lg:[&>*:first-child]:order-2" : ""
-      }`}
-    >
-      <div className="lg:col-span-5">
-        <BeforeAfterSlider
-          before={t.before}
-          after={t.after}
-          name={t.name}
-          beforeFace={t.beforeFace}
-          afterFace={t.afterFace}
-        />
-      </div>
-
-      <div className="lg:col-span-7 flex flex-col gap-6">
+    <article className="card flex flex-col p-4 sm:p-5">
+      <BeforeAfterSlider
+        before={t.before}
+        after={t.after}
+        name={t.name}
+        beforeFace={t.beforeFace}
+        afterFace={t.afterFace}
+      />
+      <div className="flex flex-1 flex-col gap-3 px-1 pb-1 pt-5">
         <p className="text-[13px] font-medium text-fg-subtle">
           {t.hideName ? t.role : `${t.role} · ${t.name}`}
         </p>
-
-        <h3 className="text-display-md text-fg">&ldquo;{t.quote}&rdquo;</h3>
-
-        {/* Result */}
-        <div className="flex flex-wrap gap-5 items-end">
+        <p className="text-title">&ldquo;{t.quote}&rdquo;</p>
+        <div className="mt-auto flex flex-wrap items-end gap-5 pt-2">
           {t.stats.map((s) => (
-            <div key={s.label} className="flex flex-col items-start gap-3">
-              <span className="badge badge-accent">{s.label}</span>
-              <span className="text-numeric text-accent-ink text-[clamp(40px,5.5vw,64px)] leading-none tracking-[-0.035em]">
+            <div key={s.label} className="flex items-center gap-3">
+              <span className="text-numeric text-[36px] leading-none tracking-[-0.03em] text-fg">
                 {s.value}
               </span>
+              <span className="badge badge-accent">{s.label}</span>
             </div>
           ))}
         </div>
@@ -418,22 +379,15 @@ function useMarquee(
   }, []);
 }
 
-function TransformationStack() {
+function TransformationGrid() {
   return (
-    <div className="container-page mb-16 sm:mb-20">
-      <div className="flex flex-col gap-5 sm:gap-6">
-        {TRANSFORMATIONS.map((t, i) => (
-          <TransformationRow key={t.name} t={t} flip={i % 2 === 1} />
+    <div className="container-page mb-12 sm:mb-16">
+      <div className="grid gap-4 md:grid-cols-3">
+        {TRANSFORMATIONS.map((t) => (
+          <TransformationCard key={t.name} t={t} />
         ))}
       </div>
-      <div className="mt-10 flex flex-col items-center gap-3">
-        <CTAButton href="/download" onClick={handleDownloadClick}>
-          Start your transformation
-        </CTAButton>
-        <p className="text-[13px] text-fg-subtle">
-          Drag the handle to reveal before / after
-        </p>
-      </div>
+      <p className="mt-6 text-center text-[13px] text-fg-subtle">Drag the handle to reveal before / after</p>
     </div>
   );
 }
@@ -490,7 +444,7 @@ export default function TestimonialsSection() {
   return (
     <section
       ref={sectionRef}
-      className="section relative overflow-hidden bg-canvas"
+      className="theme-light section relative overflow-hidden"
     >
       <div className="relative">
         <div className="container-page">
@@ -501,12 +455,9 @@ export default function TestimonialsSection() {
           />
         </div>
 
-        <TransformationStack />
+        <TransformationGrid />
 
-        <div className="flex flex-col gap-5">
-          <TestimonialRow row={ROW_1} duration={90} direction={-1} keyPrefix="r1" />
-          <TestimonialRow row={ROW_2} duration={100} direction={1} keyPrefix="r2" />
-        </div>
+        <TestimonialRow row={[...ROW_1, ...ROW_2]} duration={140} direction={-1} keyPrefix="r1" />
       </div>
     </section>
   );

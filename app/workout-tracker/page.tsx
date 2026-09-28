@@ -58,7 +58,7 @@ export default function WorkoutTrackerPage() {
           title={
             <>
               The free workout tracker for people who want to{" "}
-              <span className="text-accent-ink">progress</span>
+              <span className="text-highlight">progress</span>
             </>
           }
           lede="Log every set, rep and weight in seconds, see your PRs as they happen, and know exactly what to lift next time. 1,500 exercises and unlimited workouts, free."
@@ -152,8 +152,13 @@ export default function WorkoutTrackerPage() {
             />
           </div>
         </div>
-        <div className="flex justify-center">
-          <AppleWatch width={280} />
+        {/* Both halves of the watch app: lifting and cardio. The second
+            watch drops on narrow screens, where they would be too small. */}
+        <div className="flex items-center justify-center gap-4 sm:gap-8">
+          <AppleWatch width={240} screen="workout" />
+          <div className="hidden sm:block">
+            <AppleWatch width={240} screen="cardio" />
+          </div>
         </div>
       </div>
 

@@ -62,7 +62,7 @@ export default function AICoachPage() {
           title={
             <>
               An AI coach that has actually{" "}
-              <span className="text-accent-ink">read your log</span>
+              <span className="text-highlight">read your log</span>
             </>
           }
           lede="Most AI fitness apps give generic advice. Helthy's coach sees your meals, lifts, PRs and weight trend, so when you ask what to change, the answer is about you."

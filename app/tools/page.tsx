@@ -10,11 +10,11 @@ export const metadata: Metadata = seoMetadata({
 
 export default function ToolsPage() {
   return (
-    <SeoPage crumbs={[{ name: "Free tools", href: "/tools" }]}>
+    <SeoPage crumbs={[{ name: "Free tools", href: "/tools" }]} tone="light">
       <PageHero
         title={
           <>
-            Fitness calculators, <span className="text-accent-ink">free</span>
+            Fitness calculators, <span className="text-highlight">free</span>
           </>
         }
         lede="Free, private and no sign-up. Work out your calories, macros, protein and strength numbers in seconds."

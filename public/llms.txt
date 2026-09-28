@@ -66,7 +66,8 @@ Helthy never sells user data and never uses it to train AI models. Users can del
 
 ## Key pages
 
-- [Home](https://helthy.app): overview, pricing and FAQ
+- [Home](https://helthy.app): overview and FAQ
+- [Pricing](https://helthy.app/pricing): Free vs Pro, feature by feature
 - [Calorie tracker](https://helthy.app/calorie-tracker)
 - [Workout tracker](https://helthy.app/workout-tracker)
 - [AI fitness coach](https://helthy.app/ai-fitness-coach)

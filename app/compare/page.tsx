@@ -17,11 +17,11 @@ export default function CompareIndexPage() {
   });
 
   return (
-    <SeoPage crumbs={[{ name: "Compare", href: "/compare" }]}>
+    <SeoPage crumbs={[{ name: "Compare", href: "/compare" }]} tone="light">
       <PageHero
         title={
           <>
-            How Helthy compares to the apps you <span className="text-accent-ink">already know</span>
+            How Helthy compares to the apps you <span className="text-highlight">already know</span>
           </>
         }
         lede="Side-by-side comparisons with the most popular calorie counters and workout trackers, including where they beat us."

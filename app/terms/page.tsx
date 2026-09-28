@@ -11,13 +11,13 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <>
-      <main className="relative min-h-screen bg-canvas text-fg">
+      <main className="theme-light relative min-h-screen bg-canvas text-fg">
         <section className="container-narrow pb-24 pt-32 lg:pt-40">
           <div className="max-w-3xl space-y-12">
             {/* Header */}
             <div className="space-y-5 pb-10 border-b border-line">
               <h1 className="text-display-xl text-fg">
-                <span className="text-accent-ink">Terms</span> of Service
+                <span className="text-highlight">Terms</span> of Service
               </h1>
               <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-fg-subtle">
                 <span>Last Updated: May 2026</span>

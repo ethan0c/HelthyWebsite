@@ -49,7 +49,9 @@
 }
 
 /* ══════════════════════════════════════════════════════════════
-   DESIGN SYSTEM — see DESIGN.md. Flat, dark, one accent.
+   DESIGN SYSTEM — see DESIGN.md. Three colours: black, white and
+   lemon. Greys are pure neutral steps between black and white (no
+   blue tint). Lemon is reserved for highlights and the primary action.
    Every colour on the site should come from these tokens.
    ══════════════════════════════════════════════════════════════ */
 :root,
@@ -67,8 +69,8 @@
 
   /* Text */
   --fg: #FFFFFF;
-  --fg-muted: #9CA3AF;      /* app textSecondary */
-  --fg-subtle: #858B94;
+  --fg-muted: #A3A3A3;      /* neutral grey, no blue tint */
+  --fg-subtle: #8A8A8A;
 
   /* Accent — the only brand colour. Never as body text on light bg. */
   --accent: #CDFB50;
@@ -76,7 +78,11 @@
   --on-accent: #0B0B0B;
   --accent-soft: rgba(205, 251, 80, 0.10);
   --accent-line: rgba(205, 251, 80, 0.32);
-  --accent-ink: #CDFB50;    /* accent used as TEXT (flips darker on light) */
+  --accent-ink: #CDFB50;    /* accent used as TEXT (flips to black on light) */
+  /* Highlighted phrase (.text-highlight): lemon text on dark, lemon marker on light */
+  --highlight-fg: var(--accent);
+  --highlight-bg: transparent;
+  --highlight-pad: 0;
   --danger: #F87171;
   --btn-primary-bg: var(--accent);
   --btn-primary-bg-hover: var(--accent-hover);
@@ -119,30 +125,34 @@
 
 /* Light band. Put .theme-light on a full-bleed <section> and every token
    inside flips; markup stays the same. Dark and light bands alternate on
-   the homepage (MacroFactor-style). */
+   the homepage (MacroFactor-style). White and black only: lemon can't be
+   read as text on white, so here it only appears as a fill under black
+   text (primary lemon buttons, badges, the heading highlight marker). */
 .theme-light {
-  /* Mirrors the app's LIGHT_THEME neutrals */
-  --canvas: #F5F6F7;        /* app background */
-  --surface: #FFFFFF;       /* app card */
-  --surface-2: #EDEEF0;     /* app cardSection / input */
-  --surface-3: #E3E5E8;
-  --line: #E4E6E9;          /* app border */
-  --line-strong: #C4C8CD;   /* app borderStrong */
-  --fg: #1E2124;            /* app text */
-  --fg-muted: #5B6168;
-  --fg-subtle: #6A7178;     /* app textSecondary */
-  --accent-soft: rgba(122, 170, 20, 0.14);
-  --accent-line: rgba(92, 138, 0, 0.35);
-  --accent-ink: #4D7C0F;
+  --canvas: #FFFFFF;
+  --surface: #FFFFFF;       /* cards sit on white, defined by the 1px line */
+  --surface-2: #F5F5F5;     /* inputs, nested tiles, toggle track */
+  --surface-3: #EBEBEB;
+  --line: #E5E5E5;
+  --line-strong: #CFCFCF;
+  --fg: #0F0F0F;            /* same black as the dark canvas */
+  --fg-muted: #525252;
+  --fg-subtle: #6B6B6B;
+  --accent-soft: var(--accent);
+  --accent-line: var(--fg);
+  --accent-ink: var(--fg);
+  --highlight-fg: var(--on-accent);
+  --highlight-bg: var(--accent);
+  --highlight-pad: 0 0.14em;
   --danger: #DC2626;
-  --btn-primary-bg: #1E2124;
-  --btn-primary-bg-hover: #33373B;
+  --btn-primary-bg: #0F0F0F;
+  --btn-primary-bg-hover: #2A2A2A;
   --btn-primary-fg: #FFFFFF;
 }
 @layer components {
   .theme-dark, .theme-light { background: var(--canvas); color: var(--fg); }
 }
-.theme-light ::selection { background: rgba(122, 170, 20, 0.3); color: #1E2124; }
+.theme-light ::selection { background: var(--accent); color: var(--on-accent); }
 .theme-light :focus-visible { outline-color: var(--accent-ink); }
 
 @theme inline {
@@ -237,10 +247,13 @@ body {
   padding-left: 20px;
   padding-right: 20px;
 }
-.container-page   { max-width: 1200px; }
+.container-page   { max-width: 1280px; }
 .container-narrow { max-width: 1024px; }
 @media (min-width: 768px) {
   .container-page, .container-narrow { padding-left: 32px; padding-right: 32px; }
+}
+@media (min-width: 1024px) {
+  .container-page, .container-narrow { padding-left: 48px; padding-right: 48px; }
 }
 
 /* One vertical rhythm for every section */
@@ -313,6 +326,23 @@ body {
   font-weight: 500;
   letter-spacing: -0.01em;
   font-feature-settings: "tnum";
+}
+/* The one highlighted phrase in a heading. Lemon text on dark bands,
+   black text on a lemon marker on light bands. */
+.text-highlight {
+  color: var(--highlight-fg);
+  /* Band, not a full box: the content box is taller than tight heading
+     line-heights, so a solid fill would cover descenders on the line above. */
+  background: linear-gradient(
+    transparent 16%,
+    var(--highlight-bg) 16%,
+    var(--highlight-bg) 94%,
+    transparent 94%
+  );
+  padding: var(--highlight-pad);
+  border-radius: 0.12em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 /* Legacy accent span inside headings */
 .text-italics { font-family: inherit; font-style: normal; font-weight: inherit; }
@@ -420,8 +450,8 @@ body {
 .segmented > button[aria-pressed="true"],
 .segmented > button[aria-checked="true"],
 .segmented > button[aria-selected="true"] {
-  background: var(--accent);
-  color: var(--on-accent);
+  background: var(--fg);
+  color: var(--canvas);
 }
 
 /* ── Badges ───────────────────────────────────────────────────── */
@@ -440,6 +470,8 @@ body {
   white-space: nowrap;
 }
 .badge-accent { background: var(--accent-soft); border-color: var(--accent-line); color: var(--accent-ink); }
+.theme-light .badge-accent { border-color: transparent; color: var(--on-accent); }
+.theme-light .theme-dark .badge-accent { border-color: var(--accent-line); color: var(--accent-ink); }
 
 /* ── Form fields ──────────────────────────────────────────────── */
 .input {
@@ -456,7 +488,7 @@ body {
 textarea.input { height: auto; padding: 0.75rem 1rem; }
 .input::placeholder { color: var(--fg-subtle); }
 .input:hover { border-color: var(--line-strong); }
-.input:focus { outline: none; border-color: var(--accent); }
+.input:focus { outline: none; border-color: var(--accent-ink); }
 }
 
 /* ── Retired decoration ───────────────────────────────────────────
@@ -500,7 +532,14 @@ html.lenis::-webkit-scrollbar { display: none; width: 0; height: 0; }
 }
 .animate-helthy-pulse { animation: helthy-pulse 1.4s ease-in-out infinite; }
 
+/* Slow idle bob for the glass clover beside "Meet Helthy AI" */
+@keyframes helthy-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5%); }
+}
+.animate-helthy-float { animation: helthy-float 4s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee, .animate-helthy-pulse, .animate-pulse { animation: none; }
+  .animate-marquee, .animate-helthy-pulse, .animate-helthy-float, .animate-pulse { animation: none; }
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }

@@ -70,7 +70,7 @@ export default function HowItWorksSection() {
           {STEPS.map((step, i) => (
             <li key={step.title} data-step-block className="card flex flex-col">
               <div className="p-6 sm:p-8">
-                <span data-step-num className="text-numeric text-[15px] text-accent-ink">
+                <span data-step-num className="text-numeric text-[15px] text-fg-subtle">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="text-title mt-4">{step.title}</h3>

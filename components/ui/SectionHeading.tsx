@@ -31,7 +31,7 @@ export default function SectionHeading({
       {eyebrow && (
         <div className={`mb-4 flex ${align === "center" ? "justify-center" : "justify-start"}`}>
           {typeof eyebrow === "string" ? (
-            <span className="text-[13px] font-medium text-accent-ink">{eyebrow}</span>
+            <span className="text-[13px] font-medium text-fg-muted">{eyebrow}</span>
           ) : (
             eyebrow
           )}
@@ -42,7 +42,7 @@ export default function SectionHeading({
         {italicTail && (
           <>
             {" "}
-            <span className="text-accent-ink">{italicTail}</span>
+            <span className="text-highlight">{italicTail}</span>
           </>
         )}
         {trailingPunctuation}

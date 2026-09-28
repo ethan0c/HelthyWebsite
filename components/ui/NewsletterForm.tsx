@@ -9,6 +9,9 @@ export default function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState(""); // honeypot
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  // Load the bot check only once someone starts on the form, so pages that
+  // show the footer signup don't pay for the third-party script up front.
+  const [armed, setArmed] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
@@ -64,6 +67,7 @@ export default function NewsletterForm() {
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          onFocus={() => setArmed(true)}
           required
           aria-label="Email address"
           placeholder="you@email.com"
@@ -85,9 +89,11 @@ export default function NewsletterForm() {
       </div>
 
       {/* Invisible Turnstile (emits a token automatically) */}
-      <div className="mt-2">
-        <TurnstileWidget onToken={onToken} theme="dark" />
-      </div>
+      {armed && (
+        <div className="mt-2">
+          <TurnstileWidget onToken={onToken} theme="dark" />
+        </div>
+      )}
 
       {/* Inline status */}
       <p

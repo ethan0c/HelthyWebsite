@@ -14,16 +14,8 @@ const FAQS = [
     a: "Helthy's AI identifies each item on your plate, estimates portions and matches them to its food database. You see every item before saving and can adjust anything.",
   },
   {
-    q: "Does it sync with Apple Health?",
-    a: "Yes, on every plan. Helthy reads your steps, weight, workouts, active energy and heart rate (used to estimate workout calories) from Apple Health, and writes your weigh-ins, workouts and meals back.",
-  },
-  {
     q: "Is my data private?",
     a: "Your data is yours. We never sell it or use it to train AI models. You can delete your account from inside the app at any time, and Pro members can export their data.",
-  },
-  {
-    q: "What's the AI coach actually like?",
-    a: "It has full context on your goals, recent meals, lifts, steps, and weight trend. So it can answer questions like \"should I push squats today?\" with your actual numbers, not generic advice.",
   },
   {
     q: "Is Helthy on Android?",

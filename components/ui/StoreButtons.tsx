@@ -12,9 +12,7 @@ export default function StoreButtons({
 }) {
   return (
     <div
-      className={`flex flex-col gap-3 sm:flex-row ${
-        align === "center" ? "items-center justify-center" : "items-start sm:items-center"
-      }`}
+      className={`flex flex-wrap items-center gap-3 ${align === "center" ? "justify-center" : ""}`}
     >
       <CTAButton
         href={APP_STORE_URL}

@@ -1,13 +1,13 @@
 import Image from "next/image";
-import { Check, CheckCircle2, Timer } from "lucide-react";
+import { Check, CheckCircle2, Heart, Timer } from "lucide-react";
 
 /**
- * Apple Watch mockup showing Helthy's live strength-workout screen.
+ * Apple Watch mockup showing one of Helthy's watch screens.
  *
- * The screen is a copy of WorkoutMirrorView in
+ * The screens are copies of the views in
  * helthy_app/mobile/ios/HelthyWatch Watch App/: same layout, strings,
- * colors (WatchDesign.swift) and fonts. It is laid out in watch points on a
- * 208-pt-wide canvas (46mm Series screen) and scaled up to fit the frame.
+ * colors (WatchDesign.swift) and fonts. Each is laid out in watch points on
+ * a 208-pt-wide canvas (46mm Series screen) and scaled up to fit the frame.
  */
 
 const C = {
@@ -39,7 +39,7 @@ function WorkoutScreen() {
     >
       {/* Top bar: wordmark + elapsed */}
       <div className="flex items-center justify-between" style={{ gap: 8, paddingTop: 2 }}>
-        <Image src="/logos/logo-long-white.png" alt="" width={51} height={10} style={{ height: 10, width: "auto" }} />
+        <Image src="/logos/logo-long-white.png" alt="" width={34} height={10} style={{ height: 10, width: "auto" }} />
         <span style={{ ...num, fontSize: 12, color: C.accent }}>24:37</span>
       </div>
 
@@ -106,17 +106,105 @@ function WorkoutScreen() {
   );
 }
 
+/**
+ * Live outdoor-run screen: the other half of what the watch app does, for
+ * pairing next to a strength workout.
+ */
+function CardioScreen() {
+  const stats = [
+    { value: "2.41", unit: "mi" },
+    { value: "9'42\"", unit: "/mi" },
+  ];
+  return (
+    <div
+      style={{ width: 208, height: 280, background: C.bg, color: C.text, padding: "10px 12px 0" }}
+      className="flex flex-col overflow-hidden"
+    >
+      {/* Top bar: wordmark + elapsed */}
+      <div className="flex items-center justify-between" style={{ gap: 8, paddingTop: 2 }}>
+        <Image src="/logos/logo-long-white.png" alt="" width={34} height={10} style={{ height: 10, width: "auto" }} />
+        <span style={{ ...num, fontSize: 12, color: C.accent }}>23:24</span>
+      </div>
+
+      <span style={{ ...label(true), fontSize: 10, color: C.tertiary, letterSpacing: 0.5, marginTop: 8 }}>
+        Outdoor Run
+      </span>
+
+      {/* Heart rate, the one number you glance at mid-run */}
+      <div className="flex items-baseline" style={{ gap: 5, marginTop: 6 }}>
+        <Heart size={17} color={C.accent} fill={C.accent} strokeWidth={0} />
+        <span style={{ ...num, fontSize: 40, lineHeight: 1, color: C.accent }}>152</span>
+        <span style={{ ...label(false), fontSize: 12, color: C.secondary }}>bpm</span>
+      </div>
+
+      {/* Distance and pace */}
+      <div className="flex" style={{ gap: 8, marginTop: 12 }}>
+        {stats.map((s) => (
+          <div
+            key={s.unit}
+            className="flex flex-1 flex-col"
+            style={{ gap: 1, padding: "8px 10px", borderRadius: 10, background: C.card }}
+          >
+            <span style={{ ...num, fontSize: 17 }}>{s.value}</span>
+            <span style={{ ...label(false), fontSize: 10, color: C.secondary }}>{s.unit}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex flex-col" style={{ gap: 1, marginTop: 8 }}>
+        <span style={{ ...num, fontSize: 17 }}>286</span>
+        <span style={{ ...label(false), fontSize: 10, color: C.secondary }}>calories</span>
+      </div>
+
+      {/* Action */}
+      <div
+        className="flex items-center justify-center"
+        style={{
+          gap: 6,
+          marginTop: "auto",
+          marginBottom: 10,
+          padding: "10px 0",
+          borderRadius: 999,
+          background: C.card,
+        }}
+      >
+        <Timer size={14} strokeWidth={2.5} />
+        <span style={{ ...label(true), fontSize: 14 }}>Pause</span>
+      </div>
+    </div>
+  );
+}
+
+const SCREENS = {
+  workout: {
+    render: WorkoutScreen,
+    label:
+      "Helthy on Apple Watch: a live bench press workout with completed sets, the current set and a Complete Set button",
+  },
+  cardio: {
+    render: CardioScreen,
+    label: "Helthy on Apple Watch: a live outdoor run showing heart rate, distance, pace and calories",
+  },
+} as const;
+
 /** Watch case drawn in CSS. `width` is the case width in px. */
-export default function AppleWatch({ width = 300 }: { width?: number }) {
+export default function AppleWatch({
+  width = 300,
+  screen = "workout",
+}: {
+  width?: number;
+  screen?: keyof typeof SCREENS;
+}) {
   const caseH = width * 1.25;
   const inset = width * 0.07;
   const screenW = width - inset * 2;
   const scale = screenW / 208;
+  const { render: Screen, label: ariaLabel } = SCREENS[screen];
 
   return (
     <div
       role="img"
-      aria-label="Helthy on Apple Watch: a live bench press workout with completed sets, the current set and a Complete Set button"
+      aria-label={ariaLabel}
       className="relative mx-auto"
       style={{ width: width + width * 0.06, height: caseH + width * 0.5 }}
     >
@@ -161,7 +249,7 @@ export default function AppleWatch({ width = 300 }: { width?: number }) {
           style={{ borderRadius: width * 0.2, background: C.bg, boxShadow: "0 0 0 2px #000" }}
         >
           <div style={{ width: 208, height: 280, transform: `scale(${scale})`, transformOrigin: "top left" }}>
-            <WorkoutScreen />
+            <Screen />
           </div>
         </div>
 

@@ -58,7 +58,7 @@ export default async function ComparisonPage({ params }: PageProps<"/compare/[sl
       <PageHero
         title={
           <>
-            Helthy vs <span className="text-accent-ink">{c.competitor}</span>
+            Helthy vs <span className="text-highlight">{c.competitor}</span>
           </>
         }
         lede={c.lede}

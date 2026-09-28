@@ -18,13 +18,16 @@ export type Faq = { q: string; a: string };
 export function SeoPage({
   crumbs,
   children,
+  tone = "dark",
 }: {
   crumbs: Crumb[];
   children: ReactNode;
+  /** "light" makes the whole page one white band (single-block pages like hubs) */
+  tone?: "dark" | "light";
 }) {
   return (
     <>
-      <main className="relative bg-canvas text-fg">
+      <main className={`relative bg-canvas text-fg ${tone === "light" ? "theme-light" : ""}`}>
         <div className="container-narrow pb-24 pt-32 lg:pt-40">
           <Breadcrumbs crumbs={crumbs} />
           {children}
@@ -170,7 +173,7 @@ export function Steps({ items }: { items: { title: string; body: string }[] }) {
     <ol className="grid gap-4 md:grid-cols-3">
       {items.map((s, i) => (
         <li key={s.title} className="card p-6">
-          <span className="text-numeric text-[15px] text-accent-ink">
+          <span className="text-numeric text-[15px] text-fg-subtle">
             {String(i + 1).padStart(2, "0")}
           </span>
           <h3 className="text-title mt-4">{s.title}</h3>

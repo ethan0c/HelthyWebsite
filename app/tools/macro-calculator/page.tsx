@@ -39,7 +39,7 @@ export default function MacroPage() {
       <PageHero
         title={
           <>
-            Macro <span className="text-accent-ink">calculator</span>
+            Macro <span className="text-highlight">calculator</span>
           </>
         }
         lede="Get your daily calories and exactly how many grams of protein, carbs and fat to eat for your goal."

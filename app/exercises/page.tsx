@@ -11,11 +11,11 @@ export const metadata: Metadata = seoMetadata({
 
 export default function ExercisesPage() {
   return (
-    <SeoPage crumbs={[{ name: "Exercises", href: "/exercises" }]}>
+    <SeoPage crumbs={[{ name: "Exercises", href: "/exercises" }]} tone="light">
       <PageHero
         title={
           <>
-            Lift with better <span className="text-accent-ink">form</span>
+            Lift with better <span className="text-highlight">form</span>
           </>
         }
         lede="Coaching cues, common mistakes and how much weight to use for the most popular gym exercises, the same guidance built into the Helthy app."

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import HelthyWordmark from "@/components/ui/HelthyWordmark";
+import NewsletterForm from "@/components/ui/NewsletterForm";
 import type { IconType } from "react-icons";
 import { FaXTwitter, FaInstagram, FaTiktok } from "react-icons/fa6";
 import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/site";
@@ -13,7 +14,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
       { label: "Calorie tracker", href: "/calorie-tracker" },
       { label: "Workout tracker", href: "/workout-tracker" },
       { label: "AI fitness coach", href: "/ai-fitness-coach" },
-      { label: "Pricing", href: "/?section=pricing" },
+      { label: "Pricing", href: "/pricing" },
       { label: "Changelog", href: "/changelog" },
     ],
   },
@@ -61,23 +62,28 @@ export default function SiteFooter() {
   return (
     <footer className="relative border-t border-line bg-canvas text-fg-muted">
       <div className="container-page pt-16 pb-10">
+        {/* Newsletter */}
+        <div className="mb-14 flex flex-col gap-6 border-b border-line pb-12 md:flex-row md:items-start md:justify-between">
+          <div>
+            <p className="text-title">One email a month</p>
+            <p className="mt-1.5 max-w-md text-[15px] leading-6 text-fg-muted">
+              New features and what we&apos;re learning building Helthy. No spam.
+            </p>
+          </div>
+          <div className="w-full md:max-w-[440px]">
+            <NewsletterForm />
+          </div>
+        </div>
+
         {/* Top: brand + columns */}
         <div className="grid grid-cols-2 md:grid-cols-12 gap-y-12 gap-x-8">
           {/* Brand block */}
           <div className="col-span-2 md:col-span-4">
             <Link href="/" className="inline-block mb-5" aria-label="Helthy home">
-              <Image
-                src="/logos/logo-long-white.png"
-                alt="Helthy"
-                width={162}
-                height={32}
-                className="h-7 w-auto"
-                style={{ width: "auto", height: "auto" }}
-              />
+              <HelthyWordmark className="h-5 w-auto text-fg" />
             </Link>
             <p className="max-w-[320px] text-[14px] leading-6 text-fg-muted">
-              One AI coach that connects nutrition, training, and recovery —
-              so you stop guessing and start knowing.
+              Calories, workouts and an AI coach in one free app.
             </p>
           </div>
 
@@ -157,7 +163,7 @@ export default function SiteFooter() {
         <div
           className="w-full select-none bg-surface-2"
           style={{
-            aspectRatio: "1281 / 248",
+            aspectRatio: "859.67 / 164.71",
             maskImage: "url(/footer.svg)",
             WebkitMaskImage: "url(/footer.svg)",
             maskSize: "100% 100%",

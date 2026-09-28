@@ -237,7 +237,7 @@ export default function HeroAIDemo() {
     <div
       ref={wrapRef}
       className="w-full text-left"
-      style={{ maxWidth: 560, marginTop: "clamp(32px, 4.5vh, 52px)" }}
+      style={{ maxWidth: 560 }}
     >
       {/* Panel */}
       <div className="rounded-3xl overflow-hidden bg-surface border border-line">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { handleDownloadClick } from "@/lib/download";
 import { X } from "lucide-react";
 
 const STORAGE_KEY = "helthy-launch-banner-dismissed";
@@ -42,12 +43,7 @@ export default function LaunchBanner() {
           Helthy is live on iOS & Android.
           <a
             href="/download"
-            onClick={(e) => {
-              if (window.matchMedia("(pointer: fine)").matches) {
-                e.preventDefault();
-                window.dispatchEvent(new CustomEvent("helthy:qr-open"));
-              }
-            }}
+            onClick={handleDownloadClick}
             className="ml-2 font-medium text-fg underline underline-offset-4 decoration-line-strong transition-colors duration-150 hover:decoration-fg"
           >
             Download →

@@ -53,7 +53,7 @@ export default async function OgImage() {
           {/* Logo */}
           <img
             src={logoSrc}
-            style={{ height: 34, width: "auto", objectFit: "contain", objectPosition: "left" }}
+            style={{ height: 34, width: 116, objectFit: "contain", objectPosition: "left" }}
           />
 
           {/* Text block pushed to bottom */}

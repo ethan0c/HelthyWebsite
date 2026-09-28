@@ -454,11 +454,11 @@ const RELEASES = [
 export default function ChangelogPage() {
   return (
     <>
-      <main className="relative min-h-screen bg-canvas text-fg">
+      <main className="theme-light relative min-h-screen bg-canvas text-fg">
         <div className="container-narrow pb-24 pt-32 lg:pt-40">
           <div className="max-w-3xl">
             <h1 className="text-display-xl text-fg">
-              What&apos;s <span className="text-accent-ink">new</span>
+              What&apos;s <span className="text-highlight">new</span>
             </h1>
             <div className="mt-12 md:mt-16">
               {RELEASES.map((r) => (

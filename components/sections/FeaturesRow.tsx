@@ -60,7 +60,7 @@ export default function FeaturesRow() {
       <section className="pb-20 pt-32 md:pb-28 lg:pt-40">
         <div className="container-page">
           <h1 className="max-w-3xl text-display-xl text-fg">
-            Four apps&apos; worth of tracking, <span className="text-accent-ink">in one</span>
+            Four apps&apos; worth of tracking, <span className="text-highlight">in one</span>
           </h1>
 
           <FeatureRow
@@ -84,7 +84,7 @@ export default function FeaturesRow() {
         <div className="container-page">
           <FeatureRow
             reverse
-            headline={<>See your <span className="text-accent-ink">progress</span></>}
+            headline={<>See your <span className="text-highlight">progress</span></>}
             subtitle="Every weigh-in, plotted. Every entry, tracked."
           >
             <div

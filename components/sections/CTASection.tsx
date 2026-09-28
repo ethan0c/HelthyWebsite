@@ -34,7 +34,7 @@ export default function CTASection() {
         </p>
 
         <h2 data-cta-heading className="mt-4 text-display-xl text-fg">
-          Get <span className="text-accent-ink">Helthy</span>
+          Get <span className="text-highlight">Helthy</span>
         </h2>
 
         <p data-cta-sub className="mt-5 max-w-2xl text-lede">

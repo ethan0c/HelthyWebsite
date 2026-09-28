@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 export default function DownloadPage() {
   return (
     <>
-      <main className="flex flex-col items-center justify-center bg-canvas px-5 pt-40 pb-24 text-center text-fg md:pt-48 md:pb-32">
+      <main className="theme-light flex flex-col items-center justify-center bg-canvas px-5 pt-40 pb-24 text-center text-fg md:pt-48 md:pb-32">
         <h1 className="text-display-xl text-fg">
-          Download <span className="text-accent-ink">Helthy</span>
+          Download <span className="text-highlight">Helthy</span>
         </h1>
 
         <p className="mx-auto mt-5 max-w-sm text-lede">

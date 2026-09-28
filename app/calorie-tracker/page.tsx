@@ -53,7 +53,7 @@ export default function CalorieTrackerPage() {
           title={
             <>
               The free calorie tracker that logs a meal from a{" "}
-              <span className="text-accent-ink">photo</span>
+              <span className="text-highlight">photo</span>
             </>
           }
           lede="Count calories and macros without the homework. Search the food database, scan a barcode, or snap a picture and let AI break the plate down for you. Logging is free and unlimited, and you get free AI scans every week."
