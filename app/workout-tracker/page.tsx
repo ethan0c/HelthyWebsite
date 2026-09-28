@@ -12,7 +12,8 @@ import {
   DownloadBanner,
   seoMetadata,
 } from "@/components/seo/SeoPage";
-import AppleWatch from "@/components/ui/AppleWatch";
+import DeviceFrame from "@/components/ui/DeviceFrame";
+import WatchScreen from "@/components/ui/WatchScreen";
 import PhoneVideo from "@/components/ui/PhoneVideo";
 import { PRO_PRICE } from "@/lib/site";
 
@@ -145,9 +146,23 @@ export default function WorkoutTrackerPage() {
         {/* Both halves of the watch app: lifting and cardio. The second
             watch drops on narrow screens, where they would be too small. */}
         <div className="flex items-center justify-center gap-4 sm:gap-8">
-          <AppleWatch width={240} screen="workout" />
-          <div className="hidden sm:block">
-            <AppleWatch width={240} screen="cardio" />
+          <div
+            role="img"
+            aria-label="Helthy on Apple Watch: a live bench press workout with completed sets, the current set and a Complete Set button"
+            className="w-[min(270px,70vw)]"
+          >
+            <DeviceFrame device="watch" sizes="270px">
+              <WatchScreen screen="workout" />
+            </DeviceFrame>
+          </div>
+          <div
+            role="img"
+            aria-label="Helthy on Apple Watch: a live outdoor run showing heart rate, distance, pace and calories"
+            className="hidden w-[270px] sm:block"
+          >
+            <DeviceFrame device="watch" sizes="270px">
+              <WatchScreen screen="cardio" />
+            </DeviceFrame>
           </div>
         </div>
       </div>
