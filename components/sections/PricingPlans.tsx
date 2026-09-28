@@ -41,30 +41,29 @@ export default function PricingPlans() {
 
   return (
     <div>
-      <div className="mb-8 flex justify-center">
+      <div className="mb-8 flex">
         <Segmented label="Billing period" options={BILLING_OPTIONS} value={billing} onChange={setBilling} />
       </div>
 
-      <div className="mx-auto grid max-w-[760px] grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="grid max-w-[880px] grid-cols-1 gap-4 md:grid-cols-2">
         <PlanCard
           name="Free"
           blurb="Everything you need to track."
-          price={<span className="text-numeric text-[44px] leading-none text-fg">$0</span>}
+          price={<span className="text-numeric text-[38px] leading-none text-fg sm:text-[44px]">$0</span>}
           period="forever"
           note="No card, no trial"
           cta={{ label: "Start free", className: "btn-secondary" }}
           features={FREE_FEATURES}
         />
         <PlanCard
-          accent
+          featured
           name="Pro"
-          badge="Founders price"
           blurb="The AI coach and unlimited AI logging."
           price={
             <>
               <RollingPrice
                 price={isYearly ? PRO_PRICE.yearly : PRO_PRICE.monthly}
-                className="text-numeric text-[44px] leading-none text-fg"
+                className="text-numeric text-[38px] leading-none text-fg sm:text-[44px]"
               />
               <RollingPrice
                 price={isYearly ? LIST_PRICE.yearly : LIST_PRICE.monthly}
@@ -73,8 +72,12 @@ export default function PricingPlans() {
             </>
           }
           period={isYearly ? "year" : "month"}
-          note={isYearly ? `$${perMonth} a month, locked in for life` : "Cancel anytime, locked in for life"}
-          cta={{ label: "Get Pro", className: "btn-accent" }}
+          note={
+            isYearly
+              ? `Founders price: $${perMonth} a month, locked in for life`
+              : "Founders price, locked in for life. Cancel anytime."
+          }
+          cta={{ label: "Get Pro", className: "btn-primary" }}
           featuresLead="Everything in Free, plus"
           features={PRO_FEATURES}
         />
@@ -85,7 +88,6 @@ export default function PricingPlans() {
 
 function PlanCard({
   name,
-  badge,
   blurb,
   price,
   period,
@@ -93,10 +95,9 @@ function PlanCard({
   cta,
   featuresLead,
   features,
-  accent = false,
+  featured = false,
 }: {
   name: string;
-  badge?: string;
   blurb: string;
   price: React.ReactNode;
   period: string;
@@ -104,21 +105,19 @@ function PlanCard({
   cta: { label: string; className: string };
   featuresLead?: string;
   features: string[];
-  accent?: boolean;
+  /** The recommended plan: a white card on the dark page, so the pair reads light vs dark */
+  featured?: boolean;
 }) {
   return (
-    <div className={`card flex flex-col p-6 md:p-7 ${accent ? "card-accent" : ""}`}>
-      <div className="flex items-center gap-2">
-        <h2 className="text-title">Helthy {name}</h2>
-        {badge && <span className="badge badge-accent">{badge}</span>}
-      </div>
-      <p className="mt-1 text-[14px] text-fg-subtle">{blurb}</p>
+    <div className={`card flex flex-col p-6 md:p-8 ${featured ? "theme-light border-transparent" : ""}`}>
+      <h2 className="text-title">Helthy {name}</h2>
+      <p className="mt-1 text-[14px] text-fg-muted">{blurb}</p>
 
       <div className="mt-6 flex flex-wrap items-baseline gap-x-2 gap-y-1">
         {price}
         <span className="text-[14px] text-fg-subtle">/{period}</span>
       </div>
-      <p className={`mt-2 text-[13px] font-medium ${accent ? "text-accent-ink" : "text-fg-muted"}`}>{note}</p>
+      <p className="mt-2 text-[13px] font-medium text-fg-muted">{note}</p>
 
       <Link href="/download" onClick={handleDownloadClick} className={`${cta.className} mt-6 w-full`}>
         {cta.label}

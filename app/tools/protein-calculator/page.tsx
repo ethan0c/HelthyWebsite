@@ -31,6 +31,7 @@ const FAQS = [
 export default function ProteinPage() {
   return (
     <SeoPage
+      closing={<DownloadBanner title="See your protein every time you log" />}
       crumbs={[
         { name: "Free tools", href: "/tools" },
         { name: "Protein calculator", href: "/tools/protein-calculator" },
@@ -70,8 +71,6 @@ export default function ProteinPage() {
           ]}
         />
       </Section>
-
-      <DownloadBanner title="See your protein every time you log" />
     </SeoPage>
   );
 }

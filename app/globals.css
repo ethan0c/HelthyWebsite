@@ -239,21 +239,19 @@ body {
 @layer components {
 /* ── Layout ───────────────────────────────────────────────────── */
 /* Wide: marketing sections. Narrow: content pages (SEO, legal, blog). */
-.container-page,
-.container-narrow {
+.container-page {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
 }
-.container-page   { max-width: 1280px; }
-.container-narrow { max-width: 1024px; }
+.container-page { max-width: 1280px; }
 @media (min-width: 768px) {
-  .container-page, .container-narrow { padding-left: 32px; padding-right: 32px; }
+  .container-page { padding-left: 32px; padding-right: 32px; }
 }
 @media (min-width: 1024px) {
-  .container-page, .container-narrow { padding-left: 48px; padding-right: 48px; }
+  .container-page { padding-left: 48px; padding-right: 48px; }
 }
 
 /* One vertical rhythm for every section */

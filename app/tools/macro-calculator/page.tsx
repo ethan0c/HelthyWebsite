@@ -31,6 +31,7 @@ const FAQS = [
 export default function MacroPage() {
   return (
     <SeoPage
+      closing={<DownloadBanner title="Hit your macros without the math" />}
       crumbs={[
         { name: "Free tools", href: "/tools" },
         { name: "Macro calculator", href: "/tools/macro-calculator" },
@@ -77,8 +78,6 @@ export default function MacroPage() {
           ]}
         />
       </Section>
-
-      <DownloadBanner title="Hit your macros without the math" />
     </SeoPage>
   );
 }

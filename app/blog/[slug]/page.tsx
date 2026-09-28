@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { SeoPage, DownloadBanner } from "@/components/seo/SeoPage";
 import JsonLd from "@/components/seo/JsonLd";
@@ -29,8 +30,14 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): P
       type: "article",
       publishedTime: post.meta.date,
       authors: [post.meta.author],
+      ...(post.meta.image && { images: [{ url: post.meta.image, width: 1200, height: 800, alt: post.meta.imageAlt }] }),
     },
-    twitter: { card: "summary_large_image", title: post.meta.title, description: post.meta.description },
+    twitter: {
+      card: "summary_large_image",
+      title: post.meta.title,
+      description: post.meta.description,
+      ...(post.meta.image && { images: [post.meta.image] }),
+    },
   };
 }
 
@@ -44,6 +51,8 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
 
   return (
     <SeoPage
+      tone="light"
+      closing={<DownloadBanner tone="dark" />}
       crumbs={[
         { name: "Blog", href: "/blog" },
         { name: meta.title, href: `/blog/${slug}` },
@@ -60,6 +69,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
           publisher: { "@id": `${SITE_URL}/#organization` },
           mainEntityOfPage: absoluteUrl(`/blog/${slug}`),
           keywords: meta.tags?.join(", "),
+          ...(meta.image && { image: absoluteUrl(meta.image) }),
         }}
       />
 
@@ -72,7 +82,19 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
           </p>
         </header>
 
-        <div className="mt-10 border-t border-line pt-4">
+        {meta.image && (
+          <Image
+            src={meta.image}
+            alt={meta.imageAlt ?? ""}
+            width={1200}
+            height={800}
+            priority
+            sizes="(min-width: 768px) 768px, 100vw"
+            className="mt-10 aspect-[16/9] w-full rounded-3xl object-cover"
+          />
+        )}
+
+        <div className={meta.image ? "mt-6" : "mt-10 border-t border-line pt-4"}>
           <Content />
         </div>
       </article>
@@ -95,7 +117,6 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
         </section>
       )}
 
-      <DownloadBanner />
     </SeoPage>
   );
 }

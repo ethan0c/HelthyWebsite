@@ -31,6 +31,7 @@ const FAQS = [
 export default function OneRepMaxPage() {
   return (
     <SeoPage
+      closing={<DownloadBanner title="Log your next PR in Helthy" />}
       crumbs={[
         { name: "Free tools", href: "/tools" },
         { name: "One-rep max calculator", href: "/tools/one-rep-max-calculator" },
@@ -76,8 +77,6 @@ export default function OneRepMaxPage() {
           ]}
         />
       </Section>
-
-      <DownloadBanner title="Log your next PR in Helthy" />
     </SeoPage>
   );
 }

@@ -12,7 +12,7 @@ export default function PrivacyPage() {
   return (
     <>
       <main className="theme-light relative min-h-screen bg-canvas text-fg">
-        <section className="container-narrow pb-24 pt-32 lg:pt-40">
+        <section className="container-page pb-24 pt-32 lg:pt-40">
           <div className="max-w-3xl space-y-12">
             {/* Header */}
             <div className="space-y-5 pb-10 border-b border-line">

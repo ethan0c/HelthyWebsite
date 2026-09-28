@@ -24,12 +24,15 @@ lemon is the only brand colour.
   token inside it. `theme-dark` switches back inside a light band.
 - **Homepage:** alternate the bands. Never put two light bands next to each other.
 - **Single-block pages** (hubs like /blog, /tools, /exercises, /compare, plus contact, download,
-  changelog, legal and 404) are one white page: `theme-light` on `<main>`, or
-  `<SeoPage tone="light">`. The dark nav and footer frame them.
-- **Multi-section content pages** (tool calculators, comparisons, exercise guides, blog posts,
+  changelog, legal and 404) and **blog posts** (long reading is easier on white) are one white
+  page: `theme-light` on `<main>`, or `<SeoPage tone="light">`. The dark nav and footer frame
+  them.
+- **Multi-section content pages** (pricing, tool calculators, comparisons, exercise guides,
   product landing pages) stay dark. They may use one light band through `<Section tone="light">`
   in `components/seo/SeoPage.tsx`.
-- Bands are always full width. Never float a rounded light panel on a dark page.
+- Bands are always full width. Never float a rounded light panel on a dark page. The one
+  exception is the recommended plan on /pricing: a white card beside the dark Free card, so the
+  pair reads light vs dark.
 
 ## Colour tokens (Tailwind names)
 
@@ -74,6 +77,9 @@ Two families only.
 - A heading can have at most one highlighted phrase, wrapped in `<span className="text-highlight">`
   (`<SectionHeading italicTail>` does this for you). Headings have no trailing period (the hero's
   "Get Helthy." is the exception).
+- On light bands the highlight marker is a band behind the letters, not a full box, so it
+  never covers descenders on the line above in tight display line-heights. Don't override
+  `.text-highlight` with a solid `background`.
 - Don't use uppercase tracking-wide labels, italic display type, or gradient text.
 
 ## Shape and depth: 2D only
@@ -107,14 +113,21 @@ Two families only.
   are always "App Store" and "Google Play".
 - **App screenshots**: `<PhoneFrame>` (`components/ui/PhoneFrame.tsx`), a flat black bezel with a
   1px line and no tilt or shadow. Use bare screen images, not pre-framed renders.
-- **Card**: `card` (+ `card-hover` if clickable, `card-accent` for the highlighted plan or
-  panel). Nested stat or result areas use `tile`.
+- **Card**: `card` (+ `card-hover` if clickable, `card-accent` for a highlighted panel). Nested stat or result areas use `tile`.
 - **Toggle**: `<Segmented>` (`components/ui/Segmented.tsx`) or the `.segmented` class with
   `aria-pressed` buttons. It's the only toggle style. The selected pill is white on dark and
   black on light, never lemon.
-- **Badge**: `badge`, `badge-accent`.
+- **Badge**: `badge`, `badge-accent`, for short labels like Pro. Pricing details (founders price,
+  discounts) are plain text next to the price, not pills.
 - **Input**: `input`.
 - **FAQ**: an accordion with divider lines (`FaqList` in SeoPage). No numbered cards.
+- **Comparison table**: `CompareTable` in SeoPage. Checkmarks are `text-fg`. `highlightFirst`
+  (default) emphasises the Helthy column on vs pages; pass `highlightFirst={false}` when the
+  columns are equals (Free vs Pro).
+- **Download CTA**: `DownloadBanner` in SeoPage, always passed to SeoPage's `closing` slot so it
+  runs full width and flush against the footer, with a phone rising from its bottom edge on
+  desktop. Its tone is the opposite of the page: the default light band on dark pages,
+  `tone="dark"` on white pages. Never a floating card mid-page.
 - **Icons**: `lucide-react` for UI. Use `react-icons` for brand logos only (Apple, Google
   Play, X, Instagram, TikTok).
 
@@ -122,12 +135,13 @@ Two families only.
 
 A full-width sticky top bar (MacroFactor / Robinhood style), not a floating pill: logo on the
 left, links, and a small primary Download button on the right. Solid canvas background with a
-1px bottom line.
+1px bottom line. Top-level items: Product and Resources (hover menus), Blog, Pricing
+(`/pricing`); Contact and Download sit on the right. The nav stays dark on every page.
 
 ## Layout
 
-- `container-page` (1280px) for marketing sections and `container-narrow` (1024px) for content
-  pages. Side padding is 20px, 32px from 768px and 48px from 1024px.
+- Every page uses `container-page` (1280px), so content lines up with the homepage and the nav.
+  Cap reading width on the text itself (`max-w-3xl` for headings and articles), not the container. Side padding is 20px, 32px from 768px and 48px from 1024px.
 - `section` gives the vertical rhythm (80px, rising to 112px on desktop). Don't hand-roll
   section padding.
 

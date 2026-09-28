@@ -455,7 +455,7 @@ export default function ChangelogPage() {
   return (
     <>
       <main className="theme-light relative min-h-screen bg-canvas text-fg">
-        <div className="container-narrow pb-24 pt-32 lg:pt-40">
+        <div className="container-page pb-24 pt-32 lg:pt-40">
           <div className="max-w-3xl">
             <h1 className="text-display-xl text-fg">
               What&apos;s <span className="text-highlight">new</span>

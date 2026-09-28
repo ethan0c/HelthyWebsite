@@ -17,7 +17,11 @@ export default function CompareIndexPage() {
   });
 
   return (
-    <SeoPage crumbs={[{ name: "Compare", href: "/compare" }]} tone="light">
+    <SeoPage
+      closing={<DownloadBanner tone="dark" />}
+      crumbs={[{ name: "Compare", href: "/compare" }]}
+      tone="light"
+    >
       <PageHero
         title={
           <>
@@ -34,8 +38,6 @@ export default function CompareIndexPage() {
       <Section title="Workout trackers">
         <LinkGrid links={COMPARISONS.filter((c) => c.category === "workout").map(link)} />
       </Section>
-
-      <DownloadBanner />
     </SeoPage>
   );
 }

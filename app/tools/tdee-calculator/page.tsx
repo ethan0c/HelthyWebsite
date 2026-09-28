@@ -31,6 +31,7 @@ const FAQS = [
 export default function TdeePage() {
   return (
     <SeoPage
+      closing={<DownloadBanner title="Turn your TDEE into a daily plan" />}
       crumbs={[
         { name: "Free tools", href: "/tools" },
         { name: "TDEE calculator", href: "/tools/tdee-calculator" },
@@ -77,8 +78,6 @@ export default function TdeePage() {
           ]}
         />
       </Section>
-
-      <DownloadBanner title="Turn your TDEE into a daily plan" />
     </SeoPage>
   );
 }

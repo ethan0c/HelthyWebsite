@@ -6,13 +6,13 @@ import {
   Section,
   Prose,
   FeatureGrid,
-  Screenshot,
   CompareTable,
   FaqList,
   LinkGrid,
   DownloadBanner,
   seoMetadata,
 } from "@/components/seo/SeoPage";
+import HeroAIDemo from "@/components/sections/HeroAIDemo";
 import { PRO_PRICE } from "@/lib/site";
 
 export const metadata: Metadata = seoMetadata({
@@ -56,8 +56,16 @@ const FAQS = [
 
 export default function AICoachPage() {
   return (
-    <SeoPage crumbs={[{ name: "AI fitness coach", href: "/ai-fitness-coach" }]}>
-      <div className="grid items-center gap-12 md:grid-cols-[1.3fr_1fr]">
+    <SeoPage
+      closing={
+        <DownloadBanner
+          title="Meet your AI coach"
+          body={`Download Helthy free and log for a few days. Then ask the coach anything. The unlimited AI coach is part of Helthy Pro, from $${PRO_PRICE.yearly}/year.`}
+        />
+      }
+      crumbs={[{ name: "AI fitness coach", href: "/ai-fitness-coach" }]}
+    >
+      <div className="grid items-center gap-12 md:grid-cols-2">
         <PageHero
           title={
             <>
@@ -69,14 +77,9 @@ export default function AICoachPage() {
         >
           <StoreButtons />
         </PageHero>
-        <div className="flex justify-center md:justify-end">
-          <Screenshot
-            src="/phones/see-insights.png"
-            alt="Helthy insights screen connecting nutrition, training and recovery"
-            width={1243}
-            height={1529}
-            priority
-          />
+        {/* Reserve the finished answer's height so the demo grows down, not up */}
+        <div className="flex justify-center md:min-h-[390px] md:items-start md:justify-end">
+          <HeroAIDemo />
         </div>
       </div>
 
@@ -145,11 +148,6 @@ export default function AICoachPage() {
           ]}
         />
       </Section>
-
-      <DownloadBanner
-        title="Meet your AI coach"
-        body={`Download Helthy free and log for a few days. Then ask the coach anything. The unlimited AI coach is part of Helthy Pro, from $${PRO_PRICE.yearly}/year.`}
-      />
     </SeoPage>
   );
 }

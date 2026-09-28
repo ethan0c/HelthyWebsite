@@ -65,7 +65,10 @@ const FAQS = [
 
 export default function PricingPage() {
   return (
-    <SeoPage crumbs={[{ name: "Pricing", href: "/pricing" }]}>
+    <SeoPage
+      closing={<DownloadBanner title="Start free today" />}
+      crumbs={[{ name: "Pricing", href: "/pricing" }]}
+    >
       <PageHero
         title={
           <>
@@ -79,10 +82,11 @@ export default function PricingPage() {
         <PricingPlans />
       </div>
 
-      <Section title="Free vs Pro, feature by feature">
+      <Section title="Free vs Pro, feature by feature" tone="light">
         <CompareTable
           columns={["Feature", "Free", "Pro"]}
           rows={ROWS.map((r) => ({ label: r.label, values: [r.values[0], r.values[1]] }))}
+          highlightFirst={false}
         />
       </Section>
 
@@ -99,8 +103,6 @@ export default function PricingPage() {
           ]}
         />
       </Section>
-
-      <DownloadBanner title="Start free today" />
     </SeoPage>
   );
 }

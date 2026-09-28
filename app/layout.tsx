@@ -41,10 +41,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/helthy-favicon.png", sizes: "717x717", type: "image/png" },
+      { url: "/helthy-icon.svg", type: "image/svg+xml" },
+      { url: "/helthy-favicon-96.png", sizes: "96x96", type: "image/png" },
     ],
     apple: "/helthy-apple-touch-icon.png",
-    shortcut: "/helthy-favicon.png",
+    shortcut: "/helthy-favicon-96.png",
   },
   robots: {
     index: true,

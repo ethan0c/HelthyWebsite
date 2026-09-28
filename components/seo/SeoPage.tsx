@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import SiteFooter from "@/components/sections/SiteFooter";
 import StoreButtonsBase from "@/components/ui/StoreButtons";
 import JsonLd from "@/components/seo/JsonLd";
+import PhoneFrame from "@/components/ui/PhoneFrame";
 import { absoluteUrl } from "@/lib/site";
 
 /**
@@ -19,19 +20,23 @@ export function SeoPage({
   crumbs,
   children,
   tone = "dark",
+  closing,
 }: {
   crumbs: Crumb[];
   children: ReactNode;
+  /** Full-bleed block after the content, flush against the footer */
+  closing?: ReactNode;
   /** "light" makes the whole page one white band (single-block pages like hubs) */
   tone?: "dark" | "light";
 }) {
   return (
     <>
       <main className={`relative bg-canvas text-fg ${tone === "light" ? "theme-light" : ""}`}>
-        <div className="container-narrow pb-24 pt-32 lg:pt-40">
+        <div className="container-page pb-24 pt-32 lg:pt-40">
           <Breadcrumbs crumbs={crumbs} />
           {children}
         </div>
+        {closing}
       </main>
       <SiteFooter />
     </>
@@ -128,7 +133,7 @@ export function Section({
   if (tone === "light") {
     return (
       <section className="theme-light mt-20 mx-[calc(50%-50vw)] py-20 md:mt-24 md:py-24">
-        <div className="container-narrow">{body}</div>
+        <div className="container-page">{body}</div>
       </section>
     );
   }
@@ -214,13 +219,16 @@ export function Screenshot({
 export function CompareTable({
   columns,
   rows,
+  highlightFirst = true,
 }: {
   columns: [string, string, string];
   rows: { label: string; values: [ReactNode, ReactNode] }[];
+  /** Emphasise the first value column (Helthy on comparison pages) */
+  highlightFirst?: boolean;
 }) {
   const cell = (v: ReactNode) =>
     v === true ? (
-      <span className="text-accent-ink" aria-label="Yes">✓</span>
+      <span className="text-fg" aria-label="Yes">✓</span>
     ) : v === false ? (
       <span className="text-fg-subtle" aria-label="No">—</span>
     ) : (
@@ -235,7 +243,7 @@ export function CompareTable({
               <th
                 key={c}
                 scope="col"
-                className={`px-5 py-4 text-[14px] font-medium ${i === 1 ? "text-accent-ink" : ""}`}
+                className={`px-5 py-4 text-[14px] font-medium ${highlightFirst && i === 1 ? "text-fg" : ""}`}
               >
                 {c}
               </th>
@@ -249,7 +257,7 @@ export function CompareTable({
                 {r.label}
               </th>
               <td className="px-5 py-4 text-fg">{cell(r.values[0])}</td>
-              <td className="px-5 py-4 text-fg-muted">{cell(r.values[1])}</td>
+              <td className={`px-5 py-4 ${highlightFirst ? "text-fg-muted" : "text-fg"}`}>{cell(r.values[1])}</td>
             </tr>
           ))}
         </tbody>
@@ -314,19 +322,41 @@ export function LinkGrid({
   );
 }
 
+/**
+ * Closing download band, full width and flush against the footer. Goes in
+ * SeoPage's `closing` slot. Its tone is the opposite of the page's, so it
+ * always reads as a new band: light on dark pages, dark on light pages.
+ * A phone rises from the bottom edge on desktop.
+ */
 export function DownloadBanner({
   title = "Track it all in one free app",
   body = "Calories, macros, workouts, weight and an AI coach that sees all of it. Free forever, with Helthy Pro when you want the AI extras.",
+  tone = "light",
 }: {
   title?: string;
   body?: string;
+  tone?: "light" | "dark";
 }) {
   return (
-    <section className="card card-accent mt-24 rounded-3xl p-8 md:p-12">
-      <h2 className="text-display-md text-fg">{title}</h2>
-      <p className="mt-4 max-w-2xl text-base leading-7 text-fg-muted">{body}</p>
-      <div className="mt-8">
-        <StoreButtons />
+    <section className={`${tone === "light" ? "theme-light" : "theme-dark"} overflow-hidden`}>
+      <div className="container-page grid items-end gap-10 md:grid-cols-[1.5fr_1fr]">
+        <div className="py-20 md:py-24">
+          <h2 className="max-w-xl text-display-lg text-fg">{title}</h2>
+          <p className="mt-4 max-w-lg text-base leading-7 text-fg-muted">{body}</p>
+          <div className="mt-8">
+            <StoreButtons />
+          </div>
+        </div>
+        <div aria-hidden="true" className="relative hidden h-[300px] md:block">
+          <PhoneFrame
+            src="/phones/home.png"
+            alt=""
+            width={1320}
+            height={2868}
+            sizes="240px"
+            className="absolute left-1/2 top-0 w-[240px] -translate-x-1/2"
+          />
+        </div>
       </div>
     </section>
   );

@@ -7,13 +7,14 @@ import {
   Prose,
   FeatureGrid,
   Steps,
-  Screenshot,
   FaqList,
   LinkGrid,
   DownloadBanner,
   seoMetadata,
 } from "@/components/seo/SeoPage";
 import AppleWatch from "@/components/ui/AppleWatch";
+import PhoneFrame from "@/components/ui/PhoneFrame";
+import PhoneVideo from "@/components/ui/PhoneVideo";
 import { PRO_PRICE } from "@/lib/site";
 
 export const metadata: Metadata = seoMetadata({
@@ -52,7 +53,10 @@ const FAQS = [
 
 export default function WorkoutTrackerPage() {
   return (
-    <SeoPage crumbs={[{ name: "Workout tracker", href: "/workout-tracker" }]}>
+    <SeoPage
+      closing={<DownloadBanner title="Log your next workout free" />}
+      crumbs={[{ name: "Workout tracker", href: "/workout-tracker" }]}
+    >
       <div className="grid items-center gap-12 md:grid-cols-[1.3fr_1fr]">
         <PageHero
           title={
@@ -66,12 +70,11 @@ export default function WorkoutTrackerPage() {
           <StoreButtons />
         </PageHero>
         <div className="flex justify-center md:justify-end">
-          <Screenshot
-            src="/phones/step-2/workout-log.png"
-            alt="Helthy workout log showing sets, reps and weight for an exercise"
-            width={1320}
-            height={2166}
-            priority
+          <PhoneVideo
+            src="/videos/app/workout-log.mp4"
+            poster="/videos/app/workout-log-poster.jpg"
+            label="Screen recording: starting a workout, adding an exercise from the library and logging sets"
+            className="w-[min(280px,70vw)]"
           />
         </div>
       </div>
@@ -115,11 +118,12 @@ export default function WorkoutTrackerPage() {
 
       <div className="mt-20 grid items-center gap-12 md:grid-cols-[1fr_1.3fr]">
         <div className="order-2 flex justify-center md:order-1 md:justify-start">
-          <Screenshot
+          <PhoneFrame
             src="/phones/exercise-info-screen.png"
             alt="Helthy exercise detail screen with form tips and history"
             width={1328}
             height={2707}
+            className="w-[min(280px,70vw)]"
           />
         </div>
         <div className="order-1 md:order-2">
@@ -197,8 +201,6 @@ export default function WorkoutTrackerPage() {
           ]}
         />
       </Section>
-
-      <DownloadBanner title="Log your next workout free" />
     </SeoPage>
   );
 }

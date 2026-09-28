@@ -16,6 +16,10 @@ export type PostMeta = {
   date: string;
   author: string;
   tags?: string[];
+  /** Cover photo in public/blog, e.g. "/blog/<slug>.jpg" (3:2, 1200px wide). */
+  image?: string;
+  /** Describes the photo for screen readers. */
+  imageAlt?: string;
   draft?: boolean;
 };
 

@@ -11,7 +11,17 @@ export const metadata: Metadata = seoMetadata({
 
 export default function ExercisesPage() {
   return (
-    <SeoPage crumbs={[{ name: "Exercises", href: "/exercises" }]} tone="light">
+    <SeoPage
+      closing={
+        <DownloadBanner
+          title="1,500 exercises in your pocket"
+          body="Helthy's workout tracker has how-to, target muscles and your personal records for every exercise, and logging a set takes seconds."
+          tone="dark"
+        />
+      }
+      crumbs={[{ name: "Exercises", href: "/exercises" }]}
+      tone="light"
+    >
       <PageHero
         title={
           <>
@@ -32,11 +42,6 @@ export default function ExercisesPage() {
           />
         </Section>
       ))}
-
-      <DownloadBanner
-        title="1,500 exercises in your pocket"
-        body="Helthy's workout tracker has how-to, target muscles and your personal records for every exercise, and logging a set takes seconds."
-      />
     </SeoPage>
   );
 }

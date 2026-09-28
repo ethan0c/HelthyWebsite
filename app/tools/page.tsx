@@ -10,7 +10,11 @@ export const metadata: Metadata = seoMetadata({
 
 export default function ToolsPage() {
   return (
-    <SeoPage crumbs={[{ name: "Free tools", href: "/tools" }]} tone="light">
+    <SeoPage
+      closing={<DownloadBanner tone="dark" />}
+      crumbs={[{ name: "Free tools", href: "/tools" }]}
+      tone="light"
+    >
       <PageHero
         title={
           <>
@@ -29,7 +33,6 @@ export default function ToolsPage() {
           ]}
         />
       </div>
-      <DownloadBanner />
     </SeoPage>
   );
 }

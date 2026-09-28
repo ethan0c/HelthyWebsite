@@ -7,12 +7,12 @@ import {
   Prose,
   FeatureGrid,
   Steps,
-  Screenshot,
   FaqList,
   LinkGrid,
   DownloadBanner,
   seoMetadata,
 } from "@/components/seo/SeoPage";
+import PhoneVideo from "@/components/ui/PhoneVideo";
 import { PRO_PRICE } from "@/lib/site";
 
 export const metadata: Metadata = seoMetadata({
@@ -47,7 +47,10 @@ const FAQS = [
 
 export default function CalorieTrackerPage() {
   return (
-    <SeoPage crumbs={[{ name: "Calorie tracker", href: "/calorie-tracker" }]}>
+    <SeoPage
+      closing={<DownloadBanner title="Start tracking calories free" />}
+      crumbs={[{ name: "Calorie tracker", href: "/calorie-tracker" }]}
+    >
       <div className="grid items-center gap-12 md:grid-cols-[1.3fr_1fr]">
         <PageHero
           title={
@@ -61,12 +64,11 @@ export default function CalorieTrackerPage() {
           <StoreButtons />
         </PageHero>
         <div className="flex justify-center md:justify-end">
-          <Screenshot
-            src="/phones/ai-meal-scan.png"
-            alt="Helthy AI meal scan identifying the foods on a plate and their calories and macros"
-            width={1321}
-            height={2572}
-            priority
+          <PhoneVideo
+            src="/videos/app/food-log.mp4"
+            poster="/videos/app/food-log-poster.jpg"
+            label="Screen recording: scanning a plate of food with the camera, then logging its calories and macros"
+            className="w-[min(280px,70vw)]"
           />
         </div>
       </div>
@@ -170,8 +172,6 @@ export default function CalorieTrackerPage() {
           ]}
         />
       </Section>
-
-      <DownloadBanner title="Start tracking calories free" />
     </SeoPage>
   );
 }

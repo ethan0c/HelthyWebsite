@@ -50,6 +50,7 @@ export default async function ComparisonPage({ params }: PageProps<"/compare/[sl
 
   return (
     <SeoPage
+      closing={<DownloadBanner title={`Switching from ${c.competitor}? Try Helthy free`} />}
       crumbs={[
         { name: "Compare", href: "/compare" },
         { name: `Helthy vs ${c.competitor}`, href: `/compare/${c.slug}` },
@@ -110,7 +111,6 @@ export default async function ComparisonPage({ params }: PageProps<"/compare/[sl
         />
       </Section>
 
-      <DownloadBanner title={`Switching from ${c.competitor}? Try Helthy free`} />
 
       <p className="mt-10 text-[12px] leading-5 text-fg-subtle">
         {c.competitor} is a trademark of {c.owner.replace(/\.$/, "")}. Helthy is not affiliated with or endorsed by{" "}

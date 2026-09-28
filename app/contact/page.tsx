@@ -27,7 +27,7 @@ export default function ContactPage() {
   return (
     <>
       <main className="theme-light relative bg-canvas text-fg">
-        <section className="container-narrow pb-24 pt-32 lg:pt-40">
+        <section className="container-page pb-24 pt-32 lg:pt-40">
           <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
             <div>
               <h1 className="max-w-xl text-display-xl text-fg">

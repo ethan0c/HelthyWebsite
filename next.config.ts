@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/blog/**": ["./content/blog/**/*"],
     "/sitemap.xml": ["./content/blog/**/*"],
+    "/exercises/**": ["./content/exercises/**/*"],
   },
 };
 
