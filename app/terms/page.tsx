@@ -93,12 +93,12 @@ export default function TermsPage() {
                 <div className="space-y-3">
                   <h3 className="text-[17px] font-medium text-fg">5.1 In-App Purchases via Apple &amp; Google</h3>
                   <p>
-                    Helthy Pro is sold as an in-app purchase through Apple&apos;s App Store (iOS) and Google Play (Android). All transactions are processed by the respective platform and are subject to their terms: <a href="https://www.apple.com/legal/internet-services/itunes/us/terms.html" target="_blank" rel="noopener noreferrer" className="text-accent-ink underline decoration-accent-line underline-offset-4 transition-colors hover:decoration-current">Apple Media Services Terms</a> and <a href="https://play.google.com/about/play-terms/" target="_blank" rel="noopener noreferrer" className="text-accent-ink underline decoration-accent-line underline-offset-4 transition-colors hover:decoration-current">Google Play Terms of Service</a>. We do not collect or store your payment information.
+                    Helthy Premium is sold as an in-app purchase through Apple&apos;s App Store (iOS) and Google Play (Android). All transactions are processed by the respective platform and are subject to their terms: <a href="https://www.apple.com/legal/internet-services/itunes/us/terms.html" target="_blank" rel="noopener noreferrer" className="text-accent-ink underline decoration-accent-line underline-offset-4 transition-colors hover:decoration-current">Apple Media Services Terms</a> and <a href="https://play.google.com/about/play-terms/" target="_blank" rel="noopener noreferrer" className="text-accent-ink underline decoration-accent-line underline-offset-4 transition-colors hover:decoration-current">Google Play Terms of Service</a>. We do not collect or store your payment information.
                   </p>
                 </div>
                 <div className="space-y-3">
                   <h3 className="text-[17px] font-medium text-fg">5.2 Subscription Plans</h3>
-                  <p>Helthy Pro is available on two billing cycles:</p>
+                  <p>Helthy Premium is available on two billing cycles:</p>
                   <ul className="list-disc list-inside marker:text-fg-subtle space-y-2 pl-4">
                     <li><strong className="font-medium text-fg">Monthly:</strong> billed once per month</li>
                     <li><strong className="font-medium text-fg">Annual:</strong> billed once per year — the lower effective monthly rate</li>

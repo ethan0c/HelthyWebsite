@@ -116,7 +116,7 @@ function siteJsonLd(rating: AppRating | null) {
           },
           {
             "@type": "Offer",
-            name: "Helthy Pro (monthly)",
+            name: "Helthy Premium (monthly)",
             price: String(PRO_PRICE.monthly),
             priceCurrency: "USD",
             description:
@@ -124,10 +124,10 @@ function siteJsonLd(rating: AppRating | null) {
           },
           {
             "@type": "Offer",
-            name: "Helthy Pro (yearly)",
+            name: "Helthy Premium (yearly)",
             price: String(PRO_PRICE.yearly),
             priceCurrency: "USD",
-            description: "Everything in Helthy Pro, billed yearly.",
+            description: "Everything in Helthy Premium, billed yearly.",
           },
         ],
         ...(rating && {

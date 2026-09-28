@@ -228,7 +228,7 @@ const V2_1_3_SECTIONS = [
   {
     label: "Added",
     items: [
-      "Free plan now shown on the upgrade screen with a clear side-by-side comparison of free vs Helthy Pro",
+      "Free plan now shown on the upgrade screen with a clear side-by-side comparison of free vs Helthy Premium",
       "A \"+1\" animation plays on your streak ring on the Home tab when you keep it going",
     ],
   },

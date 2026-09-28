@@ -26,7 +26,7 @@ export const metadata: Metadata = seoMetadata({
 const FAQS = [
   {
     q: "Is the Helthy workout tracker free?",
-    a: `Yes. Unlimited workout logging, the 1,500-exercise library and automatic PRs are free forever, and you can keep up to 4 saved workouts. Helthy Pro ($${PRO_PRICE.monthly}/month or $${PRO_PRICE.yearly}/year) adds unlimited saved workouts, full history, AI-generated routines and the workout coach.`,
+    a: `Yes. Unlimited workout logging, the 1,500-exercise library and automatic PRs are free forever, and you can keep up to 4 saved workouts. Helthy Premium ($${PRO_PRICE.monthly}/month or $${PRO_PRICE.yearly}/year) adds unlimited saved workouts, full history, AI-generated routines and the workout coach.`,
   },
   {
     q: "Can I track cardio as well as weights?",

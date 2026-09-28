@@ -13,8 +13,8 @@ import PricingPlans from "@/components/sections/PricingPlans";
 import { PRO_PRICE } from "@/lib/site";
 
 export const metadata: Metadata = seoMetadata({
-  title: `Pricing: Free Forever, Pro from $${PRO_PRICE.monthly}`,
-  description: `Helthy is free forever for food and workout tracking. Helthy Pro adds the AI coach and unlimited AI logging for $${PRO_PRICE.monthly}/month or $${PRO_PRICE.yearly}/year.`,
+  title: `Pricing: Free Forever, Premium from $${PRO_PRICE.monthly}`,
+  description: `Helthy is free forever for food and workout tracking. Helthy Premium adds the AI coach and unlimited AI logging for $${PRO_PRICE.monthly}/month or $${PRO_PRICE.yearly}/year.`,
   path: "/pricing",
 });
 
@@ -46,20 +46,16 @@ const FAQS = [
     a: "Yes. The free plan has no trial and no expiry. Food and workout logging, calorie and macro targets, personal records and weight tracking are all free, with 2 AI scans a week.",
   },
   {
-    q: "How much does Helthy Pro cost?",
-    a: `Helthy Pro is $${PRO_PRICE.monthly} a month or $${PRO_PRICE.yearly} a year in the US. The App Store and Google Play show the price in your local currency.`,
+    q: "How much does Helthy Premium cost?",
+    a: `Helthy Premium is $${PRO_PRICE.monthly} a month or $${PRO_PRICE.yearly} a year in the US. The App Store and Google Play show the price in your local currency.`,
   },
   {
     q: "What is the founders price?",
-    a: "It's the price early members pay for Helthy Pro, shown above next to the regular price. Your founders price is locked in for life.",
+    a: "It's the price early members pay for Helthy Premium, shown above next to the regular price. Your founders price is locked in for life.",
   },
   {
-    q: "How do I cancel Helthy Pro?",
+    q: "How do I cancel Helthy Premium?",
     a: "Cancel any time in Settings → Subscription in the app, or through the App Store or Google Play. You keep the free plan.",
-  },
-  {
-    q: "Why does the app say Premium?",
-    a: "Helthy Pro is called Premium inside the app. It's the same plan.",
   },
 ];
 
@@ -72,19 +68,19 @@ export default function PricingPage() {
       <PageHero
         title={
           <>
-            Free forever. <span className="text-highlight">Pro</span> when you want the AI
+            Free forever. <span className="text-highlight">Premium</span> when you want the AI
           </>
         }
-        lede="Track food and workouts for free, with no trial and no card. Helthy Pro adds the AI coach, unlimited AI logging and your full history."
+        lede="Track food and workouts for free, with no trial and no card. Helthy Premium adds the AI coach, unlimited AI logging and your full history."
       />
 
       <div className="mt-12">
         <PricingPlans />
       </div>
 
-      <Section title="Free vs Pro, feature by feature" tone="light">
+      <Section title="Free vs Premium, feature by feature" tone="light">
         <CompareTable
-          columns={["Feature", "Free", "Pro"]}
+          columns={["Feature", "Free", "Premium"]}
           rows={ROWS.map((r) => ({ label: r.label, values: [r.values[0], r.values[1]] }))}
           highlightFirst={false}
         />

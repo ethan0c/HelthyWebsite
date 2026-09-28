@@ -25,7 +25,7 @@ export const metadata: Metadata = seoMetadata({
 const FAQS = [
   {
     q: "Is Helthy's calorie tracker really free?",
-    a: `Yes. Food search, quick-add, calorie and macro tracking and nutrition goals are free with no limit and no trial. Free users also get 2 camera scans (photo, barcode or label), 2 voice logs and 2 typed descriptions a week. Helthy Pro ($${PRO_PRICE.monthly}/month or $${PRO_PRICE.yearly}/year) makes all of those unlimited and adds the AI coach.`,
+    a: `Yes. Food search, quick-add, calorie and macro tracking and nutrition goals are free with no limit and no trial. Free users also get 2 camera scans (photo, barcode or label), 2 voice logs and 2 typed descriptions a week. Helthy Premium ($${PRO_PRICE.monthly}/month or $${PRO_PRICE.yearly}/year) makes all of those unlimited and adds the AI coach.`,
   },
   {
     q: "How accurate is AI photo calorie counting?",

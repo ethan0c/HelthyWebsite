@@ -42,7 +42,7 @@ const FAQS = [
   },
   {
     q: "How much does the AI coach cost?",
-    a: `The unlimited AI coach is part of Helthy Pro: $${PRO_PRICE.monthly}/month or $${PRO_PRICE.yearly}/year. Food and workout logging stay free forever.`,
+    a: `The unlimited AI coach is part of Helthy Premium: $${PRO_PRICE.monthly}/month or $${PRO_PRICE.yearly}/year. Food and workout logging stay free forever.`,
   },
   {
     q: "Can an AI coach replace a personal trainer?",
@@ -50,7 +50,7 @@ const FAQS = [
   },
   {
     q: "Is my data used to train AI models?",
-    a: "No. Helthy never sells your data and never uses it to train AI models. You can delete your account from inside the app at any time, and Pro members can export their data.",
+    a: "No. Helthy never sells your data and never uses it to train AI models. You can delete your account from inside the app at any time, and Premium members can export their data.",
   },
 ];
 
@@ -60,7 +60,7 @@ export default function AICoachPage() {
       closing={
         <DownloadBanner
           title="Meet your AI coach"
-          body={`Download Helthy free and log for a few days. Then ask the coach anything. The unlimited AI coach is part of Helthy Pro, from $${PRO_PRICE.yearly}/year.`}
+          body={`Download Helthy free and log for a few days. Then ask the coach anything. The unlimited AI coach is part of Helthy Premium, from $${PRO_PRICE.yearly}/year.`}
         />
       }
       crumbs={[{ name: "AI fitness coach", href: "/ai-fitness-coach" }]}

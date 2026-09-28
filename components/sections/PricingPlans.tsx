@@ -8,7 +8,7 @@ import { handleDownloadClick } from "@/lib/download";
 import { PRO_PRICE } from "@/lib/site";
 import Segmented from "@/components/ui/Segmented";
 
-/** Free vs Pro cards with the monthly/yearly toggle. Used on /pricing. */
+/** Free vs Premium cards with the monthly/yearly toggle. Used on /pricing. */
 
 const FREE_FEATURES = [
   "Unlimited food and workout logging",
@@ -17,7 +17,7 @@ const FREE_FEATURES = [
   "Apple Health and Health Connect sync",
 ];
 
-const PRO_FEATURES = [
+const PREMIUM_FEATURES = [
   "Unlimited AI photo and voice logging",
   "Unlimited AI coach chat",
   "AI-built workout routines",
@@ -57,7 +57,7 @@ export default function PricingPlans() {
         />
         <PlanCard
           featured
-          name="Pro"
+          name="Premium"
           blurb="The AI coach and unlimited AI logging."
           price={
             <>
@@ -77,9 +77,9 @@ export default function PricingPlans() {
               ? `Founders price: $${perMonth} a month, locked in for life`
               : "Founders price, locked in for life. Cancel anytime."
           }
-          cta={{ label: "Get Pro", className: "btn-primary" }}
+          cta={{ label: "Get Premium", className: "btn-primary" }}
           featuresLead="Everything in Free, plus"
-          features={PRO_FEATURES}
+          features={PREMIUM_FEATURES}
         />
       </div>
     </div>
