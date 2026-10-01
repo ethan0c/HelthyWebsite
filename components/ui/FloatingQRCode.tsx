@@ -13,6 +13,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsap";
+import { useSegmentedThumb } from "@/components/ui/Segmented";
 
 const STORES = [
   {
@@ -34,6 +35,7 @@ export default function FloatingQRCode() {
   const [expanded, setExpanded] = useState(false);
   const [activeStore, setActiveStore] = useState<"ios" | "android">("ios");
   const wrapRef = useRef<HTMLDivElement>(null);
+  const tabsRef = useSegmentedThumb<HTMLDivElement>();
 
   useEffect(() => {
     const mq = window.matchMedia("(pointer: fine)");
@@ -89,17 +91,17 @@ export default function FloatingQRCode() {
   return (
     <div
       ref={wrapRef}
-      className="hidden sm:flex flex-col items-end fixed bottom-6 right-6 z-50"
+      className="hidden sm:flex flex-col items-end fixed bottom-6 right-6 z-40"
     >
       {/* Expanded popover */}
       {expanded && (
         <div
           role="dialog"
           aria-label="Scan to download Helthy"
-          className="absolute bottom-full right-0 z-20 mb-3 w-[208px] rounded-2xl border border-line bg-surface p-4"
+          className="absolute bottom-full right-0 z-20 mb-3 w-[208px] rounded-2xl border border-line bg-surface p-4 animate-in fade-in-0 slide-in-from-bottom-1 duration-200"
         >
           {/* Store tabs */}
-          <div className="segmented mb-3 w-full" role="group" aria-label="Store">
+          <div ref={tabsRef} className="segmented mb-3 w-full" role="group" aria-label="Store">
             {STORES.map((s) => (
               <button
                 key={s.id}

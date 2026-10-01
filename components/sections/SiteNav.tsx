@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { handleDownloadClick } from "@/lib/download";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   BookOpen,
@@ -73,47 +73,88 @@ const LINKS = [
   { label: "Pricing", href: "/pricing" },
 ];
 
+// A menu opens after a short pause so brushing past a trigger doesn't flash
+// it, and closes after a longer one so a diagonal move into the panel is safe.
+const OPEN_DELAY = 60;
+const CLOSE_DELAY = 180;
+
+const isCurrent = (pathname: string, href: string) =>
+  pathname === href || pathname.startsWith(`${href}/`);
+
+const itemClass = (lit: boolean) =>
+  `relative rounded-full px-3 py-2 text-[15px] font-medium transition-colors duration-150 hover:text-fg ${
+    lit ? "text-fg" : "text-fg-muted"
+  }`;
+
 /**
  * Full-width flat top bar (64px). Positioned by TopBar (fixed, flush under
  * the launch banner). Product and Resources open full-width menu panels on
  * desktop, on hover (click still works for touch and keyboard); on mobile
  * everything folds into one panel under the bar.
+ *
+ * Links are muted at rest and white when hovered, open or current. One pill
+ * glides between the hovered items and rests on the open menu's trigger.
  */
 export default function SiteNav() {
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const pillRef = useRef<HTMLSpanElement>(null);
+  const itemRefs = useRef<Record<string, HTMLElement | null>>({});
   const [menu, setMenu] = useState<MenuKey | null>(null);
+  // The menu whose content the panel shows. Outlives `menu` so the content
+  // stays put while the panel closes.
+  const [shown, setShown] = useState<MenuKey>(MENUS[0].key);
+  // True when moving between two open menus (content slides sideways), false
+  // when the panel opens from closed (content is already in place).
+  const [swap, setSwap] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   // True while the open menu was opened by mouse hover, so a click on the
   // same trigger doesn't immediately toggle it shut.
   const openedByHover = useRef(false);
 
-  const cancelClose = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-    closeTimer.current = null;
+  const cancelTimer = () => {
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = null;
   };
 
   const close = () => {
-    cancelClose();
+    cancelTimer();
     setMenu(null);
     setMobileOpen(false);
   };
 
-  const openOnHover = (key: MenuKey | null) => (e: React.PointerEvent) => {
-    if (e.pointerType !== "mouse") return;
-    cancelClose();
-    openedByHover.current = key !== null;
+  const openMenu = (key: MenuKey) => {
+    setSwap(menu !== null && menu !== key);
+    setShown(key);
     setMenu(key);
+  };
+
+  // Hovering an item moves the pill to it. Menu triggers also open their
+  // menu; every other item closes whichever menu is open.
+  const hoverItem = (key: string | null, menuKey: MenuKey | null = null) => (e: React.PointerEvent) => {
+    if (e.pointerType !== "mouse") return;
+    cancelTimer();
+    if (key) setHovered(key);
+    openedByHover.current = menuKey !== null;
+    if (menuKey === null) setMenu(null);
+    else if (menu !== null) openMenu(menuKey);
+    else timer.current = setTimeout(() => openMenu(menuKey), OPEN_DELAY);
+  };
+
+  const unhover = (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") setHovered(null);
   };
 
   const scheduleClose = (e: React.PointerEvent) => {
     if (e.pointerType !== "mouse") return;
-    cancelClose();
-    closeTimer.current = setTimeout(() => setMenu(null), 150);
+    cancelTimer();
+    timer.current = setTimeout(() => setMenu(null), CLOSE_DELAY);
   };
 
-  useEffect(() => cancelClose, []);
+  useEffect(() => cancelTimer, []);
 
   // Close everything on navigation.
   useEffect(() => {
@@ -136,12 +177,40 @@ export default function SiteNav() {
     };
   }, [menu, mobileOpen]);
 
-  const active = MENUS.find((m) => m.key === menu);
+  // Place the pill under the hovered item, or under the open menu's trigger.
+  // It slides between neighbours; it fades in where it is needed when it was
+  // hidden or when the target is in the other group across the bar.
+  const pillKey = hovered ?? menu;
+  useLayoutEffect(() => {
+    const pill = pillRef.current;
+    const nav = navRef.current;
+    if (!pill || !nav) return;
+    const target = pillKey ? itemRefs.current[pillKey] : null;
+    if (!target) {
+      pill.style.opacity = "0";
+      return;
+    }
+    const navBox = nav.getBoundingClientRect();
+    const box = target.getBoundingClientRect();
+    const group = target.dataset.group ?? "";
+    pill.dataset.slide = String(pill.style.opacity === "1" && pill.dataset.group === group);
+    pill.dataset.group = group;
+    pill.style.transform = `translate(${box.left - navBox.left}px, ${box.top - navBox.top}px)`;
+    pill.style.width = `${box.width}px`;
+    pill.style.height = `${box.height}px`;
+    pill.style.opacity = "1";
+  }, [pillKey]);
+
+  const setItemRef = (key: string) => (el: HTMLElement | null) => {
+    itemRefs.current[key] = el;
+  };
+
+  const shownIndex = MENUS.findIndex((m) => m.key === shown);
 
   return (
     <header
       ref={headerRef}
-      onPointerEnter={(e) => e.pointerType === "mouse" && cancelClose()}
+      onPointerEnter={(e) => e.pointerType === "mouse" && cancelTimer()}
       onPointerLeave={scheduleClose}
       className="pointer-events-auto relative w-full border-b border-line bg-canvas"
     >
@@ -151,67 +220,83 @@ export default function SiteNav() {
           aria-label="Helthy home"
           className="flex shrink-0 items-center"
           onClick={close}
-          onPointerEnter={openOnHover(null)}
+          onPointerEnter={hoverItem(null)}
         >
           <HelthyWordmark className="h-6 w-auto text-fg" />
         </Link>
 
         {/* Desktop */}
-        <nav aria-label="Primary" className="hidden flex-1 items-center lg:flex">
-          <ul className="flex items-center gap-1">
+        <nav ref={navRef} aria-label="Primary" className="relative hidden flex-1 items-center lg:flex">
+          <span ref={pillRef} aria-hidden="true" className="nav-pill" />
+          <ul className="relative flex items-center gap-1" onPointerLeave={unhover}>
             {MENUS.map((m) => {
               const isOpen = menu === m.key;
+              const hasCurrent = m.links.some((l) => isCurrent(pathname, l.href));
               return (
-                <li key={m.key} onPointerEnter={openOnHover(m.key)}>
+                <li key={m.key} onPointerEnter={hoverItem(m.key, m.key)}>
                   <button
+                    ref={setItemRef(m.key)}
+                    data-group="links"
                     type="button"
                     onClick={() => {
+                      cancelTimer();
                       if (isOpen && openedByHover.current) {
                         openedByHover.current = false;
                         return;
                       }
                       openedByHover.current = false;
-                      setMenu(isOpen ? null : m.key);
+                      if (isOpen) setMenu(null);
+                      else openMenu(m.key);
                     }}
                     aria-expanded={isOpen}
                     aria-controls={`menu-${m.key}`}
-                    className={`inline-flex items-center gap-1 rounded-full px-3 py-2 text-[15px] font-medium transition-colors duration-150 hover:bg-surface-2 hover:text-fg ${
-                      isOpen ? "bg-surface-2 text-fg" : "text-fg"
-                    }`}
+                    className={`inline-flex items-center gap-1 ${itemClass(isOpen || hasCurrent)}`}
                   >
                     {m.label}
                     <ChevronDown
                       aria-hidden="true"
-                      className={`h-3.5 w-3.5 transition-transform duration-150 ${isOpen ? "rotate-180" : ""}`}
+                      className={`h-3.5 w-3.5 transition-transform duration-200 ease-out ${isOpen ? "rotate-180" : ""}`}
                     />
                   </button>
                 </li>
               );
             })}
-            {LINKS.map((l) => (
-              <li key={l.label} onPointerEnter={openOnHover(null)}>
-                <Link
-                  href={l.href}
-                  onClick={close}
-                  className="inline-block rounded-full px-3 py-2 text-[15px] font-medium text-fg transition-colors duration-150 hover:bg-surface-2 hover:text-fg"
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
+            {LINKS.map((l) => {
+              const current = isCurrent(pathname, l.href);
+              return (
+                <li key={l.label} onPointerEnter={hoverItem(l.href)}>
+                  <Link
+                    ref={setItemRef(l.href)}
+                    data-group="links"
+                    href={l.href}
+                    onClick={close}
+                    aria-current={current ? "page" : undefined}
+                    className={`inline-block ${itemClass(current)}`}
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
-          <div className="ml-auto flex items-center gap-2" onPointerEnter={openOnHover(null)}>
+          <div className="relative ml-auto flex items-center gap-2" onPointerLeave={unhover}>
             <Link
+              ref={setItemRef("/contact")}
+              data-group="aside"
               href="/contact"
               onClick={close}
-              className="rounded-full px-3 py-2 text-[15px] font-medium text-fg transition-colors duration-150 hover:bg-surface-2 hover:text-fg"
+              onPointerEnter={hoverItem("/contact")}
+              aria-current={isCurrent(pathname, "/contact") ? "page" : undefined}
+              className={itemClass(isCurrent(pathname, "/contact"))}
             >
               Contact
             </Link>
-            <CTAButton href="/download" variant="primary" size="sm" onClick={handleDownloadClick}>
-              Download
-            </CTAButton>
+            <span onPointerEnter={hoverItem(null)} className="flex">
+              <CTAButton href="/download" variant="primary" size="sm" onClick={handleDownloadClick}>
+                Download
+              </CTAButton>
+            </span>
           </div>
         </nav>
 
@@ -222,105 +307,148 @@ export default function SiteNav() {
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
-          className="-mr-2 ml-auto flex h-10 w-10 items-center justify-center rounded-full text-fg transition-colors duration-150 hover:bg-surface-2 lg:hidden"
+          className="-mr-2 ml-auto flex h-10 w-10 items-center justify-center rounded-full text-fg transition-colors duration-150 hover:bg-surface-2 active:bg-surface-3 lg:hidden"
         >
-          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          <span aria-hidden="true" className="relative h-5 w-5">
+            <Menu
+              className={`absolute inset-0 h-5 w-5 transition duration-200 ease-out ${mobileOpen ? "rotate-90 opacity-0" : ""}`}
+            />
+            <X
+              className={`absolute inset-0 h-5 w-5 transition duration-200 ease-out ${mobileOpen ? "" : "-rotate-90 opacity-0"}`}
+            />
+          </span>
         </button>
       </div>
 
+      {/* Dims the page under an open menu so the panel reads as its own layer */}
+      <div
+        aria-hidden="true"
+        className={`pointer-events-none absolute inset-x-0 top-full h-screen bg-canvas/60 transition-opacity duration-200 ${
+          menu || mobileOpen ? "opacity-100" : "opacity-0"
+        }`}
+      />
+
       {/* Desktop menu panel: full width under the bar */}
-      {active && (
-        <div
-          id={`menu-${active.key}`}
-          className="absolute left-0 right-0 top-full hidden border-b border-line bg-canvas lg:block"
-        >
-          <div className="container-page grid grid-cols-[1fr_1fr_0.9fr] gap-x-3 gap-y-1 py-5">
-            {active.links.map(({ label, description, href, Icon }) => (
-              <Link
-                key={href}
-                href={href}
-                onClick={close}
-                className="flex gap-3 rounded-2xl p-3 transition-colors duration-150 hover:bg-surface"
-              >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-surface-2 text-fg">
-                  <Icon aria-hidden="true" className="h-[18px] w-[18px]" />
-                </span>
-                <span>
-                  <span className="block text-[14px] font-medium text-fg">{label}</span>
-                  <span className="mt-0.5 block text-[13px] leading-5 text-fg-muted">{description}</span>
-                </span>
-              </Link>
-            ))}
-            <div className="card col-start-3 row-span-2 row-start-1 flex flex-col justify-between gap-4 p-5">
-              <div>
-                <p className="text-[14px] font-medium text-fg">{active.feature.title}</p>
-                <p className="mt-1 text-[13px] leading-5 text-fg-muted">{active.feature.body}</p>
+      <div
+        data-open={menu !== null}
+        data-swap={swap}
+        inert={menu === null}
+        className="nav-panel absolute inset-x-0 top-full hidden border-b border-line bg-canvas lg:block"
+      >
+        <div className="nav-panel-body container-page grid py-5">
+          {MENUS.map((m, i) => (
+            <div
+              key={m.key}
+              id={`menu-${m.key}`}
+              data-active={m.key === shown}
+              data-side={i < shownIndex ? "start" : "end"}
+              inert={m.key !== shown}
+              className="nav-pane grid grid-cols-[1fr_1fr_0.9fr] gap-x-3 gap-y-1"
+            >
+              {m.links.map(({ label, description, href, Icon }) => {
+                const current = isCurrent(pathname, href);
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={close}
+                    aria-current={current ? "page" : undefined}
+                    className="group flex gap-3 rounded-2xl p-3 transition-colors duration-150 hover:bg-surface"
+                  >
+                    <span
+                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors duration-150 group-hover:bg-fg group-hover:text-canvas group-focus-visible:bg-fg group-focus-visible:text-canvas ${
+                        current ? "bg-fg text-canvas" : "bg-surface-2 text-fg"
+                      }`}
+                    >
+                      <Icon aria-hidden="true" className="h-[18px] w-[18px]" />
+                    </span>
+                    <span>
+                      <span className="flex items-center gap-1.5 text-[14px] font-medium text-fg">
+                        {label}
+                        <ArrowRight
+                          aria-hidden="true"
+                          className="h-3.5 w-3.5 -translate-x-1 text-fg-muted opacity-0 transition duration-200 ease-out group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100"
+                        />
+                      </span>
+                      <span className="mt-0.5 block text-[13px] leading-5 text-fg-muted">{description}</span>
+                    </span>
+                  </Link>
+                );
+              })}
+              <div className="card col-start-3 row-span-2 row-start-1 flex flex-col justify-between gap-4 p-5">
+                <div>
+                  <p className="text-[14px] font-medium text-fg">{m.feature.title}</p>
+                  <p className="mt-1 text-[13px] leading-5 text-fg-muted">{m.feature.body}</p>
+                </div>
+                <CTAButton
+                  href={m.feature.href}
+                  variant="secondary"
+                  size="sm"
+                  className="self-start"
+                  onClick={(e) => {
+                    if (m.feature.download) handleDownloadClick(e);
+                    close();
+                  }}
+                >
+                  <span className="inline-flex items-center gap-1.5">
+                    {m.feature.cta}
+                    <ArrowRight aria-hidden="true" className="nudge h-3.5 w-3.5" />
+                  </span>
+                </CTAButton>
               </div>
-              <CTAButton
-                href={active.feature.href}
-                variant="secondary"
-                size="sm"
-                className="self-start"
-                onClick={(e) => {
-                  if (active.feature.download) handleDownloadClick(e);
-                  close();
-                }}
-              >
-                <span className="inline-flex items-center gap-1.5">
-                  {active.feature.cta}
-                  <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
-                </span>
-              </CTAButton>
             </div>
-          </div>
+          ))}
         </div>
-      )}
+      </div>
 
       {/* Mobile menu: full-width panel under the bar */}
-      {mobileOpen && (
-        <div
-          id="mobile-menu"
-          className="absolute left-0 right-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-line bg-canvas lg:hidden"
-        >
-          <div className="container-page pb-6">
-            {MENUS.map((m) => (
-              <div key={m.key} className="border-b border-line py-4">
-                <p className="pb-2 text-[13px] font-medium text-fg-subtle">{m.label}</p>
-                <ul>
-                  {m.links.map(({ label, href, Icon }) => (
-                    <li key={href}>
-                      <Link
-                        href={href}
-                        onClick={close}
-                        className="flex items-center gap-3 py-2.5 text-[16px] font-medium text-fg transition-colors duration-150 hover:text-fg"
-                      >
-                        <Icon aria-hidden="true" className="h-[18px] w-[18px] text-fg-subtle" />
-                        {label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-            <ul className="divide-y divide-line">
-              {[...LINKS, { label: "Contact", href: "/contact" }].map((l) => (
-                <li key={l.label}>
-                  <Link
-                    href={l.href}
-                    onClick={close}
-                    className="block py-4 text-[16px] font-medium text-fg transition-colors duration-150 hover:text-fg"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div className="border-t border-line pt-6 [&_a]:w-full">
-              <StoreButtons />
+      <div
+        id="mobile-menu"
+        data-open={mobileOpen}
+        inert={!mobileOpen}
+        data-lenis-prevent
+        className="nav-panel absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-b border-line bg-canvas lg:hidden"
+      >
+        <div className="nav-panel-body container-page pb-6">
+          {MENUS.map((m) => (
+            <div key={m.key} className="border-b border-line py-4">
+              <p className="pb-2 text-[13px] font-medium text-fg-subtle">{m.label}</p>
+              <ul>
+                {m.links.map(({ label, href, Icon }) => (
+                  <li key={href}>
+                    <Link
+                      href={href}
+                      onClick={close}
+                      aria-current={isCurrent(pathname, href) ? "page" : undefined}
+                      className="flex items-center gap-3 py-2.5 text-[16px] font-medium text-fg transition-colors duration-150 active:text-fg-muted"
+                    >
+                      <Icon aria-hidden="true" className="h-[18px] w-[18px] text-fg-subtle" />
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
+          ))}
+          <ul className="divide-y divide-line">
+            {[...LINKS, { label: "Contact", href: "/contact" }].map((l) => (
+              <li key={l.label}>
+                <Link
+                  href={l.href}
+                  onClick={close}
+                  aria-current={isCurrent(pathname, l.href) ? "page" : undefined}
+                  className="block py-4 text-[16px] font-medium text-fg transition-colors duration-150 active:text-fg-muted"
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="border-t border-line pt-6 [&_a]:w-full">
+            <StoreButtons />
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

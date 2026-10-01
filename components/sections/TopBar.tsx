@@ -20,19 +20,24 @@ export default function TopBar() {
         navRef.current.style.top = `${Math.max(0, bannerHeight - window.scrollY)}px`;
       }
     };
+    const banner = document.getElementById("launch-banner");
     const measure = () => {
-      const el = document.getElementById("launch-banner");
-      bannerHeight = el?.offsetHeight ?? 0;
+      bannerHeight = banner?.getBoundingClientRect().height ?? 0;
       place();
     };
 
     measure();
+
+    // Follows the banner frame by frame while it collapses on dismiss.
+    const observer = new ResizeObserver(measure);
+    if (banner) observer.observe(banner);
 
     window.addEventListener("helthy:banner", measure);
     window.addEventListener("resize", measure);
     window.addEventListener("scroll", place, { passive: true });
 
     return () => {
+      observer.disconnect();
       window.removeEventListener("helthy:banner", measure);
       window.removeEventListener("resize", measure);
       window.removeEventListener("scroll", place);

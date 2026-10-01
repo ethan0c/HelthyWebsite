@@ -28,7 +28,9 @@ export default async function GuidesSection() {
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {links.map((l) => (
             <Link key={l.href} href={l.href} className="card card-hover block p-6">
-              <span className="text-title">{l.title} →</span>
+              <span className="text-title">
+                {l.title} <span aria-hidden="true" className="nudge">→</span>
+              </span>
               <span className="mt-1.5 block text-[15px] leading-6 text-fg-muted">{l.body}</span>
             </Link>
           ))}

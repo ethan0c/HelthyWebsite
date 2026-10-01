@@ -5,6 +5,7 @@ import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import Image from "next/image";
 import React from "react";
 import CTAButton from "@/components/ui/CTAButton";
+import { useSegmentedThumb } from "@/components/ui/Segmented";
 
 // Real tokens from mobile app dark theme (constants/colors.ts).
 // Used only inside the app mockups; marketing chrome uses the site tokens.
@@ -119,7 +120,7 @@ export default function FeaturesRow() {
           <div className="mt-20 flex flex-col gap-6 border-t border-line pt-10 sm:flex-row sm:items-center sm:justify-between md:mt-28">
             <p className="text-display-md text-fg">More where that came from</p>
             <CTAButton href="/changelog" variant="secondary">
-              See all features →
+              See all features <span aria-hidden="true" className="nudge">→</span>
             </CTAButton>
           </div>
         </div>
@@ -172,13 +173,14 @@ function TripleScreenshotMockup({
   tabs?: string[];
 }) {
   const [active, setActive] = React.useState(0);
+  const tabsRef = useSegmentedThumb<HTMLDivElement>();
 
   const labels = tabs ?? screens.map((s) => s.alt);
   const frameRatio = Math.min(...screens.map((s) => s.width / s.height));
 
   return (
     <div className="flex w-full flex-col items-center">
-      <div role="tablist" aria-label="Workout features" className="segmented mb-8">
+      <div ref={tabsRef} role="tablist" aria-label="Workout features" className="segmented mb-8">
         {labels.map((label, i) => (
           <button
             key={label}
