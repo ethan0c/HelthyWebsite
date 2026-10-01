@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import SiteFooter from "@/components/sections/SiteFooter";
 import DownloadButton from "@/components/ui/DownloadButton";
 import JsonLd from "@/components/seo/JsonLd";
+import FaqItem from "@/components/ui/FaqItem";
 import { absoluteUrl } from "@/lib/site";
 
 /**
@@ -264,7 +265,7 @@ export function CompareTable({
   );
 }
 
-/** FAQ list using native <details>, plus FAQPage structured data. */
+/** FAQ accordion (native <details> rows), plus FAQPage structured data. */
 export function FaqList({ faqs }: { faqs: Faq[] }) {
   return (
     <>
@@ -281,18 +282,7 @@ export function FaqList({ faqs }: { faqs: Faq[] }) {
       />
       <div className="max-w-3xl divide-y divide-line border-y border-line">
         {faqs.map((f) => (
-          <details key={f.q} className="group py-5">
-            <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-[16px] font-medium text-fg [&::-webkit-details-marker]:hidden">
-              {f.q}
-              <span
-                aria-hidden="true"
-                className="mt-0.5 text-lg leading-none text-fg-muted transition-transform group-open:rotate-45"
-              >
-                +
-              </span>
-            </summary>
-            <p className="mt-3 text-[15px] leading-7 text-fg-muted">{f.a}</p>
-          </details>
+          <FaqItem key={f.q} q={f.q} a={f.a} />
         ))}
       </div>
     </>
@@ -315,7 +305,9 @@ export function LinkGrid({
           href={l.href}
           className="card card-hover block p-5"
         >
-          <span className="text-title text-[15px]">{l.title} →</span>
+          <span className="text-title text-[15px]">
+            {l.title} <span aria-hidden="true" className="nudge">→</span>
+          </span>
           {l.body && <span className="mt-1.5 block text-[14px] leading-6 text-fg-muted">{l.body}</span>}
         </Link>
       ))}

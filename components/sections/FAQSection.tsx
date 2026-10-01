@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import SectionHeading from "@/components/ui/SectionHeading";
+import FaqItem from "@/components/ui/FaqItem";
 import { PRO_PRICE } from "@/lib/site";
 
 const FAQS = [
@@ -63,18 +64,7 @@ export default function FAQSection() {
 
         <div data-faq-grid className="divide-y divide-line border-y border-line">
           {FAQS.map((faq) => (
-            <details key={faq.q} data-faq-card className="group py-5">
-              <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-[16px] font-medium text-fg [&::-webkit-details-marker]:hidden">
-                {faq.q}
-                <span
-                  aria-hidden="true"
-                  className="mt-0.5 text-lg leading-none text-fg-muted transition-transform group-open:rotate-45"
-                >
-                  +
-                </span>
-              </summary>
-              <p className="mt-3 text-[15px] leading-7 text-fg-muted">{faq.a}</p>
-            </details>
+            <FaqItem key={faq.q} q={faq.q} a={faq.a} data-faq-card />
           ))}
         </div>
       </div>
