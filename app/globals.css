@@ -527,19 +527,22 @@ textarea.input { height: auto; padding: 0.75rem 1rem; }
 .input:focus { outline: none; border-color: var(--accent-ink); }
 
 /* ── Navigation motion ────────────────────────────────────────── */
-/* Hover pill: one shape that glides between items (SiteNav positions it). */
-.nav-pill {
+/* Hover marker: the heading highlight, as a hover. A lemon copy of the nav
+   links, clipped to one band that glides between items (SiteNav sets the
+   clip-path). */
+.nav-marker {
   position: absolute;
-  left: 0;
-  top: 0;
-  border-radius: 999px;
-  background: var(--surface-2);
+  inset: 0;
+  display: flex;
+  align-items: center;
+  background: var(--accent);
+  color: var(--on-accent);
   opacity: 0;
   pointer-events: none;
   transition: opacity 150ms ease;
 }
-.nav-pill[data-slide="true"] {
-  transition: opacity 150ms ease, transform 250ms var(--ease-out), width 250ms var(--ease-out);
+.nav-marker[data-slide="true"] {
+  transition: opacity 150ms ease, clip-path 250ms var(--ease-out);
 }
 /* Menu panel: wipes down from under the bar, and back up a little faster.
    Clipped rather than moved, so nothing slides over the bar. */

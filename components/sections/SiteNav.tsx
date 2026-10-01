@@ -81,10 +81,13 @@ const CLOSE_DELAY = 180;
 const isCurrent = (pathname: string, href: string) =>
   pathname === href || pathname.startsWith(`${href}/`);
 
+const ITEM = "px-3 py-2 text-[15px] font-medium";
 const itemClass = (lit: boolean) =>
-  `relative rounded-full px-3 py-2 text-[15px] font-medium transition-colors duration-150 hover:text-fg ${
-    lit ? "text-fg" : "text-fg-muted"
-  }`;
+  `${ITEM} rounded-full transition-colors duration-150 ${lit ? "text-fg" : "text-fg-muted"}`;
+
+// How far the hover marker sits inside a link's box, so it hugs the label
+// like the highlighter band behind a heading's highlighted phrase.
+const MARKER_INSET = { x: 6, y: 7 };
 
 /**
  * Full-width flat top bar (64px). Positioned by TopBar (fixed, flush under
@@ -92,14 +95,15 @@ const itemClass = (lit: boolean) =>
  * desktop, on hover (click still works for touch and keyboard); on mobile
  * everything folds into one panel under the bar.
  *
- * Links are muted at rest and white when hovered, open or current. One pill
- * glides between the hovered items and rests on the open menu's trigger.
+ * Links are muted at rest and white for the current page. Hover is the
+ * heading highlight: one lemon marker with black text glides between the
+ * hovered links and rests on the open menu's trigger.
  */
 export default function SiteNav() {
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
   const navRef = useRef<HTMLElement>(null);
-  const pillRef = useRef<HTMLSpanElement>(null);
+  const markerRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Record<string, HTMLElement | null>>({});
   const [menu, setMenu] = useState<MenuKey | null>(null);
   // The menu whose content the panel shows. Outlives `menu` so the content
@@ -132,7 +136,7 @@ export default function SiteNav() {
     setMenu(key);
   };
 
-  // Hovering an item moves the pill to it. Menu triggers also open their
+  // Hovering an item moves the marker to it. Menu triggers also open their
   // menu; every other item closes whichever menu is open.
   const hoverItem = (key: string | null, menuKey: MenuKey | null = null) => (e: React.PointerEvent) => {
     if (e.pointerType !== "mouse") return;
@@ -177,29 +181,30 @@ export default function SiteNav() {
     };
   }, [menu, mobileOpen]);
 
-  // Place the pill under the hovered item, or under the open menu's trigger.
-  // It slides between neighbours; it fades in where it is needed when it was
+  // Place the marker on the hovered item, or on the open menu's trigger. It
+  // slides between neighbours; it fades in where it is needed when it was
   // hidden or when the target is in the other group across the bar.
-  const pillKey = hovered ?? menu;
+  const markerKey = hovered ?? menu;
   useLayoutEffect(() => {
-    const pill = pillRef.current;
+    const marker = markerRef.current;
     const nav = navRef.current;
-    if (!pill || !nav) return;
-    const target = pillKey ? itemRefs.current[pillKey] : null;
+    if (!marker || !nav) return;
+    const target = markerKey ? itemRefs.current[markerKey] : null;
     if (!target) {
-      pill.style.opacity = "0";
+      marker.style.opacity = "0";
       return;
     }
     const navBox = nav.getBoundingClientRect();
     const box = target.getBoundingClientRect();
     const group = target.dataset.group ?? "";
-    pill.dataset.slide = String(pill.style.opacity === "1" && pill.dataset.group === group);
-    pill.dataset.group = group;
-    pill.style.transform = `translate(${box.left - navBox.left}px, ${box.top - navBox.top}px)`;
-    pill.style.width = `${box.width}px`;
-    pill.style.height = `${box.height}px`;
-    pill.style.opacity = "1";
-  }, [pillKey]);
+    const { x, y } = MARKER_INSET;
+    marker.dataset.slide = String(marker.style.opacity === "1" && marker.dataset.group === group);
+    marker.dataset.group = group;
+    marker.style.clipPath = `inset(${box.top - navBox.top + y}px ${navBox.right - box.right + x}px ${
+      navBox.bottom - box.bottom + y
+    }px ${box.left - navBox.left + x}px round 4px)`;
+    marker.style.opacity = "1";
+  }, [markerKey]);
 
   const setItemRef = (key: string) => (el: HTMLElement | null) => {
     itemRefs.current[key] = el;
@@ -227,8 +232,7 @@ export default function SiteNav() {
 
         {/* Desktop */}
         <nav ref={navRef} aria-label="Primary" className="relative hidden flex-1 items-center lg:flex">
-          <span ref={pillRef} aria-hidden="true" className="nav-pill" />
-          <ul className="relative flex items-center gap-1" onPointerLeave={unhover}>
+          <ul className="flex items-center gap-1" onPointerLeave={unhover}>
             {MENUS.map((m) => {
               const isOpen = menu === m.key;
               const hasCurrent = m.links.some((l) => isCurrent(pathname, l.href));
@@ -250,7 +254,7 @@ export default function SiteNav() {
                     }}
                     aria-expanded={isOpen}
                     aria-controls={`menu-${m.key}`}
-                    className={`inline-flex items-center gap-1 ${itemClass(isOpen || hasCurrent)}`}
+                    className={`inline-flex items-center gap-1 ${itemClass(hasCurrent)}`}
                   >
                     {m.label}
                     <ChevronDown
@@ -280,7 +284,7 @@ export default function SiteNav() {
             })}
           </ul>
 
-          <div className="relative ml-auto flex items-center gap-2" onPointerLeave={unhover}>
+          <div className="ml-auto flex items-center gap-2" onPointerLeave={unhover}>
             <Link
               ref={setItemRef("/contact")}
               data-group="aside"
@@ -297,6 +301,33 @@ export default function SiteNav() {
                 Download
               </CTAButton>
             </span>
+          </div>
+
+          {/* Hover marker: a lemon copy of the links above, laid out the same
+              way and clipped to one band. Clipping a copy keeps the text
+              black exactly where the lemon is, even mid-slide. */}
+          <div ref={markerRef} aria-hidden="true" className="nav-marker">
+            <ul className="flex items-center gap-1">
+              {MENUS.map((m) => (
+                <li key={m.key}>
+                  <span className={`inline-flex items-center gap-1 ${ITEM}`}>
+                    {m.label}
+                    <ChevronDown
+                      className={`h-3.5 w-3.5 transition-transform duration-200 ease-out ${menu === m.key ? "rotate-180" : ""}`}
+                    />
+                  </span>
+                </li>
+              ))}
+              {LINKS.map((l) => (
+                <li key={l.label}>
+                  <span className={`inline-block ${ITEM}`}>{l.label}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="ml-auto flex items-center gap-2">
+              <span className={ITEM}>Contact</span>
+              <span className="btn-primary btn-sm invisible">Download</span>
+            </div>
           </div>
         </nav>
 
