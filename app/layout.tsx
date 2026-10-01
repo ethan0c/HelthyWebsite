@@ -110,7 +110,7 @@ function siteJsonLd(rating: AppRating | null) {
           "Helthy is a free AI fitness app that combines calorie and macro tracking, workout logging, weight tracking and an AI coach. Log meals by search, barcode, photo or voice, track every set across 1,500 exercises, and get coaching based on your own data.",
         url: SITE_URL,
         installUrl: [APP_STORE_URL, PLAY_STORE_URL],
-        screenshot: `${SITE_URL}/phones/mobile-hero.png`,
+        screenshot: `${SITE_URL}/phones/hero-iphone.png`,
         publisher: { "@id": org },
         offers: [
           {

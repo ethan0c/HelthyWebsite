@@ -21,7 +21,7 @@ const page = (
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getPosts();
   return [
-    page("/", 1, "weekly", [absoluteUrl("/phones/mobile-hero.png")]),
+    page("/", 1, "weekly", [absoluteUrl("/phones/hero-iphone.png")]),
     page("/calorie-tracker", 0.9, "monthly", [absoluteUrl("/videos/app/food-log-poster.jpg")]),
     page("/workout-tracker", 0.9, "monthly", [absoluteUrl("/videos/app/workout-log-poster.jpg")]),
     page("/ai-fitness-coach", 0.9),
