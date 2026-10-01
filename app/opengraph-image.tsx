@@ -40,37 +40,26 @@ export default async function OgImage() {
           }}
         />
 
-        {/* Left content */}
+        {/* Left content: fixed width so text never runs under the phone */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            padding: "56px 48px 56px 64px",
-            flex: 1,
-            zIndex: 1,
+            padding: "56px 0 56px 64px",
+            width: 720,
           }}
         >
-          {/* Logo */}
-          <img
-            src={logoSrc}
-            style={{ height: 34, width: 116, objectFit: "contain", objectPosition: "left" }}
-          />
+          <img src={logoSrc} style={{ height: 34, width: 116 }} />
 
           {/* Text block pushed to bottom */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              marginTop: "auto",
-            }}
-          >
+          <div style={{ display: "flex", flexDirection: "column", marginTop: "auto" }}>
             <span
               style={{
                 color: "#CDFB50",
-                fontSize: 18,
+                fontSize: 20,
                 fontFamily: "Unbounded",
-                fontWeight: 500,
-                marginBottom: 20,
+                fontWeight: 700,
+                marginBottom: 18,
               }}
             >
               A coach that learns you
@@ -78,7 +67,7 @@ export default async function OgImage() {
             <span
               style={{
                 color: "#ffffff",
-                fontSize: 50,
+                fontSize: 56,
                 fontFamily: "Unbounded",
                 fontWeight: 700,
                 lineHeight: 1.1,
@@ -87,63 +76,40 @@ export default async function OgImage() {
             >
               The Best Free Fitness App
             </span>
-            <span
-              style={{
-                color: "#9CA3AF",
-                fontSize: 18,
-                marginTop: 22,
-                lineHeight: 1.5,
-                maxWidth: 540,
-              }}
-            >
-              Photo meal logging · 1,500 exercises · AI coach · Free forever
+            <span style={{ color: "#9CA3AF", fontSize: 22, marginTop: 22, lineHeight: 1.5 }}>
+              Photo meal logging · 1,500 exercises · AI coach
             </span>
             {/* Rating pill */}
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
+                alignSelf: "flex-start",
                 marginTop: 28,
                 background: "#1A1A1A",
                 border: "1px solid #2E2E30",
                 borderRadius: 999,
-                padding: "8px 18px",
-                width: "fit-content",
-                gap: 8,
+                padding: "10px 20px",
+                gap: 10,
               }}
             >
-              <span style={{ color: "#CDFB50", fontSize: 16 }}>★ 4.9</span>
-              <span style={{ color: "#6B7280", fontSize: 14 }}>App Store · iOS & Android</span>
+              {/* SVG star: the font has no ★ glyph */}
+              <svg width="18" height="18" viewBox="0 0 24 24">
+                <path
+                  fill="#CDFB50"
+                  d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7L12 17.5 5.8 21.2l1.6-7L2 9.5l7.1-.6z"
+                />
+              </svg>
+              <span style={{ color: "#CDFB50", fontSize: 18 }}>4.9</span>
+              <span style={{ color: "#9CA3AF", fontSize: 16 }}>Free on iOS & Android</span>
             </div>
           </div>
         </div>
 
-        {/* Right phone */}
-        <div
-          style={{
-            position: "absolute",
-            right: -30,
-            top: -40,
-            display: "flex",
-          }}
-        >
-          <img
-            src={phoneSrc}
-            style={{ height: 720, width: "auto" }}
-          />
-        </div>
-
-        {/* Fade on right edge of left panel so phone blends in */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            right: 280,
-            width: 160,
-            height: 630,
-            background: "linear-gradient(to right, transparent, #0A0A0A)",
-            zIndex: 2,
-          }}
+        {/* Phone bleeds off the bottom edge. Satori needs explicit width and height. */}
+        <img
+          src={phoneSrc}
+          style={{ position: "absolute", right: 90, top: 56, width: 372, height: 760 }}
         />
       </div>
     ),

@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { SeoPage, DownloadBanner } from "@/components/seo/SeoPage";
 import JsonLd from "@/components/seo/JsonLd";
 import { getPost, getPosts, formatDate } from "@/lib/blog";
-import { SITE_URL, absoluteUrl } from "@/lib/site";
+import { DEFAULT_OG_IMAGE, SITE_URL, absoluteUrl } from "@/lib/site";
 
 // Scheduled posts go live on their date (and links to them start working)
 // without a redeploy: re-render at most once an hour.
@@ -34,13 +34,13 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): P
       type: "article",
       publishedTime: post.meta.date,
       authors: [post.meta.author],
-      ...(post.meta.image && { images: [{ url: post.meta.image, width: 1200, height: 800, alt: post.meta.imageAlt }] }),
+      images: [post.meta.image ? { url: post.meta.image, width: 1200, height: 800, alt: post.meta.imageAlt } : DEFAULT_OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: post.meta.title,
       description: post.meta.description,
-      ...(post.meta.image && { images: [post.meta.image] }),
+      images: [post.meta.image ?? DEFAULT_OG_IMAGE],
     },
   };
 }

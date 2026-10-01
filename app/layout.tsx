@@ -8,6 +8,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { getAppRating, type AppRating } from "@/lib/app-rating";
 import {
   APP_STORE_URL,
+  DEFAULT_OG_IMAGE,
   PLAY_STORE_URL,
   PRO_PRICE,
   SITE_URL,
@@ -30,6 +31,7 @@ export const metadata: Metadata = {
     siteName: "Helthy",
     type: "website",
     locale: "en_US",
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
@@ -38,6 +40,7 @@ export const metadata: Metadata = {
       "Your AI fitness coach that actually learns you. Photo logging, workouts, insights & more.",
     site: "@helthyapp",
     creator: "@helthyapp",
+    images: [DEFAULT_OG_IMAGE],
   },
   icons: {
     icon: [

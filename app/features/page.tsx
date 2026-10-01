@@ -7,6 +7,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import PhoneFrame from "@/components/ui/PhoneFrame";
 import DownloadButton from "@/components/ui/DownloadButton";
 import { FeatureGrid } from "@/components/seo/SeoPage";
+import { DEFAULT_OG_IMAGE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Features · AI Food Logging, Workout Tracking & Coaching",
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
       "Snap a photo to log meals, track every lift across 1,500 exercises, plot your weight, and get coached by AI. Free on iOS & Android.",
     url: "https://helthy.app/features",
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

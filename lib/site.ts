@@ -24,3 +24,15 @@ export const SOCIAL_PROFILES = [
 export function absoluteUrl(path: string) {
   return path === "/" ? SITE_URL : `${SITE_URL}${path}`;
 }
+
+/**
+ * The image from app/opengraph-image.tsx. Metadata merges shallowly, so any
+ * page that sets its own `openGraph` or `twitter` drops the inherited image
+ * and must pass this one explicitly.
+ */
+export const DEFAULT_OG_IMAGE = {
+  url: absoluteUrl("/opengraph-image"),
+  width: 1200,
+  height: 630,
+  alt: "Helthy: the best free fitness app",
+};

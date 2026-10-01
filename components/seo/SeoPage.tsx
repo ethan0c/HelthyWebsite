@@ -5,7 +5,7 @@ import SiteFooter from "@/components/sections/SiteFooter";
 import DownloadButton from "@/components/ui/DownloadButton";
 import JsonLd from "@/components/seo/JsonLd";
 import FaqItem from "@/components/ui/FaqItem";
-import { absoluteUrl } from "@/lib/site";
+import { DEFAULT_OG_IMAGE, absoluteUrl } from "@/lib/site";
 
 /**
  * Building blocks for the search landing pages (/calorie-tracker, /compare,
@@ -355,16 +355,16 @@ export function seoMetadata({
   title: string;
   description: string;
   path: string;
-  /** Page-specific OG/Twitter image, e.g. "/videos/app/food-log-poster.jpg". Falls back to the global OG image when omitted. */
+  /** Page-specific OG/Twitter image, e.g. "/videos/app/food-log-poster.jpg". Falls back to DEFAULT_OG_IMAGE when omitted. */
   image?: string;
 }) {
   const url = absoluteUrl(path);
-  const images = image ? [absoluteUrl(image)] : undefined;
+  const images = [image ? absoluteUrl(image) : DEFAULT_OG_IMAGE];
   return {
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, type: "website" as const, ...(images && { images }) },
-    twitter: { card: "summary_large_image" as const, title, description, ...(images && { images }) },
+    openGraph: { title, description, url, type: "website" as const, images },
+    twitter: { card: "summary_large_image" as const, title, description, images },
   };
 }
