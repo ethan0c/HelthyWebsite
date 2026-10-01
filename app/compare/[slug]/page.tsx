@@ -25,7 +25,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const c = getComparison(slug);
   if (!c) return {};
-  return seoMetadata({ title: c.title, description: c.description, path: `/compare/${c.slug}` });
+  return seoMetadata({
+    title: c.title,
+    description: c.description,
+    path: `/compare/${c.slug}`,
+    image: `/compare/${c.slug}/opengraph-image`,
+  });
 }
 
 function Bullets({ items }: { items: string[] }) {

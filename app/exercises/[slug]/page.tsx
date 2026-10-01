@@ -33,6 +33,7 @@ export async function generateMetadata({
       article?.meta.description ??
       `How to do the ${e.name.toLowerCase()} with good form. Works the ${list(e.primaryMuscles)}. Form cues, common mistakes, breathing${e.ratios ? " and how much weight to use" : ""}.`,
     path: `/exercises/${e.slug}`,
+    image: `/exercises/${e.slug}/opengraph-image`,
   });
 }
 
