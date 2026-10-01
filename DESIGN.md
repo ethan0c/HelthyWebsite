@@ -10,8 +10,8 @@ pure neutral steps between black and white, never blue-tinted. There is no secon
 lemon is the only brand colour.
 
 - **Lemon is reserved.** Use it for the one highlighted phrase in a heading, the primary
-  action on a dark band, and short special text (a price note, a Pro badge). Aim for one or
-  two lemon moments per block. Step numbers, checkmarks, eyebrows, toggles and avatars are
+  action on a dark band, short special text (a price note, a Pro badge), and the hover marker
+  on nav links. Aim for one or two lemon moments per block. Step numbers, checkmarks, eyebrows, toggles and avatars are
   black or white, not lemon.
 - **Dark bands:** black canvas, white text, and lemon as text or as a fill.
 - **Light bands:** pure white canvas and black text. Lemon can't be read as text on white,
@@ -95,8 +95,29 @@ Two families only.
   Everywhere else, phones use the flat `PhoneFrame`. The Apple Watch always uses the photo
   watch (`<DeviceFrame device="watch">` with a live `<WatchScreen>`), in the hero and out.
 - Hover changes colour only (border, background), with a 150ms transition. No lift, no scale.
+  What may move is listed under Motion.
 - The glossy 3D clover is the logo and appears only in the homepage's closing CTA
   ("Get [clover] Helthy") and as the AI coach's avatar.
+
+## Motion
+
+Motion shows where something came from or went. It never decorates, and it stays flat: no
+bounce, no lift, no hover scale, no shadows.
+
+- **Colour** changes take 150ms with `ease`.
+- **Anything that moves** uses the one curve, `var(--ease-out)`, for 200 to 320ms on the way in.
+  Things leave faster than they arrive (about 180ms).
+- **Reveal by clipping, not sliding.** Panels wipe open from the edge they hang from
+  (`.nav-panel`), so nothing travels over its neighbours. Content inside may drift 8px as it
+  fades in.
+- **One shape moves instead of two fading.** A selection or hover indicator slides to its new
+  place: the nav hover marker (`.nav-marker`) and the toggle's selected pill (`useSegmentedThumb`).
+- **Arrows lean 3px** toward where a link goes on hover: wrap the arrow in `.nudge`.
+- **Press**: buttons scale to 0.98 while held. This is the only scale on the site.
+- **Open and close are both animated.** The FAQ row (`FaqItem`) animates its height both ways
+  and reverses if clicked mid-way.
+- `prefers-reduced-motion` turns all of it off (handled globally in `globals.css`; JS animations
+  check `prefersReducedMotion()`).
 
 ## Logo
 
@@ -125,11 +146,13 @@ Two families only.
 - **Card**: `card` (+ `card-hover` if clickable, `card-accent` for a highlighted panel). Nested stat or result areas use `tile`.
 - **Toggle**: `<Segmented>` (`components/ui/Segmented.tsx`) or the `.segmented` class with
   `aria-pressed` buttons. It's the only toggle style. The selected pill is white on dark and
-  black on light, never lemon.
+  black on light, never lemon. With a hand-written `.segmented`, put the ref from
+  `useSegmentedThumb()` on it so the pill slides.
 - **Badge**: `badge`, `badge-accent`, for short labels like Pro. Pricing details (founders price,
   discounts) are plain text next to the price, not pills.
 - **Input**: `input`.
-- **FAQ**: an accordion with divider lines (`FaqList` in SeoPage). No numbered cards.
+- **FAQ**: an accordion with divider lines (`FaqList` in SeoPage), built from `FaqItem`
+  (`components/ui/FaqItem.tsx`) rows. No numbered cards.
 - **Comparison table**: `CompareTable` in SeoPage. Checkmarks are `text-fg`. `highlightFirst`
   (default) emphasises the Helthy column on vs pages; pass `highlightFirst={false}` when the
   columns are equals (Free vs Pro).
@@ -146,6 +169,12 @@ A full-width sticky top bar (MacroFactor / Robinhood style), not a floating pill
 left, links, and a small primary Download button on the right. Solid canvas background with a
 1px bottom line. Top-level items: Product and Resources (hover menus), Blog, Pricing
 (`/pricing`); Contact and Download sit on the right. The nav stays dark on every page.
+
+Link states: muted grey at rest, white for the current page. Hover is the heading highlight used
+as a hover: one lemon marker with black text (`.nav-marker`) glides between the hovered links
+and rests on the open menu's trigger. Menus wipe down from the bar, the page behind dims, and
+moving between Product and Resources slides the content sideways. In a menu, the hovered or
+current link's icon tile turns white.
 
 ## Layout
 

@@ -13,6 +13,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
+import { useSegmentedThumb } from "@/components/ui/Segmented";
 
 const STORES = [
   {
@@ -34,6 +35,7 @@ export default function DownloadQRDialog() {
   const [activeStore, setActiveStore] = useState<"ios" | "android">("ios");
   const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const tabsRef = useSegmentedThumb<HTMLDivElement>();
 
   useEffect(() => {
     const onOpen = () => setOpen(true);
@@ -88,7 +90,7 @@ export default function DownloadQRDialog() {
         <p className="mt-1 text-[13px] text-fg-subtle">Free on iOS & Android</p>
 
         {/* Store tabs */}
-        <div className="segmented mt-4 w-full" role="group" aria-label="Store">
+        <div ref={tabsRef} className="segmented mt-4 w-full" role="group" aria-label="Store">
           {STORES.map((s) => (
             <button
               key={s.id}
