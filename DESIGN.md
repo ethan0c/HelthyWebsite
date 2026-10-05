@@ -67,13 +67,13 @@ Two families only.
 | Page H1 / homepage section title | `text-display-xl` (via `<SectionHeading>`) |
 | Large H2 (feature rows, pricing) | `text-display-lg` |
 | Content-page H2 | `text-display-md` |
-| Card / item title | `text-title` (DM Sans 500, never Unbounded) |
+| Card / item title | `text-title` (Geist 500, never Unbounded) |
 | Lede under a heading | `text-lede` |
-| Body | DM Sans 15–16px, `text-fg-muted`, `leading-7` |
+| Body | Geist 15–16px, `text-fg-muted`, `leading-7` |
 | Eyebrow / caption | 13px, `font-medium`, `text-fg-muted` or `text-fg-subtle` |
 | Big numbers (prices, stats) | `text-numeric` (Unbounded) |
 
-- Unbounded is for headings and numbers only. Everything else uses DM Sans.
+- Unbounded is for headings and numbers only. Everything else uses Geist.
 - A heading can have at most one highlighted phrase, wrapped in `<span className="text-highlight">`
   (`<SectionHeading italicTail>` does this for you). Headings have no trailing period (the hero's
   "Every meal. Every set." is the exception).

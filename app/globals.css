@@ -1,19 +1,19 @@
-/* ── Local Fonts: DM Sans (body/UI) ────── */
+/* ── Local Fonts: Geist (body/UI) ────── */
 @font-face {
-  font-family: "DM Sans";
-  src: url("/fonts/dm-sans/DMSans-Regular.woff2") format("woff2");
+  font-family: "Geist";
+  src: url("/fonts/geist/Geist-Regular.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
-  font-family: "DM Sans";
-  src: url("/fonts/dm-sans/DMSans-Medium.woff2") format("woff2");
+  font-family: "Geist";
+  src: url("/fonts/geist/Geist-Medium.woff2") format("woff2");
   font-weight: 500;
   font-display: swap;
 }
 @font-face {
-  font-family: "DM Sans";
-  src: url("/fonts/dm-sans/DMSans-Bold.woff2") format("woff2");
+  font-family: "Geist";
+  src: url("/fonts/geist/Geist-Bold.woff2") format("woff2");
   font-weight: 700;
   font-display: swap;
 }
@@ -115,9 +115,9 @@
   --helthy-accent-cyan: #22D3EE;
   --helthy-accent-gold: #D8B440;
 
-  /* Two families: Unbounded for headings + numbers, DM Sans for everything else */
+  /* Two families: Unbounded for headings + numbers, Geist for everything else */
   --font-heading: "Unbounded", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-body: "DM Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Geist", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
   --font-display: var(--font-body);
   --font-numeric: var(--font-heading);
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
@@ -307,7 +307,7 @@ body {
   line-height: 1.2;
   letter-spacing: -0.015em;
 }
-/* Card / item title (DM Sans, never Unbounded) */
+/* Card / item title (Geist, never Unbounded) */
 .text-title {
   font-family: var(--font-body);
   font-weight: 500;
