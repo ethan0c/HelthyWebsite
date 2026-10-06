@@ -9,6 +9,52 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://helthy.app/changelog" },
 };
 
+const V2_8_SECTIONS = [
+  {
+    label: "Added",
+    items: [
+      "Your goal now leads the Home screen: a card over an illustrated trail shows how far you have come and how far is left. It talks in distance to go, not your weight",
+      "Celebrations at a quarter, half, three quarters and all of your weight goal, plus checkpoints every 5 lb (2 kg) on big goals",
+      "Goal and Steps widgets for your Home Screen and Lock Screen (iPhone)",
+      "Apple Watch: see today's steps on your wrist, and review a voice-logged meal before it saves",
+      "Apple Watch: keep a strength workout going from your wrist after you leave the workout screen on your phone, finish it from the watch, and save or discard a run, walk or ride right on the watch",
+      "Exercise now has Train and Progress views, with your most trained exercises and your records",
+      "\"Set next\" on any program day, and a switch to choose which program drives Up next",
+      "Delete a weight you logged by mistake",
+      "Sounds and haptics for logging, saving and celebrations, with switches in Settings",
+      "Meal ideas with a photo of each dish, and your usual foods right inside the meal you are about to eat",
+      "One-tap \"Continue as\" sign-in for the last account on your phone",
+      "Your weekly issue and your coach now know your weight goal"
+    ]
+  },
+  {
+    label: "Changed",
+    items: [
+      "A new look across the app: a new typeface, a cleaner Home, simpler meal, scan and describe screens, and redesigned share cards",
+      "Up next starts a program at Day 1 and only moves on when you finish the day that is up next",
+      "Photo scans are more accurate and consistent: plain foods no longer match branded or restaurant versions, and the same photo gives the same numbers",
+      "Free accounts get 3 scans a week, and a scan only counts once you log the meal",
+      "Swapping an exercise mid-workout saves it to the routine, and editing a routine keeps your targets",
+      "Meal ideas and your meal history always sit at the bottom of the Food tab"
+    ]
+  },
+  {
+    label: "Fixed",
+    items: [
+      "Scanning big plates, editing scanned items and changing portions all work reliably",
+      "Set inputs and personal record badges stay correct when you edit, untick or delete sets",
+      "Android: Health Connect, image sharing, subscription cancel, comma decimals and the back button during workouts",
+      "Saving a body fat estimate to Apple Health"
+    ]
+  },
+  {
+    label: "Removed",
+    items: [
+      "The fiber target, the frequently logged meals section, and the suggestion card on Home"
+    ]
+  }
+];
+
 const V2_7_SECTIONS = [
   {
     label: "Added",
@@ -439,6 +485,7 @@ function ReleaseBlock({
 }
 
 const RELEASES = [
+  { version: "Helthy 2.8", date: "October 2026", sections: V2_8_SECTIONS },
   { version: "Helthy 2.7", date: "September 2026", sections: V2_7_SECTIONS },
   { version: "Helthy 2.5", date: "August 2026", sections: V2_5_SECTIONS },
   { version: "Helthy 2.4.3", date: "July 2026", sections: V2_4_3_SECTIONS },
