@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/delete-account"],
+        disallow: ["/api/", "/delete-account", "/admin"],
       },
     ],
     sitemap: "https://helthy.app/sitemap.xml",
