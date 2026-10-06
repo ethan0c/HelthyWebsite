@@ -39,7 +39,9 @@ export async function getInternalAnalytics(days: Window): Promise<InternalAnalyt
   }
   const res = await fetch(`${base.replace(/\/$/, "")}/api/internal/analytics?days=${days}`, {
     headers: { "x-internal-key": key },
-    cache: "no-store",
+    // A minute of server-side caching makes switching windows instant; the
+    // dashboard shows when the numbers were generated
+    next: { revalidate: 60 },
   });
   if (!res.ok) throw new Error(`The backend answered ${res.status}.`);
   const json = (await res.json()) as { success: boolean; data: InternalAnalytics };

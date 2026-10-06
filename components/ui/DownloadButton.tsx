@@ -16,7 +16,7 @@ export default function DownloadButton({
   label?: string;
 }) {
   return (
-    <CTAButton href="/download" size={size} onClick={handleDownloadClick}>
+    <CTAButton href="/download" variant="accent" size={size} onClick={handleDownloadClick}>
       {label}
     </CTAButton>
   );

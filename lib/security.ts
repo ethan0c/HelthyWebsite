@@ -17,7 +17,7 @@ const EXTRA_ALLOWED_ORIGINS = [
   "https://www.helthy.app",
 ];
 
-export function getClientIp(request: Request): string {
+export function getClientIp(request: Pick<Request, "headers">): string {
   // On Vercel, x-vercel-forwarded-for is set by their edge and cannot be
   // spoofed by clients. Prefer it whenever available.
   const vercel = request.headers.get("x-vercel-forwarded-for");

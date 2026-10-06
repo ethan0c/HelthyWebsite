@@ -84,9 +84,18 @@
   --highlight-bg: transparent;
   --highlight-pad: 0;
   --danger: #F87171;
-  --btn-primary-bg: var(--accent);
-  --btn-primary-bg-hover: var(--accent-hover);
-  --btn-primary-fg: var(--on-accent);
+  /* Buttons mirror the app's PillButton: ink primary, borderless secondary,
+     lemon only for the accent button */
+  --btn-primary-bg: #FFFFFF;
+  --btn-primary-bg-hover: #E5E5E5;
+  --btn-primary-fg: #0F0F0F;
+  --btn-secondary-bg: #262626;   /* app card */
+  --btn-secondary-bg-hover: #2E2E30;
+
+  /* Chart series, validated for colour-blind separation on each surface.
+     Slot 1, then slot 2; a single series uses --fg instead */
+  --chart-1: #3987E5;
+  --chart-2: #D95926;
 
   /* Data colours — charts and app mockups only, never decoration */
   --helthy-protein: #4CAF50;
@@ -151,6 +160,10 @@
   --btn-primary-bg: #0F0F0F;
   --btn-primary-bg-hover: #2A2A2A;
   --btn-primary-fg: #FFFFFF;
+  --chart-1: #2A78D6;
+  --chart-2: #EB6834;
+  --btn-secondary-bg: #EDEDED;   /* app light canvas */
+  --btn-secondary-bg-hover: #E3E3E3;
 }
 @layer components {
   .theme-dark, .theme-light { background: var(--canvas); color: var(--fg); }
@@ -421,11 +434,11 @@ body {
 .btn-lg { height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
 .btn-primary { background: var(--btn-primary-bg); color: var(--btn-primary-fg); }
 .btn-primary:hover { background: var(--btn-primary-bg-hover); }
-/* Lemon button even on light bands (use sparingly: one per band) */
+/* Lemon: the app's accent button. Only for getting the app (Download, App Store) */
 .btn-accent { background: var(--accent); color: var(--on-accent); }
 .btn-accent:hover { background: var(--accent-hover); }
-.btn-secondary { background: var(--surface-2); border-color: var(--line-strong); color: var(--fg); }
-.btn-secondary:hover { background: var(--surface-3); }
+.btn-secondary { background: var(--btn-secondary-bg); color: var(--fg); }
+.btn-secondary:hover { background: var(--btn-secondary-bg-hover); }
 .btn-ghost { background: transparent; color: var(--fg-muted); }
 .btn-ghost:hover { color: var(--fg); background: var(--surface-2); }
 .btn:disabled, .btn-primary:disabled, .btn-secondary:disabled, .btn-accent:disabled {
@@ -456,7 +469,8 @@ body {
   background: var(--surface-2);
   border: 1px solid var(--line);
 }
-.segmented > button {
+.segmented > button,
+.segmented > a {
   position: relative;
   flex: 1;
   height: 2rem;
@@ -468,7 +482,10 @@ body {
   white-space: nowrap;
   transition: background-color 150ms ease, color 150ms ease;
 }
-.segmented > button:hover { color: var(--fg); }
+.segmented > a { display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.segmented > button:hover,
+.segmented > a:hover { color: var(--fg); }
+.segmented > a[aria-current="page"],
 .segmented > button[aria-pressed="true"],
 .segmented > button[aria-checked="true"],
 .segmented > button[aria-selected="true"] {
@@ -489,7 +506,7 @@ body {
   background: var(--fg);
   transition: transform 250ms var(--ease-out), width 250ms var(--ease-out);
 }
-.segmented[data-thumb] > button { background: transparent; }
+.segmented[data-thumb] > :is(button, a) { background: transparent; }
 
 
 /* ── Badges ───────────────────────────────────────────────────── */

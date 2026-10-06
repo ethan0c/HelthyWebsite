@@ -2,6 +2,22 @@ import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
+  // The dashboard holds user data: never cache it, frame it or index it
+  async headers() {
+    return [
+      {
+        source: "/admin/:path*",
+        headers: [
+          { key: "Cache-Control", value: "no-store, max-age=0" },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "Content-Security-Policy", value: "frame-ancestors 'none'" },
+          { key: "Referrer-Policy", value: "no-referrer" },
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+        ],
+      },
+    ];
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 828, 1080, 1200, 1920],

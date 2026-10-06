@@ -9,14 +9,14 @@ The site uses **black, white and lemon** (`#CDFB50`), like the app's dark mode. 
 pure neutral steps between black and white, never blue-tinted. There is no second green:
 lemon is the only brand colour.
 
-- **Lemon is reserved.** Use it for the one highlighted phrase in a heading, the primary
-  action on a dark band, short special text (a price note, a Pro badge), and the hover marker
+- **Lemon is reserved.** Use it for the one highlighted phrase in a heading, the buttons
+  that get the app (Download, App Store), short special text (a price note, a Pro badge), and the hover marker
   on nav links. Aim for one or two lemon moments per block. Step numbers, checkmarks, eyebrows, toggles and avatars are
   black or white, not lemon.
 - **Dark bands:** black canvas, white text, and lemon as text or as a fill.
 - **Light bands:** pure white canvas and black text. Lemon can't be read as text on white,
   so here it only appears as a **fill under black text**: the heading highlight becomes a
-  highlighter marker, and badges become solid lemon pills. Primary buttons are black.
+  highlighter marker, and badges become solid lemon pills.
 
 ## Themes
 
@@ -131,11 +131,15 @@ bounce, no lift, no hover scale, no shadows.
 
 ## Components (use these, don't restyle ad hoc)
 
-- **Button**: `<CTAButton variant="primary|secondary|ghost" size="sm|md|lg">`, or the classes
-  `btn-primary` / `btn-secondary` / `btn-ghost` / `btn-accent` plus `btn-sm` / `btn-lg` on a
-  plain `<button>`. Primary is lemon on dark and black on light; `btn-accent` forces lemon
-  (lemon fill with black text reads fine on white).
-  Give each band one primary button.
+- **Button**: `<CTAButton variant="primary|secondary|ghost|accent" size="sm|md|lg">`, or the
+  classes `btn-primary` / `btn-secondary` / `btn-ghost` / `btn-accent` plus `btn-sm` / `btn-lg`
+  on a plain `<button>`. They match the app's `PillButton`:
+  - **Primary** is ink: white with black text on dark, black with white text on light.
+  - **Secondary** is a borderless fill: `#262626` (the app's card) on dark, `#EDEDED` on light.
+  - **Accent** is lemon with black text, on any band. It's only for getting the app
+    (`DownloadButton`, the App Store half of `StoreButtons`), like the app keeps lemon for a
+    short list of standout actions.
+  Give each band one primary or accent button.
 - **Download**: `<DownloadButton />`, one button per spot: the hero and the closing band. It
   opens a QR popup on desktop and goes straight to the right store on phones. The
   App Store / Google Play pair (`<StoreButtons />`, labels always "App Store" and

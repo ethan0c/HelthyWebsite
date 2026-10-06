@@ -1,39 +1,29 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { ADMIN_COOKIE, adminConfigured, verifySession } from "@/lib/admin-session";
 
 /**
- * Password gate for the internal dashboard (/admin).
- * HTTP basic auth against ADMIN_USER / ADMIN_PASSWORD. Without them set,
- * /admin doesn't exist (404), so a missing env var never exposes it.
+ * Gate for the internal dashboard (/admin). Signed-out visitors are sent to
+ * /admin/login; signed-in ones skip it. Without ADMIN_USER / ADMIN_PASSWORD
+ * set, /admin doesn't exist (404), so a missing env var never exposes it.
  */
-export function proxy(request: NextRequest) {
-  const user = process.env.ADMIN_USER;
-  const password = process.env.ADMIN_PASSWORD;
-  if (!user || !password) {
+export async function proxy(request: NextRequest) {
+  if (!adminConfigured()) {
     return new NextResponse("Not found", { status: 404 });
   }
 
-  const header = request.headers.get("authorization") ?? "";
-  if (header.startsWith("Basic ")) {
-    const decoded = atob(header.slice(6));
-    const split = decoded.indexOf(":");
-    if (split > 0 && safeEqual(decoded.slice(0, split), user) && safeEqual(decoded.slice(split + 1), password)) {
-      return NextResponse.next();
-    }
+  const { pathname, search } = request.nextUrl;
+  const signedIn = await verifySession(request.cookies.get(ADMIN_COOKIE)?.value);
+  const onLogin = pathname === "/admin/login";
+
+  if (onLogin) {
+    return signedIn ? NextResponse.redirect(new URL("/admin", request.url)) : NextResponse.next();
   }
+  if (signedIn) return NextResponse.next();
 
-  return new NextResponse("Authentication required", {
-    status: 401,
-    headers: { "WWW-Authenticate": 'Basic realm="Helthy admin", charset="UTF-8"' },
-  });
-}
-
-/** Constant-time string compare (no Node crypto in the proxy runtime). */
-function safeEqual(a: string, b: string) {
-  if (a.length !== b.length) return false;
-  let diff = 0;
-  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
-  return diff === 0;
+  const login = new URL("/admin/login", request.url);
+  login.searchParams.set("next", pathname + search);
+  return NextResponse.redirect(login);
 }
 
 export const config = {
