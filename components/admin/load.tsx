@@ -44,6 +44,12 @@ export function Toolbar({ data, days, scope }: { data: InternalAnalytics; days?:
         {scope} Updated {timeAgo(data.generatedAt)}. Excludes bot accounts. Days are UTC.
       </p>
       {days ? <WindowToggle days={days} /> : null}
+      {/* Some sections can fail on their own (a slow query) while the rest load */}
+      {data.posthog && data.posthogError ? (
+        <p role="status" className="w-full rounded-xl bg-surface-2 px-4 py-3 text-[13px] text-fg-muted">
+          {data.posthogError}
+        </p>
+      ) : null}
     </div>
   );
 }
