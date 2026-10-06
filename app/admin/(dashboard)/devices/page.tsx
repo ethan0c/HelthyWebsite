@@ -11,7 +11,8 @@ export default async function DevicesPage({ searchParams }: Props) {
   const { days, data, error } = await loadDashboard(searchParams);
   if (!data) return <DashboardError message={error} retry={`/admin/devices?days=${days}`} />;
 
-  const ph = data.posthog;
+  // PostHog versions when it returned any; otherwise the devices registered for notifications.
+  const ph = data.posthog?.appVersions.length ? data.posthog : null;
   const rows = ph
     ? ph.appVersions.map((v) => ({ platform: v.os, appVersion: v.version, users: v.users }))
     : data.platforms;
@@ -19,7 +20,7 @@ export default async function DevicesPage({ searchParams }: Props) {
   for (const r of rows) byPlatform.set(r.platform, (byPlatform.get(r.platform) ?? 0) + r.users);
   const scope = ph
     ? "People seen in the last 7 days."
-    : "Devices registered for notifications, active in the last 30 days.";
+    : "Devices registered for notifications, owned by people active in the last 30 days.";
 
   return (
     <>
