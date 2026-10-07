@@ -68,7 +68,7 @@ export default function CalorieTrackerPage() {
           <PhoneVideo
             src="/videos/app/food-log.mp4"
             poster="/videos/app/food-log-poster.jpg"
-            label="Screen recording: the Food page in Helthy, with today's calories and macros, logged meals, suggestions and past meals"
+            label="Screen recording: snapping a photo of a meal in Helthy, which identifies each item, fills in calories and macros, and adds it to lunch"
             className="w-[min(280px,70vw)]"
           />
         </div>

@@ -166,7 +166,7 @@ function siteJsonLd(rating: AppRating | null) {
         "@id": `${SITE_URL}/#video-food-log`,
         name: "Scan a meal in Helthy",
         description:
-          "Screen recording: the Food page in Helthy, with today's calories and macros, logged meals, suggestions and past meals.",
+          "Screen recording: snapping a photo of a meal in Helthy, which identifies each item, fills in calories and macros, and adds it to lunch.",
         thumbnailUrl: `${SITE_URL}/videos/app/food-log-poster.jpg`,
         contentUrl: `${SITE_URL}/videos/app/food-log.mp4`,
         uploadDate: "2026-10-07",
@@ -175,9 +175,9 @@ function siteJsonLd(rating: AppRating | null) {
       {
         "@type": "VideoObject",
         "@id": `${SITE_URL}/#video-workout-log`,
-        name: "og a workout in Helthy",
+        name: "Log a workout in Helthy",
         description:
-          "Screen recording: the Exercise tab in Helthy, with the next session, training progress, personal records and a finished workout.",
+          "Screen recording: logging a workout in Helthy set by set with a rest timer, then saving it with a new personal record and a shareable summary card.",
         thumbnailUrl: `${SITE_URL}/videos/app/workout-log-poster.jpg`,
         contentUrl: `${SITE_URL}/videos/app/workout-log.mp4`,
         uploadDate: "2026-10-07",
