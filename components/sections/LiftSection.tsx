@@ -24,7 +24,7 @@ export default function LiftSection() {
           <PhoneVideo
             src="/videos/app/workout-log.mp4"
             poster="/videos/app/workout-log-poster.jpg"
-            label="Screen recording: starting a push workout, adding an exercise from the library and logging sets"
+            label="Screen recording: the Exercise tab in Helthy, with the next session, training progress, personal records and a finished workout"
             className="w-[min(280px,60vw)]"
           />
           {/* Same photo watch as the hero. The hero's shows the strength

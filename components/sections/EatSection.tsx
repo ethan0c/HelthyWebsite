@@ -20,7 +20,7 @@ export default function EatSection() {
         <PhoneVideo
           src="/videos/app/food-log.mp4"
           poster="/videos/app/food-log-poster.jpg"
-          label="Screen recording: scanning a plate of shrimp and chicken noodles with the camera, then logging it"
+          label="Screen recording: the Food page in Helthy, with today's calories and macros, logged meals, suggestions and past meals"
           className="w-[min(300px,70vw)]"
         />
       }
