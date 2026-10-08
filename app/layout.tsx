@@ -47,7 +47,7 @@ export const metadata: Metadata = {
       { url: "/helthy-icon.svg", type: "image/svg+xml" },
       { url: "/helthy-favicon-96.png", sizes: "96x96", type: "image/png" },
     ],
-    apple: "/helthy-apple-touch-icon.png",
+    apple: { url: "/helthy-apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     shortcut: "/helthy-favicon-96.png",
   },
   robots: {
