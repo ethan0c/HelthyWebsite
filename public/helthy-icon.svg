@@ -2,7 +2,7 @@
   <rect width="717" height="717" rx="160" fill="#000"/>
   <g transform="translate(358.5 358.5) scale(0.82) translate(-358.5 -358.5)" fill="#fff">
     <path d="M0 313a15 15 0 0 1 15-15h98v122H15a15 15 0 0 1-15-15z"/>
-    <path d="M717 313a15 15 0 0 0-15-15h-121v122h121a15 15 0 0 0 15-15z"/>
+    <path d="M717 313a15 15 0 0 0-15-15h-105v122h105a15 15 0 0 0 15-15z"/>
     <path d="M132 87h120v211h205V87h121v543H457V420H252v210H132z"/>
   </g>
 </svg>
