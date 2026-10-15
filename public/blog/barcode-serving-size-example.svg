@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640" role="img" aria-labelledby="title desc">
+  <title id="title">How serving size changes the numbers</title>
+  <desc id="desc">An example cereal has 160 calories and 6 grams of protein in a 40 gram serving. A 60 gram portion is 1.5 servings, containing 240 calories and 9 grams of protein.</desc>
+  <rect width="960" height="640" rx="24" fill="#FFFFFF"/>
+  <g font-family="Arial, sans-serif" fill="#0F0F0F">
+    <text x="48" y="76" font-size="39" font-weight="700">How serving size changes the numbers</text>
+    <text x="48" y="148" font-size="32" fill="#525252">Label serving</text>
+    <text x="48" y="214" font-size="58" font-weight="700">40 g</text>
+    <text x="320" y="210" font-size="46" font-weight="700">160 calories</text>
+    <text x="660" y="210" font-size="36">6 g protein</text>
+    <rect x="48" y="246" width="560" height="24" rx="12" fill="#0F0F0F"/>
+    <path d="M48 314H912" stroke="#E5E5E5" stroke-width="2"/>
+    <text x="48" y="374" font-size="32" fill="#525252">Your portion</text>
+    <text x="48" y="440" font-size="58" font-weight="700">60 g</text>
+    <text x="320" y="436" font-size="46" font-weight="700">240 calories</text>
+    <text x="660" y="436" font-size="36">9 g protein</text>
+    <rect x="48" y="472" width="840" height="24" rx="12" fill="#0F0F0F"/>
+    <rect x="48" y="544" width="864" height="60" rx="16" fill="#CDFB50"/>
+    <text x="480" y="585" font-size="32" font-weight="700" text-anchor="middle">60 g ÷ 40 g = 1.5 servings</text>
+  </g>
+</svg>
