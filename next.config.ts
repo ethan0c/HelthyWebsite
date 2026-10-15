@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
+  turbopack: { root: process.cwd() },
   // The dashboard holds user data: never cache it, frame it or index it
   async headers() {
     return [

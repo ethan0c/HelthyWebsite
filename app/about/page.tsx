@@ -128,6 +128,15 @@ export default function AboutPage() {
         <FeatureGrid items={PRINCIPLES} />
       </Section>
 
+      <section id="editorial" className="mt-20 max-w-3xl scroll-mt-24 md:mt-24">
+        <h2 className="text-display-md text-fg">About our guides and calculators</h2>
+        <div className="mt-4 space-y-4 text-base leading-7 text-fg-muted">
+          <p>“The Helthy team” is our collective byline. Helthy is built by Chibudom and Chiebuka Onyejesi; you can read about us above. Our articles cover food logging, strength training and using the app, with research links where we discuss evidence.</p>
+          <p>Our calculators provide estimates for adults, not medical assessments. A team byline does not mean an article has been reviewed by a clinician. Research findings describe the people studied and will not apply equally to everyone.</p>
+          <p>If a calculation, source or explanation looks wrong, <Link href="/contact" className="underline underline-offset-4">send us the page and the correction</Link> so we can investigate.</p>
+        </div>
+      </section>
+
       <Section title="Get in touch">
         <p className="max-w-3xl text-base leading-8 text-fg-muted">
           Found a bug, want a feature, or just want to tell us what you think? Use the{" "}

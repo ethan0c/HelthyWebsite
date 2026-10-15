@@ -89,7 +89,8 @@ export default function DeviceFrame(
               alt={props.alt}
               width={props.width}
               height={props.height}
-              priority={props.priority}
+              loading={props.priority ? "eager" : "lazy"}
+              fetchPriority={props.priority ? "high" : undefined}
               sizes={sizes}
               className="block h-auto w-full"
               style={{ marginTop: IOS_STATUS_BAR }}
@@ -105,7 +106,8 @@ export default function DeviceFrame(
         alt=""
         width={d.width}
         height={d.height}
-        priority={props.priority}
+        loading={props.priority ? "eager" : "lazy"}
+        fetchPriority={props.priority ? "high" : undefined}
         sizes={sizes}
         className="pointer-events-none relative block h-auto w-full select-none"
       />

@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): P
   return {
     title: post.meta.title,
     description: post.meta.description,
-    authors: [{ name: post.meta.author }],
+    authors: [{ name: post.meta.author, ...(post.meta.author === "The Helthy team" && { url: absoluteUrl("/about#editorial") }) }],
     alternates: { canonical: url },
     openGraph: {
       title: post.meta.title,
@@ -69,7 +69,9 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
           headline: meta.title,
           description: meta.description,
           datePublished: meta.date,
-          author: { "@type": "Person", name: meta.author },
+          author: meta.author === "The Helthy team"
+            ? { "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: meta.author, url: absoluteUrl("/about#editorial") }
+            : { "@type": "Person", name: meta.author },
           publisher: { "@id": `${SITE_URL}/#organization` },
           mainEntityOfPage: absoluteUrl(`/blog/${slug}`),
           keywords: meta.tags?.join(", "),
@@ -82,7 +84,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
           <h1 className="text-display-xl text-fg">{meta.title}</h1>
           <p className="mt-6 text-lede">{meta.description}</p>
           <p className="mt-6 text-[13px] text-fg-subtle">
-            {meta.author} · <time dateTime={meta.date}>{formatDate(meta.date)}</time> · {readingMinutes} min read
+            {meta.author === "The Helthy team" ? <Link href="/about#editorial" className="underline underline-offset-4">{meta.author}</Link> : meta.author} · <time dateTime={meta.date}>{formatDate(meta.date)}</time> · {readingMinutes} min read
           </p>
         </header>
 
@@ -101,6 +103,9 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
         <div className={meta.image ? "mt-6" : "mt-10 border-t border-line pt-4"}>
           <Content />
         </div>
+        <aside className="mt-10 border-t border-line pt-6 text-[14px] leading-6 text-fg-muted" aria-label="About this article">
+          Written by {meta.author}. <Link href="/about#editorial" className="underline underline-offset-4">About our team and content</Link>. Found an error? <Link href="/contact" className="underline underline-offset-4">Tell us what needs correcting</Link>.
+        </aside>
       </article>
 
       {more.length > 0 && (

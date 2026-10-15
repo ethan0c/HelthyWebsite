@@ -1,7 +1,3 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import DownloadButton from "@/components/ui/DownloadButton";
 import DeviceFrame from "@/components/ui/DeviceFrame";
 import WatchScreen from "@/components/ui/WatchScreen";
@@ -18,32 +14,11 @@ import WatchScreen from "@/components/ui/WatchScreen";
  */
 
 export default function HeroSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    if (prefersReducedMotion()) return;
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-      // The headline rises out of its mask
-      tl.from("[data-hero-line]", { yPercent: 110, duration: 0.9, ease: "power4.out" });
-      tl.from("[data-hero-sub]", { y: 16, opacity: 0, duration: 0.6 }, 0.35);
-      tl.from("[data-hero-cta]", { y: 16, opacity: 0, duration: 0.6 }, 0.45);
-      tl.from(
-        "[data-hero-device]",
-        { y: 90, opacity: 0, duration: 1.1, stagger: 0.08, ease: "power4.out" },
-        0.6,
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={sectionRef} id="hero" className="relative w-full overflow-hidden bg-canvas">
+    <section id="hero" className="relative w-full overflow-hidden bg-canvas">
       <div className="container-page flex flex-col items-center pt-[clamp(104px,13vh,120px)] text-center">
         <h1 className="text-balance text-display-2xl text-fg">
-          {/* The mask clips the line as it rises; padding keeps descenders visible */}
+          {/* Padding keeps descenders visible. Hero content is visible at first paint. */}
           <span className="block overflow-hidden pb-[0.08em]">
             <span data-hero-line className="block">
               Every meal. <span className="text-highlight">Every set.</span>
@@ -55,7 +30,7 @@ export default function HeroSection() {
           data-hero-sub
           className="mt-3 max-w-[64ch] text-balance font-body text-[clamp(1.0625rem,1.5vw,1.375rem)] leading-snug text-fg-muted"
         >
-          The free AI calorie ,and workout tracker with a built-in  coach for your iPhone, Android and Apple Watch.
+          The free AI calorie and workout tracker with a built-in coach for your iPhone, Android and Apple Watch.
         </p>
 
         {/* One button, like MacroFactor's. The store buttons live in the nav. */}
