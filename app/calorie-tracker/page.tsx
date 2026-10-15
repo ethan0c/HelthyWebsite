@@ -26,7 +26,7 @@ export const metadata: Metadata = seoMetadata({
 const FAQS = [
   {
     q: "Is Helthy's calorie tracker really free?",
-    a: `Yes. Food search, quick-add, calorie and macro tracking and nutrition goals are free with no limit and no trial. Free users also get 2 camera scans (photo, barcode or label), 2 voice logs and 2 typed descriptions a week. Helthy Premium ($${PRO_PRICE.monthly}/month or $${PRO_PRICE.yearly}/year) makes all of those unlimited and adds the AI coach.`,
+    a: `Yes. Food search, quick-add, calorie and macro tracking and nutrition goals are free with no limit and no trial. Barcode scans are unlimited on the free plan. Free users also get 2 meal photo scans, 2 voice logs and 2 typed descriptions a week. Helthy Premium ($${PRO_PRICE.monthly}/month or $${PRO_PRICE.yearly}/year) makes all of those unlimited and adds the AI coach.`,
   },
   {
     q: "How accurate is AI photo calorie counting?",
@@ -60,7 +60,7 @@ export default function CalorieTrackerPage() {
               <span className="text-highlight">photo</span>
             </>
           }
-          lede="Count calories and macros without the homework. Search the food database, scan a barcode, or snap a picture and let AI break the plate down for you. Logging is free and unlimited, and you get free AI scans every week."
+          lede="Count calories and macros without the homework. Search the food database, scan a barcode, or snap a picture and let AI break the plate down for you. Logging is free and unlimited, and barcode scans are unlimited. You also get 2 free meal photo scans a week."
         >
           <DownloadButton />
         </PageHero>
@@ -82,11 +82,11 @@ export default function CalorieTrackerPage() {
           items={[
             {
               title: "Snap a photo",
-              body: "Point your camera at the plate. Helthy identifies each item, estimates portions and fills in calories and macros. 2 free scans a week, unlimited with Premium.",
+              body: "Point your camera at the plate. Helthy identifies each item, estimates portions and fills in calories and macros. 2 free meal photo scans a week, unlimited with Premium.",
             },
             {
               title: "Scan a barcode or label",
-              body: "The same camera detects barcodes and nutrition labels as you aim. Scan several items, then log them all at once.",
+              body: "Barcode scans are free and unlimited. The same camera detects barcodes and nutrition labels as you aim. Scan several items, then log them all at once.",
             },
             {
               title: "Search, type or say it",

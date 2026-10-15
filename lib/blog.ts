@@ -14,6 +14,8 @@ export type PostMeta = {
   description: string;
   /** Publish date, YYYY-MM-DD. */
   date: string;
+  /** Last substantial content update, YYYY-MM-DD. Omit for an unchanged article. */
+  updated?: string;
   author: string;
   tags?: string[];
   /** Cover photo in public/blog, e.g. "/blog/<slug>.jpg" (3:2, 1200px wide). */

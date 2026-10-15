@@ -103,7 +103,7 @@ export default function FeaturesPage() {
             "Check and edit anything before you save it",
             "Or scan a barcode or label, or just say or type what you ate",
           ]}
-          footnote="2 AI scans a week are free. Unlimited with Premium."
+          footnote="Barcode scans are free and unlimited. Meal photo scans: 2 a week free, unlimited with Premium."
           visual={
             <PhoneFrame
               src="/phones/ai-meal-scan.png"

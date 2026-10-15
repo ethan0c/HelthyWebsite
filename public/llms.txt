@@ -17,7 +17,8 @@ Helthy was built by co-founders Chibu and Ebu, who use the app every day for the
 - Unlimited food logging by database search, saved meals and quick-add calories/macros
 - Calorie, protein, carb, fat and fiber tracking against personalised targets
 - TDEE and calorie/macro targets calculated from your profile and goal, refreshed weekly from your real steps and workouts
-- 2 camera scans a week (meal photo, barcode or nutrition label), 2 voice food logs and 2 typed meal descriptions a week
+- Unlimited barcode scans. Barcode scans do not use the photo-scan allowance.
+- 2 meal photo scans, 2 voice food logs and 2 typed meal descriptions a week
 - Unlimited workout logging: sets, reps, weight and cardio
 - 1,500-exercise library with how-to and target muscles, and form tips on popular lifts
 - Automatic personal records (max weight, max reps, max volume) and "Your records"
@@ -32,7 +33,7 @@ Helthy was built by co-founders Chibu and Ebu, who use the app every day for the
 
 Called "Premium" inside the app. Cancel any time in Settings → Subscription or through the App Store / Google Play.
 
-- Unlimited AI photo, barcode and label scanning
+- Unlimited meal photo scanning. Barcode scanning is already unlimited on the free plan.
 - Unlimited voice and typed ("describe") food logging
 - Helthy AI Chat: the AI coach
 - Workout Coach chat during workouts and on exercise screens

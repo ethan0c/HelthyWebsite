@@ -119,7 +119,7 @@ function siteJsonLd(rating: AppRating | null) {
             price: "0",
             priceCurrency: "USD",
             description:
-              "Unlimited food search and manual logging, calorie and macro tracking, unlimited workout logging, 1,500 exercises, automatic PRs, weight tracking and 2 free AI scans, voice logs and typed descriptions a week.",
+              "Unlimited food search, manual logging and barcode scans, calorie and macro tracking, unlimited workout logging, 1,500 exercises, automatic PRs, weight tracking and 2 free meal photo scans, voice logs and typed descriptions a week.",
           },
           {
             "@type": "Offer",
@@ -127,7 +127,7 @@ function siteJsonLd(rating: AppRating | null) {
             price: String(PRO_PRICE.monthly),
             priceCurrency: "USD",
             description:
-              "Unlimited AI photo, barcode, voice and text logging, AI coach chat, AI-built workout programs, Smart Calories, Apple Watch workout control, full history and trends.",
+              "Unlimited meal photo, voice and text logging, AI coach chat, AI-built workout programs, Smart Calories, Apple Watch workout control, full history and trends.",
           },
           {
             "@type": "Offer",

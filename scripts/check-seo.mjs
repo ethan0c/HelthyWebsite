@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 const base = process.argv[2] ?? 'http://localhost:3000';
 const get = async (path) => {
   const res = await fetch(new URL(path, base), { redirect: 'manual', signal: AbortSignal.timeout(30000) });
@@ -53,4 +54,48 @@ assert.match(home, /fetchPriority="high"|fetchpriority="high"/);
 assert.match(home, /fonts\/unbounded\/Unbounded-Medium.woff2/);
 assert.doesNotMatch(home, /calorie ,and/);
 assert.equal((await get('/month')).status, 404, 'obsolete unknown URL remains a real 404');
-console.log(`PASS: ${count} sitemap pages; HTTP status, canonical, title, description, one H1, robots, JSON-LD, internal discovery, article authorship and calculator links.`);
+
+// Check the article body, not the shared footer, for contextual product links.
+const body = path => pages.get(path).match(/<article\b[\s\S]*?<\/article>/)?.[0] ?? '';
+assert.match(body('/blog/how-much-protein-to-build-muscle'), /href="\/calorie-tracker"/);
+assert.match(body('/exercises/tricep-dip'), /href="\/workout-tracker"/);
+
+// Every exercise must be discoverable through the rendered related-guides block.
+const exercisePaths = [...paths].filter(path => path.startsWith('/exercises/'));
+const relatedTargets = new Set();
+for (const path of exercisePaths) {
+  const related = pages.get(path).match(/<section[^>]*>\s*<h2[^>]*>More [\s\S]*?<\/section>/)?.[0] ?? '';
+  const targets = [...related.matchAll(/href="(\/exercises\/[^"]+)"/g)].map(m => m[1]);
+  assert.ok(targets.length > 0 && targets.length <= 5, `${path} related guides render`);
+  assert.equal(new Set(targets).size, targets.length, `${path} no duplicate related links`);
+  for (const target of targets) {
+    assert.notEqual(target, path, `${path} no self-link`);
+    assert.ok(paths.has(target), `${target} exists`);
+    relatedTargets.add(target);
+  }
+}
+for (const path of exercisePaths) assert.ok(relatedTargets.has(path), `${path} receives a related-guide link`);
+
+// Recorded dates must survive sitemap serialization; never substitute build time.
+for (const [, entry] of sitemap.html.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
+  const path = new URL(entry.match(/<loc>(.*?)<\/loc>/)[1]).pathname;
+  if (!/^\/(exercises|blog)\/.+/.test(path)) continue;
+  const file = `content${path}.mdx`;
+  const meta = readFileSync(file, 'utf8').split(/\n};?/)[0];
+  const updated = meta.match(/updated:\s*"([^"]+)"/)?.[1];
+  const published = meta.match(/date:\s*"([^"]+)"/)?.[1];
+  const expected = updated ?? published;
+  assert.match(expected, /^\d{4}-\d{2}-\d{2}$/);
+  assert.ok(expected <= new Date().toISOString().slice(0, 10), `${path} date is not in the future`);
+  if (published && updated) assert.ok(updated >= published, `${path} update follows publication`);
+  assert.equal(entry.match(/<lastmod>(.*?)<\/lastmod>/)?.[1], expected, `${path} recorded lastmod`);
+}
+const pricingText = pages.get('/pricing').replace(/<[^>]*>/g, '');
+assert.match(pricingText, /Barcode scansUnlimitedUnlimited/);
+assert.match(pricingText, /AI meal photo scans2 a weekUnlimited/);
+assert.match(pages.get('/calorie-tracker'), /Barcode scans are unlimited on the free plan/);
+const llms = await get('/llms.txt');
+assert.equal(llms.status, 200);
+assert.match(llms.html, /Unlimited barcode scans/);
+assert.doesNotMatch(llms.html, /2 camera scans a week/);
+console.log(`PASS: ${count} sitemap pages; status, metadata, robots, JSON-LD, recorded dates, internal links, ${exercisePaths.length} related-guide coverage, contextual product links and barcode allowances.`);

@@ -39,10 +39,10 @@ export const COMPARISONS: Comparison[] = [
     title: "Helthy vs MyFitnessPal: Free Calorie Tracker Compared",
     description:
       "Helthy vs MyFitnessPal in 2026: barcode scanning, AI photo logging, workout tracking, AI coach and price. See which calorie tracker fits you.",
-    lede: "MyFitnessPal is the name everyone knows, but most of what makes logging fast now sits behind a $79.99 Premium plan. Helthy gives you barcode, photo and voice logging free every week, adds a real strength tracker, and its AI tier costs well under half as much.",
+    lede: "MyFitnessPal is the name everyone knows, but most of what makes logging fast now sits behind a $79.99 Premium plan. Helthy includes unlimited free barcode scans, 2 meal photo scans and 2 voice logs a week, plus a strength tracker. Its Premium plan costs less than half as much.",
     rows: [
       { label: "Premium price", helthy: HELTHY_PRO, them: "$19.99/mo or $79.99/yr list price" },
-      { label: "Barcode scanning on the free plan", helthy: "2 scans a week", them: "Premium only" },
+      { label: "Barcode scanning on the free plan", helthy: "Unlimited", them: "Premium only" },
       { label: "AI photo meal logging", helthy: "2 a week free, unlimited with Pro", them: "Premium only" },
       { label: "Voice food logging", helthy: "2 a week free, unlimited with Pro", them: "Premium only" },
       { label: "Strength log with sets, reps and PRs", helthy: true, them: "Basic exercise logging" },
@@ -54,7 +54,7 @@ export const COMPARISONS: Comparison[] = [
     helthyWins: [
       "Real workout tracking: sets, reps, weight, automatic PRs and an Apple Watch app, in the same app as your food.",
       `Much cheaper AI: Helthy Pro is $${PRO_PRICE.yearly} a year against MyFitnessPal Premium's $79.99 list price.`,
-      "Free users can try barcode, photo and voice logging every week. MyFitnessPal keeps all three behind Premium.",
+      "Free users get unlimited barcode scans, plus weekly photo and voice allowances. MyFitnessPal keeps all three behind Premium.",
       "The AI coach reads your lifts as well as your food, so it can connect training and nutrition.",
       "AI-built workout programs that adjust to what you actually lift. MyFitnessPal doesn't build programs.",
     ],
@@ -72,7 +72,7 @@ export const COMPARISONS: Comparison[] = [
       },
       {
         q: "Is MyFitnessPal's barcode scanner free?",
-        a: `No. As of ${CHECKED_ON}, MyFitnessPal lists barcode scanning as a Premium feature. Helthy's free plan includes 2 camera scans a week (barcode, nutrition label or meal photo), and Pro makes them unlimited.`,
+        a: `No. As of ${CHECKED_ON}, MyFitnessPal lists barcode scanning as a Premium feature. Helthy's free plan includes unlimited barcode scans and 2 meal photo scans a week. Premium makes meal photo scans unlimited.`,
       },
       {
         q: "Does MyFitnessPal have an AI coach?",
@@ -90,7 +90,7 @@ export const COMPARISONS: Comparison[] = [
       "Helthy vs Cal AI: both log meals from a photo. Compare free tiers, price, workout tracking and AI coaching to pick the right AI calorie tracker.",
     lede: "Cal AI made photo calorie counting mainstream and is now owned by MyFitnessPal. Helthy logs meals from a photo too, but it also has a free tier, a full workout tracker and an AI coach.",
     rows: [
-      { label: "Free plan", helthy: "Unlimited manual logging + 2 free scans a week", them: "3-day trial; scan results need a subscription" },
+      { label: "Free plan", helthy: "Unlimited manual logging and barcode scans + 2 meal photo scans a week", them: "3-day trial; scan results need a subscription" },
       { label: "Premium price", helthy: HELTHY_PRO, them: "Subscription; price varies by offer" },
       { label: "Strength log with sets, reps and PRs", helthy: true, them: "Exercise and calorie-burn logging" },
       { label: "AI coach you can chat with", helthy: "Pro", them: "Not advertised" },
@@ -99,7 +99,7 @@ export const COMPARISONS: Comparison[] = [
       { label: "Apple Watch app", helthy: "Yes (set logging with Pro)", them: true },
     ],
     helthyWins: [
-      "A real free tier: unlimited search and manual logging, plus free AI scans every week.",
+      "A free plan with unlimited search, manual logging and barcode scans, plus 2 meal photo scans a week.",
       "A complete workout tracker with PRs and AI-built programs, not just exercise calories.",
       "An AI coach that answers from your food and training logs, and can log meals or schedule workouts for you.",
       `Clear pricing: ${HELTHY_PRO}.`,
@@ -113,7 +113,7 @@ export const COMPARISONS: Comparison[] = [
     faqs: [
       {
         q: "Is Cal AI free?",
-        a: "Cal AI offers a 3-day free trial, and its App Store listing states that food scanning results require a subscription. Helthy is free to use indefinitely, with 2 AI scans a week on the free plan.",
+        a: "Cal AI offers a 3-day free trial, and its App Store listing states that food scanning results require a subscription. Helthy is free to use indefinitely, with unlimited barcode scans and 2 meal photo scans a week on the free plan.",
       },
       {
         q: "Who owns Cal AI?",

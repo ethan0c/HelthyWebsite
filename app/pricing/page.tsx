@@ -22,7 +22,8 @@ export const metadata: Metadata = seoMetadata({
 const ROWS = [
   { label: "Food logging: search, saved meals, quick add", values: ["Unlimited", "Unlimited"] },
   { label: "Calorie, macro and fiber tracking", values: [true, true] },
-  { label: "AI photo, barcode and label scans", values: ["2 a week", "Unlimited"] },
+  { label: "Barcode scans", values: ["Unlimited", "Unlimited"] },
+  { label: "AI meal photo scans", values: ["2 a week", "Unlimited"] },
   { label: "Voice and typed food logging", values: ["2 each a week", "Unlimited"] },
   { label: "Workout logging: sets, reps, weight and cardio", values: ["Unlimited", "Unlimited"] },
   { label: "1,500-exercise library with form tips", values: [true, true] },
@@ -43,7 +44,7 @@ const ROWS = [
 const FAQS = [
   {
     q: "Is Helthy really free?",
-    a: "Yes. The free plan has no trial and no expiry. Food and workout logging, calorie and macro targets, personal records and weight tracking are all free, with 2 AI scans a week.",
+    a: "Yes. The free plan has no trial and no expiry. Food and workout logging, calorie and macro targets, personal records and weight tracking are all free, with unlimited barcode scans and 2 meal photo scans a week.",
   },
   {
     q: "How much does Helthy Premium cost?",

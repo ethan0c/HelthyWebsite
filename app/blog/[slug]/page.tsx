@@ -33,6 +33,7 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): P
       url,
       type: "article",
       publishedTime: post.meta.date,
+      modifiedTime: post.meta.updated ?? post.meta.date,
       authors: [post.meta.author],
       images: [post.meta.image ? { url: post.meta.image, width: 1200, height: 800, alt: post.meta.imageAlt } : DEFAULT_OG_IMAGE],
     },
@@ -69,6 +70,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
           headline: meta.title,
           description: meta.description,
           datePublished: meta.date,
+          dateModified: meta.updated ?? meta.date,
           author: meta.author === "The Helthy team"
             ? { "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: meta.author, url: absoluteUrl("/about#editorial") }
             : { "@type": "Person", name: meta.author },

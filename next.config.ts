@@ -32,7 +32,7 @@ const nextConfig: NextConfig = {
   // demand), so ship the files with every route that lists posts.
   outputFileTracingIncludes: {
     "/blog/**": ["./content/blog/**/*"],
-    "/sitemap.xml": ["./content/blog/**/*"],
+    "/sitemap.xml": ["./content/blog/**/*", "./content/exercises/**/*"],
     "/exercises/**": ["./content/exercises/**/*"],
   },
 };

@@ -83,7 +83,7 @@ const V2_7_SECTIONS = [
       "The Exercise tab was redesigned around one Up next card that follows your program, or picks the workout whose muscles have rested longest",
       "A rebuilt welcome tour that highlights the real app on screen, one step at a time. Replay it from Settings",
       "Step history now follows your own calendar day, so evening steps no longer spill into tomorrow",
-      "Free accounts now get 2 scans a week, alongside 2 voice logs and 2 describes",
+      "Free accounts now get 2 meal photo scans a week, alongside 2 voice logs and 2 describes. Barcode scans are unlimited",
       "Onboarding is shorter, and goal setup explains an unusual calorie target instead of blocking it"
     ]
   },

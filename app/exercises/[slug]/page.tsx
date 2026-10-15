@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SeoPage, DownloadBanner, seoMetadata } from "@/components/seo/SeoPage";
 import JsonLd from "@/components/seo/JsonLd";
-import { EXERCISES, getExercise, type Exercise } from "@/lib/content/exercises";
+import { EXERCISES, getExercise, getRelatedExercises, type Exercise } from "@/lib/content/exercises";
 import { getExerciseArticle } from "@/lib/content/exerciseArticles";
 import { formatDate } from "@/lib/blog";
 import { LB_PER_KG } from "@/lib/calc";
@@ -105,7 +105,7 @@ export default async function ExercisePage({ params }: PageProps<"/exercises/[sl
   if (!e || !article) notFound();
   const { meta, Content, readingMinutes } = article;
 
-  const related = EXERCISES.filter((x) => x.group === e.group && x.slug !== e.slug).slice(0, 5);
+  const related = getRelatedExercises(e);
 
   return (
     <SeoPage
