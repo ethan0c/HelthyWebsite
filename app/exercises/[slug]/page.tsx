@@ -15,6 +15,7 @@ export const revalidate = 3600;
 
 export const dynamicParams = false;
 
+
 export function generateStaticParams() {
   return EXERCISES.map((e) => ({ slug: e.slug }));
 }
