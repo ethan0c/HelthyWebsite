@@ -197,10 +197,10 @@ export default async function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <head>
-        {/* Preload the font used by the hero and body, rather than the numeric font */}
+        {/* Preload critical fonts to avoid FOIT/FOUT */}
         <link
           rel="preload"
-          href="/fonts/geist/Geist-Regular.woff2"
+          href="/fonts/unbounded/Unbounded-Medium.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"

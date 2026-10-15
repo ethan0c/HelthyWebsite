@@ -50,7 +50,7 @@ assert.match(pages.get('/tools/tdee-calculator'), /id="check-your-estimate"/);
 assert.match(pages.get('/tools/tdee-calculator'), /href="https:\/\/pubmed.ncbi.nlm.nih.gov\/2305711\/"/);
 const home = pages.get('/');
 assert.match(home, /fetchPriority="high"|fetchpriority="high"/);
-assert.match(home, /fonts\/geist\/Geist-Regular.woff2/);
+assert.match(home, /fonts\/unbounded\/Unbounded-Medium.woff2/);
 assert.doesNotMatch(home, /calorie ,and/);
 assert.equal((await get('/month')).status, 404, 'obsolete unknown URL remains a real 404');
 console.log(`PASS: ${count} sitemap pages; HTTP status, canonical, title, description, one H1, robots, JSON-LD, internal discovery, article authorship and calculator links.`);
