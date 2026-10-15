@@ -9,16 +9,62 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://helthy.app/changelog" },
 };
 
+const V2_8_SECTIONS = [
+  {
+    label: "Added",
+    items: [
+      "Your goal now leads the Home screen: a card over an illustrated trail shows how far you have come and how far is left. It talks in distance to go, not your weight",
+      "Celebrations at a quarter, half, three quarters and all of your weight goal, plus checkpoints every 5 lb (2 kg) on big goals",
+      "Goal and Steps widgets for your Home Screen and Lock Screen (iPhone)",
+      "Apple Watch: see today's steps on your wrist, and review a voice-logged meal before it saves",
+      "Apple Watch: keep a strength workout going from your wrist after you leave the workout screen on your phone, finish it from the watch, and save or discard a run, walk or ride right on the watch",
+      "Exercise now has Train and Progress views, with your most trained exercises and your records",
+      "\"Set next\" on any program day, and a switch to choose which program drives Up next",
+      "Delete a weight you logged by mistake",
+      "Sounds and haptics for logging, saving and celebrations, with switches in Settings",
+      "Meal ideas with a photo of each dish, and your usual foods right inside the meal you are about to eat",
+      "One-tap \"Continue as\" sign-in for the last account on your phone",
+      "Your weekly issue and your coach now know your weight goal"
+    ]
+  },
+  {
+    label: "Changed",
+    items: [
+      "A new look across the app: a new typeface, a cleaner Home, simpler meal, scan and describe screens, and redesigned share cards",
+      "Up next starts a program at Day 1 and only moves on when you finish the day that is up next",
+      "Photo scans are more accurate and consistent: plain foods no longer match branded or restaurant versions, and the same photo gives the same numbers",
+      "Free accounts get 3 scans a week, and a scan only counts once you log the meal",
+      "Swapping an exercise mid-workout saves it to the routine, and editing a routine keeps your targets",
+      "Meal ideas and your meal history always sit at the bottom of the Food tab"
+    ]
+  },
+  {
+    label: "Fixed",
+    items: [
+      "Scanning big plates, editing scanned items and changing portions all work reliably",
+      "Set inputs and personal record badges stay correct when you edit, untick or delete sets",
+      "Android: Health Connect, image sharing, subscription cancel, comma decimals and the back button during workouts",
+      "Saving a body fat estimate to Apple Health"
+    ]
+  },
+  {
+    label: "Removed",
+    items: [
+      "The fiber target, the frequently logged meals section, and the suggestion card on Home"
+    ]
+  }
+];
+
 const V2_7_SECTIONS = [
   {
     label: "Added",
     items: [
-      "Helthy for Apple Watch: track runs, walks, rides and HIIT with heart rate and calories, and log a meal by voice from your wrist. With Pro, the watch also follows your strength workout live, so you can complete sets and start rest timers without your phone",
+      "Helthy for Apple Watch: track runs, walks, rides and HIIT with heart rate and calories, and log a meal by voice from your wrist. With Premium, the watch also follows your strength workout live, so you can complete sets and start rest timers without your phone",
       "Programs: group your workouts into the order you train them, like Push, Pull, Legs. Helthy tells you which one is up next and moves you along as you finish each one. Build one from your library or let the AI generator create the whole program. Free for everyone",
       "Allergen warnings: pick from 14 allergens in Food settings and foods that contain them are flagged in search, on food cards and on the food's own screen. Your coach knows your allergens too",
       "A new workout editor: rename, reorder, add, replace or remove exercises on a saved workout and start it from the same screen. It saves as you go",
       "Your records on the You tab: your best lifts with each exercise's animation, and a full Personal Records screen. Free for everyone",
-      "Your trends on the You tab: a weight trend chart with your goal arrival date, 12 weeks of training volume, and a plateau alert when progress stalls (Pro)",
+      "Your trends on the You tab: a weight trend chart with your goal arrival date, 12 weeks of training volume, and a plateau alert when progress stalls (Premium)",
       "A Quick option when logging food: enter calories on their own, or calories plus macros, without searching",
       "Notes mode when describing food: write your whole day out under Breakfast, Lunch, Dinner and Snacks and log it in one go",
       "An optional fiber target, shown as a fiber bar next to protein, carbs and fat",
@@ -37,7 +83,7 @@ const V2_7_SECTIONS = [
       "The Exercise tab was redesigned around one Up next card that follows your program, or picks the workout whose muscles have rested longest",
       "A rebuilt welcome tour that highlights the real app on screen, one step at a time. Replay it from Settings",
       "Step history now follows your own calendar day, so evening steps no longer spill into tomorrow",
-      "Free accounts now get 2 scans a week, alongside 2 voice logs and 2 describes",
+      "Free accounts now get 2 meal photo scans a week, alongside 2 voice logs and 2 describes. Barcode scans are unlimited",
       "Onboarding is shorter, and goal setup explains an unusual calorie target instead of blocking it"
     ]
   },
@@ -126,7 +172,7 @@ const V2_4_1_SECTIONS = [
       "The weight graph now appears from your first entry instead of needing two",
       "Weekly issue pages about calories and protein no longer show the steps chart",
       "The weekly issue's new and read state stays correct across week boundaries",
-      "The one-time survey for Pro members no longer reappears after you have answered it",
+      "The one-time survey for Premium members no longer reappears after you have answered it",
     ],
   },
 ];
@@ -139,7 +185,7 @@ const V2_4_SECTIONS = [
       "One-tap logging from the barcode scanner, plus a \"Scan another\" button so you can scan several items back to back",
       "Your latest body fat entry now shows next to your weight on the Home tab",
       "Two new pages in your weekly issue: the achievements you earned that week and where you placed on the leaderboards",
-      "A workout setting for unilateral exercises — choose whether to log left and right sides separately (Pro)",
+      "A workout setting for unilateral exercises — choose whether to log left and right sides separately (Premium)",
       "A celebration overlay when you earn a streak day",
       "The app now offers to help you add Helthy widgets to your home screen, and the streak widget shows a compact calendar of your week",
       "On Android, steps are now counted by the phone's own step sensor, so step tracking works reliably in the background",
@@ -148,7 +194,7 @@ const V2_4_SECTIONS = [
   {
     label: "Changed",
     items: [
-      "The quick-log bar on the Food tab (search, describe, scan) is now available to everyone — photo meal scanning is the Pro part",
+      "The quick-log bar on the Food tab (search, describe, scan) is now available to everyone — photo meal scanning is the Premium part",
       "The tab bar on iOS is now the native system tab bar",
       "The sign-in and welcome screens were redesigned to match the app's look, and they load faster",
       "Picking a username is no longer part of sign-up — set one any time in Settings > Profile",
@@ -192,7 +238,7 @@ const V2_3_SECTIONS = [
   {
     label: "Changed",
     items: [
-      "Weekly issues now drop every Sunday, and the current week's issue is free for everyone — opening past issues is the Pro part",
+      "Weekly issues now drop every Sunday, and the current week's issue is free for everyone — opening past issues is the Premium part",
       "AI chat replies now stream in smoothly at a steady pace, and chat opens faster",
       "Photo meal scanning is more accurate and more reliable",
       "The AI coach now answers macro and calorie questions about any food, including fast food and restaurant items",
@@ -228,7 +274,7 @@ const V2_1_3_SECTIONS = [
   {
     label: "Added",
     items: [
-      "Free plan now shown on the upgrade screen with a clear side-by-side comparison of free vs Helthy Pro",
+      "Free plan now shown on the upgrade screen with a clear side-by-side comparison of free vs Helthy Premium",
       "A \"+1\" animation plays on your streak ring on the Home tab when you keep it going",
     ],
   },
@@ -250,7 +296,7 @@ const V2_2_SECTIONS = [
       "Global leaderboards — rank against other Helthy users on Steps (daily or weekly), Workouts, Activity minutes, and your current daily Streak. Open from the podium icon on Home and share your rank. Opt-in via Settings > Profile.",
       "Usernames — set one in Settings > Profile, used on leaderboards and shared cards",
       "Smart action cards on Home — a meal card near your usual meal times and a workout card near your usual workout time, so logging is one tap away. Swipe to dismiss for the day.",
-      "Your frequently logged meals — one-tap logging of the meals you log most often around that time of day, right inside the smart meal card (Pro)",
+      "Your frequently logged meals — one-tap logging of the meals you log most often around that time of day, right inside the smart meal card (Premium)",
       "Weight trend card on the Home tab showing your recent weight progress",
       "Live reading of today's steps from Apple Health for immediate display on Home",
       "+/- steppers for reps and weight during a workout — nudge a value without retyping it, hold to repeat quickly",
@@ -265,7 +311,7 @@ const V2_2_SECTIONS = [
       "Silky-smooth throughout — refined animations and transitions for a faster, more responsive feel across the whole app",
       "Fewer taps to log — meal, weight, and exercise logging are now quicker and more streamlined",
       "New swipe gestures for faster logging and navigation",
-      "New Pro color themes: Oat Milk, Matcha, and Concrete",
+      "New Premium color themes: Oat Milk, Matcha, and Concrete",
       "Home screen redesigned around goal progress and today's activity",
       "Create Food — name and brand fields now auto-advance to the next field",
       "Faster loading for exercise demo GIFs and the Exercise Info screen",
@@ -353,7 +399,7 @@ const V2_0_SECTIONS = [
     label: "Workouts",
     items: [
       "Dynamic Island and Live Activity during workouts — see your active set, rest timer, and elapsed time without opening the app",
-      "Muscle imbalance detection via left/right logging for unilateral exercises (Pro)",
+      "Muscle imbalance detection via left/right logging for unilateral exercises (Premium)",
       "Form tips and weight suggestions on every exercise info screen",
       "Workout history stats on exercise detail screens",
       "Workout calendar view",
@@ -439,6 +485,7 @@ function ReleaseBlock({
 }
 
 const RELEASES = [
+  { version: "Helthy 2.8", date: "October 2026", sections: V2_8_SECTIONS },
   { version: "Helthy 2.7", date: "September 2026", sections: V2_7_SECTIONS },
   { version: "Helthy 2.5", date: "August 2026", sections: V2_5_SECTIONS },
   { version: "Helthy 2.4.3", date: "July 2026", sections: V2_4_3_SECTIONS },

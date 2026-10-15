@@ -12,6 +12,29 @@ export type MacroStyle = "balanced" | "low-carb" | "high-protein";
 
 export const LB_PER_KG = 2.20462;
 
+/** Validate the supported adult input range before showing an estimate. */
+export function bodyInputError({ weightKg, age, heightCm, bodyFatPct }: {
+  weightKg: number;
+  age?: number;
+  heightCm?: number;
+  bodyFatPct?: number;
+}): string | null {
+  if (!Number.isFinite(weightKg) || weightKg <= 20 || weightKg > 500)
+    return "Enter a weight above 20 kg (44.1 lb) and no higher than 500 kg (1,102.3 lb).";
+  if (age !== undefined && (!Number.isInteger(age) || age < 18 || age > 100))
+    return "Enter an adult age from 18 to 100 years.";
+  if (heightCm !== undefined && (!Number.isFinite(heightCm) || heightCm <= 100 || heightCm > 250))
+    return "Enter a height above 100 cm and no higher than 250 cm.";
+  if (bodyFatPct !== undefined && (!Number.isFinite(bodyFatPct) || bodyFatPct <= 2 || bodyFatPct >= 70))
+    return "Enter a body fat percentage above 2 and below 70, or leave it blank.";
+  return null;
+}
+
+export function mealCountError(meals: number): string | null {
+  return Number.isInteger(meals) && meals >= 1 && meals <= 8
+    ? null : "Enter a whole number of meals from 1 to 8.";
+}
+
 export const ACTIVITY_LEVELS = [
   { key: "sedentary", label: "Sedentary (desk job, little exercise)", factor: 1.2 },
   { key: "light", label: "Light (exercise 1–3 days a week)", factor: 1.375 },
@@ -88,6 +111,7 @@ export function macros({
   const protein = proteinGrams(weightKg, goal, style);
   const fatMin = sex === "male" ? 40 : 35;
   const carbFloor = 100;
+  if (protein * 4 + fatMin * 9 + carbFloor * 4 > calories) return null;
   const remaining = calories - protein * 4;
   let carbs = (remaining * CARB_SHARE[style]) / 4;
   let fat = (remaining * (1 - CARB_SHARE[style])) / 9;

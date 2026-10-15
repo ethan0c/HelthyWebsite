@@ -25,6 +25,7 @@ export default function ToolsPage() {
       />
       <div className="mt-12">
         <LinkGrid
+          columns={2}
           links={[
             { href: "/tools/tdee-calculator", title: "TDEE calculator", body: "How many calories you burn a day, and what to eat for your goal." },
             { href: "/tools/macro-calculator", title: "Macro calculator", body: "Daily protein, carbs and fat for fat loss, maintenance or muscle gain." },

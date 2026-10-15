@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { isPostLive } from "@/lib/blog";
 import type { MDXComponents } from "mdx/types";
 import type { ComponentPropsWithoutRef } from "react";
 
@@ -12,6 +13,9 @@ import type { ComponentPropsWithoutRef } from "react";
 function A({ href = "", ...props }: ComponentPropsWithoutRef<"a">) {
   const cls =
     "text-accent-ink underline underline-offset-4 decoration-accent-line transition-colors hover:decoration-current";
+  // A post scheduled for a later Sunday isn't live yet: show the text, not a 404 link
+  const post = href.match(/^\/blog\/([^/?#]+)/)?.[1];
+  if (post && !isPostLive(post)) return <span>{props.children}</span>;
   if (href.startsWith("/") || href.startsWith("#")) {
     return <Link href={href} className={cls} {...props} />;
   }

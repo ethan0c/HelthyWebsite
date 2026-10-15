@@ -127,6 +127,10 @@ export default function HeroAIDemo() {
   const [typedReply, setTypedReply] = useState("");
   const [visibleCards, setVisibleCards] = useState(0);
   const [logged, setLogged] = useState<Set<number>>(new Set());
+  const [logging, setLogging] = useState<Set<number>>(new Set());
+  const [toast, setToast] = useState<string | null>(null);
+  // Bumped on every toast so an older toast's timer can't hide a newer one
+  const toastIdRef = useRef(0);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const wrapRef = useRef<HTMLDivElement>(null);
   // Set on first run (auto or manual) — stops the scroll auto-play from
@@ -155,6 +159,8 @@ export default function HeroAIDemo() {
       setTypedReply("");
       setVisibleCards(0);
       setLogged(new Set());
+      setLogging(new Set());
+      setToast(null);
       setPhase("thinking");
 
       const schedule = (fn: () => void, ms: number) => {
@@ -223,12 +229,31 @@ export default function HeroAIDemo() {
     return () => st.kill();
   }, [typeAndRun]);
 
-  const toggleLog = (idx: number) => {
-    setLogged((prev) => {
-      const next = new Set(prev);
-      if (!next.has(idx)) next.add(idx);
-      return next;
-    });
+  // Mirrors the app (AIChatMealSuggestions + AIChatScreen): a spinner while
+  // the meal saves, then the button locks as a check (no undo) and a
+  // "<name> logged!" toast shows. Timers go through timersRef so a new
+  // question cancels them.
+  const logMeal = (idx: number) => {
+    if (!demo || logged.has(idx) || logging.has(idx)) return;
+    const name = demo.meals[idx].name;
+    setLogging((prev) => new Set(prev).add(idx));
+    timersRef.current.push(
+      setTimeout(() => {
+        setLogging((prev) => {
+          const next = new Set(prev);
+          next.delete(idx);
+          return next;
+        });
+        setLogged((prev) => new Set(prev).add(idx));
+        const id = ++toastIdRef.current;
+        setToast(`${name} logged!`);
+        timersRef.current.push(
+          setTimeout(() => {
+            if (toastIdRef.current === id) setToast(null);
+          }, 2200),
+        );
+      }, 500),
+    );
   };
 
   const busy = phase === "thinking" || phase === "streaming";
@@ -236,9 +261,20 @@ export default function HeroAIDemo() {
   return (
     <div
       ref={wrapRef}
-      className="w-full text-left"
+      className="relative w-full text-left"
       style={{ maxWidth: 560 }}
     >
+      {/* "<name> logged!" toast, like the app's */}
+      <div aria-live="polite" className="pointer-events-none absolute inset-x-0 bottom-4 z-10 flex justify-center">
+        {toast && (
+          <p className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface-3 px-4 py-2 text-[13px] font-medium text-fg animate-in fade-in slide-in-from-bottom-2 duration-200">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 13l4 4L19 7" stroke={LEMON} strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            {toast}
+          </p>
+        )}
+      </div>
       {/* Panel */}
       <div className="rounded-3xl overflow-hidden bg-surface border border-line">
         {/* Input row */}
@@ -424,15 +460,22 @@ export default function HeroAIDemo() {
                   {/* Log button — lemon plus → check, like the app */}
                   <button
                     type="button"
-                    onClick={() => toggleLog(idx)}
-                    aria-label={logged.has(idx) ? `${meal.name} logged` : `Log ${meal.name}`}
+                    onClick={() => logMeal(idx)}
+                    disabled={logged.has(idx) || logging.has(idx)}
+                    aria-label={
+                      logged.has(idx)
+                        ? `${meal.name} logged`
+                        : logging.has(idx)
+                          ? `Logging ${meal.name}`
+                          : `Log ${meal.name}`
+                    }
                     className="flex items-center justify-center flex-shrink-0 transition-all active:scale-95"
                     style={{
                       width: 34,
                       height: 34,
                       borderRadius: 12,
                       background: logged.has(idx) ? `${LEMON}26` : LEMON,
-                      cursor: "pointer",
+                      cursor: logged.has(idx) || logging.has(idx) ? "default" : "pointer",
                       border: logged.has(idx)
                         ? `1px solid ${LEMON}40`
                         : "none",
@@ -444,7 +487,12 @@ export default function HeroAIDemo() {
                           "0 8px 16px -6px rgba(205,251,80,0.45)",
                     }}
                   >
-                    {logged.has(idx) ? (
+                    {logging.has(idx) ? (
+                      <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" stroke="#0B0B0B" strokeOpacity="0.25" strokeWidth="2.6" />
+                        <path d="M21 12a9 9 0 0 0-9-9" stroke="#0B0B0B" strokeWidth="2.6" strokeLinecap="round" />
+                      </svg>
+                    ) : logged.has(idx) ? (
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M5 13l4 4L19 7" stroke={LEMON} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>

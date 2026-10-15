@@ -42,7 +42,7 @@ export default function CoachDemoSection() {
     <section ref={sectionRef} id="coach" className="theme-light section">
       <div className="container-page flex flex-col items-center text-center">
         <p data-coach-eyebrow className="mb-4 text-[13px] font-medium text-fg-muted">
-          AI coach · Helthy Pro
+          AI coach · Helthy Premium
         </p>
         <h2
           data-coach-title
@@ -66,7 +66,13 @@ export default function CoachDemoSection() {
           It reads your meals, lifts and weight trend, so the answer is about you, not everyone.
         </p>
 
-        <div data-coach-demo className="theme-dark mt-12 flex w-full justify-center bg-transparent md:mt-16">
+        {/* Reserve the finished answer's height so the demo grows into its
+            own space instead of pushing the page down mid-scroll (same as
+            /ai-fitness-coach). Taller on phones, where the answer wraps more. */}
+        <div
+          data-coach-demo
+          className="theme-dark mt-12 flex min-h-[480px] w-full items-start justify-center bg-transparent sm:min-h-[400px] md:mt-16"
+        >
           <HeroAIDemo />
         </div>
       </div>

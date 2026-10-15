@@ -28,7 +28,7 @@ export default function CompareIndexPage() {
             How Helthy compares to the apps you <span className="text-highlight">already know</span>
           </>
         }
-        lede="Side-by-side comparisons with the most popular calorie counters and workout trackers, including where they beat us."
+        lede="Side-by-side comparisons with the most popular calorie counters and workout trackers, and where each one still fits."
       />
 
       <Section title="Calorie trackers">

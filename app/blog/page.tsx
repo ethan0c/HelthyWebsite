@@ -5,6 +5,10 @@ import { SeoPage, PageHero, DownloadBanner, seoMetadata } from "@/components/seo
 import { getPosts, formatDate } from "@/lib/blog";
 import { absoluteUrl } from "@/lib/site";
 
+// Scheduled posts go live on their date (and links to them start working)
+// without a redeploy: re-render at most once an hour.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   ...seoMetadata({
     title: "Blog: Nutrition, Training and AI Coaching",

@@ -4,158 +4,60 @@ import { join } from "path";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+export const alt = "Helthy: every meal, every set";
+
+/**
+ * A small copy of the homepage hero: the headline over the device row.
+ * public/phones/og-devices.jpg is a screenshot of the hero's device row
+ * (watch, iPhone, Android) on the canvas colour, so it blends into the
+ * background. Re-capture it when the hero devices change.
+ */
+const CANVAS = "#0F0F0F";
 
 export default async function OgImage() {
-  const [phoneData, logoData, fontBold] = await Promise.all([
-    readFile(join(process.cwd(), "public/phones/mobile-hero.png")),
-    readFile(join(process.cwd(), "public/logos/logo-long-white.png")),
+  const [devices, fontBold] = await Promise.all([
+    readFile(join(process.cwd(), "public/phones/og-devices.jpg")),
     readFile(join(process.cwd(), "public/fonts/unbounded/Unbounded-Bold.ttf")),
   ]);
-
-  const phoneSrc = `data:image/png;base64,${phoneData.toString("base64")}`;
-  const logoSrc = `data:image/png;base64,${logoData.toString("base64")}`;
 
   return new ImageResponse(
     (
       <div
         style={{
           display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
           width: 1200,
           height: 630,
-          background: "#0A0A0A",
+          background: CANVAS,
           position: "relative",
           overflow: "hidden",
         }}
       >
-        {/* Subtle lemon glow top-left */}
-        <div
-          style={{
-            position: "absolute",
-            top: -180,
-            left: -100,
-            width: 500,
-            height: 500,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(205,251,80,0.12) 0%, transparent 70%)",
-          }}
-        />
-
-        {/* Left content */}
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            padding: "56px 48px 56px 64px",
-            flex: 1,
-            zIndex: 1,
+            marginTop: 54,
+            fontFamily: "Unbounded",
+            fontWeight: 700,
+            fontSize: 72,
+            letterSpacing: "-0.04em",
+            color: "#FFFFFF",
           }}
         >
-          {/* Logo */}
-          <img
-            src={logoSrc}
-            style={{ height: 34, width: 116, objectFit: "contain", objectPosition: "left" }}
-          />
-
-          {/* Text block pushed to bottom */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              marginTop: "auto",
-            }}
-          >
-            <span
-              style={{
-                color: "#CDFB50",
-                fontSize: 18,
-                fontFamily: "Unbounded",
-                fontWeight: 500,
-                marginBottom: 20,
-              }}
-            >
-              A coach that learns you
-            </span>
-            <span
-              style={{
-                color: "#ffffff",
-                fontSize: 50,
-                fontFamily: "Unbounded",
-                fontWeight: 700,
-                lineHeight: 1.1,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              The Best Free Fitness App
-            </span>
-            <span
-              style={{
-                color: "#9CA3AF",
-                fontSize: 18,
-                marginTop: 22,
-                lineHeight: 1.5,
-                maxWidth: 540,
-              }}
-            >
-              Photo meal logging · 1,500 exercises · AI coach · Free forever
-            </span>
-            {/* Rating pill */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginTop: 28,
-                background: "#1A1A1A",
-                border: "1px solid #2E2E30",
-                borderRadius: 999,
-                padding: "8px 18px",
-                width: "fit-content",
-                gap: 8,
-              }}
-            >
-              <span style={{ color: "#CDFB50", fontSize: 16 }}>★ 4.9</span>
-              <span style={{ color: "#6B7280", fontSize: 14 }}>App Store · iOS & Android</span>
-            </div>
-          </div>
+          Every meal.&nbsp;<span style={{ color: "#CDFB50" }}>Every set.</span>
         </div>
 
-        {/* Right phone */}
-        <div
-          style={{
-            position: "absolute",
-            right: -30,
-            top: -40,
-            display: "flex",
-          }}
-        >
-          <img
-            src={phoneSrc}
-            style={{ height: 720, width: "auto" }}
-          />
-        </div>
-
-        {/* Fade on right edge of left panel so phone blends in */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            right: 280,
-            width: 160,
-            height: 630,
-            background: "linear-gradient(to right, transparent, #0A0A0A)",
-            zIndex: 2,
-          }}
+        {/* Devices rise from the bottom edge, like the hero */}
+        <img
+          src={`data:image/jpeg;base64,${devices.toString("base64")}`}
+          style={{ position: "absolute", left: 150, top: 164, width: 900, height: 690 }}
         />
       </div>
     ),
     {
       ...size,
-      fonts: [
-        {
-          name: "Unbounded",
-          data: fontBold,
-          weight: 700,
-        },
-      ],
-    }
+      fonts: [{ name: "Unbounded", data: fontBold, weight: 700 }],
+    },
   );
 }

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import {
   SeoPage,
   PageHero,
-  StoreButtons,
+  DownloadButton,
   Section,
   Prose,
   FeatureGrid,
@@ -12,8 +12,8 @@ import {
   DownloadBanner,
   seoMetadata,
 } from "@/components/seo/SeoPage";
-import AppleWatch from "@/components/ui/AppleWatch";
-import PhoneFrame from "@/components/ui/PhoneFrame";
+import DeviceFrame from "@/components/ui/DeviceFrame";
+import WatchScreen from "@/components/ui/WatchScreen";
 import PhoneVideo from "@/components/ui/PhoneVideo";
 import { PRO_PRICE } from "@/lib/site";
 
@@ -22,12 +22,13 @@ export const metadata: Metadata = seoMetadata({
   description:
     "Log every set, rep and weight across 1,500 exercises. Helthy is a free workout tracker with automatic PR detection, an Apple Watch app and an AI coach that builds your routine.",
   path: "/workout-tracker",
+  image: "/videos/app/workout-log-poster.jpg",
 });
 
 const FAQS = [
   {
     q: "Is the Helthy workout tracker free?",
-    a: `Yes. Unlimited workout logging, the 1,500-exercise library and automatic PRs are free forever, and you can keep up to 4 saved workouts. Helthy Pro ($${PRO_PRICE.monthly}/month or $${PRO_PRICE.yearly}/year) adds unlimited saved workouts, full history, AI-generated routines and the workout coach.`,
+    a: `Yes. Unlimited workout logging, the 1,500-exercise library and automatic PRs are free forever, and you can keep up to 4 saved workouts. Helthy Premium ($${PRO_PRICE.monthly}/month or $${PRO_PRICE.yearly}/year) adds unlimited saved workouts, full history, AI-generated routines and the workout coach.`,
   },
   {
     q: "Can I track cardio as well as weights?",
@@ -39,11 +40,11 @@ const FAQS = [
   },
   {
     q: "Can Helthy build a workout plan for me?",
-    a: "With Helthy Pro, tell the AI your goal, experience and schedule and it builds a structured routine you can start logging right away. You can edit any day or exercise.",
+    a: "With Helthy Premium, tell the AI your goal, experience and schedule and it builds a structured routine you can start logging right away. You can edit any day or exercise.",
   },
   {
     q: "Does Helthy work on Apple Watch?",
-    a: "Yes. Helthy has its own Apple Watch app. Track runs, walks, rides and HIIT with heart rate and calories, and log meals by voice. With Helthy Pro, the watch also follows your strength workout live, so you can complete sets and start rest timers from your wrist.",
+    a: "Yes. Helthy has its own Apple Watch app. Track runs, walks, rides and HIIT with heart rate and calories, and log meals by voice. With Helthy Premium, the watch also follows your strength workout live, so you can complete sets and start rest timers from your wrist.",
   },
   {
     q: "Why track workouts and food in the same app?",
@@ -67,13 +68,13 @@ export default function WorkoutTrackerPage() {
           }
           lede="Log every set, rep and weight in seconds, see your PRs as they happen, and know exactly what to lift next time. 1,500 exercises and unlimited workouts, free."
         >
-          <StoreButtons />
+          <DownloadButton />
         </PageHero>
         <div className="flex justify-center md:justify-end">
           <PhoneVideo
             src="/videos/app/workout-log.mp4"
             poster="/videos/app/workout-log-poster.jpg"
-            label="Screen recording: starting a workout, adding an exercise from the library and logging sets"
+            label="Screen recording: logging a workout in Helthy set by set with a rest timer, then saving it with a new personal record and a shareable summary card"
             className="w-[min(280px,70vw)]"
           />
         </div>
@@ -100,7 +101,7 @@ export default function WorkoutTrackerPage() {
             },
             {
               title: "Apple Watch app",
-              body: "Track cardio with heart rate from your wrist. With Pro, complete sets and start rests without touching your phone.",
+              body: "Track cardio with heart rate from your wrist. With Premium, complete sets and start rests without touching your phone.",
             },
             {
               title: "AI-built routines",
@@ -116,28 +117,14 @@ export default function WorkoutTrackerPage() {
         />
       </Section>
 
-      <div className="mt-20 grid items-center gap-12 md:grid-cols-[1fr_1.3fr]">
-        <div className="order-2 flex justify-center md:order-1 md:justify-start">
-          <PhoneFrame
-            src="/phones/exercise-info-screen.png"
-            alt="Helthy exercise detail screen with form tips and history"
-            width={1328}
-            height={2707}
-            className="w-[min(280px,70vw)]"
-          />
-        </div>
-        <div className="order-1 md:order-2">
-          <h2 className="text-display-md text-fg">Progressive overload, made obvious</h2>
-          <div className="mt-6">
-            <Prose
-              paragraphs={[
-                "Muscle and strength come from doing a little more over time: another rep, a few more pounds, one more set. The problem is remembering what you did last week.",
-                "Helthy shows your previous numbers as you log and flags new records automatically, and every exercise has its own how-to and target muscles, with form tips on popular lifts. You walk into every session knowing the target.",
-              ]}
-            />
-          </div>
-        </div>
-      </div>
+      <Section title="Progressive overload, made obvious">
+        <Prose
+          paragraphs={[
+            "Muscle and strength come from doing a little more over time: another rep, a few more pounds, one more set. The problem is remembering what you did last week.",
+            "Helthy shows your previous numbers as you log and flags new records automatically, and every exercise has its own how-to and target muscles, with form tips on popular lifts. You walk into every session knowing the target.",
+          ]}
+        />
+      </Section>
 
       <div className="mt-24 grid items-center gap-12 md:grid-cols-[1.3fr_1fr]">
         <div>
@@ -159,9 +146,23 @@ export default function WorkoutTrackerPage() {
         {/* Both halves of the watch app: lifting and cardio. The second
             watch drops on narrow screens, where they would be too small. */}
         <div className="flex items-center justify-center gap-4 sm:gap-8">
-          <AppleWatch width={240} screen="workout" />
-          <div className="hidden sm:block">
-            <AppleWatch width={240} screen="cardio" />
+          <div
+            role="img"
+            aria-label="Helthy on Apple Watch: a live bench press workout with completed sets, the current set and a Complete Set button"
+            className="w-[min(270px,70vw)]"
+          >
+            <DeviceFrame device="watch" sizes="270px">
+              <WatchScreen screen="workout" />
+            </DeviceFrame>
+          </div>
+          <div
+            role="img"
+            aria-label="Helthy on Apple Watch: a live outdoor run showing heart rate, distance, pace and calories"
+            className="hidden w-[270px] sm:block"
+          >
+            <DeviceFrame device="watch" sizes="270px">
+              <WatchScreen screen="cardio" />
+            </DeviceFrame>
           </div>
         </div>
       </div>
@@ -171,7 +172,7 @@ export default function WorkoutTrackerPage() {
           items={[
             {
               title: "Pick or build a routine",
-              body: "Save your own workout, start an empty one, or have the AI build a full program (Pro).",
+              body: "Save your own workout, start an empty one, or have the AI build a full program (Premium).",
             },
             {
               title: "Log as you lift",

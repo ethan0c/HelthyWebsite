@@ -1,6 +1,7 @@
 import FeatureBand from "@/components/sections/FeatureBand";
 import PhoneVideo from "@/components/ui/PhoneVideo";
-import AppleWatch from "@/components/ui/AppleWatch";
+import DeviceFrame from "@/components/ui/DeviceFrame";
+import WatchScreen from "@/components/ui/WatchScreen";
 
 export default function LiftSection() {
   return (
@@ -23,11 +24,19 @@ export default function LiftSection() {
           <PhoneVideo
             src="/videos/app/workout-log.mp4"
             poster="/videos/app/workout-log-poster.jpg"
-            label="Screen recording: starting a push workout, adding an exercise from the library and logging sets"
+            label="Screen recording: logging a workout in Helthy set by set with a rest timer, then saving it with a new personal record and a shareable summary card"
             className="w-[min(280px,60vw)]"
           />
-          <div className="hidden sm:block">
-            <AppleWatch width={150} />
+          {/* Same photo watch as the hero. The hero's shows the strength
+              workout; this one shows cardio */}
+          <div
+            role="img"
+            aria-label="Helthy on Apple Watch: a live outdoor run showing heart rate, distance, pace and calories"
+            className="hidden w-[180px] shrink-0 sm:block"
+          >
+            <DeviceFrame device="watch" sizes="180px">
+              <WatchScreen screen="cardio" />
+            </DeviceFrame>
           </div>
         </div>
       }

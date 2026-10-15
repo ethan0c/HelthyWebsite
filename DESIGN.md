@@ -9,14 +9,14 @@ The site uses **black, white and lemon** (`#CDFB50`), like the app's dark mode. 
 pure neutral steps between black and white, never blue-tinted. There is no second green:
 lemon is the only brand colour.
 
-- **Lemon is reserved.** Use it for the one highlighted phrase in a heading, the primary
-  action on a dark band, short special text (a price note, a Pro badge), and the hover marker
-  on nav links. Aim for one or two lemon moments per block. Step numbers, checkmarks, eyebrows,
-  toggles and avatars are black or white, not lemon.
+- **Lemon is reserved.** Use it for the one highlighted phrase in a heading, the buttons
+  that get the app (Download, App Store), short special text (a price note, a Pro badge), and the hover marker
+  on nav links. Aim for one or two lemon moments per block. Step numbers, checkmarks, eyebrows, toggles and avatars are
+  black or white, not lemon.
 - **Dark bands:** black canvas, white text, and lemon as text or as a fill.
 - **Light bands:** pure white canvas and black text. Lemon can't be read as text on white,
   so here it only appears as a **fill under black text**: the heading highlight becomes a
-  highlighter marker, and badges become solid lemon pills. Primary buttons are black.
+  highlighter marker, and badges become solid lemon pills.
 
 ## Themes
 
@@ -24,11 +24,11 @@ lemon is the only brand colour.
   token inside it. `theme-dark` switches back inside a light band.
 - **Homepage:** alternate the bands. Never put two light bands next to each other.
 - **Single-block pages** (hubs like /blog, /tools, /exercises, /compare, plus contact, download,
-  changelog, legal and 404) and **blog posts** (long reading is easier on white) are one white
-  page: `theme-light` on `<main>`, or `<SeoPage tone="light">`. The dark nav and footer frame
-  them.
-- **Multi-section content pages** (pricing, tool calculators, comparisons, exercise guides,
-  product landing pages) stay dark. They may use one light band through `<Section tone="light">`
+  changelog, legal and 404), **blog posts** and **exercise guides** (long reading is easier on
+  white) are one white page: `theme-light` on `<main>`, or `<SeoPage tone="light">`. The dark
+  nav and footer frame them.
+- **Multi-section content pages** (pricing, tool calculators, comparisons, product landing
+  pages) stay dark. They may use one light band through `<Section tone="light">`
   in `components/seo/SeoPage.tsx`.
 - Bands are always full width. Never float a rounded light panel on a dark page. The one
   exception is the recommended plan on /pricing: a white card beside the dark Free card, so the
@@ -67,16 +67,16 @@ Two families only.
 | Page H1 / homepage section title | `text-display-xl` (via `<SectionHeading>`) |
 | Large H2 (feature rows, pricing) | `text-display-lg` |
 | Content-page H2 | `text-display-md` |
-| Card / item title | `text-title` (DM Sans 500, never Unbounded) |
+| Card / item title | `text-title` (Geist 500, never Unbounded) |
 | Lede under a heading | `text-lede` |
-| Body | DM Sans 15–16px, `text-fg-muted`, `leading-7` |
+| Body | Geist 15–16px, `text-fg-muted`, `leading-7` |
 | Eyebrow / caption | 13px, `font-medium`, `text-fg-muted` or `text-fg-subtle` |
 | Big numbers (prices, stats) | `text-numeric` (Unbounded) |
 
-- Unbounded is for headings and numbers only. Everything else uses DM Sans.
+- Unbounded is for headings and numbers only. Everything else uses Geist.
 - A heading can have at most one highlighted phrase, wrapped in `<span className="text-highlight">`
   (`<SectionHeading italicTail>` does this for you). Headings have no trailing period (the hero's
-  "Get Helthy." is the exception).
+  "Every meal. Every set." is the exception).
 - On light bands the highlight marker is a band behind the letters, not a full box, so it
   never covers descenders on the line above in tight display line-heights. Don't override
   `.text-highlight` with a solid `background`.
@@ -88,10 +88,16 @@ Two families only.
   24px `rounded-3xl` for large panels and screenshots. Buttons, toggles and badges are
   `rounded-full`.
 - No shadows, glows, inner bevels, gradients, glass blur, grain, noise, perspective or tilt.
-  Depth comes from the surface steps and 1px lines.
+  Depth comes from the surface steps and 1px lines. **Exception:** the homepage hero's device
+  row uses photographic device renders (`components/ui/DeviceFrame.tsx`), laid out like
+  MacroFactor's: the Apple Watch (left) and iPhone (middle) straight on, the Android phone
+  (right) turned in 3D. The 3D turn stays inside that one row.
+  Everywhere else, phones use the flat `PhoneFrame`. The Apple Watch always uses the photo
+  watch (`<DeviceFrame device="watch">` with a live `<WatchScreen>`), in the hero and out.
 - Hover changes colour only (border, background), with a 150ms transition. No lift, no scale.
   What may move is listed under Motion.
-- The glossy 3D clover is the logo and appears only in the hero.
+- The glossy 3D clover is the logo and appears only in the homepage's closing CTA
+  ("Get [clover] Helthy") and as the AI coach's avatar.
 
 ## Motion
 
@@ -109,7 +115,7 @@ bounce, no lift, no hover scale, no shadows.
 - **Arrows lean 3px** toward where a link goes on hover: wrap the arrow in `.nudge`.
 - **Press**: buttons scale to 0.98 while held. This is the only scale on the site.
 - **Open and close are both animated.** The FAQ row (`FaqItem`) animates its height both ways
-  and reverses if clicked mid-way; the launch banner collapses before it unmounts.
+  and reverses if clicked mid-way.
 - `prefers-reduced-motion` turns all of it off (handled globally in `globals.css`; JS animations
   check `prefersReducedMotion()`).
 
@@ -125,13 +131,20 @@ bounce, no lift, no hover scale, no shadows.
 
 ## Components (use these, don't restyle ad hoc)
 
-- **Button**: `<CTAButton variant="primary|secondary|ghost" size="sm|md|lg">`, or the classes
-  `btn-primary` / `btn-secondary` / `btn-ghost` / `btn-accent` plus `btn-sm` / `btn-lg` on a
-  plain `<button>`. Primary is lemon on dark and black on light; `btn-accent` forces lemon
-  (lemon fill with black text reads fine on white).
-  Give each band one primary button.
-- **Store links**: `<StoreButtons />` (App Store primary, Google Play secondary). The labels
-  are always "App Store" and "Google Play".
+- **Button**: `<CTAButton variant="primary|secondary|ghost|accent" size="sm|md|lg">`, or the
+  classes `btn-primary` / `btn-secondary` / `btn-ghost` / `btn-accent` plus `btn-sm` / `btn-lg`
+  on a plain `<button>`. They match the app's `PillButton`:
+  - **Primary** is ink: white with black text on dark, black with white text on light.
+  - **Secondary** is a borderless fill: `#262626` (the app's card) on dark, `#EDEDED` on light.
+  - **Accent** is lemon with black text, on any band. It's only for getting the app
+    (`DownloadButton`, the App Store half of `StoreButtons`), like the app keeps lemon for a
+    short list of standout actions.
+  Give each band one primary or accent button.
+- **Download**: `<DownloadButton />`, one button per spot: the hero and the closing band. It
+  opens a QR popup on desktop and goes straight to the right store on phones. The
+  App Store / Google Play pair (`<StoreButtons />`, labels always "App Store" and
+  "Google Play") appears only in the nav and on the `/download` fallback page. Never put the
+  pair, or two download CTAs, in the same band.
 - **App screenshots**: `<PhoneFrame>` (`components/ui/PhoneFrame.tsx`), a flat black bezel with a
   1px line and no tilt or shadow. Use bare screen images, not pre-framed renders.
 - **Card**: `card` (+ `card-hover` if clickable, `card-accent` for a highlighted panel). Nested stat or result areas use `tile`.
@@ -148,9 +161,9 @@ bounce, no lift, no hover scale, no shadows.
   (default) emphasises the Helthy column on vs pages; pass `highlightFirst={false}` when the
   columns are equals (Free vs Pro).
 - **Download CTA**: `DownloadBanner` in SeoPage, always passed to SeoPage's `closing` slot so it
-  runs full width and flush against the footer, with a phone rising from its bottom edge on
-  desktop. Its tone is the opposite of the page: the default light band on dark pages,
-  `tone="dark"` on white pages. Never a floating card mid-page.
+  runs full width and flush against the footer. It's text only (no app screenshot): heading on
+  the left, line and store buttons on the right. Its tone is the opposite of the page: the
+  default light band on dark pages, `tone="dark"` on white pages. Never a floating card mid-page.
 - **Icons**: `lucide-react` for UI. Use `react-icons` for brand logos only (Apple, Google
   Play, X, Instagram, TikTok).
 

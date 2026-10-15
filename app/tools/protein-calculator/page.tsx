@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { proteinGrams } from "@/lib/calc";
 import type { Metadata } from "next";
 import { SeoPage, PageHero, Section, Prose, FaqList, LinkGrid, DownloadBanner, seoMetadata } from "@/components/seo/SeoPage";
 import { ProteinCalculator } from "@/components/tools/Calculators";
@@ -50,12 +52,31 @@ export default function ProteinPage() {
         <ProteinCalculator />
       </div>
 
-      <Section title="How much protein you need">
+      <Section title="How much protein you need" tone="light">
         <Prose
           paragraphs={[
             "Protein targets here are based on bodyweight: 0.85 g per lb (about 1.9 g/kg) when losing fat, and 0.8 g per lb (about 1.8 g/kg) to maintain or build muscle. They sit within the range sports nutrition research supports for people who train.",
           ]}
         />
+      </Section>
+
+      <Section title="Protein targets by bodyweight">
+        <p className="max-w-3xl text-base leading-7 text-fg-muted">These examples use the same targets as the calculator for adults who strength train. The per-meal number divides the daily total across four meals; it is not an absorption limit.</p>
+        <div className="card mt-6 overflow-x-auto">
+          <table className="w-full text-left text-[15px]">
+            <caption className="sr-only">Example daily protein targets in grams</caption>
+            <thead><tr className="border-b border-line">{["Weight", "Maintain / build", "Lose fat", "Per meal (build, 4 meals)"].map(label => <th scope="col" className="p-4" key={label}>{label}</th>)}</tr></thead>
+            <tbody className="divide-y divide-line text-fg-muted">{[60, 70, 80, 90, 100].map(kg => <tr key={kg}><th scope="row" className="p-4 font-medium text-fg">{kg} kg / {Math.round(kg * 2.20462)} lb</th><td className="p-4">{Math.round(proteinGrams(kg, "gain"))} g</td><td className="p-4">{Math.round(proteinGrams(kg, "lose"))} g</td><td className="p-4">{Math.round(proteinGrams(kg, "gain") / 4)} g</td></tr>)}</tbody>
+          </table>
+        </div>
+      </Section>
+
+      <Section title="Evidence behind the targets">
+        <p className="max-w-3xl text-base leading-7 text-fg-muted">
+          <a href="https://pubmed.ncbi.nlm.nih.gov/28698222/" className="underline underline-offset-4">Morton and colleagues&apos; 2018 meta-analysis</a> combined 49 resistance-training studies with 1,863 participants. Average gains in fat-free mass did not increase further beyond roughly 1.6 g/kg/day. That finding is not an individual ceiling or a prescription for people with medical conditions.
+          Our <Link href="/blog/how-much-protein-to-build-muscle" className="underline underline-offset-4">guide to protein for muscle growth</Link> explains the range, meal examples and limitations.
+        </p>
+        <p className="mt-4 text-[14px] text-fg-muted">Created by <Link href="/about#editorial" className="underline underline-offset-4">the Helthy team</Link>. Intended for adults who train.</p>
       </Section>
 
       <Section title="Protein questions">

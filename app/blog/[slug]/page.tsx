@@ -5,7 +5,11 @@ import { notFound } from "next/navigation";
 import { SeoPage, DownloadBanner } from "@/components/seo/SeoPage";
 import JsonLd from "@/components/seo/JsonLd";
 import { getPost, getPosts, formatDate } from "@/lib/blog";
-import { SITE_URL, absoluteUrl } from "@/lib/site";
+import { DEFAULT_OG_IMAGE, SITE_URL, absoluteUrl } from "@/lib/site";
+
+// Scheduled posts go live on their date (and links to them start working)
+// without a redeploy: re-render at most once an hour.
+export const revalidate = 3600;
 
 // Posts dated in the future aren't prerendered; they render on first visit
 // once their date arrives (see isPublished in lib/blog.ts).
@@ -21,7 +25,7 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): P
   return {
     title: post.meta.title,
     description: post.meta.description,
-    authors: [{ name: post.meta.author }],
+    authors: [{ name: post.meta.author, ...(post.meta.author === "The Helthy team" && { url: absoluteUrl("/about#editorial") }) }],
     alternates: { canonical: url },
     openGraph: {
       title: post.meta.title,
@@ -29,14 +33,15 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): P
       url,
       type: "article",
       publishedTime: post.meta.date,
+      modifiedTime: post.meta.updated ?? post.meta.date,
       authors: [post.meta.author],
-      ...(post.meta.image && { images: [{ url: post.meta.image, width: 1200, height: 800, alt: post.meta.imageAlt }] }),
+      images: [post.meta.image ? { url: post.meta.image, width: 1200, height: 800, alt: post.meta.imageAlt } : DEFAULT_OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: post.meta.title,
       description: post.meta.description,
-      ...(post.meta.image && { images: [post.meta.image] }),
+      images: [post.meta.image ?? DEFAULT_OG_IMAGE],
     },
   };
 }
@@ -65,7 +70,10 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
           headline: meta.title,
           description: meta.description,
           datePublished: meta.date,
-          author: { "@type": "Person", name: meta.author },
+          dateModified: meta.updated ?? meta.date,
+          author: meta.author === "The Helthy team"
+            ? { "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: meta.author, url: absoluteUrl("/about#editorial") }
+            : { "@type": "Person", name: meta.author },
           publisher: { "@id": `${SITE_URL}/#organization` },
           mainEntityOfPage: absoluteUrl(`/blog/${slug}`),
           keywords: meta.tags?.join(", "),
@@ -78,7 +86,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
           <h1 className="text-display-xl text-fg">{meta.title}</h1>
           <p className="mt-6 text-lede">{meta.description}</p>
           <p className="mt-6 text-[13px] text-fg-subtle">
-            {meta.author} · <time dateTime={meta.date}>{formatDate(meta.date)}</time> · {readingMinutes} min read
+            {meta.author === "The Helthy team" ? <Link href="/about#editorial" className="underline underline-offset-4">{meta.author}</Link> : meta.author} · <time dateTime={meta.date}>{formatDate(meta.date)}</time> · {readingMinutes} min read
           </p>
         </header>
 
@@ -97,6 +105,9 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
         <div className={meta.image ? "mt-6" : "mt-10 border-t border-line pt-4"}>
           <Content />
         </div>
+        <aside className="mt-10 border-t border-line pt-6 text-[14px] leading-6 text-fg-muted" aria-label="About this article">
+          Written by {meta.author}. <Link href="/about#editorial" className="underline underline-offset-4">About our team and content</Link>. Found an error? <Link href="/contact" className="underline underline-offset-4">Tell us what needs correcting</Link>.
+        </aside>
       </article>
 
       {more.length > 0 && (

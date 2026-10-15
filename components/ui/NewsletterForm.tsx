@@ -72,7 +72,7 @@ export default function NewsletterForm() {
           aria-label="Email address"
           placeholder="you@email.com"
           disabled={status === "loading" || status === "success"}
-          className="input min-w-0 flex-1 disabled:opacity-60"
+          className="input min-w-0 rounded-full sm:flex-1 disabled:opacity-60"
         />
         <button
           type="submit"

@@ -14,6 +14,8 @@ export type PostMeta = {
   description: string;
   /** Publish date, YYYY-MM-DD. */
   date: string;
+  /** Last substantial content update, YYYY-MM-DD. Omit for an unchanged article. */
+  updated?: string;
   author: string;
   tags?: string[];
   /** Cover photo in public/blog, e.g. "/blog/<slug>.jpg" (3:2, 1200px wide). */
@@ -34,6 +36,20 @@ const DIR = path.join(process.cwd(), "content/blog");
 function isPublished(meta: PostMeta) {
   const today = new Date().toISOString().slice(0, 10);
   return !meta.draft && meta.date <= today;
+}
+
+/**
+ * Whether /blog/<slug> is live right now. Read from the file's meta without
+ * importing it, so article links can check it while rendering: a link to a
+ * post that's scheduled for later renders as plain text until its date.
+ */
+export function isPostLive(slug: string) {
+  const file = path.join(DIR, `${slug}.mdx`);
+  if (slug.startsWith("_") || !fs.existsSync(file)) return false;
+  const head = fs.readFileSync(file, "utf8").slice(0, 2000);
+  const date = head.match(/date:\s*"(\d{4}-\d{2}-\d{2})"/)?.[1];
+  const draft = /draft:\s*true/.test(head);
+  return !!date && !draft && isPublished({ date, draft } as PostMeta);
 }
 
 function readingMinutes(slug: string) {

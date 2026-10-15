@@ -50,7 +50,7 @@ export default function OneRepMaxPage() {
         <OneRepMaxCalculator />
       </div>
 
-      <Section title="How your 1RM is estimated">
+      <Section title="How your 1RM is estimated" tone="light">
         <Prose
           paragraphs={[
             "The calculator averages two standard formulas. Epley: 1RM = weight × (1 + reps ÷ 30). Brzycki: 1RM = weight × 36 ÷ (37 − reps).",

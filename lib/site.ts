@@ -11,7 +11,7 @@ export const APP_STORE_URL = `https://apps.apple.com/us/app/helthy-track-food-wo
 export const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=app.helthy.mobile";
 
-export const PRO_PRICE = { monthly: 4.99, yearly: 24.99 };
+export const PRO_PRICE = { monthly: 4.99, yearly: 29.99 };
 
 export const SOCIAL_PROFILES = [
   "https://x.com/helthyapp",
@@ -24,3 +24,15 @@ export const SOCIAL_PROFILES = [
 export function absoluteUrl(path: string) {
   return path === "/" ? SITE_URL : `${SITE_URL}${path}`;
 }
+
+/**
+ * The image from app/opengraph-image.tsx. Metadata merges shallowly, so any
+ * page that sets its own `openGraph` or `twitter` drops the inherited image
+ * and must pass this one explicitly.
+ */
+export const DEFAULT_OG_IMAGE = {
+  url: absoluteUrl("/opengraph-image"),
+  width: 1200,
+  height: 630,
+  alt: "Helthy: the best free fitness app",
+};

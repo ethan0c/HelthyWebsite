@@ -81,7 +81,7 @@ const CLOSE_DELAY = 180;
 const isCurrent = (pathname: string, href: string) =>
   pathname === href || pathname.startsWith(`${href}/`);
 
-const ITEM = "px-3 py-2 text-[15px] font-medium";
+const ITEM = "px-3 py-2 text-[16px] font-medium";
 const itemClass = (lit: boolean) =>
   `${ITEM} rounded-full transition-colors duration-150 ${lit ? "text-fg" : "text-fg-muted"}`;
 
@@ -90,8 +90,8 @@ const itemClass = (lit: boolean) =>
 const MARKER_INSET = { x: 6, y: 7 };
 
 /**
- * Full-width flat top bar (64px). Positioned by TopBar (fixed, flush under
- * the launch banner). Product and Resources open full-width menu panels on
+ * Full-width flat top bar (72px), fixed to the top of the viewport by
+ * TopBar. Product and Resources open full-width menu panels on
  * desktop, on hover (click still works for touch and keyboard); on mobile
  * everything folds into one panel under the bar.
  *
@@ -219,7 +219,7 @@ export default function SiteNav() {
       onPointerLeave={scheduleClose}
       className="pointer-events-auto relative w-full border-b border-line bg-canvas"
     >
-      <div className="container-page flex h-16 items-center gap-8">
+      <div className="container-page flex h-[72px] items-center gap-8">
         <Link
           href="/"
           aria-label="Helthy home"
@@ -227,7 +227,7 @@ export default function SiteNav() {
           onClick={close}
           onPointerEnter={hoverItem(null)}
         >
-          <HelthyWordmark className="h-6 w-auto text-fg" />
+          <HelthyWordmark className="h-7 w-auto text-fg" />
         </Link>
 
         {/* Desktop */}
@@ -297,9 +297,7 @@ export default function SiteNav() {
               Contact
             </Link>
             <span onPointerEnter={hoverItem(null)} className="flex">
-              <CTAButton href="/download" variant="primary" size="sm" onClick={handleDownloadClick}>
-                Download
-              </CTAButton>
+              <StoreButtons size="sm" />
             </span>
           </div>
 
@@ -326,7 +324,9 @@ export default function SiteNav() {
             </ul>
             <div className="ml-auto flex items-center gap-2">
               <span className={ITEM}>Contact</span>
-              <span className="btn-primary btn-sm invisible">Download</span>
+              <span className="invisible">
+                <StoreButtons size="sm" />
+              </span>
             </div>
           </div>
         </nav>
@@ -438,22 +438,22 @@ export default function SiteNav() {
         data-open={mobileOpen}
         inert={!mobileOpen}
         data-lenis-prevent
-        className="nav-panel absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-b border-line bg-canvas lg:hidden"
+        className="nav-panel absolute inset-x-0 top-full max-h-[calc(100dvh-72px)] overflow-y-auto overscroll-contain border-b border-line bg-canvas lg:hidden"
       >
-        <div className="nav-panel-body container-page pb-6">
+        <div className="nav-panel-body container-page pb-5">
           {MENUS.map((m) => (
-            <div key={m.key} className="border-b border-line py-4">
-              <p className="pb-2 text-[13px] font-medium text-fg-subtle">{m.label}</p>
-              <ul>
+            <div key={m.key} className="border-b border-line py-3">
+              <p className="pb-1 text-[13px] font-medium text-fg-subtle">{m.label}</p>
+              <ul className="grid grid-cols-2 gap-x-4">
                 {m.links.map(({ label, href, Icon }) => (
                   <li key={href}>
                     <Link
                       href={href}
                       onClick={close}
                       aria-current={isCurrent(pathname, href) ? "page" : undefined}
-                      className="flex items-center gap-3 py-2.5 text-[16px] font-medium text-fg transition-colors duration-150 active:text-fg-muted"
+                      className="flex items-center gap-2.5 py-2 text-[15px] font-medium text-fg transition-colors duration-150 active:text-fg-muted"
                     >
-                      <Icon aria-hidden="true" className="h-[18px] w-[18px] text-fg-subtle" />
+                      <Icon aria-hidden="true" className="h-4 w-4 shrink-0 text-fg-subtle" />
                       {label}
                     </Link>
                   </li>
@@ -461,21 +461,22 @@ export default function SiteNav() {
               </ul>
             </div>
           ))}
-          <ul className="divide-y divide-line">
+          <ul className="grid grid-cols-3 border-b border-line py-1">
             {[...LINKS, { label: "Contact", href: "/contact" }].map((l) => (
               <li key={l.label}>
                 <Link
                   href={l.href}
                   onClick={close}
                   aria-current={isCurrent(pathname, l.href) ? "page" : undefined}
-                  className="block py-4 text-[16px] font-medium text-fg transition-colors duration-150 active:text-fg-muted"
+                  className="block py-3 text-[15px] font-medium text-fg transition-colors duration-150 active:text-fg-muted"
                 >
                   {l.label}
                 </Link>
               </li>
             ))}
           </ul>
-          <div className="border-t border-line pt-6 [&_a]:w-full">
+          {/* Side by side, splitting the row equally */}
+          <div className="pt-4 [&>div]:flex-nowrap [&_a]:min-w-0 [&_a]:flex-1">
             <StoreButtons />
           </div>
         </div>

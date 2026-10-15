@@ -3,11 +3,12 @@ import "./globals.css";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
 import TopBar from "@/components/sections/TopBar";
-import FloatingQRCode from "@/components/ui/FloatingQRCode";
+import DownloadQRDialog from "@/components/ui/DownloadQRDialog";
 import JsonLd from "@/components/seo/JsonLd";
 import { getAppRating, type AppRating } from "@/lib/app-rating";
 import {
   APP_STORE_URL,
+  DEFAULT_OG_IMAGE,
   PLAY_STORE_URL,
   PRO_PRICE,
   SITE_URL,
@@ -30,6 +31,7 @@ export const metadata: Metadata = {
     siteName: "Helthy",
     type: "website",
     locale: "en_US",
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
@@ -38,13 +40,14 @@ export const metadata: Metadata = {
       "Your AI fitness coach that actually learns you. Photo logging, workouts, insights & more.",
     site: "@helthyapp",
     creator: "@helthyapp",
+    images: [DEFAULT_OG_IMAGE],
   },
   icons: {
     icon: [
       { url: "/helthy-icon.svg", type: "image/svg+xml" },
       { url: "/helthy-favicon-96.png", sizes: "96x96", type: "image/png" },
     ],
-    apple: "/helthy-apple-touch-icon.png",
+    apple: { url: "/helthy-apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     shortcut: "/helthy-favicon-96.png",
   },
   robots: {
@@ -78,6 +81,10 @@ function siteJsonLd(rating: AppRating | null) {
         url: SITE_URL,
         logo: `${SITE_URL}/logos/helthylogo.png`,
         sameAs: SOCIAL_PROFILES,
+        founder: [
+          { "@type": "Person", name: "Chibudom Onyejesi" },
+          { "@type": "Person", name: "Chiebuka Onyejesi" },
+        ],
         contactPoint: {
           "@type": "ContactPoint",
           email: "support@helthy.app",
@@ -103,7 +110,7 @@ function siteJsonLd(rating: AppRating | null) {
           "Helthy is a free AI fitness app that combines calorie and macro tracking, workout logging, weight tracking and an AI coach. Log meals by search, barcode, photo or voice, track every set across 1,500 exercises, and get coaching based on your own data.",
         url: SITE_URL,
         installUrl: [APP_STORE_URL, PLAY_STORE_URL],
-        screenshot: `${SITE_URL}/phones/mobile-hero.png`,
+        screenshot: `${SITE_URL}/phones/hero-iphone.png`,
         publisher: { "@id": org },
         offers: [
           {
@@ -112,22 +119,22 @@ function siteJsonLd(rating: AppRating | null) {
             price: "0",
             priceCurrency: "USD",
             description:
-              "Unlimited food search and manual logging, calorie and macro tracking, unlimited workout logging, 1,500 exercises, automatic PRs, weight tracking and 2 free AI scans, voice logs and typed descriptions a week.",
+              "Unlimited food search, manual logging and barcode scans, calorie and macro tracking, unlimited workout logging, 1,500 exercises, automatic PRs, weight tracking and 2 free meal photo scans, voice logs and typed descriptions a week.",
           },
           {
             "@type": "Offer",
-            name: "Helthy Pro (monthly)",
+            name: "Helthy Premium (monthly)",
             price: String(PRO_PRICE.monthly),
             priceCurrency: "USD",
             description:
-              "Unlimited AI photo, barcode, voice and text logging, AI coach chat, AI-built workout programs, Smart Calories, Apple Watch workout control, full history and trends.",
+              "Unlimited meal photo, voice and text logging, AI coach chat, AI-built workout programs, Smart Calories, Apple Watch workout control, full history and trends.",
           },
           {
             "@type": "Offer",
-            name: "Helthy Pro (yearly)",
+            name: "Helthy Premium (yearly)",
             price: String(PRO_PRICE.yearly),
             priceCurrency: "USD",
-            description: "Everything in Helthy Pro, billed yearly.",
+            description: "Everything in Helthy Premium, billed yearly.",
           },
         ],
         ...(rating && {
@@ -153,6 +160,28 @@ function siteJsonLd(rating: AppRating | null) {
           "Apple Watch app",
           "Apple Health sync",
         ],
+      },
+      {
+        "@type": "VideoObject",
+        "@id": `${SITE_URL}/#video-food-log`,
+        name: "Scan a meal in Helthy",
+        description:
+          "Screen recording: snapping a photo of a meal in Helthy, which identifies each item, fills in calories and macros, and adds it to lunch.",
+        thumbnailUrl: `${SITE_URL}/videos/app/food-log-poster.jpg`,
+        contentUrl: `${SITE_URL}/videos/app/food-log.mp4`,
+        uploadDate: "2026-10-07",
+        publisher: { "@id": org },
+      },
+      {
+        "@type": "VideoObject",
+        "@id": `${SITE_URL}/#video-workout-log`,
+        name: "Log a workout in Helthy",
+        description:
+          "Screen recording: logging a workout in Helthy set by set with a rest timer, then saving it with a new personal record and a shareable summary card.",
+        thumbnailUrl: `${SITE_URL}/videos/app/workout-log-poster.jpg`,
+        contentUrl: `${SITE_URL}/videos/app/workout-log.mp4`,
+        uploadDate: "2026-10-07",
+        publisher: { "@id": org },
       },
     ],
   };
@@ -183,7 +212,7 @@ export default async function RootLayout({
           <LenisProvider>
             <TopBar />
             {children}
-            <FloatingQRCode />
+            <DownloadQRDialog />
           </LenisProvider>
         </GSAPProvider>
       </body>

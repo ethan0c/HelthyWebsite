@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 
 const SELECTED =
-  ':scope > [aria-pressed="true"], :scope > [aria-checked="true"], :scope > [aria-selected="true"]';
+  ':scope > [aria-pressed="true"], :scope > [aria-checked="true"], :scope > [aria-selected="true"], :scope > [aria-current="page"]';
 
 /**
  * Makes the selected pill of a `.segmented` group slide between options.

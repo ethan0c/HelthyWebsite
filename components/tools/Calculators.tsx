@@ -1,12 +1,16 @@
 "use client";
 
 import { useId, useState, type ReactNode } from "react";
+import Link from "next/link";
+import DownloadButton from "@/components/ui/DownloadButton";
 import { ChevronDown } from "lucide-react";
 import Segmented from "@/components/ui/Segmented";
 import {
   ACTIVITY_LEVELS,
   LB_PER_KG,
   bmr,
+  bodyInputError,
+  mealCountError,
   calorieTarget,
   macros,
   oneRepMax,
@@ -147,9 +151,9 @@ function Select<T extends string>({
 
 function Shell({ form, result }: { form: ReactNode; result: ReactNode }) {
   return (
-    <div className="card grid gap-8 p-6 md:grid-cols-[1.1fr_1fr] md:p-8">
-      <div className="space-y-5">{form}</div>
-      <div aria-live="polite" className="tile self-start p-6">
+    <div className="card grid overflow-hidden md:grid-cols-[1.1fr_1fr]">
+      <div className="space-y-5 p-6 md:p-8">{form}</div>
+      <div aria-live="polite" className="border-t border-line bg-surface-2 p-6 md:border-l md:border-t-0 md:p-8">
         {result}
       </div>
     </div>
@@ -168,13 +172,13 @@ function Stat({ label, value, unit, big }: { label: string; value: string; unit?
   );
 }
 
-function Empty() {
-  return <p className="text-[15px] leading-6 text-fg-muted">Fill in your details to see your numbers.</p>;
+function Empty({ message = "Fill in your details to see your numbers." }: { message?: string | null }) {
+  return <p className="text-[15px] leading-6 text-fg-muted">{message}</p>;
 }
 
 // ── Shared body inputs ───────────────────────────────────────────
 
-function useBody() {
+function useBody({ proteinOnly = false } = {}) {
   const [units, setUnits] = useState<Units>("imperial");
   const [sex, setSex] = useState<Sex>("male");
   const [age, setAge] = useState("30");
@@ -188,13 +192,23 @@ function useBody() {
   const w = parseFloat(weight);
   const weightKg = units === "imperial" ? w / LB_PER_KG : w;
   const heightCm =
-    units === "imperial" ? (parseFloat(ft) * 12 + (parseFloat(inch) || 0)) * 2.54 : parseFloat(cm);
+    units === "imperial" ? (Number(ft) * 12 + Number(inch)) * 2.54 : parseFloat(cm);
   const ageN = parseFloat(age);
-  const valid = weightKg > 20 && heightCm > 100 && ageN >= 13 && ageN <= 100;
+  const error = bodyInputError({
+    weightKg,
+    ...(!proteinOnly && {
+      age: ageN,
+      heightCm,
+      bodyFatPct: bodyFat.trim() === "" ? undefined : Number(bodyFat),
+    }),
+  }) ?? (!proteinOnly && units === "imperial" &&
+    (!ft.trim() || !Number.isInteger(Number(ft)) || Number(inch) < 0 || Number(inch) >= 12)
+    ? "Enter whole feet and inches from 0 up to (but not including) 12." : null);
+  const valid = !error;
 
   const switchUnits = (u: Units) => {
     if (u === units) return;
-    if (w) setWeight(String(Math.round(u === "metric" ? w / LB_PER_KG : w * LB_PER_KG)));
+    if (w) setWeight(String(Math.round((u === "metric" ? w / LB_PER_KG : w * LB_PER_KG) * 10) / 10));
     if (u === "metric" && heightCm) setCm(String(Math.round(heightCm)));
     if (u === "imperial" && heightCm) {
       const totalIn = Math.round(heightCm / 2.54);
@@ -206,17 +220,17 @@ function useBody() {
 
   const fields = ({ withHeight = true, withActivity = true, withBodyFat = true } = {}) => (
     <>
-      <div className="grid grid-cols-2 gap-4">
+      <div className={proteinOnly ? "grid gap-4" : "grid grid-cols-2 gap-4"}>
         <Toggle
           label="Units"
           value={units}
           onChange={switchUnits}
           options={[
-            { value: "imperial", label: "lb / ft" },
-            { value: "metric", label: "kg / cm" },
+            { value: "imperial", label: proteinOnly ? "lb" : "lb / ft" },
+            { value: "metric", label: proteinOnly ? "kg" : "kg / cm" },
           ]}
         />
-        <Toggle
+        {!proteinOnly && <Toggle
           label="Sex"
           value={sex}
           onChange={setSex}
@@ -224,13 +238,13 @@ function useBody() {
             { value: "male", label: "Male" },
             { value: "female", label: "Female" },
           ]}
-        />
+        />}
       </div>
-      <div className="grid grid-cols-2 gap-4">
-        <Field label="Age">{(id) => <NumberInput id={id} value={age} onChange={setAge} suffix="yrs" />}</Field>
+      <div className={proteinOnly ? "grid gap-4" : "grid grid-cols-2 gap-4"}>
+        {!proteinOnly && <Field label="Age">{(id) => <NumberInput id={id} value={age} onChange={setAge} suffix="yrs" min={18} max={100} />}</Field>}
         <Field label="Weight">
           {(id) => (
-            <NumberInput id={id} value={weight} onChange={setWeight} suffix={units === "imperial" ? "lb" : "kg"} />
+            <NumberInput id={id} value={weight} onChange={setWeight} suffix={units === "imperial" ? "lb" : "kg"} step={0.1} />
           )}
         </Field>
       </div>
@@ -238,7 +252,7 @@ function useBody() {
         (units === "imperial" ? (
           <div className="grid grid-cols-2 gap-4">
             <Field label="Height">{(id) => <NumberInput id={id} value={ft} onChange={setFt} suffix="ft" />}</Field>
-            <Field label="&nbsp;">
+            <Field label="Height (inches)">
               {(id) => <NumberInput id={id} value={inch} onChange={setInch} suffix="in" max={11} />}
             </Field>
           </div>
@@ -258,7 +272,7 @@ function useBody() {
         </Field>
       )}
       {withBodyFat && (
-        <Field label="Body fat" hint="(optional, improves accuracy)">
+        <Field label="Body fat" hint="(optional; leave blank if unsure)">
           {(id) => <NumberInput id={id} value={bodyFat} onChange={setBodyFat} suffix="%" />}
         </Field>
       )}
@@ -269,7 +283,7 @@ function useBody() {
     ? bmr({ sex, weightKg, heightCm, age: ageN, bodyFatPct: parseFloat(bodyFat) || undefined })
     : null;
 
-  return { units, sex, weightKg, valid, activity, bmrResult, fields };
+  return { units, sex, weightKg, valid, error, activity, bmrResult, fields };
 }
 
 const GOAL_OPTIONS: { value: Goal; label: string }[] = [
@@ -298,15 +312,20 @@ export function TdeeCalculator() {
                 <div key={g.value} className="flex justify-between py-3 text-fg-muted last:pb-0">
                   <span>{g.label}</span>
                   <span className="text-numeric text-fg">
-                    {round(calorieTarget(t, g.value, body.sex))}
-                    <span className="ml-1 font-body text-fg-subtle">kcal</span>
+                    {g.value === "lose" && calorieTarget(t, g.value, body.sex) >= t
+                      ? "—" : <>{round(calorieTarget(t, g.value, body.sex))}<span className="ml-1 font-body text-fg-subtle">kcal</span></>}
                   </span>
                 </div>
               ))}
             </div>
+            {calorieTarget(t, "lose", body.sex) >= t && (
+              <p className="text-[14px] leading-6 text-fg-muted">No fat-loss target is shown because the estimate is too low for this calculator&apos;s intake limits. Ask a registered dietitian for an individual plan.</p>
+            )}
+            <p className="text-[14px] leading-6 text-fg-muted">An estimate, not a measured calorie burn. <Link href="#check-your-estimate" className="underline underline-offset-4">Check it against your weight trend.</Link></p>
+            <DownloadButton label="Track my calories" size="sm" />
           </div>
         ) : (
-          <Empty />
+          <Empty message={body.error} />
         )
       }
     />
@@ -351,7 +370,7 @@ export function MacroCalculator() {
             <MacroBar p={m.protein * 4} c={m.carbs * 4} f={m.fat * 9} />
           </div>
         ) : (
-          <Empty />
+          <Empty message={body.error ?? "These inputs leave too few calories for the suggested macro targets. Check your details or ask a registered dietitian for an individual plan."} />
         )
       }
     />
@@ -385,11 +404,12 @@ function MacroBar({ p, c, f }: { p: number; c: number; f: number }) {
 }
 
 export function ProteinCalculator() {
-  const body = useBody();
+  const body = useBody({ proteinOnly: true });
   const [goal, setGoal] = useState<Goal>("gain");
   const [meals, setMeals] = useState("4");
-  const grams = body.weightKg > 20 ? proteinGrams(body.weightKg, goal) : 0;
-  const perMeal = grams / Math.max(parseInt(meals) || 1, 1);
+  const error = body.error ?? mealCountError(Number(meals));
+  const grams = !error ? proteinGrams(body.weightKg, goal) : 0;
+  const perMeal = grams / Number(meals);
 
   return (
     <Shell
@@ -413,7 +433,7 @@ export function ProteinCalculator() {
             </p>
           </div>
         ) : (
-          <Empty />
+          <Empty message={error} />
         )
       }
     />

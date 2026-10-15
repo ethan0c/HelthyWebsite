@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import {
   SeoPage,
   PageHero,
-  StoreButtons,
+  DownloadButton,
   Section,
   CompareTable,
   FaqList,
@@ -25,7 +25,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const c = getComparison(slug);
   if (!c) return {};
-  return seoMetadata({ title: c.title, description: c.description, path: `/compare/${c.slug}` });
+  return seoMetadata({
+    title: c.title,
+    description: c.description,
+    path: `/compare/${c.slug}`,
+    image: `/compare/${c.slug}/opengraph-image`,
+  });
 }
 
 function Bullets({ items }: { items: string[] }) {
@@ -64,10 +69,10 @@ export default async function ComparisonPage({ params }: PageProps<"/compare/[sl
         }
         lede={c.lede}
       >
-        <StoreButtons />
+        <DownloadButton />
       </PageHero>
 
-      <Section title="Side by side">
+      <Section title="Side by side" tone="light">
         <CompareTable
           columns={["", "Helthy", c.competitor]}
           rows={c.rows.map((r) => ({ label: r.label, values: [r.helthy, r.them] }))}
@@ -85,7 +90,7 @@ export default async function ComparisonPage({ params }: PageProps<"/compare/[sl
           </div>
         </div>
         <div className="card p-7">
-          <h2 className="text-title">Where {c.competitor} is better</h2>
+          <h2 className="text-title">Where {c.competitor} has the edge</h2>
           <div className="mt-5">
             <Bullets items={c.theyWin} />
           </div>

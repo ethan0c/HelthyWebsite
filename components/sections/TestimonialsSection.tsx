@@ -69,7 +69,7 @@ const TRANSFORMATIONS = [
     afterFace: { cx: 51, cy: 42, r: 11 },
     quote:
       "Built Helthy because nothing else would actually tell me what to fix.",
-    stats: [{ label: "lost", value: "−50 lb" }],
+    stats: [{ label: "lost", value: "−59 lb" }],
   },
   {
     name: "Ebu",

@@ -164,7 +164,7 @@ export default function PrivacyPage() {
                   </div>
                   <div>
                     <h3 className="text-[17px] font-medium text-fg">6.2 Data Export</h3>
-                    <p className="mt-1">Helthy Pro members can export a ZIP of all their data, or CSV files of their workouts or nutrition, from Settings → Privacy → Export Data. Anyone can request a copy of their data by emailing support@helthy.app.</p>
+                    <p className="mt-1">Helthy Premium members can export a ZIP of all their data, or CSV files of their workouts or nutrition, from Settings → Privacy → Export Data. Anyone can request a copy of their data by emailing support@helthy.app.</p>
                   </div>
                   <div>
                     <h3 className="text-[17px] font-medium text-fg">6.3 Account Deletion</h3>

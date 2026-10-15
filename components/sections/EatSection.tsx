@@ -15,12 +15,12 @@ export default function EatSection() {
         "Scan a barcode or nutrition label",
         "Search the food database, or just type or say what you ate",
       ]}
-      footnote="Calorie and macro tracking is free and unlimited. 2 AI scans a week are free, unlimited with Pro."
+      footnote="Calorie and macro tracking is free and unlimited. 2 AI scans a week are free, unlimited with Premium."
       visual={
         <PhoneVideo
           src="/videos/app/food-log.mp4"
           poster="/videos/app/food-log-poster.jpg"
-          label="Screen recording: scanning a plate of shrimp and chicken noodles with the camera, then logging it"
+          label="Screen recording: snapping a photo of a meal in Helthy, which identifies each item, fills in calories and macros, and adds it to lunch"
           className="w-[min(300px,70vw)]"
         />
       }

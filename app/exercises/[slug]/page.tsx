@@ -3,13 +3,18 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SeoPage, DownloadBanner, seoMetadata } from "@/components/seo/SeoPage";
 import JsonLd from "@/components/seo/JsonLd";
-import { EXERCISES, getExercise, type Exercise } from "@/lib/content/exercises";
+import { EXERCISES, getExercise, getRelatedExercises, type Exercise } from "@/lib/content/exercises";
 import { getExerciseArticle } from "@/lib/content/exerciseArticles";
 import { formatDate } from "@/lib/blog";
 import { LB_PER_KG } from "@/lib/calc";
 import { SITE_URL, absoluteUrl } from "@/lib/site";
 
+// Scheduled posts go live on their date (and links to them start working)
+// without a redeploy: re-render at most once an hour.
+export const revalidate = 3600;
+
 export const dynamicParams = false;
+
 
 export function generateStaticParams() {
   return EXERCISES.map((e) => ({ slug: e.slug }));
@@ -29,6 +34,7 @@ export async function generateMetadata({
       article?.meta.description ??
       `How to do the ${e.name.toLowerCase()} with good form. Works the ${list(e.primaryMuscles)}. Form cues, common mistakes, breathing${e.ratios ? " and how much weight to use" : ""}.`,
     path: `/exercises/${e.slug}`,
+    image: `/exercises/${e.slug}/opengraph-image`,
   });
 }
 
@@ -99,7 +105,7 @@ export default async function ExercisePage({ params }: PageProps<"/exercises/[sl
   if (!e || !article) notFound();
   const { meta, Content, readingMinutes } = article;
 
-  const related = EXERCISES.filter((x) => x.group === e.group && x.slug !== e.slug).slice(0, 5);
+  const related = getRelatedExercises(e);
 
   return (
     <SeoPage

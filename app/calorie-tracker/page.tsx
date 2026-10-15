@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import {
   SeoPage,
   PageHero,
-  StoreButtons,
+  DownloadButton,
   Section,
   Prose,
   FeatureGrid,
@@ -20,12 +20,13 @@ export const metadata: Metadata = seoMetadata({
   description:
     "Helthy is a free calorie and macro tracker. Search foods, scan barcodes, or snap a photo and let AI log the meal. Unlimited calorie and macro logging, free.",
   path: "/calorie-tracker",
+  image: "/videos/app/food-log-poster.jpg",
 });
 
 const FAQS = [
   {
     q: "Is Helthy's calorie tracker really free?",
-    a: `Yes. Food search, quick-add, calorie and macro tracking and nutrition goals are free with no limit and no trial. Free users also get 2 camera scans (photo, barcode or label), 2 voice logs and 2 typed descriptions a week. Helthy Pro ($${PRO_PRICE.monthly}/month or $${PRO_PRICE.yearly}/year) makes all of those unlimited and adds the AI coach.`,
+    a: `Yes. Food search, quick-add, calorie and macro tracking and nutrition goals are free with no limit and no trial. Barcode scans are unlimited on the free plan. Free users also get 2 meal photo scans, 2 voice logs and 2 typed descriptions a week. Helthy Premium ($${PRO_PRICE.monthly}/month or $${PRO_PRICE.yearly}/year) makes all of those unlimited and adds the AI coach.`,
   },
   {
     q: "How accurate is AI photo calorie counting?",
@@ -37,7 +38,7 @@ const FAQS = [
   },
   {
     q: "How does Helthy set my calorie goal?",
-    a: "During setup Helthy estimates your daily energy needs (TDEE) from your age, height, weight, activity and goal, then sets calorie and macro targets. Every week it refreshes your TDEE from your real steps and workouts, free. Pro adds Smart Calories: an adaptive TDEE from your weight trend and intake, calorie cycling and a goal date. Try the free TDEE calculator on this site to see the math.",
+    a: "During setup Helthy estimates your daily energy needs (TDEE) from your age, height, weight, activity and goal, then sets calorie and macro targets. Every week it refreshes your TDEE from your real steps and workouts, free. Premium adds Smart Calories: an adaptive TDEE from your weight trend and intake, calorie cycling and a goal date. Try the free TDEE calculator on this site to see the math.",
   },
   {
     q: "Does it sync with Apple Health?",
@@ -59,15 +60,15 @@ export default function CalorieTrackerPage() {
               <span className="text-highlight">photo</span>
             </>
           }
-          lede="Count calories and macros without the homework. Search the food database, scan a barcode, or snap a picture and let AI break the plate down for you. Logging is free and unlimited, and you get free AI scans every week."
+          lede="Count calories and macros without the homework. Search the food database, scan a barcode, or snap a picture and let AI break the plate down for you. Logging is free and unlimited, and barcode scans are unlimited. You also get 2 free meal photo scans a week."
         >
-          <StoreButtons />
+          <DownloadButton />
         </PageHero>
         <div className="flex justify-center md:justify-end">
           <PhoneVideo
             src="/videos/app/food-log.mp4"
             poster="/videos/app/food-log-poster.jpg"
-            label="Screen recording: scanning a plate of food with the camera, then logging its calories and macros"
+            label="Screen recording: snapping a photo of a meal in Helthy, which identifies each item, fills in calories and macros, and adds it to lunch"
             className="w-[min(280px,70vw)]"
           />
         </div>
@@ -81,11 +82,11 @@ export default function CalorieTrackerPage() {
           items={[
             {
               title: "Snap a photo",
-              body: "Point your camera at the plate. Helthy identifies each item, estimates portions and fills in calories and macros. 2 free scans a week, unlimited with Pro.",
+              body: "Point your camera at the plate. Helthy identifies each item, estimates portions and fills in calories and macros. 2 free meal photo scans a week, unlimited with Premium.",
             },
             {
               title: "Scan a barcode or label",
-              body: "The same camera detects barcodes and nutrition labels as you aim. Scan several items, then log them all at once.",
+              body: "Barcode scans are free and unlimited. The same camera detects barcodes and nutrition labels as you aim. Scan several items, then log them all at once.",
             },
             {
               title: "Search, type or say it",
@@ -140,7 +141,7 @@ export default function CalorieTrackerPage() {
             },
             {
               title: "Watch the trend",
-              body: "Check your weekly averages and weight trend, and adjust. With Pro, ask the AI coach what to change.",
+              body: "Check your weekly averages and weight trend, and adjust. With Premium, ask the AI coach what to change.",
             },
           ]}
         />

@@ -3,6 +3,7 @@ import { absoluteUrl } from "@/lib/site";
 import { COMPARISONS } from "@/lib/content/comparisons";
 import { EXERCISES } from "@/lib/content/exercises";
 import { getPosts } from "@/lib/blog";
+import { getExerciseArticle } from "@/lib/content/exerciseArticles";
 
 export const revalidate = 86400;
 
@@ -12,17 +13,25 @@ const page = (
   path: string,
   priority: number,
   changeFrequency: Entry["changeFrequency"] = "monthly",
-): Entry => ({ url: absoluteUrl(path), priority, changeFrequency });
+  images?: string[],
+): Entry => ({ url: absoluteUrl(path), priority, changeFrequency, ...(images && { images }) });
 
 // No lastModified on static pages: stamping every URL with the build time
 // tells search engines nothing, and Google ignores lastmod once it proves
-// unreliable. Blog posts use their real publish date.
+// unreliable. Articles use their recorded update date, or their publish date.
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getPosts();
+  const exercises = await Promise.all(EXERCISES.map(async (e) => {
+    const article = await getExerciseArticle(e.slug);
+    return {
+      ...page(`/exercises/${e.slug}`, 0.6),
+      ...(article && { lastModified: article.meta.updated }),
+    };
+  }));
   return [
-    page("/", 1, "weekly"),
-    page("/calorie-tracker", 0.9),
-    page("/workout-tracker", 0.9),
+    page("/", 1, "weekly", [absoluteUrl("/phones/hero-iphone.png")]),
+    page("/calorie-tracker", 0.9, "monthly", [absoluteUrl("/videos/app/food-log-poster.jpg")]),
+    page("/workout-tracker", 0.9, "monthly", [absoluteUrl("/videos/app/workout-log-poster.jpg")]),
     page("/ai-fitness-coach", 0.9),
     page("/features", 0.8),
     page("/pricing", 0.8),
@@ -34,16 +43,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     page("/tools/protein-calculator", 0.8),
     page("/tools/one-rep-max-calculator", 0.8),
     page("/exercises", 0.7),
-    ...EXERCISES.map((e) => page(`/exercises/${e.slug}`, 0.6)),
+    ...exercises,
     page("/blog", 0.8, "weekly"),
     ...posts.map((p) => ({
       url: absoluteUrl(`/blog/${p.slug}`),
-      lastModified: p.meta.date,
+      lastModified: p.meta.updated ?? p.meta.date,
       changeFrequency: "yearly" as const,
       priority: 0.7,
+      ...(p.meta.image && { images: [absoluteUrl(p.meta.image)] }),
     })),
     page("/download", 0.6),
     page("/changelog", 0.5, "weekly"),
+    page("/about", 0.5, "yearly"),
     page("/contact", 0.4, "yearly"),
     page("/privacy", 0.2, "yearly"),
     page("/terms", 0.2, "yearly"),

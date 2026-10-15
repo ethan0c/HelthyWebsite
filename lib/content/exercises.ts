@@ -26,6 +26,38 @@ export type Exercise = {
 
 export const EXERCISE_GROUPS: ExerciseGroup[] = ["Chest", "Back", "Shoulders", "Legs", "Arms", "Core"];
 
+// Alternatives a reader can compare within the same movement or training goal.
+// Keep each family small so every member remains reachable from its peers.
+const RELATED_FAMILIES = [
+  ["barbell-bench-press", "dumbbell-bench-press", "chest-press-machine", "push-up"],
+  ["incline-barbell-bench-press", "incline-dumbbell-press", "barbell-bench-press"],
+  ["chest-fly", "dumbbell-fly", "cable-crossover"],
+  ["barbell-row", "bent-over-row", "dumbbell-row", "seated-cable-row", "t-bar-row"],
+  ["pull-up", "lat-pulldown"],
+  ["deadlift", "rack-pull", "shrug"],
+  ["barbell-squat", "front-squat", "goblet-squat"],
+  ["lunge", "bulgarian-split-squat"],
+  ["romanian-deadlift", "leg-curl", "hip-thrust", "sumo-deadlift"],
+  ["leg-press", "leg-extension", "calf-raise"],
+  ["overhead-press", "dumbbell-shoulder-press", "shoulder-press-machine"],
+  ["lateral-raise", "face-pull"],
+  ["barbell-curl", "dumbbell-curl", "hammer-curl"],
+  ["tricep-pushdown", "skull-crusher", "tricep-dip"],
+  ["plank", "hanging-leg-raise", "cable-crunch"],
+];
+
+export function getRelatedExercises(exercise: Exercise): Exercise[] {
+  const preferred = new Set(RELATED_FAMILIES
+    .filter((family) => family.includes(exercise.slug)).flat());
+  const score = (candidate: Exercise) =>
+    (preferred.has(candidate.slug) ? 100 : 0) +
+    candidate.primaryMuscles.filter((muscle) => exercise.primaryMuscles.includes(muscle)).length;
+  return EXERCISES
+    .filter((candidate) => candidate.group === exercise.group && candidate.slug !== exercise.slug)
+    .sort((a, b) => score(b) - score(a) || a.slug.localeCompare(b.slug))
+    .slice(0, 5);
+}
+
 export const EXERCISES: Exercise[] = [
   {
     slug: "barbell-bench-press",
@@ -146,12 +178,7 @@ export const EXERCISES: Exercise[] = [
       "Going too deep and straining shoulders",
       "Using too heavy a weight"
     ],
-    breathing: "Inhale as you open your arms. Exhale as you bring them together.",
-    ratios: {
-      beginner: 0.08,
-      intermediate: 0.15,
-      advanced: 0.22
-    }
+    breathing: "Inhale as you open your arms. Exhale as you bring them together."
   },
   {
     slug: "cable-crossover",
@@ -1062,7 +1089,7 @@ export const EXERCISES: Exercise[] = [
     difficulty: "beginner",
     tips: "Keep a slight bend in elbows. Open arms wide in a hugging motion until you feel a chest stretch. Squeeze at the top.",
     commonMistakes: [
-      "Straightening arms (turns into a press)",
+      "Bending elbows too much (turns into a press)",
       "Going too deep",
       "Using too heavy a weight"
     ],
@@ -1103,7 +1130,7 @@ export const EXERCISES: Exercise[] = [
     slug: "shrug",
     name: "Shrug",
     group: "Back",
-    equipment: "Barbell or dumbbells",
+    equipment: "Dumbbells or barbell",
     primaryMuscles: [
       "Traps"
     ],
