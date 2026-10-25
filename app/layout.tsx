@@ -200,6 +200,13 @@ export default async function RootLayout({
         {/* Preload critical fonts to avoid FOIT/FOUT */}
         <link
           rel="preload"
+          href="/fonts/dm-sans/DMSans-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
           href="/fonts/unbounded/Unbounded-Medium.woff2"
           as="font"
           type="font/woff2"

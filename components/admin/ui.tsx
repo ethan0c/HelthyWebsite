@@ -3,8 +3,12 @@
 export const METHOD_LABELS: Record<string, string> = {
   barcode: "Barcode",
   nutrition_label: "Nutrition label",
-  speech: "Speech",
-  voice: "Voice",
+  speech: "Legacy mixed AI logs",
+  legacy_ai_mixed: "Legacy mixed AI logs",
+  describe: "Describe (typed)",
+  photo: "Photo",
+  ai_chat: "AI chat",
+  voice: "Voice (spoken)",
   quick: "Quick add",
   search: "Search",
 };

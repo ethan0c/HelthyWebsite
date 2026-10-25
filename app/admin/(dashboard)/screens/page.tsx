@@ -28,9 +28,9 @@ export default async function ScreensPage({ searchParams }: Props) {
 
   return (
     <>
-      <Toolbar data={data} days={days} scope={`Last ${ph.days} days. ${ph.activeUsers.toLocaleString()} people opened the app.`} />
+      <Toolbar data={data} days={days} scope={`Last ${ph.days} days. ${ph.activeUsers.toLocaleString()} people had tracked app activity.`} />
 
-      <Block title="Screens" note="Most opened first. Time is the median per visit.">
+      <Block title="Screens" note="Corrected production telemetry only, from accounts with analytics enabled. Older versions are excluded. Most opened first; time is the median active time per completed foreground visit.">
         <Table head={["Screen", "Opens", "People", "Share of active", "Time"]}>
           {ph.screens.map((s) => {
             const share = s.users / Math.max(1, ph.activeUsers);
@@ -53,7 +53,9 @@ export default async function ScreensPage({ searchParams }: Props) {
       </Block>
 
       <Block title="Screens nobody opened" note={`Screens in the app with no opens in the last ${ph.days} days.`}>
-        {ph.unusedScreens.length === 0 ? (
+        {ph.unavailableSections?.includes('screens') ? (
+          <p className="text-fg-muted">Screen data could not be loaded. Try again to see which screens were opened.</p>
+        ) : ph.unusedScreens.length === 0 ? (
           <p className="text-fg-muted">Every screen was opened at least once.</p>
         ) : (
           <ul className="flex flex-wrap gap-2">

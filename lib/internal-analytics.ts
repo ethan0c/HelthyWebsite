@@ -20,6 +20,7 @@ export interface InternalAnalytics {
   platforms: Array<{ platform: string; appVersion: string; users: number }>;
   posthog: {
     days: number;
+    unavailableSections?: string[];
     onlineNow: number;
     activeUsers: number;
     activeByDay: Array<{ date: string; users: number }>;

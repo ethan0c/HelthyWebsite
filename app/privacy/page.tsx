@@ -143,6 +143,13 @@ export default function PrivacyPage() {
               </section>
 
               <section className="space-y-4">
+                <h2 className="text-xl font-semibold tracking-[-0.01em] text-fg">Product analytics</h2>
+                <p>We use PostHog to understand feature usage. Events are associated with a pseudonymous account ID and may include screen views, active time, food logging methods and item counts, subscription status, and app and device metadata.</p>
+                <p>Current analytics excludes names, email addresses, food and workout names, meal descriptions, calorie totals, body measurements, photos, recordings, and chat text. Session replay is disabled. You can turn off Analytics in Settings → Privacy &amp; Security to stop future tracking.</p>
+                <p>Earlier app versions could send names and health-related event properties. The updated tracking prevents new collection of those properties; it does not automatically remove previously collected data. Contact us to request access or deletion.</p>
+              </section>
+
+              <section className="space-y-4">
                 <h2 className="text-xl font-semibold tracking-[-0.01em] text-fg">5. Data Storage and Retention</h2>
                 <p>
                   Your data is stored on secure servers provided by our hosting partners. Data may be stored in the United States or other countries where our service providers operate.

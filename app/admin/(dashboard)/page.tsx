@@ -23,7 +23,7 @@ export default async function OverviewPage({ searchParams }: Props) {
       <Toolbar data={data} days={days} scope={`Charts cover the last ${days} days.`} />
 
       <section className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-7">
-        <Stat label="Online now" value={Math.max(data.active.online, ph?.onlineNow ?? 0)} note="last 5 minutes" />
+        <Stat label="Active recently" value={data.active.online} note="server contact in last 5 minutes" />
         <Stat label="Last hour" value={data.active.lastHour} />
         <Stat label="Last 24 hours" value={data.active.last24h} />
         <Stat label="Last 7 days" value={data.active.last7d} />
@@ -32,7 +32,7 @@ export default async function OverviewPage({ searchParams }: Props) {
         <Stat label="Premium" value={data.users.premium} note={`${pct(data.users.premium, data.users.total)} of users`} />
       </section>
       <p className="mt-3 text-[13px] text-fg-subtle">
-        Active means the app talked to our servers. New users: {data.users.newToday} today, {data.users.new7d} this week,{" "}
+        Active means the app talked to our servers, not that it is connected right now. Usage charts include corrected production analytics from accounts with analytics enabled. New users: {data.users.newToday} today, {data.users.new7d} this week,{" "}
         {data.users.new30d} in 30 days.
       </p>
 
@@ -44,7 +44,7 @@ export default async function OverviewPage({ searchParams }: Props) {
           dates={dates}
           note={ph && days > 30 ? "Logging is only recorded for the last 30 days." : undefined}
           series={[
-            ...(ph ? [{ label: "Opened the app", color: "var(--chart-1)", values: dates.map((d) => opened.get(d) ?? null) }] : []),
+            ...(ph ? [{ label: "Tracked app activity", color: "var(--chart-1)", values: dates.map((d) => opened.get(d) ?? null) }] : []),
             { label: "Logged something", color: ph ? "var(--chart-2)" : "var(--fg)", values: dates.map((d) => engaged.get(d) ?? null) },
           ]}
         />

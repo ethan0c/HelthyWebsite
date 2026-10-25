@@ -43,10 +43,10 @@ export async function ogCard({
   /** Absolutely positioned visual for the right of the card. */
   side: ReactNode;
 }) {
-  const [logo, unbounded, geist] = await Promise.all([
+  const [logo, unbounded, dmSans] = await Promise.all([
     file("logos/logo-long-white.png"),
     file("fonts/unbounded/Unbounded-Bold.ttf"),
-    file("fonts/geist/Geist-Medium.ttf"),
+    file("fonts/dm-sans/DMSans-Medium.ttf"),
   ]);
 
   return new ImageResponse(
@@ -59,7 +59,7 @@ export async function ogCard({
           background: OG.canvas,
           position: "relative",
           overflow: "hidden",
-          fontFamily: "Geist",
+          fontFamily: "DM Sans",
         }}
       >
         <div
@@ -103,7 +103,7 @@ export async function ogCard({
       ...OG_SIZE,
       fonts: [
         { name: "Unbounded", data: unbounded, weight: 700 },
-        { name: "Geist", data: geist, weight: 500 },
+        { name: "DM Sans", data: dmSans, weight: 500 },
       ],
     },
   );

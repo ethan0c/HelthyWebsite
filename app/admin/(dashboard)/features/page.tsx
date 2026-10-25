@@ -43,9 +43,9 @@ export default async function FeaturesPage({ searchParams }: Props) {
       </Block>
 
       {data.loggingMethods.length > 0 ? (
-        <Block title="How people add food" note="Foods added by each method, all time. Most used first.">
+        <Block title="How people add food" note="Successful logging operations, all time. One operation may add several foods. Describe is typed; Voice is spoken. Legacy mixed AI logs combine older typed and photo saves and cannot be split from these counters.">
           <BarList
-            unit="foods added"
+            unit="logging operations"
             rows={[...data.loggingMethods]
               .sort((a, b) => b.total - a.total)
               .map((m) => ({
